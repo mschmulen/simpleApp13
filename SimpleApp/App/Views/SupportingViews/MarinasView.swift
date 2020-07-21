@@ -77,6 +77,6 @@ struct MarinasView: View {
     func onProfile() {
         changeSelectedTabCallback(.user)
     }
-        
+    
 }
 
