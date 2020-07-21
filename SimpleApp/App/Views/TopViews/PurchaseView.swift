@@ -15,20 +15,27 @@ struct PurchaseView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        List{
+        VStack {
+            
             Text("PurchaseView")
             
-            Button(action: {
-                print( "Purchase")
-            }) {
-                Text("Purchase")
-            }
+            Spacer()
+            VStack(alignment: .center, spacing: 20.0) {
+                Button(action: {
+                    let _ = self.appState.makePurchase(purchase: .premium)
+                    self.appState.topView = .tabView
+                }) {
+                    Text("Yes! purchase premium for $X.XX")
+                }.padding()
+                
+                Button(action: {
+                    self.appState.topView = .tabView
+                }) {
+                    Text("No Thanks")
+                }.padding()
+            }.padding()
             
-            Button(action: {
-                print("Cancel Purchase View")
-            }) {
-                Text("Cancel")
-            }
+            Spacer()
         }
     }
 }

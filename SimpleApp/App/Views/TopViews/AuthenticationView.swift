@@ -34,6 +34,7 @@ struct AutheticationView: View {
                 
                 Button(action: {
                     self.appState.signIn(email: self.email, password: self.password)
+                    self.appState.topView = .tabView
                 }) {
                     Text("Sign In")
                 }.padding()
@@ -42,9 +43,18 @@ struct AutheticationView: View {
                 
                 Button(action: {
                     self.appState.register(email: self.email, password: self.password)
+                    self.appState.topView = .tabView
                 }) {
                     Text("Register")
                 }.padding()
+            }.padding()
+            
+            Spacer()
+            
+            Button(action: {
+                self.appState.topView = .tabView
+            }) {
+                Text("Cancel")
             }.padding()
             
             Spacer()

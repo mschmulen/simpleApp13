@@ -51,9 +51,6 @@ struct TopTabView: View {
                     Image(systemName:"person.circle")
                     Text("User")
             }.tag(TabViewIndex.user.rawValue)
-            
-        }.onAppear {
-            print( "tab appear")
         }
     }
     

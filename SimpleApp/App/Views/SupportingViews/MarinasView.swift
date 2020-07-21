@@ -16,7 +16,7 @@ struct MarinasView: View {
     @EnvironmentObject var marinaStore: SimpleNetworkStore<MarinaModel>
     @EnvironmentObject var boatStore: SimpleNetworkStore<BoatModel>
     
-    @State var devMessage:String?
+    @State var devMessage: String?
     
     var changeSelectedTabCallback: (TopTabView.TabViewIndex)->Void
     
@@ -31,18 +31,17 @@ struct MarinasView: View {
                     }
                 }
                 
-                Section(header: Text("Boats")) {
-                    ForEach( boatStore.models) { model in
-                        Text("\(model.name)")
-                    }
-                }
-                
                 Section(header: Text("Marinas")) {
                     ForEach( marinaStore.models) { model in
-                        Text("\(model.name)")
+                        MarinaRowView(model: model)
                     }
                 }
                 
+                Section(header: Text("Boats")) {
+                    ForEach( boatStore.models) { model in
+                        BoatRowView(model: model)
+                    }
+                }
             }
             .navigationBarTitle("Marinas")
             .navigationBarItems(leading: addButton, trailing: profileButton)
@@ -60,12 +59,18 @@ struct MarinasView: View {
     }
     
     private var profileButton: some View {
-        if appState.currentUserModel == nil {
-            return AnyView(
-            Button(action:onProfile) { Image(systemName: "person.circle") })
-        } else {
-            return AnyView(
-            Button(action:onProfile) { Image(systemName: "person.circle.fill") })
+        HStack {
+            if appState.currentPurchaseModel == nil {
+                Button(action:onProfile) { Image(systemName: "star.circle") }
+            } else {
+                Button(action:onProfile) { Image(systemName: "star.circle.fill") }
+            }
+            
+            if appState.currentUserModel == nil {
+                Button(action:onProfile) { Image(systemName: "person.circle") }
+            } else {
+                Button(action:onProfile) { Image(systemName: "person.circle.fill") }
+            }
         }
     }
     

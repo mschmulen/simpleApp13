@@ -25,6 +25,12 @@ class AppState: ObservableObject {
     @Published var currentUserModel: UserModel? = nil
     @Published var currentPurchaseModel: PurchaseModel? = nil
     
+    @Published var topView: ContentView.TopView = .tabView {
+        willSet {
+            updateChanges()
+        }
+    }
+    
     init(
     ) {
         #if targetEnvironment(simulator)
@@ -65,6 +71,29 @@ extension AppState {
     }
     
 }
+
+// MARK: - Purchase Services
+extension AppState {
+    
+    public func makePurchase(
+        purchase: PurchaseModel.PurchaseStatus
+    ) -> Result<PurchaseModel,Error> {
+        let newModel = PurchaseModel(id: UUID(), status: purchase)
+        self.currentPurchaseModel = newModel
+        return .success(newModel)
+    }
+    
+    public func verifyPurchase(
+        purchase: String
+    ) -> Result<PurchaseModel?,Error> {
+        guard let activePurchase = self.currentPurchaseModel else {
+            return .success(nil)
+        }
+        return .success(activePurchase)
+    }
+    
+}
+
 
 // MARK: - Authentication Services
 extension AppState {

@@ -34,30 +34,34 @@ struct BoatsView: View {
                 
                 Section(header: Text("Boats")) {
                     ForEach( boatStore.models) { model in
-                        Text("\(model.name)")
+                        BoatRowView(model: model)
                     }
                 }
                 
                 Section(header: Text("Marinas")) {
                     ForEach( marinaStore.models) { model in
-                        Text("\(model.name)")
+                        MarinaRowView(model: model)
                     }
                 }
             }
             .navigationBarTitle("Boats")
             .navigationBarItems(leading: addButton, trailing: profileButton)
-        }.onAppear {
-            print("BoatsView.onAppear")
         }
     }
     
     private var profileButton: some View {
-        if appState.currentUserModel == nil {
-            return AnyView(
-                Button(action:onProfile) { Image(systemName: "person.circle") })
-        } else {
-            return AnyView(
-                Button(action:onProfile) { Image(systemName: "person.circle.fill") })
+        HStack {
+            if appState.currentPurchaseModel == nil {
+                Button(action:onProfile) { Image(systemName: "star.circle") }
+            } else {
+                Button(action:onProfile) { Image(systemName: "star.circle.fill") }
+            }
+            
+            if appState.currentUserModel == nil {
+                Button(action:onProfile) { Image(systemName: "person.circle") }
+            } else {
+                Button(action:onProfile) { Image(systemName: "person.circle.fill") }
+            }
         }
     }
     

@@ -31,6 +31,8 @@
 		7601817324C5FBC900B339E4 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817224C5FBC900B339E4 /* DeviceModel.swift */; };
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
+		7601817D24C7308000B339E4 /* MarinaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817C24C7308000B339E4 /* MarinaRowView.swift */; };
+		7601817F24C7309A00B339E4 /* BoatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817E24C7309A00B339E4 /* BoatRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		7601817224C5FBC900B339E4 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		7601817C24C7308000B339E4 /* MarinaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarinaRowView.swift; path = ../../../../../../../../Documents/MarinaRowView.swift; sourceTree = "<group>"; };
+		7601817E24C7309A00B339E4 /* BoatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoatRowView.swift; path = ../../../../../../../../Documents/BoatRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,8 @@
 				7601815F24C4B01300B339E4 /* UserView.swift */,
 				7601816424C4BC9500B339E4 /* BoatsView.swift */,
 				7601816624C5494200B339E4 /* MarinasView.swift */,
+				7601817C24C7308000B339E4 /* MarinaRowView.swift */,
+				7601817E24C7309A00B339E4 /* BoatRowView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 			files = (
 				7601816024C4B01300B339E4 /* UserView.swift in Sources */,
 				7601816B24C54A4300B339E4 /* MarinaModel.swift in Sources */,
+				7601817F24C7309A00B339E4 /* BoatRowView.swift in Sources */,
 				7601815224C4A59300B339E4 /* UserModel.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				7601816E24C54B6000B339E4 /* AuthenticationView.swift in Sources */,
@@ -384,6 +391,7 @@
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				7601815924C4ACF300B339E4 /* SimpleNetworkStore.swift in Sources */,
+				7601817D24C7308000B339E4 /* MarinaRowView.swift in Sources */,
 				7601815624C4A68F00B339E4 /* TopTabView.swift in Sources */,
 				7601817324C5FBC900B339E4 /* DeviceModel.swift in Sources */,
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,

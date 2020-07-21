@@ -34,18 +34,17 @@ struct UserView: View {
                 
                 Section(header: Text("Actions")) {
                     
+                    Button(action: {
+                        self.appState.topView = .purchaseView
+                    }) {
+                        Text("Show Purchase")
+                    }
+                    
                     if appState.currentUserModel == nil {
-                        
                         Button(action: {
-                            self.appState.signIn(email: "matt@matt.com", password: "password")
+                            self.appState.topView = .authenticationView
                         }) {
-                            Text("SignIn")
-                        }
-                        
-                        Button(action: {
-                            self.appState.register(email: "matt@matt.com", password: "password")
-                        }) {
-                            Text("Register")
+                            Text("Show SignIn")
                         }
                     }
                     else {
@@ -58,7 +57,7 @@ struct UserView: View {
                 }
                 
                 Section(header: Text("Purchase Information")) {
-                    Text("purchaseStatus: \(appState.currentPurchaseModel?.purchaseStatus.friendlyName ?? "~")")
+                    Text("purchaseStatus: \(appState.currentPurchaseModel?.status.friendlyName ?? "~")")
                     Text("id: \(appState.currentPurchaseModel?.id.uuidString ?? "~")")
                 }
                 
@@ -73,10 +72,6 @@ struct UserView: View {
                     Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
                     Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
                 }
-                
-                
-            }.onAppear {
-                print("UserView.onAppear")
             }
             .navigationBarTitle("User")
         }

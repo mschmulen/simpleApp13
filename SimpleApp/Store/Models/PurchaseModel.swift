@@ -15,7 +15,7 @@ public struct PurchaseModel: Identifiable {
     
     public var id: UUID
     
-    public var purchaseStatus: PurchaseStatus
+    public var status: PurchaseStatus
     
     public enum PurchaseStatus: Int {
         case unknown
@@ -38,7 +38,7 @@ extension PurchaseModel {
     public static var mock: PurchaseModel {
         return PurchaseModel(
             id: UUID(),
-            purchaseStatus: .unknown
+            status: .unknown
         )
     }
 }
