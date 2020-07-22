@@ -33,7 +33,9 @@ struct MarinasView: View {
                 
                 Section(header: Text("Marinas")) {
                     ForEach( marinaStore.models) { model in
-                        MarinaRowView(model: model)
+                        NavigationLink(destination: MarinaDetail(model: model)) {
+                            MarinaRowView(model: model)
+                        }
                     }
                 }
                 
@@ -45,8 +47,6 @@ struct MarinasView: View {
             }
             .navigationBarTitle("Marinas")
             .navigationBarItems(leading: addButton, trailing: profileButton)
-        }.onAppear {
-            print("MarinasView.onAppear")
         }
     }
     
@@ -55,7 +55,7 @@ struct MarinasView: View {
     }
     
     func onAdd() {
-        self.marinaStore.addModel( MarinaModel.mock)
+        self.marinaStore.createModel( MarinaModel.mock)
     }
     
     private var profileButton: some View {

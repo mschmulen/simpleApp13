@@ -28,35 +28,36 @@ struct UserView: View {
                 }
                 
                 Section(header: Text("User Information")) {
-                    Text("email: \(appState.currentUserModel?.email ?? "~")")
-                    Text("id: \(appState.currentUserModel?.id.uuidString ?? "~")")
-                }
-                
-                Section(header: Text("Actions")) {
-                    
-                    Button(action: {
-                        self.appState.topView = .purchaseView
-                    }) {
-                        Text("Show Purchase")
-                    }
                     
                     if appState.currentUserModel == nil {
                         Button(action: {
                             self.appState.topView = .authenticationView
                         }) {
-                            Text("Show SignIn")
+                            Text("Sign In")
+                                .foregroundColor(.blue)
                         }
                     }
                     else {
+                        Text("email: \(appState.currentUserModel?.email ?? "~")")
+                        
                         Button(action: {
                             self.appState.signOut()
                         }) {
-                            Text("SignOut")
+                            Text("Sign Out")
+                                .foregroundColor(.blue)
                         }
                     }
                 }
                 
                 Section(header: Text("Purchase Information")) {
+                    
+                    Button(action: {
+                        self.appState.topView = .purchaseView
+                    }) {
+                        Text("Show Purchase View ")
+                            .foregroundColor(.blue)
+                    }
+                    
                     Text("purchaseStatus: \(appState.currentPurchaseModel?.status.friendlyName ?? "~")")
                     Text("id: \(appState.currentPurchaseModel?.id.uuidString ?? "~")")
                 }

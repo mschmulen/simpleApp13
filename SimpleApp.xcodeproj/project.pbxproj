@@ -33,6 +33,8 @@
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		7601817D24C7308000B339E4 /* MarinaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817C24C7308000B339E4 /* MarinaRowView.swift */; };
 		7601817F24C7309A00B339E4 /* BoatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817E24C7309A00B339E4 /* BoatRowView.swift */; };
+		7675FAF724C8930100C95453 /* MarinaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF624C8930100C95453 /* MarinaDetail.swift */; };
+		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,9 @@
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7601817C24C7308000B339E4 /* MarinaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MarinaRowView.swift; path = ../../../../../../../../Documents/MarinaRowView.swift; sourceTree = "<group>"; };
 		7601817E24C7309A00B339E4 /* BoatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoatRowView.swift; path = ../../../../../../../../Documents/BoatRowView.swift; sourceTree = "<group>"; };
+		7675FAF624C8930100C95453 /* MarinaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarinaDetail.swift; sourceTree = "<group>"; };
+		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,7 @@
 		7601810A24C4A4B400B339E4 = {
 			isa = PBXGroup;
 			children = (
+				76A3F6D224C7DA5400763A8A /* README.md */,
 				7601811524C4A4B400B339E4 /* SimpleApp */,
 				7601812F24C4A4B500B339E4 /* SimpleAppTests */,
 				7601813A24C4A4B500B339E4 /* SimpleAppUITests */,
@@ -180,6 +186,7 @@
 			children = (
 				7601814E24C4A53200B339E4 /* AppState.swift */,
 				7601816C24C54AC100B339E4 /* Views */,
+				7675FAF824C8AC1800C95453 /* UserSettings.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -199,9 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				7601815A24C4AD1000B339E4 /* BoatModel.swift */,
-				7601816A24C54A4300B339E4 /* MarinaModel.swift */,
-				7601817224C5FBC900B339E4 /* DeviceModel.swift */,
 				7601817A24C6457C00B339E4 /* AppModel.swift */,
+				7601817224C5FBC900B339E4 /* DeviceModel.swift */,
+				7601816A24C54A4300B339E4 /* MarinaModel.swift */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 				7601816624C5494200B339E4 /* MarinasView.swift */,
 				7601817C24C7308000B339E4 /* MarinaRowView.swift */,
 				7601817E24C7309A00B339E4 /* BoatRowView.swift */,
+				7675FAF624C8930100C95453 /* MarinaDetail.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -385,12 +393,14 @@
 				7601816E24C54B6000B339E4 /* AuthenticationView.swift in Sources */,
 				7601815B24C4AD1000B339E4 /* BoatModel.swift in Sources */,
 				7601815E24C4AE6200B339E4 /* SimpleUserStore.swift in Sources */,
+				7675FAF724C8930100C95453 /* MarinaDetail.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				7601815924C4ACF300B339E4 /* SimpleNetworkStore.swift in Sources */,
+				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				7601817D24C7308000B339E4 /* MarinaRowView.swift in Sources */,
 				7601815624C4A68F00B339E4 /* TopTabView.swift in Sources */,
 				7601817324C5FBC900B339E4 /* DeviceModel.swift in Sources */,

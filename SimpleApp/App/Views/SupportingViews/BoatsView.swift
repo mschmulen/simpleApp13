@@ -40,7 +40,9 @@ struct BoatsView: View {
                 
                 Section(header: Text("Marinas")) {
                     ForEach( marinaStore.models) { model in
-                        MarinaRowView(model: model)
+                        NavigationLink(destination: MarinaDetail(model: model)) {
+                            MarinaRowView(model: model)
+                        }
                     }
                 }
             }
@@ -70,7 +72,7 @@ struct BoatsView: View {
     }
     
     func onAdd() {
-        self.boatStore.addModel( BoatModel.mock)
+        self.boatStore.createModel( BoatModel.mock)
     }
     
     func onProfile() {

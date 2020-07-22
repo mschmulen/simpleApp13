@@ -97,25 +97,8 @@ extension AppState {
 
 // MARK: - Authentication Services
 extension AppState {
-
-    public func signIn(
-        email: String,
-        password:String
-    ){
-        
-        self.userStore.signIn(email: email, password: password) { (result) in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-            case .success(let model):
-                self.currentUserModel = model
-            }
-            self.updateChanges()
-        }
-    }
     
-    public func signOut(
-    ){
+    public func signOut(){
         self.userStore.signOut() { (result) in
             switch result {
             case .failure(let error):
@@ -127,9 +110,29 @@ extension AppState {
         }
     }
     
+    public func signIn(
+        email: String,
+        password:String,
+        completion: @escaping (Result<UserModel, Error>) -> ()
+    ){
+        
+        self.userStore.signIn(email: email, password: password) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error \(error)")
+            case .success(let model):
+                self.currentUserModel = model
+            }
+            
+            completion(result)
+            self.updateChanges()
+        }
+    }
+    
     public func register(
         email: String,
-        password:String
+        password:String,
+        completion: @escaping (Result<UserModel, Error>) -> ()
     ) {
         self.userStore.register(email: email, password: password) { (result) in
                         switch result {
@@ -138,6 +141,7 @@ extension AppState {
             case .success(let model):
                 self.currentUserModel = model
             }
+            completion(result)
             self.updateChanges()
         }
     }
