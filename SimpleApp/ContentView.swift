@@ -28,6 +28,8 @@ struct ContentView: View {
             if appState.topView == .tabView {
                 TopTabView()
                     .environmentObject(appState)
+                    .environmentObject(marinaStore)
+                    .environmentObject(boatStore)
             }
             
             if appState.topView == .authenticationView {
