@@ -24,14 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appState = AppState()
         appState.onStartup()
         
-        let marinaStore = SimpleNetworkStore<MarinaModel>(storeConfig: StoreConfig.local)
-        let boatStore = SimpleNetworkStore<BoatModel>(storeConfig: StoreConfig.local)
-        
         let contentView = ContentView()
             .environment(\.window, window)
             .environmentObject(appState)
-            .environmentObject(marinaStore)
-            .environmentObject(boatStore)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

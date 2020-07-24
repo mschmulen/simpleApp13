@@ -48,7 +48,7 @@ struct AutheticationView: View {
                     self.appState.signIn(email: self.email, password: "cityslicka") { result in
                         switch result {
                         case .success( _ ):
-                            self.appState.topView = .tabView
+                            self.appState.topView = .mainView
                             self.presentationMode.wrappedValue.dismiss()
                         case .failure( let error):
                             self.errorMessage = "Sign In Error \(error)"
@@ -65,7 +65,7 @@ struct AutheticationView: View {
                     self.appState.register(email: self.email, password: "pistol")  { result in
                         switch result {
                         case .success( _ ):
-                            self.appState.topView = .tabView
+                            self.appState.topView = .mainView
                             self.presentationMode.wrappedValue.dismiss()
                         case .failure( let error):
                             self.errorMessage = "Register In Error \(error)"
@@ -79,7 +79,7 @@ struct AutheticationView: View {
             Spacer()
             
             Button(action: {
-                self.appState.topView = .tabView
+                self.appState.topView = .mainView
             }) {
                 Text("Cancel")
             }.padding()

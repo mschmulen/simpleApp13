@@ -13,32 +13,20 @@ struct ContentView: View {
     @Environment(\.window) var window: UIWindow?
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var marinaStore: SimpleNetworkStore<MarinaModel>
-    @EnvironmentObject var boatStore: SimpleNetworkStore<BoatModel>
     
     enum TopView {
-        case tabView
         case mainView
         case authenticationView
         case purchaseView
     }
     
+    @ViewBuilder
     var body: some View {
         Group {
             
             if appState.topView == .mainView {
                 MainView()
                     .environmentObject(appState)
-                    .environmentObject(marinaStore)
-                    .environmentObject(boatStore)
-            }
-
-            
-            if appState.topView == .tabView {
-                TopTabView()
-                    .environmentObject(appState)
-                    .environmentObject(marinaStore)
-                    .environmentObject(boatStore)
             }
             
             if appState.topView == .authenticationView {

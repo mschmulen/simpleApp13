@@ -23,13 +23,13 @@ struct PurchaseView: View {
             VStack(alignment: .center, spacing: 20.0) {
                 Button(action: {
                     let _ = self.appState.makePurchase(purchase: .premium)
-                    self.appState.topView = .tabView
+                    self.appState.topView = .mainView
                 }) {
                     Text("Yes! purchase premium for $X.XX")
                 }.padding()
                 
                 Button(action: {
-                    self.appState.topView = .tabView
+                    self.appState.topView = .mainView
                 }) {
                     Text("No Thanks")
                 }.padding()

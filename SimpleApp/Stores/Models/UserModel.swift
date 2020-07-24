@@ -8,6 +8,13 @@
 
 import Foundation
 
+public protocol NetworkModel: Codable, Identifiable {
+    associatedtype ModelType: Codable, Identifiable
+
+    static var mockJSON: ModelType { get }
+    static var mock: ModelType { get }
+}
+
 /// User Model
 public struct UserModel: NetworkModel {
     

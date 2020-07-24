@@ -14,8 +14,6 @@ struct MainView: View {
     @Environment(\.window) var window: UIWindow?
     
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var marinaStore: SimpleNetworkStore<MarinaModel>
-    @EnvironmentObject var boatStore: SimpleNetworkStore<BoatModel>
     
     @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
