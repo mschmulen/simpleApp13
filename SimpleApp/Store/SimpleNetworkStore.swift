@@ -9,10 +9,10 @@
 import SwiftUI
 import Combine
 
-public enum ServerConfig {
+public enum StoreConfig {
     case prod
     case stage
-    case mock
+    case local
 }
 
 public protocol NetworkModel: Codable, Identifiable {
@@ -27,7 +27,7 @@ public final class SimpleNetworkStore<T:NetworkModel>: ObservableObject {
     
     public let objectWillChange = ObservableObjectPublisher()
     
-    private var serverConfig: ServerConfig
+    private var storeConfig: StoreConfig
     private var url: URL {
         URL(string: "http://api.server.org/boats/")!
     }
@@ -38,8 +38,8 @@ public final class SimpleNetworkStore<T:NetworkModel>: ObservableObject {
         }
     }
     
-    public init(serverConfig: ServerConfig) {
-        self.serverConfig = serverConfig
+    public init(storeConfig: StoreConfig) {
+        self.storeConfig = storeConfig
     }
     
     private func updateChanges() {
@@ -47,7 +47,6 @@ public final class SimpleNetworkStore<T:NetworkModel>: ObservableObject {
             self.objectWillChange.send()
         }
     }
-    
     
     enum InternalError:Error {
         case unknown
@@ -58,14 +57,14 @@ public final class SimpleNetworkStore<T:NetworkModel>: ObservableObject {
 extension SimpleNetworkStore {
     
     public func fetch() {
-        switch serverConfig {
+        switch storeConfig {
         case .prod:
             print( "TODO: fetchNetwork")
             fetchNetwork()
         case .stage:
             print( "TODO: fetchNetwork")
             fetchNetwork()
-        case .mock:
+        case .local:
             DispatchQueue.main.async {
                 self.models = []
                 self.models.append(T.mockJSON as! T)

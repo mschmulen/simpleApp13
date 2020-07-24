@@ -18,12 +18,21 @@ struct ContentView: View {
     
     enum TopView {
         case tabView
+        case mainView
         case authenticationView
         case purchaseView
     }
     
     var body: some View {
         Group {
+            
+            if appState.topView == .mainView {
+                MainView()
+                    .environmentObject(appState)
+                    .environmentObject(marinaStore)
+                    .environmentObject(boatStore)
+            }
+
             
             if appState.topView == .tabView {
                 TopTabView()

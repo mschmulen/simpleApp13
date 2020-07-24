@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appState = AppState()
         appState.onStartup()
         
-        let marinaStore = SimpleNetworkStore<MarinaModel>(serverConfig: ServerConfig.mock)
-        let boatStore = SimpleNetworkStore<BoatModel>(serverConfig: ServerConfig.mock)
+        let marinaStore = SimpleNetworkStore<MarinaModel>(storeConfig: StoreConfig.local)
+        let boatStore = SimpleNetworkStore<BoatModel>(storeConfig: StoreConfig.local)
         
         let contentView = ContentView()
             .environment(\.window, window)

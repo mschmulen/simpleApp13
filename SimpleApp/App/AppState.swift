@@ -16,7 +16,7 @@ class AppState: ObservableObject {
     
     public let isSimulator: Bool
     
-    private var serverConfig: ServerConfig
+    private var serverConfig: StoreConfig
     
     private var userStore = SimpleUserStore()
     var currentDeviceInfo: DeviceModel = DeviceModel()
@@ -25,7 +25,8 @@ class AppState: ObservableObject {
     @Published var currentUserModel: UserModel? = nil
     @Published var currentPurchaseModel: PurchaseModel? = nil
     
-    @Published var topView: ContentView.TopView = .tabView {
+    //@Published var topView: ContentView.TopView = .tabView {
+    @Published var topView: ContentView.TopView = .mainView {
         willSet {
             updateChanges()
         }
@@ -35,10 +36,10 @@ class AppState: ObservableObject {
     ) {
         #if targetEnvironment(simulator)
             isSimulator = true
-            serverConfig = .mock
+            serverConfig = .local
         #else
             isSimulator = false
-            serverConfig = .mock
+            serverConfig = .local
         #endif
     }
     
