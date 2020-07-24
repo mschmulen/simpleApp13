@@ -29,6 +29,6 @@ Simple iOS13 SwiftUI and Combine app
 
 ## Time Log
 
-- v0.0, basic app infastructure of global app state, three tabs, 2 models, with user, device and purchase service. (~2.0)
- 
+- v0.1.1, basic app infastructure of global app state, three tabs, 2 models, with user, device and purchase service. (~2_hr)
+- v0.1.2, basic app infastructure of global app state, three tabs, 2 models, with user, device and purchase service. (~45_min)
 
