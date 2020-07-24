@@ -7,7 +7,8 @@
 //
 
 import SwiftUI
-struct MarinaDetail: View {
+
+struct MarinaDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     

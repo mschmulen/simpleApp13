@@ -12,7 +12,8 @@ import SwiftUI
 struct AutheticationView: View {
     
     @Environment(\.window) var window: UIWindow?
-    
+    @Environment(\.presentationMode) var presentationMode
+        
     @EnvironmentObject var appState: AppState
     
     @State var email: String = "eve.holt@reqres.in"
@@ -48,6 +49,7 @@ struct AutheticationView: View {
                         switch result {
                         case .success( _ ):
                             self.appState.topView = .tabView
+                            self.presentationMode.wrappedValue.dismiss()
                         case .failure( let error):
                             self.errorMessage = "Sign In Error \(error)"
                             //self.appState.topView = .tabView
@@ -64,6 +66,7 @@ struct AutheticationView: View {
                         switch result {
                         case .success( _ ):
                             self.appState.topView = .tabView
+                            self.presentationMode.wrappedValue.dismiss()
                         case .failure( let error):
                             self.errorMessage = "Register In Error \(error)"
                         }

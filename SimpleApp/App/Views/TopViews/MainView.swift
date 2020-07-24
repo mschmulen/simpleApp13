@@ -20,7 +20,7 @@ struct MainView: View {
     @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
     @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -29,25 +29,41 @@ struct MainView: View {
                 }
                 
                 List{
-                    Section(header: Text("Fun")) {
-                        ForEach(funStore.models, id: \.self) { model in
-                            Text("Fun \(model.name)")
-                        }
-                    }
                     
-                    Section(header: Text("Chores")) {
-                        ForEach(choreStore.models, id: \.self) { model in
-                            Text("\(model.name)")
-                        }
-                    }
-
-                    Section(header: Text("Connect")) {
-                        ForEach(connectStore.models, id: \.self) { model in
-                            Text("\(model.name)")
-                        }
-                    }
+                    Section() {
+                        FunRowView(categoryName: "Fun", items: funStore.models)
+                        
+                    }.listRowInsets(EdgeInsets())
+                    
+                    Section() {
+                        ChoreRowView(categoryName: "Chores", items: choreStore.models)
+                    }.listRowInsets(EdgeInsets())
+                    
+                    Section() {
+                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
+                    }.listRowInsets(EdgeInsets())
                 }
             }
+            .navigationBarItems(leading: addButton, trailing: profileButton)
         }
     }
+    
+    private var profileButton: some View {
+        NavigationLink(destination: UserView()){
+            Image(systemName: "person.circle")
+        }
+    }
+    
+    private var addButton: some View {
+        NavigationLink(destination: NewChoreView() ) {
+            Image(systemName: "plus")
+        }
+    }
+    
 }
+
+
+
+
+
+

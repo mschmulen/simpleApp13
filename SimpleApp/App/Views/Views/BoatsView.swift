@@ -40,7 +40,7 @@ struct BoatsView: View {
                 
                 Section(header: Text("Marinas")) {
                     ForEach( marinaStore.models) { model in
-                        NavigationLink(destination: MarinaDetail(model: model)) {
+                        NavigationLink(destination: MarinaDetailView(model: model)) {
                             MarinaRowView(model: model)
                         }
                     }

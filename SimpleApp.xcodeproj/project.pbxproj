@@ -57,6 +57,10 @@
 		76BADB6D24CA5A7A004950C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* MainView.swift */; };
 		76BADB7024CA892E004950C0 /* LocalUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6F24CA892E004950C0 /* LocalUserModel.swift */; };
 		76BADB7224CA8975004950C0 /* LocalUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7124CA8975004950C0 /* LocalUserStore.swift */; };
+		76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7324CB0A03004950C0 /* ChoreDetailView.swift */; };
+		76BADB7724CB0AC6004950C0 /* ChoreRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7624CB0AC6004950C0 /* ChoreRowView.swift */; };
+		76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */; };
+		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +138,12 @@
 		76BADB6C24CA5A7A004950C0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		76BADB6F24CA892E004950C0 /* LocalUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserModel.swift; sourceTree = "<group>"; };
 		76BADB7124CA8975004950C0 /* LocalUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserStore.swift; sourceTree = "<group>"; };
+		76BADB7324CB0A03004950C0 /* ChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreDetailView.swift; sourceTree = "<group>"; };
+		76BADB7624CB0AC6004950C0 /* ChoreRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreRowView.swift; sourceTree = "<group>"; };
+		76BADB7C24CB0D91004950C0 /* MarinaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarinaRowView.swift; sourceTree = "<group>"; };
+		76BADB7D24CB0D91004950C0 /* BoatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatRowView.swift; sourceTree = "<group>"; };
+		76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunDetailView.swift; sourceTree = "<group>"; };
+		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +272,7 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76BADB7B24CB0D75004950C0 /* Views */,
 				7601817524C61E0800B339E4 /* TopViews */,
 				7601817624C61E1100B339E4 /* SupportingViews */,
 			);
@@ -271,8 +282,6 @@
 		7601817524C61E0800B339E4 /* TopViews */ = {
 			isa = PBXGroup;
 			children = (
-				7601816D24C54B6000B339E4 /* AuthenticationView.swift */,
-				7601817024C54B8800B339E4 /* PurchaseView.swift */,
 				7601815524C4A68F00B339E4 /* TopTabView.swift */,
 				76BADB6C24CA5A7A004950C0 /* MainView.swift */,
 			);
@@ -283,11 +292,10 @@
 			isa = PBXGroup;
 			children = (
 				7601815F24C4B01300B339E4 /* UserView.swift */,
-				7601816424C4BC9500B339E4 /* BoatsView.swift */,
-				7601816624C5494200B339E4 /* MarinasView.swift */,
+				7601817024C54B8800B339E4 /* PurchaseView.swift */,
+				7601816D24C54B6000B339E4 /* AuthenticationView.swift */,
 				7601817C24C7308000B339E4 /* MarinaRowView.swift */,
 				7601817E24C7309A00B339E4 /* BoatRowView.swift */,
-				7675FAF624C8930100C95453 /* MarinaDetail.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -342,6 +350,22 @@
 				76BADB6F24CA892E004950C0 /* LocalUserModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		76BADB7B24CB0D75004950C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76BADB7324CB0A03004950C0 /* ChoreDetailView.swift */,
+				76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */,
+				76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */,
+				76BADB7624CB0AC6004950C0 /* ChoreRowView.swift */,
+				7601816424C4BC9500B339E4 /* BoatsView.swift */,
+				7601816624C5494200B339E4 /* MarinasView.swift */,
+				76BADB7C24CB0D91004950C0 /* MarinaRowView.swift */,
+				76BADB7D24CB0D91004950C0 /* BoatRowView.swift */,
+				7675FAF624C8930100C95453 /* MarinaDetail.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,9 +520,11 @@
 				7601816E24C54B6000B339E4 /* AuthenticationView.swift in Sources */,
 				7601815B24C4AD1000B339E4 /* BoatModel.swift in Sources */,
 				7601815E24C4AE6200B339E4 /* SimpleUserStore.swift in Sources */,
+				76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */,
 				76BADB6D24CA5A7A004950C0 /* MainView.swift in Sources */,
 				76BADB7024CA892E004950C0 /* LocalUserModel.swift in Sources */,
 				7675FAF724C8930100C95453 /* MarinaDetail.swift in Sources */,
+				76BADB7724CB0AC6004950C0 /* ChoreRowView.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
@@ -506,10 +532,12 @@
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				76BADB5C24CA58B3004950C0 /* ConnectStore.swift in Sources */,
 				7601815924C4ACF300B339E4 /* SimpleNetworkStore.swift in Sources */,
+				76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */,
 				76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				7601817D24C7308000B339E4 /* MarinaRowView.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
+				76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */,
 				7601815624C4A68F00B339E4 /* TopTabView.swift in Sources */,
 				76BADB5F24CA58D8004950C0 /* ChoreStore.swift in Sources */,
 				7601817324C5FBC900B339E4 /* DeviceModel.swift in Sources */,

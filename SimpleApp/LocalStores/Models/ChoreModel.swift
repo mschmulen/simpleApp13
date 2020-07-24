@@ -10,10 +10,13 @@ import Foundation
 import SwiftUI
 
 public struct ChoreModel: Hashable, Codable, Identifiable {
+    
     public var id: Int
-    var name: String
+    public var name: String
+    
     fileprivate var imageName: String
 }
+
 
 extension ChoreModel {
     var image: Image {

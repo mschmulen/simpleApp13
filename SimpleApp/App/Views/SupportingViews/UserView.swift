@@ -11,6 +11,7 @@ import SwiftUI
 struct UserView: View {
     
     @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var appState: AppState
     
@@ -67,7 +68,7 @@ struct UserView: View {
                     Text("localeLanguageCode: \(appState.currentDeviceInfo.localeLanguageCode ?? "~")")
                     Text("localeRegionCode: \(appState.currentDeviceInfo.localeRegionCode ?? "~")")
                 }
-                    
+                
                 Section(header: Text("App Information")) {
                     Text("appID: \(appState.currentAppInfo.appID)")
                     Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
