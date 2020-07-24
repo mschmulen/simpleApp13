@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Chore 1",
+        "id": 1001,
+        "imageName": "turtlerock"
+    },
+    {
+        "name": "Chore 2",
+        "id": 1002,
+        "imageName": "silversalmoncreek"
+    }
+]

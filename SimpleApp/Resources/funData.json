@@ -1,0 +1,17 @@
+[
+    {
+        "name": "fun 1",
+        "id": 1001,
+        "imageName": "turtlerock"
+    },
+    {
+        "name": "fun 2",
+        "id": 1002,
+        "imageName": "silversalmoncreek"
+    },
+    {
+        "name": "fun 3",
+        "id": 1003,
+        "imageName": "chilkoottrail"
+    }
+]
