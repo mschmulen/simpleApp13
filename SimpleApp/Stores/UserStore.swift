@@ -1,5 +1,5 @@
 //
-//  LocalUserStore.swift
+//  UserStore.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 7/23/20.
@@ -9,13 +9,13 @@
 import SwiftUI
 import Combine
 
-public final class LocalUserStore: ObservableObject {
+public final class UserStore: ObservableObject {
     
     public let objectWillChange = ObservableObjectPublisher()
     
     private var storeConfig: StoreConfig
     
-    @Published public var models: [LocalUserModel] = load("userData.json")
+    @Published public var models: [UserModel] = load("userData.json")
     
     public init(storeConfig: StoreConfig) {
         self.storeConfig = storeConfig

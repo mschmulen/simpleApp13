@@ -2,42 +2,25 @@
 //  UserModel.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 7/19/20.
+//  Created by Matthew Schmulen on 7/23/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
 import Foundation
+import SwiftUI
 
-public protocol NetworkModel: Codable, Identifiable {
-    associatedtype ModelType: Codable, Identifiable
-
-    static var mockJSON: ModelType { get }
-    static var mock: ModelType { get }
-}
-
-/// User Model
-public struct UserModel: NetworkModel {
-    
-    public typealias ModelType = UserModel
-    
+public struct UserModel: Hashable, Codable, Identifiable {
     public var id: Int
-    public var email: String
+    var name: String
+    //var family: String
+    
+    fileprivate var imageName: String
 }
 
 extension UserModel {
-    
-    public static var mock: UserModel {
-        return UserModel(
-            id: 12345,
-            email: "mock@mock.com"
-        )
-    }
-    
-    public static var mockJSON: UserModel {
-        return UserModel(
-            id: 12346,
-            email: "mock@mock.com"
-        )
+    var image: Image {
+        ImageStore.shared.image(name: imageName)
     }
 }
+
 

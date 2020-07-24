@@ -18,7 +18,8 @@ class AppState: ObservableObject {
     
     private var serverConfig: StoreConfig
     
-    private var userStore = SimpleUserStore()
+    private var userStore = UserStore(storeConfig: StoreConfig.local)
+    
     var currentDeviceInfo: DeviceModel = DeviceModel()
     var currentAppInfo: AppModel = AppModel()
     
@@ -100,51 +101,15 @@ extension AppState {
 extension AppState {
     
     public func signOut(){
-        self.userStore.signOut() { (result) in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-            case .success(let model):
-                self.currentUserModel = model
-            }
-            self.updateChanges()
-        }
+        self.currentUserModel = nil
+        self.updateChanges()
     }
     
     public func signIn(
-        email: String,
-        password:String,
-        completion: @escaping (Result<UserModel, Error>) -> ()
+        user: UserModel
     ){
-        
-        self.userStore.signIn(email: email, password: password) { (result) in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-            case .success(let model):
-                self.currentUserModel = model
-            }
-            
-            completion(result)
-            self.updateChanges()
-        }
-    }
-    
-    public func register(
-        email: String,
-        password:String,
-        completion: @escaping (Result<UserModel, Error>) -> ()
-    ) {
-        self.userStore.register(email: email, password: password) { (result) in
-                        switch result {
-            case .failure(let error):
-                print("error \(error)")
-            case .success(let model):
-                self.currentUserModel = model
-            }
-            completion(result)
-            self.updateChanges()
-        }
+        self.currentUserModel = user
+        self.updateChanges()
     }
     
 }

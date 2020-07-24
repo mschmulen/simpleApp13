@@ -39,7 +39,7 @@ struct UserView: View {
                         }
                     }
                     else {
-                        Text("email: \(appState.currentUserModel?.email ?? "~")")
+                        Text("email: \(appState.currentUserModel?.name ?? "~")")
                         
                         Button(action: {
                             self.appState.signOut()

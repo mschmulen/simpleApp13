@@ -15,16 +15,15 @@ struct AutheticationView: View {
     @Environment(\.presentationMode) var presentationMode
         
     @EnvironmentObject var appState: AppState
-    
-    @State var email: String = "eve.holt@reqres.in"
-    @State var password: String = ""
-
+        
     @State var errorMessage: String?
+    
+    @State var userStore:UserStore = UserStore(storeConfig: StoreConfig.local)
 
     var body: some View {
         VStack {
             
-            Text("Authentication View")
+            Text("Sign In")
             
             Spacer()
             
@@ -34,57 +33,17 @@ struct AutheticationView: View {
                 Spacer()
             }
             
-            
-            VStack {
-                TextField("email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }.padding()
-
-            HStack {
-                
-                Button(action: {
-                    self.appState.signIn(email: self.email, password: "cityslicka") { result in
-                        switch result {
-                        case .success( _ ):
-                            self.appState.topView = .mainView
-                            self.presentationMode.wrappedValue.dismiss()
-                        case .failure( let error):
-                            self.errorMessage = "Sign In Error \(error)"
-                            //self.appState.topView = .tabView
-                        }
+            List {
+                ForEach(self.userStore.models) { model in
+                    Button(action: {
+                        self.appState.signIn(user: model)
+                        self.appState.topView = .mainView
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("User \(model.name)")
                     }
-                }) {
-                    Text("Sign In")
-                }.padding()
-                
-                Spacer()
-                
-                Button(action: {
-                    self.appState.register(email: self.email, password: "pistol")  { result in
-                        switch result {
-                        case .success( _ ):
-                            self.appState.topView = .mainView
-                            self.presentationMode.wrappedValue.dismiss()
-                        case .failure( let error):
-                            self.errorMessage = "Register In Error \(error)"
-                        }
-                    }
-                }) {
-                    Text("Register")
-                }.padding()
-            }.padding()
-            
-            Spacer()
-            
-            Button(action: {
-                self.appState.topView = .mainView
-            }) {
-                Text("Cancel")
-            }.padding()
-            
-            Spacer()
+                }
+            }
         }
     }
 }

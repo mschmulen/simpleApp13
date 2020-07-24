@@ -47,8 +47,16 @@ struct MainView: View {
     }
     
     private var profileButton: some View {
-        NavigationLink(destination: UserView()){
-            Image(systemName: "person.circle")
+        Group {
+            if self.appState.currentUserModel == nil {
+                NavigationLink(destination: UserView()){
+                    Image(systemName: "person.circle")
+                }
+            } else {
+                NavigationLink(destination: UserView()){
+                    Image(systemName: "person.circle.fill")
+                }
+            }
         }
     }
     
@@ -57,7 +65,7 @@ struct MainView: View {
             Image(systemName: "plus")
         }
     }
-    
+        
 }
 
 
