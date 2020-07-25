@@ -24,6 +24,8 @@
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
+		76773EA524CC828E004DC075 /* FamilyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76773EA124CC8282004DC075 /* FamilyKit.framework */; };
+		76773EA624CC828E004DC075 /* FamilyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76773EA124CC8282004DC075 /* FamilyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
 		76BADB4224CA57AD004950C0 /* stmarylake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3424CA57AC004950C0 /* stmarylake.jpg */; };
 		76BADB4324CA57AD004950C0 /* charleyrivers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3524CA57AC004950C0 /* charleyrivers.jpg */; };
@@ -68,7 +70,35 @@
 			remoteGlobalIDString = 7601811224C4A4B400B339E4;
 			remoteInfo = SimpleApp;
 		};
+		76773EA024CC8282004DC075 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76773E9B24CC8281004DC075 /* FamilyKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 76773E8124CC8274004DC075;
+			remoteInfo = FamilyKit;
+		};
+		76773EA224CC8282004DC075 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76773E9B24CC8281004DC075 /* FamilyKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 76773E8A24CC8274004DC075;
+			remoteInfo = FamilyKitTests;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		76773EA724CC828E004DC075 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				76773EA624CC828E004DC075 /* FamilyKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7601811324C4A4B400B339E4 /* SimpleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +124,7 @@
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		76773E9B24CC8281004DC075 /* FamilyKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FamilyKit.xcodeproj; path = LocalFrameworks/FamilyKit/FamilyKit.xcodeproj; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		76BADB3424CA57AC004950C0 /* stmarylake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stmarylake.jpg; sourceTree = "<group>"; };
@@ -129,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76773EA524CC828E004DC075 /* FamilyKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,11 +184,13 @@
 		7601810A24C4A4B400B339E4 = {
 			isa = PBXGroup;
 			children = (
+				76773E9B24CC8281004DC075 /* FamilyKit.xcodeproj */,
 				76A3F6D224C7DA5400763A8A /* README.md */,
 				7601811524C4A4B400B339E4 /* SimpleApp */,
 				7601812F24C4A4B500B339E4 /* SimpleAppTests */,
 				7601813A24C4A4B500B339E4 /* SimpleAppUITests */,
 				7601811424C4A4B400B339E4 /* Products */,
+				76773EA424CC828D004DC075 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,6 +287,22 @@
 			path = SupportingViews;
 			sourceTree = "<group>";
 		};
+		76773E9C24CC8281004DC075 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76773EA124CC8282004DC075 /* FamilyKit.framework */,
+				76773EA324CC8282004DC075 /* FamilyKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76773EA424CC828D004DC075 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		76BADB3124CA571B004950C0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +370,7 @@
 				7601810F24C4A4B400B339E4 /* Sources */,
 				7601811024C4A4B400B339E4 /* Frameworks */,
 				7601811124C4A4B400B339E4 /* Resources */,
+				76773EA724CC828E004DC075 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,6 +451,12 @@
 			mainGroup = 7601810A24C4A4B400B339E4;
 			productRefGroup = 7601811424C4A4B400B339E4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 76773E9C24CC8281004DC075 /* Products */;
+					ProjectRef = 76773E9B24CC8281004DC075 /* FamilyKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7601811224C4A4B400B339E4 /* SimpleApp */,
@@ -408,6 +465,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		76773EA124CC8282004DC075 /* FamilyKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FamilyKit.framework;
+			remoteRef = 76773EA024CC8282004DC075 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		76773EA324CC8282004DC075 /* FamilyKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FamilyKitTests.xctest;
+			remoteRef = 76773EA224CC8282004DC075 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7601811124C4A4B400B339E4 /* Resources */ = {
