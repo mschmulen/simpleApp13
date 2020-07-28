@@ -39,7 +39,10 @@ struct PickPlayerView: View {
                             self.appState.topView = .mainView
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            Text("\(model.name)")
+                            VStack {
+                                Text("\(model.name)")
+                                Text("\(model.currentPoints)")
+                            }
                         }
                     }
                 }

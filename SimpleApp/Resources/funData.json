@@ -1,17 +1,20 @@
 [
     {
-        "name": "fun 1",
+        "name": "fun A",
         "id": 1001,
-        "imageName": "turtlerock"
+        "imageName": "turtlerock",
+        "points": 2
     },
     {
-        "name": "fun 2",
+        "name": "fun B",
         "id": 1002,
-        "imageName": "silversalmoncreek"
+        "imageName": "silversalmoncreek",
+        "points": 2
     },
     {
-        "name": "fun 3",
+        "name": "fun C",
         "id": 1003,
-        "imageName": "chilkoottrail"
+        "imageName": "chilkoottrail",
+        "points": 2
     }
 ]

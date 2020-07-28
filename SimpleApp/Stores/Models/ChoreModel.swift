@@ -13,7 +13,8 @@ public struct ChoreModel: Hashable, Codable, Identifiable {
     
     public var id: Int
     public var name: String
-    
+    public var points: Int
+
     fileprivate var imageName: String
 }
 

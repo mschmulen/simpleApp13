@@ -1,12 +1,14 @@
 [
     {
-        "name": "Chore 1",
+        "name": "Chore A",
         "id": 1001,
-        "imageName": "turtlerock"
+        "imageName": "turtlerock",
+        "points": 2
     },
     {
-        "name": "Chore 2",
+        "name": "Chore B",
         "id": 1002,
-        "imageName": "silversalmoncreek"
+        "imageName": "silversalmoncreek",
+        "points": 2
     }
 ]

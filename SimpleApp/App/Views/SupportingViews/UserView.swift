@@ -60,30 +60,30 @@ struct UserView: View {
                     }
                 }
                 
-                Section(header: Text("Purchase Information")) {
-                    
-                    Button(action: {
-                        self.appState.topView = .purchaseView
-                    }) {
-                        Text("Show Purchase View ")
-                            .foregroundColor(.blue)
-                    }
-                    
-                    Text("purchaseStatus: \(appState.currentPurchaseModel?.status.friendlyName ?? "~")")
-                    Text("id: \(appState.currentPurchaseModel?.id.uuidString ?? "~")")
-                }
+//                Section(header: Text("Purchase Information")) {
+//
+//                    Button(action: {
+//                        self.appState.topView = .purchaseView
+//                    }) {
+//                        Text("Show Purchase View ")
+//                            .foregroundColor(.blue)
+//                    }
+//
+//                    Text("purchaseStatus: \(appState.currentPurchaseModel?.status.friendlyName ?? "~")")
+//                    Text("id: \(appState.currentPurchaseModel?.id.uuidString ?? "~")")
+//                }
                 
-                Section(header: Text("Device Information")) {
-                    Text("idfv: \(appState.currentDeviceInfo.idfv?.uuidString ?? "~")")
-                    Text("localeLanguageCode: \(appState.currentDeviceInfo.localeLanguageCode ?? "~")")
-                    Text("localeRegionCode: \(appState.currentDeviceInfo.localeRegionCode ?? "~")")
-                }
-                
-                Section(header: Text("App Information")) {
-                    Text("appID: \(appState.currentAppInfo.appID)")
-                    Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
-                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
-                }
+//                Section(header: Text("Device Information")) {
+//                    Text("idfv: \(appState.currentDeviceInfo.idfv?.uuidString ?? "~")")
+//                    Text("localeLanguageCode: \(appState.currentDeviceInfo.localeLanguageCode ?? "~")")
+//                    Text("localeRegionCode: \(appState.currentDeviceInfo.localeRegionCode ?? "~")")
+//                }
+//
+//                Section(header: Text("App Information")) {
+//                    Text("appID: \(appState.currentAppInfo.appID)")
+//                    Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
+//                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
+//                }
             }
             .navigationBarTitle("User")
         }

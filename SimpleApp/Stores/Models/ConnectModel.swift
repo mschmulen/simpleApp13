@@ -11,7 +11,9 @@ import SwiftUI
 
 public struct ConnectModel: Hashable, Codable, Identifiable {
     public var id: Int
-    var name: String
+    public var name: String
+    public var points: Int
+    
     fileprivate var imageName: String
 }
 

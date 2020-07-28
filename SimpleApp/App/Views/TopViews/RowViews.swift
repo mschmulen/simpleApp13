@@ -46,7 +46,7 @@ struct ChoreItemView: View {
                 .resizable()
                 .frame(width: 155, height: 155)
                 .cornerRadius(5)
-            Text(model.name)
+            Text("\(model.name) \(model.points)")
                 .foregroundColor(.primary)
                 .font(.caption)
         }
@@ -92,7 +92,7 @@ struct ConnectItemView: View {
                 .resizable()
                 .frame(width: 155, height: 155)
                 .cornerRadius(5)
-            Text(model.name)
+            Text("\(model.name) \(model.points)")
                 .foregroundColor(.primary)
                 .font(.caption)
         }
@@ -141,7 +141,7 @@ struct FunItemView: View {
                 .resizable()
                 .frame(width: 155, height: 155)
                 .cornerRadius(5)
-            Text(model.name)
+            Text("\(model.name) \(model.points)")
                 .foregroundColor(.primary)
                 .font(.caption)
         }

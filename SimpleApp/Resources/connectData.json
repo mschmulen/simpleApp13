@@ -1,12 +1,14 @@
 [
     {
-        "name": "Connect 1",
+        "name": "Connect A",
         "id": 1001,
-        "imageName": "turtlerock"
+        "imageName": "turtlerock",
+        "points": 2
     },
     {
-        "name": "Connect 2",
+        "name": "Connect B",
         "id": 1002,
-        "imageName": "silversalmoncreek"
+        "imageName": "silversalmoncreek",
+        "points": 2
     }
 ]
