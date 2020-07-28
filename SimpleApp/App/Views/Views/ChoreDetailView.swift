@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ChoreDetailView: View  {
     
+    @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var appState: AppState
     
     var model: ChoreModel
@@ -25,11 +27,12 @@ struct ChoreDetailView: View  {
             Text(model.name)
                 .foregroundColor(.primary)
                 .font(.caption)
-            
+            Text(model.description)
             Button(action: {
-                self.appState.modifyCurrentPlayersPoints(points: 2)
+                self.appState.modifyCurrentPlayersPoints(points: self.model.bucks)
+                self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("+ 2 pts")
+                Text("+ \(self.model.bucks) pts")
             }
         }
         .padding(.leading, 15)
@@ -55,3 +58,9 @@ struct NewChoreView: View  {
 }
 
 
+//
+//struct ChoreDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChoreDetailView(model: ChoreModel.moc)
+//    }
+//}

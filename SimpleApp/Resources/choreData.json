@@ -4,7 +4,7 @@
         "id": 1001,
         "description": "By the end of morning time get your teeth brushed for more than a minute and get dressed for the day.  You only get points if mama and papa only have to remind you once!",
         "who": "Kids",
-        "bucks": "2",
+        "bucks": 2,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -14,7 +14,7 @@
         "id": 1002,
         "description": "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!",
         "who": "Kids",
-        "bucks": "2",
+        "bucks": 2,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -24,7 +24,7 @@
         "id": 1003,
         "description": "When you get out of bed or before we leave for the day, make your bed and pick up your room.  It doesn't have to be perfect, but its get that good clean feeling and no legos to step on.",
         "who": "Family",
-        "bucks": "1",
+        "bucks": 1,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -34,7 +34,7 @@
         "id": 1004,
         "description": "Do a 15 minutes practice on your perfect instrument for a perfect practice",
         "who": "Family",
-        "bucks": "1",
+        "bucks": 1,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -44,7 +44,7 @@
         "id": 1005,
         "description": "Once a week you have practice with your teacher.  Get ready by yourself before the lesson starts and have a great lesson.",
         "who": "Kids",
-        "bucks": "2",
+        "bucks": 2,
         "frequency": "Once-a-week",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -54,7 +54,7 @@
         "id": 1006,
         "description": "Someone that get the weekly plan together, for groceries and awesome meals",
         "who": "Family",
-        "bucks": "4",
+        "bucks": 4,
         "frequency": "Once-a-week",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -64,7 +64,7 @@
         "id": 1007,
         "description": "Do a load of laundry from wash, to folding, to putting away",
         "who": "Family",
-        "bucks": "2",
+        "bucks": 2,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -74,7 +74,7 @@
         "id": 1008,
         "description": "Cook the most delicious dinner ever!",
         "who": "Family",
-        "bucks": "2",
+        "bucks": 2,
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
@@ -84,7 +84,7 @@
         "id": 1009,
         "description": "Before dinner starts clean of the table and set it up for dinner",
         "who": "Family",
-        "bucks": "1",
+        "bucks": 1,
         "frequency": "Once-a-day",
         "timeofday": "Afternoon",
         "imageName": "turtlerock"
@@ -94,7 +94,7 @@
         "id": 1010,
         "description": "Clear the table, clean all the dishes, fill dishwasher, and give the kitchen a wipe down",
         "who": "Family",
-        "bucks": "3",
+        "bucks": 3,
         "frequency": "Once-a-day",
         "timeofday": "Afternoon",
         "imageName": "turtlerock"
