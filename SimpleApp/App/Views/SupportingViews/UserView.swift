@@ -34,13 +34,16 @@ struct UserView: View {
                         Button(action: {
                             self.appState.topView = .pickPlayerView
                         }) {
-                            Text("PickPlayerView")
+                            Text("Pick Player")
                                 .foregroundColor(.blue)
                         }
                     }
                     else {
+                        Text("name: \(appState.currentUserModel!.name)")
+                        Text("points: \(appState.currentUserModel!.currentPoints)")
+                        
 //                        Text("email: \(appState.currentUserModel?.name ?? "~")")
-//                        
+//
 //                        Button(action: {
 //                            self.appState.signOut()
 //                        }) {

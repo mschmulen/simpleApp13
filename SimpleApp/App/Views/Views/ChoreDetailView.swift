@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ChoreDetailView: View  {
     
+    @EnvironmentObject var appState: AppState
+    
     var model: ChoreModel
     
     var body: some View {
@@ -23,6 +25,12 @@ struct ChoreDetailView: View  {
             Text(model.name)
                 .foregroundColor(.primary)
                 .font(.caption)
+            
+            Button(action: {
+                self.appState.modifyCurrentPlayersPoints(points: 2)
+            }) {
+                Text("+ 2 pts")
+            }
         }
         .padding(.leading, 15)
     }

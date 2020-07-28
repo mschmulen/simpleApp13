@@ -2,11 +2,13 @@
     {
         "id": 1001,
         "name": "Papa P.",
-        "imageName": "turtlerock"
+        "imageName": "turtlerock",
+        "currentPoints": 0
     },
     {
         "id": 1003,
         "name": "kid1 P.",
-        "imageName": "silversalmoncreek"
+        "imageName": "silversalmoncreek",
+        "currentPoints": 0
     }
 ]

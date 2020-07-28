@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct ConnectDetailView: View  {
+    
+    @EnvironmentObject var appState: AppState
+    
     var model: ConnectModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Connect detail")
@@ -21,6 +25,13 @@ struct ConnectDetailView: View  {
             Text(model.name)
                 .foregroundColor(.primary)
                 .font(.caption)
+            
+            Button(action: {
+                self.appState.modifyCurrentPlayersPoints(points: +2)
+            }) {
+                Text("plus 2 pts")
+            }
+
         }
         .padding(.leading, 15)
     }

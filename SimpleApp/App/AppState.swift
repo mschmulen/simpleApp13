@@ -99,12 +99,7 @@ extension AppState {
 
 // MARK: - Authentication Services
 extension AppState {
-    
-    func addPlayer( model:UserModel) {
-        self.userStore.addPlayer(model: model)
-        updateChanges()
-    }
-    
+
     public func signOut(){
         self.currentUserModel = nil
         self.updateChanges()
@@ -117,4 +112,17 @@ extension AppState {
         self.updateChanges()
     }
     
+}
+
+// MARK: - Authentication Services
+extension AppState {
+    
+    func modifyCurrentPlayersPoints( points:Int) {
+        self.currentUserModel?.currentPoints += points
+    }
+    
+    func addPlayer( model:UserModel) {
+        self.userStore.addPlayer(model: model)
+        updateChanges()
+    }
 }

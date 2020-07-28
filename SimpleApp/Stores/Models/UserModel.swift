@@ -12,7 +12,7 @@ import SwiftUI
 public struct UserModel: Hashable, Codable, Identifiable {
     public var id: Int
     public var name: String
-    //var family: String
+    public var currentPoints: Int
     
     fileprivate var imageName: String
     
@@ -20,6 +20,7 @@ public struct UserModel: Hashable, Codable, Identifiable {
         self.id = Int.random(in: 3000...600000)
         self.name = name
         self.imageName = "icybay"
+        self.currentPoints = 0 
     }
 }
 

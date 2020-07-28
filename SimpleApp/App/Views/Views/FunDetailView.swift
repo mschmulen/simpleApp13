@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct FunDetailView: View  {
+    
+    @EnvironmentObject var appState: AppState
+    
     var model: FunModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Fun detail")
@@ -21,6 +25,12 @@ struct FunDetailView: View  {
             Text(model.name)
                 .foregroundColor(.primary)
                 .font(.caption)
+            
+            Button(action: {
+                self.appState.modifyCurrentPlayersPoints(points: -2)
+            }) {
+                Text("- 2 pts")
+            }
         }
         .padding(.leading, 15)
     }
