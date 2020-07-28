@@ -26,11 +26,16 @@ public final class UserStore: ObservableObject {
             self.objectWillChange.send()
         }
     }
-    
-    
     enum InternalError:Error {
         case unknown
         case invalidResponseFromServer
     }
 }
 
+extension UserStore {
+    
+    func addPlayer( model:UserModel) {
+        models.append(model)
+        updateChanges()        
+    }
+}

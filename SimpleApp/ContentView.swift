@@ -16,7 +16,7 @@ struct ContentView: View {
     
     enum TopView {
         case mainView
-        case authenticationView
+        case pickPlayerView
         case purchaseView
     }
     
@@ -29,8 +29,8 @@ struct ContentView: View {
                     .environmentObject(appState)
             }
             
-            if appState.topView == .authenticationView {
-                AutheticationView()
+            if appState.topView == .pickPlayerView {
+                PickPlayerView()
                     .environmentObject(appState)
             }
             

@@ -18,7 +18,7 @@
 		7601813C24C4A4B500B339E4 /* SimpleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601813B24C4A4B500B339E4 /* SimpleAppUITests.swift */; };
 		7601814F24C4A53200B339E4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601814E24C4A53200B339E4 /* AppState.swift */; };
 		7601816024C4B01300B339E4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601815F24C4B01300B339E4 /* UserView.swift */; };
-		7601816E24C54B6000B339E4 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601816D24C54B6000B339E4 /* AuthenticationView.swift */; };
+		7601816E24C54B6000B339E4 /* PickPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601816D24C54B6000B339E4 /* PickPlayerView.swift */; };
 		7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817024C54B8800B339E4 /* PurchaseView.swift */; };
 		7601817324C5FBC900B339E4 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817224C5FBC900B339E4 /* DeviceModel.swift */; };
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
@@ -53,6 +53,7 @@
 		76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */; };
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
+		76C236C324D083A8003A0CDB /* NewPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C236C224D083A8003A0CDB /* NewPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,7 +119,7 @@
 		7601813D24C4A4B500B339E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7601814E24C4A53200B339E4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7601815F24C4B01300B339E4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		7601816D24C54B6000B339E4 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		7601816D24C54B6000B339E4 /* PickPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPlayerView.swift; sourceTree = "<group>"; };
 		7601817024C54B8800B339E4 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		7601817224C5FBC900B339E4 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunDetailView.swift; sourceTree = "<group>"; };
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
+		76C236C224D083A8003A0CDB /* NewPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +284,8 @@
 			children = (
 				7601815F24C4B01300B339E4 /* UserView.swift */,
 				7601817024C54B8800B339E4 /* PurchaseView.swift */,
-				7601816D24C54B6000B339E4 /* AuthenticationView.swift */,
+				7601816D24C54B6000B339E4 /* PickPlayerView.swift */,
+				76C236C224D083A8003A0CDB /* NewPlayerView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -531,7 +534,7 @@
 				7601816024C4B01300B339E4 /* UserView.swift in Sources */,
 				76BADB6124CA599A004950C0 /* FunModel.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
-				7601816E24C54B6000B339E4 /* AuthenticationView.swift in Sources */,
+				7601816E24C54B6000B339E4 /* PickPlayerView.swift in Sources */,
 				76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */,
 				76BADB6D24CA5A7A004950C0 /* MainView.swift in Sources */,
 				76BADB7024CA892E004950C0 /* UserModel.swift in Sources */,
@@ -539,6 +542,7 @@
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
+				76C236C324D083A8003A0CDB /* NewPlayerView.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				76BADB5C24CA58B3004950C0 /* ConnectStore.swift in Sources */,

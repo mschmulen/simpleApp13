@@ -54,7 +54,10 @@ struct MainView: View {
                 }
             } else {
                 NavigationLink(destination: UserView()){
-                    Image(systemName: "person.circle.fill")
+                    HStack {
+                        Text("\(self.appState.currentUserModel!.name)")
+                        Image(systemName: "person.circle.fill")
+                    }
                 }
             }
         }

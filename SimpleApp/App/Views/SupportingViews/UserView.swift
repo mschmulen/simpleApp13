@@ -32,19 +32,26 @@ struct UserView: View {
                     
                     if appState.currentUserModel == nil {
                         Button(action: {
-                            self.appState.topView = .authenticationView
+                            self.appState.topView = .pickPlayerView
                         }) {
-                            Text("Sign In")
+                            Text("PickPlayerView")
                                 .foregroundColor(.blue)
                         }
                     }
                     else {
-                        Text("email: \(appState.currentUserModel?.name ?? "~")")
+//                        Text("email: \(appState.currentUserModel?.name ?? "~")")
+//                        
+//                        Button(action: {
+//                            self.appState.signOut()
+//                        }) {
+//                            Text("Sign Out")
+//                                .foregroundColor(.blue)
+//                        }
                         
                         Button(action: {
-                            self.appState.signOut()
+                            self.appState.topView = .pickPlayerView
                         }) {
-                            Text("Sign Out")
+                            Text("Change Player")
                                 .foregroundColor(.blue)
                         }
                     }

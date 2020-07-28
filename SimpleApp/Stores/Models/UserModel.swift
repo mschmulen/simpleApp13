@@ -11,10 +11,16 @@ import SwiftUI
 
 public struct UserModel: Hashable, Codable, Identifiable {
     public var id: Int
-    var name: String
+    public var name: String
     //var family: String
     
     fileprivate var imageName: String
+    
+    init( name:String ) {
+        self.id = Int.random(in: 3000...600000)
+        self.name = name
+        self.imageName = "icybay"
+    }
 }
 
 extension UserModel {

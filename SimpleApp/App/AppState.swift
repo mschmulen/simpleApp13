@@ -17,12 +17,11 @@ class AppState: ObservableObject {
     public let isSimulator: Bool
     
     private var serverConfig: StoreConfig
-    
-    private var userStore = UserStore(storeConfig: StoreConfig.local)
-    
+
     var currentDeviceInfo: DeviceModel = DeviceModel()
     var currentAppInfo: AppModel = AppModel()
-    
+
+    @Published var userStore = UserStore(storeConfig: StoreConfig.local)
     @Published var currentUserModel: UserModel? = nil
     @Published var currentPurchaseModel: PurchaseModel? = nil
     
@@ -61,7 +60,9 @@ extension AppState {
     }
     
     private func checkAuthStatus() {
-        // TODO: checkAuthStatus
+        if currentUserModel == nil {
+            topView = .pickPlayerView
+        }
     }
     
     private func checkPurchaseStatus() {
@@ -96,9 +97,13 @@ extension AppState {
     
 }
 
-
 // MARK: - Authentication Services
 extension AppState {
+    
+    func addPlayer( model:UserModel) {
+        self.userStore.addPlayer(model: model)
+        updateChanges()
+    }
     
     public func signOut(){
         self.currentUserModel = nil
