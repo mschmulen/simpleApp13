@@ -54,6 +54,7 @@
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
 		76C236C324D083A8003A0CDB /* NewPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C236C224D083A8003A0CDB /* NewPlayerView.swift */; };
+		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
 		76C236C224D083A8003A0CDB /* NewPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlayerView.swift; sourceTree = "<group>"; };
+		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 		76BADB3124CA571B004950C0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */,
 				76BADB5024CA5877004950C0 /* choreData.json */,
 				76BADB5124CA5877004950C0 /* connectData.json */,
 				76BADB5224CA5877004950C0 /* funData.json */,
@@ -502,6 +505,7 @@
 				76BADB5324CA5877004950C0 /* choreData.json in Resources */,
 				7601812324C4A4B500B339E4 /* Preview Assets.xcassets in Resources */,
 				76BADB4D24CA57AD004950C0 /* icybay.jpg in Resources */,
+				ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */,
 				76BADB4E24CA57AD004950C0 /* silversalmoncreek.jpg in Resources */,
 				76BADB4B24CA57AD004950C0 /* chilkoottrail.jpg in Resources */,
 				76BADB4924CA57AD004950C0 /* hiddenlake.jpg in Resources */,
