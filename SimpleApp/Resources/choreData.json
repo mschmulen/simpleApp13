@@ -28,7 +28,6 @@
         "frequency": "Once-a-day",
         "timeofday": "Morning",
         "imageName": "turtlerock"
-
     },
     {
         "name": "Practice your instrument",
@@ -53,7 +52,7 @@
     {
         "name": "Plan meals for the week and buy groceries",
         "id": 1006,
-        "description": "Someone that get the weekly plan together, for groceries and awesome meals"
+        "description": "Someone that get the weekly plan together, for groceries and awesome meals",
         "who": "Family",
         "bucks": "4",
         "frequency": "Once-a-week",
