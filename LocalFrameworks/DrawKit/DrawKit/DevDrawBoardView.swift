@@ -33,11 +33,13 @@ public struct DevDrawBoardView: View {
     @State private var showInfoView: Bool = false
     @State private var showToolView: Bool = false
     
+    let autoSaveIsEnabled = false
+    let lastDrawingFile = "tmp.json"
+    
     let viewModel: DevDrawBoardViewModel = DevDrawBoardViewModel.defaultConfig
     
     public init() {
-        let autoSaveIsEnabled = true
-        let lastDrawingFile = "tmp.json"
+        
         if autoSaveIsEnabled {
             let result = drawPadFileService.readFromFileStorage(shortFileName: lastDrawingFile)
             switch result {
