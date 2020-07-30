@@ -40,6 +40,7 @@ struct CKFunView: View {
                         }
                         // .deleteDisabled(!self.appState.canEdit)
                     }//end ForEach
+                    .onDelete(perform: delete)
                 }
             }
             .navigationBarTitle("Fun")
@@ -53,6 +54,22 @@ struct CKFunView: View {
             self.devMessage = "silent Push! DB changed"
         }
     }
+    
+        func delete(at offsets: IndexSet) {
+            print( "delete \(offsets)")
+            
+            for deleteIndex in offsets {
+                let deleteModel = self.choreService.allModels[deleteIndex]
+                self.choreService.pushDelete(model: deleteModel) { (result) in
+                    switch result {
+                    case .failure(let error):
+                        print("error \(error)")
+                    case .success(let recordID):
+                        print("success \(recordID)")
+                    }
+                }
+            }
+        }
     
     private var trailingButton: some View {
         HStack {

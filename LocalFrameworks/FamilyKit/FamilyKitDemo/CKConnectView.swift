@@ -40,6 +40,7 @@ struct CKConnectView: View {
                         }
                         // .deleteDisabled(!self.appState.canEdit)
                     }//end ForEach
+                    .onDelete(perform: delete)
                 }
             }
             .navigationBarTitle("Connect")
@@ -51,6 +52,22 @@ struct CKConnectView: View {
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        print( "delete \(offsets)")
+        
+        for deleteIndex in offsets {
+            let deleteModel = self.choreService.allModels[deleteIndex]
+            self.choreService.pushDelete(model: deleteModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error \(error)")
+                case .success(let recordID):
+                    print("success \(recordID)")
+                }
+            }
         }
     }
     
