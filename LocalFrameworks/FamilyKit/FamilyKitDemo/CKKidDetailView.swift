@@ -12,11 +12,12 @@ import FamilyKit
 struct CKKidDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
     @State var devMessage: String?
     
-    @State var model: CKKitModel
+    @State var model: CKKidModel
     
     var body: some View {
         NavigationView {
@@ -42,35 +43,35 @@ struct CKKidDetailView: View {
     }
     
     private var leadingButton: some View {
-           HStack {
-               if self.familyKitState.userService.currentUser == nil {
-                   Button(action:onTrailing) { Image(systemName: "person.circle") }
-               } else {
-                   Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
-                   Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
-               }
-           }
-       }
-       
-       private var trailingButton: some View {
-           Button(action:onSave) { Image(systemName: "square.and.arrow.up") }
-       }
-       
-       func onSave() {
+        HStack {
+            if self.familyKitState.userService.currentUser == nil {
+                Button(action:onTrailing) { Image(systemName: "person.circle") }
+            } else {
+                Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
+                Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
+            }
+        }
+    }
+    
+    private var trailingButton: some View {
+        Button(action:onSave) { Image(systemName: "square.and.arrow.up") }
+    }
+    
+    func onSave() {
         familyKitState.kidService.pushUpdateCreate(model: model) { (result) in
-               switch result {
-               case .failure(let error):
-                   self.devMessage = error.localizedDescription
-               case .success(let record):
-                   print( "success \(record)")
-//                DispatchQueue.main.async {
-                   //self.presentationMode.wrappedValue.dismiss()
-//                }
-               }
-           }
-       }
-       
-       func onTrailing() {
-           print( "onTrailing")
-       }
+            switch result {
+            case .failure(let error):
+                self.devMessage = error.localizedDescription
+            case .success(let record):
+                print( "success \(record)")
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
+    }
+    
+    func onTrailing() {
+        print( "onTrailing")
+    }
 }

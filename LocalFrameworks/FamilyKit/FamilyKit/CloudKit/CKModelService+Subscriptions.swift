@@ -20,6 +20,7 @@ extension CKModelService {
                 switch result {
                 case .success(let models) :
                     print( "success \(models)")
+                    self.updateChanges()
                 case .failure(let error):
                     print( "error \(error)")
                 }
@@ -27,12 +28,12 @@ extension CKModelService {
         }
         
         //        let NotificationSubscriber = Subscribers.Assign(object: lastPostLabel, keyPath: \.text)
-        //        blogPostPublisher.subscribe(lastPostLabelSubscriber)
+        //        somePublisher.subscribe(lastPostLabelSubscriber)
         
         //        .onReceive(NotificationCenter.default.publisher(for: DBChangedNotification)) { _ in
         //                   print("Notification.Name(CloudKitModelService) recieved")
         //                   self.devMessage = "silent Push! DB changed"
-        //                   // self.museumService.updateAllModels()
+        //                   // self.myService.updateAllModels()
         //               }
         
     }
@@ -61,7 +62,6 @@ extension CKModelService {
         let info = CKSubscription.NotificationInfo()
         info.shouldSendContentAvailable = true
         subscription.notificationInfo = info
-        
         
         self.container.publicCloudDatabase.save(subscription) { (savedSubscription, error) in
             if error != nil {

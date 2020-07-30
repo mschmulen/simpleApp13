@@ -1,5 +1,5 @@
 //
-//  CKKitModel.swift
+//  CKKidModel.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/25/20.
@@ -11,9 +11,9 @@ import SwiftUI
 import CoreLocation
 import CloudKit
 
-public struct CKKitModel: CKModel {
+public struct CKKidModel: CKModel {
     
-    public typealias ItemType = CKKitModel
+    public typealias ItemType = CKKidModel
     public static let recordName = "Kid"
     public static let ckSchemeKeys = [
         "name",
@@ -22,13 +22,16 @@ public struct CKKitModel: CKModel {
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
-    
-    public var title: String?
-    public var name: String?
-    public var bucks: Int?    
 
-    public static var mock: CKKitModel {
-        var model = CKKitModel()
+    public var name: String?
+    public var bucks: Int?
+    
+    public var title: String? {
+        return name
+    }
+
+    public static var mock: CKKidModel {
+        var model = CKKidModel()
         model.name = "mock name"
         return model
     }
@@ -42,8 +45,8 @@ public struct CKKitModel: CKModel {
         guard
             let _name = record["name"] as? String
             else {
-                print("CloudKitModelService.init incomplete record")
-                print( "\(record["name"] as? String ?? "Unknown title")")
+                print("CKKidModel incomplete record")
+                print( "\(record["name"] as? String ?? "no name")")
                 return nil
         }
         
@@ -59,15 +62,15 @@ public struct CKKitModel: CKModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKKitModel {
+extension CKKidModel {
     
     public var ckRecord: CKRecord? {
         let record: CKRecord
         if let recordID = recordID {
-            record = CKRecord(recordType: CKKitModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKKidModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKKitModel.recordName)
+            record = CKRecord(recordType: CKKidModel.recordName)
         }
         
         if let name = name {

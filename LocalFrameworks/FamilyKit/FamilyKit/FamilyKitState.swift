@@ -20,7 +20,7 @@ public class FamilyKitState: ObservableObject {
     private var container: CKContainer
 
     @Published public var userService: CKUserService<CKUser>
-    @Published public var kidService: CKModelService<CKKitModel>
+    @Published public var kidService: CKModelService<CKKidModel>
     
 //    private var serverConfig: StoreConfig
 
@@ -45,7 +45,7 @@ public class FamilyKitState: ObservableObject {
         self.container = container
         userService = CKUserService<CKUser>(container: container)
         
-        kidService = CKModelService<CKKitModel>(
+        kidService = CKModelService<CKKidModel>(
             container: container
         )
         
@@ -70,6 +70,9 @@ extension FamilyKitState {
     
     public func onStartup() {
         checkAuthStatus()
+        kidService.fetch { (result) in
+            print( "kid fetch \(result)")
+        }
     }
     
     private func checkAuthStatus() {

@@ -30,7 +30,7 @@ struct CKUserView: View {
                 
                 Section(header: Text("Kid Information")) {
                     
-                    NavigationLink(destination: CKKidDetailView(model: CKKitModel())) {
+                    NavigationLink(destination: CKKidDetailView(model: CKKidModel())) {
                         Text("NEW KID" )
                     }
                     

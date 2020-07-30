@@ -40,12 +40,15 @@ struct CKConnectDetailView: View {
                     TextField("name", text: $model.name ?? "")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
+                    TextField("description", text: $model.description ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
                     TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
             }
-            .navigationBarTitle("Kid")
+            .navigationBarTitle("Connect")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }

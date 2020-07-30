@@ -57,7 +57,9 @@ struct CKChoreView: View {
             .navigationBarTitle("Chores")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }.onAppear {
-            //self.loadCKModels()
+            self.choreService.fetch { (result) in
+                print( "fetch on appear")
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")

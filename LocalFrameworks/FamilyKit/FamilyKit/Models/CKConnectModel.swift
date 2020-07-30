@@ -52,7 +52,7 @@ public struct CKConnectModel: CKModel {
             let _name = record["name"] as? String,
             let _description = record["description"] as? String
             else {
-                print("CloudKitModelService.init incomplete record")
+                print("CKConnect incomplete record")
                 print( "\(record["name"] as? String ?? "Unknown title")")
                 return nil
         }
