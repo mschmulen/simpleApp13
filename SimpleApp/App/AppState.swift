@@ -20,7 +20,7 @@ class AppState: ObservableObject {
 
     var currentDeviceInfo: DeviceModel = DeviceModel()
     var currentAppInfo: AppModel = AppModel()
-
+    
     @Published var userStore = UserStore(storeConfig: StoreConfig.local)
     @Published var currentUserModel: UserModel? = nil
     @Published var currentPurchaseModel: PurchaseModel? = nil

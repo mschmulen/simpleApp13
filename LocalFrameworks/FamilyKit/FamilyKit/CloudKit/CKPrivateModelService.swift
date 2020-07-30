@@ -1,5 +1,5 @@
 //
-//  ModelService.swift
+//  CKPrivateModelService.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/25/20.
@@ -11,13 +11,6 @@ import SwiftUI
 import Combine
 import CloudKit
 
-public let CKChangedNotification = Notification.Name("CloudKitModelService")
-public let CKContainerIdentifier = "iCloud.com.jumptack.FamilyKit"
-
-public enum CKContainerConfig {
-    case publicCloudDatabase
-    case privateCloudDatabase
-}
 /**
 
  Usage:
@@ -38,25 +31,18 @@ public enum CKContainerConfig {
  service.subscribe()
  service.listenForNotifications()
 */
-public final class CKModelService<T>: ObservableObject where T:CKModel {
+public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     
     public let objectWillChange = ObservableObjectPublisher()
     
     internal var container: CKContainer
-    //internal var containerConfig: CKContainerConfig
     
-    @Published public var publicModels: [T] = [] {
+    @Published public var models: [T] = [] {
         willSet {
             updateChanges()
         }
     }
-    
-    @Published public var privateModels: [T] = [] {
-        willSet {
-            updateChanges()
-        }
-    }
-    
+        
     public init(container: CKContainer) {
         self.container = container
     }
@@ -74,46 +60,15 @@ public final class CKModelService<T>: ObservableObject where T:CKModel {
 }
 
 // TODO containerConfig:CKContainerConfig = .publicCloudDatabase
-extension CKModelService {
-    
-    public func fetchPublic(
-        completion: @escaping (Result<T, Error>) -> ()
-    ) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: T.recordName, predicate: predicate)
-//        let sortCreation = NSSortDescriptor(key: "creationDate", ascending: false)
-//        query.sortDescriptors = [sortCreation]
-//        let sortName = NSSortDescriptor(key: "nameShort", ascending: true)
-//        query.sortDescriptors = [sortName]
-        
-//        query.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
-        
-        queryRecords(
-            containerConfig: CKContainerConfig.publicCloudDatabase,
-            query: query,
-            resultsLimit: 50,
-            enablePaging: true,
-            completion: { result in
-            switch result {
-            case .success(let models) :
-                DispatchQueue.main.async {
-                    // TODO merge the model list together
-                    self.publicModels = models
-                }
-            case .failure(let error) :
-                print( "failure \(error)")
-            }
-        })
-    }//end fetchPublic
-    
-    public func fetchPrivate(
+extension CKPrivateModelService {
+
+    public func fetch(
         completion: @escaping (Result<T, Error>) -> ()
     ) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: T.recordName, predicate: predicate)
         
         queryRecords(
-            containerConfig:CKContainerConfig.privateCloudDatabase,
             query: query,
             resultsLimit: 50,
             enablePaging: true,
@@ -122,7 +77,7 @@ extension CKModelService {
                 case .success(let models) :
                     DispatchQueue.main.async {
                         // TODO merge the model list together
-                        self.privateModels = models
+                        self.models = models
                     }
                 case .failure(let error) :
                     print( "failure \(error)")
@@ -131,7 +86,6 @@ extension CKModelService {
     }//end fetchPrivate
     
     func queryRecords(
-        containerConfig:CKContainerConfig,
         query: CKQuery,
         resultsLimit: Int,
         enablePaging: Bool,
@@ -163,12 +117,7 @@ extension CKModelService {
             }
         }
         operation.resultsLimit = resultsLimit
-        switch containerConfig {
-        case .privateCloudDatabase:
-            container.privateCloudDatabase.add(operation)
-        case .publicCloudDatabase:
-            container.publicCloudDatabase.add(operation)
-        }
+        container.privateCloudDatabase.add(operation)
     }
     
     private func queryRecords(
@@ -215,6 +164,6 @@ extension CKModelService {
             }
         }
         operation.resultsLimit = resultsLimit
-        container.publicCloudDatabase.add(operation)
+        container.privateCloudDatabase.add(operation)
     }
 }

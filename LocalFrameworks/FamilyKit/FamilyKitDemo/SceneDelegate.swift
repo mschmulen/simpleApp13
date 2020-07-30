@@ -31,10 +31,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         familyKitState.onStartup()
         
-        let choreService = CKModelService<CKChoreModel>(
+        let choreService = CKPublicModelService<CKChoreModel>(
             container: container
         )
-        choreService.fetchPublic(completion: { result in
+        choreService.fetch(completion: { result in
             switch result {
             case .success(let models) :
                 print( "choreService success \(models)")
@@ -42,22 +42,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "choreService error \(error)")
             }
         })
-        choreService.fetchPrivate(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "choreService.fetchPrivate success \(models)")
-            case .failure(let error):
-                print( "choreService.fetchPrivate error \(error)")
-            }
-        })
-        
         choreService.subscribe()
         choreService.listenForNotifications()
         
-        let connectService = CKModelService<CKConnectModel>(
+        let connectService = CKPublicModelService<CKConnectModel>(
             container: container
         )
-        connectService.fetchPublic(completion: { result in
+        connectService.fetch(completion: { result in
             switch result {
             case .success(let models) :
                 print( "connectService success \(models)")
@@ -65,21 +56,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "connectService error \(error)")
             }
         })
-        connectService.fetchPrivate(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "connectService.fetchPrivate success \(models)")
-            case .failure(let error):
-                print( "connectService.fetchPrivate error \(error)")
-            }
-        })
         connectService.subscribe()
         connectService.listenForNotifications()
         
-        let funService = CKModelService<CKFunModel>(
+        let funService = CKPublicModelService<CKFunModel>(
             container: container
         )
-        funService.fetchPublic(completion: { result in
+        funService.fetch(completion: { result in
             switch result {
             case .success(let models) :
                 print( "funService success \(models)")
@@ -87,40 +70,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "funService error \(error)")
             }
         })
-        funService.fetchPrivate(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "funService.fetchPrivate success \(models)")
-            case .failure(let error):
-                print( "funService.fetchPrivate error \(error)")
-            }
-        })
         funService.subscribe()
         funService.listenForNotifications()
         
-        
-        let kidService = CKModelService<CKKidModel>(
-            container: container
-        )
-        kidService.fetchPublic(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "kidService success \(models)")
-            case .failure(let error):
-                print( "kidService error \(error)")
-            }
-        })
-        kidService.fetchPrivate(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "kidService.fetchPrivate success \(models)")
-            case .failure(let error):
-                print( "kidService.fetchPrivate error \(error)")
-            }
-        })
-        kidService.subscribe()
-        kidService.listenForNotifications()
-        
+//        let kidService = CKPrivateModelService<CKKidModel>(
+//            container: container
+//        )
+//        kidService.fetch(completion: { result in
+//            switch result {
+//            case .success(let models) :
+//                print( "kidService success \(models)")
+//            case .failure(let error):
+//                print( "kidService error \(error)")
+//            }
+//        })
+//        kidService.subscribe()
+//        kidService.listenForNotifications()
         
         let contentView = ContentView()
             .environment(\.window, window)
@@ -128,7 +93,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(choreService)
             .environmentObject(funService)
             .environmentObject(connectService)
-            .environmentObject(kidService)
             
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

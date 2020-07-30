@@ -15,10 +15,11 @@ struct ContentView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKModelService<CKFunModel>
-    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
+    
+    //@EnvironmentObject var kidService: CKPrivateModelService<CKKidModel>
     
     @State private var selectedTab: Int = 0
     
@@ -34,52 +35,52 @@ struct ContentView: View {
                 }
             }
             
-            TabView(selection: $selectedTab) {
-                
-                CKUserView()
+            if familyKitState.currentPlayer == nil {
+                PlayerPickerView()
                     .environmentObject(familyKitState)
-                    .environmentObject(choreService)
-                    .environmentObject(funService)
-                    .environmentObject(connectService)
-                    .environmentObject(kidService)
-                    .tabItem {
-                        Image(systemName:"wind")
-                        Text("CKUser")
-                }.tag(0)
-                
-                CKChoreView()
-                    .environmentObject(familyKitState)
-                    .environmentObject(choreService)
-                    .environmentObject(funService)
-                    .environmentObject(connectService)
-                    .environmentObject(kidService)
-                    .tabItem {
-                        Image(systemName:"wind")
-                        Text("CKChore")
-                }.tag(1)
-                
-                CKFunView()
-                    .environmentObject(familyKitState)
-                    .environmentObject(choreService)
-                    .environmentObject(funService)
-                    .environmentObject(connectService)
-                    .environmentObject(kidService)
-                    .tabItem {
-                        Image(systemName:"wind")
-                        Text("CKFunView")
-                }.tag(2)
-                
-                CKConnectView()
-                    .environmentObject(familyKitState)
-                    .environmentObject(choreService)
-                    .environmentObject(funService)
-                    .environmentObject(connectService)
-                    .environmentObject(kidService)
-                    .tabItem {
-                        Image(systemName:"wind")
-                        Text("CKConnectView")
-                }.tag(3)
-                
+            } else {
+                TabView(selection: $selectedTab) {
+                    
+                    CKUserView()
+                        .environmentObject(familyKitState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKUser")
+                    }.tag(0)
+                    
+                    CKChoreView()
+                        .environmentObject(familyKitState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKChore")
+                    }.tag(1)
+                    
+                    CKFunView()
+                        .environmentObject(familyKitState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKFunView")
+                    }.tag(2)
+                    
+                    CKConnectView()
+                        .environmentObject(familyKitState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKConnectView")
+                    }.tag(3)
+                }//end TabView
             }
         }//end group
         .onAppear {

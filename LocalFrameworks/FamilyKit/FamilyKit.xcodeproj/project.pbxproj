@@ -13,7 +13,7 @@
 		76773EAA24CC82D3004DC075 /* CKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EA924CC82D3004DC075 /* CKUser.swift */; };
 		76773EAC24CC839C004DC075 /* CKKidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EAB24CC839C004DC075 /* CKKidModel.swift */; };
 		76773EAE24CC8407004DC075 /* CKChoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EAD24CC8407004DC075 /* CKChoreModel.swift */; };
-		76773EB024CC8473004DC075 /* CKModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EAF24CC8473004DC075 /* CKModelService.swift */; };
+		76773EB024CC8473004DC075 /* CKPublicModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EAF24CC8473004DC075 /* CKPublicModelService.swift */; };
 		76773EB324CC84BE004DC075 /* CKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EB224CC84BE004DC075 /* CKModel.swift */; };
 		76773EB524CC898C004DC075 /* CKFunModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EB424CC898C004DC075 /* CKFunModel.swift */; };
 		76773EB724CC899A004DC075 /* CKConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773EB624CC8999004DC075 /* CKConnectModel.swift */; };
@@ -32,14 +32,20 @@
 		768FF63924D1C65900AD7E0B /* CKUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF63824D1C65900AD7E0B /* CKUserView.swift */; };
 		768FF63B24D1C66700AD7E0B /* CKKidDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF63A24D1C66700AD7E0B /* CKKidDetailView.swift */; };
 		768FF63D24D1C66F00AD7E0B /* CKChoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF63C24D1C66F00AD7E0B /* CKChoreView.swift */; };
-		768FF68024D1E3E200AD7E0B /* CKModelService+CRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF67F24D1E3E200AD7E0B /* CKModelService+CRUD.swift */; };
-		768FF68224D1E3F200AD7E0B /* CKModelService+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68124D1E3F200AD7E0B /* CKModelService+Subscriptions.swift */; };
+		768FF68024D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF67F24D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift */; };
+		768FF68224D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68124D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift */; };
 		768FF68424D1E51600AD7E0B /* CKChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68324D1E51600AD7E0B /* CKChoreDetailView.swift */; };
 		768FF68924D207B200AD7E0B /* FamilyKitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68824D207B200AD7E0B /* FamilyKitState.swift */; };
 		768FF68E24D2292800AD7E0B /* CKFunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68D24D2292800AD7E0B /* CKFunDetailView.swift */; };
 		768FF69024D2293300AD7E0B /* CKConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68F24D2293300AD7E0B /* CKConnectDetailView.swift */; };
 		768FF69324D22A0200AD7E0B /* CKFunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69224D22A0200AD7E0B /* CKFunView.swift */; };
 		768FF69524D22A0F00AD7E0B /* CKConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69424D22A0F00AD7E0B /* CKConnectView.swift */; };
+		768FF69824D306CE00AD7E0B /* PlayerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69724D306CE00AD7E0B /* PlayerPickerView.swift */; };
+		768FF69A24D3071400AD7E0B /* CloudKitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69924D3071400AD7E0B /* CloudKitStatusView.swift */; };
+		768FF6A024D315B200AD7E0B /* CKPrivateModelService+CRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69D24D315B200AD7E0B /* CKPrivateModelService+CRUD.swift */; };
+		768FF6A124D315B200AD7E0B /* CKPrivateModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69E24D315B200AD7E0B /* CKPrivateModelService.swift */; };
+		768FF6A224D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69F24D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift */; };
+		768FF6A424D3272B00AD7E0B /* CKAdultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF6A324D3272B00AD7E0B /* CKAdultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +103,7 @@
 		76773EA924CC82D3004DC075 /* CKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUser.swift; sourceTree = "<group>"; };
 		76773EAB24CC839C004DC075 /* CKKidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKKidModel.swift; sourceTree = "<group>"; };
 		76773EAD24CC8407004DC075 /* CKChoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreModel.swift; sourceTree = "<group>"; };
-		76773EAF24CC8473004DC075 /* CKModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKModelService.swift; sourceTree = "<group>"; };
+		76773EAF24CC8473004DC075 /* CKPublicModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKPublicModelService.swift; sourceTree = "<group>"; };
 		76773EB224CC84BE004DC075 /* CKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKModel.swift; sourceTree = "<group>"; };
 		76773EB424CC898C004DC075 /* CKFunModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFunModel.swift; sourceTree = "<group>"; };
 		76773EB624CC8999004DC075 /* CKConnectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConnectModel.swift; sourceTree = "<group>"; };
@@ -122,14 +128,20 @@
 		768FF63824D1C65900AD7E0B /* CKUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUserView.swift; sourceTree = "<group>"; };
 		768FF63A24D1C66700AD7E0B /* CKKidDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKKidDetailView.swift; sourceTree = "<group>"; };
 		768FF63C24D1C66F00AD7E0B /* CKChoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreView.swift; sourceTree = "<group>"; };
-		768FF67F24D1E3E200AD7E0B /* CKModelService+CRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKModelService+CRUD.swift"; sourceTree = "<group>"; };
-		768FF68124D1E3F200AD7E0B /* CKModelService+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKModelService+Subscriptions.swift"; sourceTree = "<group>"; };
+		768FF67F24D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKPublicModelService+CRUD.swift"; sourceTree = "<group>"; };
+		768FF68124D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKPublicModelService+Subscriptions.swift"; sourceTree = "<group>"; };
 		768FF68324D1E51600AD7E0B /* CKChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreDetailView.swift; sourceTree = "<group>"; };
 		768FF68824D207B200AD7E0B /* FamilyKitState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyKitState.swift; sourceTree = "<group>"; };
 		768FF68D24D2292800AD7E0B /* CKFunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFunDetailView.swift; sourceTree = "<group>"; };
 		768FF68F24D2293300AD7E0B /* CKConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConnectDetailView.swift; sourceTree = "<group>"; };
 		768FF69224D22A0200AD7E0B /* CKFunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFunView.swift; sourceTree = "<group>"; };
 		768FF69424D22A0F00AD7E0B /* CKConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConnectView.swift; sourceTree = "<group>"; };
+		768FF69724D306CE00AD7E0B /* PlayerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPickerView.swift; sourceTree = "<group>"; };
+		768FF69924D3071400AD7E0B /* CloudKitStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitStatusView.swift; sourceTree = "<group>"; };
+		768FF69D24D315B200AD7E0B /* CKPrivateModelService+CRUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKPrivateModelService+CRUD.swift"; sourceTree = "<group>"; };
+		768FF69E24D315B200AD7E0B /* CKPrivateModelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKPrivateModelService.swift; sourceTree = "<group>"; };
+		768FF69F24D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKPrivateModelService+Subscriptions.swift"; sourceTree = "<group>"; };
+		768FF6A324D3272B00AD7E0B /* CKAdultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAdultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +215,7 @@
 		76773E8324CC8274004DC075 /* FamilyKit */ = {
 			isa = PBXGroup;
 			children = (
+				768FF69624D306C100AD7E0B /* Views */,
 				768FF68824D207B200AD7E0B /* FamilyKitState.swift */,
 				76773EB124CC84B4004DC075 /* CloudKit */,
 				76773EA824CC82C2004DC075 /* Models */,
@@ -225,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				76773EAB24CC839C004DC075 /* CKKidModel.swift */,
+				768FF6A324D3272B00AD7E0B /* CKAdultModel.swift */,
 				76773EAD24CC8407004DC075 /* CKChoreModel.swift */,
 				76773EB424CC898C004DC075 /* CKFunModel.swift */,
 				76773EB624CC8999004DC075 /* CKConnectModel.swift */,
@@ -235,12 +249,15 @@
 		76773EB124CC84B4004DC075 /* CloudKit */ = {
 			isa = PBXGroup;
 			children = (
-				76773EAF24CC8473004DC075 /* CKModelService.swift */,
 				76773EB224CC84BE004DC075 /* CKModel.swift */,
 				76773EA924CC82D3004DC075 /* CKUser.swift */,
 				768FF63324D1C50700AD7E0B /* CKUserService.swift */,
-				768FF67F24D1E3E200AD7E0B /* CKModelService+CRUD.swift */,
-				768FF68124D1E3F200AD7E0B /* CKModelService+Subscriptions.swift */,
+				768FF69E24D315B200AD7E0B /* CKPrivateModelService.swift */,
+				768FF69D24D315B200AD7E0B /* CKPrivateModelService+CRUD.swift */,
+				768FF69F24D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift */,
+				76773EAF24CC8473004DC075 /* CKPublicModelService.swift */,
+				768FF67F24D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift */,
+				768FF68124D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift */,
 			);
 			path = CloudKit;
 			sourceTree = "<group>";
@@ -300,6 +317,15 @@
 				768FF63624D1C57C00AD7E0B /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		768FF69624D306C100AD7E0B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				768FF69724D306CE00AD7E0B /* PlayerPickerView.swift */,
+				768FF69924D3071400AD7E0B /* CloudKitStatusView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,17 +531,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				768FF68224D1E3F200AD7E0B /* CKModelService+Subscriptions.swift in Sources */,
+				768FF68224D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift in Sources */,
 				76773EB324CC84BE004DC075 /* CKModel.swift in Sources */,
+				768FF6A224D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift in Sources */,
 				768FF68924D207B200AD7E0B /* FamilyKitState.swift in Sources */,
 				76773EAE24CC8407004DC075 /* CKChoreModel.swift in Sources */,
-				768FF68024D1E3E200AD7E0B /* CKModelService+CRUD.swift in Sources */,
+				768FF6A124D315B200AD7E0B /* CKPrivateModelService.swift in Sources */,
+				768FF69A24D3071400AD7E0B /* CloudKitStatusView.swift in Sources */,
+				768FF68024D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift in Sources */,
 				76773EAA24CC82D3004DC075 /* CKUser.swift in Sources */,
 				76773EB724CC899A004DC075 /* CKConnectModel.swift in Sources */,
+				768FF6A024D315B200AD7E0B /* CKPrivateModelService+CRUD.swift in Sources */,
 				768FF63424D1C50700AD7E0B /* CKUserService.swift in Sources */,
+				768FF6A424D3272B00AD7E0B /* CKAdultModel.swift in Sources */,
 				76773EAC24CC839C004DC075 /* CKKidModel.swift in Sources */,
-				76773EB024CC8473004DC075 /* CKModelService.swift in Sources */,
+				76773EB024CC8473004DC075 /* CKPublicModelService.swift in Sources */,
 				76773EB524CC898C004DC075 /* CKFunModel.swift in Sources */,
+				768FF69824D306CE00AD7E0B /* PlayerPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

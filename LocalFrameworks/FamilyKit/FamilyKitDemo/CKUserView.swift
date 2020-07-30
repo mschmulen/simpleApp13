@@ -15,10 +15,9 @@ struct CKUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKModelService<CKFunModel>
-    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
     @State var devMessage: String?
     
@@ -33,16 +32,37 @@ struct CKUserView: View {
                     }
                 }
                 
-                Section(header: Text("Kid Information: \(kidService.publicModels.count)")) {
+                Section(header: Text("Current Player")) {
+                    Text("current Player \(familyKitState.currentPlayer.name)")
+                    
+//                    if familyKitState.currentPlayer != nil {
+//                        NavigationLink(destination: CKKidDetailView(model: familyKitState.currentPlayer!)) {
+//                            Text("current Player \(familyKitState.currentPlayer!.name ?? "~")")
+//                        }
+//                    }
+                    
+                    NavigationLink(destination: PlayerPickerView()) {
+                        Text("Change Current Player")
+                    }
+//                    Button(action: {
+//                        print( "yack")
+//                    }) {
+//                        Text("Change Player")
+//                    }
+                }
+                
+                Section(header: Text("Kid Information: \(self.familyKitState.kidService.models.count)")) {
                     NavigationLink(destination: CKKidDetailView(model: CKKidModel())) {
                         Text("NEW KID" )
                     }
                     
-                    ForEach( kidService.publicModels) { model in
+                    //ForEach( kidService.models) { model in
+                    ForEach( self.familyKitState.kidService.models ) { model in
                         NavigationLink(destination: CKKidDetailView(model: model)) {
                             Text(model.name ?? "~" )
                         }
                     }//end ForEach
+                    .onDelete(perform: delete)
                 }//end section kids
                 
                 Section(header: Text("Dev Stuff")) {
@@ -101,7 +121,6 @@ struct CKUserView: View {
                         Text("localeRegionCode \(self.familyKitState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
                         Text("emoji: \(self.familyKitState.userService.currentUser?.emoji ?? "~")")
                         // optionalText(title: "birthDate",text: self.appState.userService.currentUser?.birthDate)
-                        
                     }
                 }
                 
@@ -132,17 +151,55 @@ struct CKUserView: View {
 //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
 //                }
             }.onAppear(perform: {
-                self.kidService.fetchPrivate { (result) in
-                    print("result")
-                    self.familyKitState.onUpdate()
-                }
-                self.kidService.fetchPublic { (result) in
+                self.familyKitState.kidService.fetch { (result) in
                     print("result")
                     self.familyKitState.onUpdate()
                 }
             })
-            .navigationBarTitle("CKUser")
+                .navigationBarItems(trailing: trailingButton)
+                .navigationBarTitle("CKUser")
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        for deleteIndex in offsets {
+            let deleteModel = self.familyKitState.kidService.models[deleteIndex]
+            self.familyKitState.kidService.pushDelete(model: deleteModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("delete.error \(error)")
+                case .success(let recordID):
+                    print("delete.success \(recordID)")
+                }
+            }
+        }
+    }
+    
+    private var trailingButton: some View {
+        HStack {
+            //Button(action:onTrailing) { Image(systemName: "person.circle") }
+            Text("\(familyKitState.currentPlayer.name)")
+            Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
+        }
+    }
+    
+    //
+    //        private var leadingButton: some View {
+    //            NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), containerConfig: .privateCloudDatabase)) {
+    //                Image(systemName: "plus")
+    //            }
+    //            // Button(action:onAdd) { Image(systemName: "plus") }
+    //        }
+    
+    //        func onAdd() {
+    //            self.publicChoreService.pushNewPublic(model: CKChoreModel.mock) { (result) in
+    //                print("\(result)")
+    //            }
+    //        }
+    
+    func onTrailing() {
+        print( "onTrailing")
+    }
+    
 }
 

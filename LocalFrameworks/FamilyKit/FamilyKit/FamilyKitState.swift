@@ -11,6 +11,23 @@ import SwiftUI
 import Combine
 import CloudKit
 
+public enum Player {
+    case adult( CKAdultModel )
+    case kid( CKKidModel )
+    case none
+    
+    public var name: String {
+        switch self {
+        case .adult(let model) :
+            return model.name ?? "~"
+        case .kid(let model):
+            return model.name ?? "~"
+        case .none:
+            return "none"
+        }
+    }
+}
+
 public class FamilyKitState: ObservableObject {
     
     public let objectWillChange = ObservableObjectPublisher()
@@ -19,25 +36,14 @@ public class FamilyKitState: ObservableObject {
     
     private var container: CKContainer
     
-    @Published public var userService: CKUserService<CKUser>
+    @Published public private (set) var userService: CKUserService<CKUser>
     
-    //@Published public var kidService: CKModelService<CKKidModel>
+    @Published public private (set) var currentPlayer: Player = Player.none
     
-//    private var serverConfig: StoreConfig
-
-//    var currentDeviceInfo: DeviceModel = DeviceModel()
-//    var currentAppInfo: AppModel = AppModel()
-//
-//    @Published var userStore = UserStore(storeConfig: StoreConfig.local)
-//    @Published var currentUserModel: UserModel? = nil
-//    @Published var currentPurchaseModel: PurchaseModel? = nil
-//
-//    //@Published var topView: ContentView.TopView = .tabView {
-//    @Published var topView: ContentView.TopView = .mainView {
-//        willSet {
-//            updateChanges()
-//        }
-//    }
+    @Published public private (set) var kidService: CKPrivateModelService<CKKidModel>
+    
+    //    var currentDeviceInfo: DeviceModel = DeviceModel()
+    //    var currentAppInfo: AppModel = AppModel()
     
     public init(
         container: CKContainer
@@ -46,16 +52,14 @@ public class FamilyKitState: ObservableObject {
         self.container = container
         userService = CKUserService<CKUser>(container: container)
         
-//        kidService = CKModelService<CKKidModel>(
-//            container: container
-//        )
+        kidService = CKPrivateModelService<CKKidModel>(
+            container: container
+        )
         
         #if targetEnvironment(simulator)
             isSimulator = true
-//            serverConfig = .local
         #else
             isSimulator = false
-//            serverConfig = .local
         #endif
     }
     
@@ -71,26 +75,27 @@ extension FamilyKitState {
     
     public func onUpdate() {
         checkAuthStatus()
-//        kidService.fetchPublic { (result) in
-//            print( "kid fetchPublic \(result)")
-//            self.updateChanges()
-//        }
-//        kidService.fetchPrivate { (result) in
-//            print( "kid fetchPrivate \(result)")
-//            self.updateChanges()
-//        }
+        kidService.fetch { (result) in
+            print( "kidService fetch \(result)")
+            self.updateChanges()
+        }
     }
     
     public func onStartup() {
         checkAuthStatus()
-//        kidService.fetchPublic { (result) in
-//            print( "kid fetchPublic \(result)")
-//            self.updateChanges()
-//        }
-//        kidService.fetchPrivate { (result) in
-//            print( "kid fetchPrivate \(result)")
-//            self.updateChanges()
-//        }
+        kidService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "kidService success \(models)")
+                //self.kids = self.kidService.models
+                self.onUpdate()
+            case .failure(let error):
+                print( "kidService error \(error)")
+                self.onUpdate()
+            }
+        })
+        kidService.subscribe()
+        kidService.listenForNotifications()
     }
     
     private func checkAuthStatus() {
@@ -101,30 +106,23 @@ extension FamilyKitState {
 // MARK: - Authentication Services
 extension FamilyKitState {
 
-//    public func signOut(){
-//        self.currentUserModel = nil
+    public func setCurrentPlayer(player: Player){
+        self.currentPlayer = player
+        self.updateChanges()
+    }
+    
+//    func modifyCurrentPlayersBucks( amount: Int) {
+//        if let currentPlayer = currentPlayer, let bucks = currentPlayer.bucks {
+//            self.currentPlayer?.bucks = bucks + amount
+//            kidService.pushUpdateCreate(model: currentPlayer) { (result) in
+//                print( "reasult \(result)")
+//            }
+//        }
 //        self.updateChanges()
 //    }
     
-//    public func signIn(
-//        user: UserModel
-//    ){
-//        self.currentUserModel = user
-//        self.updateChanges()
-//    }
-    
-}
-
-// MARK: - Authentication Services
-//extension AppState {
-//
-//    func modifyCurrentPlayersPoints( points:Int) {
-//        self.currentUserModel?.currentPoints += points
-//    }
-//
-//    func addPlayer( model:UserModel) {
-//        self.userStore.addPlayer(model: model)
+//    func addPlayer( model: CKKidModel ) {
 //        updateChanges()
 //    }
-//}
+}
 

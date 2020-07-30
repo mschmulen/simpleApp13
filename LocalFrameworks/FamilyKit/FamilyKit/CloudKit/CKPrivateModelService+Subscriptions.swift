@@ -1,5 +1,5 @@
 //
-//  CKModelService+Subscriptions.swift
+//  CKPublicModelService+Subscriptions.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/29/20.
@@ -9,29 +9,19 @@
 import Foundation
 import CloudKit
 
-extension CKModelService {
+extension CKPrivateModelService {
     
     public func listenForNotifications() {
         
         let NotificationSubscriber = NotificationCenter.default.addObserver(forName: CKChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
             print( "CKModelService.CKChangedNotification notification recieved updating AllModels")
-            self.fetchPublic(completion: { result in
+            self.fetch(completion: { result in
                 switch result {
                 case .success(let models) :
-                    print( "CKModelService.listenForNotifications fetchPublic success \(models)")
+                    print( "CKModelService.listenForNotifications fetch success \(models)")
                     self.updateChanges()
                 case .failure(let error):
-                    print( "CKModelService.listenForNotifications fetchPublic error \(error)")
-                }
-            })
-            
-            self.fetchPrivate(completion: { result in
-                switch result {
-                case .success(let models) :
-                    print( "CKModelService.listenForNotifications fetchPrivate success \(models)")
-                    self.updateChanges()
-                case .failure(let error):
-                    print( "CKModelService.listenForNotifications fetchPrivate error \(error)")
+                    print( "CKModelService.listenForNotifications fetch error \(error)")
                 }
             })
         }
@@ -71,7 +61,7 @@ extension CKModelService {
         info.shouldSendContentAvailable = true
         subscription.notificationInfo = info
         
-        self.container.publicCloudDatabase.save(subscription) { (savedSubscription, error) in
+        self.container.privateCloudDatabase.save(subscription) { (savedSubscription, error) in
             if error != nil {
                 print( "CKModelService.subscribe error \(error!.localizedDescription)")
             } else {
@@ -82,11 +72,11 @@ extension CKModelService {
     
     func deleteSubscriptions() {
         print( "CKModelService.deleteSubscriptions")
-        self.container.publicCloudDatabase.fetchAllSubscriptions { subscriptions, error in
+        self.container.privateCloudDatabase.fetchAllSubscriptions { subscriptions, error in
             if error == nil {
                 if let subscriptions = subscriptions {
                     for subscription in subscriptions {
-                        self.container.publicCloudDatabase.delete(withSubscriptionID: subscription.subscriptionID) { str, error in
+                        self.container.privateCloudDatabase.delete(withSubscriptionID: subscription.subscriptionID) { str, error in
                             if error != nil {
                                 print(error!.localizedDescription)
                             }

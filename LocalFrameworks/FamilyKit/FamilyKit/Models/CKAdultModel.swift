@@ -1,8 +1,8 @@
 //
-//  CKKidModel.swift
+//  CKAdultModel.swift
 //  FamilyKit
 //
-//  Created by Matthew Schmulen on 7/25/20.
+//  Created by Matthew Schmulen on 7/30/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -11,10 +11,10 @@ import SwiftUI
 import CoreLocation
 import CloudKit
 
-public struct CKKidModel: CKModel {
+public struct CKAdultModel: CKModel {
     
-    public typealias ItemType = CKKidModel
-    public static let recordName = "Kid"
+    public typealias ItemType = CKAdultModel
+    public static let recordName = "Adult"
     public static let ckSchemeKeys = [
         "name",
         "bucks",
@@ -32,9 +32,9 @@ public struct CKKidModel: CKModel {
         return name
     }
     
-    public static var mock: CKKidModel {
-        var model = CKKidModel()
-        model.name = "mock name"
+    public static var mock: CKAdultModel {
+        var model = CKAdultModel()
+        model.name = "mock adult"
         model.bucks = 3
         model.emoji = "😀"
         return model
@@ -51,7 +51,7 @@ public struct CKKidModel: CKModel {
         guard
             let _name = record["name"] as? String
             else {
-                print("CKKidModel incomplete record")
+                print("CKAdultModel incomplete record")
                 print( "\(record["name"] as? String ?? "no name")")
                 return nil
         }
@@ -69,15 +69,15 @@ public struct CKKidModel: CKModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKKidModel {
+extension CKAdultModel {
     
     public var ckRecord: CKRecord? {
         let record: CKRecord
         if let recordID = recordID {
-            record = CKRecord(recordType: CKKidModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKAdultModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKKidModel.recordName)
+            record = CKRecord(recordType: CKAdultModel.recordName)
         }
         
         if let name = name {

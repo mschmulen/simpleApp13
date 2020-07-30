@@ -15,10 +15,9 @@ struct CKConnectView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKModelService<CKFunModel>
-    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
     @State var devMessage: String?
     
@@ -34,7 +33,7 @@ struct CKConnectView: View {
                 }
                 
                 Section(header: Text("public Connect")) {
-                    ForEach( self.connectService.publicModels) { model in
+                    ForEach( self.connectService.models) { model in
                         NavigationLink(destination: CKConnectDetailView(model: model)) {
                             Text(model.title ?? "~" )
                         }
@@ -44,7 +43,7 @@ struct CKConnectView: View {
                 }
                 
                 Section(header: Text("private Connect")) {
-                    ForEach( self.connectService.privateModels) { model in
+                    ForEach( self.connectService.models) { model in
                         NavigationLink(destination: CKConnectDetailView(model: model)) {
                             Text(model.title ?? "~" )
                         }
@@ -69,7 +68,7 @@ struct CKConnectView: View {
         print( "delete \(offsets)")
         
         for deleteIndex in offsets {
-            let deleteModel = self.choreService.publicModels[deleteIndex]
+            let deleteModel = self.choreService.models[deleteIndex]
             self.choreService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
@@ -83,12 +82,9 @@ struct CKConnectView: View {
     
     private var trailingButton: some View {
         HStack {
-            if self.familyKitState.userService.currentUser == nil {
-                Button(action:onTrailing) { Image(systemName: "person.circle") }
-            } else {
-                Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
-                Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
-            }
+            //Button(action:onTrailing) { Image(systemName: "person.circle") }
+            Text("\(familyKitState.currentPlayer.name)")
+            Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
         }
     }
     

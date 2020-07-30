@@ -1,5 +1,5 @@
 //
-//  CKModelService+CRUD.swift
+//  CKPrivateModelService+CRUD.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/29/20.
@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 
 // MARK: - Create/Update CRUD
-extension CKModelService  {
+extension CKPrivateModelService {
     
     public func pushUpdateCreate(
         model: T,
@@ -29,19 +29,20 @@ extension CKModelService  {
     
     private func pushNew(
         model: T,
-        completion: ((Result<CKRecord,Error>) -> Void)?
+        completion: @escaping ((Result<CKRecord,Error>) -> Void)
     ){
         if let record = model.ckRecord {
-            container.publicCloudDatabase.save(record) { (record, error) in
+            container.privateCloudDatabase.save(record) { (record, error) in
                 if let error = error {
-                    completion?(.failure(error) )
+                    completion(.failure(error) )
                 }
                 
                 if let record = record {
-                    completion?(.success(record) )
+                    completion(.success(record) )
+                    self.models.append(model)
                     self.updateChanges()
                 } else {
-                    completion?(.failure(CustomError.unknown))
+                    completion(.failure(CustomError.unknown))
                 }
             }//end save
         }
@@ -61,14 +62,14 @@ extension CKModelService  {
         // fetch the model and the update the model
         
         
-        container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {
                 if let updatedRecord = model.ckRecord {
                     for key in T.ckSchemeKeys {
                         record[key] = updatedRecord[key]
                     }
                     
-                    self.container.publicCloudDatabase.save(record) { record, error in
+                    self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
                             completion(.success(record))
                             self.updateChanges()
@@ -93,22 +94,22 @@ extension CKModelService  {
 }
 
 // MARK: - Delete CRUD
-extension CKModelService  {
+extension CKPrivateModelService  {
     
     public func pushDelete(
         model: T,
-        completion: ((Result<CKRecord.ID,Error>) -> Void)?
+        completion: @escaping ((Result<CKRecord.ID,Error>) -> Void)
     ){
         guard let modelRecordID = model.recordID else {
-            completion?( .failure(CustomError.unknown))
+            completion( .failure(CustomError.unknown))
             return
         }
-        container.publicCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
+        container.privateCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
             if let recordID = recordID{
-                completion?(  .success(recordID) )
+                completion(  .success(recordID) )
                 self.updateChanges()
             } else {
-                completion?(  .failure(CustomError.unknown) )
+                completion(  .failure(CustomError.unknown) )
             }
         }
     }

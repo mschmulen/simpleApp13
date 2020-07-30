@@ -15,15 +15,13 @@ struct CKChoreDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKModelService<CKFunModel>
-    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
     @State var devMessage: String?
     
     @State var model: CKChoreModel
-    var containerConfig: CKContainerConfig
     
     var body: some View {
         NavigationView {
@@ -33,6 +31,13 @@ struct CKChoreDetailView: View {
                         .foregroundColor(.red)
                         .onTapGesture {
                             self.devMessage = nil
+                    }
+                }
+                
+                Button(action:onSave) {
+                    HStack {
+                        Text("Save")
+                        Image(systemName: "square.and.arrow.up")
                     }
                 }
                 
@@ -48,45 +53,41 @@ struct CKChoreDetailView: View {
                     TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
+                    TextField("who", text: $model.who ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("frequency", text: $model.frequency ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("timeofday", text: $model.timeofday ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("imageName", text: $model.imageName ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
             .navigationBarTitle("Detail")
-            .navigationBarItems(leading: leadingButton, trailing: trailingButton)
+            //.navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }
     
-    private var leadingButton: some View {
-        HStack {
-            if self.familyKitState.userService.currentUser == nil {
-                Button(action:onTrailing) { Image(systemName: "person.circle") }
-            } else {
-                Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
-                Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
-            }
-        }
-    }
-    
-    private var trailingButton: some View {
-        Button(action:onSave) { Image(systemName: "square.and.arrow.up") }
-    }
+//    private var leadingButton: some View {
+//        HStack {
+//            if self.familyKitState.userService.currentUser == nil {
+//                Button(action:onTrailing) { Image(systemName: "person.circle") }
+//            } else {
+//                Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
+//                Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
+//            }
+//        }
+//    }
+//
+//    private var trailingButton: some View {
+//        Button(action:onSave) { Image(systemName: "square.and.arrow.up") }
+//    }
     
     func onSave() {
-        
-//        switch containerConfig {
-//        case .privateCloudDatabase:
-//            privateChoreService.pushUpdateCreate(model: model) { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    self.devMessage = error.localizedDescription
-//                case .success(let record):
-//                    print( "success \(record)")
-//                    DispatchQueue.main.async {
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }
-//                }
-//            }
-//        case .publicCloudDatabase:
-            choreService.pushUpdateCreate(model: model) { (result) in
+        choreService.pushUpdateCreate(model: model) { (result) in
                 switch result {
                 case .failure(let error):
                     self.devMessage = error.localizedDescription
@@ -94,7 +95,7 @@ struct CKChoreDetailView: View {
                     print( "success \(record)")
                     DispatchQueue.main.async {
                         self.presentationMode.wrappedValue.dismiss()
-                        self.choreService.fetchPublic { (result) in
+                        self.choreService.fetch { (result) in
                             print( "result")
                         }
 
