@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
             }
             
-            if familyKitState.currentPlayer == nil {
+            if familyKitState.currentPlayer.isNone {
                 PlayerPickerView()
                     .environmentObject(familyKitState)
             } else {
@@ -84,9 +84,9 @@ struct ContentView: View {
             }
         }//end group
         .onAppear {
-            if self.familyKitState.isSimulator {
-                self.devMessage = "Simulator"
-            }
+            //if self.familyKitState.isSimulator {
+            self.devMessage = " isCloudKitAvailable:\(self.familyKitState.isCloudKitAvailable)"
+            //}
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")

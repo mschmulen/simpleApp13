@@ -26,6 +26,26 @@ public enum Player {
             return "none"
         }
     }
+    
+    public var isNone: Bool {
+        switch self {
+        case .none:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    public var isAdult: Bool {
+        switch self {
+        case .none:
+            return false
+        case .adult(_) :
+            return true
+        case .kid(_):
+            return false
+        }
+    }
 }
 
 public class FamilyKitState: ObservableObject {
@@ -38,9 +58,11 @@ public class FamilyKitState: ObservableObject {
     
     @Published public private (set) var userService: CKUserService<CKUser>
     
-    @Published public private (set) var currentPlayer: Player = Player.none
-    
+    //@Published public private (set) var currentPlayer: Player = Player.none
+    @Published public private (set) var currentPlayer: Player = Player.kid(CKKidModel.mock)
+
     @Published public private (set) var kidService: CKPrivateModelService<CKKidModel>
+    @Published public private (set) var adultService: CKPrivateModelService<CKAdultModel>
     
     //    var currentDeviceInfo: DeviceModel = DeviceModel()
     //    var currentAppInfo: AppModel = AppModel()
@@ -53,6 +75,10 @@ public class FamilyKitState: ObservableObject {
         userService = CKUserService<CKUser>(container: container)
         
         kidService = CKPrivateModelService<CKKidModel>(
+            container: container
+        )
+        
+        adultService = CKPrivateModelService<CKAdultModel>(
             container: container
         )
         
@@ -79,6 +105,12 @@ extension FamilyKitState {
             print( "kidService fetch \(result)")
             self.updateChanges()
         }
+        
+        adultService.fetch { (result) in
+            print( "adultService fetch \(result)")
+            self.updateChanges()
+        }
+        self.updateChanges()
     }
     
     public func onStartup() {
@@ -111,6 +143,31 @@ extension FamilyKitState {
         self.updateChanges()
     }
     
+    public var isCloudKitAvailable: Bool {
+        
+        if FileManager.default.ubiquityIdentityToken == nil {
+            return false
+        } else {
+            return true
+        }
+        
+//        CKContainer.default().accountStatus { (accountStatus, error) in
+//            switch accountStatus {
+//            case .available:
+//                print("iCloud Available")
+//                return true
+//            case .noAccount:
+//                print("No iCloud account")
+//                return false
+//            case .restricted:
+//                print("iCloud restricted")
+//                return false
+//            case .couldNotDetermine:
+//                print("Unable to determine iCloud status")
+//                return false
+//            }
+//        }
+    }
 //    func modifyCurrentPlayersBucks( amount: Int) {
 //        if let currentPlayer = currentPlayer, let bucks = currentPlayer.bucks {
 //            self.currentPlayer?.bucks = bucks + amount

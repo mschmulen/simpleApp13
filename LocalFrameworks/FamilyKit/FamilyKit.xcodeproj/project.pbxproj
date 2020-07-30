@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7644541924D33E55006E4A17 /* CKAdultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7644541824D33E55006E4A17 /* CKAdultDetailView.swift */; };
 		76773E8B24CC8274004DC075 /* FamilyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76773E8124CC8274004DC075 /* FamilyKit.framework */; };
 		76773E9024CC8274004DC075 /* FamilyKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76773E8F24CC8274004DC075 /* FamilyKitTests.swift */; };
 		76773E9224CC8274004DC075 /* FamilyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 76773E8424CC8274004DC075 /* FamilyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7644541824D33E55006E4A17 /* CKAdultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAdultDetailView.swift; sourceTree = "<group>"; };
 		76773E8124CC8274004DC075 /* FamilyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FamilyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76773E8424CC8274004DC075 /* FamilyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FamilyKit.h; sourceTree = "<group>"; };
 		76773E8524CC8274004DC075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				768FF68F24D2293300AD7E0B /* CKConnectDetailView.swift */,
 				768FF68D24D2292800AD7E0B /* CKFunDetailView.swift */,
 				768FF63A24D1C66700AD7E0B /* CKKidDetailView.swift */,
+				7644541824D33E55006E4A17 /* CKAdultDetailView.swift */,
 				768FF63824D1C65900AD7E0B /* CKUserView.swift */,
 				768FF63524D1C57900AD7E0B /* FamilyKitDemo.entitlements */,
 				768FF5F824D1C22700AD7E0B /* AppDelegate.swift */,
@@ -563,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7644541924D33E55006E4A17 /* CKAdultDetailView.swift in Sources */,
 				768FF63924D1C65900AD7E0B /* CKUserView.swift in Sources */,
 				768FF69024D2293300AD7E0B /* CKConnectDetailView.swift in Sources */,
 				768FF69524D22A0F00AD7E0B /* CKConnectView.swift in Sources */,

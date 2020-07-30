@@ -51,7 +51,7 @@ struct CKUserView: View {
 //                    }
                 }
                 
-                Section(header: Text("Kid Information: \(self.familyKitState.kidService.models.count)")) {
+                Section(header: Text("Kids: \(self.familyKitState.kidService.models.count)")) {
                     NavigationLink(destination: CKKidDetailView(model: CKKidModel())) {
                         Text("NEW KID" )
                     }
@@ -64,6 +64,20 @@ struct CKUserView: View {
                     }//end ForEach
                     .onDelete(perform: delete)
                 }//end section kids
+                
+                Section(header: Text("Adults: \(self.familyKitState.adultService.models.count)")) {
+                    NavigationLink(destination: CKAdultDetailView(model: CKAdultModel())) {
+                        Text("NEW Adult" )
+                    }
+                    
+                    //ForEach( kidService.models) { model in
+                    ForEach( self.familyKitState.adultService.models ) { model in
+                        NavigationLink(destination: CKAdultDetailView(model: model)) {
+                            Text(model.name ?? "~" )
+                        }
+                    }//end ForEach
+                    .onDelete(perform: delete)
+                }//end section adults
                 
                 Section(header: Text("Dev Stuff")) {
                     // Dev stuff
