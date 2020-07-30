@@ -16,47 +16,74 @@ public struct CKChoreModel: CKModel {
     public typealias ItemType = CKChoreModel
     public static let recordName = "Chore"
     public static let ckSchemeKeys = [
-        "title",
-        "info",
-        "tags"
+        "name",
+        "description",
+        "bucks",
+        "who",
+        "frequency",
+        "timeofday",
+        "imageName"
     ]
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
     
-    public var title: String?
-    public var info: String?
-    public var tags: [String]?
-
+    public var name: String?
+    public var description: String?
+    public var bucks: Int?
+    
+    public var who: String?
+    public var frequency: String?
+    public var timeofday: String?
+    public var imageName: String?
+    
+    public var title: String? {
+        return name
+    }
+    
     public static var mock: CKChoreModel {
         var model = CKChoreModel()
-        model.title = "new"
-        model.info = "some mock information"
+        model.name = "Get ready for bed"
+        model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
+        model.who = "kids"
+        model.bucks = 2
+        
+        model.frequency = "Once-a-day"
+        model.timeofday = "Morning"
+        model.imageName = "turtlerock"
         return model
     }
     
     public init(
     ){
-        self.title = "new title"
-        self.info = "new info"
-        self.tags = nil
+        self.name = nil
+        self.description = nil
+        self.bucks = nil
+        self.who = nil
+        self.frequency = nil
+        self.timeofday = nil
+        self.imageName = nil
     }
     
     public init?(record: CKRecord) {
         guard
-            let _title = record["title"] as? String,
-            let _info = record["info"] as? String
+            let _name = record["name"] as? String,
+            let _description = record["description"] as? String
             else {
                 print("CloudKitModelService.init incomplete record")
-                print( "\(record["title"] as? String ?? "Unknown title")")
+                print( "\(record["name"] as? String ?? "Unknown title")")
                 return nil
         }
         
         self.recordID = record.recordID
-        self.title = _title
-        self.info = _info
+        self.name = _name
+        self.description = _description
+        self.bucks = record["bucks"] as? Int
         
-        self.tags = record["tags"] as? [String]
+        self.who = record["who"] as? String
+        self.frequency = record["frequency"] as? String
+        self.timeofday = record["timeofday"] as? String
+        self.imageName = record["imageName"] as? String
     }
     
     enum CustomError: Error {
@@ -69,23 +96,26 @@ public struct CKChoreModel: CKModel {
 extension CKChoreModel {
     
     public var ckRecord: CKRecord? {
-        //        guard let recordID = recordID else {
-        //            return nil
-        //        }
         
         let record: CKRecord
+        
         if let recordID = recordID {
             record = CKRecord(recordType: CKChoreModel.recordName, recordID: recordID)
         }
         else {
             record = CKRecord(recordType: CKChoreModel.recordName)
         }
-        if let title = title {
-            record["title"] = title as CKRecordValue
+        
+        if let name = name {
+            record["name"] = name as CKRecordValue
         }
         
-        if let tags = tags {
-            record["tags"] = tags as CKRecordValue
+        if let description = description {
+            record["description"] = description as CKRecordValue
+        }
+        
+        if let bucks = bucks {
+            record["bucks"] = bucks as CKRecordValue
         }
         
         return record

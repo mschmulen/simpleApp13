@@ -7,46 +7,83 @@
 //
 
 import SwiftUI
+import FamilyKit
 
 struct ContentView: View {
     
+    @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var familyKitState: FamilyKitState
+    
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKModelService<CKFunModel>
+    
     @State private var selectedTab: Int = 0
     
+    @State var devMessage: String?
+    
     var body: some View {
-        TabView(selection: $selectedTab) {
+        Group {
+            if devMessage != nil {
+                Text("\(devMessage!)")
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        self.devMessage = nil
+                }
+            }
             
-            Text("CKUser")
-                .tabItem {
-                    Image(systemName:"wind")
-                    Text("CKKids")
-            }.tag(0)
-            
-            Text("CKKid")
-                .tabItem {
-                    Image(systemName:"wind")
-                    Text("CKKids")
-            }.tag(1)
-            
-            Text("CKChore")
-                .tabItem {
-                    Image(systemName:"wind")
-                    Text("CKChore")
-            }.tag(2)
-            
-            Text("CKFun")
-                .tabItem {
-                    Image(systemName:"wind")
-                    Text("CKFun")
-            }.tag(3)
-            
-            Text("CKConnect")
-                .tabItem {
-                    Image(systemName:"wind")
-                    Text("CKConnect")
-            }.tag(4)
-
+            TabView(selection: $selectedTab) {
+                
+                CKUserView()
+                    .environmentObject(familyKitState)
+                    .tabItem {
+                        Image(systemName:"wind")
+                        Text("CKUser")
+                }.tag(0)
+                
+                CKChoreView()
+                    .environmentObject(familyKitState)
+                    .environmentObject(choreService)
+                    .environmentObject(funService)
+                    .environmentObject(connectService)
+                    .tabItem {
+                        Image(systemName:"wind")
+                        Text("CKChore")
+                }.tag(1)
+                
+                CKFunView()
+                    .environmentObject(familyKitState)
+                    .environmentObject(choreService)
+                    .environmentObject(funService)
+                    .environmentObject(connectService)
+                    .tabItem {
+                        Image(systemName:"wind")
+                        Text("CKFunView")
+                }.tag(2)
+                
+                CKConnectView()
+                    .environmentObject(familyKitState)
+                    .environmentObject(choreService)
+                    .environmentObject(funService)
+                    .environmentObject(connectService)
+                    .tabItem {
+                        Image(systemName:"wind")
+                        Text("CKConnectView")
+                }.tag(3)
+                
+            }
+        }//end group
+        .onAppear {
+            if self.familyKitState.isSimulator {
+                self.devMessage = "Simulator"
+            }
         }
-    }
+        .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+            print("Notification.Name(CloudKitModelService) recieved")
+            self.devMessage = "silent Push! DB changed"
+        }
+    }//end body
     
 }
 

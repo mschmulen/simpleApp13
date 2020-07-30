@@ -40,7 +40,6 @@ public struct CKUser: CKUserModel {
     
     public var birthDate: Date?
     public var emoji: String?
-    public var kids: [CKKidModel]?
     
     static var mock: CKUser {
         
@@ -65,7 +64,7 @@ public struct CKUser: CKUserModel {
         
         self.birthDate = nil
         self.emoji = nil
-        self.kids = nil
+        //self.kids = nil
         
     }
     

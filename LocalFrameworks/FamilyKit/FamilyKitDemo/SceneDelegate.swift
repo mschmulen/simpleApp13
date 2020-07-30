@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,8 +22,64 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
+        
+        var container = CKContainer.default()
+        container = CKContainer(identifier: CKContainerIdentifier)
+        
+        let familyKitState = FamilyKitState(
+            container: container
+        )
+        familyKitState.onStartup()
+        
+        let choreService = CKModelService<CKChoreModel>(
+            container: container
+        )
+        choreService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "choreService success \(models)")
+            case .failure(let error):
+                print( "choreService error \(error)")
+            }
+        })
+        choreService.subscribe()
+        choreService.listenForNotifications()
+        
+        let connectService = CKModelService<CKConnectModel>(
+            container: container
+        )
+        connectService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "connectService success \(models)")
+            case .failure(let error):
+                print( "connectService error \(error)")
+            }
+        })
+        connectService.subscribe()
+        connectService.listenForNotifications()
+        
+        let funService = CKModelService<CKFunModel>(
+            container: container
+        )
+        funService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "funService success \(models)")
+            case .failure(let error):
+                print( "funService error \(error)")
+            }
+        })
+        funService.subscribe()
+        funService.listenForNotifications()
+        
         let contentView = ContentView()
-
+            .environment(\.window, window)
+            .environmentObject(familyKitState)
+            .environmentObject(choreService)
+            .environmentObject(funService)
+            .environmentObject(connectService)
+        
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -63,3 +120,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+
+// ---------------------------
+// Window Key
+// ---------------------------
+@available(iOS 13.0, *)
+struct WindowKey: EnvironmentKey {
+  struct Value {
+    weak var value: UIWindow?
+  }
+  
+  static let defaultValue: Value = .init(value: nil)
+}
+
+@available(iOS 13.0, *)
+extension EnvironmentValues {
+  var window: UIWindow? {
+    get { return self[WindowKey.self].value }
+    set { self[WindowKey.self] = .init(value: newValue) }
+  }
+}

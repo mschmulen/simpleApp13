@@ -16,47 +16,51 @@ public struct CKFunModel: CKModel {
     public typealias ItemType = CKFunModel
     public static let recordName = "Fun"
     public static let ckSchemeKeys = [
-        "title",
-        "info",
-        "tags"
+        "name",
+        "description",
+        "bucks"
     ]
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
     
-    public var title: String?
-    public var info: String?
-    public var tags: [String]?
+    public var name: String?
+    public var description: String?
+    public var bucks: Int?
 
+    public var title: String? {
+        return name
+    }
+    
     public static var mock: CKFunModel {
         var model = CKFunModel()
-        model.title = "new"
-        model.info = "some mock information"
+        model.name = "new"
+        model.description = "some mock information"
+        model.bucks = 2
         return model
     }
     
     public init(
     ){
-        self.title = "new title"
-        self.info = "new info"
-        self.tags = nil
+        self.name = nil
+        self.description = nil
+        self.bucks = nil
     }
     
     public init?(record: CKRecord) {
         guard
-            let _title = record["title"] as? String,
-            let _info = record["info"] as? String
+            let _name = record["name"] as? String,
+            let _description = record["description"] as? String
             else {
                 print("CloudKitModelService.init incomplete record")
-                print( "\(record["title"] as? String ?? "Unknown title")")
+                print( "\(record["name"] as? String ?? "Unknown title")")
                 return nil
         }
         
         self.recordID = record.recordID
-        self.title = _title
-        self.info = _info
-        
-        self.tags = record["tags"] as? [String]
+        self.name = _name
+        self.description = _description
+        self.bucks = record["bucks"] as? Int
     }
     
     enum CustomError: Error {
@@ -69,10 +73,6 @@ public struct CKFunModel: CKModel {
 extension CKFunModel {
     
     public var ckRecord: CKRecord? {
-        //        guard let recordID = recordID else {
-        //            return nil
-        //        }
-        
         let record: CKRecord
         if let recordID = recordID {
             record = CKRecord(recordType: CKFunModel.recordName, recordID: recordID)
@@ -80,12 +80,16 @@ extension CKFunModel {
         else {
             record = CKRecord(recordType: CKFunModel.recordName)
         }
-        if let title = title {
-            record["title"] = title as CKRecordValue
+        if let name = name {
+            record["name"] = name as CKRecordValue
         }
         
-        if let tags = tags {
-            record["tags"] = tags as CKRecordValue
+        if let description = description {
+            record["description"] = description as CKRecordValue
+        }
+        
+        if let bucks = bucks {
+            record["bucks"] = bucks as CKRecordValue
         }
                 
         return record

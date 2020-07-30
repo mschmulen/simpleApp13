@@ -11,9 +11,13 @@ import SwiftUI
 import Combine
 import CloudKit
 
-public let DBChangedNotification = Notification.Name("CloudKitModelService")
-public let CKContainerIdentifier = "iCloud.com.jumptack.SimpleApp"
+public let CKChangedNotification = Notification.Name("CloudKitModelService")
+public let CKContainerIdentifier = "iCloud.com.jumptack.FamilyKit"
 
+public enum CKContainerConfig {
+    case publicCloudDatabase
+    case privateCloudDatabase
+}
 /**
 
  Usage:
@@ -39,6 +43,7 @@ public final class CKModelService<T>: ObservableObject where T:CKModel {
     public let objectWillChange = ObservableObjectPublisher()
     
     internal var container: CKContainer
+    //internal var containerConfig: CKContainerConfig
     
     @Published public var allModels: [T] = [] {
         willSet {
@@ -55,19 +60,19 @@ public final class CKModelService<T>: ObservableObject where T:CKModel {
         case cursorFailure
     }
     
-    private func updateChanges() {
+    internal func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()
         }
     }
 }
 
+// TODO containerConfig:CKContainerConfig = .publicCloudDatabase
 extension CKModelService {
     
     public func fetch(
         completion: @escaping (Result<T, Error>) -> ()
     ) {
-        
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: T.recordName, predicate: predicate)
 //        let sortCreation = NSSortDescriptor(key: "creationDate", ascending: false)

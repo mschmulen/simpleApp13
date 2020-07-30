@@ -10,8 +10,6 @@ import UIKit
 import SwiftUI
 import CloudKit
 
-public let CKContainerIdentifier = "iCloud.com.jumptack.SimpleApp"
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

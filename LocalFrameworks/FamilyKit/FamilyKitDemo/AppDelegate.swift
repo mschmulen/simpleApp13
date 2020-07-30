@@ -7,14 +7,32 @@
 //
 
 import UIKit
+import CloudKit
+import FamilyKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // ------------------------------------------------------------
+        // configure push notification
+        // TODO this needs to be moved to onboarding
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (authorized, error) in
+            print( "requestAuthorization \(authorized) ")
+            print( "requestAuthorization \(String(describing: error)) ")
+            
+            if authorized {
+                DispatchQueue.main.async {
+                    print( "registerForRemoteNotifications")
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
+        // ------------------------------------------------------------
+        
         return true
     }
 
@@ -32,6 +50,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print( "didRegisterForRemoteNotificationsWithDeviceToken token \(deviceToken)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print( "didFailToRegisterForRemoteNotificationsWithError")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        //let dict = userInfo as! [String : NSObject]
+        print( "didReceiveRemoteNotification userInfo:\(userInfo)")
+        
+        if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+            
+            print( "HANDLE SPECIFIC STORE NOTIFCATIONS")
+            CKModelService<CKChoreModel>.notificationReceive( notification: notification)
+            if notification.queryNotificationReason == .recordCreated {
+                print( ".recordCreated")
+                // ContentView().fetchRecord(record: (notification?.recordID)!)
+            }
+            if notification.queryNotificationReason == .recordUpdated {
+                print( ".recordUpdated")
+                //later
+            }
+            if notification.queryNotificationReason == .recordDeleted {
+                print( ".recordDeleted")
+                //ContentView().deleteRecord(record: (notification?.recordID)!)
+            }
+        }
+        
+    }//end didReceiveRemoteNotification
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
+        
+        print("userNotificationCenter.willPresent notification")
+        
+    }
+    
+}
+
+//extension AppDelegate : UNUserNotificationCenterDelegate {
+//
+//}
