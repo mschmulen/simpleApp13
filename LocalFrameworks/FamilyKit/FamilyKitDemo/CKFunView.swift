@@ -15,9 +15,10 @@ struct CKFunView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-        @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKModelService<CKConnectModel>
     @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
 
     
     @State var devMessage: String?
@@ -34,7 +35,7 @@ struct CKFunView: View {
                 }
                 
                 Section(header: Text("public Fun")) {
-                    ForEach( self.funService.allModels) { model in
+                    ForEach( self.funService.publicModels) { model in
                         NavigationLink(destination: CKFunDetailView(model: model)) {
                             Text(model.title ?? "~" )
                         }
@@ -42,6 +43,16 @@ struct CKFunView: View {
                     }//end ForEach
                     .onDelete(perform: delete)
                 }
+                
+                Section(header: Text("private Fun")) {
+                    ForEach( self.funService.privateModels) { model in
+                        NavigationLink(destination: CKFunDetailView(model: model)) {
+                            Text(model.title ?? "~" )
+                        }
+                        // .deleteDisabled(!self.appState.canEdit)
+                    }//end ForEach
+                }
+                
             }
             .navigationBarTitle("Fun")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
@@ -59,11 +70,11 @@ struct CKFunView: View {
             print( "delete \(offsets)")
             
             for deleteIndex in offsets {
-                let deleteModel = self.choreService.allModels[deleteIndex]
+                let deleteModel = self.choreService.publicModels[deleteIndex]
                 self.choreService.pushDelete(model: deleteModel) { (result) in
                     switch result {
                     case .failure(let error):
-                        print("error \(error)")
+                        print("delete.error \(error)")
                     case .success(let recordID):
                         print("success \(recordID)")
                     }

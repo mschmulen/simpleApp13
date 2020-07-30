@@ -17,7 +17,8 @@ public struct CKKidModel: CKModel {
     public static let recordName = "Kid"
     public static let ckSchemeKeys = [
         "name",
-        "bucks"
+        "bucks",
+        "emoji"
     ]
     
     public var id = UUID()
@@ -25,14 +26,17 @@ public struct CKKidModel: CKModel {
 
     public var name: String?
     public var bucks: Int?
-    
+    public var emoji: String?
+
     public var title: String? {
         return name
     }
-
+    
     public static var mock: CKKidModel {
         var model = CKKidModel()
         model.name = "mock name"
+        model.bucks = 3
+        model.emoji = "😀"
         return model
     }
     
@@ -53,6 +57,7 @@ public struct CKKidModel: CKModel {
         self.recordID = record.recordID
         self.name = _name
         self.bucks = record["bucks"] as? Int
+        self.emoji = record["emoji"] as? String
     }
     
     enum CustomError: Error {
@@ -79,6 +84,10 @@ extension CKKidModel {
         
         if let bucks = bucks {
             record["bucks"] = bucks as CKRecordValue
+        }
+        
+        if let emoji = emoji {
+            record["emoji"] = emoji as CKRecordValue
         }
         
         return record

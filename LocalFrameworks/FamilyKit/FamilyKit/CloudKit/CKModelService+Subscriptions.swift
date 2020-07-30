@@ -14,15 +14,24 @@ extension CKModelService {
     public func listenForNotifications() {
         
         let NotificationSubscriber = NotificationCenter.default.addObserver(forName: CKChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
-            print( "CKChangedNotification notification recieved updating AllModels")
-            self.fetch(completion: { result in
-                print( "fetch result \(result)")
+            print( "CKModelService.CKChangedNotification notification recieved updating AllModels")
+            self.fetchPublic(completion: { result in
                 switch result {
                 case .success(let models) :
-                    print( "success \(models)")
+                    print( "CKModelService.listenForNotifications fetchPublic success \(models)")
                     self.updateChanges()
                 case .failure(let error):
-                    print( "error \(error)")
+                    print( "CKModelService.listenForNotifications fetchPublic error \(error)")
+                }
+            })
+            
+            self.fetchPrivate(completion: { result in
+                switch result {
+                case .success(let models) :
+                    print( "CKModelService.listenForNotifications fetchPrivate success \(models)")
+                    self.updateChanges()
+                case .failure(let error):
+                    print( "CKModelService.listenForNotifications fetchPrivate error \(error)")
                 }
             })
         }
@@ -35,11 +44,10 @@ extension CKModelService {
         //                   self.devMessage = "silent Push! DB changed"
         //                   // self.myService.updateAllModels()
         //               }
-        
     }
     
     public static func notificationReceive( notification: CKQueryNotification) {
-        print( "notificationReceive")
+        print( "CKModelService.notificationReceive")
         NotificationCenter.default.post(name: CKChangedNotification, object: nil)
         
         if notification.queryNotificationReason == .recordCreated {
@@ -57,7 +65,7 @@ extension CKModelService {
     }
     
     public func subscribe() {
-        print( "subscribe \(T.recordName)")
+        print( "CKModelService.subscribe \(T.recordName)")
         let subscription = CKQuerySubscription(recordType: T.recordName, predicate: NSPredicate(value: true), options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation])
         let info = CKSubscription.NotificationInfo()
         info.shouldSendContentAvailable = true
@@ -65,15 +73,15 @@ extension CKModelService {
         
         self.container.publicCloudDatabase.save(subscription) { (savedSubscription, error) in
             if error != nil {
-                print(error!.localizedDescription)
-                print( "error subscribe")
+                print( "CKModelService.subscribe error \(error!.localizedDescription)")
             } else {
-                print("Subscribed!")
+                print("CKModelService.subscribe Subscribed!")
             }
         }
     }
     
     func deleteSubscriptions() {
+        print( "CKModelService.deleteSubscriptions")
         self.container.publicCloudDatabase.fetchAllSubscriptions { subscriptions, error in
             if error == nil {
                 if let subscriptions = subscriptions {
@@ -88,7 +96,6 @@ extension CKModelService {
             } else {
                 print(error!.localizedDescription)
             }
-            
         }
     }
 }

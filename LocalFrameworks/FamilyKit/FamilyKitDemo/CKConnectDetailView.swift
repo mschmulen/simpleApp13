@@ -16,12 +16,10 @@ struct CKConnectDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var publicChoreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var privateChoreService: CKModelService<CKChoreModel>
-
-    @EnvironmentObject var publicConnectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var publicFunService: CKModelService<CKFunModel>
-    @EnvironmentObject var privateFunService: CKModelService<CKFunModel>
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
     
     @State var devMessage: String?
     
@@ -69,7 +67,7 @@ struct CKConnectDetailView: View {
        }
        
        func onSave() {
-        publicConnectService.pushUpdateCreate(model: model) { (result) in
+        connectService.pushUpdateCreate(model: model) { (result) in
                switch result {
                case .failure(let error):
                    self.devMessage = error.localizedDescription
@@ -77,7 +75,7 @@ struct CKConnectDetailView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.publicConnectService.fetch { (result) in
+                    self.connectService.fetchPublic { (result) in
                         print( "result")
                     }
                 }

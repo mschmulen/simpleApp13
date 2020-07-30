@@ -18,9 +18,10 @@ public class FamilyKitState: ObservableObject {
     public let isSimulator: Bool
     
     private var container: CKContainer
-
+    
     @Published public var userService: CKUserService<CKUser>
-    @Published public var kidService: CKModelService<CKKidModel>
+    
+    //@Published public var kidService: CKModelService<CKKidModel>
     
 //    private var serverConfig: StoreConfig
 
@@ -45,9 +46,9 @@ public class FamilyKitState: ObservableObject {
         self.container = container
         userService = CKUserService<CKUser>(container: container)
         
-        kidService = CKModelService<CKKidModel>(
-            container: container
-        )
+//        kidService = CKModelService<CKKidModel>(
+//            container: container
+//        )
         
         #if targetEnvironment(simulator)
             isSimulator = true
@@ -68,19 +69,33 @@ public class FamilyKitState: ObservableObject {
 // MARK: - StartupServices
 extension FamilyKitState {
     
+    public func onUpdate() {
+        checkAuthStatus()
+//        kidService.fetchPublic { (result) in
+//            print( "kid fetchPublic \(result)")
+//            self.updateChanges()
+//        }
+//        kidService.fetchPrivate { (result) in
+//            print( "kid fetchPrivate \(result)")
+//            self.updateChanges()
+//        }
+    }
+    
     public func onStartup() {
         checkAuthStatus()
-        kidService.fetch { (result) in
-            print( "kid fetch \(result)")
-        }
+//        kidService.fetchPublic { (result) in
+//            print( "kid fetchPublic \(result)")
+//            self.updateChanges()
+//        }
+//        kidService.fetchPrivate { (result) in
+//            print( "kid fetchPrivate \(result)")
+//            self.updateChanges()
+//        }
     }
     
     private func checkAuthStatus() {
-//        if currentUserModel == nil {
-//            topView = .pickPlayerView
-//        }
+        print( "FamilKitState.checkAuthStatus")
     }
-        
 }
 
 // MARK: - Authentication Services

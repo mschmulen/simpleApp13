@@ -45,7 +45,13 @@ public final class CKModelService<T>: ObservableObject where T:CKModel {
     internal var container: CKContainer
     //internal var containerConfig: CKContainerConfig
     
-    @Published public var allModels: [T] = [] {
+    @Published public var publicModels: [T] = [] {
+        willSet {
+            updateChanges()
+        }
+    }
+    
+    @Published public var privateModels: [T] = [] {
         willSet {
             updateChanges()
         }
@@ -70,7 +76,7 @@ public final class CKModelService<T>: ObservableObject where T:CKModel {
 // TODO containerConfig:CKContainerConfig = .publicCloudDatabase
 extension CKModelService {
     
-    public func fetch(
+    public func fetchPublic(
         completion: @escaping (Result<T, Error>) -> ()
     ) {
         let predicate = NSPredicate(value: true)
@@ -83,6 +89,7 @@ extension CKModelService {
 //        query.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
         queryRecords(
+            containerConfig: CKContainerConfig.publicCloudDatabase,
             query: query,
             resultsLimit: 50,
             enablePaging: true,
@@ -91,15 +98,40 @@ extension CKModelService {
             case .success(let models) :
                 DispatchQueue.main.async {
                     // TODO merge the model list together
-                    self.allModels = models
+                    self.publicModels = models
                 }
             case .failure(let error) :
                 print( "failure \(error)")
             }
         })
-    }//end fetchAll
+    }//end fetchPublic
+    
+    public func fetchPrivate(
+        completion: @escaping (Result<T, Error>) -> ()
+    ) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: T.recordName, predicate: predicate)
+        
+        queryRecords(
+            containerConfig:CKContainerConfig.privateCloudDatabase,
+            query: query,
+            resultsLimit: 50,
+            enablePaging: true,
+            completion: { result in
+                switch result {
+                case .success(let models) :
+                    DispatchQueue.main.async {
+                        // TODO merge the model list together
+                        self.privateModels = models
+                    }
+                case .failure(let error) :
+                    print( "failure \(error)")
+                }
+        })
+    }//end fetchPrivate
     
     func queryRecords(
+        containerConfig:CKContainerConfig,
         query: CKQuery,
         resultsLimit: Int,
         enablePaging: Bool,
@@ -131,7 +163,12 @@ extension CKModelService {
             }
         }
         operation.resultsLimit = resultsLimit
-        container.publicCloudDatabase.add(operation)
+        switch containerConfig {
+        case .privateCloudDatabase:
+            container.privateCloudDatabase.add(operation)
+        case .publicCloudDatabase:
+            container.publicCloudDatabase.add(operation)
+        }
     }
     
     private func queryRecords(

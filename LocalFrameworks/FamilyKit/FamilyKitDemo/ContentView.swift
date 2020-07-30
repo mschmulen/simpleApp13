@@ -18,6 +18,7 @@ struct ContentView: View {
     @EnvironmentObject var choreService: CKModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKModelService<CKConnectModel>
     @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
     
     @State private var selectedTab: Int = 0
     
@@ -37,6 +38,10 @@ struct ContentView: View {
                 
                 CKUserView()
                     .environmentObject(familyKitState)
+                    .environmentObject(choreService)
+                    .environmentObject(funService)
+                    .environmentObject(connectService)
+                    .environmentObject(kidService)
                     .tabItem {
                         Image(systemName:"wind")
                         Text("CKUser")
@@ -47,6 +52,7 @@ struct ContentView: View {
                     .environmentObject(choreService)
                     .environmentObject(funService)
                     .environmentObject(connectService)
+                    .environmentObject(kidService)
                     .tabItem {
                         Image(systemName:"wind")
                         Text("CKChore")
@@ -57,6 +63,7 @@ struct ContentView: View {
                     .environmentObject(choreService)
                     .environmentObject(funService)
                     .environmentObject(connectService)
+                    .environmentObject(kidService)
                     .tabItem {
                         Image(systemName:"wind")
                         Text("CKFunView")
@@ -67,6 +74,7 @@ struct ContentView: View {
                     .environmentObject(choreService)
                     .environmentObject(funService)
                     .environmentObject(connectService)
+                    .environmentObject(kidService)
                     .tabItem {
                         Image(systemName:"wind")
                         Text("CKConnectView")

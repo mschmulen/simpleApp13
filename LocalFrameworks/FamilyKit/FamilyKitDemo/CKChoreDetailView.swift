@@ -18,6 +18,7 @@ struct CKChoreDetailView: View {
     @EnvironmentObject var choreService: CKModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKModelService<CKConnectModel>
     @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
     
     @State var devMessage: String?
     
@@ -93,7 +94,7 @@ struct CKChoreDetailView: View {
                     print( "success \(record)")
                     DispatchQueue.main.async {
                         self.presentationMode.wrappedValue.dismiss()
-                        self.choreService.fetch { (result) in
+                        self.choreService.fetchPublic { (result) in
                             print( "result")
                         }
 

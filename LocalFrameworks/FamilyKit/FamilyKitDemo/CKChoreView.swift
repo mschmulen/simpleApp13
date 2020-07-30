@@ -18,6 +18,7 @@ struct CKChoreView: View {
     @EnvironmentObject var choreService: CKModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKModelService<CKConnectModel>
     @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
     
     @State var devMessage: String?
     
@@ -35,7 +36,7 @@ struct CKChoreView: View {
                 }
                 
                 Section(header: Text("public Chores")) {
-                    ForEach( self.choreService.allModels) { model in
+                    ForEach( self.choreService.publicModels) { model in
                         NavigationLink(destination: CKChoreDetailView(model: model, containerConfig: .publicCloudDatabase)) {
                             Text(model.title ?? "~" )
                         }
@@ -44,20 +45,20 @@ struct CKChoreView: View {
                     .onDelete(perform: delete)
                 }
                 
-//                Section(header: Text("private Chores")) {
-//                    ForEach( self.privateChoreService.allModels) { model in
-//                        NavigationLink(destination: CKChoreDetailView(model: model, containerConfig: .privateCloudDatabase)) {
-//                            Text(model.title ?? "~" )
-//                        }
-//                        // .deleteDisabled(!self.appState.canEdit)
-//                    }//end ForEach
-//                }
+                Section(header: Text("private Chores")) {
+                    ForEach( self.choreService.privateModels) { model in
+                        NavigationLink(destination: CKChoreDetailView(model: model, containerConfig: .privateCloudDatabase)) {
+                            Text(model.title ?? "~" )
+                        }
+                        // .deleteDisabled(!self.appState.canEdit)
+                    }//end ForEach
+                }
             }
 //                .disabled(yack.items.isEmpty)
             .navigationBarTitle("Chores")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }.onAppear {
-            self.choreService.fetch { (result) in
+            self.choreService.fetchPublic { (result) in
                 print( "fetch on appear")
             }
         }
@@ -71,13 +72,13 @@ struct CKChoreView: View {
         print( "delete \(offsets)")
         
         for deleteIndex in offsets {
-            let deleteModel = self.choreService.allModels[deleteIndex]
+            let deleteModel = self.choreService.publicModels[deleteIndex]
             self.choreService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
-                    print("error \(error)")
+                    print("delete.error \(error)")
                 case .success(let recordID):
-                    print("success \(recordID)")
+                    print("delete.success \(recordID)")
                 }
             }
         }

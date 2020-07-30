@@ -15,6 +15,11 @@ struct CKUserView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    
     @State var devMessage: String?
     
     var body: some View {
@@ -28,39 +33,17 @@ struct CKUserView: View {
                     }
                 }
                 
-                Section(header: Text("Kid Information")) {
-                    
+                Section(header: Text("Kid Information: \(kidService.publicModels.count)")) {
                     NavigationLink(destination: CKKidDetailView(model: CKKidModel())) {
                         Text("NEW KID" )
                     }
                     
-                    ForEach( self.familyKitState.kidService.allModels) { model in
+                    ForEach( kidService.publicModels) { model in
                         NavigationLink(destination: CKKidDetailView(model: model)) {
                             Text(model.name ?? "~" )
                         }
-                        // .deleteDisabled(!self.appState.canEdit)
                     }//end ForEach
-                }
-                
-//                Section(header: Text("Authentiation")) {
-//                    if self.appState.userService.isUserAuthenticated {
-//                        Button(action: {
-//                            self.appState.signOutUser()
-//                        }) {
-//                            Text("SignOut")
-//                                .foregroundColor(.blue)
-//                        }
-//                    }
-//
-//                    if self.appState.userService.isUserAuthenticated == false {
-//                        Button(action: {
-//                            self.appState.topView = .authenticationView
-//                        }) {
-//                            Text("SignIn")
-//                                .foregroundColor(.blue)
-//                        }
-//                    }
-//                }
+                }//end section kids
                 
                 Section(header: Text("Dev Stuff")) {
                     // Dev stuff
@@ -89,7 +72,7 @@ struct CKUserView: View {
                             center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                                 if let error = error {
                                     // Handle the error here.
-                                    print( "error \(error)")
+                                    print( "UNUserNotificationCenter requestAuthorization.error \(error)")
                                 }
                                 // TODO: Enable or disable features based on the authorization.
                             }
@@ -148,7 +131,16 @@ struct CKUserView: View {
 //                    Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
 //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
 //                }
-            }
+            }.onAppear(perform: {
+                self.kidService.fetchPrivate { (result) in
+                    print("result")
+                    self.familyKitState.onUpdate()
+                }
+                self.kidService.fetchPublic { (result) in
+                    print("result")
+                    self.familyKitState.onUpdate()
+                }
+            })
             .navigationBarTitle("CKUser")
         }
     }

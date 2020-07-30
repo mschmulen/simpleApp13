@@ -16,12 +16,10 @@ struct CKFunDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
-    @EnvironmentObject var publicChoreService: CKModelService<CKChoreModel>
-    @EnvironmentObject var privateChoreService: CKModelService<CKChoreModel>
-
-    @EnvironmentObject var publicConnectService: CKModelService<CKConnectModel>
-    @EnvironmentObject var publicFunService: CKModelService<CKFunModel>
-    @EnvironmentObject var privateFunService: CKModelService<CKFunModel>
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
     
     @State var devMessage: String?
     
@@ -68,7 +66,7 @@ struct CKFunDetailView: View {
        }
        
        func onSave() {
-        publicFunService.pushUpdateCreate(model: model) { (result) in
+        funService.pushUpdateCreate(model: model) { (result) in
                switch result {
                case .failure(let error):
                    self.devMessage = error.localizedDescription

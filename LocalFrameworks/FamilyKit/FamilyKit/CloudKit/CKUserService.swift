@@ -185,7 +185,7 @@ extension CKUserService {
             case .success(let user):
                 self.currentUser = user
             case .failure(let error):
-                    print("error \(error)")
+                    print("fetchUserRecord.error \(error)")
             }
         }
     }
@@ -205,7 +205,7 @@ extension CKUserService {
             DispatchQueue.main.async {
                 self.currentUserRecordID = recordID
                 self.currentUserRecordIDName = recordID.recordName
-                self.autoUpdateDeviceInfo(completion: nil)
+                //self.autoUpdateDeviceInfo(completion: nil)
             }
             
             self.container.publicCloudDatabase.fetch(withRecordID: recordID) { fetchRecord, error in
@@ -245,7 +245,7 @@ extension CKUserService {
                     
                     self.container.publicCloudDatabase.save(record) { record, error in
                         if let error = error {
-                            print( "error \(error)")
+                            print( "autoUpdateDeviceInfo.error \(error)")
                             completion?(.failure(error))
                         } else {
                             if let returnRecordID = record?.recordID {
@@ -282,7 +282,7 @@ extension CKUserService {
                         record["explicitInterests"] = explicitInterests
                         self.container.publicCloudDatabase.save(record) { record, error in
                             if let error = error {
-                                print( "error \(error)")
+                                print( "updateInterests.error \(error)")
                                 completion?(.failure(error))
                             } else {
                                 if let returnRecordID = record?.recordID {

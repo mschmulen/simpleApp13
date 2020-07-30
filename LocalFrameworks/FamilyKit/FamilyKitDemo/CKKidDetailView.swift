@@ -15,6 +15,11 @@ struct CKKidDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitState: FamilyKitState
     
+    @EnvironmentObject var choreService: CKModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKModelService<CKFunModel>
+    @EnvironmentObject var kidService: CKModelService<CKKidModel>
+    
     @State var devMessage: String?
     
     @State var model: CKKidModel
@@ -22,10 +27,7 @@ struct CKKidDetailView: View {
     var body: some View {
         NavigationView {
             List {
-                Text("CKKidView")
-                Text("name \(model.name ?? "~")")
-                Text("bucks \(String(describing: model.bucks))")
-                
+                Text("Kid name \(model.name ?? "~")")
                 Section(header: Text("Data")) {
                     Text("title \(model.title ?? "~")")
                     
@@ -33,6 +35,9 @@ struct CKKidDetailView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("emoji", text: $model.emoji ?? "😀")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
@@ -58,12 +63,11 @@ struct CKKidDetailView: View {
     }
     
     func onSave() {
-        familyKitState.kidService.pushUpdateCreate(model: model) { (result) in
+        self.kidService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = error.localizedDescription
             case .success(let record):
-                print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
                 }
