@@ -1,5 +1,5 @@
 //
-//  FamilyKitState.swift
+//  FamilyAppKitState.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/29/20.
@@ -27,6 +27,17 @@ public enum Player {
         }
     }
     
+    public var emoji: String {
+        switch self {
+        case .adult(let model) :
+            return model.emoji ?? "~"
+        case .kid(let model):
+            return model.emoji ?? "~"
+        case .none:
+            return "none"
+        }
+    }
+    
     public var isNone: Bool {
         switch self {
         case .none:
@@ -48,21 +59,21 @@ public enum Player {
     }
 }
 
-public class FamilyKitState: ObservableObject {
+public class FamilyKitAppState: ObservableObject {
+    
+    private let container: CKContainer
     
     public let objectWillChange = ObservableObjectPublisher()
-    
     public let isSimulator: Bool
     
-    private var container: CKContainer
+    var anyCancellable: AnyCancellable? = nil
     
     @Published public private (set) var userService: CKUserService<CKUser>
-    
-    //@Published public private (set) var currentPlayer: Player = Player.none
-    @Published public private (set) var currentPlayer: Player = Player.kid(CKKidModel.mock)
-
     @Published public private (set) var kidService: CKPrivateModelService<CKKidModel>
     @Published public private (set) var adultService: CKPrivateModelService<CKAdultModel>
+    
+    @Published public private (set) var currentPlayer: Player = Player.none
+                                                        //Player.kid(CKKidModel.mock)
     
     //    var currentDeviceInfo: DeviceModel = DeviceModel()
     //    var currentAppInfo: AppModel = AppModel()
@@ -87,6 +98,11 @@ public class FamilyKitState: ObservableObject {
         #else
             isSimulator = false
         #endif
+        
+        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
+            self.objectWillChange.send()
+        })
+        
     }
     
     private func updateChanges() {
@@ -97,7 +113,7 @@ public class FamilyKitState: ObservableObject {
 }
 
 // MARK: - StartupServices
-extension FamilyKitState {
+extension FamilyKitAppState {
     
     public func onUpdate() {
         checkAuthStatus()
@@ -128,6 +144,21 @@ extension FamilyKitState {
         })
         kidService.subscribe()
         kidService.listenForNotifications()
+        
+        adultService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "adultService success \(models)")
+                //self.kids = self.kidService.models
+                self.onUpdate()
+            case .failure(let error):
+                print( "adultService error \(error)")
+                self.onUpdate()
+            }
+        })
+        adultService.subscribe()
+        adultService.listenForNotifications()
+        
     }
     
     private func checkAuthStatus() {
@@ -136,7 +167,7 @@ extension FamilyKitState {
 }
 
 // MARK: - Authentication Services
-extension FamilyKitState {
+extension FamilyKitAppState {
 
     public func setCurrentPlayer(player: Player){
         self.currentPlayer = player

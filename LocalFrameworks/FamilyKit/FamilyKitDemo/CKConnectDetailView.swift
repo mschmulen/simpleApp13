@@ -14,7 +14,7 @@ struct CKConnectDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitState: FamilyKitState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
@@ -52,10 +52,10 @@ struct CKConnectDetailView: View {
     
     private var leadingButton: some View {
            HStack {
-               if self.familyKitState.userService.currentUser == nil {
+               if self.familyKitAppState.userService.currentUser == nil {
                    Button(action:onTrailing) { Image(systemName: "person.circle") }
                } else {
-                   Text("\(self.familyKitState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
+                   Text("\(self.familyKitAppState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
                    Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
                }
            }

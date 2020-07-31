@@ -13,7 +13,7 @@ struct CKUserView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitState: FamilyKitState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
@@ -33,11 +33,11 @@ struct CKUserView: View {
                 }
                 
                 Section(header: Text("Current Player")) {
-                    Text("current Player \(familyKitState.currentPlayer.name)")
+                    Text("current Player \(familyKitAppState.currentPlayer.name)")
                     
-//                    if familyKitState.currentPlayer != nil {
-//                        NavigationLink(destination: CKKidDetailView(model: familyKitState.currentPlayer!)) {
-//                            Text("current Player \(familyKitState.currentPlayer!.name ?? "~")")
+//                    if familyKitAppState.currentPlayer != nil {
+//                        NavigationLink(destination: CKKidDetailView(model: familyKitAppState.currentPlayer!)) {
+//                            Text("current Player \(familyKitAppState.currentPlayer!.name ?? "~")")
 //                        }
 //                    }
                     
@@ -51,13 +51,13 @@ struct CKUserView: View {
 //                    }
                 }
                 
-                Section(header: Text("Kids: \(self.familyKitState.kidService.models.count)")) {
+                Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
                     NavigationLink(destination: CKKidDetailView(model: CKKidModel())) {
                         Text("NEW KID" )
                     }
                     
                     //ForEach( kidService.models) { model in
-                    ForEach( self.familyKitState.kidService.models ) { model in
+                    ForEach( self.familyKitAppState.kidService.models ) { model in
                         NavigationLink(destination: CKKidDetailView(model: model)) {
                             Text(model.name ?? "~" )
                         }
@@ -65,13 +65,13 @@ struct CKUserView: View {
                     .onDelete(perform: delete)
                 }//end section kids
                 
-                Section(header: Text("Adults: \(self.familyKitState.adultService.models.count)")) {
+                Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
                     NavigationLink(destination: CKAdultDetailView(model: CKAdultModel())) {
                         Text("NEW Adult" )
                     }
                     
                     //ForEach( kidService.models) { model in
-                    ForEach( self.familyKitState.adultService.models ) { model in
+                    ForEach( self.familyKitAppState.adultService.models ) { model in
                         NavigationLink(destination: CKAdultDetailView(model: model)) {
                             Text(model.name ?? "~" )
                         }
@@ -81,24 +81,24 @@ struct CKUserView: View {
                 
                 Section(header: Text("Dev Stuff")) {
                     // Dev stuff
-                    if self.familyKitState.userService.ckAccountStatus == .available {
+                    if self.familyKitAppState.userService.ckAccountStatus == .available {
                         Text("CloudKit is available")
 //                        if self.appState.userService.currentUser != nil {
 //                            Text("\(self.appState.userService.currentUser?.recordID?.recordName ?? "~")")
 //                        }
                         VStack {
                             Text("appleIDCredentialIdentifier:")
-                            Text("\(self.familyKitState.userService.localUserDefaults_appleIDCredentialIdentifier ?? "")")
+                            Text("\(self.familyKitAppState.userService.localUserDefaults_appleIDCredentialIdentifier ?? "")")
                         }
                         
                     } else {
                         VStack {
                             Text("CloudKit is NOT available")
-                            Text("\(self.familyKitState.userService.ckAccountStatus.friendlyString)")
+                            Text("\(self.familyKitAppState.userService.ckAccountStatus.friendlyString)")
                         }
                     }
                     
-                    if familyKitState.isSimulator == false {
+                    if familyKitAppState.isSimulator == false {
                         // Notifications
                         Button(action: {
                             print("Enable Notifications")
@@ -124,16 +124,16 @@ struct CKUserView: View {
                     }
                 }
                 
-                if self.familyKitState.userService.isUserAuthenticated {
+                if self.familyKitAppState.userService.isUserAuthenticated {
                     Section(header: Text("user info")) {
                         
-                        Text("familyName: \(self.familyKitState.userService.currentUser?.appleIDProvider_credential_user_familyName ?? "~")")
-                        Text("givenName: \(self.familyKitState.userService.currentUser?.appleIDProvider_credential_user_givenName ?? "~")")
-                        Text("email: \(self.familyKitState.userService.currentUser?.appleIDProvider_credential_user_email ?? "~")")
+                        Text("familyName: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_familyName ?? "~")")
+                        Text("givenName: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_givenName ?? "~")")
+                        Text("email: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_email ?? "~")")
                         
-                        Text("localeLanguageCode \(self.familyKitState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
-                        Text("localeRegionCode \(self.familyKitState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
-                        Text("emoji: \(self.familyKitState.userService.currentUser?.emoji ?? "~")")
+                        Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
+                        Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
+                        Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")
                         // optionalText(title: "birthDate",text: self.appState.userService.currentUser?.birthDate)
                     }
                 }
@@ -165,9 +165,9 @@ struct CKUserView: View {
 //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
 //                }
             }.onAppear(perform: {
-                self.familyKitState.kidService.fetch { (result) in
+                self.familyKitAppState.kidService.fetch { (result) in
                     print("result")
-                    self.familyKitState.onUpdate()
+                    self.familyKitAppState.onUpdate()
                 }
             })
                 .navigationBarItems(trailing: trailingButton)
@@ -177,8 +177,8 @@ struct CKUserView: View {
     
     func delete(at offsets: IndexSet) {
         for deleteIndex in offsets {
-            let deleteModel = self.familyKitState.kidService.models[deleteIndex]
-            self.familyKitState.kidService.pushDelete(model: deleteModel) { (result) in
+            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
+            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
                     print("delete.error \(error)")
@@ -191,8 +191,7 @@ struct CKUserView: View {
     
     private var trailingButton: some View {
         HStack {
-            //Button(action:onTrailing) { Image(systemName: "person.circle") }
-            Text("\(familyKitState.currentPlayer.name)")
+            Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
             Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
         }
     }

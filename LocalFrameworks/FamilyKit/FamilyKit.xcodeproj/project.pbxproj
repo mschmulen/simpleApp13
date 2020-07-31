@@ -36,7 +36,7 @@
 		768FF68024D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF67F24D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift */; };
 		768FF68224D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68124D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift */; };
 		768FF68424D1E51600AD7E0B /* CKChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68324D1E51600AD7E0B /* CKChoreDetailView.swift */; };
-		768FF68924D207B200AD7E0B /* FamilyKitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68824D207B200AD7E0B /* FamilyKitState.swift */; };
+		768FF68924D207B200AD7E0B /* FamilyKitAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68824D207B200AD7E0B /* FamilyKitAppState.swift */; };
 		768FF68E24D2292800AD7E0B /* CKFunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68D24D2292800AD7E0B /* CKFunDetailView.swift */; };
 		768FF69024D2293300AD7E0B /* CKConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF68F24D2293300AD7E0B /* CKConnectDetailView.swift */; };
 		768FF69324D22A0200AD7E0B /* CKFunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768FF69224D22A0200AD7E0B /* CKFunView.swift */; };
@@ -133,7 +133,7 @@
 		768FF67F24D1E3E200AD7E0B /* CKPublicModelService+CRUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKPublicModelService+CRUD.swift"; sourceTree = "<group>"; };
 		768FF68124D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKPublicModelService+Subscriptions.swift"; sourceTree = "<group>"; };
 		768FF68324D1E51600AD7E0B /* CKChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreDetailView.swift; sourceTree = "<group>"; };
-		768FF68824D207B200AD7E0B /* FamilyKitState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyKitState.swift; sourceTree = "<group>"; };
+		768FF68824D207B200AD7E0B /* FamilyKitAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyKitAppState.swift; sourceTree = "<group>"; };
 		768FF68D24D2292800AD7E0B /* CKFunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFunDetailView.swift; sourceTree = "<group>"; };
 		768FF68F24D2293300AD7E0B /* CKConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKConnectDetailView.swift; sourceTree = "<group>"; };
 		768FF69224D22A0200AD7E0B /* CKFunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFunView.swift; sourceTree = "<group>"; };
@@ -217,8 +217,8 @@
 		76773E8324CC8274004DC075 /* FamilyKit */ = {
 			isa = PBXGroup;
 			children = (
+				768FF68824D207B200AD7E0B /* FamilyKitAppState.swift */,
 				768FF69624D306C100AD7E0B /* Views */,
-				768FF68824D207B200AD7E0B /* FamilyKitState.swift */,
 				76773EB124CC84B4004DC075 /* CloudKit */,
 				76773EA824CC82C2004DC075 /* Models */,
 				76773E8424CC8274004DC075 /* FamilyKit.h */,
@@ -537,7 +537,7 @@
 				768FF68224D1E3F200AD7E0B /* CKPublicModelService+Subscriptions.swift in Sources */,
 				76773EB324CC84BE004DC075 /* CKModel.swift in Sources */,
 				768FF6A224D315B200AD7E0B /* CKPrivateModelService+Subscriptions.swift in Sources */,
-				768FF68924D207B200AD7E0B /* FamilyKitState.swift in Sources */,
+				768FF68924D207B200AD7E0B /* FamilyKitAppState.swift in Sources */,
 				76773EAE24CC8407004DC075 /* CKChoreModel.swift in Sources */,
 				768FF6A124D315B200AD7E0B /* CKPrivateModelService.swift in Sources */,
 				768FF69A24D3071400AD7E0B /* CloudKitStatusView.swift in Sources */,

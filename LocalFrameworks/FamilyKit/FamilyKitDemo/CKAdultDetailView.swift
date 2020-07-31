@@ -13,7 +13,7 @@ struct CKAdultDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitState: FamilyKitState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
@@ -51,7 +51,7 @@ struct CKAdultDetailView: View {
     }
     
     func onSave() {
-        self.familyKitState.adultService.pushUpdateCreate(model: model) { (result) in
+        self.familyKitAppState.adultService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = error.localizedDescription

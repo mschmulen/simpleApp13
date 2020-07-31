@@ -13,7 +13,7 @@ struct CKFunView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitState: FamilyKitState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
@@ -82,8 +82,7 @@ struct CKFunView: View {
     
     private var trailingButton: some View {
         HStack {
-            //Button(action:onTrailing) { Image(systemName: "person.circle") }
-            Text("\(familyKitState.currentPlayer.name)")
+            Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
             Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
         }
     }

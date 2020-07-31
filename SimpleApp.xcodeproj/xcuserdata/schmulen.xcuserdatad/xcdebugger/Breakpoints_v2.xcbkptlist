@@ -210,38 +210,6 @@
             endingLineNumber = "121"
             landmarkName = "onStartup()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AEF2C986-8B01-4979-A46A-EB2FB21393E9 - cdb6ed00c270b286"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FamilyKit.FamilyKitState.onStartup() -&gt; ()"
-                  moduleName = "FamilyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalFrameworks/FamilyKit/FamilyKit/FamilyKitState.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "35">
-               </Location>
-               <Location
-                  uuid = "AEF2C986-8B01-4979-A46A-EB2FB21393E9 - 1c62f35de5be207b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKKidModel, Swift.Error&gt;) -&gt; () in FamilyKit.FamilyKitState.onStartup() -&gt; ()"
-                  moduleName = "FamilyKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalFrameworks/FamilyKit/FamilyKit/FamilyKitState.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

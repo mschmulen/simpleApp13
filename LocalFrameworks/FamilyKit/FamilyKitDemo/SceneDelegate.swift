@@ -26,10 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var container = CKContainer.default()
         container = CKContainer(identifier: CKContainerIdentifier)
         
-        let familyKitState = FamilyKitState(
+        let familyKitAppState = FamilyKitAppState(
             container: container
         )
-        familyKitState.onStartup()
+        familyKitAppState.onStartup()
         
         let choreService = CKPublicModelService<CKChoreModel>(
             container: container
@@ -89,7 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let contentView = ContentView()
             .environment(\.window, window)
-            .environmentObject(familyKitState)
+            .environmentObject(familyKitAppState)
             .environmentObject(choreService)
             .environmentObject(funService)
             .environmentObject(connectService)
