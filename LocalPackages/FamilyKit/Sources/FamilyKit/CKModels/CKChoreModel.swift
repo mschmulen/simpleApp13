@@ -18,6 +18,7 @@ public struct CKChoreModel: CKModel {
         "name",
         "description",
         "bucks",
+        "emoji",
         "who",
         "frequency",
         "timeofday",
@@ -30,6 +31,7 @@ public struct CKChoreModel: CKModel {
     public var name: String?
     public var description: String?
     public var bucks: Int?
+    public var emoji: String?
     
     public var who: String?
     public var frequency: String?
@@ -46,6 +48,7 @@ public struct CKChoreModel: CKModel {
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
         model.who = "kids"
         model.bucks = 2
+        model.emoji = "🧵"
         
         model.frequency = "Once-a-day"
         model.timeofday = "Morning"
@@ -58,6 +61,8 @@ public struct CKChoreModel: CKModel {
         self.name = nil
         self.description = nil
         self.bucks = nil
+        self.emoji = nil
+        
         self.who = nil
         self.frequency = nil
         self.timeofday = nil
@@ -78,6 +83,7 @@ public struct CKChoreModel: CKModel {
         self.name = _name
         self.description = _description
         self.bucks = record["bucks"] as? Int
+        self.emoji = record["emoji"] as? String
         
         self.who = record["who"] as? String
         self.frequency = record["frequency"] as? String
@@ -115,6 +121,10 @@ extension CKChoreModel {
         
         if let bucks = bucks {
             record["bucks"] = bucks as CKRecordValue
+        }
+        
+        if let emoji = emoji {
+            record["emoji"] = emoji as CKRecordValue
         }
         
         return record

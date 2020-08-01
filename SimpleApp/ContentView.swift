@@ -23,8 +23,6 @@ struct ContentView: View {
     
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
-    @State var showNoCurrentPlayer = false
-    @State var networkStateViewModel:NetworkStateViewModel = NetworkStateViewModel()
     
     enum TopView {
         case mainView
@@ -43,14 +41,6 @@ struct ContentView: View {
                         self.devMessage = nil
                 }
             }
-            
-            if networkStateViewModel.pathStatus != .satisfied {
-                Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
-                    .foregroundColor(.red)
-            }
-            
-            Text("current player: \(familyKitAppState.currentPlayer.name)")
-                .foregroundColor(.red)
             
             if familyKitAppState.currentPlayer.isNone {
                 PlayerPickerView()

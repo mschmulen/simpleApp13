@@ -17,6 +17,10 @@ struct MainView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
+    
     @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
     @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)
@@ -30,6 +34,21 @@ struct MainView: View {
                 
                 List{
                     
+                    Section() {
+                        
+                        NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
+                            HStack {
+                                Image(systemName: "plus")
+                                Text("Add new private chore")
+                            }
+                        }
+                        
+                        CKChoreRowView(categoryName: "CKChore", items: choreService.models)
+                    }
+                    .disabled(choreService.models.isEmpty)
+                    .listRowInsets(EdgeInsets())
+                    
+                    // TODO: this is the old local stuff
                     Section() {
                         FunRowView(categoryName: "Fun", items: funStore.models)
                         

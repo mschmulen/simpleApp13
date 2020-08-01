@@ -16,9 +16,14 @@ public struct PlayerPickerView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @State var errorMessage: String?
+    @State var showNoiCloudConnection = false
+    @State var showNoCurrentPlayer = false
+    @State var networkStateViewModel:NetworkStateViewModel = NetworkStateViewModel()
+    @State var cloudKitStateViewModel:CloudKitStateViewModel = CloudKitStateViewModel()
     
     @State var showNewPlayer: Bool = false
     @State var newPlayerName: String = ""
+    @State var newPlayerEmoji: String = ""
     
     @State private var selectedPlayerType = PlayerType.adult
     enum PlayerType: CaseIterable, Hashable, Identifiable {
@@ -48,6 +53,7 @@ public struct PlayerPickerView: View {
                     Text(errorMessage!)
                         .foregroundColor(.red)
                 }
+                
                 Text("Who is Playing")
                     .font(.system(size: 27, weight: .medium, design: .rounded))
                 
@@ -64,6 +70,8 @@ public struct PlayerPickerView: View {
                     VStack {
                         TextField("playerName", text: $newPlayerName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("newPlayerEmoji", text: $newPlayerEmoji)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         
                         VStack{
                             Text("birthday")
@@ -94,6 +102,7 @@ public struct PlayerPickerView: View {
                                         newModel.bucks = 0
                                         newModel.dateOfBirth = self.stateBirthDate
                                         newModel.name = self.newPlayerName
+                                        newModel.emoji = self.newPlayerEmoji
                                         self.familyKitAppState.kidService.pushUpdateCreate(model: newModel) { (result) in
                                             switch result {
                                             case .failure(let error):
@@ -108,6 +117,7 @@ public struct PlayerPickerView: View {
                                         newModel.bucks = 0
                                         newModel.dateOfBirth = self.stateBirthDate
                                         newModel.name = self.newPlayerName
+                                        newModel.emoji = self.newPlayerEmoji
                                         self.familyKitAppState.adultService.pushUpdateCreate(model: newModel) { (result) in
                                             switch result {
                                             case .failure(let error):
@@ -167,9 +177,36 @@ public struct PlayerPickerView: View {
                                 }
                             }
                         }
+                    }//end Section
+                }//end List
+                
+                VStack {
+                    if networkStateViewModel.pathStatus != .satisfied {
+                        Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
+                            .foregroundColor(.red)
                     }
-                }
-            }
+                    
+                    Text("current player: \(familyKitAppState.currentPlayer.name)")
+                        .foregroundColor(.red)
+                    
+                    if familyKitAppState.isCloudKitAvailable {
+                        Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
+                            .foregroundColor(.red)
+                    }
+                    
+                    if cloudKitStateViewModel.hasUbiquityIdentityToken == true {
+                        Text("hasUbiquityIdentityToken = true")
+                            .foregroundColor(.green)
+                    } else {
+                        Text("hasUbiquityIdentityToken = false")
+                            .foregroundColor(.red)
+                    }
+                    
+                    Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
+                        .foregroundColor(.red)
+                }//end minor vstack
+                
+            }//end VStack
             .onAppear(perform: {
             })
         }//end Navigation

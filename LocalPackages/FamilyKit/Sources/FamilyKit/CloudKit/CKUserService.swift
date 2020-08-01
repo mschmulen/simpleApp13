@@ -10,23 +10,6 @@ import SwiftUI
 import Combine
 import CloudKit
 
-public extension CKAccountStatus {
-    var friendlyString: String {
-        switch self {
-        case .available:
-            return "available"
-        case .couldNotDetermine:
-            return "couldNotDetermine"
-        case .noAccount:
-            return "noAccount"
-        case .restricted:
-            return "restricted"
-        default:
-            return "unknown"
-        }
-    }
-}
-
 public class CKUserService<T>: ObservableObject where T:CKUserModel {
     
     public let objectWillChange = ObservableObjectPublisher()
