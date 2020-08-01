@@ -57,6 +57,7 @@ public enum Player {
             return false
         }
     }
+    
 }
 
 public class FamilyKitAppState: ObservableObject {
@@ -212,5 +213,20 @@ extension FamilyKitAppState {
 //    func addPlayer( model: CKKidModel ) {
 //        updateChanges()
 //    }
+}
+
+
+// MARK: - Player Points
+extension FamilyKitAppState {
+    
+    public func modifyCurrentPlayersBucks( bucks:Int) {
+        // TODO: Fix the bucks
+//        switch currentPlayer {
+//        case .adult(let adultModel):
+//            adultModel.bucks += bucks
+//        case .kid(let kidModel):
+//            adultModel.bucks += bucks
+//        }
+    }
 }
 

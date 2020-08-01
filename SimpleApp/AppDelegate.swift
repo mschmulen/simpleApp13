@@ -15,10 +15,10 @@ import CloudKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         // ------------------------------------------------------------
         // configure push notification
-        // TODO this needs to be moved to onboarding
+        // TODO: this needs to be moved to onboarding
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (authorized, error) in
             print( "requestAuthorization \(authorized) ")
             print( "requestAuthorization \(String(describing: error)) ")

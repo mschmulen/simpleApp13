@@ -17,7 +17,8 @@ struct MainView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -43,9 +44,9 @@ struct MainView: View {
                             }
                         }
                         
-                        CKChoreRowView(categoryName: "CKChore", items: choreService.models)
+                        CKChoreRowView(categoryName: "CKChore", items: publicChoreService.models)
                     }
-                    .disabled(choreService.models.isEmpty)
+                    .disabled(publicChoreService.models.isEmpty)
                     .listRowInsets(EdgeInsets())
                     
                     // TODO: this is the old local stuff
@@ -83,7 +84,7 @@ struct MainView: View {
             }
 
             
-            // TODO : Clean up
+            // TODO: Clean up
 //            if self.appState.currentUserModel == nil {
 //                NavigationLink(destination: UserView()){
 //                    Image(systemName: "person.circle")

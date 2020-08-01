@@ -194,11 +194,11 @@ public struct PlayerPickerView: View {
                             .foregroundColor(.red)
                     }
                     
-                    if cloudKitStateViewModel.hasUbiquityIdentityToken == true {
-                        Text("hasUbiquityIdentityToken = true")
+                    if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
+                        Text("hasFileManagerUbiquityIdentityToken = true")
                             .foregroundColor(.green)
                     } else {
-                        Text("hasUbiquityIdentityToken = false")
+                        Text("hasFileManagerUbiquityIdentityToken = false")
                             .foregroundColor(.red)
                     }
                     

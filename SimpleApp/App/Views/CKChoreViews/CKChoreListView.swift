@@ -14,8 +14,9 @@ struct CKChoreListView: View {
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
-    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -34,69 +35,54 @@ struct CKChoreListView: View {
                     }
                 }
                 
-                Section(header: Text("public Chores")) {
+                Section(header: Text("Chores")) {
                     NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
                         Image(systemName: "plus")
                     }
                     
-                    ForEach( self.choreService.models) { model in
+                    ForEach( self.publicChoreService.models) { model in
                         NavigationLink(destination: CKChoreDetailView(model: model)) {
                             Text(model.title ?? "~" )
                         }
                         //.deleteDisabled(self.deleteDisabled)
                     }//end ForEach
-                    .onDelete(perform: deletePrivate)
+                    .onDelete(perform: deletePublic)
                 }
                 
-//                Section(header: Text("private Chores")) {
-//                    NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
-//                        Image(systemName: "plus")
-//                    }
-//
-//                    ForEach( self.choreService.models) { model in
-//                        NavigationLink(destination: CKChoreDetailView(model: model)) {
-//                            Text(model.title ?? "~" )
-//                        }
-//                        // .deleteDisabled(!self.appState.canEdit)
-//                    }//end ForEach
-//                    .onDelete(perform: deletePrivate)
-//                }
+                Section(header: Text("private Chores")) {
+                    NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
+                        Image(systemName: "plus")
+                    }
+                    
+                    ForEach( self.privateChoreService.models) { model in
+                        NavigationLink(destination: CKChoreDetailView(model: model)) {
+                            Text(model.title ?? "~" )
+                        }
+                    }//end ForEach
+                    .onDelete(perform: deletePrivate)
+                }
             }
 //                .disabled(yack.items.isEmpty)
             .navigationBarTitle("Chores")
             .navigationBarItems(trailing: trailingButton)
         }.onAppear {
-            self.choreService.fetch { (result) in
+            self.publicChoreService.fetch { (result) in
                 print( "fetch \(result)")
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.choreService.fetch { (result) in
+            self.publicChoreService.fetch { (result) in
                 print( "fetch \(result)")
             }
         }
     }
     
-//    func deletePublic(at offsets: IndexSet) {
-//        for deleteIndex in offsets {
-//            let deleteModel = self.choreService.models[deleteIndex]
-//            self.choreService.pushDelete(model: deleteModel) { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print("delete.error \(error)")
-//                case .success(let recordID):
-//                    print("delete.success \(recordID)")
-//                }
-//            }
-//        }
-//    }
-    
-    func deletePrivate(at offsets: IndexSet) {
+    func deletePublic(at offsets: IndexSet) {
          for deleteIndex in offsets {
-             let deleteModel = self.choreService.models[deleteIndex]
-             self.choreService.pushDelete(model: deleteModel) { (result) in
+             let deleteModel = self.publicChoreService.models[deleteIndex]
+             self.publicChoreService.pushDelete(model: deleteModel) { (result) in
                  switch result {
                  case .failure(let error):
                      print("delete.error \(error)")
@@ -107,6 +93,21 @@ struct CKChoreListView: View {
              }
          }
      }
+    
+    func deletePrivate(at offsets: IndexSet) {
+        for deleteIndex in offsets {
+            let deleteModel = self.publicChoreService.models[deleteIndex]
+            self.publicChoreService.pushDelete(model: deleteModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("delete.error \(error)")
+                    self.devMessage = "delete.error \(error)"
+                case .success(let recordID):
+                    print("delete.success \(recordID)")
+                }
+            }
+        }
+    }
     
     private var trailingButton: some View {
         HStack {

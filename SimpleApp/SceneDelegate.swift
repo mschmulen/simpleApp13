@@ -28,10 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         familyKitAppState.onStartup()
         
-        let choreService = CKPublicModelService<CKChoreModel>(
+        let publicChoreService = CKPublicModelService<CKChoreModel>(
             container: container
         )
-        choreService.fetch(completion: { result in
+        publicChoreService.fetch(completion: { result in
             switch result {
             case .success(let models) :
                 print( "choreService success \(models)")
@@ -39,8 +39,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "choreService error \(error)")
             }
         })
-        choreService.subscribe()
-        choreService.listenForNotifications()
+        publicChoreService.subscribe()
+        publicChoreService.listenForNotifications()
+        
+        
+        let privateChoreService = CKPrivateModelService<CKChoreModel>(
+            container: container
+        )
+        privateChoreService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "choreService success \(models)")
+            case .failure(let error):
+                print( "choreService error \(error)")
+            }
+        })
+        privateChoreService.subscribe()
+        privateChoreService.listenForNotifications()
+        
+        
         
         let connectService = CKPublicModelService<CKConnectModel>(
             container: container
@@ -84,6 +101,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //        kidService.subscribe()
         //        kidService.listenForNotifications()
         
+        
+        
         let appState = AppState()
         appState.onStartup()
         
@@ -91,7 +110,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environment(\.window, window)
             .environmentObject(appState)
             .environmentObject(familyKitAppState)
-            .environmentObject(choreService)
+            .environmentObject(privateChoreService)
+            .environmentObject(publicChoreService)
             .environmentObject(funService)
             .environmentObject(connectService)
         

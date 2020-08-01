@@ -17,7 +17,8 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -26,7 +27,6 @@ struct ContentView: View {
     
     enum TopView {
         case mainView
-        case pickPlayerView
         case purchaseView
     }
     
@@ -47,27 +47,27 @@ struct ContentView: View {
                     .environmentObject(familyKitAppState)
             } else {
                 
-                //if appState.topView == .mainView {
+                if appState.topView == .mainView {
                     MainView()
                         .environment(\.window, window)
                         .environmentObject(appState)
                         .environmentObject(familyKitAppState)
-                        .environmentObject(choreService)
+                        .environmentObject(privateChoreService)
+                        .environmentObject(publicChoreService)
                         .environmentObject(funService)
                         .environmentObject(connectService)
-                
-//                }
+                }
                 
                 // TODO: Clean up
 //                if appState.topView == .pickPlayerView {
 //                    PickPlayerView()
 //                        .environmentObject(appState)
 //                }
-//
-//                if appState.topView == .purchaseView {
-//                    PurchaseView()
-//                        .environmentObject(appState)
-//                }
+
+                if appState.topView == .purchaseView {
+                    PurchaseView()
+                        .environmentObject(appState)
+                }
                 // EmptyView()
             }
         }//end group

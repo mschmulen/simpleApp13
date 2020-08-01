@@ -35,52 +35,31 @@ public class CloudKitStateViewModel: NSObject, ObservableObject{
     //      willSet { objectWillChange.send() }
     //    }
     
-    //private let monitor = NWPathMonitor()
-    //private let queue = DispatchQueue(label: "Monitor")
-    
     @Published public private(set) var accountStatus: CKAccountStatus = CKAccountStatus.couldNotDetermine
 
-    @Published public private(set) var hasUbiquityIdentityToken = false
+    @Published public private(set) var hasFileManagerUbiquityIdentityToken = false
     
     public override init() {
         super.init()
-        //let ubiquityIdentityToken = FileManager.default.ubiquityIdentityToken
         
         if FileManager.default.ubiquityIdentityToken == nil {
-            hasUbiquityIdentityToken = false
+            hasFileManagerUbiquityIdentityToken = false
         } else {
-            hasUbiquityIdentityToken =  true
+            hasFileManagerUbiquityIdentityToken =  true
         }
-                
+        
         CKContainer.default().accountStatus { (accountStatus, error) in
             self.accountStatus = accountStatus
-            switch accountStatus {
-            case .available:
-                print("iCloud Available")
-                //return true
-            case .noAccount:
-                print("No iCloud account")
-                //return false
-            case .restricted:
-                print("iCloud restricted")
-               // return false
-            case .couldNotDetermine:
-                print("Unable to determine iCloud status")
-                //return false
-            }
+//            switch accountStatus {
+//            case .available:
+//                print("iCloud Available")
+//            case .noAccount:
+//                print("No iCloud account")
+//            case .restricted:
+//                print("iCloud restricted")
+//            case .couldNotDetermine:
+//                print("Unable to determine iCloud status")
+//            }
         }
-        
-        
-//        monitor.pathUpdateHandler = { path in
-//            self.pathStatus = path.status
-//            self.isExpensive = path.isExpensive
-//        }
-        //        let cellMonitory = NWPathMonitor(requiredInterfaceType: .cellular)
-        //        let wifiMonitory = NWPathMonitor(requiredInterfaceType: .wifi)
-//
-//        self.pathStatus = monitor.currentPath.status
-//        self.isExpensive = monitor.currentPath.isExpensive
-//
-//        monitor.start(queue: queue)
     }
 }

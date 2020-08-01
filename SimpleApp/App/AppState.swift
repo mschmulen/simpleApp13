@@ -18,10 +18,10 @@ class AppState: ObservableObject {
     
     private var serverConfig: StoreConfig
     
-//    var currentDeviceInfo: DeviceModel = DeviceModel()
-//    var currentAppInfo: AppModel = AppModel()
+    var currentDeviceInfo: DeviceModel = DeviceModel()
+    var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: ContentView.TopView = .mainView {
+    @Published var topView: ContentView.TopView = .purchaseView {
         willSet {
             updateChanges()
         }
@@ -76,32 +76,3 @@ extension AppState {
     
 }
 
-//// MARK: - Authentication Services
-//extension AppState {
-//
-//    public func signOut(){
-////        self.currentUserModel = nil
-////        self.updateChanges()
-//    }
-//
-//    public func signIn(
-//        user: UserModel
-//    ){
-////        self.currentUserModel = user
-////        self.updateChanges()
-//    }
-//
-//}
-
-//// MARK: - Authentication Services
-//extension AppState {
-//    
-//    func modifyCurrentPlayersPoints( points:Int) {
-//        // self.currentUserModel?.currentPoints += points
-//    }
-//    
-//    func addPlayer( model:UserModel) {
-////        self.userStore.addPlayer(model: model)
-////        updateChanges()
-//    }
-//}

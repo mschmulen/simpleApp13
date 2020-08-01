@@ -15,7 +15,8 @@ struct AdultDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-//    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    // @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+//    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
 //    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
 //    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     

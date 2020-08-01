@@ -33,8 +33,7 @@ struct FunDetailView: View  {
             
             Button(action: {
                 // TODO: fix points
-                print( "add points to the current player")
-                //self.appState.modifyCurrentPlayersPoints(points: -2)
+                //self.familyKitAppState.modifyCurrentPlayersBucks(bucks: self.model.bucks)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("- 2 pts")

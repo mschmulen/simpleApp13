@@ -33,8 +33,7 @@ struct ChoreDetailView: View  {
             Text(model.description)
             Button(action: {
                 // TODO: fix points
-                print( "add points to the current player")
-//                self.appState.modifyCurrentPlayersPoints(points: self.model.bucks)
+                self.familyKitAppState.modifyCurrentPlayersBucks(bucks: self.model.bucks)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("+ \(self.model.bucks) pts")

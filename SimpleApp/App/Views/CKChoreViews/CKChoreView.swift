@@ -103,7 +103,9 @@ struct CKChoreDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -174,7 +176,7 @@ struct CKChoreDetailView: View {
     //    }
     
     func onSave() {
-        choreService.pushUpdateCreate(model: model) { (result) in
+        publicChoreService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -182,7 +184,7 @@ struct CKChoreDetailView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.choreService.fetch { (result) in
+                    self.publicChoreService.fetch { (result) in
                         print( "result")
                     }
                 }
