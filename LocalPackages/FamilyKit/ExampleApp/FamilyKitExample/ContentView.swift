@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  SimpleApp
+//  FamilyKitExample
 //
-//  Created by Matthew Schmulen on 7/19/20.
+//  Created by Matthew Schmulen on 7/31/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -13,27 +13,23 @@ struct ContentView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    
-    @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
+    @State private var selectedTab: Int = 0
+    
     @State var devMessage: String?
+    
     @State var showNoiCloudConnection = false
+    @State var showNoCurrentPlayer = false
     
-    enum TopView {
-        case mainView
-        case purchaseView
-    }
+    @State var networkStateViewModel:NetworkStateViewModel = NetworkStateViewModel()
     
-    @ViewBuilder
     var body: some View {
         Group {
-            
             if devMessage != nil {
                 Text("\(devMessage!)")
                     .foregroundColor(.red)
@@ -42,37 +38,82 @@ struct ContentView: View {
                 }
             }
             
+            if networkStateViewModel.pathStatus != .satisfied {
+                Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
+                    .foregroundColor(.red)
+            }
+            
             if familyKitAppState.currentPlayer.isNone {
                 PlayerPickerView()
                     .environmentObject(familyKitAppState)
             } else {
-                
-                if appState.topView == .mainView {
-                    MainView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
+                TabView(selection: $selectedTab) {
+                    
+                    CKUserView()
                         .environmentObject(familyKitAppState)
-                        .environmentObject(privateChoreService)
-                        .environmentObject(publicChoreService)
+                        .environmentObject(choreService)
                         .environmentObject(funService)
                         .environmentObject(connectService)
-                }
-                
-                // TODO: Clean up
-//                if appState.topView == .pickPlayerView {
-//                    PickPlayerView()
-//                        .environmentObject(appState)
-//                }
-
-                if appState.topView == .purchaseView {
-                    PurchaseView()
-                        .environmentObject(appState)
-                }
-                // EmptyView()
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKUser")
+                    }.tag(0)
+                    
+                    CKChoreView()
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKChore")
+                    }.tag(1)
+                    
+//                    CKFunView()
+//                        .environmentObject(familyKitAppState)
+//                        .environmentObject(choreService)
+//                        .environmentObject(funService)
+//                        .environmentObject(connectService)
+//                        .tabItem {
+//                            Image(systemName:"wind")
+//                            Text("CKFunView")
+//                    }.tag(2)
+                    
+                    CKConnectView()
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(choreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"wind")
+                            Text("CKConnectView")
+                    }.tag(3)
+                    
+                    ChatView()
+//                        .environmentObject(familyKitAppState)
+//                        .environmentObject(choreService)
+//                        .environmentObject(funService)
+//                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"message")
+                            Text("Chat")
+                    }.tag(4)
+                    
+                    DrawView()
+                        //                        .environmentObject(familyKitAppState)
+                        //                        .environmentObject(choreService)
+                        //                        .environmentObject(funService)
+                        //                        .environmentObject(connectService)
+                        .tabItem {
+                            Image(systemName:"paintbrush")
+                            Text("Draw")
+                    }.tag(5)
+                    
+                }//end TabView
             }
         }//end group
-        .sheet(isPresented: $showNoiCloudConnection) {
-                iCloudSheetView(showSheetView: self.$showNoiCloudConnection)
+            .sheet(isPresented: $showNoiCloudConnection) {
+                SheetView(showSheetView: self.$showNoiCloudConnection)
         }
         .onAppear {
             
@@ -90,6 +131,7 @@ struct ContentView: View {
             self.devMessage = "silent Push! DB changed"
         }
     }//end body
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -98,7 +140,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct iCloudSheetView: View {
+struct SheetView: View {
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     
@@ -141,4 +183,3 @@ struct iCloudSheetView: View {
         }
     }
 }
-
