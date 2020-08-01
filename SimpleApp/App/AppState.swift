@@ -21,7 +21,7 @@ class AppState: ObservableObject {
     var currentDeviceInfo: DeviceModel = DeviceModel()
     var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: ContentView.TopView = .purchaseView {
+    @Published var topView: ContentView.TopView = .mainView {
         willSet {
             updateChanges()
         }
