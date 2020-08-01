@@ -8,12 +8,14 @@
 
 import Foundation
 import SwiftUI
+import FamilyKit
 
 struct MainView: View {
     
     @Environment(\.window) var window: UIWindow?
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
@@ -48,18 +50,34 @@ struct MainView: View {
     
     private var profileButton: some View {
         Group {
-            if self.appState.currentUserModel == nil {
-                NavigationLink(destination: UserView()){
-                    Image(systemName: "person.circle")
-                }
-            } else {
-                NavigationLink(destination: UserView()){
-                    HStack {
-                        Text("\(self.appState.currentUserModel!.name)")
-                        Image(systemName: "person.circle.fill")
-                    }
+            NavigationLink(destination:
+                UserView()
+                    .environment(\.window, window)
+                    .environmentObject(appState)
+                    .environmentObject(familyKitAppState)
+                
+            ){
+                HStack {
+                    Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
+                    Image(systemName: "person.circle.fill")
                 }
             }
+
+            
+            // TODO : Clean up
+//            if self.appState.currentUserModel == nil {
+//                NavigationLink(destination: UserView()){
+//                    Image(systemName: "person.circle")
+//                }
+//            } else {
+//                NavigationLink(destination: UserView()){
+//                    HStack {
+//                        Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
+//                        Image(systemName: "person.circle.fill")
+//                    }
+//                }
+//            }
+            
         }
     }
     

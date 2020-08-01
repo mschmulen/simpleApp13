@@ -7,13 +7,16 @@
 //
 
 import SwiftUI
+import FamilyKit
 
 struct ChoreDetailView: View  {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
+
     @EnvironmentObject var appState: AppState
-    
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+
     var model: ChoreModel
     
     var body: some View {
@@ -29,7 +32,9 @@ struct ChoreDetailView: View  {
                 .font(.caption)
             Text(model.description)
             Button(action: {
-                self.appState.modifyCurrentPlayersPoints(points: self.model.bucks)
+                // TODO: fix points
+                print( "add points to the current player")
+//                self.appState.modifyCurrentPlayersPoints(points: self.model.bucks)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("+ \(self.model.bucks) pts")

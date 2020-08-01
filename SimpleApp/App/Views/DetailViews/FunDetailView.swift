@@ -1,5 +1,5 @@
 //
-//  ConnectDetailView.swift
+//  FunDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 7/24/20.
@@ -7,16 +7,21 @@
 //
 
 import SwiftUI
+import FamilyKit
 
-struct ConnectDetailView: View  {
+struct FunDetailView: View  {
+    
+    @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    var model: ConnectModel
+    var model: FunModel
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Connect detail")
+            Text("Fun detail")
             model.image
                 .renderingMode(.original)
                 .resizable()
@@ -27,11 +32,13 @@ struct ConnectDetailView: View  {
                 .font(.caption)
             
             Button(action: {
-                self.appState.modifyCurrentPlayersPoints(points: +2)
+                // TODO: fix points
+                print( "add points to the current player")
+                //self.appState.modifyCurrentPlayersPoints(points: -2)
+                self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("plus 2 pts")
+                Text("- 2 pts")
             }
-
         }
         .padding(.leading, 15)
     }
