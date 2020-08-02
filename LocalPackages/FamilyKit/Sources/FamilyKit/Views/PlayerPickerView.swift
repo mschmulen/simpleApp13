@@ -31,6 +31,12 @@ public struct PlayerPickerView: View {
                         .foregroundColor(.red)
                 }
                 
+                if familyKitAppState.isSimulator == true {
+                    Text("SIMULATOR: SOME FEATURES NOT SUPPORTED")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                }
+                
                 Text("Who is Playing")
                     .font(.system(size: 27, weight: .medium, design: .rounded))
                 

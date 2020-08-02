@@ -79,6 +79,8 @@ struct MainView: View {
     private var leadingButton: some View {
         NavigationLink(destination:
             PlayerPickerView()
+                .environment(\.window, window)
+                .environmentObject(familyKitAppState)
         ){
             HStack {
                 Text("\(familyKitAppState.currentPlayer.emoji)")
