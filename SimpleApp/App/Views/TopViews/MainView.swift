@@ -69,7 +69,7 @@ struct MainView: View {
             ){
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.emoji)")
-                    Text("\(familyKitAppState.currentPlayer.name) Info")
+                    Text("\(familyKitAppState.currentPlayer.name)")
                     //Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
                     //Image(systemName: "person.circle.fill")
                 }
@@ -85,8 +85,8 @@ struct MainView: View {
         ){
             HStack {
                 Text("change player")
-                Text("\(familyKitAppState.currentPlayer.emoji)")
-                Text("\(familyKitAppState.currentPlayer.name)")
+                //Text("\(familyKitAppState.currentPlayer.emoji)")
+                //Text("\(familyKitAppState.currentPlayer.name)")
                 //Image(systemName: "person.circle.fill")
             }
         }
