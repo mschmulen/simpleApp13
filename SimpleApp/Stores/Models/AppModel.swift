@@ -20,6 +20,6 @@ struct AppModel {
         self.appID = Bundle.main.bundleIdentifier ?? "~"
         self.appShortVersion =  (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "~"
         self.appBuildVersin = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "~"
-    }    
+    }
 }
 

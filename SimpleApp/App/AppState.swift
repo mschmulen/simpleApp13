@@ -18,7 +18,6 @@ class AppState: ObservableObject {
     
     private var serverConfig: StoreConfig
     
-    var currentDeviceInfo: DeviceModel = DeviceModel()
     var currentAppInfo: AppModel = AppModel()
     
     @Published var topView: ContentView.TopView = .mainView {

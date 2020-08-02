@@ -20,6 +20,8 @@ struct PurchaseView: View {
             
             Text("PurchaseView")
             
+            // TODO: Figure out the PurchaseView and what triggers it
+            
 //            Spacer()
 //            VStack(alignment: .center, spacing: 20.0) {
 //                Button(action: {

@@ -11,8 +11,6 @@ import Foundation
 /// Purchase Model
 public struct PurchaseModel: Identifiable {
     
-     public typealias ModelType = UserModel
-    
     public var id: UUID
     
     public var status: PurchaseStatus

@@ -36,17 +36,13 @@ struct MainView: View {
                 List{
                     
                     Section() {
-                        
-                        NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Add new private chore")
-                            }
-                        }
-                        
-                        CKChoreRowView(categoryName: "CKChore", items: publicChoreService.models)
+                        CKChoreRowView(categoryName: "Chores (Public)", items: publicChoreService.models)
                     }
-                    .disabled(publicChoreService.models.isEmpty)
+                    .listRowInsets(EdgeInsets())
+                    
+                    Section() {
+                        CKChoreRowView(categoryName: "Chores (Private)", items: privateChoreService.models)
+                    }
                     .listRowInsets(EdgeInsets())
                     
                     // TODO: this is the old local stuff

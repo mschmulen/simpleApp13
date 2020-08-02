@@ -64,6 +64,9 @@ public class FamilyKitAppState: ObservableObject {
     
     private let container: CKContainer
     
+    private let thisDeviceModel: DeviceModel = DeviceModel()
+    private var deviceService: CKPrivateModelService<CKDeviceModel>
+    
     public let objectWillChange = ObservableObjectPublisher()
     public let isSimulator: Bool
     
@@ -75,9 +78,6 @@ public class FamilyKitAppState: ObservableObject {
     
     @Published public private (set) var currentPlayer: Player = Player.none
                                                         //Player.kid(CKKidModel.mock)
-    
-    //    var currentDeviceInfo: DeviceModel = DeviceModel()
-    //    var currentAppInfo: AppModel = AppModel()
     
     public init(
         container: CKContainer
@@ -91,6 +91,10 @@ public class FamilyKitAppState: ObservableObject {
         )
         
         adultService = CKPrivateModelService<CKAdultModel>(
+            container: container
+        )
+        
+        deviceService = CKPrivateModelService<CKDeviceModel>(
             container: container
         )
         
@@ -159,6 +163,13 @@ extension FamilyKitAppState {
         })
         adultService.subscribe()
         adultService.listenForNotifications()
+        
+        // TODO: fetch create the CKDevice Model based on device
+        print( "thisDeviceModel idfv \(self.thisDeviceModel.idfv?.uuidString ?? "~")")
+        //        ckDeviceModel = CKDeviceModel(deviceModel: DeviceModel())
+//            deviceService.pushUpdateCreate(model: ckDeviceModel) { (result) in
+//                print( "device push update create \(result)")
+//            }
         
     }
     

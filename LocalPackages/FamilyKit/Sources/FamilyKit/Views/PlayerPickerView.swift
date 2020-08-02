@@ -181,10 +181,10 @@ public struct PlayerPickerView: View {
                 }//end List
                 
                 VStack {
-                    if networkStateViewModel.pathStatus != .satisfied {
+//                    if networkStateViewModel.pathStatus != .satisfied {
                         Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
                             .foregroundColor(.red)
-                    }
+//                    }
                     
                     Text("current player: \(familyKitAppState.currentPlayer.name)")
                         .foregroundColor(.red)
