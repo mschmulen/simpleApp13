@@ -20,3 +20,9 @@ public struct CloudKitStatusView: View {
     public init() {
     }
 }
+
+struct CloudKitStatusView_Previews: PreviewProvider {
+    static var previews: some View {
+        CloudKitStatusView()
+    }
+}
