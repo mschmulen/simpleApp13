@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-// TODO: deprecate this 
+// TODO: deprecate this
 public struct ChoreModel: Hashable, Codable, Identifiable {
     
     public var id: Int

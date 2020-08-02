@@ -76,8 +76,12 @@ public class FamilyKitAppState: ObservableObject {
     @Published public private (set) var kidService: CKPrivateModelService<CKKidModel>
     @Published public private (set) var adultService: CKPrivateModelService<CKAdultModel>
     
-    @Published public private (set) var currentPlayer: Player = Player.none
-                                                        //Player.kid(CKKidModel.mock)
+    @Published public private (set) var currentPlayer: Player = Player.none {
+        didSet {
+            print( "did update the current player")
+            // TODO: fire off an update to the device service to udpate the current CKDeviceModel
+        }
+    }
     
     public init(
         container: CKContainer
@@ -225,7 +229,6 @@ extension FamilyKitAppState {
 //        updateChanges()
 //    }
 }
-
 
 // MARK: - Player Points
 extension FamilyKitAppState {
