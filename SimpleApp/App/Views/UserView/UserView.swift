@@ -45,7 +45,7 @@ struct UserView: View {
                 //                        }
                 //                    }
                 
-                NavigationLink(destination: PlayerPickerView()) {
+                NavigationLink(destination: PlayerOnboardingView()) {
                     Text("Change Current Player")
                 }
                 //                    Button(action: {

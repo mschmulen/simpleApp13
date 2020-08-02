@@ -44,7 +44,7 @@ struct ContentView: View {
             }
             
             if familyKitAppState.currentPlayer.isNone {
-                PlayerPickerView()
+                PlayerOnboardingView()
                     .environmentObject(familyKitAppState)
             } else {
                 

@@ -79,7 +79,7 @@ struct MainView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-            PlayerPickerView()
+            PlayerOnboardingView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
         ){

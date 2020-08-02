@@ -28,6 +28,10 @@ struct CKChoreRowView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     
+                    if self.items.count <= 0 {
+                        CKChoreNoItemsView()
+                    }
+                    
                     if showAdd {
                         NavigationLink(
                             destination: CKChoreDetailView(
@@ -55,3 +59,9 @@ struct CKChoreRowView: View {
         }
     }
 }//end CKChoreRowView
+
+struct CKChoreRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        CKChoreRowView(categoryName: "CATEGORY", items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ], isPrivate: true, showAdd: true)
+    }
+}

@@ -34,3 +34,9 @@ struct CKChoreItemView: View {
         .padding(.leading, 15)
     }
 }//end CKChoreItemView
+
+struct CKChoreItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        CKChoreItemView( model: CKChoreModel.mock)
+    }
+}

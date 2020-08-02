@@ -26,13 +26,14 @@
 		76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B7F24D60051001F46E2 /* KidDetailView.swift */; };
 		76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8124D6005E001F46E2 /* AdultDetailView.swift */; };
 		76208B8424D60AE5001F46E2 /* TextField+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8324D60AE5001F46E2 /* TextField+Helper.swift */; };
-		76208B8624D60C12001F46E2 /* CKChoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8524D60C12001F46E2 /* CKChoreView.swift */; };
+		76208B8624D60C12001F46E2 /* CKChoreRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8524D60C12001F46E2 /* CKChoreRowView.swift */; };
 		76208B8924D61C6A001F46E2 /* CKChoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8824D61C6A001F46E2 /* CKChoreListView.swift */; };
 		76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B8C24D663F6001F46E2 /* String+Image.swift */; };
 		76208B9224D70AC5001F46E2 /* CKChoreAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9124D70AC5001F46E2 /* CKChoreAddItemView.swift */; };
 		76208B9424D70ACE001F46E2 /* CKChoreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9324D70ACE001F46E2 /* CKChoreItemView.swift */; };
 		76208B9624D70AD6001F46E2 /* CKChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */; };
 		76208B9824D71787001F46E2 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9724D71787001F46E2 /* EmojiView.swift */; };
+		76208B9D24D723AE001F46E2 /* CKChoreNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
 		76BADB4224CA57AD004950C0 /* stmarylake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3424CA57AC004950C0 /* stmarylake.jpg */; };
@@ -119,13 +120,14 @@
 		76208B7F24D60051001F46E2 /* KidDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidDetailView.swift; sourceTree = "<group>"; };
 		76208B8124D6005E001F46E2 /* AdultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultDetailView.swift; sourceTree = "<group>"; };
 		76208B8324D60AE5001F46E2 /* TextField+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Helper.swift"; sourceTree = "<group>"; };
-		76208B8524D60C12001F46E2 /* CKChoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreView.swift; sourceTree = "<group>"; };
+		76208B8524D60C12001F46E2 /* CKChoreRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreRowView.swift; sourceTree = "<group>"; };
 		76208B8824D61C6A001F46E2 /* CKChoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreListView.swift; sourceTree = "<group>"; };
 		76208B8C24D663F6001F46E2 /* String+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Image.swift"; sourceTree = "<group>"; };
 		76208B9124D70AC5001F46E2 /* CKChoreAddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreAddItemView.swift; sourceTree = "<group>"; };
 		76208B9324D70ACE001F46E2 /* CKChoreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreItemView.swift; sourceTree = "<group>"; };
 		76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreDetailView.swift; sourceTree = "<group>"; };
 		76208B9724D71787001F46E2 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreNoItemsView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
@@ -296,11 +298,12 @@
 		76208B8724D61C5C001F46E2 /* CKChoreViews */ = {
 			isa = PBXGroup;
 			children = (
-				76208B8824D61C6A001F46E2 /* CKChoreListView.swift */,
-				76208B8524D60C12001F46E2 /* CKChoreView.swift */,
+				76208B8524D60C12001F46E2 /* CKChoreRowView.swift */,
 				76208B9124D70AC5001F46E2 /* CKChoreAddItemView.swift */,
 				76208B9324D70ACE001F46E2 /* CKChoreItemView.swift */,
 				76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */,
+				76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */,
+				76208B8824D61C6A001F46E2 /* CKChoreListView.swift */,
 			);
 			path = CKChoreViews;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 			files = (
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
+				76208B9D24D723AE001F46E2 /* CKChoreNoItemsView.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				7601816024C4B01300B339E4 /* UserView.swift in Sources */,
 				76BADB6124CA599A004950C0 /* FunModel.swift in Sources */,
@@ -555,7 +559,7 @@
 				76208B8424D60AE5001F46E2 /* TextField+Helper.swift in Sources */,
 				76BADB5A24CA589E004950C0 /* FunStore.swift in Sources */,
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,
-				76208B8624D60C12001F46E2 /* CKChoreView.swift in Sources */,
+				76208B8624D60C12001F46E2 /* CKChoreRowView.swift in Sources */,
 				7601811C24C4A4B400B339E4 /* SimpleApp.xcdatamodeld in Sources */,
 				76BADB6824CA5A02004950C0 /* ChoreModel.swift in Sources */,
 				76208B9624D70AD6001F46E2 /* CKChoreDetailView.swift in Sources */,
