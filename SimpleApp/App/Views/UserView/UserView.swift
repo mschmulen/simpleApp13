@@ -17,6 +17,12 @@ struct UserView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
+    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
+    
     @State var devMessage: String?
     
     var body: some View {
@@ -51,7 +57,8 @@ struct UserView: View {
             
             Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
                 NavigationLink(destination: KidDetailView(model: CKKidModel())) {
-                    Text("NEW KID" )
+                    Text("Add a new Kid to this account")
+                        .foregroundColor(.blue)
                 }
                 
                 //ForEach( kidService.models) { model in
@@ -65,7 +72,8 @@ struct UserView: View {
             
             Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
                 NavigationLink(destination: AdultDetailView(model: CKAdultModel())) {
-                    Text("NEW Adult" )
+                    Text("Add a new Adult to this account")
+                        .foregroundColor(.blue)
                 }
                 
                 //ForEach( kidService.models) { model in
@@ -79,7 +87,8 @@ struct UserView: View {
             
             Section(header: Text("Adult Stuff")) {
                 NavigationLink(destination: CKChoreListView()) {
-                    Text("CKChore List ()")
+                    Text("Show Chores")
+                        .foregroundColor(.blue)
                 }
             }
             

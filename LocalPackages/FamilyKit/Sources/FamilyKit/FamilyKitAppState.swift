@@ -29,10 +29,10 @@ public enum Player {
     
     public var emoji: String {
         switch self {
-        case .adult(let model) :
-            return model.emoji ?? "~"
+        case .adult(let model):
+            return model.emoji ?? "🌞"
         case .kid(let model):
-            return model.emoji ?? "~"
+            return model.emoji ?? "🌞"
         case .none:
             return "none"
         }

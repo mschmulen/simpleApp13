@@ -18,6 +18,7 @@ struct MainView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
+    
     @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
@@ -34,14 +35,8 @@ struct MainView: View {
                 }
                 
                 List{
-                    
                     Section() {
-                        CKChoreRowView(categoryName: "Chores (Public)", items: publicChoreService.models)
-                    }
-                    .listRowInsets(EdgeInsets())
-                    
-                    Section() {
-                        CKChoreRowView(categoryName: "Chores (Private)", items: privateChoreService.models)
+                        CKChoreRowView(categoryName: "Chores (Private)", items: privateChoreService.models, isPrivate: true, showAdd: familyKitAppState.currentPlayer.isAdult)
                     }
                     .listRowInsets(EdgeInsets())
                     
@@ -60,46 +55,36 @@ struct MainView: View {
                     }.listRowInsets(EdgeInsets())
                 }
             }
-            .navigationBarItems(leading: addButton, trailing: profileButton)
+            .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }
     
-    private var profileButton: some View {
+    private var trailingButton: some View {
         Group {
             NavigationLink(destination:
                 UserView()
                     .environment(\.window, window)
                     .environmentObject(appState)
                     .environmentObject(familyKitAppState)
-                
             ){
                 HStack {
-                    Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
-                    Image(systemName: "person.circle.fill")
+                    Text("\(familyKitAppState.currentPlayer.name) Info")
+                    //Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
+                    //Image(systemName: "person.circle.fill")
                 }
             }
-
-            
-            // TODO: Clean up
-//            if self.appState.currentUserModel == nil {
-//                NavigationLink(destination: UserView()){
-//                    Image(systemName: "person.circle")
-//                }
-//            } else {
-//                NavigationLink(destination: UserView()){
-//                    HStack {
-//                        Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
-//                        Image(systemName: "person.circle.fill")
-//                    }
-//                }
-//            }
-            
         }
     }
     
-    private var addButton: some View {
-        NavigationLink(destination: NewChoreView() ) {
-            Image(systemName: "plus")
+    private var leadingButton: some View {
+        NavigationLink(destination:
+            PlayerPickerView()
+        ){
+            HStack {
+                Text("\(familyKitAppState.currentPlayer.emoji)")
+                Text("\(familyKitAppState.currentPlayer.name)")
+                //Image(systemName: "person.circle.fill")
+            }
         }
     }
         

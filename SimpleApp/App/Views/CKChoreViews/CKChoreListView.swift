@@ -14,7 +14,7 @@ struct CKChoreListView: View {
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-
+    
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
     @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
@@ -25,46 +25,46 @@ struct CKChoreListView: View {
     var deleteDisabled = false
     
     var body: some View {
-        NavigationView {
-            List{
-                if devMessage != nil {
-                    Text("\(devMessage!)")
-                        .foregroundColor(.red)
-                        .onTapGesture {
-                            self.devMessage = nil
-                    }
-                }
-                
-                Section(header: Text("Chores")) {
-                    NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
-                        Image(systemName: "plus")
-                    }
-                    
-                    ForEach( self.publicChoreService.models) { model in
-                        NavigationLink(destination: CKChoreDetailView(model: model)) {
-                            Text(model.title ?? "~" )
-                        }
-                        //.deleteDisabled(self.deleteDisabled)
-                    }//end ForEach
-                    .onDelete(perform: deletePublic)
-                }
-                
-                Section(header: Text("private Chores")) {
-                    NavigationLink(destination: CKChoreDetailView(model: CKChoreModel())) {
-                        Image(systemName: "plus")
-                    }
-                    
-                    ForEach( self.privateChoreService.models) { model in
-                        NavigationLink(destination: CKChoreDetailView(model: model)) {
-                            Text(model.title ?? "~" )
-                        }
-                    }//end ForEach
-                    .onDelete(perform: deletePrivate)
+        List{
+            if devMessage != nil {
+                Text("\(devMessage!)")
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        self.devMessage = nil
                 }
             }
-//                .disabled(yack.items.isEmpty)
-            .navigationBarTitle("Chores")
-            .navigationBarItems(trailing: trailingButton)
+            
+            Section(header: Text("Chores (public)")) {
+                NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), isPrivate:false, enableEdit: true)) {
+                    Image(systemName: "plus")
+                }
+                
+                ForEach( self.publicChoreService.models) { model in
+                    NavigationLink(destination: CKChoreDetailView(model: model, isPrivate:false,enableEdit: true)) {
+                        HStack {
+                            Text(model.emoji ?? "~" )
+                            Text(model.title ?? "~" )
+                        }
+                    }
+                }//end ForEach
+                    .onDelete(perform: deletePublic)
+            }
+            
+            Section(header: Text("Chores (private)")) {
+                NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), isPrivate:true, enableEdit: true)) {
+                    Image(systemName: "plus")
+                }
+                
+                ForEach( self.privateChoreService.models) { model in
+                    NavigationLink(destination: CKChoreDetailView(model: model, isPrivate:true, enableEdit: true)) {
+                        HStack {
+                            Text(model.emoji ?? "~" )
+                            Text(model.title ?? "~" )
+                        }
+                    }
+                }//end ForEach
+                    .onDelete(perform: deletePrivate)
+            }//end List
         }.onAppear {
             self.publicChoreService.fetch { (result) in
                 print( "fetch \(result)")
@@ -80,19 +80,19 @@ struct CKChoreListView: View {
     }
     
     func deletePublic(at offsets: IndexSet) {
-         for deleteIndex in offsets {
-             let deleteModel = self.publicChoreService.models[deleteIndex]
-             self.publicChoreService.pushDelete(model: deleteModel) { (result) in
-                 switch result {
-                 case .failure(let error):
-                     print("delete.error \(error)")
-                     self.devMessage = "delete.error \(error)"
-                 case .success(let recordID):
-                     print("delete.success \(recordID)")
-                 }
-             }
-         }
-     }
+        for deleteIndex in offsets {
+            let deleteModel = self.publicChoreService.models[deleteIndex]
+            self.publicChoreService.pushDelete(model: deleteModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("delete.error \(error)")
+                    self.devMessage = "delete.error \(error)"
+                case .success(let recordID):
+                    print("delete.success \(recordID)")
+                }
+            }
+        }
+    }
     
     func deletePrivate(at offsets: IndexSet) {
         for deleteIndex in offsets {
@@ -108,29 +108,4 @@ struct CKChoreListView: View {
             }
         }
     }
-    
-    private var trailingButton: some View {
-        HStack {
-            Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
-            Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
-        }
-    }
-    
-//
-//        private var leadingButton: some View {
-//            NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), containerConfig: .privateCloudDatabase)) {
-//                Image(systemName: "plus")
-//            }
-//            // Button(action:onAdd) { Image(systemName: "plus") }
-//        }
-        
-//        func onAdd() {
-//            self.publicChoreService.pushNewPublic(model: CKChoreModel.mock) { (result) in
-//                print("\(result)")
-//            }
-//        }
-        
-        func onTrailing() {
-            print( "onTrailing")
-        }
 }

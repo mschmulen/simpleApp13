@@ -28,6 +28,7 @@ struct ContentView: View {
     enum TopView {
         case mainView
         case purchaseView
+        case userView
     }
     
     @ViewBuilder
@@ -56,6 +57,19 @@ struct ContentView: View {
                         .environmentObject(publicChoreService)
                         .environmentObject(funService)
                         .environmentObject(connectService)
+                }
+                
+                if appState.topView == .userView {
+                    NavigationView {
+                        UserView()
+                            .environment(\.window, window)
+                            .environmentObject(appState)
+                            .environmentObject(familyKitAppState)
+                            .environmentObject(privateChoreService)
+                            .environmentObject(publicChoreService)
+                            .environmentObject(funService)
+                            .environmentObject(connectService)
+                    }
                 }
                 
                 // TODO: Clean up
