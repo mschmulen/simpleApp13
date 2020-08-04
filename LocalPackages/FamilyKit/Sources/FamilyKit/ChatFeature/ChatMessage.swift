@@ -11,8 +11,11 @@ struct ChatMessage: Hashable {
 }
 
 struct DataSource {
+    
     static let firstUser = ChatUser(name: "Kid2", emoji: "🐶")
+    
     static var secondUser = ChatUser(name: "Kid3", emoji: "😺", isCurrentUser: true)
+    
     static let messages = [
         ChatMessage(content: "Hi, I really like your drawing", user: DataSource.firstUser),
         ChatMessage(content: "Thanks, nice to hear that, can I have your email please?", user: DataSource.secondUser),

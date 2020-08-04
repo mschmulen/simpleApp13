@@ -9,9 +9,14 @@ import Foundation
 import SwiftUI
 import Combine
 
-class ChatService : ObservableObject {
+public class ChatService : ObservableObject {
+    
     var didChange = PassthroughSubject<Void, Never>()
+    
     @Published var realTimeMessages = DataSource.messages
+    
+    public init() {
+    }
     
     func sendMessage(_ chatMessage: ChatMessage) {
         realTimeMessages.append(chatMessage)

@@ -1,5 +1,5 @@
 //
-//  ChatView.swift
+//  ChatSessionView.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -7,16 +7,19 @@
 
 import SwiftUI
 
-public struct ChatView: View {
+public struct ChatSessionView: View {
     
     @State var typingMessage: String = ""
     
-    @State var chatService = ChatService()
+    @Binding var chatService: ChatService
+    
+    //@State var chatService = ChatService()
     //@EnvironmentObject var chatHelper: ChatHelper
     
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    public init() {
+    public init(chatService: Binding<ChatService>) {
+        self._chatService = chatService
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
     }
@@ -51,9 +54,9 @@ public struct ChatView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ChatSessionView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatSessionView(chatService: .constant(ChatService()))
     }
 }
 

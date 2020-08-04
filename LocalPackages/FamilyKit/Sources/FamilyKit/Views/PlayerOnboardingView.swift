@@ -89,7 +89,16 @@ public struct PlayerOnboardingView: View {
                         Button(action: {
                             self.familyKitAppState.setCurrentPlayer(player: Player.kid(CKKidModel.mock))
                         }) {
-                            Text("Simulator only \"mock Player\"")
+                            Text("Simulator only \"mock Kid\"")
+                                .padding()
+                        }
+                    }
+                    
+                    if familyKitAppState.isSimulator == true {
+                        Button(action: {
+                            self.familyKitAppState.setCurrentPlayer(player: Player.adult(CKAdultModel.mock))
+                        }) {
+                            Text("Simulator only \"mock Adult\"")
                                 .padding()
                         }
                     }

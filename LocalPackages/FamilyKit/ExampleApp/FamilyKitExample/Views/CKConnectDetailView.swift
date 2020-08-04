@@ -55,7 +55,7 @@ struct CKConnectDetailView: View {
                if self.familyKitAppState.userService.currentUser == nil {
                    Button(action:onTrailing) { Image(systemName: "person.circle") }
                } else {
-                   Text("\(self.familyKitAppState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
+//                   Text("\(self.familyKitAppState.userService.currentUser!.appleIDProvider_credential_user_givenName ?? "??")")
                    Button(action:onTrailing) { Image(systemName: "person.circle.fill") }
                }
            }

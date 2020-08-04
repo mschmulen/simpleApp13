@@ -26,7 +26,7 @@ struct ContentView: View {
     @State var showNoiCloudConnection = false
     @State var showNoCurrentPlayer = false
     
-    @State var networkStateViewModel:NetworkStateViewModel = NetworkStateViewModel()
+    @State var networkStateViewModel: NetworkStateViewModel = NetworkStateViewModel()
     
     var body: some View {
         Group {
@@ -89,25 +89,17 @@ struct ContentView: View {
                             Text("CKConnectView")
                     }.tag(3)
                     
-                    ChatView()
-//                        .environmentObject(familyKitAppState)
-//                        .environmentObject(choreService)
-//                        .environmentObject(funService)
-//                        .environmentObject(connectService)
-                        .tabItem {
-                            Image(systemName:"message")
-                            Text("Chat")
+                    NavigationView {
+                        ChatsView()
+                        // .environmentObject(familyKitAppState)
+                        // .environmentObject(choreService)
+                        // .environmentObject(funService)
+                        // .environmentObject(connectService)
+                    }
+                    .tabItem {
+                        Image(systemName:"message")
+                        Text("Chat")
                     }.tag(4)
-                    
-                    DrawView()
-                        //                        .environmentObject(familyKitAppState)
-                        //                        .environmentObject(choreService)
-                        //                        .environmentObject(funService)
-                        //                        .environmentObject(connectService)
-                        .tabItem {
-                            Image(systemName:"paintbrush")
-                            Text("Draw")
-                    }.tag(5)
                     
                 }//end TabView
             }

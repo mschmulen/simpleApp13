@@ -34,6 +34,10 @@
 		76208B9624D70AD6001F46E2 /* CKChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */; };
 		76208B9824D71787001F46E2 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9724D71787001F46E2 /* EmojiView.swift */; };
 		76208B9D24D723AE001F46E2 /* CKChoreNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */; };
+		76208BA124D8B48D001F46E2 /* AudioRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA024D8B48C001F46E2 /* AudioRecordView.swift */; };
+		76208BA424D8C50C001F46E2 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA324D8C50C001F46E2 /* AudioRecorder.swift */; };
+		76208BA624D8C55F001F46E2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA524D8C55F001F46E2 /* AudioPlayer.swift */; };
+		76208BA824D8C589001F46E2 /* AudioRecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA724D8C589001F46E2 /* AudioRecordingsList.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
 		76BADB4224CA57AD004950C0 /* stmarylake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3424CA57AC004950C0 /* stmarylake.jpg */; };
@@ -128,6 +132,10 @@
 		76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreDetailView.swift; sourceTree = "<group>"; };
 		76208B9724D71787001F46E2 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreNoItemsView.swift; sourceTree = "<group>"; };
+		76208BA024D8B48C001F46E2 /* AudioRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordView.swift; sourceTree = "<group>"; };
+		76208BA324D8C50C001F46E2 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		76208BA524D8C55F001F46E2 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		76208BA724D8C589001F46E2 /* AudioRecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingsList.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
@@ -266,6 +274,8 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76208BA924D8C6A3001F46E2 /* Photo */,
+				76208BA224D8C4AF001F46E2 /* Audio */,
 				76208B8B24D663DE001F46E2 /* Utility */,
 				76208B8724D61C5C001F46E2 /* CKChoreViews */,
 				76BADB7B24CB0D75004950C0 /* DetailViews */,
@@ -315,6 +325,24 @@
 				76208B9724D71787001F46E2 /* EmojiView.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		76208BA224D8C4AF001F46E2 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				76208BA024D8B48C001F46E2 /* AudioRecordView.swift */,
+				76208BA324D8C50C001F46E2 /* AudioRecorder.swift */,
+				76208BA524D8C55F001F46E2 /* AudioPlayer.swift */,
+				76208BA724D8C589001F46E2 /* AudioRecordingsList.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		76208BA924D8C6A3001F46E2 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		76773EA424CC828D004DC075 /* Frameworks */ = {
@@ -545,9 +573,12 @@
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
+				76208BA624D8C55F001F46E2 /* AudioPlayer.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
+				76208BA424D8C50C001F46E2 /* AudioRecorder.swift in Sources */,
 				76BADB5C24CA58B3004950C0 /* ConnectStore.swift in Sources */,
+				76208BA124D8B48D001F46E2 /* AudioRecordView.swift in Sources */,
 				76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */,
 				76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */,
 				76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */,
@@ -556,6 +587,7 @@
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
 				76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */,
 				76BADB5F24CA58D8004950C0 /* ChoreStore.swift in Sources */,
+				76208BA824D8C589001F46E2 /* AudioRecordingsList.swift in Sources */,
 				76208B8424D60AE5001F46E2 /* TextField+Helper.swift in Sources */,
 				76BADB5A24CA589E004950C0 /* FunStore.swift in Sources */,
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,

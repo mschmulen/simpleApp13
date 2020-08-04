@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct MainView: View {
     
@@ -68,9 +69,8 @@ struct MainView: View {
                     .environmentObject(familyKitAppState)
             ){
                 HStack {
-                    Text("\(familyKitAppState.currentPlayer.emoji)")
                     Text("\(familyKitAppState.currentPlayer.name)")
-                    //Text("\(familyKitAppState.currentPlayer.emoji) \(familyKitAppState.currentPlayer.name)")
+                    Text("\(familyKitAppState.currentPlayer.emoji)")
                     //Image(systemName: "person.circle.fill")
                 }
             }
@@ -91,11 +91,17 @@ struct MainView: View {
             }
         }
     }
-        
 }
 
-
-
-
-
-
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            //.environment(\.window, window)
+            .environmentObject(AppState())
+            .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
+            .environmentObject(CKPrivateModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+    }
+}

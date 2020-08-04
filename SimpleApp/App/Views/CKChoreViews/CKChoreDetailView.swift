@@ -134,7 +134,7 @@ struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: false)
-
+            
             CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: true)
 
         }

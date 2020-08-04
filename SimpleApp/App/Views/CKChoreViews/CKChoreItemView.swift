@@ -10,6 +10,7 @@ import SwiftUI
 import FamilyKit
 
 struct CKChoreItemView: View {
+    
     var model: CKChoreModel
     
     var image: Image {
@@ -35,8 +36,11 @@ struct CKChoreItemView: View {
     }
 }//end CKChoreItemView
 
+#if DEBUG
 struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
         CKChoreItemView( model: CKChoreModel.mock)
+            .previewLayout(.fixed(width: 300, height: 300))
     }
 }
+#endif

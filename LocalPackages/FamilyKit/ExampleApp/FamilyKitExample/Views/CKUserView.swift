@@ -126,11 +126,6 @@ struct CKUserView: View {
                 
                 if self.familyKitAppState.userService.isUserAuthenticated {
                     Section(header: Text("user info")) {
-                        
-                        Text("familyName: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_familyName ?? "~")")
-                        Text("givenName: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_givenName ?? "~")")
-                        Text("email: \(self.familyKitAppState.userService.currentUser?.appleIDProvider_credential_user_email ?? "~")")
-                        
                         Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
                         Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
                         Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")

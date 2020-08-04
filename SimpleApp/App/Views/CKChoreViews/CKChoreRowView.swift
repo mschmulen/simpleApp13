@@ -60,8 +60,28 @@ struct CKChoreRowView: View {
     }
 }//end CKChoreRowView
 
+#if DEBUG
 struct CKChoreRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreRowView(categoryName: "CATEGORY", items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ], isPrivate: true, showAdd: true)
+            
+        Group {
+            CKChoreRowView(
+                categoryName: "CATEGORY",
+                items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ],
+                isPrivate: true,
+                showAdd: true
+            )
+                .previewLayout(.fixed(width: 400, height: 100))
+            
+            CKChoreRowView(
+                categoryName: "CATEGORY",
+                items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ],
+                isPrivate: true,
+                showAdd: true
+            )
+                .previewLayout(.fixed(width: 400, height: 100))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
+#endif

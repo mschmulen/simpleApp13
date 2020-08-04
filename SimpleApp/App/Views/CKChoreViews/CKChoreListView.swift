@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct CKChoreListView: View {
     
@@ -110,9 +111,14 @@ struct CKChoreListView: View {
     }
 }
 
-//struct CKChoreListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CKChoreListView()
-//            .environmentObject(FamilyKitAppState(container:))
-//    }
-//}
+struct CKChoreListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CKChoreListView()
+            .environmentObject(AppState())
+            .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
+            .environmentObject(CKPrivateModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+    }
+}
