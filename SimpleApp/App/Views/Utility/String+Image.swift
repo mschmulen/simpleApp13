@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     
-    func image(size: CGSize = CGSize(width: 300, height: 300) ) -> UIImage? {
+    func image(size: CGSize = CGSize(width: 256, height: 256) ) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         UIColor.white.set()
         let rect = CGRect(origin: .zero, size: size)
@@ -22,10 +22,10 @@ extension String {
     }
 }
 
-func emojiToImage(text: String, size: CGFloat = 300) -> UIImage {
+func emojiToImage(text: String, size: CGFloat = 128) -> UIImage {
     
     let outputImageSize = CGSize.init(width: size, height: size)
-    let baseSize = text.boundingRect(with: CGSize(width: 2048, height: 2048),
+    let baseSize = text.boundingRect(with: CGSize(width: size, height: size),
                                      options: .usesLineFragmentOrigin,
                                      attributes: [.font: UIFont.systemFont(ofSize: size / 2)], context: nil).size
     let fontSize = outputImageSize.width / max(baseSize.width, baseSize.height) * (outputImageSize.width / 2)

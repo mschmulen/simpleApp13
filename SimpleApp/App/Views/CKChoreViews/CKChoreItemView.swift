@@ -26,7 +26,7 @@ struct CKChoreItemView: View {
             image
                 .renderingMode(.original)
                 .resizable()
-                .frame(width: 155, height: 155)
+                .frame(width: 100, height: 100)
                 .cornerRadius(5)
             Text(model.name ?? "~")
                 .foregroundColor(.primary)
