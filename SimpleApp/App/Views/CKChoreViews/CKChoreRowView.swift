@@ -14,7 +14,7 @@ struct CKChoreRowView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var categoryName: String
-    var items: [CKChoreModel]
+    var items: [CKChoreDescriptionModel]
     var isPrivate: Bool
     var showAdd: Bool
     
@@ -35,7 +35,7 @@ struct CKChoreRowView: View {
                     if showAdd {
                         NavigationLink(
                             destination: CKChoreDetailView(
-                                model: CKChoreModel(), isPrivate:isPrivate, enableEdit: true
+                                model: CKChoreDescriptionModel(), isPrivate:isPrivate, enableEdit: true
                             )
                         ) {
                             CKChoreAddItemView()
@@ -67,7 +67,12 @@ struct CKChoreRowView_Previews: PreviewProvider {
         Group {
             CKChoreRowView(
                 categoryName: "CATEGORY",
-                items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ],
+                items: [
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock
+                ],
                 isPrivate: true,
                 showAdd: true
             )
@@ -75,7 +80,11 @@ struct CKChoreRowView_Previews: PreviewProvider {
             
             CKChoreRowView(
                 categoryName: "CATEGORY",
-                items: [CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock,CKChoreModel.mock ],
+                items: [
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock,
+                    CKChoreDescriptionModel.mock ],
                 isPrivate: true,
                 showAdd: true
             )

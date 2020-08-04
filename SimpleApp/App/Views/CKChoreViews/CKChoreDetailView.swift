@@ -16,14 +16,14 @@ struct CKChoreDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreDescriptionModel>
     
     @State var devMessage: String?
     
     @State var chatService: ChatService = ChatService()
     
-    @State var model: CKChoreModel
+    @State var model: CKChoreDescriptionModel
     var isPrivate:Bool
     var enableEdit:Bool
     
@@ -61,7 +61,7 @@ struct CKChoreDetailView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Picker(selection: $model.frequency, label: Text("Frequency")) {
-                ForEach(CKChoreModel.Frequency.allCases, id: \.self) {
+                ForEach(CKChoreDescriptionModel.Frequency.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
@@ -175,9 +175,9 @@ struct CKChoreDetailView: View {
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: false)
+            CKChoreDetailView(model: CKChoreDescriptionModel.mock, isPrivate: true, enableEdit: false)
             
-            CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: true)
+            CKChoreDetailView(model: CKChoreDescriptionModel.mock, isPrivate: true, enableEdit: true)
         }
     }
 }

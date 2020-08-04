@@ -15,13 +15,13 @@ struct CKChoreDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var choreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var choreService: CKPublicModelService<CKChoreDescriptionModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
     @State var devMessage: String?
     
-    @State var model: CKChoreModel
+    @State var model: CKChoreDescriptionModel
     
     var body: some View {
         NavigationView {

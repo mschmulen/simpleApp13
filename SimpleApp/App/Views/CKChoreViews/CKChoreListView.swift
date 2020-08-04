@@ -16,8 +16,8 @@ struct CKChoreListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreDescriptionModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -36,7 +36,7 @@ struct CKChoreListView: View {
             }
             
             Section(header: Text("Chores (public)")) {
-                NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), isPrivate:false, enableEdit: true)) {
+                NavigationLink(destination: CKChoreDetailView(model: CKChoreDescriptionModel(), isPrivate:false, enableEdit: true)) {
                     Image(systemName: "plus")
                 }
                 
@@ -52,7 +52,7 @@ struct CKChoreListView: View {
             }
             
             Section(header: Text("Chores (private)")) {
-                NavigationLink(destination: CKChoreDetailView(model: CKChoreModel(), isPrivate:true, enableEdit: true)) {
+                NavigationLink(destination: CKChoreDetailView(model: CKChoreDescriptionModel(), isPrivate:true, enableEdit: true)) {
                     Image(systemName: "plus")
                 }
                 
@@ -116,8 +116,8 @@ struct CKChoreListView_Previews: PreviewProvider {
         CKChoreListView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
-            .environmentObject(CKPrivateModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKChoreModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPrivateModelService<CKChoreDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKChoreDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
             .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
             .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
     }

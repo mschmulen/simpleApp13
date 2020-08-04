@@ -115,7 +115,7 @@ extension AppDelegate {
         if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
             
             print( "HANDLE SPECIFIC STORE NOTIFCATIONS")
-            CKPublicModelService<CKChoreModel>.notificationReceive( notification: notification)
+            CKPublicModelService<CKChoreDescriptionModel>.notificationReceive( notification: notification)
             if notification.queryNotificationReason == .recordCreated {
                 print( ".recordCreated")
                 // ContentView().fetchRecord(record: (notification?.recordID)!)

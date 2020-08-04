@@ -11,7 +11,7 @@ import FamilyKit
 
 struct CKChoreItemView: View {
     
-    var model: CKChoreModel
+    var model: CKChoreDescriptionModel
     
     var image: Image {
         if let emoji = model.emoji {
@@ -43,7 +43,7 @@ struct CKChoreItemView: View {
 #if DEBUG
 struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreItemView( model: CKChoreModel.mock)
+        CKChoreItemView( model: CKChoreDescriptionModel.mock)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

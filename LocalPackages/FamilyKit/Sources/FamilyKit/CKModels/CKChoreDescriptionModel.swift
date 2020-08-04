@@ -1,5 +1,5 @@
 //
-//  GameState.swift
+//  CKChoreDescriptionModel.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/25/20.
@@ -10,9 +10,9 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKChoreModel: CKModel {
+public struct CKChoreDescriptionModel: CKModel {
     
-    public typealias ItemType = CKChoreModel
+    public typealias ItemType = CKChoreDescriptionModel
     public static let recordName = "Chore"
     public static let ckSchemeKeys = [
         "name",
@@ -49,8 +49,8 @@ public struct CKChoreModel: CKModel {
         return name
     }
     
-    public static var mock: CKChoreModel {
-        var model = CKChoreModel()
+    public static var mock: CKChoreDescriptionModel {
+        var model = CKChoreDescriptionModel()
         model.name = "Get ready for bed"
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
         model.who = "kids"
@@ -108,17 +108,17 @@ public struct CKChoreModel: CKModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKChoreModel {
+extension CKChoreDescriptionModel {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKChoreModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKChoreDescriptionModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKChoreModel.recordName)
+            record = CKRecord(recordType: CKChoreDescriptionModel.recordName)
         }
         
         if let name = name {
