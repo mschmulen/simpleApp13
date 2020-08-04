@@ -28,9 +28,13 @@ struct CKChoreItemView: View {
                 .resizable()
                 .frame(width: 100, height: 100)
                 .cornerRadius(5)
-            Text(model.name ?? "~")
-                .foregroundColor(.primary)
-                .font(.caption)
+            HStack {
+                Spacer()
+                Text(model.name ?? "~")
+                    .foregroundColor(.primary)
+                    .font(.caption)
+                Spacer()
+            }
         }
         .padding(.leading, 15)
     }
