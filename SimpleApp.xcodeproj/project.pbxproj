@@ -66,6 +66,8 @@
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
 		76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoView.swift */; };
 		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
+		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
+		76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DD24D9E902007A02CF /* SimpleGames */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +169,8 @@
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
 		76CFA1D124D9DA00007A02CF /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
+		76CFA1DA24D9E8F4007A02CF /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,7 +179,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */,
 				76208B7B24D5F7A0001F46E2 /* FamilyKit in Frameworks */,
+				76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */,
 				76208B7E24D5F8FE001F46E2 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +206,8 @@
 		7601810A24C4A4B400B339E4 = {
 			isa = PBXGroup;
 			children = (
+				76CFA1DA24D9E8F4007A02CF /* DrawingKit */,
+				76CFA1D924D9E8EF007A02CF /* SimpleGames */,
 				76208B7924D5F794001F46E2 /* FamilyKit */,
 				76A3F6D224C7DA5400763A8A /* README.md */,
 				7601811524C4A4B400B339E4 /* SimpleApp */,
@@ -442,6 +450,8 @@
 			name = SimpleApp;
 			packageProductDependencies = (
 				76208B7A24D5F7A0001F46E2 /* FamilyKit */,
+				76CFA1DB24D9E901007A02CF /* DrawingKit */,
+				76CFA1DD24D9E902007A02CF /* SimpleGames */,
 			);
 			productName = SimpleApp;
 			productReference = 7601811324C4A4B400B339E4 /* SimpleApp.app */;
@@ -946,6 +956,14 @@
 		76208B7A24D5F7A0001F46E2 /* FamilyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FamilyKit;
+		};
+		76CFA1DB24D9E901007A02CF /* DrawingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DrawingKit;
+		};
+		76CFA1DD24D9E902007A02CF /* SimpleGames */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SimpleGames;
 		};
 /* End XCSwiftPackageProductDependency section */
 

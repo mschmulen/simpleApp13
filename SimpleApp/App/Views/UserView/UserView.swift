@@ -9,6 +9,7 @@
 import SwiftUI
 import FamilyKit
 import CloudKit
+import SimpleGames
 
 struct UserView: View {
     
@@ -91,6 +92,11 @@ struct UserView: View {
                 
                 NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
                     Text("Show AudioRecordView")
+                        .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: SimpleGameView()) {
+                    Text("Show SimpleGameView")
                         .foregroundColor(.blue)
                 }
             }

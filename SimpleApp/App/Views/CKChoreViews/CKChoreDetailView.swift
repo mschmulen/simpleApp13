@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FamilyKit
+import SimpleGames
 
 struct CKChoreDetailView: View {
     
@@ -28,15 +29,15 @@ struct CKChoreDetailView: View {
     
     var readOnlyView: some View {
         Section(header: Text("Info")) {
-            Text("name \(model.name ?? "~")")
-            Text("emoji \(model.emoji ?? "~")")
-            Text("description \(model.description ?? "~")")
-            Text("bucks \(model.bucks ?? 0)")
-
-            Text("who \(model.who ?? "~")")
-            Text("frequency \(model.frequency.rawValue)")
-            Text("timeofday \(model.timeofday ?? "~")")
-            Text("image \(model.imageName ?? "~")")
+            Text("name: \(model.name ?? "~")")
+            Text("emoji: \(model.emoji ?? "~")")
+            Text("description: \(model.description ?? "~")")
+            Text("bucks: \(model.bucks ?? 0)")
+            
+            Text("frequency: \(model.frequency.rawValue)")
+            Text("who: \(model.who ?? "~")")
+            Text("timeofday: \(model.timeofday ?? "~")")
+            Text("image: \(model.imageName ?? "~")")
         }
     }
     
@@ -74,9 +75,7 @@ struct CKChoreDetailView: View {
     }
     
     var actionView: some View {
-        Section(header: Text("Actions")) {
-            Text("title \(model.title ?? "~")")
-
+        Section(header: Text("Completion Actions")) {
             NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
                 Text("leave a voice message")
                     .foregroundColor(.blue)
@@ -94,6 +93,11 @@ struct CKChoreDetailView: View {
             
             NavigationLink(destination: DrawView()) {
                 Text("draw a picture")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: SimpleGameView()) {
+                Text("play this game")
                     .foregroundColor(.blue)
             }
             
