@@ -34,7 +34,7 @@ struct CKChoreDetailView: View {
             Text("bucks \(model.bucks ?? 0)")
 
             Text("who \(model.who ?? "~")")
-            Text("frequency \(model.frequency ?? "~")")
+            Text("frequency \(model.frequency.rawValue)")
             Text("timeofday \(model.timeofday ?? "~")")
             Text("image \(model.imageName ?? "~")")
         }
@@ -59,8 +59,11 @@ struct CKChoreDetailView: View {
             TextField("who", text: $model.who ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("frequency", text: $model.frequency ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Picker(selection: $model.frequency, label: Text("Frequency")) {
+                ForEach(CKChoreModel.Frequency.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
             
             TextField("timeofday", text: $model.timeofday ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -86,6 +89,11 @@ struct CKChoreDetailView: View {
             
             NavigationLink(destination: PhotoView()) {
                 Text("take a picture")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: DrawView()) {
+                Text("draw a picture")
                     .foregroundColor(.blue)
             }
             

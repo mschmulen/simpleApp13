@@ -65,6 +65,7 @@
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
 		76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoView.swift */; };
+		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
 		76CFA1D124D9DA00007A02CF /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +278,7 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76CFA1D624D9E0A2007A02CF /* Draw */,
 				76208BA924D8C6A3001F46E2 /* Photo */,
 				76208BA224D8C4AF001F46E2 /* Audio */,
 				76208B8B24D663DE001F46E2 /* Utility */,
@@ -410,6 +413,14 @@
 				76208B8324D60AE5001F46E2 /* TextField+Helper.swift */,
 			);
 			path = DetailViews;
+			sourceTree = "<group>";
+		};
+		76CFA1D624D9E0A2007A02CF /* Draw */ = {
+			isa = PBXGroup;
+			children = (
+				76CFA1D724D9E0AB007A02CF /* DrawView.swift */,
+			);
+			path = Draw;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,6 +597,7 @@
 				76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */,
 				76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
+				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */,
 				76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,

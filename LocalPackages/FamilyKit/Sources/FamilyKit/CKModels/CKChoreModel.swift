@@ -25,6 +25,13 @@ public struct CKChoreModel: CKModel {
         "imageName"
     ]
     
+    public enum Frequency: String, CaseIterable {
+        case once
+        case daily
+        case weekly
+        case monthly
+    }
+    
     public var id = UUID()
     public var recordID: CKRecord.ID?
     
@@ -34,7 +41,7 @@ public struct CKChoreModel: CKModel {
     public var emoji: String?
     
     public var who: String?
-    public var frequency: String?
+    public var frequency: Frequency = .once
     public var timeofday: String?
     public var imageName: String?
     
@@ -50,7 +57,7 @@ public struct CKChoreModel: CKModel {
         model.bucks = 2
         model.emoji = "🧵"
         
-        model.frequency = "Once-a-day"
+        model.frequency = .daily
         model.timeofday = "Morning"
         model.imageName = "turtlerock"
         return model
@@ -64,7 +71,7 @@ public struct CKChoreModel: CKModel {
         self.emoji = nil
         
         self.who = nil
-        self.frequency = nil
+        self.frequency = .once
         self.timeofday = nil
         self.imageName = nil
     }
@@ -86,7 +93,10 @@ public struct CKChoreModel: CKModel {
         self.emoji = record["emoji"] as? String
         
         self.who = record["who"] as? String
-        self.frequency = record["frequency"] as? String
+        
+        if let frequencyString =  record["frequency"] as? String {
+            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
+        }
         self.timeofday = record["timeofday"] as? String
         self.imageName = record["imageName"] as? String
     }
@@ -126,6 +136,8 @@ extension CKChoreModel {
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
         }
+
+        record["frequency"] = frequency.rawValue as CKRecordValue
         
         return record
     }
