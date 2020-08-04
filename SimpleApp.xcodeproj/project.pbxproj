@@ -64,6 +64,7 @@
 		76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */; };
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
+		76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunDetailView.swift; sourceTree = "<group>"; };
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
+		76CFA1D124D9DA00007A02CF /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,6 +343,7 @@
 		76208BA924D8C6A3001F46E2 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
+				76CFA1D124D9DA00007A02CF /* PhotoView.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */,
+				76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
 				76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */,
 				76BADB5F24CA58D8004950C0 /* ChoreStore.swift in Sources */,

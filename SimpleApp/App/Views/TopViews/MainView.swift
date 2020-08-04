@@ -37,7 +37,12 @@ struct MainView: View {
                 
                 List{
                     Section() {
-                        CKChoreRowView(categoryName: "Chores (Private)", items: privateChoreService.models, isPrivate: true, showAdd: familyKitAppState.currentPlayer.isAdult)
+                        CKChoreRowView(
+                            categoryName: "Chores (Private)",
+                            items: privateChoreService.models,
+                            isPrivate: true,
+                            showAdd: familyKitAppState.currentPlayer.isAdult
+                        )
                     }
                     .listRowInsets(EdgeInsets())
                     
@@ -45,15 +50,16 @@ struct MainView: View {
                     Section() {
                         FunRowView(categoryName: "Fun", items: funStore.models)
                         
-                    }.listRowInsets(EdgeInsets())
+                    }
+                    .listRowInsets(EdgeInsets())
                     
-                    Section() {
-                        ChoreRowView(categoryName: "Chores", items: choreStore.models)
-                    }.listRowInsets(EdgeInsets())
+//                    Section() {
+//                        ChoreRowView(categoryName: "Chores", items: choreStore.models)
+//                    }.listRowInsets(EdgeInsets())
                     
-                    Section() {
-                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
-                    }.listRowInsets(EdgeInsets())
+//                    Section() {
+//                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
+//                    }.listRowInsets(EdgeInsets())
                 }
             }
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)

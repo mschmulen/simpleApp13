@@ -20,6 +20,8 @@ struct CKChoreDetailView: View {
     
     @State var devMessage: String?
     
+    @State var chatService: ChatService = ChatService()
+    
     @State var model: CKChoreModel
     var isPrivate:Bool
     var enableEdit:Bool
@@ -68,6 +70,35 @@ struct CKChoreDetailView: View {
         }
     }
     
+    var actionView: some View {
+        Section(header: Text("Actions")) {
+            Text("title \(model.title ?? "~")")
+
+            NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
+                Text("leave a voice message")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
+                Text("chat with?")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: PhotoView()) {
+                Text("take a picture")
+                    .foregroundColor(.blue)
+            }
+            
+            Button(action: {
+                print("do action")
+            }) {
+                Text("check box")
+            }
+            
+        }
+    }
+
+    
     var body: some View {
         List{
             if devMessage != nil {
@@ -85,12 +116,11 @@ struct CKChoreDetailView: View {
                         Image(systemName: "square.and.arrow.up")
                     }
                 }
-            }
-            
-            if enableEdit {
                 editView
+                actionView
             } else {
                 readOnlyView
+                actionView
             }
         }//end List
     }
@@ -136,7 +166,6 @@ struct CKChoreDetailView_Previews: PreviewProvider {
             CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: false)
             
             CKChoreDetailView(model: CKChoreModel.mock, isPrivate: true, enableEdit: true)
-
         }
     }
 }

@@ -102,23 +102,20 @@ public struct PlayerOnboardingView: View {
                                 .padding()
                         }
                     }
-                    
-                    // if networkStateViewModel.pathStatus != .satisfied {
+                }
+                
+                VStack {
                     Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
                         .font(.caption)
                         .foregroundColor(.red)
-                    // }
-                    
                     Text("current player: \(familyKitAppState.currentPlayer.name)")
                         .font(.caption)
                         .foregroundColor(.red)
-                    
                     if familyKitAppState.isCloudKitAvailable {
                         Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
                             .font(.caption)
                             .foregroundColor(.red)
                     }
-                    
                     if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
                         Text("hasFileManagerUbiquityIdentityToken = true")
                             .font(.caption)
@@ -128,7 +125,6 @@ public struct PlayerOnboardingView: View {
                             .font(.caption)
                             .foregroundColor(.red)
                     }
-                    
                     Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
                         .font(.caption)
                         .foregroundColor(.red)
