@@ -68,6 +68,8 @@
 		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
 		76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DD24D9E902007A02CF /* SimpleGames */; };
+		76CFA22024DA53AA007A02CF /* PhotoUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA21F24DA53AA007A02CF /* PhotoUpload.swift */; };
+		76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA22124DA5402007A02CF /* ImagePicker.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +173,8 @@
 		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76CFA1DA24D9E8F4007A02CF /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
+		76CFA21F24DA53AA007A02CF /* PhotoUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUpload.swift; sourceTree = "<group>"; };
+		76CFA22124DA5402007A02CF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,6 +331,8 @@
 				76208B9524D70AD6001F46E2 /* CKChoreDetailView.swift */,
 				76208B9C24D723AE001F46E2 /* CKChoreNoItemsView.swift */,
 				76208B8824D61C6A001F46E2 /* CKChoreListView.swift */,
+				76CFA21F24DA53AA007A02CF /* PhotoUpload.swift */,
+				76CFA22124DA5402007A02CF /* ImagePicker.swift */,
 			);
 			path = CKChoreViews;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKChoreNoItemsView.swift in Sources */,
+				76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				7601816024C4B01300B339E4 /* UserView.swift in Sources */,
 				76BADB6124CA599A004950C0 /* FunModel.swift in Sources */,
@@ -596,6 +603,7 @@
 				76BADB7724CB0AC6004950C0 /* RowViews.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
+				76CFA22024DA53AA007A02CF /* PhotoUpload.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
 				76208BA624D8C55F001F46E2 /* AudioPlayer.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,

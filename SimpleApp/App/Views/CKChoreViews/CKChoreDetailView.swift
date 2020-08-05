@@ -24,6 +24,9 @@ struct CKChoreDetailView: View {
     @State var chatService: ChatService = ChatService()
     
     @State var model: CKChoreDescriptionModel
+    @State private var imageAsset:UIImage?
+    
+    
     var isPrivate:Bool
     var enableEdit:Bool
     
@@ -37,7 +40,29 @@ struct CKChoreDetailView: View {
             Text("frequency: \(model.frequency.rawValue)")
             Text("who: \(model.who ?? "~")")
             Text("timeofday: \(model.timeofday ?? "~")")
-            Text("image: \(model.imageName ?? "~")")
+            // TODO: handle the imageAsset
+            //Text("imageAsset: \(model.imageName ?? "~")")
+            
+            Section(header:Text("Photos")) {
+                coverPhotoView
+            }
+            
+        }
+    }
+    
+    var coverPhotoView: some View {
+        Group {
+            if imageAsset == nil {
+                Text("NO IMAGE")
+            } else {
+                VStack {
+                    Image(uiImage: imageAsset!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 200)
+                        .clipped()
+                }
+            }
         }
     }
     
@@ -69,8 +94,11 @@ struct CKChoreDetailView: View {
             TextField("timeofday", text: $model.timeofday ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("imageName", text: $model.imageName ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            // TODO: handle the imageAsset
+            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
+                Text("change coverPhoto")
+            }
+            
         }
     }
     
@@ -135,6 +163,17 @@ struct CKChoreDetailView: View {
                 actionView
             }
         }//end List
+            .onAppear {
+                // try and download the image
+                self.model.loadCoverPhoto { (result) in
+                    switch result {
+                    case .failure(_):
+                        break
+                    case .success(let image):
+                        self.imageAsset = image
+                    }
+                }
+        }
     }
     
     func onSave() {
