@@ -93,13 +93,15 @@ struct CKChoreDetailView: View {
             
             TextField("timeofday", text: $model.timeofday ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            // TODO: handle the imageAsset
-            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
-                Text("change coverPhoto")
-            }
-            
         }
+        
+//        Section(header: Text("Images")) {
+            // TODO: handle the imageAsset
+//            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
+//                Text("change coverPhoto")
+//            }
+//        }
+    
     }
     
     var actionView: some View {
