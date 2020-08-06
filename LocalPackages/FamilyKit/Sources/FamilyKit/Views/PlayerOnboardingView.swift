@@ -104,31 +104,31 @@ public struct PlayerOnboardingView: View {
                     }
                 }
                 
-                VStack {
-                    Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                    Text("current player: \(familyKitAppState.currentPlayer.name)")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                    if familyKitAppState.isCloudKitAvailable {
-                        Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
-                            .font(.caption)
-                            .foregroundColor(.red)
-                    }
-                    if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
-                        Text("hasFileManagerUbiquityIdentityToken = true")
-                            .font(.caption)
-                            .foregroundColor(.green)
-                    } else {
-                        Text("hasFileManagerUbiquityIdentityToken = false")
-                            .font(.caption)
-                            .foregroundColor(.red)
-                    }
-                    Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                }//end VStack
+//                VStack {
+//                    Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
+//                        .font(.caption)
+//                        .foregroundColor(.red)
+//                    Text("current player: \(familyKitAppState.currentPlayer.name)")
+//                        .font(.caption)
+//                        .foregroundColor(.red)
+//                    if familyKitAppState.isCloudKitAvailable {
+//                        Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
+//                            .font(.caption)
+//                            .foregroundColor(.red)
+//                    }
+//                    if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
+//                        Text("hasFileManagerUbiquityIdentityToken = true")
+//                            .font(.caption)
+//                            .foregroundColor(.green)
+//                    } else {
+//                        Text("hasFileManagerUbiquityIdentityToken = false")
+//                            .font(.caption)
+//                            .foregroundColor(.red)
+//                    }
+//                    Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
+//                        .font(.caption)
+//                        .foregroundColor(.red)
+//                }//end VStack
                 
             }//end VStack
                 .onAppear(perform: {
