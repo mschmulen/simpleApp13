@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DrawingView.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/4/20.
@@ -28,7 +28,6 @@ public struct DrawingView:View {
     }
     
     public init(){
-        
     }
 }
 

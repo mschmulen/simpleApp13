@@ -1,5 +1,5 @@
 //
-//  Colorss.swift
+//  Colors.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/4/20.

@@ -15,7 +15,7 @@ struct PhotoActivityView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var appState: AppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
     
@@ -34,25 +34,23 @@ struct PhotoActivityView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     //.aspectRatio(contentMode: .fill)
-                .frame(width: 200)//, height: 200)
+                    .frame(width: 200)//, height: 200)
                     // .frame(width: 50)
-                .clipped()
+                    .clipped()
             } else {
                 Rectangle()
-                .fill(Color.red)
-                .frame(width: 200, height: 200)
+                    .fill(Color.red)
+                    .frame(width: 200, height: 200)
             }
         }
         .frame(width: 280, height: 200)
-            .onTapGesture {
-                self.showingImagePicker.toggle()
+        .onTapGesture {
+            self.showingImagePicker.toggle()
         }
-
     }
     
     var body: some View {
         VStack {
-            
             if statusMessage != nil {
                 Text(statusMessage!)
             }
@@ -72,7 +70,7 @@ struct PhotoActivityView: View {
                     Text("SAVE IMAGE")
                 }
             }
-                
+            
             if inputImage == nil {
                 Group {
                     Button(action: {
@@ -100,11 +98,27 @@ struct PhotoActivityView: View {
                     CameraView(isShown: self.$showingCameraView, image: self.$image)
                 })
             }
+        }.onAppear {
+            print("onAppear")
+            
+            // TODO Load the image in the
             
         }
     }//end body
     
     func loadImage() {
+        if let resultAssetImage = model.resultAssetImage {
+            if let resultAssetImage_fileURL = resultAssetImage.fileURL {
+                do {
+                    let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+                    if let loadedUIImage = UIImage(data: imageData) {
+                        image = Image(uiImage: loadedUIImage)
+                    }
+                } catch {
+                    print("Error loading image : \(error)")
+                }
+            }
+        }
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
     }
@@ -114,22 +128,25 @@ struct PhotoActivityView: View {
             self.statusMessage = "Updating ..."
         }
         
-        // TODO: Save image
-//        if let inputImage = inputImage {
-//            privateChoreService.updateCoverPhoto(model:model, image: inputImage) { result in
-//                switch result {
-//                case .failure( let error):
-//                    DispatchQueue.main.async {
-//                        self.statusMessage = "There was an error uploading \(error)"
-//                    }
-//                case .success(_):
-//                    self.model.reload(service: self.privateChoreService)
-//                    DispatchQueue.main.async {
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }
-//                }
-//            }
-//        }
+        if let inputImage = inputImage {
+            privateActiveChoreService.uploadPhotoAsset(
+                model:model,
+                image: inputImage,
+                assetPropertyName: "resultAssetImage"
+            ) { result in
+                switch result {
+                case .failure( let error):
+                    DispatchQueue.main.async {
+                        self.statusMessage = "There was an error uploading \(error)"
+                    }
+                case .success(_):
+                    self.model.reload(service: self.privateActiveChoreService)
+                    DispatchQueue.main.async {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        }
     }
 }
 
