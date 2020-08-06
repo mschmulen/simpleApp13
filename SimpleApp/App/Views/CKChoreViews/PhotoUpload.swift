@@ -14,7 +14,7 @@ struct CoverPhotoUploadView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var appState: AppState
-
+    
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
     
     var model: CKChoreDescriptionModel

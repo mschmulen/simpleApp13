@@ -19,6 +19,7 @@ public struct CKChoreDescriptionModel: CKModel {
         "description",
         "bucks",
         "emoji",
+        "category",
         "who",
         "frequency",
         "timeofday",
@@ -39,6 +40,7 @@ public struct CKChoreDescriptionModel: CKModel {
     public var description: String?
     public var bucks: Int?
     public var emoji: String?
+    public var category: String?
     
     public var who: String?
     public var frequency: Frequency = .once
@@ -56,6 +58,7 @@ public struct CKChoreDescriptionModel: CKModel {
         model.who = "kids"
         model.bucks = 2
         model.emoji = "🧵"
+        model.category = "chore"
         
         model.frequency = .daily
         model.timeofday = "Morning"
@@ -69,6 +72,7 @@ public struct CKChoreDescriptionModel: CKModel {
         self.description = nil
         self.bucks = nil
         self.emoji = nil
+        self.category = nil
         
         self.who = nil
         self.frequency = .once
@@ -91,6 +95,7 @@ public struct CKChoreDescriptionModel: CKModel {
         self.description = _description
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
+        self.category = record["category"] as? String
         
         self.who = record["who"] as? String
         
@@ -147,7 +152,11 @@ extension CKChoreDescriptionModel {
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
         }
-
+        
+        if let category = category {
+            record["category"] = category as CKRecordValue
+        }
+        
         record["frequency"] = frequency.rawValue as CKRecordValue
         
         // TODO: handle the imageAsset

@@ -17,7 +17,6 @@ struct CKChoreDetailView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreDescriptionModel>
     
     @State var devMessage: String?
     
@@ -26,7 +25,6 @@ struct CKChoreDetailView: View {
     @State var model: CKChoreDescriptionModel
     @State private var coverPhotoImage:UIImage?
     
-    var isPrivate:Bool
     var enableEdit:Bool
     
     var readOnlyView: some View {
@@ -189,33 +187,16 @@ struct CKChoreDetailView: View {
     }
     
     func onSave() {
-        if isPrivate {
-            privateChoreService.pushUpdateCreate(model: model) { (result) in
-                switch result {
-                case .failure(let error):
-                    self.devMessage = "save error\(error.localizedDescription)"
-                case .success(let record):
-                    print( "success \(record)")
-                    DispatchQueue.main.async {
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.publicChoreService.fetch { (result) in
-                            print( "result")
-                        }
-                    }
-                }
-            }
-        } else {
-            publicChoreService.pushUpdateCreate(model: model) { (result) in
-                switch result {
-                case .failure(let error):
-                    self.devMessage = "save error\(error.localizedDescription)"
-                case .success(let record):
-                    print( "success \(record)")
-                    DispatchQueue.main.async {
-                        self.presentationMode.wrappedValue.dismiss()
-                        self.publicChoreService.fetch { (result) in
-                            print( "result")
-                        }
+        privateChoreService.pushUpdateCreate(model: model) { (result) in
+            switch result {
+            case .failure(let error):
+                self.devMessage = "save error\(error.localizedDescription)"
+            case .success(let record):
+                print( "success \(record)")
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.privateChoreService.fetch { (result) in
+                        print( "result")
                     }
                 }
             }
@@ -226,9 +207,9 @@ struct CKChoreDetailView: View {
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreDetailView(model: CKChoreDescriptionModel.mock, isPrivate: true, enableEdit: false)
+            CKChoreDetailView(model: CKChoreDescriptionModel.mock, enableEdit: false)
             
-            CKChoreDetailView(model: CKChoreDescriptionModel.mock, isPrivate: true, enableEdit: true)
+            CKChoreDetailView(model: CKChoreDescriptionModel.mock, enableEdit: true)
         }
     }
 }

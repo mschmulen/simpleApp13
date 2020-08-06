@@ -17,7 +17,8 @@ struct CKChoreListView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKChoreActiveModel>
+    
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     
@@ -35,29 +36,19 @@ struct CKChoreListView: View {
                 }
             }
             
-            Section(header: Text("Chores (public)")) {
-                NavigationLink(destination: CKChoreDetailView(model: CKChoreDescriptionModel(), isPrivate:false, enableEdit: true)) {
-                    Image(systemName: "plus")
-                }
-                
-                ForEach( self.publicChoreService.models) { model in
-                    NavigationLink(destination: CKChoreDetailView(model: model, isPrivate:false,enableEdit: true)) {
-                        HStack {
-                            Text(model.emoji ?? "~" )
-                            Text(model.title ?? "~" )
-                        }
-                    }
-                }//end ForEach
-                    .onDelete(perform: deletePublic)
-            }
-            
             Section(header: Text("Chores (private)")) {
-                NavigationLink(destination: CKChoreDetailView(model: CKChoreDescriptionModel(), isPrivate:true, enableEdit: true)) {
+                NavigationLink(destination: CKChoreDetailView(
+                    model: CKChoreDescriptionModel(),
+                    enableEdit: true
+                )) {
                     Image(systemName: "plus")
                 }
                 
                 ForEach( self.privateChoreService.models) { model in
-                    NavigationLink(destination: CKChoreDetailView(model: model, isPrivate:true, enableEdit: true)) {
+                    NavigationLink(destination: CKChoreDetailView(
+                        model: model,
+                        enableEdit: true
+                    )) {
                         HStack {
                             Text(model.emoji ?? "~" )
                             Text(model.title ?? "~" )
@@ -67,38 +58,21 @@ struct CKChoreListView: View {
                     .onDelete(perform: deletePrivate)
             }//end List
         }.onAppear {
-            self.publicChoreService.fetch { (result) in
-                print( "fetch \(result)")
-            }
+            
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.publicChoreService.fetch { (result) in
+            self.privateChoreService.fetch { (result) in
                 print( "fetch \(result)")
             }
         }
     }
-    
-    func deletePublic(at offsets: IndexSet) {
-        for deleteIndex in offsets {
-            let deleteModel = self.publicChoreService.models[deleteIndex]
-            self.publicChoreService.pushDelete(model: deleteModel) { (result) in
-                switch result {
-                case .failure(let error):
-                    print("delete.error \(error)")
-                    self.devMessage = "delete.error \(error)"
-                case .success(let recordID):
-                    print("delete.success \(recordID)")
-                }
-            }
-        }
-    }
-    
+
     func deletePrivate(at offsets: IndexSet) {
         for deleteIndex in offsets {
-            let deleteModel = self.publicChoreService.models[deleteIndex]
-            self.publicChoreService.pushDelete(model: deleteModel) { (result) in
+            let deleteModel = self.privateChoreService.models[deleteIndex]
+            self.privateChoreService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
                     print("delete.error \(error)")

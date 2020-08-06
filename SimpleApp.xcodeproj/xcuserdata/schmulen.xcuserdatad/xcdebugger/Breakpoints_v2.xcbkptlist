@@ -126,40 +126,40 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "reload(service:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - 333e06993c9ee5f2"
+                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - d95014277eb01f1d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "FamilyKit.CKChoreDescriptionModel.reload(service: FamilyKit.CKPrivateModelService&lt;FamilyKit.CKChoreDescriptionModel&gt;) -&gt; ()"
-                  moduleName = "QFamily"
+                  moduleName = "P&amp;S Family"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "115"
-                  endingLineNumber = "115"
-                  offsetFromSymbolStart = "34">
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "100">
                </Location>
                <Location
-                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - a5f950007221e316"
+                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - 4f9742be300f19f9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKChoreDescriptionModel, Swift.Error&gt;) -&gt; () in FamilyKit.CKChoreDescriptionModel.reload(service: FamilyKit.CKPrivateModelService&lt;FamilyKit.CKChoreDescriptionModel&gt;) -&gt; ()"
-                  moduleName = "QFamily"
+                  moduleName = "P&amp;S Family"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "116"
-                  endingLineNumber = "116"
-                  offsetFromSymbolStart = "32">
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "reload(service:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -30,21 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         familyKitAppState.onStartup()
         
-        let publicChoreService = CKPublicModelService<CKChoreDescriptionModel>(
-            container: container
-        )
-        publicChoreService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "choreService success \(models)")
-            case .failure(let error):
-                print( "choreService error \(error)")
-            }
-        })
-        publicChoreService.subscribe()
-        publicChoreService.listenForNotifications()
-        
-        
         let privateChoreService = CKPrivateModelService<CKChoreDescriptionModel>(
             container: container
         )
@@ -58,8 +43,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         })
         privateChoreService.subscribe()
         privateChoreService.listenForNotifications()
-        
-        
+       
+        // CKChoreActiveModel
+        let privateActiveChoreService = CKPrivateModelService<CKChoreActiveModel>(
+            container: container
+        )
+        privateChoreService.fetch(completion: { result in
+            switch result {
+            case .success(let models) :
+                print( "choreService success \(models)")
+            case .failure(let error):
+                print( "choreService error \(error)")
+            }
+        })
+        privateActiveChoreService.subscribe()
+        privateActiveChoreService.listenForNotifications()
         
         let connectService = CKPublicModelService<CKConnectModel>(
             container: container
@@ -113,7 +111,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(appState)
             .environmentObject(familyKitAppState)
             .environmentObject(privateChoreService)
-            .environmentObject(publicChoreService)
+            .environmentObject(privateActiveChoreService)
             .environmentObject(funService)
             .environmentObject(connectService)
         

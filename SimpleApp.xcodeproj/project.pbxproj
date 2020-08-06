@@ -105,7 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7601811324C4A4B400B339E4 /* QFamily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7601811324C4A4B400B339E4 /* P&S Family.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P&S Family.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7601811624C4A4B400B339E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7601811824C4A4B400B339E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7601811B24C4A4B400B339E4 /* SimpleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleApp.xcdatamodel; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		7601811424C4A4B400B339E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7601811324C4A4B400B339E4 /* QFamily.app */,
+				7601811324C4A4B400B339E4 /* P&S Family.app */,
 				7601812C24C4A4B500B339E4 /* SimpleAppTests.xctest */,
 				7601813724C4A4B500B339E4 /* SimpleAppUITests.xctest */,
 			);
@@ -463,7 +463,7 @@
 				76CFA1DD24D9E902007A02CF /* SimpleGames */,
 			);
 			productName = SimpleApp;
-			productReference = 7601811324C4A4B400B339E4 /* QFamily.app */;
+			productReference = 7601811324C4A4B400B339E4 /* P&S Family.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7601812B24C4A4B500B339E4 /* SimpleAppTests */ = {
@@ -810,7 +810,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily;
-				PRODUCT_NAME = QFamily;
+				PRODUCT_NAME = "P&S Family";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -833,7 +833,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily;
-				PRODUCT_NAME = QFamily;
+				PRODUCT_NAME = "P&S Family";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

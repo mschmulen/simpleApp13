@@ -20,8 +20,8 @@ struct UserView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKChoreActiveModel>
     
-    @EnvironmentObject var publicChoreService: CKPublicModelService<CKChoreDescriptionModel>
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
     

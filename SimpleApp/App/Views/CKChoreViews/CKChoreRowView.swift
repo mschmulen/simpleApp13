@@ -35,7 +35,7 @@ struct CKChoreRowView: View {
                     if showAdd {
                         NavigationLink(
                             destination: CKChoreDetailView(
-                                model: CKChoreDescriptionModel(), isPrivate:isPrivate, enableEdit: true
+                                model: CKChoreDescriptionModel(), enableEdit: true
                             )
                         ) {
                             CKChoreAddItemView()
@@ -46,7 +46,6 @@ struct CKChoreRowView: View {
                         NavigationLink(
                             destination: CKChoreDetailView(
                                 model: model,
-                                isPrivate:self.isPrivate,
                                 enableEdit: self.familyKitAppState.currentPlayer.isAdult
                             )
                         ) {

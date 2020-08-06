@@ -18,6 +18,7 @@ public struct CKChoreActiveModel: CKModel {
         "description",
         "bucks",
         "emoji",
+        "category",
         // "kid",
         "coverPhoto"
     ]
@@ -36,7 +37,7 @@ public struct CKChoreActiveModel: CKModel {
     public var description: String?
     public var bucks: Int?
     public var emoji: String?
-    
+    public var category: String?
     //public var kid: CKReference?
     public var coverPhoto: CKAsset?
     
@@ -57,6 +58,7 @@ public struct CKChoreActiveModel: CKModel {
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
         model.bucks = 2
         model.emoji = "🧵"
+        model.category = "chore"
         model.coverPhoto = nil
         model.resultAssetText = nil
         model.resultAssetImage = nil
@@ -71,11 +73,11 @@ public struct CKChoreActiveModel: CKModel {
         self.description = nil
         self.bucks = nil
         self.emoji = nil
+        self.category = nil
         self.coverPhoto = nil
         self.resultAssetText = nil
         self.resultAssetImage = nil
         self.resultAssetAudio = nil
-
     }
     
     public init?(record: CKRecord) {
@@ -93,6 +95,7 @@ public struct CKChoreActiveModel: CKModel {
         self.description = _description
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
+        self.category = record["category"] as? String
         self.coverPhoto = record["coverPhoto"] as? CKAsset
 
         self.resultAssetText = record["resultAssetText"] as? CKAsset
@@ -145,6 +148,10 @@ extension CKChoreActiveModel {
         
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
+        }
+        
+        if let category = category {
+            record["category"] = category as CKRecordValue
         }
         
         if let coverPhoto = coverPhoto {
