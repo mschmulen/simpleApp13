@@ -30,17 +30,12 @@ struct CKChoreNewActiveDetailView: View {
     
     var infoView: some View {
         VStack {
-        //Section(header: Text("New ActiveChore")) {
             Text("moduleType: \(model.moduleType.rawValue)")
-//            Text("kidReference: \(model.kidReference?.recordID.recordName ?? "~")")
-//            Text("ckChoreDescriptionReference: \(model.ckChoreDescriptionReference?.recordID.recordName ?? "~")")
         }
     }
     
     var actionView: some View {
         VStack{
-        //Section(header: Text("Completion Actions")) {
-            
             Button(action:onSave) {
                 HStack {
                     Text("Save")

@@ -26,23 +26,25 @@ struct CKChoreActiveDetailView: View {
     @State private var coverPhotoImage:UIImage?
     
     var infoView: some View {
-        Section(header: Text("Info")) {
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
-            Text("title: \(model.title ?? "~")")
+        VStack {
             Text("moduleType: \(model.moduleType.rawValue)")
-            Text("kidReference: \(model.kidReference?.recordID.recordName ?? "~")")
-            Text("ckChoreDescriptionReference: \(model.ckChoreDescriptionReference?.recordID.recordName ?? "~")")
         }
     }
     
-    func moduleView(moduleType: ActivityModuleType) -> some View {
-        return Group{
-            Text("moduleView \(moduleType.rawValue)")
+    var body: some View {
+        VStack {
+            if devMessage != nil {
+                Text("\(devMessage!)")
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        self.devMessage = nil
+                }
+            }
+            //actionView
+            ActivityActionView(model: $model)
+            infoView
+        }
+        .onAppear {
         }
     }
     
@@ -59,36 +61,6 @@ struct CKChoreActiveDetailView: View {
                         .clipped()
                 }
             }
-        }
-    }
-    
-    var body: some View {
-        List{
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
-            
-            infoView
-            
-            Section(header:Text("Assets")) {
-                coverPhotoView
-            }
-            
-        }//end List
-            .onAppear {
-                // try and download the image
-//                self.model.loadCoverPhoto { (result) in
-//                    switch result {
-//                    case .failure(_):
-//                        break
-//                    case .success(let image):
-//                        self.coverPhotoImage = image
-//                    }
-//                }
         }
     }
     
@@ -125,3 +97,82 @@ struct CKChoreActiveDetailView: View {
 //        }
 //    }
 //}
+
+
+struct ActivityActionView: View {
+    
+    @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
+    
+    @State var devMessage: String? = nil
+    
+    @State var chatService: ChatService = ChatService()
+    
+    @Binding var model: CKActivityActiveModel
+    
+    var body: some View {
+        VStack{
+            Button(action:onSave) {
+                HStack {
+                    Text("Save")
+                    Image(systemName: "square.and.arrow.up")
+                }
+            }
+            
+            Spacer()
+            
+            if model.moduleType == .picture {
+                NavigationLink(destination: PhotoView()) {
+                    Text("take a picture")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            if model.moduleType == .audio {
+                NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
+                    Text("voice message")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            if model.moduleType == .drawing {
+                NavigationLink(destination: DrawView()) {
+                    Text("draw a picture")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            if model.moduleType == .chat {
+                NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
+                    Text("chat with?")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+    }
+    
+    func onSave() {
+        if let recordReference = familyKitAppState.currentPlayer.recordReference {
+            self.model.kidReference = recordReference
+            privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+                switch result {
+                case .failure(let error):
+                    self.devMessage = "save error\(error.localizedDescription)"
+                case .success(let record):
+                    print( "success \(record)")
+                    self.devMessage = "success"
+                    DispatchQueue.main.async {
+                        //self.presentationMode.wrappedValue.dismiss()
+                        self.privateActiveChoreService.fetch { (result) in
+                            print( "result")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
