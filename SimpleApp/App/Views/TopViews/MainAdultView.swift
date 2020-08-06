@@ -38,7 +38,7 @@ struct MainAdultView: View {
                 List{
                     Section() {
                         CKChoreDescriptionRowView(
-                            categoryName: "Activities (Private)",
+                            categoryName: "Activities (Family)",
                             items: privateChoreService.models,
                             isPrivate: true,
                             showAdd: familyKitAppState.currentPlayer.isAdult
@@ -48,7 +48,7 @@ struct MainAdultView: View {
                     
                     Section() {
                         CKChoreActiveRowView(
-                            categoryName: "Activities (Active)",
+                            categoryName: "Activities (All)",
                             items: privateActiveChoreService.models                            
                         )
                     }

@@ -36,7 +36,7 @@ struct CKChoreDescriptionListView: View {
                 }
             }
             
-            Section(header: Text("Activities (private)")) {
+            Section(header: Text("Activities (Family)")) {
                 NavigationLink(destination: CKChoreDescriptionDetailView(
                     model: CKActivityDescriptionModel(),
                     enableEdit: true
