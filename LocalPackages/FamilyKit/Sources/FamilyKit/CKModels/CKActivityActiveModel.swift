@@ -25,7 +25,7 @@ public struct CKActivityActiveModel: CKModel {
     public var kidReference: CKRecord.Reference?
     public var coverPhoto: CKAsset?
     
-    public var moduleType: ActivityModuleType = ActivityModuleType.picture
+    public var moduleType: ActivityModuleType = ActivityModuleType.none
     
     // TODO
     public var resultAssetText: CKAsset?

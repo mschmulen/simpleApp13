@@ -124,8 +124,13 @@ struct ActivityActionView: View {
             
             Spacer()
             
+            if model.moduleType == .none {
+                Text("moduleType.none")
+                    .foregroundColor(.red)
+            }
+            
             if model.moduleType == .picture {
-                NavigationLink(destination: PhotoView()) {
+                NavigationLink(destination: PhotoView(model: model)) {
                     Text("take a picture")
                         .foregroundColor(.blue)
                 }

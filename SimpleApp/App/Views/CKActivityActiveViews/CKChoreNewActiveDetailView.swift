@@ -44,7 +44,7 @@ struct CKChoreNewActiveDetailView: View {
             }
             
             if model.moduleType == .picture {
-                NavigationLink(destination: PhotoView()) {
+                NavigationLink(destination: PhotoView(model:model)) {
                     Text("take a picture")
                         .foregroundColor(.blue)
                 }

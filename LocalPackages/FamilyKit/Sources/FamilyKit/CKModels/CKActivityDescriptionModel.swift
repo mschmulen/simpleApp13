@@ -15,6 +15,7 @@ public enum ActivityModuleType: String, CaseIterable {
     case picture
     case drawing
     case chat
+    case none
 }
 
 public struct CKActivityDescriptionModel: CKModel {
@@ -55,7 +56,7 @@ public struct CKActivityDescriptionModel: CKModel {
     
     public var coverPhoto: CKAsset?
     
-    public var moduleType: ActivityModuleType = ActivityModuleType.picture    // audio, picture, drawing
+    public var moduleType: ActivityModuleType = ActivityModuleType.none
     
     public var title: String? {
         return name
