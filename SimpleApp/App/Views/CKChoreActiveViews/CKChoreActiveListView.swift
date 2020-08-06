@@ -37,17 +37,10 @@ struct CKChoreActiveListView: View {
             }
             
             Section(header: Text("Chores (CKChoreActiveModel)")) {
-                NavigationLink(destination: CKChoreActiveDetailView(
-                    model: CKChoreActiveModel(),
-                    enableEdit: true
-                )) {
-                    Image(systemName: "plus")
-                }
-                
                 ForEach( self.privateActiveChoreService.models) { model in
                     NavigationLink(destination: CKChoreActiveDetailView(
-                        model: model,
-                        enableEdit: true
+                        moduleType: .picture,
+                        model: model
                     )) {
                         HStack {
                             Text(model.emoji ?? "~" )

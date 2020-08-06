@@ -58,6 +58,27 @@ public enum Player {
         }
     }
     
+    public var recordReference: CKRecord.Reference? {
+        switch self {
+        case .adult(let model):
+            if let id = model.recordID {
+                let reference = CKRecord.Reference(recordID: id, action: .deleteSelf)
+                return reference
+            } else {
+                return nil
+            }
+        case .kid(let model):
+            if let id = model.recordID {
+                let reference = CKRecord.Reference(recordID: id, action: .deleteSelf)
+                return reference
+            } else {
+                return nil
+            }
+        case .none:
+            return nil
+        }
+    }
+    
 }
 
 public class FamilyKitAppState: ObservableObject {
@@ -125,7 +146,7 @@ public class FamilyKitAppState: ObservableObject {
 extension FamilyKitAppState {
     
     public func onUpdate() {
-        checkAuthStatus()
+        
         kidService.fetch { (result) in
             print( "kidService fetch \(result)")
             self.updateChanges()
@@ -139,7 +160,7 @@ extension FamilyKitAppState {
     }
     
     public func onStartup() {
-        checkAuthStatus()
+        
         kidService.fetch(completion: { result in
             switch result {
             case .success(let models) :
@@ -175,10 +196,6 @@ extension FamilyKitAppState {
 //                print( "device push update create \(result)")
 //            }
         
-    }
-    
-    private func checkAuthStatus() {
-        print( "FamilKitState.checkAuthStatus")
     }
 }
 

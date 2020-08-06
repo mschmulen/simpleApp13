@@ -18,13 +18,10 @@ struct CKChoreActiveNoItemsView: View {
                     .frame(width: 155, height: 155)
                     .cornerRadius(5)
                 VStack {
-                    Text("No Chores")
+                    Text("No Active Chores")
                         .foregroundColor(.white)
                         .font(.body)
-                    Text("ask an Adult")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Text("to add some")
+                    Text("get busy")
                         .foregroundColor(.white)
                         .font(.body)
                 }

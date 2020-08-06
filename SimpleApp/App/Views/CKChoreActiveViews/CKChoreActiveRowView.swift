@@ -15,8 +15,6 @@ struct CKChoreActiveRowView: View {
     
     var categoryName: String
     var items: [CKChoreActiveModel]
-    var isPrivate: Bool
-    var showAdd: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,24 +27,13 @@ struct CKChoreActiveRowView: View {
                 HStack(alignment: .top, spacing: 0) {
                     
                     if self.items.count <= 0 {
-                        CKChoreDescriptionNoItemsView()
+                        CKChoreActiveNoItemsView()
                     }
-                    
-                    if showAdd {
-                        NavigationLink(
-                            destination: CKChoreDescriptionDetailView(
-                                model: CKChoreDescriptionModel(), enableEdit: true
-                            )
-                        ) {
-                            CKChoreDescriptionAddItemView()
-                        }
-                    }
-                    
                     ForEach(self.items) { model in
                         NavigationLink(
                             destination: CKChoreActiveDetailView(
-                                model: model,
-                                enableEdit: self.familyKitAppState.currentPlayer.isAdult
+                                moduleType: .picture,
+                                model: model
                             )
                         ) {
                             CKChoreActiveItemView(model: model)
@@ -71,9 +58,7 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
                     CKChoreActiveModel.mock,
                     CKChoreActiveModel.mock,
                     CKChoreActiveModel.mock
-                ],
-                isPrivate: true,
-                showAdd: true
+                ]
             )
                 .previewLayout(.fixed(width: 400, height: 100))
             
@@ -83,9 +68,7 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
                     CKChoreActiveModel.mock,
                     CKChoreActiveModel.mock,
                     CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock ],
-                isPrivate: true,
-                showAdd: true
+                    CKChoreActiveModel.mock ]                
             )
                 .previewLayout(.fixed(width: 400, height: 100))
                 .environment(\.colorScheme, .dark)

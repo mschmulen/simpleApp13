@@ -45,7 +45,17 @@ public struct CKChoreDescriptionModel: CKModel {
     public var who: String?
     public var frequency: Frequency = .once
     public var timeofday: String?
+    
     public var coverPhoto: CKAsset?
+    
+    
+    public enum ModuleType: String, CaseIterable {
+        case audio
+        case picture
+        case drawing
+    }
+    
+    public var moduleType: ModuleType = ModuleType.picture    // audio, picture, drawing
     
     public var title: String? {
         return name

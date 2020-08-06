@@ -61,7 +61,7 @@ struct NewPlayerView: View {
                             self.familyKitAppState.kidService.pushUpdateCreate(model: newModel) { (result) in
                                 switch result {
                                 case .failure(let error):
-                                    print( "failure \(error)")
+                                    print( "NewPlayerView failure \(error)")
                                     self.errorMessage = "failed to create"
                                 case .success(_):
                                     self.showNewPlayer.toggle()
@@ -76,7 +76,7 @@ struct NewPlayerView: View {
                             self.familyKitAppState.adultService.pushUpdateCreate(model: newModel) { (result) in
                                 switch result {
                                 case .failure(let error):
-                                    print( "failure \(error)")
+                                    print( "NewPlayerView failure \(error)")
                                     self.errorMessage = "failed to create"
                                 case .success(_):
                                     self.showNewPlayer.toggle()

@@ -111,8 +111,8 @@ struct CKChoreDescriptionDetailView: View {
         Section(header: Text("Completion Actions")) {
             
             NavigationLink(destination: CKChoreActiveDetailView(
-                model: CKChoreActiveModel(),
-                enableEdit: true
+                moduleType: model.moduleType,
+                model: CKChoreActiveModel()
             )) {
                 VStack {
                     Text("START")

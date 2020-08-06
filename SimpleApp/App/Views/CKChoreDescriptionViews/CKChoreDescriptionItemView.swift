@@ -52,7 +52,7 @@ struct CKChoreDescriptionItemView: View {
             self.model.loadCoverPhoto { (result) in
                 switch result {
                 case .failure(let error):
-                    print( "failure \(error)")
+                    print( "CKChoreDescriptionItemView failure \(error)")
                 case .success(let image):
                     self.coverPhotoImage = Image(uiImage:image )
                 }

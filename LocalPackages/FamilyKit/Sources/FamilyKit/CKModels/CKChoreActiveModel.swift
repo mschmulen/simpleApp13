@@ -19,16 +19,11 @@ public struct CKChoreActiveModel: CKModel {
         "bucks",
         "emoji",
         "category",
-        // "kid",
+        "kidReference",
         "coverPhoto"
     ]
     
-    public enum Frequency: String, CaseIterable {
-        case once
-        case daily
-        case weekly
-        case monthly
-    }
+    
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
@@ -38,7 +33,7 @@ public struct CKChoreActiveModel: CKModel {
     public var bucks: Int?
     public var emoji: String?
     public var category: String?
-    //public var kid: CKReference?
+    public var kidReference: CKRecord.Reference?
     public var coverPhoto: CKAsset?
     
     
@@ -59,6 +54,7 @@ public struct CKChoreActiveModel: CKModel {
         model.bucks = 2
         model.emoji = "🧵"
         model.category = "chore"
+        model.kidReference = nil
         model.coverPhoto = nil
         model.resultAssetText = nil
         model.resultAssetImage = nil
@@ -74,6 +70,7 @@ public struct CKChoreActiveModel: CKModel {
         self.bucks = nil
         self.emoji = nil
         self.category = nil
+        self.kidReference = nil
         self.coverPhoto = nil
         self.resultAssetText = nil
         self.resultAssetImage = nil
@@ -82,20 +79,20 @@ public struct CKChoreActiveModel: CKModel {
     
     public init?(record: CKRecord) {
         guard
-            let _name = record["name"] as? String,
-            let _description = record["description"] as? String
+            let _name = record["name"] as? String
             else {
-                print("CKChoreModel incomplete record")
+                print("CKChoreActiveModel incomplete record")
                 print( "\(record["name"] as? String ?? "Unknown title")")
                 return nil
         }
         
         self.recordID = record.recordID
         self.name = _name
-        self.description = _description
+        self.description = record["description"] as? String
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
         self.category = record["category"] as? String
+        self.kidReference = record["kidReference"] as? CKRecord.Reference
         self.coverPhoto = record["coverPhoto"] as? CKAsset
 
         self.resultAssetText = record["resultAssetText"] as? CKAsset
@@ -152,6 +149,10 @@ extension CKChoreActiveModel {
         
         if let category = category {
             record["category"] = category as CKRecordValue
+        }
+        
+        if let kidReference = kidReference {
+            record["kidReference"] = kidReference as CKRecordValue
         }
         
         if let coverPhoto = coverPhoto {

@@ -65,7 +65,6 @@
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
 		76C2FDF424DB193D00E030C2 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF324DB193D00E030C2 /* CameraView.swift */; };
-		76C2FDFE24DB9B9000E030C2 /* CKChoreActiveAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF824DB9B9000E030C2 /* CKChoreActiveAddItemView.swift */; };
 		76C2FDFF24DB9B9000E030C2 /* CKChoreActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF924DB9B9000E030C2 /* CKChoreActiveNoItemsView.swift */; };
 		76C2FE0024DB9B9000E030C2 /* CKChoreActiveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFA24DB9B9000E030C2 /* CKChoreActiveItemView.swift */; };
 		76C2FE0124DB9B9000E030C2 /* CKChoreActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFB24DB9B9000E030C2 /* CKChoreActiveListView.swift */; };
@@ -177,7 +176,6 @@
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
 		76C2FDF324DB193D00E030C2 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		76C2FDF824DB9B9000E030C2 /* CKChoreActiveAddItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKChoreActiveAddItemView.swift; sourceTree = "<group>"; };
 		76C2FDF924DB9B9000E030C2 /* CKChoreActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKChoreActiveNoItemsView.swift; sourceTree = "<group>"; };
 		76C2FDFA24DB9B9000E030C2 /* CKChoreActiveItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKChoreActiveItemView.swift; sourceTree = "<group>"; };
 		76C2FDFB24DB9B9000E030C2 /* CKChoreActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKChoreActiveListView.swift; sourceTree = "<group>"; };
@@ -448,7 +446,6 @@
 		76C2FDF724DB9B9000E030C2 /* CKChoreActiveViews */ = {
 			isa = PBXGroup;
 			children = (
-				76C2FDF824DB9B9000E030C2 /* CKChoreActiveAddItemView.swift */,
 				76C2FDF924DB9B9000E030C2 /* CKChoreActiveNoItemsView.swift */,
 				76C2FDFA24DB9B9000E030C2 /* CKChoreActiveItemView.swift */,
 				76C2FDFB24DB9B9000E030C2 /* CKChoreActiveListView.swift */,
@@ -664,7 +661,6 @@
 				76BADB6824CA5A02004950C0 /* ChoreModel.swift in Sources */,
 				76C2FE0324DB9B9000E030C2 /* CKChoreActiveRowView.swift in Sources */,
 				76208B9624D70AD6001F46E2 /* CKChoreDescriptionDetailView.swift in Sources */,
-				76C2FDFE24DB9B9000E030C2 /* CKChoreActiveAddItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

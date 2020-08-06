@@ -80,7 +80,7 @@ extension CKPrivateModelService {
                         self.models = models
                     }
                 case .failure(let error) :
-                    print( "failure \(error)")
+                    print( "CKPrivateModelService.fetch failure \(error)")
                 }
         })
     }//end fetchPrivate
