@@ -36,9 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         privateChoreService.fetch(completion: { result in
             switch result {
             case .success(let models) :
-                print( "choreService success \(models)")
+                print( "privateChoreService success \(models)")
             case .failure(let error):
-                print( "choreService error \(error)")
+                print( "privateChoreService error \(error)")
             }
         })
         privateChoreService.subscribe()
@@ -48,12 +48,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let privateActiveChoreService = CKPrivateModelService<CKChoreActiveModel>(
             container: container
         )
-        privateChoreService.fetch(completion: { result in
+        privateActiveChoreService.fetch(completion: { result in
             switch result {
             case .success(let models) :
-                print( "choreService success \(models)")
+                print( "privateActiveChoreService success \(models)")
             case .failure(let error):
-                print( "choreService error \(error)")
+                print( "privateActiveChoreService error \(error)")
             }
         })
         privateActiveChoreService.subscribe()

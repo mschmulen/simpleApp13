@@ -88,15 +88,9 @@ struct ContentView: View {
                 iCloudSheetView(showSheetView: self.$showNoiCloudConnection)
         }
         .onAppear {
-            
-            // get the state of cloudKit and the network too
-            
             if self.familyKitAppState.isCloudKitAvailable == false {
                 self.showNoiCloudConnection.toggle()
             }
-            //if self.familyKitAppState.isSimulator {
-            //self.devMessage = " isCloudKitAvailable:\(self.familyKitAppState.isCloudKitAvailable)"
-            //}
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")

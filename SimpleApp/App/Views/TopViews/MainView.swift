@@ -56,14 +56,11 @@ struct MainView: View {
                     .listRowInsets(EdgeInsets())
                     
                     
-                    
-                    
-                    // TODO: this is the old local stuff
-                    Section() {
-                        FunRowView(categoryName: "Fun", items: funStore.models)
-                        
-                    }
-                    .listRowInsets(EdgeInsets())
+//                    Section() {
+//                        FunRowView(categoryName: "Fun", items: funStore.models)
+//
+//                    }
+//                    .listRowInsets(EdgeInsets())
                     
 //                    Section() {
 //                        ChoreRowView(categoryName: "Chores", items: choreStore.models)

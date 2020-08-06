@@ -34,8 +34,10 @@ struct CKChoreActiveDetailView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
-            
             Text("name: \(model.name ?? "~")")
+            Text("moduleType: \(model.moduleType.rawValue)")
+            Text("kidReference: \(model.kidReference?.recordID.recordName ?? "~")")
+            
             Text("emoji: \(model.emoji ?? "~")")
             Text("description: \(model.description ?? "~")")
             Text("bucks: \(model.bucks ?? 0)")

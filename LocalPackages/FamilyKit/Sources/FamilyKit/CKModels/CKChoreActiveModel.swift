@@ -36,6 +36,7 @@ public struct CKChoreActiveModel: CKModel {
     public var kidReference: CKRecord.Reference?
     public var coverPhoto: CKAsset?
     
+    public var moduleType: CKChoreDescriptionModel.ModuleType = CKChoreDescriptionModel.ModuleType.picture
     
     // TODO
     public var resultAssetText: CKAsset?
