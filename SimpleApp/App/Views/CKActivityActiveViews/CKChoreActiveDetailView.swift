@@ -16,17 +16,19 @@ struct CKChoreActiveDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
     @State var chatService: ChatService = ChatService()
     
-    @State var model: CKActivityActiveModel
+    @State var model: CKActivityModel
     @State private var coverPhotoImage:UIImage?
     
     var infoView: some View {
         VStack {
+            Text("\(model.title ?? "~")")
+            Text("\(model.description ?? "~")")
             Text("moduleType: \(model.moduleType.rawValue)")
         }
     }
@@ -40,9 +42,9 @@ struct CKChoreActiveDetailView: View {
                         self.devMessage = nil
                 }
             }
+            infoView
             //actionView
             ActivityActionView(model: $model)
-            infoView
         }
         .onAppear {
         }
@@ -99,85 +101,4 @@ struct CKChoreActiveDetailView: View {
 //}
 
 
-struct ActivityActionView: View {
-    
-    @Environment(\.window) var window: UIWindow?
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
-    
-    @State var devMessage: String? = nil
-    
-    @State var chatService: ChatService = ChatService()
-    
-    @Binding var model: CKActivityActiveModel
-    
-    var body: some View {
-        VStack{
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
-            
-            Spacer()
-            
-            if model.moduleType == .none {
-                Text("moduleType.none")
-                    .foregroundColor(.red)
-            }
-            
-            if model.moduleType == .picture {
-                NavigationLink(destination: PhotoView(model: model)) {
-                    Text("take a picture")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .audio {
-                NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
-                    Text("voice message")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .drawing {
-                NavigationLink(destination: DrawView()) {
-                    Text("draw a picture")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .chat {
-                NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
-                    Text("chat with?")
-                        .foregroundColor(.blue)
-                }
-            }
-        }
-    }
-    
-    func onSave() {
-        if let recordReference = familyKitAppState.currentPlayer.recordReference {
-            self.model.kidReference = recordReference
-            privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
-                switch result {
-                case .failure(let error):
-                    self.devMessage = "save error\(error.localizedDescription)"
-                case .success(let record):
-                    print( "success \(record)")
-                    self.devMessage = "success"
-                    DispatchQueue.main.async {
-                        //self.presentationMode.wrappedValue.dismiss()
-                        self.privateActiveChoreService.fetch { (result) in
-                            print( "result")
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-}
+

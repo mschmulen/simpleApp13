@@ -17,7 +17,7 @@ struct CKChoreNewActiveDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
@@ -25,51 +25,14 @@ struct CKChoreNewActiveDetailView: View {
     
     var descriptionModel: CKActivityDescriptionModel
     
-    @State private var model: CKActivityActiveModel = CKActivityActiveModel()
+    @State private var model: CKActivityModel = CKActivityModel()
     @State private var coverPhotoImage:UIImage?
     
     var infoView: some View {
         VStack {
+            Text("\(model.title ?? "~")")
+            Text("\(model.description ?? "~")")
             Text("moduleType: \(model.moduleType.rawValue)")
-        }
-    }
-    
-    var actionView: some View {
-        VStack{
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
-            
-            if model.moduleType == .picture {
-                NavigationLink(destination: PhotoView(model:model)) {
-                    Text("take a picture")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .audio {
-                NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
-                    Text("leave a voice message")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .drawing {
-                NavigationLink(destination: DrawView()) {
-                    Text("draw a picture")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            if model.moduleType == .chat {
-                NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
-                    Text("chat with?")
-                        .foregroundColor(.blue)
-                }
-            }
         }
     }
     
@@ -82,10 +45,29 @@ struct CKChoreNewActiveDetailView: View {
                         self.devMessage = nil
                 }
             }
-            actionView
             infoView
+            ActivityActionView(model: $model)
         }
         .onAppear {
+            
+            guard let kidRecordReference = self.familyKitAppState.currentPlayer.recordReference else {
+                return
+            }
+            
+            guard let choreDescriptionRecordID = self.descriptionModel.recordID else {
+                return
+            }
+            
+            let choreDescriptionReference = CKRecord.Reference(recordID: choreDescriptionRecordID, action: .deleteSelf)
+            
+            self.model.name = self.descriptionModel.name
+            self.model.description = self.descriptionModel.description
+            self.model.bucks = self.descriptionModel.bucks
+            
+            self.model.ckChoreDescriptionReference = choreDescriptionReference
+            self.model.kidReference = kidRecordReference
+            self.model.moduleType = self.descriptionModel.moduleType
+            
         }
     }
     
@@ -99,11 +81,23 @@ struct CKChoreNewActiveDetailView: View {
             return
         }
         
-        let choreDescriptionReference = CKRecord.Reference(recordID: choreDescriptionRecordID, action: .deleteSelf)
+        guard let kidReference = model.kidReference else {
+            return
+        }
         
-        self.model.ckChoreDescriptionReference = choreDescriptionReference
-        self.model.kidReference = kidRecordReference
-        self.model.moduleType = descriptionModel.moduleType
+        guard let ckChoreDescriptionReference = model.ckChoreDescriptionReference else {
+            return
+        }
+        
+//        let choreDescriptionReference = CKRecord.Reference(recordID: choreDescriptionRecordID, action: .deleteSelf)
+//
+//        self.model.name = descriptionModel.name
+//        self.model.description = descriptionModel.description
+//        self.model.bucks = descriptionModel.bucks
+//
+//        self.model.ckChoreDescriptionReference = choreDescriptionReference
+//        self.model.kidReference = kidRecordReference
+//        self.model.moduleType = descriptionModel.moduleType
         
         privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
             switch result {

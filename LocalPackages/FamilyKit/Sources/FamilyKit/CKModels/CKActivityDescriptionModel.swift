@@ -12,7 +12,7 @@ import CloudKit
 
 public enum ActivityModuleType: String, CaseIterable {
     case audio
-    case picture
+    case photo
     case drawing
     case chat
     case none
@@ -110,17 +110,18 @@ public struct CKActivityDescriptionModel: CKModel {
         self.emoji = record["emoji"] as? String
         self.category = record["category"] as? String
         
-        self.who = record["who"] as? String
         
         if let frequencyString =  record["frequency"] as? String {
             self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
         }
-        self.timeofday = record["timeofday"] as? String
         self.coverPhoto = record["coverPhoto"] as? CKAsset
         
         if let moduleTypeString =  record["moduleType"] as? String {
             self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
         }
+        
+        self.who = record["who"] as? String
+        self.timeofday = record["timeofday"] as? String
     }
     
     enum CustomError: Error {

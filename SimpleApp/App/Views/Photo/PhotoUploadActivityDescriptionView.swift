@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CoverPhotoUploadView: View {
+struct PhotoUploadActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -115,7 +115,11 @@ struct CoverPhotoUploadView: View {
         }
         
         if let inputImage = inputImage {
-            privateChoreService.updateCoverPhoto(model:model, image: inputImage) { result in
+            privateChoreService.uploadPhotoAsset(
+            model:model,
+            image: inputImage,
+            assetPropertyName: "coverPhoto"
+            ) { result in
                 switch result {
                 case .failure( let error):
                     DispatchQueue.main.async {

@@ -12,9 +12,9 @@ import SwiftUI
 import Combine
 import AVFoundation
 
-class AudioRecorderList: NSObject, ObservableObject {
+class AudioRecorder: NSObject, ObservableObject {
     
-    let objectWillChange = PassthroughSubject<AudioRecorderList, Never>()
+    let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     
     var audioRecorder: AVAudioRecorder!
     

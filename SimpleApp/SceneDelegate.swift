@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         privateChoreService.listenForNotifications()
        
         // CKChoreActiveModel
-        let privateActiveChoreService = CKPrivateModelService<CKActivityActiveModel>(
+        let privateActiveChoreService = CKPrivateModelService<CKActivityModel>(
             container: container
         )
         privateActiveChoreService.fetch(completion: { result in

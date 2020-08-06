@@ -14,7 +14,7 @@ struct CKChoreActiveRowView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var categoryName: String
-    var items: [CKActivityActiveModel]
+    var items: [CKActivityModel]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -53,10 +53,10 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
             CKChoreActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock
+                    CKActivityModel.mock,
+                    CKActivityModel.mock,
+                    CKActivityModel.mock,
+                    CKActivityModel.mock
                 ]
             )
                 .previewLayout(.fixed(width: 400, height: 100))
@@ -64,10 +64,10 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
             CKChoreActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock,
-                    CKActivityActiveModel.mock ]                
+                    CKActivityModel.mock,
+                    CKActivityModel.mock,
+                    CKActivityModel.mock,
+                    CKActivityModel.mock ]                
             )
                 .previewLayout(.fixed(width: 400, height: 100))
                 .environment(\.colorScheme, .dark)

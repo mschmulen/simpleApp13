@@ -97,12 +97,12 @@ struct CKChoreDescriptionDetailView: View {
 //            TextField("timeofday", text: $model.timeofday ?? "")
 //                .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
+            NavigationLink(destination: PhotoUploadActivityDescriptionView(model: model) ) {
                 Text("change coverPhoto")
             }
             
             Button(action: ({
-                self.privateChoreService.removeCoverPhoto(model:self.model) { result in
+                self.privateChoreService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
                     switch result {
                     case .failure( let error):
                         print( "there was an error \(error)")

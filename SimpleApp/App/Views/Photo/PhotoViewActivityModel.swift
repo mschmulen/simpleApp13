@@ -1,5 +1,5 @@
 //
-//  PhotoView.swift
+//  PhotoViewActivityModelView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/4/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct PhotoView: View {
+struct PhotoActivityModelView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -17,7 +17,7 @@ struct PhotoView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
-    var model: CKActivityActiveModel
+    @Binding var model: CKActivityModel
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false

@@ -11,7 +11,7 @@ import FamilyKit
 
 struct CKChoreActiveItemView: View {
     
-    var model: CKActivityActiveModel
+    var model: CKActivityModel
     
     @State var coverPhotoImage = ImageStore.shared.image(name: "turtlerock")
     
@@ -25,7 +25,7 @@ struct CKChoreActiveItemView: View {
                 .cornerRadius(5)
             HStack {
                 Spacer()
-                Text(model.moduleType.rawValue)
+                Text(model.title ?? "~")
                     .foregroundColor(.primary)
                     .font(.caption)
                 Spacer()
@@ -58,7 +58,7 @@ struct CKChoreActiveItemView: View {
 #if DEBUG
 struct CKChoreActiveItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreActiveItemView( model: CKActivityActiveModel.mock)
+        CKChoreActiveItemView( model: CKActivityModel.mock)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKActivityActiveModel: CKModel {
+public struct CKActivityModel: CKModel {
     
-    public typealias ItemType = CKActivityActiveModel
+    public typealias ItemType = CKActivityModel
     public static let recordName = "ChoreActive"
     public static let ckSchemeKeys = [
         "ckChoreDescriptionReference",
@@ -20,6 +20,11 @@ public struct CKActivityActiveModel: CKModel {
     ]
     public var id = UUID()
     public var recordID: CKRecord.ID?
+    
+    public var name: String?
+    public var description: String?
+    public var bucks: Int?
+    public var emoji: String?
     
     public var ckChoreDescriptionReference: CKRecord.Reference?
     public var kidReference: CKRecord.Reference?
@@ -33,11 +38,16 @@ public struct CKActivityActiveModel: CKModel {
     public var resultAssetAudio: CKAsset?
     
     public var title: String? {
-        return "ACTIVE"
+        return name
     }
     
-    public static var mock: CKActivityActiveModel {
-        var model = CKActivityActiveModel()
+    public static var mock: CKActivityModel {
+        var model = CKActivityModel()
+        
+        model.name = nil
+        model.description = nil
+        model.bucks = nil
+        
         model.ckChoreDescriptionReference = nil
         model.coverPhoto = nil
         model.resultAssetText = nil
@@ -48,6 +58,11 @@ public struct CKActivityActiveModel: CKModel {
     
     public init(
     ){
+        
+        self.name = nil
+        self.description = nil
+        self.bucks = nil
+        
         self.ckChoreDescriptionReference = nil
         self.kidReference = nil
         self.coverPhoto = nil
@@ -66,6 +81,11 @@ public struct CKActivityActiveModel: CKModel {
 //        }
         
         self.recordID = record.recordID
+        
+        self.name = record["name"] as? String
+        self.description = record["description"] as? String
+        self.bucks = record["bucks"] as? Int
+        
         self.ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference
         self.kidReference = record["kidReference"] as? CKRecord.Reference
         self.coverPhoto = record["coverPhoto"] as? CKAsset
@@ -86,10 +106,10 @@ public struct CKActivityActiveModel: CKModel {
 }
 
 // TODO: add this to the generic CKModel requirement
-extension CKActivityActiveModel {
+extension CKActivityModel {
     
     // TODO: add this to the generic CKModel requirement
-    public func reload( service: CKPrivateModelService<CKActivityActiveModel> ) {
+    public func reload( service: CKPrivateModelService<CKActivityModel> ) {
         service.fetchSingle(model: self) { result in
             print( "result \(result)")
         }
@@ -97,22 +117,36 @@ extension CKActivityActiveModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKActivityActiveModel {
+extension CKActivityModel {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKActivityActiveModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKActivityModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKActivityActiveModel.recordName)
+            record = CKRecord(recordType: CKActivityModel.recordName)
         }
-
+        
+        if let name = name {
+            record["name"] = name as CKRecordValue
+        }
+        
+        if let description = description {
+            record["description"] = description as CKRecordValue
+        }
+        
+        if let bucks = bucks {
+            record["bucks"] = bucks as CKRecordValue
+        }
+        
         if let ckChoreDescriptionReference = ckChoreDescriptionReference {
             record["ckChoreDescriptionReference"] = ckChoreDescriptionReference as CKRecordValue
         }
+        
+        record["moduleType"] = moduleType.rawValue as CKRecordValue
         
         if let kidReference = kidReference {
             record["kidReference"] = kidReference as CKRecordValue
