@@ -1,6 +1,5 @@
 //
 //  ContentView.swift
-//  SimpleApp
 //
 //  Created by Matthew Schmulen on 7/19/20.
 //  Copyright © 2020 jumptack. All rights reserved.
@@ -27,10 +26,8 @@ struct ContentView: View {
     @State var showNoiCloudConnection = false
     
     enum TopView {
-        case mainAdultView
-        case mainKidView
+        case mainView
         case purchaseView
-        case userView
     }
     
     @ViewBuilder
@@ -50,29 +47,17 @@ struct ContentView: View {
                     .environmentObject(familyKitAppState)
             } else {
                 
-                if appState.topView == .mainAdultView {
-                    MainAdultView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                        .environmentObject(privateChoreService)
-                        .environmentObject(funService)
-                        .environmentObject(connectService)
-                }
-                
-                if appState.topView == .mainKidView {
-                    MainKidView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                        .environmentObject(privateChoreService)
-                        .environmentObject(funService)
-                        .environmentObject(connectService)
-                }
-                
-                if appState.topView == .userView {
-                    NavigationView {
-                        AdultUserView()
+                if appState.topView == .mainView {
+                    if familyKitAppState.currentPlayer.isAdult {
+                        MainAdultView()
+                            .environment(\.window, window)
+                            .environmentObject(appState)
+                            .environmentObject(familyKitAppState)
+                            .environmentObject(privateChoreService)
+                            .environmentObject(funService)
+                            .environmentObject(connectService)
+                    } else {
+                        MainKidView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
@@ -82,12 +67,6 @@ struct ContentView: View {
                     }
                 }
                 
-                // TODO: Clean up
-//                if appState.topView == .pickPlayerView {
-//                    PickPlayerView()
-//                        .environmentObject(appState)
-//                }
-
                 if appState.topView == .purchaseView {
                     PurchaseView()
                         .environmentObject(appState)

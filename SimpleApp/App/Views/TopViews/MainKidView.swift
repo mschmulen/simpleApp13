@@ -38,7 +38,7 @@ struct MainKidView: View {
                 List{
                     Section() {
                         CKChoreDescriptionRowView(
-                            categoryName: "Chores (Private)",
+                            categoryName: "Activities (Private)",
                             items: privateChoreService.models,
                             isPrivate: true,
                             showAdd: familyKitAppState.currentPlayer.isAdult
@@ -46,29 +46,19 @@ struct MainKidView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     
-                    
                     Section() {
                         CKChoreActiveRowView(
-                            categoryName: "Chores (Active)",
-                            items: privateActiveChoreService.models
+                            categoryName: "Activities (\(familyKitAppState.currentPlayer.name)",
+                            items: privateActiveChoreService.models.filter({ (model) -> Bool in
+                                if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                                    return true
+                                } else {
+                                    return false
+                                }
+                            })
                         )
                     }
                     .listRowInsets(EdgeInsets())
-                    
-                    
-//                    Section() {
-//                        FunRowView(categoryName: "Fun", items: funStore.models)
-//
-//                    }
-//                    .listRowInsets(EdgeInsets())
-                    
-//                    Section() {
-//                        ChoreRowView(categoryName: "Chores", items: choreStore.models)
-//                    }.listRowInsets(EdgeInsets())
-                    
-//                    Section() {
-//                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
-//                    }.listRowInsets(EdgeInsets())
                 }
             }
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)

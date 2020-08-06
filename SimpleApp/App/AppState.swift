@@ -20,7 +20,7 @@ class AppState: ObservableObject {
     
     var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: ContentView.TopView = .mainAdultView {
+    @Published var topView: ContentView.TopView = .mainView {
         willSet {
             updateChanges()
         }

@@ -62,7 +62,7 @@ struct AdultUserView: View {
                         Text(model.name ?? "~" )
                     }
                 }//end ForEach
-                    .onDelete(perform: delete)
+                    .onDelete(perform: deleteKid)
             }//end section kids
             
             Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
@@ -76,7 +76,7 @@ struct AdultUserView: View {
                         Text(model.name ?? "~" )
                     }
                 }//end ForEach
-                    .onDelete(perform: delete)
+                    .onDelete(perform: deleteAdult)
             }//end section adults
             
             Section(header: Text("Dev Stuff")) {
@@ -207,7 +207,21 @@ struct AdultUserView: View {
         //                    .navigationBarTitle("CKUser")
     }
     
-    func delete(at offsets: IndexSet) {
+    func deleteKid(at offsets: IndexSet) {
+        for deleteIndex in offsets {
+            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
+            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("delete.error \(error)")
+                case .success(let recordID):
+                    print("delete.success \(recordID)")
+                }
+            }
+        }
+    }
+    
+    func deleteAdult(at offsets: IndexSet) {
         for deleteIndex in offsets {
             let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
             self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in

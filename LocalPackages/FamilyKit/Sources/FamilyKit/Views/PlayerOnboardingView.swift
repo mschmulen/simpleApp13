@@ -18,8 +18,8 @@ public struct PlayerOnboardingView: View {
     @State var errorMessage: String?
     @State var showNoiCloudConnection = false
     @State var showNoCurrentPlayer = false
-    @State var networkStateViewModel:NetworkStateViewModel = NetworkStateViewModel()
-    @State var cloudKitStateViewModel:CloudKitStateViewModel = CloudKitStateViewModel()
+    @State var networkStateViewModel: NetworkStateViewModel = NetworkStateViewModel()
+    @State var cloudKitStateViewModel: CloudKitStateViewModel = CloudKitStateViewModel()
     
     @State var showNewPlayer: Bool = false
     

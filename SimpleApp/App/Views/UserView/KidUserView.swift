@@ -40,10 +40,11 @@ struct KidUserView: View {
             }
             
             Section(header: Text("Current Player")) {
-                Text("current Player \(familyKitAppState.currentPlayer.name)")
+                Text("\(familyKitAppState.currentPlayer.name)")
                 
                 NavigationLink(destination: PlayerOnboardingView()) {
                     Text("Change Current Player")
+                        .foregroundColor(.blue)
                 }
             }
         }.onAppear(perform: {

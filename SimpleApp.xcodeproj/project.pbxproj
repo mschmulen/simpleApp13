@@ -327,8 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */,
-				76BADB7624CB0AC6004950C0 /* RowViews.swift */,
 				7616F66724DC7723003488EB /* MainKidView.swift */,
+				76BADB7624CB0AC6004950C0 /* RowViews.swift */,
 			);
 			path = TopViews;
 			sourceTree = "<group>";
@@ -843,7 +843,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -866,7 +866,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
