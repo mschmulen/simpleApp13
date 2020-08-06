@@ -104,9 +104,16 @@ struct UserView: View {
                     Text("Show SimpleGameView")
                         .foregroundColor(.blue)
                 }
+                
+                
             }
             
             Section(header: Text("Dev Stuff")) {
+                
+                NavigationLink(destination: PurchaseView()) {
+                    Text("PurchaseView")
+                        .foregroundColor(.blue)
+                }
                 
                 // Dev stuff
                 if self.familyKitAppState.userService.ckAccountStatus == .available {
@@ -157,7 +164,6 @@ struct UserView: View {
                     Text("name \(self.familyKitAppState.userService.currentUser?.name ?? "~")")
                     Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")
                     Text("birthDate: \(self.familyKitAppState.userService.currentUser?.birthDate?.description ?? "~")")
-
                     
                     Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
                     Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")

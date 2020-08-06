@@ -27,5 +27,5 @@ public protocol CKModel: Identifiable {
     var title: String? { get }
     
     //static func fromCKRecord(record: CKRecord)
-    
+    // func reload( service: CKPrivateModelService<CKModel> )
 }

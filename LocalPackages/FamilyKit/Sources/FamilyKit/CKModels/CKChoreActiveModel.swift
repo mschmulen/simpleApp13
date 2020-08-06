@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import SwiftUI
 import CloudKit
 
@@ -19,10 +18,8 @@ public struct CKChoreActiveModel: CKModel {
         "description",
         "bucks",
         "emoji",
-        "who",
-        "frequency",
-        "timeofday",
-        "imageName"
+        // "kid",
+        "coverPhoto"
     ]
     
     public enum Frequency: String, CaseIterable {
@@ -40,10 +37,15 @@ public struct CKChoreActiveModel: CKModel {
     public var bucks: Int?
     public var emoji: String?
     
-    public var who: String?
-    public var frequency: Frequency = .once
-    public var timeofday: String?
-    public var imageName: String?
+    //public var kid: CKReference?
+    public var coverPhoto: CKAsset?
+    
+    
+    // TODO
+    public var resultAssetText: CKAsset?
+    public var resultAssetImage: CKAsset?
+    public var resultAssetAudio: CKAsset?
+    
     
     public var title: String? {
         return name
@@ -53,13 +55,13 @@ public struct CKChoreActiveModel: CKModel {
         var model = CKChoreActiveModel()
         model.name = "Get ready for bed"
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
-        model.who = "kids"
         model.bucks = 2
         model.emoji = "🧵"
-        
-        model.frequency = .daily
-        model.timeofday = "Morning"
-        model.imageName = "turtlerock"
+        model.coverPhoto = nil
+        model.resultAssetText = nil
+        model.resultAssetImage = nil
+        model.resultAssetAudio = nil
+
         return model
     }
     
@@ -69,11 +71,11 @@ public struct CKChoreActiveModel: CKModel {
         self.description = nil
         self.bucks = nil
         self.emoji = nil
-        
-        self.who = nil
-        self.frequency = .once
-        self.timeofday = nil
-        self.imageName = nil
+        self.coverPhoto = nil
+        self.resultAssetText = nil
+        self.resultAssetImage = nil
+        self.resultAssetAudio = nil
+
     }
     
     public init?(record: CKRecord) {
@@ -91,20 +93,28 @@ public struct CKChoreActiveModel: CKModel {
         self.description = _description
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
-        
-        self.who = record["who"] as? String
-        
-        if let frequencyString =  record["frequency"] as? String {
-            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
-        }
-        self.timeofday = record["timeofday"] as? String
-        self.imageName = record["imageName"] as? String
+        self.coverPhoto = record["coverPhoto"] as? CKAsset
+
+        self.resultAssetText = record["resultAssetText"] as? CKAsset
+        self.resultAssetImage = record["resultAssetImage"] as? CKAsset
+        self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
     }
     
     enum CustomError: Error {
         case unknown
     }
     
+}
+
+// TODO: add this to the generic CKModel requirement
+extension CKChoreActiveModel {
+    
+    // TODO: add this to the generic CKModel requirement
+    public func reload( service: CKPrivateModelService<CKChoreActiveModel> ) {
+        service.fetchSingle(model: self) { result in
+            print( "result \(result)")
+        }
+    }
 }
 
 // MARK: - Create a CKRecord from this model
@@ -136,8 +146,22 @@ extension CKChoreActiveModel {
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
         }
+        
+        if let coverPhoto = coverPhoto {
+            record["coverPhoto"] = coverPhoto as CKRecordValue
+        }
+        
+        if let resultAssetText = resultAssetText {
+            record["resultAssetText"] = resultAssetText as CKRecordValue
+        }
+        
+        if let resultAssetImage = resultAssetImage {
+            record["resultAssetImage"] = resultAssetImage as CKRecordValue
+        }
 
-        record["frequency"] = frequency.rawValue as CKRecordValue
+        if let resultAssetAudio = resultAssetAudio {
+            record["resultAssetAudio"] = resultAssetAudio as CKRecordValue
+        }
         
         return record
     }

@@ -13,19 +13,23 @@ struct CKChoreItemView: View {
     
     var model: CKChoreDescriptionModel
     
-    var image: Image {
-        if let emoji = model.emoji {
-            return Image(uiImage: emojiToImage(text: emoji))
-        } else {
-            return ImageStore.shared.image(name: "turtlerock")
-        }
-    }
+    // Image(systemName: "rosette")
+    @State var coverPhotoImage = ImageStore.shared.image(name: "turtlerock")
+    
+//    {
+//        if let emoji = model.emoji {
+//            return Image(uiImage: emojiToImage(text: emoji))
+//        } else {
+//            return ImageStore.shared.image(name: "turtlerock")
+//        }
+//    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            image
+            coverPhotoImage
                 .renderingMode(.original)
                 .resizable()
+                .scaledToFill()
                 .frame(width: 100, height: 100)
                 .cornerRadius(5)
             HStack {
@@ -37,7 +41,25 @@ struct CKChoreItemView: View {
             }
         }
         .padding(.leading, 15)
+        .onAppear {
+            
+            if let emoji = self.model.emoji {
+                self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
+            } else {
+                self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
+            }
+            
+            self.model.loadCoverPhoto { (result) in
+                switch result {
+                case .failure(let error):
+                    print( "failure \(error)")
+                case .success(let image):
+                    self.coverPhotoImage = Image(uiImage:image )
+                }
+            }
+        }
     }
+    
 }//end CKChoreItemView
 
 #if DEBUG

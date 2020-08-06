@@ -22,7 +22,7 @@ public struct CKChoreDescriptionModel: CKModel {
         "who",
         "frequency",
         "timeofday",
-        "imageAsset"
+        "coverPhoto"
     ]
     
     public enum Frequency: String, CaseIterable {
@@ -43,7 +43,7 @@ public struct CKChoreDescriptionModel: CKModel {
     public var who: String?
     public var frequency: Frequency = .once
     public var timeofday: String?
-    public var imageAsset: CKAsset?
+    public var coverPhoto: CKAsset?
     
     public var title: String? {
         return name
@@ -59,7 +59,7 @@ public struct CKChoreDescriptionModel: CKModel {
         
         model.frequency = .daily
         model.timeofday = "Morning"
-        model.imageAsset = nil
+        model.coverPhoto = nil
         return model
     }
     
@@ -73,7 +73,7 @@ public struct CKChoreDescriptionModel: CKModel {
         self.who = nil
         self.frequency = .once
         self.timeofday = nil
-        self.imageAsset = nil
+        self.coverPhoto = nil
     }
     
     public init?(record: CKRecord) {
@@ -98,13 +98,24 @@ public struct CKChoreDescriptionModel: CKModel {
             self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
         }
         self.timeofday = record["timeofday"] as? String
-        self.imageAsset = record["imageName"] as? CKAsset
+        self.coverPhoto = record["coverPhoto"] as? CKAsset
     }
     
     enum CustomError: Error {
         case unknown
     }
     
+}
+
+// TODO: add this to the generic CKModel requirement
+extension CKChoreDescriptionModel {
+    
+    // TODO: add this to the generic CKModel requirement
+    public func reload( service: CKPrivateModelService<CKChoreDescriptionModel> ) {
+        service.fetchSingle(model: self) { result in
+            print( "result \(result)")
+        }
+    }
 }
 
 // MARK: - Create a CKRecord from this model
@@ -140,8 +151,7 @@ extension CKChoreDescriptionModel {
         record["frequency"] = frequency.rawValue as CKRecordValue
         
         // TODO: handle the imageAsset
-        //record["imageAsset"] = frequency.rawValue as CKRecordValue
-        
+        //record["coverPhoto"] = coverPhoto as CKRecordValue
         
         return record
     }

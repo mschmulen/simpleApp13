@@ -14,11 +14,12 @@ struct CoverPhotoUploadView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var appState: AppState
-    // TODO: fix this
-//    @EnvironmentObject var someService: CloudKitModelService<CKMuseumModel>
+
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
     
     var model: CKChoreDescriptionModel
     
+    @State private var showingCameraView = false
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     
@@ -73,17 +74,34 @@ struct CoverPhotoUploadView: View {
             }
                 
             if inputImage == nil {
-                Button(action: {
-                    self.showingImagePicker.toggle()
-                }) {
-                    Text("PICK IMAGE")
+                Group {
+                    Button(action: {
+                        self.showingImagePicker.toggle()
+                    }) {
+                        Text("PICK IMAGE")
+                    }
+                }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                    ImagePicker(image: self.$inputImage)
                 }
             }
             
-        }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-            ImagePicker(image: self.$inputImage)
+            if inputImage == nil {
+                Group {
+                    Button(action: {
+                        // TODO: Camera photo
+                        self.showingCameraView.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "camera")
+                            Text("Camera photo")
+                        }
+                    }
+                }.sheet(isPresented: $showingCameraView, content: {
+                    CameraView(isShown: self.$showingCameraView, image: self.$image)
+                })
+            }
+            
         }
-
     }//end body
     
     func loadImage() {
@@ -96,20 +114,20 @@ struct CoverPhotoUploadView: View {
             self.statusMessage = "Updating ..."
         }
         
-        // TODO: fix or remove this
-//        if let inputImage = inputImage {
-//            someService.updateCoverPhoto(model:model, image: inputImage) { result in
-//                switch result {
-//                case .failure( let error):
-//                    DispatchQueue.main.async {
-//                        self.statusMessage = "There was an error uploading \(error)"
-//                    }
-//                case .success(_):
-//                    DispatchQueue.main.async {
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }
-//                }
-//            }
-//        }
+        if let inputImage = inputImage {
+            privateChoreService.updateCoverPhoto(model:model, image: inputImage) { result in
+                switch result {
+                case .failure( let error):
+                    DispatchQueue.main.async {
+                        self.statusMessage = "There was an error uploading \(error)"
+                    }
+                case .success(_):
+                    self.model.reload(service: self.privateChoreService)
+                    DispatchQueue.main.async {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        }
     }
 }

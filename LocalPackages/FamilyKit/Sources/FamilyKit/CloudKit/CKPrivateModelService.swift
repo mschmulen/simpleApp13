@@ -167,3 +167,23 @@ extension CKPrivateModelService {
         container.privateCloudDatabase.add(operation)
     }
 }
+
+
+extension CKPrivateModelService {
+    public func fetchSingle(
+        model: T,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        if let recordID = model.recordID {
+            container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+                if let record = record, let model = T( record: record) {
+                    completion(.success(model))
+                } else {
+                    completion(.failure(CustomError.unknown))
+                }
+            }
+        } else {
+            completion(.failure(CustomError.unknown))
+        }
+    }
+}

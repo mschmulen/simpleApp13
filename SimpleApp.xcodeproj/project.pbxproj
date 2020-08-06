@@ -64,6 +64,7 @@
 		76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */; };
 		76BADB8124CB0EAB004950C0 /* ConnectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
+		76C2FDF424DB193D00E030C2 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF324DB193D00E030C2 /* CameraView.swift */; };
 		76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoView.swift */; };
 		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
@@ -104,7 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7601811324C4A4B400B339E4 /* SimpleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7601811324C4A4B400B339E4 /* QFamily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7601811624C4A4B400B339E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7601811824C4A4B400B339E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7601811B24C4A4B400B339E4 /* SimpleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleApp.xcdatamodel; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 		76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunDetailView.swift; sourceTree = "<group>"; };
 		76BADB8024CB0EAB004950C0 /* ConnectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDetailView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
+		76C2FDF324DB193D00E030C2 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		76CFA1D124D9DA00007A02CF /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
@@ -225,7 +227,7 @@
 		7601811424C4A4B400B339E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7601811324C4A4B400B339E4 /* SimpleApp.app */,
+				7601811324C4A4B400B339E4 /* QFamily.app */,
 				7601812C24C4A4B500B339E4 /* SimpleAppTests.xctest */,
 				7601813724C4A4B500B339E4 /* SimpleAppUITests.xctest */,
 			);
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				76CFA1D124D9DA00007A02CF /* PhotoView.swift */,
+				76C2FDF324DB193D00E030C2 /* CameraView.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -460,7 +463,7 @@
 				76CFA1DD24D9E902007A02CF /* SimpleGames */,
 			);
 			productName = SimpleApp;
-			productReference = 7601811324C4A4B400B339E4 /* SimpleApp.app */;
+			productReference = 7601811324C4A4B400B339E4 /* QFamily.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7601812B24C4A4B500B339E4 /* SimpleAppTests */ = {
@@ -615,6 +618,7 @@
 				76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */,
 				76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
+				76C2FDF424DB193D00E030C2 /* CameraView.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */,
 				76CFA1D224D9DA00007A02CF /* PhotoView.swift in Sources */,
@@ -805,8 +809,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.SimpleApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily;
+				PRODUCT_NAME = QFamily;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -828,8 +832,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.SimpleApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily;
+				PRODUCT_NAME = QFamily;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

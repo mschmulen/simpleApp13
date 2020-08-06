@@ -24,8 +24,7 @@ struct CKChoreDetailView: View {
     @State var chatService: ChatService = ChatService()
     
     @State var model: CKChoreDescriptionModel
-    @State private var imageAsset:UIImage?
-    
+    @State private var coverPhotoImage:UIImage?
     
     var isPrivate:Bool
     var enableEdit:Bool
@@ -42,21 +41,16 @@ struct CKChoreDetailView: View {
             Text("timeofday: \(model.timeofday ?? "~")")
             // TODO: handle the imageAsset
             //Text("imageAsset: \(model.imageName ?? "~")")
-            
-            Section(header:Text("Photos")) {
-                coverPhotoView
-            }
-            
         }
     }
     
     var coverPhotoView: some View {
         Group {
-            if imageAsset == nil {
+            if coverPhotoImage == nil {
                 Text("NO IMAGE")
             } else {
                 VStack {
-                    Image(uiImage: imageAsset!)
+                    Image(uiImage: coverPhotoImage!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
@@ -93,15 +87,26 @@ struct CKChoreDetailView: View {
             
             TextField("timeofday", text: $model.timeofday ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
+                Text("change coverPhoto")
+            }
+            
+            Button(action: ({
+                self.privateChoreService.removeCoverPhoto(model:self.model) { result in
+                    switch result {
+                    case .failure( let error):
+                        print( "there was an error \(error)")
+                    case .success(_):
+                        print( "success")
+                        self.model.reload(service: self.privateChoreService)
+                        // self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            })) {
+                Text("remove coverPhoto")
+            }
         }
-        
-//        Section(header: Text("Images")) {
-            // TODO: handle the imageAsset
-//            NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
-//                Text("change coverPhoto")
-//            }
-//        }
-    
     }
     
     var actionView: some View {
@@ -164,6 +169,11 @@ struct CKChoreDetailView: View {
                 readOnlyView
                 actionView
             }
+            
+            Section(header:Text("Assets")) {
+                coverPhotoView
+            }
+            
         }//end List
             .onAppear {
                 // try and download the image
@@ -172,7 +182,7 @@ struct CKChoreDetailView: View {
                     case .failure(_):
                         break
                     case .success(let image):
-                        self.imageAsset = image
+                        self.coverPhotoImage = image
                     }
                 }
         }
