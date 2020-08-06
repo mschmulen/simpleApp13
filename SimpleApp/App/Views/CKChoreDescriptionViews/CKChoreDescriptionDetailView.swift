@@ -1,5 +1,5 @@
 //
-//  CKChoreDetailView.swift
+//  CKChoreDescriptionDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -10,7 +10,7 @@ import SwiftUI
 import FamilyKit
 import SimpleGames
 
-struct CKChoreDetailView: View {
+struct CKChoreDescriptionDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -207,9 +207,9 @@ struct CKChoreDetailView: View {
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreDetailView(model: CKChoreDescriptionModel.mock, enableEdit: false)
+            CKChoreDescriptionDetailView(model: CKChoreDescriptionModel.mock, enableEdit: false)
             
-            CKChoreDetailView(model: CKChoreDescriptionModel.mock, enableEdit: true)
+            CKChoreDescriptionDetailView(model: CKChoreDescriptionModel.mock, enableEdit: true)
         }
     }
 }

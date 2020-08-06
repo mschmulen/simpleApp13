@@ -1,5 +1,5 @@
 //
-//  CKChoreListView.swift
+//  CKChoreDescriptionListView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -10,7 +10,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct CKChoreListView: View {
+struct CKChoreDescriptionListView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -37,7 +37,7 @@ struct CKChoreListView: View {
             }
             
             Section(header: Text("Chores (private)")) {
-                NavigationLink(destination: CKChoreDetailView(
+                NavigationLink(destination: CKChoreDescriptionDetailView(
                     model: CKChoreDescriptionModel(),
                     enableEdit: true
                 )) {
@@ -45,7 +45,7 @@ struct CKChoreListView: View {
                 }
                 
                 ForEach( self.privateChoreService.models) { model in
-                    NavigationLink(destination: CKChoreDetailView(
+                    NavigationLink(destination: CKChoreDescriptionDetailView(
                         model: model,
                         enableEdit: true
                     )) {
@@ -87,7 +87,7 @@ struct CKChoreListView: View {
 
 struct CKChoreListView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreListView()
+        CKChoreDescriptionListView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
             .environmentObject(CKPrivateModelService<CKChoreDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))

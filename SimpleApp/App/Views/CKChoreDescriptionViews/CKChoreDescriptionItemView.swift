@@ -1,5 +1,5 @@
 //
-//  CKChoreItemView.swift
+//  CKChoreDescriptionItemView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreItemView: View {
+struct CKChoreDescriptionItemView: View {
     
     var model: CKChoreDescriptionModel
     
@@ -65,7 +65,7 @@ struct CKChoreItemView: View {
 #if DEBUG
 struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreItemView( model: CKChoreDescriptionModel.mock)
+        CKChoreDescriptionItemView( model: CKChoreDescriptionModel.mock)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

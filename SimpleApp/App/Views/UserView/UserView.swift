@@ -80,7 +80,7 @@ struct UserView: View {
             }//end section adults
             
             Section(header: Text("Dev Stuff")) {
-                NavigationLink(destination: CKChoreListView()) {
+                NavigationLink(destination: CKChoreDescriptionListView()) {
                     Text("Show Chores")
                         .foregroundColor(.blue)
                 }

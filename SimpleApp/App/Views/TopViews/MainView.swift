@@ -37,7 +37,7 @@ struct MainView: View {
                 
                 List{
                     Section() {
-                        CKChoreRowView(
+                        CKChoreDescriptionRowView(
                             categoryName: "Chores (Private)",
                             items: privateChoreService.models,
                             isPrivate: true,

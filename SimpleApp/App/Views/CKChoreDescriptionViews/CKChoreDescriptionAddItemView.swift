@@ -1,5 +1,5 @@
 //
-//  CKChoreAddItemView.swift
+//  CKChoreDescriptionAddItemView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreAddItemView: View {
+struct CKChoreDescriptionAddItemView: View {
     
     var image: Image {
         Image(systemName:"plus")
@@ -34,11 +34,11 @@ struct CKChoreAddItemView: View {
 struct CKChoreAddItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreAddItemView()
+            CKChoreDescriptionAddItemView()
                 .previewLayout(.fixed(width: 300, height: 300))
             .previewDisplayName("300x300 view")
             
-            CKChoreAddItemView()
+            CKChoreDescriptionAddItemView()
                 .previewLayout(.fixed(width: 300, height: 300))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("dark mode")

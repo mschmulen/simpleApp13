@@ -1,5 +1,5 @@
 //
-//  CKChoreView.swift
+//  CKChoreDescriptionRowView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreRowView: View {
+struct CKChoreDescriptionRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
@@ -29,27 +29,27 @@ struct CKChoreRowView: View {
                 HStack(alignment: .top, spacing: 0) {
                     
                     if self.items.count <= 0 {
-                        CKChoreNoItemsView()
+                        CKChoreDescriptionNoItemsView()
                     }
                     
                     if showAdd {
                         NavigationLink(
-                            destination: CKChoreDetailView(
+                            destination: CKChoreDescriptionDetailView(
                                 model: CKChoreDescriptionModel(), enableEdit: true
                             )
                         ) {
-                            CKChoreAddItemView()
+                            CKChoreDescriptionAddItemView()
                         }
                     }
                     
                     ForEach(self.items) { model in
                         NavigationLink(
-                            destination: CKChoreDetailView(
+                            destination: CKChoreDescriptionDetailView(
                                 model: model,
                                 enableEdit: self.familyKitAppState.currentPlayer.isAdult
                             )
                         ) {
-                            CKChoreItemView(model: model)
+                            CKChoreDescriptionItemView(model: model)
                         }
                     }
                 }
@@ -64,7 +64,7 @@ struct CKChoreRowView_Previews: PreviewProvider {
     static var previews: some View {
             
         Group {
-            CKChoreRowView(
+            CKChoreDescriptionRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKChoreDescriptionModel.mock,
@@ -77,7 +77,7 @@ struct CKChoreRowView_Previews: PreviewProvider {
             )
                 .previewLayout(.fixed(width: 400, height: 100))
             
-            CKChoreRowView(
+            CKChoreDescriptionRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKChoreDescriptionModel.mock,

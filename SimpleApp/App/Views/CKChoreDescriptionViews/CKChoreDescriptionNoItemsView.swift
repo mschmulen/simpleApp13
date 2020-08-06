@@ -1,5 +1,5 @@
 //
-//  CKChoreNoItemsView.swift
+//  CKChoreDescriptionNoItemsView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CKChoreNoItemsView: View {
+struct CKChoreDescriptionNoItemsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -36,6 +36,6 @@ struct CKChoreNoItemsView: View {
 
 struct CKChoreNoItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreNoItemsView()
+        CKChoreDescriptionNoItemsView()
     }
 }
