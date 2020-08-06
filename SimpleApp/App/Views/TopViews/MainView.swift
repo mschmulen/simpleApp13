@@ -46,6 +46,20 @@ struct MainView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     
+                    
+                    Section() {
+                        CKChoreActiveRowView(
+                            categoryName: "Chores (Active)",
+                            items: privateActiveChoreService.models,
+                            isPrivate: true,
+                            showAdd: familyKitAppState.currentPlayer.isAdult
+                        )
+                    }
+                    .listRowInsets(EdgeInsets())
+                    
+                    
+                    
+                    
                     // TODO: this is the old local stuff
                     Section() {
                         FunRowView(categoryName: "Fun", items: funStore.models)
