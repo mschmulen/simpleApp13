@@ -109,6 +109,17 @@ struct CKChoreDescriptionDetailView: View {
     
     var actionView: some View {
         Section(header: Text("Completion Actions")) {
+            
+            NavigationLink(destination: CKChoreActiveDetailView(
+                model: CKChoreActiveModel(),
+                enableEdit: true
+            )) {
+                VStack {
+                    Text("START")
+                    Image(systemName: "plus")
+                }
+            }
+
             NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
                 Text("leave a voice message")
                     .foregroundColor(.blue)
