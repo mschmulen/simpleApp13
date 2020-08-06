@@ -12,6 +12,7 @@ struct MessageView : View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var currentMessage: CKChatMessageModel
+    
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
             if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {

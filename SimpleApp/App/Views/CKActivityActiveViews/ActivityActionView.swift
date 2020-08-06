@@ -30,68 +30,67 @@ struct ActivityActionView: View {
     @State var audioRecorder = AudioRecorder()
     
     var body: some View {
-        VStack{
+        VStack {
             Button(action:onSave) {
                 HStack {
                     Text("Save")
                     Image(systemName: "square.and.arrow.up")
                 }
             }
-            
-            Spacer()
-            
-            if model.moduleType == .none {
-                Text("moduleType.none")
-                    .foregroundColor(.red)
-            }
-            
-            if model.moduleType == .photo {
-                PhotoActivityView(model: $model)
-//                NavigationLink(destination: PhotoActivityModelView(model: $model)) {
-//                    Text("take a picture")
-//                        .foregroundColor(.blue)
-//                }
-            }
-            
-            if model.moduleType == .audio {
-                VStack {
-                    Text("RECORD SOMETHING")
-                    AudioRecordingsList(audioRecorder: audioRecorder)
-                    if audioRecorder.recording == false {
-                        Button(action: {
-                            self.audioRecorder.startRecording()
-                        }) {
-                            Image(systemName: "circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 100, height: 100)
-                                .clipped()
-                                .foregroundColor(.red)
-                                .padding(.bottom, 40)
-                        }
-                    } else {
-                        Button(action: {
-                            self.audioRecorder.stopRecording()
-                        }) {
-                            Image(systemName: "stop.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 100, height: 100)
-                                .clipped()
-                                .foregroundColor(.red)
-                                .padding(.bottom, 40)
+            Text("moduleType.none")
+                .foregroundColor(.red)
+            VStack {
+                if model.moduleType == .photo {
+                    
+                    PhotoActivityView(model: $model)
+                    //                NavigationLink(destination: PhotoActivityModelView(model: $model)) {
+                    //                    Text("take a picture")
+                    //                        .foregroundColor(.blue)
+                    //                }
+                }
+                
+                if model.moduleType == .audio {
+                    VStack {
+                        Text("RECORD SOMETHING")
+                        AudioRecordingsList(audioRecorder: audioRecorder)
+                        if audioRecorder.recording == false {
+                            Button(action: {
+                                self.audioRecorder.startRecording()
+                            }) {
+                                Image(systemName: "circle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 100, height: 100)
+                                    .clipped()
+                                    .foregroundColor(.red)
+                                    .padding(.bottom, 40)
+                            }
+                        } else {
+                            Button(action: {
+                                self.audioRecorder.stopRecording()
+                            }) {
+                                Image(systemName: "stop.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 100, height: 100)
+                                    .clipped()
+                                    .foregroundColor(.red)
+                                    .padding(.bottom, 40)
+                            }
                         }
                     }
                 }
+                
+                if model.moduleType == .drawing {
+                    DrawingView()
+                }
+                
+                if model.moduleType == .chat {
+                    ChatSessionView(chatService: self.$chatService)
+                }
+                EmptyView()
             }
             
-            if model.moduleType == .drawing {
-                DrawingView()
-            }
-            
-            if model.moduleType == .chat {
-                ChatSessionView(chatService: self.$chatService)
-            }
         }
     }
     

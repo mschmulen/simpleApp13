@@ -31,7 +31,6 @@ public struct ChatSessionView: View {
         NavigationView {
             VStack {
                 List {
-                    //ForEach(chatService.chatMessageService.models, id: \.self) { msg in
                     ForEach( self.chatService.chatMessageService.models ) { model in
                         MessageView(currentMessage: model)
                     }
@@ -49,6 +48,8 @@ public struct ChatSessionView: View {
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
                 self.endEditing(true)
+        }.onAppear {
+            self.chatService.onRefresh()
         }
     }
     

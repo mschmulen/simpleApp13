@@ -19,16 +19,7 @@ public class ChatService : ObservableObject {
     
     var didChange = PassthroughSubject<Void, Never>()
     
-    //@Published var realTimeMessages = DataSource.messages
-    
     @Published public private (set) var chatMessageService: CKPrivateModelService<CKChatMessageModel>
-    
-//    @Published public private (set) var currentPlayer: Player = Player.none {
-//        didSet {
-//            print( "did update the current player")
-//            // TODO: fire off an update to the device service to udpate the current CKDeviceModel
-//        }
-//    }
     
     public init(
         container: CKContainer
@@ -51,7 +42,7 @@ public class ChatService : ObservableObject {
     
     func sendMessage(_ chatMessageModel: CKChatMessageModel) {
         // TODO Send Message
-        print( "TODO send the message")
+        print( "TODO fix this update")
         //realTimeMessages.append(chatMessage)
         
         chatMessageService.pushUpdateCreate(model: chatMessageModel) { (result) in
@@ -65,12 +56,12 @@ public class ChatService : ObservableObject {
 //                    self.privateActiveChoreService.fetch { (result) in
 //                        print( "result")
 //                    }
-                    self.updateChanges()
+                    self.onRefresh()
+                    self.didChange.send(())
+                    //self.updateChanges()
                 }
             }
         }
-        
-        didChange.send(())
     }
 }
 
@@ -81,8 +72,8 @@ extension ChatService {
         chatMessageService.fetch { (result) in
             print( "chatMessageService fetch \(result)")
             self.updateChanges()
+            self.didChange.send(())
         }
-        self.updateChanges()
     }
 }
 
