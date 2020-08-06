@@ -16,14 +16,13 @@ struct CKChoreActiveDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKChoreActiveModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
     
     @State var devMessage: String?
     
     @State var chatService: ChatService = ChatService()
     
-    var moduleType: CKChoreDescriptionModel.ModuleType
-    @State var model: CKChoreActiveModel
+    @State var model: CKActivityActiveModel
     @State private var coverPhotoImage:UIImage?
     
     var infoView: some View {
@@ -34,32 +33,18 @@ struct CKChoreActiveDetailView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
-            Text("name: \(model.name ?? "~")")
+            Text("title: \(model.title ?? "~")")
             Text("moduleType: \(model.moduleType.rawValue)")
             Text("kidReference: \(model.kidReference?.recordID.recordName ?? "~")")
-            
-            Text("emoji: \(model.emoji ?? "~")")
-            Text("description: \(model.description ?? "~")")
-            Text("bucks: \(model.bucks ?? 0)")
+            Text("ckChoreDescriptionReference: \(model.ckChoreDescriptionReference?.recordID.recordName ?? "~")")
         }
     }
     
-    var pictureView: some View {
-        VStack {
-            Text("Show picture view")
+    func moduleView(moduleType: ActivityModuleType) -> some View {
+        return Group{
+            Text("moduleView \(moduleType.rawValue)")
         }
     }
-    var audioView: some View {
-        VStack {
-            Text("Show audio view")
-        }
-    }
-    var drawingView: some View {
-        VStack {
-            Text("Show drawing view")
-        }
-    }
-
     
     var coverPhotoView: some View {
         Group {
@@ -111,7 +96,7 @@ struct CKChoreActiveDetailView: View {
         
         if let recordReference = familyKitAppState.currentPlayer.recordReference {
             self.model.kidReference = recordReference
-            self.model.name = "yack"
+            //self.model.ckChoreDescriptionReference = descriptionModel
             privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
                 switch result {
                 case .failure(let error):

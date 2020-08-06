@@ -9,20 +9,11 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreDescriptionItemView: View {
+struct CKChoreActiveItemView: View {
     
-    var model: CKChoreDescriptionModel
+    var model: CKActivityActiveModel
     
-    // Image(systemName: "rosette")
     @State var coverPhotoImage = ImageStore.shared.image(name: "turtlerock")
-    
-//    {
-//        if let emoji = model.emoji {
-//            return Image(uiImage: emojiToImage(text: emoji))
-//        } else {
-//            return ImageStore.shared.image(name: "turtlerock")
-//        }
-//    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,7 +25,7 @@ struct CKChoreDescriptionItemView: View {
                 .cornerRadius(5)
             HStack {
                 Spacer()
-                Text(model.name ?? "~")
+                Text(model.moduleType.rawValue)
                     .foregroundColor(.primary)
                     .font(.caption)
                 Spacer()
@@ -43,29 +34,31 @@ struct CKChoreDescriptionItemView: View {
         .padding(.leading, 15)
         .onAppear {
             
-            if let emoji = self.model.emoji {
-                self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
-            } else {
+            // TODO: Load the reference stuff
+//            if let emoji = self.model.emoji {
+//                self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
+//            } else {
                 self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
-            }
+//            }
             
-            self.model.loadCoverPhoto { (result) in
-                switch result {
-                case .failure(let error):
-                    print( "CKChoreDescriptionItemView failure \(error)")
-                case .success(let image):
-                    self.coverPhotoImage = Image(uiImage:image )
-                }
-            }
+            // TODO: CKChoreActiveModel load cover photo
+//            self.model.loadCoverPhoto { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print( "failure \(error)")
+//                case .success(let image):
+//                    self.coverPhotoImage = Image(uiImage:image )
+//                }
+//            }
         }
     }
     
 }//end CKChoreItemView
 
 #if DEBUG
-struct CKChoreItemView_Previews: PreviewProvider {
+struct CKChoreActiveItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreDescriptionItemView( model: CKChoreDescriptionModel.mock)
+        CKChoreActiveItemView( model: CKActivityActiveModel.mock)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

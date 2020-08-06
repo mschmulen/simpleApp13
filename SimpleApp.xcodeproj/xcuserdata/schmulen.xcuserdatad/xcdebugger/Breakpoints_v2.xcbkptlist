@@ -126,42 +126,10 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "reload(service:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - d95014277eb01f1d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FamilyKit.CKChoreDescriptionModel.reload(service: FamilyKit.CKPrivateModelService&lt;FamilyKit.CKChoreDescriptionModel&gt;) -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  uuid = "3FA25228-7767-420B-AE54-7126344492E4 - 4f9742be300f19f9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKChoreDescriptionModel, Swift.Error&gt;) -&gt; () in FamilyKit.CKChoreDescriptionModel.reload(service: FamilyKit.CKPrivateModelService&lt;FamilyKit.CKChoreDescriptionModel&gt;) -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,8 +142,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChoreDescriptionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "reload(service:)"
             landmarkType = "7">
          </BreakpointContent>

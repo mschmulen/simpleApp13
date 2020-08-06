@@ -14,7 +14,7 @@ struct CKChoreActiveRowView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var categoryName: String
-    var items: [CKChoreActiveModel]
+    var items: [CKActivityActiveModel]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,7 +32,6 @@ struct CKChoreActiveRowView: View {
                     ForEach(self.items) { model in
                         NavigationLink(
                             destination: CKChoreActiveDetailView(
-                                moduleType: .picture,
                                 model: model
                             )
                         ) {
@@ -54,10 +53,10 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
             CKChoreActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock
                 ]
             )
                 .previewLayout(.fixed(width: 400, height: 100))
@@ -65,10 +64,10 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
             CKChoreActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock,
-                    CKChoreActiveModel.mock ]                
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock,
+                    CKActivityActiveModel.mock ]                
             )
                 .previewLayout(.fixed(width: 400, height: 100))
                 .environment(\.colorScheme, .dark)

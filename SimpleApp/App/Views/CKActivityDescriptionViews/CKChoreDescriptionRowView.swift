@@ -14,7 +14,7 @@ struct CKChoreDescriptionRowView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var categoryName: String
-    var items: [CKChoreDescriptionModel]
+    var items: [CKActivityDescriptionModel]
     var isPrivate: Bool
     var showAdd: Bool
     
@@ -35,7 +35,7 @@ struct CKChoreDescriptionRowView: View {
                     if showAdd {
                         NavigationLink(
                             destination: CKChoreDescriptionDetailView(
-                                model: CKChoreDescriptionModel(), enableEdit: true
+                                model: CKActivityDescriptionModel(), enableEdit: true
                             )
                         ) {
                             CKChoreDescriptionAddItemView()
@@ -67,10 +67,10 @@ struct CKChoreRowView_Previews: PreviewProvider {
             CKChoreDescriptionRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock
                 ],
                 isPrivate: true,
                 showAdd: true
@@ -80,10 +80,10 @@ struct CKChoreRowView_Previews: PreviewProvider {
             CKChoreDescriptionRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock,
-                    CKChoreDescriptionModel.mock ],
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock,
+                    CKActivityDescriptionModel.mock ],
                 isPrivate: true,
                 showAdd: true
             )

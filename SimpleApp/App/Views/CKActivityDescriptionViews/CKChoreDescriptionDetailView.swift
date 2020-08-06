@@ -16,13 +16,13 @@ struct CKChoreDescriptionDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
     @State var devMessage: String?
     
     @State var chatService: ChatService = ChatService()
     
-    @State var model: CKChoreDescriptionModel
+    @State var model: CKActivityDescriptionModel
     @State private var coverPhotoImage:UIImage?
     
     var enableEdit:Bool
@@ -37,6 +37,10 @@ struct CKChoreDescriptionDetailView: View {
             Text("frequency: \(model.frequency.rawValue)")
             Text("who: \(model.who ?? "~")")
             Text("timeofday: \(model.timeofday ?? "~")")
+            
+            Text("moduleType: \(model.moduleType.rawValue)")
+
+            
             // TODO: handle the imageAsset
             //Text("imageAsset: \(model.imageName ?? "~")")
         }
@@ -74,17 +78,24 @@ struct CKChoreDescriptionDetailView: View {
             TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("who", text: $model.who ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Picker(selection: $model.frequency, label: Text("Frequency")) {
-                ForEach(CKChoreDescriptionModel.Frequency.allCases, id: \.self) {
+            Picker(selection: $model.moduleType, label: Text("Type")) {
+                ForEach(ActivityModuleType.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
-            TextField("timeofday", text: $model.timeofday ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Picker(selection: $model.frequency, label: Text("Frequency")) {
+                ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            
+//            TextField("who", text: $model.who ?? "")
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+//            TextField("timeofday", text: $model.timeofday ?? "")
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
             
             NavigationLink(destination: CoverPhotoUploadView(model: model) ) {
                 Text("change coverPhoto")
@@ -107,54 +118,6 @@ struct CKChoreDescriptionDetailView: View {
         }
     }
     
-    var actionView: some View {
-        Section(header: Text("Completion Actions")) {
-            
-            NavigationLink(destination: CKChoreActiveDetailView(
-                moduleType: model.moduleType,
-                model: CKChoreActiveModel()
-            )) {
-                VStack {
-                    Text("START")
-                    Image(systemName: "plus")
-                }
-            }
-
-            NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
-                Text("leave a voice message")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
-                Text("chat with?")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: PhotoView()) {
-                Text("take a picture")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: DrawView()) {
-                Text("draw a picture")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: SimpleGameView()) {
-                Text("play this game")
-                    .foregroundColor(.blue)
-            }
-            
-            Button(action: {
-                print("do action")
-            }) {
-                Text("check box")
-            }
-            
-        }
-    }
-
-    
     var body: some View {
         List{
             if devMessage != nil {
@@ -173,10 +136,16 @@ struct CKChoreDescriptionDetailView: View {
                     }
                 }
                 editView
-                actionView
             } else {
                 readOnlyView
-                actionView
+                NavigationLink(destination: CKChoreNewActiveDetailView(
+                    descriptionModel: model
+                )) {
+                    VStack {
+                        Text("START")
+                        Image(systemName: "plus")
+                    }
+                }
             }
             
             Section(header:Text("Assets")) {
@@ -218,9 +187,9 @@ struct CKChoreDescriptionDetailView: View {
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreDescriptionDetailView(model: CKChoreDescriptionModel.mock, enableEdit: false)
+            CKChoreDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: false)
             
-            CKChoreDescriptionDetailView(model: CKChoreDescriptionModel.mock, enableEdit: true)
+            CKChoreDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: true)
         }
     }
 }

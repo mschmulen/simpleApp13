@@ -15,9 +15,9 @@ struct CoverPhotoUploadView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var appState: AppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
-    var model: CKChoreDescriptionModel
+    var model: CKActivityDescriptionModel
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false

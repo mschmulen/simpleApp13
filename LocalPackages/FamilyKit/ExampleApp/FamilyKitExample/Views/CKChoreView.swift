@@ -63,7 +63,7 @@ struct CKChoreView: View {
 //                }
             }
 //                .disabled(yack.items.isEmpty)
-            .navigationBarTitle("Chores")
+            .navigationBarTitle("Activities")
             .navigationBarItems(trailing: trailingButton)
         }.onAppear {
             self.choreService.fetch { (result) in

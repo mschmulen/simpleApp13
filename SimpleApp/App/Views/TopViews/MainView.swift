@@ -18,8 +18,8 @@ struct MainView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKChoreActiveModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
     
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
@@ -114,8 +114,8 @@ struct MainView_Previews: PreviewProvider {
             //.environment(\.window, window)
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
-            .environmentObject(CKPrivateModelService<CKChoreDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKChoreDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
             .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
             .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
     }

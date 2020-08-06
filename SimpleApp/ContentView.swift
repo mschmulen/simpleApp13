@@ -17,8 +17,8 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKChoreActiveModel>
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityActiveModel>
 
     @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
     @EnvironmentObject var funService: CKPublicModelService<CKFunModel>

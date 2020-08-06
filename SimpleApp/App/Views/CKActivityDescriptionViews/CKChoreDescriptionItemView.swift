@@ -9,9 +9,9 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreActiveItemView: View {
+struct CKChoreDescriptionItemView: View {
     
-    var model: CKChoreActiveModel
+    var model: CKActivityDescriptionModel
     
     // Image(systemName: "rosette")
     @State var coverPhotoImage = ImageStore.shared.image(name: "turtlerock")
@@ -49,24 +49,23 @@ struct CKChoreActiveItemView: View {
                 self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
             }
             
-            // TODO: CKChoreActiveModel load cover photo
-//            self.model.loadCoverPhoto { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print( "failure \(error)")
-//                case .success(let image):
-//                    self.coverPhotoImage = Image(uiImage:image )
-//                }
-//            }
+            self.model.loadCoverPhoto { (result) in
+                switch result {
+                case .failure(let error):
+                    print( "CKChoreDescriptionItemView failure \(error)")
+                case .success(let image):
+                    self.coverPhotoImage = Image(uiImage:image )
+                }
+            }
         }
     }
     
 }//end CKChoreItemView
 
 #if DEBUG
-struct CKChoreActiveItemView_Previews: PreviewProvider {
+struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreActiveItemView( model: CKChoreActiveModel.mock)
+        CKChoreDescriptionItemView( model: CKActivityDescriptionModel.mock)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         familyKitAppState.onStartup()
         
-        let privateChoreService = CKPrivateModelService<CKChoreDescriptionModel>(
+        let privateChoreService = CKPrivateModelService<CKActivityDescriptionModel>(
             container: container
         )
         privateChoreService.fetch(completion: { result in
@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         privateChoreService.listenForNotifications()
        
         // CKChoreActiveModel
-        let privateActiveChoreService = CKPrivateModelService<CKChoreActiveModel>(
+        let privateActiveChoreService = CKPrivateModelService<CKActivityActiveModel>(
             container: container
         )
         privateActiveChoreService.fetch(completion: { result in

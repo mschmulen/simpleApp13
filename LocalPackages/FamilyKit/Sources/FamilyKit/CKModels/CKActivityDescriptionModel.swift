@@ -1,29 +1,44 @@
 //
-//  CKChoreActiveModel.swift
-//  
+//  CKChoreDescriptionModel.swift
+//  FamilyKit
 //
-//  Created by Matthew Schmulen on 8/4/20.
+//  Created by Matthew Schmulen on 7/25/20.
+//  Copyright © 2020 jumptack. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKChoreActiveModel: CKModel {
+public enum ActivityModuleType: String, CaseIterable {
+    case audio
+    case picture
+    case drawing
+    case chat
+}
+
+public struct CKActivityDescriptionModel: CKModel {
     
-    public typealias ItemType = CKChoreActiveModel
-    public static let recordName = "ChoreActive"
+    public typealias ItemType = CKActivityDescriptionModel
+    public static let recordName = "Chore"
     public static let ckSchemeKeys = [
         "name",
         "description",
         "bucks",
         "emoji",
         "category",
-        "kidReference",
+        "who",
+        "frequency",
+        "timeofday",
         "coverPhoto"
     ]
     
-    
+    public enum Frequency: String, CaseIterable {
+        case once
+        case daily
+        case weekly
+        case monthly
+    }
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
@@ -33,34 +48,32 @@ public struct CKChoreActiveModel: CKModel {
     public var bucks: Int?
     public var emoji: String?
     public var category: String?
-    public var kidReference: CKRecord.Reference?
+    
+    public var who: String?
+    public var frequency: Frequency = .once
+    public var timeofday: String?
+    
     public var coverPhoto: CKAsset?
     
-    public var moduleType: CKChoreDescriptionModel.ModuleType = CKChoreDescriptionModel.ModuleType.picture
-    
-    // TODO
-    public var resultAssetText: CKAsset?
-    public var resultAssetImage: CKAsset?
-    public var resultAssetAudio: CKAsset?
-    
+    public var moduleType: ActivityModuleType = ActivityModuleType.picture    // audio, picture, drawing
     
     public var title: String? {
         return name
     }
     
-    public static var mock: CKChoreActiveModel {
-        var model = CKChoreActiveModel()
+    public static var mock: CKActivityDescriptionModel {
+        var model = CKActivityDescriptionModel()
         model.name = "Get ready for bed"
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
+        model.who = "kids"
         model.bucks = 2
         model.emoji = "🧵"
         model.category = "chore"
-        model.kidReference = nil
+        
+        model.frequency = .daily
+        model.timeofday = "Morning"
         model.coverPhoto = nil
-        model.resultAssetText = nil
-        model.resultAssetImage = nil
-        model.resultAssetAudio = nil
-
+        model.moduleType = .drawing
         return model
     }
     
@@ -71,34 +84,42 @@ public struct CKChoreActiveModel: CKModel {
         self.bucks = nil
         self.emoji = nil
         self.category = nil
-        self.kidReference = nil
+        
+        self.who = nil
+        self.frequency = .once
+        self.timeofday = nil
         self.coverPhoto = nil
-        self.resultAssetText = nil
-        self.resultAssetImage = nil
-        self.resultAssetAudio = nil
+        self.moduleType = .drawing
     }
     
     public init?(record: CKRecord) {
         guard
-            let _name = record["name"] as? String
+            let _name = record["name"] as? String,
+            let _description = record["description"] as? String
             else {
-                print("CKChoreActiveModel incomplete record")
+                print("CKChoreModel incomplete record")
                 print( "\(record["name"] as? String ?? "Unknown title")")
                 return nil
         }
         
         self.recordID = record.recordID
         self.name = _name
-        self.description = record["description"] as? String
+        self.description = _description
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
         self.category = record["category"] as? String
-        self.kidReference = record["kidReference"] as? CKRecord.Reference
+        
+        self.who = record["who"] as? String
+        
+        if let frequencyString =  record["frequency"] as? String {
+            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
+        }
+        self.timeofday = record["timeofday"] as? String
         self.coverPhoto = record["coverPhoto"] as? CKAsset
-
-        self.resultAssetText = record["resultAssetText"] as? CKAsset
-        self.resultAssetImage = record["resultAssetImage"] as? CKAsset
-        self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
+        
+        if let moduleTypeString =  record["moduleType"] as? String {
+            self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
+        }
     }
     
     enum CustomError: Error {
@@ -108,10 +129,10 @@ public struct CKChoreActiveModel: CKModel {
 }
 
 // TODO: add this to the generic CKModel requirement
-extension CKChoreActiveModel {
+extension CKActivityDescriptionModel {
     
     // TODO: add this to the generic CKModel requirement
-    public func reload( service: CKPrivateModelService<CKChoreActiveModel> ) {
+    public func reload( service: CKPrivateModelService<CKActivityDescriptionModel> ) {
         service.fetchSingle(model: self) { result in
             print( "result \(result)")
         }
@@ -119,17 +140,17 @@ extension CKChoreActiveModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKChoreActiveModel {
+extension CKActivityDescriptionModel {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKChoreActiveModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKActivityDescriptionModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKChoreActiveModel.recordName)
+            record = CKRecord(recordType: CKActivityDescriptionModel.recordName)
         }
         
         if let name = name {
@@ -152,25 +173,12 @@ extension CKChoreActiveModel {
             record["category"] = category as CKRecordValue
         }
         
-        if let kidReference = kidReference {
-            record["kidReference"] = kidReference as CKRecordValue
-        }
+        record["frequency"] = frequency.rawValue as CKRecordValue
         
-        if let coverPhoto = coverPhoto {
-            record["coverPhoto"] = coverPhoto as CKRecordValue
-        }
+        record["moduleType"] = moduleType.rawValue as CKRecordValue
         
-        if let resultAssetText = resultAssetText {
-            record["resultAssetText"] = resultAssetText as CKRecordValue
-        }
-        
-        if let resultAssetImage = resultAssetImage {
-            record["resultAssetImage"] = resultAssetImage as CKRecordValue
-        }
-
-        if let resultAssetAudio = resultAssetAudio {
-            record["resultAssetAudio"] = resultAssetAudio as CKRecordValue
-        }
+        // TODO: handle the imageAsset
+        //record["coverPhoto"] = coverPhoto as CKRecordValue
         
         return record
     }

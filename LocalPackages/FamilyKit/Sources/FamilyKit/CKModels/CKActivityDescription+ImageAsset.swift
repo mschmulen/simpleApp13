@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // TODO: Image asset WIP
-extension CKChoreDescriptionModel {
+extension CKActivityDescriptionModel {
     
     /// loadCoverPhoto
     public func loadCoverPhoto(completion: @escaping (_ result: Result<UIImage, Error>) -> ()) {
