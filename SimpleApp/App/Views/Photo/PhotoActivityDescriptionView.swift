@@ -1,5 +1,5 @@
 //
-//  PhotoUpload.swift
+//  PhotoActivityDescriptionView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/4/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct PhotoUploadActivityDescriptionView: View {
+struct PhotoActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext

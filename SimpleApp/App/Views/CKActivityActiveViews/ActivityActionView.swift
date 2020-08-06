@@ -9,6 +9,7 @@
 import SwiftUI
 import FamilyKit
 import SimpleGames
+import DrawingKit
 
 struct ActivityActionView: View {
     
@@ -44,10 +45,11 @@ struct ActivityActionView: View {
             }
             
             if model.moduleType == .photo {
-                NavigationLink(destination: PhotoActivityModelView(model: $model)) {
-                    Text("take a picture")
-                        .foregroundColor(.blue)
-                }
+                PhotoActivityView(model: $model)
+//                NavigationLink(destination: PhotoActivityModelView(model: $model)) {
+//                    Text("take a picture")
+//                        .foregroundColor(.blue)
+//                }
             }
             
             if model.moduleType == .audio {
@@ -83,17 +85,11 @@ struct ActivityActionView: View {
             }
             
             if model.moduleType == .drawing {
-                NavigationLink(destination: DrawView()) {
-                    Text("draw a picture")
-                        .foregroundColor(.blue)
-                }
+                DrawingView()
             }
             
             if model.moduleType == .chat {
-                NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
-                    Text("chat with?")
-                        .foregroundColor(.blue)
-                }
+                ChatSessionView(chatService: self.$chatService)
             }
         }
     }

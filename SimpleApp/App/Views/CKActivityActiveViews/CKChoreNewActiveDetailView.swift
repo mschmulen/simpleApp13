@@ -45,7 +45,7 @@ struct CKChoreNewActiveDetailView: View {
                         self.devMessage = nil
                 }
             }
-            infoView
+            //infoView
             ActivityActionView(model: $model)
         }
         .onAppear {

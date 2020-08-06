@@ -1,5 +1,5 @@
 //
-//  PhotoViewActivityModelView.swift
+//  PhotoActivityView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/4/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct PhotoActivityModelView: View {
+struct PhotoActivityView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext

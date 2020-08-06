@@ -97,7 +97,7 @@ struct CKChoreDescriptionDetailView: View {
 //            TextField("timeofday", text: $model.timeofday ?? "")
 //                .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            NavigationLink(destination: PhotoUploadActivityDescriptionView(model: model) ) {
+            NavigationLink(destination: PhotoActivityDescriptionView(model: model) ) {
                 Text("change coverPhoto")
             }
             
