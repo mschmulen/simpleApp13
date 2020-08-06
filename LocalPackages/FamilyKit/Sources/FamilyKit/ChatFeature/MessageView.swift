@@ -8,28 +8,42 @@
 import SwiftUI
 
 struct MessageView : View {
-    var currentMessage: ChatMessage
+    
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    
+    var currentMessage: CKChatMessageModel
     var body: some View {
         HStack(alignment: .bottom, spacing: 15) {
-            if !currentMessage.user.isCurrentUser {
-                Text(currentMessage.user.emoji)
-                    .font(.largeTitle)
-                //Image(systemName: "person")
-                //Image(currentMessage.user.avatar)
-                //.resizable()
-                //.frame(width: 40, height: 40, alignment: .center)
-                .cornerRadius(20)
-            } else {
+            if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
                 Spacer()
+            } else {
+                Text(currentMessage.ownerEmoji ?? "~")
+                    .font(.largeTitle)
+                    //Image(systemName: "person")
+                    //Image(currentMessage.user.avatar)
+                    //.resizable()
+                    //.frame(width: 40, height: 40, alignment: .center)
+                    .cornerRadius(20)
             }
-            ContentMessageView(contentMessage: currentMessage.content,
-                               isCurrentUser: currentMessage.user.isCurrentUser)
+            //            if !currentMessage.user.isCurrentUser {
+            //                Text(currentMessage.ownerEmoji)
+            //                    .font(.largeTitle)
+            //                //Image(systemName: "person")
+            //                //Image(currentMessage.user.avatar)
+            //                //.resizable()
+            //                //.frame(width: 40, height: 40, alignment: .center)
+            //                .cornerRadius(20)
+            //            } else {
+            //                Spacer()
+            //            }
+            ContentMessageView(contentMessage: currentMessage.message ?? "~",
+                               isCurrentUser: false)
         }.padding()
     }
 }
 
-struct MessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageView(currentMessage: ChatMessage(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser))
-    }
-}
+//struct MessageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageView(currentMessage: ChatMessage(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser))
+//    }
+//}

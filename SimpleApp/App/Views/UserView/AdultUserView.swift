@@ -27,8 +27,6 @@ struct AdultUserView: View {
     
     @State var devMessage: String?
     
-    @State var chatService = ChatService()
-    
     var body: some View {
         List{
             if devMessage != nil {
@@ -85,11 +83,6 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: ChatsView(chatService: $chatService)) {
-                    Text("Show Chats View")
-                        .foregroundColor(.blue)
-                }
-                
                 NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
                     Text("Show AudioRecordView")
                         .foregroundColor(.blue)
@@ -104,8 +97,6 @@ struct AdultUserView: View {
                     Text("Show SimpleGameView")
                         .foregroundColor(.blue)
                 }
-                
-                
             }
             
             Section(header: Text("Dev Stuff")) {
@@ -200,7 +191,7 @@ struct AdultUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.kidService.fetch { (result) in
                 print("result")
-                self.familyKitAppState.onUpdate()
+                self.familyKitAppState.onRefresh()
             }
         })
         //.navigationBarItems(trailing: trailingButton)

@@ -145,7 +145,7 @@ public class FamilyKitAppState: ObservableObject {
 // MARK: - StartupServices
 extension FamilyKitAppState {
     
-    public func onUpdate() {
+    public func onRefresh() {
         
         kidService.fetch { (result) in
             print( "kidService fetch \(result)")
@@ -166,10 +166,10 @@ extension FamilyKitAppState {
             case .success(let models) :
                 print( "kidService success \(models)")
                 //self.kids = self.kidService.models
-                self.onUpdate()
+                self.onRefresh()
             case .failure(let error):
                 print( "kidService error \(error)")
-                self.onUpdate()
+                self.onRefresh()
             }
         })
         kidService.subscribe()
@@ -180,10 +180,10 @@ extension FamilyKitAppState {
             case .success(let models) :
                 print( "adultService success \(models)")
                 //self.kids = self.kidService.models
-                self.onUpdate()
+                self.onRefresh()
             case .failure(let error):
                 print( "adultService error \(error)")
-                self.onUpdate()
+                self.onRefresh()
             }
         })
         adultService.subscribe()

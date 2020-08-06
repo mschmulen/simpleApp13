@@ -21,7 +21,7 @@ struct CKChoreNewActiveDetailView: View {
     
     @State var devMessage: String?
     
-    @State var chatService: ChatService = ChatService()
+    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
     
     var descriptionModel: CKActivityDescriptionModel
     

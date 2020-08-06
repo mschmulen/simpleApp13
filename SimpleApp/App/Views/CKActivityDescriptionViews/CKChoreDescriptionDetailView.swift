@@ -20,8 +20,6 @@ struct CKChoreDescriptionDetailView: View {
     
     @State var devMessage: String?
     
-    @State var chatService: ChatService = ChatService()
-    
     @State var model: CKActivityDescriptionModel
     @State private var coverPhotoImage:UIImage?
     

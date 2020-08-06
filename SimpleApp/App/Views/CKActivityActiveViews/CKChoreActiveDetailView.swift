@@ -9,6 +9,7 @@
 import SwiftUI
 import FamilyKit
 import SimpleGames
+import CloudKit
 
 struct CKChoreActiveDetailView: View {
     
@@ -20,7 +21,7 @@ struct CKChoreActiveDetailView: View {
     
     @State var devMessage: String?
     
-    @State var chatService: ChatService = ChatService()
+    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
     
     @State var model: CKActivityModel
     @State private var coverPhotoImage:UIImage?

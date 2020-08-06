@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 public struct ChatsView: View {
     
@@ -76,7 +77,7 @@ public struct ChatsView: View {
 
 struct ChatsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsView(chatService: .constant(ChatService()))
+        ChatsView(chatService: .constant(ChatService(container: CKContainer(identifier: CKContainerIdentifier))))
     }
 }
 

@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import CloudKit
 
 public struct ChatSessionView: View {
+    
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @State var typingMessage: String = ""
     
@@ -28,8 +31,9 @@ public struct ChatSessionView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(chatService.realTimeMessages, id: \.self) { msg in
-                        MessageView(currentMessage: msg)
+                    //ForEach(chatService.chatMessageService.models, id: \.self) { msg in
+                    ForEach( self.chatService.chatMessageService.models ) { model in
+                        MessageView(currentMessage: model)
                     }
                 }
                 HStack {
@@ -40,7 +44,7 @@ public struct ChatSessionView: View {
                         Text("Send")
                     }
                 }.frame(minHeight: CGFloat(50)).padding()
-            }.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
+            }//.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
@@ -49,14 +53,20 @@ public struct ChatSessionView: View {
     }
     
     func sendMessage() {
-        chatService.sendMessage(ChatMessage(content: typingMessage, user: DataSource.secondUser))
+        var newMessage = CKChatMessageModel()
+        newMessage.message = typingMessage
+        newMessage.ownerEmoji = familyKitAppState.currentPlayer.name
+        newMessage.ownerName = familyKitAppState.currentPlayer.emoji
+        newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
+        //chatService.sendMessage(ChatMessage(content: typingMessage, user: DataSource.secondUser))
+        chatService.sendMessage(newMessage)
         typingMessage = ""
     }
 }
 
-struct ChatSessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatSessionView(chatService: .constant(ChatService()))
-    }
-}
+//struct ChatSessionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatSessionView(chatService: .constant(ChatService(container: CKContainer(identifier: CKContainerIdentifier))))
+//    }
+//}
 

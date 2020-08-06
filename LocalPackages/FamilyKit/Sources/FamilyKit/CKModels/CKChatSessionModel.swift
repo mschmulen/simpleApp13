@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKChatSessionGroupModel: CKModel {
+public struct CKChatSessionModel: CKModel {
     
-    public typealias ItemType = CKChatSessionGroupModel
-    public static let recordName = "ChatSessionGroup"
+    public typealias ItemType = CKChatSessionModel
+    public static let recordName = "ChatSession"
     public static let ckSchemeKeys = [
         "name"
     ]
@@ -27,8 +27,8 @@ public struct CKChatSessionGroupModel: CKModel {
         return name
     }
     
-    public static var mock: CKChatSessionGroupModel {
-        var model = CKChatSessionGroupModel()
+    public static var mock: CKChatSessionModel {
+        var model = CKChatSessionModel()
         model.name = "Get ready for bed"
         return model
     }
@@ -58,10 +58,10 @@ public struct CKChatSessionGroupModel: CKModel {
 }
 
 // TODO: add this to the generic CKModel requirement
-extension CKChatSessionGroupModel {
+extension CKChatSessionModel {
     
     // TODO: add this to the generic CKModel requirement
-    public func reload( service: CKPrivateModelService<CKChatSessionGroupModel> ) {
+    public func reload( service: CKPrivateModelService<CKChatSessionModel> ) {
         service.fetchSingle(model: self) { result in
             print( "result \(result)")
         }
@@ -69,17 +69,17 @@ extension CKChatSessionGroupModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKChatSessionGroupModel {
+extension CKChatSessionModel {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKChatSessionGroupModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKChatSessionModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKChatSessionGroupModel.recordName)
+            record = CKRecord(recordType: CKChatSessionModel.recordName)
         }
         
         if let name = name {

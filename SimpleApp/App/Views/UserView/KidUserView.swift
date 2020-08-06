@@ -27,8 +27,6 @@ struct KidUserView: View {
     
     @State var devMessage: String?
     
-    @State var chatService = ChatService()
-    
     var body: some View {
         List{
             if devMessage != nil {
@@ -50,7 +48,7 @@ struct KidUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.kidService.fetch { (result) in
                 print("result")
-                self.familyKitAppState.onUpdate()
+                self.familyKitAppState.onRefresh()
             }
         })
         //.navigationBarItems(trailing: trailingButton)
