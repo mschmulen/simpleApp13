@@ -17,12 +17,14 @@
 		7601813124C4A4B500B339E4 /* SimpleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601813024C4A4B500B339E4 /* SimpleAppTests.swift */; };
 		7601813C24C4A4B500B339E4 /* SimpleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601813B24C4A4B500B339E4 /* SimpleAppUITests.swift */; };
 		7601814F24C4A53200B339E4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601814E24C4A53200B339E4 /* AppState.swift */; };
-		7601816024C4B01300B339E4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601815F24C4B01300B339E4 /* UserView.swift */; };
+		7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601815F24C4B01300B339E4 /* AdultUserView.swift */; };
 		7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817024C54B8800B339E4 /* PurchaseView.swift */; };
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		7616F66424DC4E2A003488EB /* CKChoreNewActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66324DC4E2A003488EB /* CKChoreNewActiveDetailView.swift */; };
 		7616F66624DC692C003488EB /* ActivityActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66524DC692C003488EB /* ActivityActionView.swift */; };
+		7616F66824DC7723003488EB /* MainKidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* MainKidView.swift */; };
+		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		76208B7B24D5F7A0001F46E2 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76208B7A24D5F7A0001F46E2 /* FamilyKit */; };
 		76208B7E24D5F8FE001F46E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76208B7D24D5F8FE001F46E2 /* CloudKit.framework */; };
 		76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B7F24D60051001F46E2 /* KidDetailView.swift */; };
@@ -60,7 +62,7 @@
 		76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6224CA59C4004950C0 /* ImageStore.swift */; };
 		76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6524CA59FC004950C0 /* ConnectModel.swift */; };
 		76BADB6824CA5A02004950C0 /* ChoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6724CA5A02004950C0 /* ChoreModel.swift */; };
-		76BADB6D24CA5A7A004950C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* MainView.swift */; };
+		76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */; };
 		76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7324CB0A03004950C0 /* ChoreDetailView.swift */; };
 		76BADB7724CB0AC6004950C0 /* RowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7624CB0AC6004950C0 /* RowViews.swift */; };
 		76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */; };
@@ -128,12 +130,14 @@
 		7601813B24C4A4B500B339E4 /* SimpleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAppUITests.swift; sourceTree = "<group>"; };
 		7601813D24C4A4B500B339E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7601814E24C4A53200B339E4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		7601815F24C4B01300B339E4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		7601815F24C4B01300B339E4 /* AdultUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultUserView.swift; sourceTree = "<group>"; };
 		7601817024C54B8800B339E4 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7616F66324DC4E2A003488EB /* CKChoreNewActiveDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKChoreNewActiveDetailView.swift; sourceTree = "<group>"; };
 		7616F66524DC692C003488EB /* ActivityActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityActionView.swift; sourceTree = "<group>"; };
+		7616F66724DC7723003488EB /* MainKidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainKidView.swift; sourceTree = "<group>"; };
+		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		76208B7924D5F794001F46E2 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
 		76208B7C24D5F8EC001F46E2 /* SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleApp.entitlements; sourceTree = "<group>"; };
 		76208B7D24D5F8FE001F46E2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -173,7 +177,7 @@
 		76BADB6224CA59C4004950C0 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		76BADB6524CA59FC004950C0 /* ConnectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectModel.swift; sourceTree = "<group>"; };
 		76BADB6724CA5A02004950C0 /* ChoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreModel.swift; sourceTree = "<group>"; };
-		76BADB6C24CA5A7A004950C0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdultView.swift; sourceTree = "<group>"; };
 		76BADB7324CB0A03004950C0 /* ChoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreDetailView.swift; sourceTree = "<group>"; };
 		76BADB7624CB0AC6004950C0 /* RowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViews.swift; sourceTree = "<group>"; };
 		76BADB7E24CB0EA3004950C0 /* FunDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunDetailView.swift; sourceTree = "<group>"; };
@@ -322,8 +326,9 @@
 		7601817524C61E0800B339E4 /* TopViews */ = {
 			isa = PBXGroup;
 			children = (
-				76BADB6C24CA5A7A004950C0 /* MainView.swift */,
+				76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */,
 				76BADB7624CB0AC6004950C0 /* RowViews.swift */,
+				7616F66724DC7723003488EB /* MainKidView.swift */,
 			);
 			path = TopViews;
 			sourceTree = "<group>";
@@ -332,7 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				7601817024C54B8800B339E4 /* PurchaseView.swift */,
-				7601815F24C4B01300B339E4 /* UserView.swift */,
+				7601815F24C4B01300B339E4 /* AdultUserView.swift */,
+				7616F66924DC77B7003488EB /* KidUserView.swift */,
 				76208B7F24D60051001F46E2 /* KidDetailView.swift */,
 				76208B8124D6005E001F46E2 /* AdultDetailView.swift */,
 			);
@@ -625,14 +631,15 @@
 				76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKChoreActiveListView.swift in Sources */,
-				7601816024C4B01300B339E4 /* UserView.swift in Sources */,
+				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
 				76BADB6124CA599A004950C0 /* FunModel.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKChoreDescriptionItemView.swift in Sources */,
 				76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKChoreDescriptionListView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKChoreDescriptionAddItemView.swift in Sources */,
-				76BADB6D24CA5A7A004950C0 /* MainView.swift in Sources */,
+				76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */,
+				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
 				76BADB7724CB0AC6004950C0 /* RowViews.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
@@ -649,6 +656,7 @@
 				76C2FDFF24DB9B9000E030C2 /* CKChoreActiveNoItemsView.swift in Sources */,
 				76BADB6624CA59FC004950C0 /* ConnectModel.swift in Sources */,
 				76C2FE0024DB9B9000E030C2 /* CKChoreActiveItemView.swift in Sources */,
+				7616F66824DC7723003488EB /* MainKidView.swift in Sources */,
 				76208B8224D6005E001F46E2 /* AdultDetailView.swift in Sources */,
 				7616F66624DC692C003488EB /* ActivityActionView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,

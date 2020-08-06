@@ -1,8 +1,8 @@
 //
-//  MainView.swift
+//  MainKidView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 7/23/20.
+//  Created by Matthew Schmulen on 8/6/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainView: View {
+struct MainKidView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -32,7 +32,7 @@ struct MainView: View {
         NavigationView {
             VStack {
                 VStack {
-                    Text("Featured View")
+                    Text("Kid View")
                 }
                 
                 List{
@@ -50,7 +50,7 @@ struct MainView: View {
                     Section() {
                         CKChoreActiveRowView(
                             categoryName: "Chores (Active)",
-                            items: privateActiveChoreService.models                            
+                            items: privateActiveChoreService.models
                         )
                     }
                     .listRowInsets(EdgeInsets())
@@ -78,7 +78,7 @@ struct MainView: View {
     private var trailingButton: some View {
         Group {
             NavigationLink(destination:
-                UserView()
+                KidUserView()
                     .environment(\.window, window)
                     .environmentObject(appState)
                     .environmentObject(familyKitAppState)
@@ -108,9 +108,9 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct MainKidView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainKidView()
             //.environment(\.window, window)
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
@@ -120,3 +120,4 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
     }
 }
+

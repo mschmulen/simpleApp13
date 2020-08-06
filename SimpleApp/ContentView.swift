@@ -27,7 +27,8 @@ struct ContentView: View {
     @State var showNoiCloudConnection = false
     
     enum TopView {
-        case mainView
+        case mainAdultView
+        case mainKidView
         case purchaseView
         case userView
     }
@@ -49,8 +50,18 @@ struct ContentView: View {
                     .environmentObject(familyKitAppState)
             } else {
                 
-                if appState.topView == .mainView {
-                    MainView()
+                if appState.topView == .mainAdultView {
+                    MainAdultView()
+                        .environment(\.window, window)
+                        .environmentObject(appState)
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(privateChoreService)
+                        .environmentObject(funService)
+                        .environmentObject(connectService)
+                }
+                
+                if appState.topView == .mainKidView {
+                    MainKidView()
                         .environment(\.window, window)
                         .environmentObject(appState)
                         .environmentObject(familyKitAppState)
@@ -61,7 +72,7 @@ struct ContentView: View {
                 
                 if appState.topView == .userView {
                     NavigationView {
-                        UserView()
+                        AdultUserView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)

@@ -11,7 +11,7 @@ import FamilyKit
 import CloudKit
 import SimpleGames
 
-struct UserView: View {
+struct AdultUserView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -226,19 +226,19 @@ struct UserView: View {
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            UserView()
+            AdultUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
                 .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
                 .previewDevice(PreviewDevice(rawValue: "iPad Air 2"))
             
-            UserView()
+            AdultUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
                 .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
             .previewDisplayName("iPhone SE")
-            UserView()
+            AdultUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
                 .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
