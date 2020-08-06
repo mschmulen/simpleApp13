@@ -34,11 +34,26 @@ struct CKChoreActiveItemView: View {
         .padding(.leading, 15)
         .onAppear {
             
+            if let resultAssetImage = self.model.resultAssetImage {
+                if let resultAssetImage_fileURL = resultAssetImage.fileURL {
+                    do {
+                        let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+                        if let loadedUIImage = UIImage(data: imageData) {
+                            self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                            return
+                        }
+                    } catch {
+                        print("Error loading image : \(error)")
+                    }
+                }
+            }
+            
+            self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
+            
             // TODO: Load the reference stuff
 //            if let emoji = self.model.emoji {
 //                self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
 //            } else {
-                self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
 //            }
             
             // TODO: CKChoreActiveModel load cover photo

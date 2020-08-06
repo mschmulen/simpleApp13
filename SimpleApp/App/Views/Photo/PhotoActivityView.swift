@@ -34,16 +34,16 @@ struct PhotoActivityView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     //.aspectRatio(contentMode: .fill)
-                    .frame(width: 200)//, height: 200)
+                    //.frame(width: 200)//, height: 200)
                     // .frame(width: 50)
                     .clipped()
             } else {
                 Rectangle()
                     .fill(Color.red)
-                    .frame(width: 200, height: 200)
+                    //.frame(width: 200, height: 200)
             }
         }
-        .frame(width: 280, height: 200)
+        .frame(width: 300)
         .onTapGesture {
             self.showingImagePicker.toggle()
         }
@@ -55,13 +55,16 @@ struct PhotoActivityView: View {
                 Text(statusMessage!)
             }
             
+            imageView
+            
+            Spacer()
+            
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("CANCEL")
             }
-            
-            imageView
+            Spacer()
             
             if inputImage != nil {
                 Button(action: {
@@ -70,7 +73,8 @@ struct PhotoActivityView: View {
                     Text("SAVE IMAGE")
                 }
             }
-            
+            Spacer()
+
             if inputImage == nil {
                 Group {
                     Button(action: {
@@ -83,6 +87,8 @@ struct PhotoActivityView: View {
                 }
             }
             
+            Spacer()
+
             if inputImage == nil {
                 Group {
                     Button(action: {
@@ -102,6 +108,7 @@ struct PhotoActivityView: View {
             print("onAppear")
             
             // TODO Load the image in the
+            self.loadImage()
             
         }
     }//end body
@@ -113,6 +120,7 @@ struct PhotoActivityView: View {
                     let imageData = try Data(contentsOf: resultAssetImage_fileURL)
                     if let loadedUIImage = UIImage(data: imageData) {
                         image = Image(uiImage: loadedUIImage)
+                        return
                     }
                 } catch {
                     print("Error loading image : \(error)")
