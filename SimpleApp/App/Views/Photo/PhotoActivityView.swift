@@ -109,16 +109,18 @@ struct PhotoActivityView: View {
     }//end body
     
     func loadImage() {
-        if let resultAssetImage = model.resultAssetImage {
-            if let resultAssetImage_fileURL = resultAssetImage.fileURL {
-                do {
-                    let imageData = try Data(contentsOf: resultAssetImage_fileURL)
-                    if let loadedUIImage = UIImage(data: imageData) {
-                        image = Image(uiImage: loadedUIImage)
-                        return
+        if image == nil {
+            if let resultAssetImage = model.resultAssetImage {
+                if let resultAssetImage_fileURL = resultAssetImage.fileURL {
+                    do {
+                        let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+                        if let loadedUIImage = UIImage(data: imageData) {
+                            image = Image(uiImage: loadedUIImage)
+                            return
+                        }
+                    } catch {
+                        print("Error loading image : \(error)")
                     }
-                } catch {
-                    print("Error loading image : \(error)")
                 }
             }
         }
