@@ -11,25 +11,40 @@ import FamilyKit
 
 struct CKChoreActiveItemView: View {
     
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    
     var model: CKActivityModel
     
     @State var coverPhotoImage = ImageStore.shared.image(name: "turtlerock")
     
     var body: some View {
+        
         VStack(alignment: .leading) {
-            coverPhotoImage
-                .renderingMode(.original)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 100, height: 100)
-                .cornerRadius(5)
+            ZStack {
+                coverPhotoImage
+                    .renderingMode(.original)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(5)
+                // TODO: make a fancy ztack for this cover photo thing
+//                if model.kidReference != nil {
+//                    Text("\(familyKitAppState.findUserForRecord(recordReference: model.kidReference!)?.name ?? "~")")
+//                }
+            }
             HStack {
                 Spacer()
-                Text(model.title ?? "~")
-                    .foregroundColor(.primary)
-                    .font(.caption)
+                VStack {
+                    if model.kidReference != nil {
+                        Text("\(familyKitAppState.findUserForRecord(recordReference: model.kidReference!)?.name ?? "~")")
+                    }
+                    Text(model.title ?? "~")
+                        .foregroundColor(.primary)
+                        .font(.caption)
+                }
                 Spacer()
             }
+            
         }
         .padding(.leading, 15)
         .onAppear {

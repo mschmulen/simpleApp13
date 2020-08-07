@@ -42,7 +42,20 @@ struct CKChoreActiveDetailView: View {
                         self.devMessage = nil
                 }
             }
-            ActivityActionView(model: $model)
+            
+            if model.kidReference != nil {
+                if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                    ActivityActionView(model: $model)
+                } else {
+                    // TODO fetch the user information
+                    Text("this is not your activity")
+                    Text("\(familyKitAppState.findUserForRecord(recordReference: model.kidReference!)?.name ?? "~")")
+                    ActivityActionView(model: $model)
+                }
+            }
+            else {
+                ActivityActionView(model: $model)
+            }
         }
         .onAppear {
         }

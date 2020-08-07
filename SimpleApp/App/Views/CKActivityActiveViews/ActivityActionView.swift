@@ -24,7 +24,10 @@ struct ActivityActionView: View {
     @State var devMessage: String? = nil    
     
     @Binding var model: CKActivityModel
+    
     var showSave:Bool = false
+    // TODO: support isReadOnly
+    var isReadOnly:Bool = false
     
     @State var audioRecorder = AudioRecorder()
     

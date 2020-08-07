@@ -145,8 +145,30 @@ public class FamilyKitAppState: ObservableObject {
 // MARK: - StartupServices
 extension FamilyKitAppState {
     
-    public func onRefresh() {
+    public func findUserForRecord(recordReference: CKRecord.Reference ) -> Player? {
+        print( "findUserForRecord \(recordReference.recordID)")
         
+        for kid in kidService.models {
+            if let kidRecordID = kid.recordID {
+                if kidRecordID == recordReference.recordID {
+                    return Player.kid(kid)
+                }
+            }
+        }
+        
+        for adult in adultService.models {
+            if let aRecordID = adult.recordID {
+                if aRecordID == recordReference.recordID {
+                    return Player.adult(adult)
+                }
+            }
+        }
+
+        print( "findUserForRecord not found")
+        return nil
+    }
+    
+    public func onRefresh() {
         kidService.fetch { (result) in
             print( "kidService fetch \(result)")
             self.updateChanges()
