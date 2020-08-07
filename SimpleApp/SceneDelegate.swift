@@ -59,49 +59,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         privateActiveChoreService.subscribe()
         privateActiveChoreService.listenForNotifications()
         
-        let connectService = CKPublicModelService<CKConnectModel>(
-            container: container
-        )
-        connectService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "connectService success \(models)")
-            case .failure(let error):
-                print( "connectService error \(error)")
-            }
-        })
-        connectService.subscribe()
-        connectService.listenForNotifications()
-        
-        let funService = CKPublicModelService<CKFunModel>(
-            container: container
-        )
-        funService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "funService success \(models)")
-            case .failure(let error):
-                print( "funService error \(error)")
-            }
-        })
-        funService.subscribe()
-        funService.listenForNotifications()
-        
-        //        let kidService = CKPrivateModelService<CKKidModel>(
-        //            container: container
-        //        )
-        //        kidService.fetch(completion: { result in
-        //            switch result {
-        //            case .success(let models) :
-        //                print( "kidService success \(models)")
-        //            case .failure(let error):
-        //                print( "kidService error \(error)")
-        //            }
-        //        })
-        //        kidService.subscribe()
-        //        kidService.listenForNotifications()
-        
-        
+        let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
+        chatService.onRefresh()
+        chatService.chatMessageService.subscribe()
+        chatService.chatMessageService.listenForNotifications()
         
         let appState = AppState()
         appState.onStartup()
@@ -112,8 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(familyKitAppState)
             .environmentObject(privateChoreService)
             .environmentObject(privateActiveChoreService)
-            .environmentObject(funService)
-            .environmentObject(connectService)
+            .environmentObject(chatService)
         
         //        let contentView = ContentView()
         //            .environment(\.window, window)

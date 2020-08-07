@@ -18,10 +18,9 @@ struct CKChoreActiveDetailView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
-    
-    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
     
     @State var model: CKActivityModel
     @State private var coverPhotoImage:UIImage?

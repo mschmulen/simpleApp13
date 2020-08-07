@@ -15,13 +15,11 @@ struct ContentView: View {
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
+
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-
-    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
-    
+    @EnvironmentObject var chatService: ChatService
+        
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
@@ -54,16 +52,14 @@ struct ContentView: View {
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
-                            .environmentObject(funService)
-                            .environmentObject(connectService)
+                            .environmentObject(chatService)
                     } else {
                         MainKidView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
-                            .environmentObject(funService)
-                            .environmentObject(connectService)
+                            .environmentObject(chatService)
                     }
                 }
                 

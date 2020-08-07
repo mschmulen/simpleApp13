@@ -18,9 +18,6 @@ struct KidDetailView: View {
     
     // @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
     
-    //    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
-//    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
-        
     @State var devMessage: String?
     
     @State var model: CKKidModel

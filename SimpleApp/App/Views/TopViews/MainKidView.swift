@@ -20,14 +20,8 @@ struct MainKidView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    
-    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
-    
-    @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
-    @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
-    @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)
-    
+    @EnvironmentObject var chatService: ChatService
+        
     var body: some View {
         NavigationView {
             VStack {

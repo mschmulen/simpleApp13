@@ -18,10 +18,8 @@ struct CKChoreDescriptionListView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    
-    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
-    
+    @EnvironmentObject var chatService: ChatService
+        
     @State var devMessage: String?
     
     var deleteDisabled = false

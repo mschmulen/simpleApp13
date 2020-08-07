@@ -20,10 +20,9 @@ struct MainAdultView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    
-    @EnvironmentObject var connectService: CKPublicModelService<CKConnectModel>
-    @EnvironmentObject var funService: CKPublicModelService<CKFunModel>
-    
+    @EnvironmentObject var chatService: ChatService
+        
+    // TODO: Clean up remove
     @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
     @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)

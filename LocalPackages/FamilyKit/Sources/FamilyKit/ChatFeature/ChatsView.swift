@@ -12,14 +12,13 @@ public struct ChatsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var chatService: ChatService
+    @EnvironmentObject var chatService: ChatService
     
     @State var errorMessage: String?
     
     @State var chatSessions: [UUID] = [UUID]()
     
-    public init(chatService: Binding<ChatService>) {
-        self._chatService = chatService
+    public init() {
         
         //        UITableView.appearance().separatorStyle = .none
         //        UITableView.appearance().tableFooterView = UIView()
@@ -36,7 +35,7 @@ public struct ChatsView: View {
                 List {
                     Section(header: Text("Sessions")) {
                         ForEach(self.chatSessions, id: \.self) { session in
-                            NavigationLink(destination: ChatSessionView(chatService: self.$chatService)) {
+                            NavigationLink(destination: ChatSessionView()) {
                                 HStack {
                                     Text("\(session)")
                                 }
@@ -77,7 +76,7 @@ public struct ChatsView: View {
 
 struct ChatsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsView(chatService: .constant(ChatService(container: CKContainer(identifier: CKContainerIdentifier))))
+        ChatsView()//chatService: .constant(ChatService(container: CKContainer(identifier: CKContainerIdentifier))))
     }
 }
 

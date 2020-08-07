@@ -19,10 +19,9 @@ struct ActivityActionView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var chatService: ChatService
     
-    @State var devMessage: String? = nil
-    
-    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
+    @State var devMessage: String? = nil    
     
     @Binding var model: CKActivityModel
     var showSave:Bool = true
@@ -86,7 +85,7 @@ struct ActivityActionView: View {
                 }
                 
                 if model.moduleType == .chat {
-                    ChatSessionView(chatService: self.$chatService)
+                    ChatSessionView()
                 }
                 EmptyView()
             }
