@@ -19,9 +19,8 @@ public struct ChatsView: View {
     @State var chatSessions: [UUID] = [UUID]()
     
     public init() {
-        
-        //        UITableView.appearance().separatorStyle = .none
-        //        UITableView.appearance().tableFooterView = UIView()
+        // UITableView.appearance().separatorStyle = .none
+        // UITableView.appearance().tableFooterView = UIView()
     }
     
     public var body: some View {
@@ -43,32 +42,6 @@ public struct ChatsView: View {
                         }
                     }
                 }
-                
-                //                List {
-                //                    Section(header: Text("kids")) {
-                //                        ForEach(self.familyKitAppState.kidService.models) { model in
-                //                            NavigationLink(destination: ChatView()) {
-                //                                HStack {
-                //                                    Text("\(model.emoji ?? "~")")
-                //                                    Text("\(model.name ?? "~")")
-                //                                }
-                //
-                //                            }
-                //                        }
-                //                    }
-                //
-                //                    Section(header: Text("adults")) {
-                //                        ForEach(self.familyKitAppState.adultService.models) { model in
-                //                            NavigationLink(destination: ChatView()) {
-                //                                HStack {
-                //                                    Text("\(model.emoji ?? "~")")
-                //                                    Text("\(model.name ?? "~")")
-                //                                }
-                //
-                //                            }
-                //                        }
-                //                    }//end Section
-                //                }//end List
                 //            }.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
             }
         }    

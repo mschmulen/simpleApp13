@@ -15,9 +15,6 @@ public struct ChatSessionView: View {
     
     @State var typingMessage: String = ""
     
-    //@State var chatService = ChatService()
-    //@EnvironmentObject var chatHelper: ChatHelper
-    
     @State var devMessage: String?
     
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -70,10 +67,9 @@ public struct ChatSessionView: View {
     func sendMessage() {
         var newMessage = CKChatMessageModel()
         newMessage.message = typingMessage
-        newMessage.ownerEmoji = familyKitAppState.currentPlayer.name
-        newMessage.ownerName = familyKitAppState.currentPlayer.emoji
+        newMessage.ownerEmoji = familyKitAppState.currentPlayer.emoji
+        newMessage.ownerName = familyKitAppState.currentPlayer.name
         newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
-        //chatService.sendMessage(ChatMessage(content: typingMessage, user: DataSource.secondUser))
         chatService.sendMessage(newMessage)
         typingMessage = ""
     }

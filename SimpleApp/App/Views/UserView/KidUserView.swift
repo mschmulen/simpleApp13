@@ -43,6 +43,12 @@ struct KidUserView: View {
                         .foregroundColor(.blue)
                 }
             }
+            
+            NavigationLink(destination: ChatSessionView()) {
+                Text("Show Chat")
+                    .foregroundColor(.blue)
+            }
+            
         }.onAppear(perform: {
             self.familyKitAppState.kidService.fetch { (result) in
                 print("result")

@@ -58,7 +58,7 @@ public class ChatService : ObservableObject {
 //                    }
                     self.onRefresh()
                     self.didChange.send(())
-                    //self.updateChanges()
+                    self.updateChanges()
                 }
             }
         }

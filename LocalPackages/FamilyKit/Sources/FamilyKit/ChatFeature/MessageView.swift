@@ -18,13 +18,8 @@ struct MessageView : View {
             if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
                 Spacer()
             } else {
-                Text(currentMessage.ownerEmoji ?? "~")
-                    .font(.largeTitle)
-                    //Image(systemName: "person")
-                    //Image(currentMessage.user.avatar)
-                    //.resizable()
-                    //.frame(width: 40, height: 40, alignment: .center)
-                    .cornerRadius(20)
+                Text("\(currentMessage.ownerEmoji ?? "")\(currentMessage.ownerName ?? "~"):")
+                    .font(.body)
             }
             //            if !currentMessage.user.isCurrentUser {
             //                Text(currentMessage.ownerEmoji)
@@ -37,7 +32,7 @@ struct MessageView : View {
             //            } else {
             //                Spacer()
             //            }
-            ContentMessageView(contentMessage: currentMessage.message ?? "~",
+            ChatContentMessageView(contentMessage: currentMessage.message ?? "~",
                                isCurrentUser: false)
         }.padding()
     }

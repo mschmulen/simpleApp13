@@ -41,10 +41,11 @@ struct AdultUserView: View {
                 NavigationLink(destination: PlayerOnboardingView()) {
                     Text("Change Current Player")
                 }
-                
-//                NavigationLink(destination: CKKidDetailView(model: familyKitAppState.currentPlayer!)) {
-//                    Text("current Player \(familyKitAppState.currentPlayer!.name ?? "~")")
-//                }
+            }
+            
+            NavigationLink(destination: ChatSessionView()) {
+                Text("Show Chat")
+                    .foregroundColor(.blue)
             }
             
             Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
@@ -187,7 +188,7 @@ struct AdultUserView: View {
             //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
             //                }
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
-                .font(.caption)            
+                .font(.caption)
         }.onAppear(perform: {
             self.familyKitAppState.kidService.fetch { (result) in
                 print("result")
