@@ -67,6 +67,22 @@ struct CKChoreNewActiveDetailView: View {
             self.model.kidReference = kidRecordReference
             self.model.moduleType = self.descriptionModel.moduleType
             
+            self.privateActiveChoreService.pushUpdateCreate(model: self.model) { (result) in
+                switch result {
+                case .failure(let error):
+                    self.devMessage = "save error\(error.localizedDescription)"
+                case .success(let model):
+                    self.devMessage = "success"
+                    self.model = model
+                    DispatchQueue.main.async {
+                        //self.presentationMode.wrappedValue.dismiss()
+                        self.privateActiveChoreService.fetch { (result) in
+                            print( "result")
+                        }
+                    }
+                }
+            }
+            
         }
     }
     

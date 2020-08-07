@@ -24,20 +24,23 @@ struct ActivityActionView: View {
     @State var devMessage: String? = nil    
     
     @Binding var model: CKActivityModel
-    var showSave:Bool = true
+    var showSave:Bool = false
     
     @State var audioRecorder = AudioRecorder()
     
     var body: some View {
         VStack {
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
+            
+            if showSave == true {
+                Button(action:onSave) {
+                    HStack {
+                        Text("Save")
+                            .foregroundColor(.blue)
+                        Image(systemName: "square.and.arrow.up")
+                    }.foregroundColor(.blue)
                 }
             }
-            Text("moduleType.none")
-                .foregroundColor(.red)
+            
             VStack {
                 if model.moduleType == .photo {
                     

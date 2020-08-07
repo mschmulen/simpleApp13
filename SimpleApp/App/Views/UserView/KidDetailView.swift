@@ -37,7 +37,7 @@ struct KidDetailView: View {
                 HStack {
                     Text("Save")
                     Image(systemName: "square.and.arrow.up")
-                }
+                }.foregroundColor(.blue)
             }
             Text("Kid name \(model.name ?? "~")")
             Section(header: Text("Data")) {

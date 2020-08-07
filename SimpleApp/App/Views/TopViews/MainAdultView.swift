@@ -27,9 +27,19 @@ struct MainAdultView: View {
     @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
     @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)
     
+    @State var devMessage: String?
+    
     var body: some View {
         NavigationView {
             VStack {
+                if devMessage != nil {
+                    Text("\(devMessage!)")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            self.devMessage = nil
+                    }
+                }
+                
                 VStack {
                     Text("Adult View")
                 }
@@ -53,10 +63,8 @@ struct MainAdultView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     
-                    
 //                    Section() {
 //                        FunRowView(categoryName: "Fun", items: funStore.models)
-//
 //                    }
 //                    .listRowInsets(EdgeInsets())
                     
@@ -67,6 +75,18 @@ struct MainAdultView: View {
 //                    Section() {
 //                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
 //                    }.listRowInsets(EdgeInsets())
+                }
+                Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
+                    .font(.caption)
+            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+                print("Notification.Name(CloudKitModelService) recieved")
+                self.devMessage = "silent Push! DB changed"
+                
+                self.privateChoreService.fetch { (result) in
+                    print( "result")
+                }
+                self.privateActiveChoreService.fetch { (result) in
+                    print( "result")
                 }
             }
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)

@@ -15,11 +15,11 @@ struct AppModel {
     let os: String = "ios"
     let appID: String
     let appShortVersion: String
-    let appBuildVersin: String
+    let appBuildVersion: String
     init() {
         self.appID = Bundle.main.bundleIdentifier ?? "~"
         self.appShortVersion =  (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "~"
-        self.appBuildVersin = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "~"
+        self.appBuildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "~"
     }
 }
 

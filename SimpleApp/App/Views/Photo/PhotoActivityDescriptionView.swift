@@ -58,12 +58,6 @@ struct PhotoActivityDescriptionView: View {
                 Text(statusMessage!)
             }
             
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("CANCEL")
-            }
-            
             imageView
             
             if inputImage != nil {

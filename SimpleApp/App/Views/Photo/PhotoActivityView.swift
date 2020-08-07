@@ -55,15 +55,10 @@ struct PhotoActivityView: View {
                 Text(statusMessage!)
             }
             
-            imageView
-            
-            Spacer()
-            
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("CANCEL")
+            if image != nil {
+                imageView
             }
+            
             Spacer()
             
             if inputImage != nil {

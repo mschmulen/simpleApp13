@@ -21,10 +21,20 @@ struct MainKidView: View {
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
-        
+
+    @State var devMessage: String?
+    let appInfo = AppModel()
+    
     var body: some View {
         NavigationView {
             VStack {
+                if devMessage != nil {
+                    Text("\(devMessage!)")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            self.devMessage = nil
+                    }
+                }
                 VStack {
                     Text("Kid View")
                 }
@@ -53,6 +63,17 @@ struct MainKidView: View {
                         )
                     }
                     .listRowInsets(EdgeInsets())
+                }
+                Text("version \(appInfo.appShortVersion)(\(appInfo.appBuildVersion))")
+                    .font(.caption)
+            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+                print("Notification.Name(CloudKitModelService) recieved")
+                self.devMessage = "silent Push! DB changed"
+                self.privateChoreService.fetch { (result) in
+                    print( "result")
+                }
+                self.privateActiveChoreService.fetch { (result) in
+                    print( "result")
                 }
             }
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)

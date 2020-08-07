@@ -186,6 +186,8 @@ struct AdultUserView: View {
             //                    Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
             //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
             //                }
+            Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
+                .font(.caption)            
         }.onAppear(perform: {
             self.familyKitAppState.kidService.fetch { (result) in
                 print("result")

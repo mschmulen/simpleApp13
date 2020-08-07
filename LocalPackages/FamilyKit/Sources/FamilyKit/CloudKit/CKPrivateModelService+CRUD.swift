@@ -14,7 +14,7 @@ extension CKPrivateModelService {
     
     public func pushUpdateCreate(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         if model.recordID != nil {
             pushUpdate(model: model) { (result) in
@@ -29,7 +29,7 @@ extension CKPrivateModelService {
     
     private func pushNew(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ){
         if let record = model.ckRecord {
             container.privateCloudDatabase.save(record) { (record, error) in
@@ -38,9 +38,13 @@ extension CKPrivateModelService {
                 }
                 
                 if let record = record {
-                    completion(.success(record) )
-                    self.models.append(model)
-                    self.updateChanges()
+                    if let newModel = T(record: record) {
+                        completion(.success(newModel) )
+                        self.models.append(newModel)
+                        self.updateChanges()
+                    } else {
+                        completion(.failure(CustomError.unknown))
+                    }
                 } else {
                     completion(.failure(CustomError.unknown))
                 }
@@ -50,7 +54,7 @@ extension CKPrivateModelService {
     
     private func pushUpdate(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
         guard let recordID = model.recordID else {
@@ -61,7 +65,6 @@ extension CKPrivateModelService {
         
         // fetch the model and the update the model
         
-        
         container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {
                 if let updatedRecord = model.ckRecord {
@@ -71,8 +74,12 @@ extension CKPrivateModelService {
                     
                     self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
-                            completion(.success(record))
-                            self.updateChanges()
+                            if let updatedModel = T(record: record) {
+                                completion(.success(updatedModel) )
+                                self.updateChanges()
+                            } else {
+                                completion(.failure(CustomError.unknown))
+                            }
                             return
                         } else {
                             completion(.failure(error ?? CustomError.unknown))

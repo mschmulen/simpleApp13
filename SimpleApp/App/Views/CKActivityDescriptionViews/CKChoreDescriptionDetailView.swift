@@ -132,19 +132,19 @@ struct CKChoreDescriptionDetailView: View {
                     HStack {
                         Text("Save")
                         Image(systemName: "square.and.arrow.up")
-                    }
+                    }.foregroundColor(.blue)
                 }
                 editView
             } else {
-                readOnlyView
                 NavigationLink(destination: CKChoreNewActiveDetailView(
                     descriptionModel: model
                 )) {
                     VStack {
-                        Text("START")
+                        Text("START THIS ACTIVITY")
                         Image(systemName: "plus")
-                    }
+                    }.foregroundColor(.blue)
                 }
+                readOnlyView
             }
             
             Section(header:Text("Assets")) {
