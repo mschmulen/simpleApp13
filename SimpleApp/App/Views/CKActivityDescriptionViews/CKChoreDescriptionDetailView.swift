@@ -107,8 +107,12 @@ struct CKChoreDescriptionDetailView: View {
                         print( "there was an error \(error)")
                     case .success(_):
                         print( "success")
-                        self.model.reload(service: self.privateChoreService)
-                        // self.presentationMode.wrappedValue.dismiss()
+                        self.privateChoreService.fetchSingle( model: self.model) { result in
+                            print( "result")
+//                            DispatchQueue.main.async {
+//                                self.presentationMode.wrappedValue.dismiss()
+//                            }
+                        }
                     }
                 }
             })) {

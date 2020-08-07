@@ -105,17 +105,6 @@ public struct CKActivityModel: CKModel {
     
 }
 
-// TODO: add this to the generic CKModel requirement
-extension CKActivityModel {
-    
-    // TODO: add this to the generic CKModel requirement
-    public func reload( service: CKPrivateModelService<CKActivityModel> ) {
-        service.fetchSingle(model: self) { result in
-            print( "result \(result)")
-        }
-    }
-}
-
 // MARK: - Create a CKRecord from this model
 extension CKActivityModel {
     

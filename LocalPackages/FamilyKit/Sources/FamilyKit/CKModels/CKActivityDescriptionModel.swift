@@ -131,15 +131,15 @@ public struct CKActivityDescriptionModel: CKModel {
 }
 
 // TODO: add this to the generic CKModel requirement
-extension CKActivityDescriptionModel {
-    
-    // TODO: add this to the generic CKModel requirement
-    public func reload( service: CKPrivateModelService<CKActivityDescriptionModel> ) {
-        service.fetchSingle(model: self) { result in
-            print( "result \(result)")
-        }
-    }
-}
+//extension CKActivityDescriptionModel {
+//    
+//    // TODO: add this to the generic CKModel requirement
+//    public func reload( service: CKPrivateModelService<CKActivityDescriptionModel> ) {
+//        service.fetchSingle(model: self) { result in
+//            print( "result \(result)")
+//        }
+//    }
+//}
 
 // MARK: - Create a CKRecord from this model
 extension CKActivityDescriptionModel {

@@ -69,13 +69,16 @@ struct PhotoActivityView: View {
                 }
             }
             Spacer()
-
+            
             if inputImage == nil {
                 Group {
                     Button(action: {
                         self.showingImagePicker.toggle()
                     }) {
-                        Text("PICK IMAGE")
+                        HStack {
+                            Text("PICK IMAGE")
+                            Image(systemName: "camera")
+                        }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
@@ -84,21 +87,22 @@ struct PhotoActivityView: View {
             
             Spacer()
 
-            if inputImage == nil {
-                Group {
-                    Button(action: {
-                        // TODO: Camera photo
-                        self.showingCameraView.toggle()
-                    }) {
-                        HStack {
-                            Image(systemName: "camera")
-                            Text("Camera photo")
-                        }
-                    }
-                }.sheet(isPresented: $showingCameraView, content: {
-                    CameraView(isShown: self.$showingCameraView, image: self.$image)
-                })
-            }
+            // TODO: Fix the camera live photo
+//            if inputImage == nil {
+//                Group {
+//                    Button(action: {
+//                        // TODO: Camera photo
+//                        self.showingCameraView.toggle()
+//                    }) {
+//                        HStack {
+//                            Image(systemName: "camera")
+//                            Text("Camera photo")
+//                        }
+//                    }
+//                }.sheet(isPresented: $showingCameraView, content: {
+//                    CameraView(isShown: self.$showingCameraView, image: self.$image)
+//                })
+//            }
         }.onAppear {
             print("onAppear")
             
@@ -145,9 +149,12 @@ struct PhotoActivityView: View {
                         self.statusMessage = "There was an error uploading \(error)"
                     }
                 case .success(_):
-                    self.model.reload(service: self.privateActiveChoreService)
-                    DispatchQueue.main.async {
-                        self.presentationMode.wrappedValue.dismiss()
+                    self.statusMessage = "Reloading ..."
+                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
+                        print( "result")
+                        DispatchQueue.main.async {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
             }

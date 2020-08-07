@@ -67,6 +67,14 @@ struct CKChoreNewActiveDetailView: View {
             self.model.kidReference = kidRecordReference
             self.model.moduleType = self.descriptionModel.moduleType
             
+//            if let emoji = self.descriptionModel.emoji {
+//                // TODO: upload the emoji as an image
+//                //self.coverPhotoImage = Image(uiImage: emojiToImage(text: emoji))
+//                self.model.coverPhoto = self.descriptionModel.coverPhoto
+//            } else {
+//                self.model.coverPhoto = self.descriptionModel.coverPhoto
+//            }
+            
             self.privateActiveChoreService.pushUpdateCreate(model: self.model) { (result) in
                 switch result {
                 case .failure(let error):

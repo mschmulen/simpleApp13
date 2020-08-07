@@ -48,7 +48,6 @@ struct CKChoreActiveItemView: View {
         }
         .padding(.leading, 15)
         .onAppear {
-            
             if let resultAssetImage = self.model.resultAssetImage {
                 if let resultAssetImage_fileURL = resultAssetImage.fileURL {
                     do {
@@ -62,8 +61,6 @@ struct CKChoreActiveItemView: View {
                     }
                 }
             }
-            
-            self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
             
             // TODO: Load the reference stuff
 //            if let emoji = self.model.emoji {

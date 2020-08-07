@@ -73,28 +73,32 @@ struct PhotoActivityDescriptionView: View {
                     Button(action: {
                         self.showingImagePicker.toggle()
                     }) {
-                        Text("PICK IMAGE")
+                        HStack {
+                            Text("PICK IMAGE")
+                            Image(systemName: "camera")
+                        }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
                 }
             }
             
-            if inputImage == nil {
-                Group {
-                    Button(action: {
-                        // TODO: Camera photo
-                        self.showingCameraView.toggle()
-                    }) {
-                        HStack {
-                            Image(systemName: "camera")
-                            Text("Camera photo")
-                        }
-                    }
-                }.sheet(isPresented: $showingCameraView, content: {
-                    CameraView(isShown: self.$showingCameraView, image: self.$image)
-                })
-            }
+            // TODO: Fix the camera live photo
+//            if inputImage == nil {
+//                Group {
+//                    Button(action: {
+//                        // TODO: Camera photo
+//                        self.showingCameraView.toggle()
+//                    }) {
+//                        HStack {
+//                            Image(systemName: "camera")
+//                            Text("Camera photo")
+//                        }
+//                    }
+//                }.sheet(isPresented: $showingCameraView, content: {
+//                    CameraView(isShown: self.$showingCameraView, image: self.$image)
+//                })
+//            }
             
         }
     }//end body
@@ -121,9 +125,10 @@ struct PhotoActivityDescriptionView: View {
                         self.statusMessage = "There was an error uploading \(error)"
                     }
                 case .success(_):
-                    self.model.reload(service: self.privateChoreService)
-                    DispatchQueue.main.async {
-                        self.presentationMode.wrappedValue.dismiss()
+                    self.privateChoreService.fetchSingle( model: self.model) { result in
+                        DispatchQueue.main.async {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
             }
