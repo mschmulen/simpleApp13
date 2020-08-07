@@ -31,13 +31,13 @@ struct NewPlayerView: View {
         var id: PlayerType {self}
     }
     
-    @State private var stateBirthDate:Date = Calendar.current.date(byAdding: .year, value: -8, to: Date()) ?? Date()
+    @State private var stateBirthDate:Date = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
     var starterDate: Date {
         switch selectedPlayerType {
         case .adult:
-            return Calendar.current.date(byAdding: .year, value: -35, to: Date()) ?? Date()
+            return Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
         case .kid:
-            return Calendar.current.date(byAdding: .year, value: -8, to: Date()) ?? Date()
+            return Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
         }
     }
     

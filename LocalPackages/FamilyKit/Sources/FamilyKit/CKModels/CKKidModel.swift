@@ -36,7 +36,7 @@ public struct CKKidModel: CKModel {
         var model = CKKidModel()
         model.name = "mock kid"
         model.bucks = 3
-        model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -9, to: Date())! // 9 years old
+        model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -3, to: Date())! // 9 years old
         model.emoji = "😀"
         return model
     }

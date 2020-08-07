@@ -28,7 +28,7 @@ struct CKAdultDetailView: View {
         if let dob = model.dateOfBirth {
             return dob
         } else {
-            return Calendar.current.date(byAdding: .year, value: -35, to: Date()) ?? Date()
+            return Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
         }
     }
     
