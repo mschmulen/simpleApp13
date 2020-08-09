@@ -115,6 +115,7 @@ struct MainAdultView: View {
             PlayerOnboardingView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
+                .environmentObject(privateChoreService)
         ){
             HStack {
                 Text("change player")

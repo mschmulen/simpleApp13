@@ -29,6 +29,9 @@ public struct CKAdultModel: CKModel {
     public var dateOfBirth: Date?
     public var emoji: String?
     
+    public var isAdmin: Bool
+    public var canEdit: Bool
+    
     public var title: String? {
         return name
     }
@@ -48,6 +51,9 @@ public struct CKAdultModel: CKModel {
         self.bucks = nil
         self.dateOfBirth = nil
         self.emoji = nil
+        
+        self.isAdmin = true
+        self.canEdit = true
     }
     
     public init?(record: CKRecord) {
@@ -64,6 +70,9 @@ public struct CKAdultModel: CKModel {
         self.bucks = record["bucks"] as? Int
         self.dateOfBirth = record["dateOfBirth"] as? Date
         self.emoji = record["emoji"] as? String
+        
+        self.isAdmin = true
+        self.canEdit = true
     }
     
     enum CustomError: Error {

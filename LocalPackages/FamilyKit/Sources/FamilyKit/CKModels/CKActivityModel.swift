@@ -44,12 +44,20 @@ public struct CKActivityModel: CKModel {
     public static var mock: CKActivityModel {
         var model = CKActivityModel()
         
-        model.name = nil
-        model.description = nil
-        model.bucks = nil
+        model.name = "mock activity"
+        model.description = "mock activity description"
+        model.bucks = 3
+        model.emoji = "🧳"
         
         model.ckChoreDescriptionReference = nil
+        model.kidReference = nil
         model.coverPhoto = nil
+        
+        model.moduleType = ActivityModuleType.audio
+        // model.moduleType = ActivityModuleType.photo
+        // model.moduleType = ActivityModuleType.drawing
+        // model.moduleType = ActivityModuleType.chat
+        
         model.resultAssetText = nil
         model.resultAssetImage = nil
         model.resultAssetAudio = nil

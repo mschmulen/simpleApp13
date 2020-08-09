@@ -47,34 +47,47 @@ struct AdultUserView: View {
                 Text("Show Chat")
                     .foregroundColor(.blue)
             }
+
+            NavigationLink(destination: KidsListView()) {
+                Text("Show KidsListView")
+                    .foregroundColor(.blue)
+            }
             
-            Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
-                NavigationLink(destination: KidDetailView(model: CKKidModel())) {
-                    Text("Add a new Kid to this account")
-                        .foregroundColor(.blue)
-                }
-                
-                ForEach( self.familyKitAppState.kidService.models ) { model in
-                    NavigationLink(destination: KidDetailView(model: model)) {
-                        Text(model.name ?? "~" )
-                    }
-                }//end ForEach
-                    .onDelete(perform: deleteKid)
-            }//end section kids
+            NavigationLink(destination: AdultsListView()) {
+                Text("Show AdultsListView")
+                    .foregroundColor(.blue)
+            }
+
+
             
-            Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
-                NavigationLink(destination: AdultDetailView(model: CKAdultModel())) {
-                    Text("Add a new Adult to this account")
-                        .foregroundColor(.blue)
-                }
-                
-                ForEach( self.familyKitAppState.adultService.models ) { model in
-                    NavigationLink(destination: AdultDetailView(model: model)) {
-                        Text(model.name ?? "~" )
-                    }
-                }//end ForEach
-                    .onDelete(perform: deleteAdult)
-            }//end section adults
+            
+//            Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
+//                NavigationLink(destination: KidDetailView(model: CKKidModel())) {
+//                    Text("Add a new Kid to this account")
+//                        .foregroundColor(.blue)
+//                }
+//
+//                ForEach( self.familyKitAppState.kidService.models ) { model in
+//                    NavigationLink(destination: KidDetailView(model: model)) {
+//                        Text(model.name ?? "~" )
+//                    }
+//                }//end ForEach
+//                    .onDelete(perform: deleteKid)
+//            }//end section kids
+            
+//            Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
+//                NavigationLink(destination: AdultDetailView(model: CKAdultModel())) {
+//                    Text("Add a new Adult to this account")
+//                        .foregroundColor(.blue)
+//                }
+//
+//                ForEach( self.familyKitAppState.adultService.models ) { model in
+//                    NavigationLink(destination: AdultDetailView(model: model)) {
+//                        Text(model.name ?? "~" )
+//                    }
+//                }//end ForEach
+//                    .onDelete(perform: deleteAdult)
+//            }//end section adults
             
             Section(header: Text("Dev Stuff")) {
                 NavigationLink(destination: CKChoreDescriptionListView()) {
@@ -199,33 +212,33 @@ struct AdultUserView: View {
         //                    .navigationBarTitle("CKUser")
     }
     
-    func deleteKid(at offsets: IndexSet) {
-        for deleteIndex in offsets {
-            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
-            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
-                switch result {
-                case .failure(let error):
-                    print("delete.error \(error)")
-                case .success(let recordID):
-                    print("delete.success \(recordID)")
-                }
-            }
-        }
-    }
-    
-    func deleteAdult(at offsets: IndexSet) {
-        for deleteIndex in offsets {
-            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
-            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
-                switch result {
-                case .failure(let error):
-                    print("delete.error \(error)")
-                case .success(let recordID):
-                    print("delete.success \(recordID)")
-                }
-            }
-        }
-    }
+//    func deleteKid(at offsets: IndexSet) {
+//        for deleteIndex in offsets {
+//            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
+//            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print("delete.error \(error)")
+//                case .success(let recordID):
+//                    print("delete.success \(recordID)")
+//                }
+//            }
+//        }
+//    }
+//
+//    func deleteAdult(at offsets: IndexSet) {
+//        for deleteIndex in offsets {
+//            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
+//            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print("delete.error \(error)")
+//                case .success(let recordID):
+//                    print("delete.success \(recordID)")
+//                }
+//            }
+//        }
+//    }
 }
 
 

@@ -26,6 +26,7 @@ struct ContentView: View {
     enum TopView {
         case mainView
         case purchaseView
+        case testView
     }
     
     @ViewBuilder
@@ -44,6 +45,18 @@ struct ContentView: View {
                 PlayerOnboardingView()
                     .environmentObject(familyKitAppState)
             } else {
+                
+                if appState.topView == .testView {
+                    // this is just to make it easy to test specific views
+                    
+                    ActivityActionView(model: .constant(CKActivityModel.mock) )
+                        .environment(\.window, window)
+                        .environmentObject(appState)
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(privateChoreService)
+                        .environmentObject(chatService)
+
+                }
                 
                 if appState.topView == .mainView {
                     if familyKitAppState.currentPlayer.isAdult {

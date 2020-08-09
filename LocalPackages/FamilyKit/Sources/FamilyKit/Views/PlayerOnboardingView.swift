@@ -15,6 +15,10 @@ public struct PlayerOnboardingView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    
+    
     @State var errorMessage: String?
     @State var showNoiCloudConnection = false
     @State var showNoCurrentPlayer = false
@@ -87,7 +91,15 @@ public struct PlayerOnboardingView: View {
                 VStack {
                     if familyKitAppState.isSimulator == true {
                         Button(action: {
+                            
                             self.familyKitAppState.setCurrentPlayer(player: Player.kid(CKKidModel.mock))
+                            
+                            // lets also set up some mock cards.
+                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
+                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
+                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+                            
                         }) {
                             Text("Simulator only \"mock Kid\"")
                                 .padding()
@@ -96,7 +108,15 @@ public struct PlayerOnboardingView: View {
                     
                     if familyKitAppState.isSimulator == true {
                         Button(action: {
+                            
                             self.familyKitAppState.setCurrentPlayer(player: Player.adult(CKAdultModel.mock))
+                            
+                            // lets also set up some mock cards.
+                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
+                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
+                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+
                         }) {
                             Text("Simulator only \"mock Adult\"")
                                 .padding()

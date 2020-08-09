@@ -46,6 +46,7 @@ struct ContentView: View {
             if familyKitAppState.currentPlayer.isNone {
                 PlayerOnboardingView()
                     .environmentObject(familyKitAppState)
+                    .environmentObject(choreService)
             } else {
                 TabView(selection: $selectedTab) {
                     
