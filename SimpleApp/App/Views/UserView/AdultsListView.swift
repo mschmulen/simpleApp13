@@ -41,7 +41,10 @@ struct AdultsListView: View {
                 
                 ForEach( self.familyKitAppState.adultService.models ) { model in
                     NavigationLink(destination: AdultDetailView(model: model)) {
-                        Text(model.name ?? "~" )
+                        HStack {
+                            Text("\(model.emoji ?? "~")")
+                            Text("\(model.name ?? "~")")
+                        }
                     }
                 }//end ForEach
                     .onDelete(perform: delete)

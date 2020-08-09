@@ -40,7 +40,10 @@ struct KidsListView: View {
                 
                 ForEach( self.familyKitAppState.kidService.models ) { model in
                     NavigationLink(destination: KidDetailView(model: model)) {
-                        Text(model.name ?? "~" )
+                        HStack {
+                            Text("\(model.emoji ?? "~")")
+                            Text("\(model.name ?? "~")")
+                        }
                     }
                 }//end ForEach
                     .onDelete(perform: delete)

@@ -35,60 +35,31 @@ struct AdultUserView: View {
                 }
             }
             
-            Section(header: Text("Current Player")) {
-                Text("current Player \(familyKitAppState.currentPlayer.name)")
-                
-                NavigationLink(destination: PlayerOnboardingView()) {
-                    Text("Change Current Player")
-                }
+            HStack {
+                Text("\(familyKitAppState.currentPlayer.emoji)")
+                Text("\(familyKitAppState.currentPlayer.name)")
+            }
+            
+            NavigationLink(destination: PlayerOnboardingView()) {
+                Text("Change Current Player")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: KidsListView()) {
+                Text("Show Kids")
+                    .foregroundColor(.blue)
+            }
+            
+            NavigationLink(destination: AdultsListView()) {
+                Text("Show Adults")
+                    .foregroundColor(.blue)
             }
             
             NavigationLink(destination: ChatSessionView()) {
                 Text("Show Chat")
                     .foregroundColor(.blue)
             }
-
-            NavigationLink(destination: KidsListView()) {
-                Text("Show KidsListView")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: AdultsListView()) {
-                Text("Show AdultsListView")
-                    .foregroundColor(.blue)
-            }
-
-
-            
-            
-//            Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
-//                NavigationLink(destination: KidDetailView(model: CKKidModel())) {
-//                    Text("Add a new Kid to this account")
-//                        .foregroundColor(.blue)
-//                }
-//
-//                ForEach( self.familyKitAppState.kidService.models ) { model in
-//                    NavigationLink(destination: KidDetailView(model: model)) {
-//                        Text(model.name ?? "~" )
-//                    }
-//                }//end ForEach
-//                    .onDelete(perform: deleteKid)
-//            }//end section kids
-            
-//            Section(header: Text("Adults: \(self.familyKitAppState.adultService.models.count)")) {
-//                NavigationLink(destination: AdultDetailView(model: CKAdultModel())) {
-//                    Text("Add a new Adult to this account")
-//                        .foregroundColor(.blue)
-//                }
-//
-//                ForEach( self.familyKitAppState.adultService.models ) { model in
-//                    NavigationLink(destination: AdultDetailView(model: model)) {
-//                        Text(model.name ?? "~" )
-//                    }
-//                }//end ForEach
-//                    .onDelete(perform: deleteAdult)
-//            }//end section adults
-            
+                        
             Section(header: Text("Dev Stuff")) {
                 NavigationLink(destination: CKChoreDescriptionListView()) {
                     Text("Show Chores")
