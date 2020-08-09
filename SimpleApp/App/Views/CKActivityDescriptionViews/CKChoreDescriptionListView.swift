@@ -47,9 +47,13 @@ struct CKChoreDescriptionListView: View {
                         model: model,
                         enableEdit: true
                     )) {
-                        HStack {
-                            Text(model.emoji ?? "~" )
-                            Text(model.title ?? "~" )
+                        NavigationLink(
+                            destination: CKChoreDescriptionDetailView(
+                                model: model,
+                                enableEdit: self.familyKitAppState.currentPlayer.isAdult
+                            )
+                        ) {
+                            CKChoreDescriptionItemView(model: model)
                         }
                     }
                 }//end ForEach

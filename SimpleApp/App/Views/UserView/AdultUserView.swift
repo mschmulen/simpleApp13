@@ -45,26 +45,35 @@ struct AdultUserView: View {
                     .foregroundColor(.blue)
             }
             
-            NavigationLink(destination: KidsListView()) {
-                Text("Show Kids")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: AdultsListView()) {
-                Text("Show Adults")
-                    .foregroundColor(.blue)
-            }
-            
-            NavigationLink(destination: ChatSessionView()) {
-                Text("Show Chat")
-                    .foregroundColor(.blue)
-            }
-                        
-            Section(header: Text("Dev Stuff")) {
-                NavigationLink(destination: CKChoreDescriptionListView()) {
-                    Text("Show Chores")
+            Section(header: Text("Family")) {
+                NavigationLink(destination: KidsListView()) {
+                    Text("Show Kids")
                         .foregroundColor(.blue)
                 }
+                
+                NavigationLink(destination: AdultsListView()) {
+                    Text("Show Adults")
+                        .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: ChatSessionView()) {
+                    Text("Show Chat")
+                        .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: CKChoreDescriptionListView()) {
+                    Text("Show Activity Descriptions")
+                        .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: CKChoreActiveListView()) {
+                    Text("Show Active Activities")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            // Dev Stuff
+            Section(header: Text("Dev Stuff")) {
                 
                 NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
                     Text("Show AudioRecordView")
@@ -82,7 +91,7 @@ struct AdultUserView: View {
                 }
             }
             
-            Section(header: Text("Dev Stuff")) {
+            Section(header: Text("More Dev Stuff")) {
                 
                 NavigationLink(destination: PurchaseView()) {
                     Text("PurchaseView")
@@ -132,45 +141,15 @@ struct AdultUserView: View {
                 }
             }
             
-            if self.familyKitAppState.userService.isUserAuthenticated {
-                Section(header: Text("CKUser")) {
-                    
-                    Text("name \(self.familyKitAppState.userService.currentUser?.name ?? "~")")
-                    Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")
-                    Text("birthDate: \(self.familyKitAppState.userService.currentUser?.birthDate?.description ?? "~")")
-                    
-                    Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
-                    Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
-                    // optionalText(title: "birthDate",text: self.appState.userService.currentUser?.birthDate)
-                }
-            }
-            
-            //                Section(header: Text("Purchase Information")) {
-            //
-            //                    if appState.currentPurchaseModel != nil {
-            //                        Text("purchaseStatus: \(appState.currentPurchaseModel!.status.friendlyName)")
-            //                        Text("id: \(appState.currentPurchaseModel!.id.uuidString)")
-            //                    } else {
-            //                        Button(action: {
-            //                            self.appState.topView = .purchaseView
-            //                        }) {
-            //                            Text("Show Purchase View ")
-            //                                .foregroundColor(.blue)
-            //                        }
-            //                    }
-            //                }
-            
-            //                Section(header: Text("Device Information")) {
-            //                    Text("idfv: \(appState.currentDeviceInfo.idfv?.uuidString ?? "~")")
-            //                    Text("localeLanguageCode: \(appState.currentDeviceInfo.localeLanguageCode ?? "~")")
-            //                    Text("localeRegionCode: \(appState.currentDeviceInfo.localeRegionCode ?? "~")")
-            //                }
-            //
-            //                Section(header: Text("App Information")) {
-            //                    Text("appID: \(appState.currentAppInfo.appID)")
-            //                    Text("appBuildVersin: \(appState.currentAppInfo.appBuildVersin)")
-            //                    Text("appShortVersion: \(appState.currentAppInfo.appShortVersion)")
-            //                }
+//            Section(header: Text("CKUser")) {
+//                Text("name \(self.familyKitAppState.userService.currentUser?.name ?? "~")")
+//                Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")
+//                Text("birthDate: \(self.familyKitAppState.userService.currentUser?.birthDate?.description ?? "~")")
+//
+//                Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
+//                Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
+//                // optionalText(title: "birthDate",text: self.appState.userService.currentUser?.birthDate)
+//            }
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                 .font(.caption)
         }.onAppear(perform: {
@@ -182,36 +161,7 @@ struct AdultUserView: View {
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")
     }
-    
-//    func deleteKid(at offsets: IndexSet) {
-//        for deleteIndex in offsets {
-//            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
-//            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print("delete.error \(error)")
-//                case .success(let recordID):
-//                    print("delete.success \(recordID)")
-//                }
-//            }
-//        }
-//    }
-//
-//    func deleteAdult(at offsets: IndexSet) {
-//        for deleteIndex in offsets {
-//            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
-//            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print("delete.error \(error)")
-//                case .success(let recordID):
-//                    print("delete.success \(recordID)")
-//                }
-//            }
-//        }
-//    }
 }
-
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {

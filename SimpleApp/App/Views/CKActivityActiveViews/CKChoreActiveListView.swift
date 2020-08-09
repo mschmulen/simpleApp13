@@ -36,12 +36,12 @@ struct CKChoreActiveListView: View {
             
             Section(header: Text("Activities (CKChoreActiveModel)")) {
                 ForEach( self.privateActiveChoreService.models) { model in
-                    NavigationLink(destination: CKChoreActiveDetailView(
-                        model: model
-                    )) {
-                        HStack {
-                            Text(model.title ?? "~" )
-                        }
+                    NavigationLink(
+                        destination: CKChoreActiveDetailView(
+                            model: model
+                        )
+                    ){
+                        CKChoreActiveItemView(model: model)
                     }
                 }//end ForEach
                     .onDelete(perform: deletePrivate)
