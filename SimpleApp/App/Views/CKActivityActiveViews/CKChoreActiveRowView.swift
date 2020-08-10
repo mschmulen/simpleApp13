@@ -13,6 +13,8 @@ struct CKChoreActiveRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    
     var categoryName: String
     var items: [CKActivityModel]
     
@@ -36,6 +38,15 @@ struct CKChoreActiveRowView: View {
                             )
                         ) {
                             CKChoreActiveItemView(model: model)
+                        }.contextMenu {
+                            Button(action: {
+                                self.privateActiveChoreService.pushDelete(model: model) { (result) in
+                                    print("delete result \(result)")
+                                }
+                            }) {
+                                Text("Delete")
+                                Image(systemName: "trash")
+                            }
                         }
                     }
                 }
