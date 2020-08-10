@@ -83,6 +83,7 @@
 		76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA22124DA5402007A02CF /* ImagePicker.swift */; };
 		76EDF11124E03CDE00C68408 /* KidsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11024E03CDE00C68408 /* KidsListView.swift */; };
 		76EDF11324E03DF100C68408 /* AdultsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11224E03DF100C68408 /* AdultsListView.swift */; };
+		76EDF11524E05AEC00C68408 /* ActivityAudioActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11424E05AEC00C68408 /* ActivityAudioActionView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +202,7 @@
 		76CFA22124DA5402007A02CF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		76EDF11024E03CDE00C68408 /* KidsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListView.swift; sourceTree = "<group>"; };
 		76EDF11224E03DF100C68408 /* AdultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultsListView.swift; sourceTree = "<group>"; };
+		76EDF11424E05AEC00C68408 /* ActivityAudioActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityAudioActionView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -473,6 +475,7 @@
 				76C2FDFD24DB9B9000E030C2 /* CKChoreActiveRowView.swift */,
 				7616F66324DC4E2A003488EB /* CKChoreNewActiveDetailView.swift */,
 				7616F66524DC692C003488EB /* ActivityActionView.swift */,
+				76EDF11424E05AEC00C68408 /* ActivityAudioActionView.swift */,
 			);
 			path = CKActivityActiveViews;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				76EDF11124E03CDE00C68408 /* KidsListView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* CKChoreActiveDetailView.swift in Sources */,
 				76208B8024D60051001F46E2 /* KidDetailView.swift in Sources */,
+				76EDF11524E05AEC00C68408 /* ActivityAudioActionView.swift in Sources */,
 				76CFA1D224D9DA00007A02CF /* PhotoActivityView.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
 				76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */,

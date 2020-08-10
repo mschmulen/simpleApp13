@@ -44,10 +44,10 @@ struct MainAdultView: View {
                     Text("Adult View")
                 }
                 
-                List{
+                List {
                     Section() {
                         CKChoreDescriptionRowView(
-                            categoryName: "Activities (Family)",
+                            categoryName: "Activity Definition",
                             items: privateChoreService.models,
                             isPrivate: true,
                             showAdd: familyKitAppState.currentPlayer.isAdult
@@ -55,26 +55,31 @@ struct MainAdultView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     
-                    Section() {
-                        CKChoreActiveRowView(
-                            categoryName: "Activities (All)",
-                            items: privateActiveChoreService.models                            
-                        )
-                    }
-                    .listRowInsets(EdgeInsets())
+                    ForEach( self.familyKitAppState.kidService.models ) { kid in
+                        Section() {
+                            CKChoreActiveRowView(
+                                categoryName: " \(kid.name ?? "~") Activities",
+                                items: self.privateActiveChoreService.models
+                            )
+                        }
+                        .listRowInsets(EdgeInsets())
+                    }//end ForEach
+                    
+//                    ForEach(self.items) { model in
+//                        NavigationLink(
+//                            destination: CKChoreActiveDetailView(
+//                                model: model
+//                            )
+//                        ) {
+//                            CKChoreActiveItemView(model: model)
+//                        }
+//                    }
+                    
                     
 //                    Section() {
 //                        FunRowView(categoryName: "Fun", items: funStore.models)
 //                    }
 //                    .listRowInsets(EdgeInsets())
-                    
-//                    Section() {
-//                        ChoreRowView(categoryName: "Chores", items: choreStore.models)
-//                    }.listRowInsets(EdgeInsets())
-                    
-//                    Section() {
-//                        ConnectRowView(categoryName: "Connect", items: connectStore.models)
-//                    }.listRowInsets(EdgeInsets())
                 }
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)

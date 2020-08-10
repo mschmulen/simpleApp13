@@ -35,7 +35,9 @@ public struct CKActivityModel: CKModel {
     // TODO
     public var resultAssetText: CKAsset?
     public var resultAssetImage: CKAsset?
-    public var resultAssetAudio: CKAsset?
+    //public var resultAssetAudio: CKAsset?
+    
+    public var activityAsset: CKAsset?
     
     public var title: String? {
         return name
@@ -60,7 +62,10 @@ public struct CKActivityModel: CKModel {
         
         model.resultAssetText = nil
         model.resultAssetImage = nil
-        model.resultAssetAudio = nil
+        //model.resultAssetAudio = nil
+        
+        model.activityAsset = nil
+        
         return model
     }
     
@@ -76,7 +81,9 @@ public struct CKActivityModel: CKModel {
         self.coverPhoto = nil
         self.resultAssetText = nil
         self.resultAssetImage = nil
-        self.resultAssetAudio = nil
+        //self.resultAssetAudio = nil
+        
+        self.activityAsset = nil
     }
     
     public init?(record: CKRecord) {
@@ -100,11 +107,13 @@ public struct CKActivityModel: CKModel {
 
         self.resultAssetText = record["resultAssetText"] as? CKAsset
         self.resultAssetImage = record["resultAssetImage"] as? CKAsset
-        self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
+        //self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
         
         if let moduleTypeString =  record["moduleType"] as? String {
             self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
         }
+        
+        self.activityAsset = record["activityAsset"] as? CKAsset
     }
     
     enum CustomError: Error {
@@ -161,8 +170,12 @@ extension CKActivityModel {
             record["resultAssetImage"] = resultAssetImage as CKRecordValue
         }
 
-        if let resultAssetAudio = resultAssetAudio {
-            record["resultAssetAudio"] = resultAssetAudio as CKRecordValue
+//        if let resultAssetAudio = resultAssetAudio {
+//            record["resultAssetAudio"] = resultAssetAudio as CKRecordValue
+//        }
+        
+        if let activityAsset = activityAsset {
+            record["activityAsset"] = activityAsset as CKRecordValue
         }
         
         return record

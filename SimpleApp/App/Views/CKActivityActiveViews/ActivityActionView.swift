@@ -29,8 +29,6 @@ struct ActivityActionView: View {
     // TODO: support isReadOnly
     var isReadOnly:Bool = false
     
-    @State var audioRecorder = AudioRecorder()
-    
     var body: some View {
         VStack {
             
@@ -54,7 +52,7 @@ struct ActivityActionView: View {
                 }
                 
                 if model.moduleType == .audio {
-                    ActivityAudioActionView(model: $model)
+                    ActivityAudioActionView(model: $model, enableRecording: !isReadOnly)
                 }
                 
                 if model.moduleType == .drawing {
@@ -95,46 +93,5 @@ struct ActivityActionView: View {
         }
     }
     
-}
-
-struct ActivityAudioActionView: View {
-    
-    @State var devMessage: String? = nil
-    
-    @Binding var model: CKActivityModel
-    
-    @State var audioRecorder = AudioRecorder()
-    
-    var body: some View {
-        VStack {
-            Text("RECORD SOMETHING")
-            AudioRecordingsList(audioRecorder: audioRecorder)
-            if audioRecorder.recording == false {
-                Button(action: {
-                    self.audioRecorder.startRecording()
-                }) {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
-                        .clipped()
-                        .foregroundColor(.red)
-                        .padding(.bottom, 40)
-                }
-            } else {
-                Button(action: {
-                    self.audioRecorder.stopRecording()
-                }) {
-                    Image(systemName: "stop.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
-                        .clipped()
-                        .foregroundColor(.red)
-                        .padding(.bottom, 40)
-                }
-            }
-        }
-    }
 }
 
