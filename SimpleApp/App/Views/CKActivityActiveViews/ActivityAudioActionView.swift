@@ -48,7 +48,7 @@ struct ActivityAudioActionView: View {
             Text("RECORD")
             
             if audioRecording != nil {
-                AudioRecordingRow(audioURL: audioRecording!.fileURL)
+                AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
             }
             
             
@@ -82,9 +82,7 @@ struct ActivityAudioActionView: View {
             }
             
         }.onAppear {
-            print( "check for the file name ")
-            //self.audioFilename = "XXX"
-            self.fetchRecording()
+            self.loadRecording()
         }
     }
     
@@ -99,7 +97,6 @@ struct ActivityAudioActionView: View {
         }
         self.audioFileNamePrefix = audioFileNamePrefix
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        //let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
         let audioFilename = documentPath.appendingPathComponent("\(audioFileNamePrefix).m4a")
         
         let settings = [
@@ -121,9 +118,30 @@ struct ActivityAudioActionView: View {
     func stopRecording() {
         avAudioRecorder?.stop()
         isRecording = false
-        fetchRecording()
+        loadRecording()
         pushRecording()
     }
+
+    func loadRecording() {
+        if let resultAssetAudio = model.activityAsset {
+            if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
+                audioRecording = AudioRecording(
+                    fileURL: resultAssetAudio_fileURL,
+                    createdAt: getCreationDate(for: resultAssetAudio_fileURL)
+                )
+            }
+        }
+        
+        if let audioFileNamePrefix = audioFileNamePrefix {
+            audioRecording = nil
+            
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let audioFileURL = documentPath.appendingPathComponent("\(audioFileNamePrefix).m4a")
+            let recording = AudioRecording(fileURL: audioFileURL, createdAt: getCreationDate(for: audioFileURL))
+            audioRecording = recording
+        }
+    }
+    
     
     func pushRecording() {
         guard let audioRecording = audioRecording else {
@@ -137,64 +155,11 @@ struct ActivityAudioActionView: View {
             switch result {
             case .failure(let error):
                 print( "uploadAudioAsset error \(error)")
-                self.devMessage = "failure"
-            case .success(let record):
+                self.devMessage = "upload failure"
+            case .success(_):
                 self.devMessage = "upload success"
             }
         }
-    }
-    
-    func fetchRecording() {
-        
-        // try and fetch from the server
-        if let resultAssetAudio = model.activityAsset {
-            if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
-                print( "model.resultAssetAudio \(resultAssetAudio_fileURL)")
-                
-                audioRecording = AudioRecording(
-                    fileURL: resultAssetAudio_fileURL,
-                    createdAt: getCreationDate(for: resultAssetAudio_fileURL)
-                )
-            }
-            
-//                do {
-//                    let imageData = try Data(contentsOf: resultAssetImage_fileURL)
-//                    if let loadedUIImage = UIImage(data: imageData) {
-//                        self.coverPhotoImage = Image(uiImage: loadedUIImage)
-//                        return
-//                    }
-//                } catch {
-//                    print("Error loading image : \(error)")
-//                }
-        }
-        
-        
-        if let audioFileNamePrefix = audioFileNamePrefix {
-            audioRecording = nil
-            
-            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let audioFileURL = documentPath.appendingPathComponent("\(audioFileNamePrefix).m4a")
-            let recording = AudioRecording(fileURL: audioFileURL, createdAt: getCreationDate(for: audioFileURL))
-            audioRecording = recording
-        }
-        
-        
-        
-        
-        
-        // recordings.removeAll()
-//        let fileManager = FileManager.default
-//        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-        
-//        for audio in directoryContents {
-//            let recording = AudioRecording(fileURL: audio, createdAt: getCreationDate(for: audio))
-//            recordings.append(recording)
-//        }
-//
-//        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending})
-//
-//        objectWillChange.send(self)
     }
     
     func getCreationDate(for file: URL) -> Date {
@@ -207,7 +172,6 @@ struct ActivityAudioActionView: View {
     }
     
     func deleteRecording(urlsToDelete: [URL]) {
-        
         for url in urlsToDelete {
             print(url)
             do {
@@ -216,41 +180,45 @@ struct ActivityAudioActionView: View {
                 print("File could not be deleted!")
             }
         }
-        
-        fetchRecording()
+        loadRecording()
     }
 }
 
+
+
+
+struct AudioRecordingPlayerView: View {
     
-//    var body: some View {
-//        VStack {
-//            Text("RECORD SOMETHING")
-//
-//            AudioRecordingsList(audioRecorder: audioRecorder)
-//            if audioRecorder.recording == false {
-//                Button(action: {
-//                    self.audioRecorder.startRecording()
-//                }) {
-//                    Image(systemName: "circle.fill")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 100, height: 100)
-//                        .clipped()
-//                        .foregroundColor(.red)
-//                        .padding(.bottom, 40)
-//                }
-//            } else {
-//                Button(action: {
-//                    self.audioRecorder.stopRecording()
-//                }) {
-//                    Image(systemName: "stop.fill")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: 100, height: 100)
-//                        .clipped()
-//                        .foregroundColor(.red)
-//                        .padding(.bottom, 40)
-//                }
-//            }
-//        }
-//    }
+    var audioURL: URL
+    
+    @ObservedObject var audioPlayer = AudioPlayer()
+    
+    var body: some View {
+        HStack {
+            if audioPlayer.isPlaying == false {
+                Button(action: {
+                    self.audioPlayer.startPlayback(audio: self.audioURL)
+                }) {
+                    Image(systemName: "play.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipped()
+                        .padding(.bottom, 40)
+                }
+            } else {
+                Button(action: {
+                    self.audioPlayer.stopPlayback()
+                }) {
+                    Image(systemName: "stop.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipped()
+                        .padding(.bottom, 40)
+                }
+            }
+        }
+    }
+    
+}
