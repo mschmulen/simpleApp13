@@ -33,7 +33,7 @@ struct ActivityAudioActionView: View {
     
     @State var audioRecording: AudioRecording?
     @State var audioFileNamePrefix: String?
-        
+    
     var body: some View {
         VStack {
             
@@ -80,7 +80,6 @@ struct ActivityAudioActionView: View {
                     }
                 }
             }
-            
         }.onAppear {
             self.loadRecording()
         }
@@ -119,7 +118,7 @@ struct ActivityAudioActionView: View {
         avAudioRecorder?.stop()
         isRecording = false
         loadRecording()
-        pushRecording()
+        saveRecording()
     }
 
     func loadRecording() {
@@ -142,8 +141,7 @@ struct ActivityAudioActionView: View {
         }
     }
     
-    
-    func pushRecording() {
+    func saveRecording() {
         guard let audioRecording = audioRecording else {
             return
         }
@@ -169,18 +167,6 @@ struct ActivityAudioActionView: View {
         } else {
             return Date()
         }
-    }
-    
-    func deleteRecording(urlsToDelete: [URL]) {
-        for url in urlsToDelete {
-            print(url)
-            do {
-               try FileManager.default.removeItem(at: url)
-            } catch {
-                print("File could not be deleted!")
-            }
-        }
-        loadRecording()
     }
 }
 

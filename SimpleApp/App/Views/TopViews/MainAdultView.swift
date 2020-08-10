@@ -55,15 +55,29 @@ struct MainAdultView: View {
                     }
                     .listRowInsets(EdgeInsets())
                     
+//                    ForEach( self.familyKitAppState.kidService.models ) { kid in
+//                        Section() {
+//                            CKChoreActiveRowView(
+//                                categoryName: " \(kid.name ?? "~") Activities",
+//                                items: self.privateActiveChoreService.models
+//                            )
+//                        }
+//                        .listRowInsets(EdgeInsets())
+//                    }//end ForEach
+                    
+                    
                     ForEach( self.familyKitAppState.kidService.models ) { kid in
                         Section() {
                             CKChoreActiveRowView(
                                 categoryName: " \(kid.name ?? "~") Activities",
-                                items: self.privateActiveChoreService.models
+                                items: self.privateActiveChoreService.models.filter({ (model) -> Bool in
+                                    model.kidReference?.recordID == kid.recordID
+                                })
                             )
                         }
                         .listRowInsets(EdgeInsets())
                     }//end ForEach
+                    
                     
 //                    ForEach(self.items) { model in
 //                        NavigationLink(
