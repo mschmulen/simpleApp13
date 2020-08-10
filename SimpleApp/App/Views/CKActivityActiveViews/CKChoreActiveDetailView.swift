@@ -29,7 +29,22 @@ struct CKChoreActiveDetailView: View {
         VStack {
             Text("\(model.title ?? "~")")
             Text("\(model.description ?? "~")")
-            Text("moduleType: \(model.moduleType.rawValue)")
+        }
+    }
+    
+    var deleteView: some View {
+        Button(action: {
+            print("delete")
+            self.privateActiveChoreService.pushDelete(model: self.model) { (result) in
+                switch result {
+                case .failure(let error):
+                    self.devMessage = "error deleting the model"
+                default:
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }) {
+            Text("Delete")
         }
     }
     
@@ -43,8 +58,15 @@ struct CKChoreActiveDetailView: View {
                 }
             }
             
+            infoView
+            
+            if familyKitAppState.currentPlayer.isAdult {
+                deleteView
+            }
+            
             if model.kidReference != nil {
                 if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                    deleteView
                     ActivityActionView(model: $model)
                 } else {
                     // TODO fetch the user information

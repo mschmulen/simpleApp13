@@ -54,18 +54,6 @@ struct MainAdultView: View {
                         )
                     }
                     .listRowInsets(EdgeInsets())
-                    
-//                    ForEach( self.familyKitAppState.kidService.models ) { kid in
-//                        Section() {
-//                            CKChoreActiveRowView(
-//                                categoryName: " \(kid.name ?? "~") Activities",
-//                                items: self.privateActiveChoreService.models
-//                            )
-//                        }
-//                        .listRowInsets(EdgeInsets())
-//                    }//end ForEach
-                    
-                    
                     ForEach( self.familyKitAppState.kidService.models ) { kid in
                         Section() {
                             CKChoreActiveRowView(
@@ -78,7 +66,6 @@ struct MainAdultView: View {
                         .listRowInsets(EdgeInsets())
                     }//end ForEach
                     
-                    
 //                    ForEach(self.items) { model in
 //                        NavigationLink(
 //                            destination: CKChoreActiveDetailView(
@@ -88,7 +75,6 @@ struct MainAdultView: View {
 //                            CKChoreActiveItemView(model: model)
 //                        }
 //                    }
-                    
                     
 //                    Section() {
 //                        FunRowView(categoryName: "Fun", items: funStore.models)
