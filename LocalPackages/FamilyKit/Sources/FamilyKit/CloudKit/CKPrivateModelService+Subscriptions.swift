@@ -56,7 +56,11 @@ extension CKPrivateModelService {
     
     public func subscribe() {
         print( "CKModelService.subscribe \(T.recordName)")
-        let subscription = CKQuerySubscription(recordType: T.recordName, predicate: NSPredicate(value: true), options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation])
+        let subscription = CKQuerySubscription(
+            recordType: T.recordName,
+            predicate: SearchPredicate.predicateTrue.predicate,
+            options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation]
+        )
         let info = CKSubscription.NotificationInfo()
         info.shouldSendContentAvailable = true
         subscription.notificationInfo = info

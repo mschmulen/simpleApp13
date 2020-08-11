@@ -42,7 +42,7 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
             updateChanges()
         }
     }
-        
+    
     public init(container: CKContainer) {
         self.container = container
     }
@@ -52,6 +52,41 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         case cursorFailure
     }
     
+    public enum SearchPredicate {
+        
+        case predicateTrue
+        
+        //case tagsSearch(_ searchString:String )
+        
+        //let predicate = NSPredicate(format: "info_en CONTAINS %@", searchString)
+        //let predicate = NSPredicate(format: "nameShort CONTAINS %@", searchString)
+        
+        var predicate: NSPredicate {
+            switch self {
+                case .predicateTrue:
+                    return NSPredicate(value: true)
+                
+//                case .tagsSearch( let searchString ) :
+//                    return NSPredicate(format: "tags CONTAINS %@", searchString.lowercased())
+            }
+        }
+    }
+    
+    public enum SortDescriptor {
+        case creationDate
+        case nameShort
+        
+        var sortDescriptor: NSSortDescriptor {
+            switch self {
+            case .creationDate:
+                return NSSortDescriptor(key: "creationDate", ascending: false)
+            case .nameShort:
+                return NSSortDescriptor(key: "nameShort", ascending: true)
+            }
+        }
+    }
+    // query.sortDescriptors = [sortName]
+    
     internal func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()
@@ -59,14 +94,12 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     }
 }
 
-// TODO containerConfig:CKContainerConfig = .publicCloudDatabase
 extension CKPrivateModelService {
 
     public func fetch(
-        completion: @escaping (Result<T, Error>) -> ()
+        completion: @escaping (Result<[T], Error>) -> ()
     ) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: T.recordName, predicate: predicate)
+        let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
         
         queryRecords(
             query: query,
@@ -78,20 +111,23 @@ extension CKPrivateModelService {
                     DispatchQueue.main.async {
                         // TODO merge the model list together
                         self.models = models
+                        completion(.success(models))
                     }
                 case .failure(let error) :
-                    print( "CKPrivateModelService.fetch failure \(error)")
+                    completion(.failure(error))
                 }
         })
     }//end fetchPrivate
     
-    func queryRecords(
+    internal func queryRecords(
         query: CKQuery,
         resultsLimit: Int,
         enablePaging: Bool,
         completion: @escaping (Result<[T], Error>) -> (),
         errorHandler: ((_ error: Error) -> Void)? = nil
     ) {
+        
+        // TODO enable the sort descriptor by date
 //        if !(query.sortDescriptors != nil) {
 //            query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 //        }
@@ -130,20 +166,6 @@ extension CKPrivateModelService {
         var results = continueWithResults
         let operation = CKQueryOperation(cursor: cursor)
         operation.recordFetchedBlock = { record in
-            //            if let parsed = self.fromCKRecord(record) as? T  { results.append(parsed) }
-//            guard
-//                let nameShort = record["nameShort"] as? String,
-//                let lat = record["geoLatitude"] as? Double,
-//                let long = record["geoLongitude"] as? Double,
-//                //let category = record["category"] as? String,
-//                let info = record["info"] as? String,
-//                let countryCode = record["countryCode"] as? String
-//
-//                else {
-//                    print("CloudKitModelService.updateAllModels incomplete record")
-//                    print( "\(record["nameShort"] as? String ?? "Unknown short name")")
-//                    return
-//            }
             if let model = T( record: record) {
                 results.append(model)
             }

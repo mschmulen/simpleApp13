@@ -10,6 +10,7 @@ import SwiftUI
 public struct DrawingView:View {
     
     @State private var currentDrawing: Drawing = Drawing()
+    @State private var layers: [Layer] = [Layer]()
     @State private var drawings: [Drawing] = [Drawing]()
     @State private var color: Color = Color.black
     @State private var lineWidth: CGFloat = 3.0

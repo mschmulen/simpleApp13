@@ -141,15 +141,6 @@ struct AdultUserView: View {
                 }
             }
             
-//            Section(header: Text("CKUser")) {
-//                Text("name \(self.familyKitAppState.userService.currentUser?.name ?? "~")")
-//                Text("emoji: \(self.familyKitAppState.userService.currentUser?.emoji ?? "~")")
-//                Text("birthDate: \(self.familyKitAppState.userService.currentUser?.birthDate?.description ?? "~")")
-//
-//                Text("localeLanguageCode \(self.familyKitAppState.userService.currentUser?.localeCurrentLanguageCode ?? "~")")
-//                Text("localeRegionCode \(self.familyKitAppState.userService.currentUser?.localeCurrentRegionCode ?? "~")")
-//                // optionalText(title: "birthDate",text: self.appState.userService.currentUser?.birthDate)
-//            }
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                 .font(.caption)
         }.onAppear(perform: {

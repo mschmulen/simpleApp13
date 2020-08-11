@@ -55,6 +55,38 @@ public final class CKPublicModelService<T>: ObservableObject where T:CKModel {
         case cursorFailure
     }
     
+        public enum SearchPredicate {
+            
+            case predicateTrue
+            
+            //case tagsSearch(_ searchString:String )
+            //let predicate = NSPredicate(format: "info_en CONTAINS %@", searchString)
+            //let predicate = NSPredicate(format: "nameShort CONTAINS %@", searchString)
+            
+            var predicate: NSPredicate {
+                switch self {
+                    case .predicateTrue:
+                        return NSPredicate(value: true)
+    //                case .tagsSearch( let searchString ) :
+    //                    return NSPredicate(format: "tags CONTAINS %@", searchString.lowercased())
+                }
+            }
+        }
+        
+        public enum SortDescriptor {
+            case creationDate
+            case nameShort
+            
+            var sortDescriptor: NSSortDescriptor {
+                switch self {
+                case .creationDate:
+                    return NSSortDescriptor(key: "creationDate", ascending: false)
+                case .nameShort:
+                    return NSSortDescriptor(key: "nameShort", ascending: true)
+                }
+            }
+        }
+    
     internal func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()
@@ -68,8 +100,8 @@ extension CKPublicModelService {
     public func fetch(
         completion: @escaping (Result<T, Error>) -> ()
     ) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: T.recordName, predicate: predicate)
+        
+        let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
         
         queryRecords(
             query: query,

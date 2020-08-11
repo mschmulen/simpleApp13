@@ -39,9 +39,6 @@ public class CKUserService<T>: ObservableObject where T:CKUserModel {
     }
     
     public func onStartup() {
-//        if let localAppleIDUserIdentifier = SignInWithAppleData.localAppleIDUserIdentifier {
-//            self.localUserDefaults_appleIDCredentialIdentifier = localAppleIDUserIdentifier
-//        }
         requestCloudKitAccountStatus()
         fetchUserRecord()
     }
@@ -90,74 +87,6 @@ extension CKUserService {
         }
     }
 }
-
-// MARK: - Authentication
-//extension CKUserService {
-//
-//    // change to SignIn / Register
-//    public func saveAuthInfoToCloudKit(
-//        userData: SignInWithAppleData,
-//        completion: ((Result<CKRecord.ID,Error>) -> Void)?
-//    ) {
-//        if currentUserRecordIDName != nil {
-//            guard let userRecordIDName = currentUserRecordIDName else { return }
-//            let recordID = CKRecord.ID(recordName: userRecordIDName)
-//
-//            container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
-//
-//                self.localUserDefaults_appleIDCredentialIdentifier = userData.appleIDProvider_credential_user_identifier
-//
-//                if let record = record, error == nil {
-//
-//                    record["appleIDProvider_credential_user_identifier"] = userData.appleIDProvider_credential_user_identifier
-//                    record["appleIDProvider_lastSignInDate"] = userData.appleIDProvider_lastSignInDate
-//
-//                    if let appleIDProvider_credential_user_email = userData.appleIDProvider_credential_user_email {
-//                        record["appleIDProvider_credential_user_email"] = appleIDProvider_credential_user_email
-//                    }
-//
-//                    if let appleIDProvider_credential_user_name = userData.appleIDProvider_credential_user_name {
-//                        record["appleIDProvider_credential_user_familyName"] = appleIDProvider_credential_user_name.familyName
-//                        record["appleIDProvider_credential_user_givenName"] = appleIDProvider_credential_user_name.givenName
-//                        record["appleIDProvider_credential_user_middleName"] = appleIDProvider_credential_user_name.middleName
-//                        record["appleIDProvider_credential_user_namePrefix"] = appleIDProvider_credential_user_name.namePrefix
-//                        record["appleIDProvider_credential_user_nameSuffix"] = appleIDProvider_credential_user_name.nameSuffix
-//                        record["appleIDProvider_credential_user_nickname"] = appleIDProvider_credential_user_name.nickname
-//                    }
-//
-//                    self.container.publicCloudDatabase.save(record) { record, error in
-//                        if let error = error {
-//                            print( "error \(error)")
-//                            completion?(.failure(error))
-//                        } else {
-//                            if let returnRecordID = record?.recordID {
-//                                completion?(.success(returnRecordID))
-//                            } else {
-//                                completion?(.failure(CustomError.unknown))
-//                            }
-//                        }//end else
-//                    }
-//                }
-//            }
-//        } else {
-//            completion?(.failure(CustomError.unknown))
-//        }
-//    } // end saveAuthInfoToCloudKit
-//
-//    public func signOutUser(
-//    ) {
-//        //remove the local credentials stored on the device
-//        SignInWithAppleData.removeUserDefaultsCredentials()
-//
-//        // reset the inmemory stuff
-//        localUserDefaults_appleIDCredentialIdentifier = nil
-//        currentUserRecordID = nil
-//        currentUserRecordIDName = nil
-//        currentUser = nil
-//        updateChanges()
-//    }
-//
-//}
 
 // MARK: - private UserRecord Fetch
 extension CKUserService {
@@ -265,7 +194,6 @@ extension CKUserService {
                         record["explicitInterests"] = explicitInterests
                         self.container.publicCloudDatabase.save(record) { record, error in
                             if let error = error {
-                                print( "updateInterests.error \(error)")
                                 completion?(.failure(error))
                             } else {
                                 if let returnRecordID = record?.recordID {
@@ -273,7 +201,6 @@ extension CKUserService {
                                 } else {
                                     completion?(.failure(CustomError.unknown))
                                 }
-                                print( "success on save")
                             }//end else
                         }
                     }

@@ -9,7 +9,12 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-struct Drawing {
+struct Layer: Codable {
+    let uuid:UUID = UUID()
+    var drawings: [Drawing] = [Drawing]()
+}
+
+struct Drawing: Codable {
     var points: [CGPoint] = [CGPoint]()
 }
 
