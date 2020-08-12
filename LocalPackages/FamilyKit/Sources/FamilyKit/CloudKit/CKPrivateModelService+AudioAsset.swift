@@ -45,3 +45,39 @@ extension CKPrivateModelService  {
 }
 
 
+// MARK: - uploadFileAsset
+extension CKPrivateModelService  {
+    
+    // TODO update File Asset
+    public func uploadFileAsset(
+        model: T,
+        fileURL: URL,
+        assetPropertyName: String,
+        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+    ) {
+        guard let recordID = model.recordID else {
+            print( "no record ID !! ")
+            completion(.failure(CustomError.unknown))
+            return
+        }
+        
+        // fetch and save the update
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            if let record = record, error == nil {
+                let fileAsset = CKAsset(fileURL: fileURL)
+                record[assetPropertyName] = fileAsset
+                self.container.privateCloudDatabase.save(record) { record, error in
+                    if let record = record, error == nil {
+                        completion(.success(record))
+                    } else {
+                        completion(.failure(error ?? CustomError.unknown))
+                    }
+                }
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+    }
+}
+
+

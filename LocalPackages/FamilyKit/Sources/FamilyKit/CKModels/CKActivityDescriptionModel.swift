@@ -18,6 +18,13 @@ public enum ActivityModuleType: String, CaseIterable {
     case none
 }
 
+public enum ActivityCategory: String, CaseIterable {
+    case chore
+    case fun
+    case connect
+    case none
+}
+
 public struct CKActivityDescriptionModel: CKModel {
     
     public typealias ItemType = CKActivityDescriptionModel
@@ -48,7 +55,7 @@ public struct CKActivityDescriptionModel: CKModel {
     public var description: String?
     public var bucks: Int?
     public var emoji: String?
-    public var category: String?
+    public var category: ActivityCategory = .none
     
     public var who: String?
     public var frequency: Frequency = .once
@@ -69,7 +76,7 @@ public struct CKActivityDescriptionModel: CKModel {
         model.who = "kids"
         model.bucks = 2
         model.emoji = "🧵"
-        model.category = "chore"
+        model.category = .chore
         
         model.frequency = .daily
         model.timeofday = "Morning"
@@ -82,15 +89,16 @@ public struct CKActivityDescriptionModel: CKModel {
     ){
         self.name = nil
         self.description = nil
-        self.bucks = nil
+        self.bucks = 2
         self.emoji = nil
-        self.category = nil
+        self.category = .none
+        
+        self.coverPhoto = nil
+        self.moduleType = .drawing
         
         self.who = nil
         self.frequency = .once
         self.timeofday = nil
-        self.coverPhoto = nil
-        self.moduleType = .drawing
     }
     
     public init?(record: CKRecord) {
@@ -108,38 +116,30 @@ public struct CKActivityDescriptionModel: CKModel {
         self.description = _description
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
-        self.category = record["category"] as? String
         
-        
-        if let frequencyString =  record["frequency"] as? String {
-            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
+        if let categoryString = record["category"] as? String {
+            self.category = ActivityCategory(rawValue: categoryString) ?? ActivityCategory.none
+        } else {
+            self.category = .none
         }
+        
         self.coverPhoto = record["coverPhoto"] as? CKAsset
         
         if let moduleTypeString =  record["moduleType"] as? String {
             self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
         }
         
+        if let frequencyString =  record["frequency"] as? String {
+            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
+        }
         self.who = record["who"] as? String
         self.timeofday = record["timeofday"] as? String
     }
     
     enum CustomError: Error {
         case unknown
-    }
-    
+    }    
 }
-
-// TODO: add this to the generic CKModel requirement
-//extension CKActivityDescriptionModel {
-//    
-//    // TODO: add this to the generic CKModel requirement
-//    public func reload( service: CKPrivateModelService<CKActivityDescriptionModel> ) {
-//        service.fetchSingle(model: self) { result in
-//            print( "result \(result)")
-//        }
-//    }
-//}
 
 // MARK: - Create a CKRecord from this model
 extension CKActivityDescriptionModel {
@@ -171,9 +171,7 @@ extension CKActivityDescriptionModel {
             record["emoji"] = emoji as CKRecordValue
         }
         
-        if let category = category {
-            record["category"] = category as CKRecordValue
-        }
+        record["category"] = category.rawValue as CKRecordValue
         
         record["frequency"] = frequency.rawValue as CKRecordValue
         
