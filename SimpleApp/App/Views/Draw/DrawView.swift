@@ -8,9 +8,106 @@
 
 import SwiftUI
 import DrawingKit
+import FamilyKit
 
 struct DrawView: View {
+    
+    @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    
+    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    
+    @State var devMessage: String? = nil
+    
+    @Binding var model: CKActivityModel
+    @State var drawingState:DrawingState = DrawingState.mock
+    
+    var enableEdit: Bool
+    
     var body: some View {
-        DrawingView()
+        VStack {
+            if devMessage != nil {
+                Text("\(devMessage!)")
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        self.devMessage = nil
+                }
+            }
+            DrawingView(
+                drawingState: $drawingState,
+                saveCallback: saveCallback
+            )
+        }.onAppear {
+            self.loadDrawingState()
+        }
     }
+    
+    func loadDrawingState() {
+        if let activityAsset = model.activityAsset {
+            if let activityAsset_FileURL = activityAsset.fileURL {
+                
+                print( "activityAsset_FileURL \(activityAsset_FileURL)")
+                
+                guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
+                    print("Failed to load \(activityAsset_FileURL) ")
+                    self.devMessage = "Failed to load \(activityAsset_FileURL) "
+                    return
+                }
+                
+                let string = String(data:data, encoding: .utf8)
+                print( "loadDrawingState. data string \(string)")
+                
+                let decoder = JSONDecoder()
+                // decoder.dateDecodingStrategy = dateDecodingStrategy
+                // decoder.keyDecodingStrategy = keyDecodingStrategy
+                
+                do {
+                    let decodedDrawingState = try decoder.decode(DrawingState.self, from: data)
+                    drawingState = decodedDrawingState
+                    self.devMessage = "success in decodedDrawingState \(drawingState.layers.count) \(drawingState.scribbles.count)"
+                } catch let error {
+                    self.devMessage = "failed to decode \(error)"
+                }
+            }
+        }
+    }
+    
+    func saveCallback( updatedDrawingState:DrawingState) {
+        self.devMessage = "save DrawingState"
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(updatedDrawingState)
+            
+            let string = String(data:data, encoding: .utf8)
+            print( "saveCallback data string \(string)")
+            
+            let fileNamePrefix = "updatedDrawingState"
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            var localFileURL = documentPath.appendingPathComponent(fileNamePrefix)
+            localFileURL.appendPathExtension("json")
+            
+            print( "localFile URL \(localFileURL)")
+            // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
+            try data.write(to: localFileURL, options: [.atomicWrite])
+            
+            privateActiveChoreService.uploadFileAsset(
+                model: model,
+                fileURL: localFileURL,
+                assetPropertyName: "activityAsset"
+            ) { (result) in
+                switch result {
+                case .failure(let error):
+                    print( "uploadFileAsset error \(error)")
+                    self.devMessage = "upload failure"
+                case .success(_):
+                    print( "upload success")
+                    self.devMessage = "upload success"
+                }
+            }
+        } catch let error {
+            print( "error \(error)")
+        }
+    }
+    
 }

@@ -62,6 +62,7 @@ struct CKChoreNewActiveDetailView: View {
             self.model.name = self.descriptionModel.name
             self.model.description = self.descriptionModel.description
             self.model.bucks = self.descriptionModel.bucks
+            //self.model.category = self.descriptionModel.category
             
             self.model.ckChoreDescriptionReference = choreDescriptionReference
             self.model.kidReference = kidRecordReference

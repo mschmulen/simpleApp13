@@ -7,33 +7,86 @@
 
 import SwiftUI
 
+public struct DrawingState: Codable {
+    public var layers: [ScribbleLayer]
+    public var scribbles: [Scribble]
+    public var currentScribble: Scribble
+
+    public static var mock:DrawingState {
+        DrawingState(
+            layers: [ScribbleLayer](),
+            scribbles: [Scribble](),
+            currentScribble: Scribble()
+        )
+    }
+}
+
+//public class DrawingState: ObservableObject, Codable {
+//
+//    public var layers: [ScribbleLayer]
+//    public var scribbles: [Scribble]
+//    public var currentScribble: Scribble
+//
+//    public static var mock:DrawingState {
+//        DrawingState()
+//    }
+//
+//    public init() {
+//        self.layers = [ScribbleLayer]()
+//        self.scribbles =  [Scribble]()
+//        self.currentScribble = Scribble()
+//    }
+//}
+
+
 public struct DrawingView:View {
     
-    @State private var currentDrawing: Drawing = Drawing()
-    @State private var layers: [Layer] = [Layer]()
-    @State private var drawings: [Drawing] = [Drawing]()
-    @State private var color: Color = Color.black
-    @State private var lineWidth: CGFloat = 3.0
+    @Binding var drawingState: DrawingState// = DrawingState.mock
+    
+    @State private var currentColor: Color = Color.red
+    @State private var currentLineWidth: CGFloat = 3.0
+    
+    var saveCallback: ((DrawingState)->())?
     
     public var body: some View {
         VStack(alignment: .center) {
-            Text("Draw something")
-                .font(.largeTitle)
-            DrawingPad(currentDrawing: $currentDrawing,
-                       drawings: $drawings,
-                       color: $color,
-                       lineWidth: $lineWidth)
-            DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
+            Button(action: {
+                self.save()
+            }) {
+                Text("save")
+            }
+            DrawingPad(
+                drawingState: $drawingState,
+                currentColor: $currentColor,
+                currentLineWidth: $currentLineWidth
+            )
+            DrawingControls(
+                drawingState: $drawingState,
+                currentColor: $currentColor,
+                currentLineWidth: $currentLineWidth,
+                saveCallback: saveCallback
+            )
         }
-
     }
     
-    public init(){
+    public init(
+        drawingState: Binding<DrawingState>,
+        saveCallback: ((DrawingState)->())?
+    ){
+        self._drawingState = drawingState
+        self.saveCallback = saveCallback
+    }
+    
+    func save() {
+        saveCallback?(drawingState)
     }
 }
 
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingView()
+        DrawingView(
+            drawingState: .constant(DrawingState.mock),
+            saveCallback: nil
+        )
     }
 }

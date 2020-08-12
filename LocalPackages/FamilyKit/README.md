@@ -73,3 +73,9 @@ service.listenForNotifications()
 
 
 
+## TODO 
+
+- rebuild the ActivityDefinition and ActiveActivity
+- dont forget to add parameters ?? 
+- add minAge and maxAge to Activity
+

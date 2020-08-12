@@ -56,7 +56,8 @@ struct ActivityActionView: View {
                 }
                 
                 if model.moduleType == .drawing {
-                    DrawingView()
+                    DrawView(model: $model, enableEdit: !isReadOnly)
+                    //DrawingView(drawingState: nil)
                 }
                 
                 if model.moduleType == .chat {

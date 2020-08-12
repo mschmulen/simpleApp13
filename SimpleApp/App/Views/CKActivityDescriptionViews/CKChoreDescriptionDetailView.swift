@@ -83,6 +83,12 @@ struct CKChoreDescriptionDetailView: View {
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
+            Picker(selection: $model.category, label: Text("Category")) {
+                ForEach(ActivityCategory.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            
             Picker(selection: $model.frequency, label: Text("Frequency")) {
                 ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
                     Text($0.rawValue)

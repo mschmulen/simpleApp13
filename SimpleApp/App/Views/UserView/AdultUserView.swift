@@ -80,10 +80,10 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: DrawView()) {
-                    Text("Show SimpleDrawingView")
-                        .foregroundColor(.blue)
-                }
+//                NavigationLink(destination: DrawView(model: <#Binding<CKActivityModel>#>, enableEdit: <#Bool#>)) {
+//                    Text("Show SimpleDrawingView")
+//                        .foregroundColor(.blue)
+//                }
                 
                 NavigationLink(destination: SimpleGameView()) {
                     Text("Show SimpleGameView")

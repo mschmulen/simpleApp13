@@ -10,6 +10,8 @@ import SwiftUI
 struct ColorPicker: View {
     @Binding var color: Color
     @Binding var colorPickerShown: Bool
+
+    //var callback: @escaping ((Result<T,Error>) -> Void)
     
     private let colors = ColorsProvider.supportedColors()
     
