@@ -65,15 +65,9 @@ struct MainFamilyView: View {
                 playerPickerView
                 
                 List {
-                    Section() {
-                        CKChoreDescriptionRowView(
-                            categoryName: "Activity Definition",
-                            items: privateChoreService.models,
-                            isPrivate: true,
-                            showAdd: familyKitAppState.currentPlayer.isAdult
-                        )
-                    }
-                    .listRowInsets(EdgeInsets())
+                    
+                    // TODO: change this to be more like instagram rows
+                    // Section for each kid
                     ForEach( self.familyKitAppState.playerService.models ) { kid in
                         Section() {
                             CKChoreActiveRowView(
