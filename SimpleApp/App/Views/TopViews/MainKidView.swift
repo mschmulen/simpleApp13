@@ -30,7 +30,7 @@ struct MainKidView: View {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 VStack {
-                    Text("Kid View")
+                    Text("\(familyKitAppState.currentPlayer.name) (Kid)")
                 }
                 
                 List{
@@ -85,7 +85,6 @@ struct MainKidView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
-                    //Image(systemName: "person.circle.fill")
                 }
             }
         }
@@ -99,9 +98,6 @@ struct MainKidView: View {
         ){
             HStack {
                 Text("change player")
-                //Text("\(familyKitAppState.currentPlayer.emoji)")
-                //Text("\(familyKitAppState.currentPlayer.name)")
-                //Image(systemName: "person.circle.fill")
             }
         }
     }

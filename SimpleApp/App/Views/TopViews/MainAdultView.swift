@@ -35,7 +35,7 @@ struct MainAdultView: View {
                 DevMessageView(devMessage: $devMessage)
                 
                 VStack {
-                    Text("Adult View")
+                    Text("\(familyKitAppState.currentPlayer.name) (Adult)")
                 }
                 
                 List {
