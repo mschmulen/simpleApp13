@@ -29,14 +29,34 @@ struct MainFamilyView: View {
     
     @State var devMessage: String?
     
+    var playerPickerView: some View {
+        HStack{
+            VStack {
+                Text("🏡")
+                Text("Family")
+                    .font(.headline)
+            }.padding()
+                .border(Color.gray)
+            
+            ForEach( self.familyKitAppState.playerService.models ) { player in
+                VStack {
+                    Text("\(player.emoji ?? "")")
+                    Text("\(player.name ?? "")")
+                        .font(.headline)
+                }.padding()
+                    .border(Color.gray)
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                VStack {
-                    Text("Family View")
-                }
+                Text("Family View")
+                
+                playerPickerView
                 
                 List {
                     Section() {
