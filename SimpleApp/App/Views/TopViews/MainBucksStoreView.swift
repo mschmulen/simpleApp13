@@ -1,8 +1,8 @@
 //
-//  MainView.swift
+//  MainBucksStoreView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 7/23/20.
+//  Created by Matthew Schmulen on 8/13/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainAdultView: View {
+struct MainBucksStoreView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -35,46 +35,10 @@ struct MainAdultView: View {
                 DevMessageView(devMessage: $devMessage)
                 
                 VStack {
-                    Text("Adult View")
+                    Text("Bucks View")
                 }
                 
-                List {
-                    Section() {
-                        CKChoreDescriptionRowView(
-                            categoryName: "Activity Definition",
-                            items: privateChoreService.models,
-                            isPrivate: true,
-                            showAdd: familyKitAppState.currentPlayer.isAdult
-                        )
-                    }
-                    .listRowInsets(EdgeInsets())
-                    ForEach( self.familyKitAppState.playerService.models ) { kid in
-                        Section() {
-                            CKChoreActiveRowView(
-                                categoryName: " \(kid.name ?? "~") Activities",
-                                items: self.privateActiveChoreService.models.filter({ (model) -> Bool in
-                                    model.kidReference?.recordID == kid.recordID
-                                })
-                            )
-                        }
-                        .listRowInsets(EdgeInsets())
-                    }//end ForEach
-                    
-//                    ForEach(self.items) { model in
-//                        NavigationLink(
-//                            destination: CKChoreActiveDetailView(
-//                                model: model
-//                            )
-//                        ) {
-//                            CKChoreActiveItemView(model: model)
-//                        }
-//                    }
-                    
-//                    Section() {
-//                        FunRowView(categoryName: "Fun", items: funStore.models)
-//                    }
-//                    .listRowInsets(EdgeInsets())
-                }
+                Text("TODO")
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
             }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
@@ -103,7 +67,6 @@ struct MainAdultView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
-                    //Image(systemName: "person.circle.fill")
                 }
             }
         }
@@ -118,20 +81,17 @@ struct MainAdultView: View {
         ){
             HStack {
                 Text("change player")
-                //Text("\(familyKitAppState.currentPlayer.emoji)")
-                //Text("\(familyKitAppState.currentPlayer.name)")
-                //Image(systemName: "person.circle.fill")
             }
         }
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct MainBucksStoreView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainAdultView()
+        MainBucksStoreView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))

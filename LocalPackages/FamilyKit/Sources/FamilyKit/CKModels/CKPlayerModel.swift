@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CloudKit
 
+// TODO: Should have been named CKPerson
 public struct CKPlayerModel: CKModel {
     
     public typealias ItemType = CKPlayerModel
@@ -30,6 +31,9 @@ public struct CKPlayerModel: CKModel {
     public var emoji: String?
     
     public var isAdult: Bool?
+    
+    // TODO: finish the cover photo for the kid
+    //public var coverPhoto: CKAsset?
     
     public var title: String? {
         return name
@@ -54,7 +58,6 @@ public struct CKPlayerModel: CKModel {
         model.emoji = "😀"
         return model
     }
-
     
     public init(
     ){
@@ -63,6 +66,7 @@ public struct CKPlayerModel: CKModel {
         self.dateOfBirth = nil
         self.emoji = nil
         self.isAdult = nil
+        //self.coverPhoto = nil
     }
     
     public init?(record: CKRecord) {

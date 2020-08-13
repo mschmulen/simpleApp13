@@ -57,7 +57,9 @@ public struct CKActivityDescriptionModel: CKModel {
     public var emoji: String?
     public var category: ActivityCategory = .none
     
-    public var who: String?
+    public var who: String? // TODO: remove this
+    
+    // Keep them for now ... but hold off on doing work around them.
     public var frequency: Frequency = .once
     public var timeofday: String?
     

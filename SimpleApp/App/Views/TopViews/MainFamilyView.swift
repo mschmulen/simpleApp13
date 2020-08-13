@@ -1,8 +1,8 @@
 //
-//  MainView.swift
+//  MainFamilyView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 7/23/20.
+//  Created by Matthew Schmulen on 8/13/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainAdultView: View {
+struct MainFamilyView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -35,7 +35,7 @@ struct MainAdultView: View {
                 DevMessageView(devMessage: $devMessage)
                 
                 VStack {
-                    Text("Adult View")
+                    Text("Family View")
                 }
                 
                 List {
@@ -59,21 +59,6 @@ struct MainAdultView: View {
                         }
                         .listRowInsets(EdgeInsets())
                     }//end ForEach
-                    
-//                    ForEach(self.items) { model in
-//                        NavigationLink(
-//                            destination: CKChoreActiveDetailView(
-//                                model: model
-//                            )
-//                        ) {
-//                            CKChoreActiveItemView(model: model)
-//                        }
-//                    }
-                    
-//                    Section() {
-//                        FunRowView(categoryName: "Fun", items: funStore.models)
-//                    }
-//                    .listRowInsets(EdgeInsets())
                 }
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
@@ -126,12 +111,12 @@ struct MainAdultView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct MainFamilyView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainAdultView()
+        MainFamilyView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))

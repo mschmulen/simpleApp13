@@ -24,7 +24,7 @@ struct ActivityAudioActionView: View {
     
     @Binding var model: CKActivityModel
     
-    var enableRecording: Bool
+    var isReadOnly: Bool
     
     @State var avAudioRecorder: AVAudioRecorder?
     
@@ -37,13 +37,7 @@ struct ActivityAudioActionView: View {
     var body: some View {
         VStack {
             
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             
             Text("RECORD")
             
@@ -53,7 +47,7 @@ struct ActivityAudioActionView: View {
             
             
             // Recording feature
-            if enableRecording == true {
+            if isReadOnly == false {
                 if isRecording == false {
                     Button(action: {
                         self.startRecording(audioFileNamePrefix: UUID().uuidString)
@@ -214,11 +208,11 @@ struct ActivityAudioActionView_Previews: PreviewProvider {
         Group {
             ActivityAudioActionView(
                 model: .constant(CKActivityModel.mock),
-                enableRecording: true
+                isReadOnly: true
             )
             ActivityAudioActionView(
                 model: .constant(CKActivityModel.mock),
-                enableRecording: false
+                isReadOnly: false
             )
         }
     }

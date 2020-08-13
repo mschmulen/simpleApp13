@@ -25,51 +25,73 @@ struct ActivityActionView: View {
     
     @Binding var model: CKActivityModel
     
-    var showSave:Bool = false
-    // TODO: support isReadOnly
     var isReadOnly:Bool = false
     
-    var body: some View {
-        VStack {
-            
-            if showSave == true {
-                Button(action:onSave) {
-                    HStack {
-                        Text("Save")
-                            .foregroundColor(.blue)
-                        Image(systemName: "square.and.arrow.up")
-                    }.foregroundColor(.blue)
-                }
+    var doneView: some View {
+        Button(action:onDone) {
+            HStack {
+                Spacer()
+                Text("Done")
+                    .foregroundColor(.blue)
+                    .padding()
+                Image(systemName: "square.and.arrow.up")
+                    .padding()
             }
-            
-            VStack {
-                if model.moduleType == .photo {
-                    PhotoActivityView(model: $model)
-                    //                NavigationLink(destination: PhotoActivityModelView(model: $model)) {
-                    //                    Text("take a picture")
-                    //                        .foregroundColor(.blue)
-                    //                }
-                }
-                
-                if model.moduleType == .audio {
-                    ActivityAudioActionView(model: $model, enableRecording: !isReadOnly)
-                }
-                
-                if model.moduleType == .drawing {
-                    DrawView(model: $model, enableEdit: !isReadOnly)
-                    //DrawingView(drawingState: nil)
-                }
-                
-                if model.moduleType == .chat {
-                    ChatSessionView()
-                }
-                EmptyView()
-            }
-            
+            .foregroundColor(.blue)
+            .padding()
         }
     }
     
-    func onSave() {
+    var body: some View {
+        VStack {
+            if isReadOnly == false {
+                doneView
+            }
+            
+            VStack {
+            //ScrollView(.vertical, showsIndicators: false) {
+                if model.moduleType == .photo {
+                    PhotoActivityView(
+                        model: $model,
+                        isReadOnly: isReadOnly
+                    )
+                }
+                
+                if model.moduleType == .audio {
+                    ActivityAudioActionView(
+                        model: $model,
+                        isReadOnly: isReadOnly
+                    )
+                }
+                
+                if model.moduleType == .drawing {
+                    DrawView(
+                        model: $model,
+                        isReadOnly: isReadOnly
+                    )
+                }
+                
+                if model.moduleType == .chat {
+                    ChatSessionView() // model: $model
+                }
+                
+                // show the ChatSessionView
+                //if model.chatSession != nil {
+//                    ChatSessionView()
+                //} else {
+                
+                NavigationLink(destination: ChatSessionView()) {
+                    Text("Show Chat")
+                        .foregroundColor(.blue)
+                }
+                
+                 //EmptyView()
+                //}
+            }
+        }
+    }
+    
+    func onDone() {
         guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
             self.devMessage = "invalid playerRecordReference"
             return
@@ -77,6 +99,7 @@ struct ActivityActionView: View {
         
         self.model.kidReference = playerRecordReference
         
+        model.status = .completed
         privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):

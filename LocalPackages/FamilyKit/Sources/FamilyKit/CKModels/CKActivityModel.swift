@@ -11,8 +11,9 @@ import CloudKit
 
 public enum ActivityStatus: String, CaseIterable {
     case unknown
-    case active
-    case completed
+    case active // started activity.
+    case completed // they think they are done.
+    case verified  // adult "verify button" and they get bucks
 }
 
 public struct CKActivityModel: CKModel {

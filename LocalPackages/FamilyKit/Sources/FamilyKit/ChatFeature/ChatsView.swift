@@ -31,17 +31,18 @@ public struct ChatsView: View {
                     Text("NEW CHAT")
                 }
                 
-                List {
-                    Section(header: Text("Sessions")) {
-                        ForEach(self.chatSessions, id: \.self) { session in
-                            NavigationLink(destination: ChatSessionView()) {
-                                HStack {
-                                    Text("\(session)")
-                                }
-                            }
-                        }
-                    }
-                }
+                // TODO: Fix this 
+//                List {
+//                    Section(header: Text("Sessions")) {
+//                        ForEach(self.chatSessions, id: \.self) { session in
+//                            NavigationLink(destination: ChatSessionView()) {
+//                                HStack {
+//                                    Text("\(session)")
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
                 //            }.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
             }
         }    

@@ -26,13 +26,7 @@ struct CKChoreActiveListView: View {
     
     var body: some View {
         List{
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Activities (CKChoreActiveModel)")) {
                 ForEach( self.privateActiveChoreService.models) { model in

@@ -15,18 +15,25 @@ struct ContentView: View {
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-
+    
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
-        
+    
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
     enum TopView {
         case mainView
         case purchaseView
-        case testView
+    }
+    
+    @State private var selectedTab: Int = TabViewIndex.you.rawValue
+    
+    public enum TabViewIndex: Int {
+        case you = 0
+        case family = 1
+        case bucksStore = 2
     }
     
     @ViewBuilder
@@ -45,34 +52,54 @@ struct ContentView: View {
                 PlayerOnboardingView()
                     .environmentObject(familyKitAppState)
             } else {
-                
-                if appState.topView == .testView {
-                    // this is just to make it easy to test specific views
-                    
-                    ActivityActionView(model: .constant(CKActivityModel.mock) )
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                        .environmentObject(privateChoreService)
-                        .environmentObject(chatService)
-
-                }
-                
-                if appState.topView == .mainView {
-                    if familyKitAppState.currentPlayer.isAdult {
-                        MainAdultView()
+                TabView(selection: $selectedTab) {
+                    if appState.topView == .mainView {
+                        if familyKitAppState.currentPlayer.isAdult {
+                            MainAdultView()
+                                .environment(\.window, window)
+                                .environmentObject(appState)
+                                .environmentObject(familyKitAppState)
+                                .environmentObject(privateChoreService)
+                                .environmentObject(chatService)
+                                .tabItem {
+                                    Image(systemName: "person.circle")
+                                    Text("You")
+                            }.tag(TabViewIndex.you.rawValue)
+                        } else {
+                            MainKidView()
+                                .environment(\.window, window)
+                                .environmentObject(appState)
+                                .environmentObject(familyKitAppState)
+                                .environmentObject(privateChoreService)
+                                .environmentObject(chatService)
+                                .tabItem {
+                                    Image(systemName: "person.circle")
+                                    Text("You")
+                            }.tag(TabViewIndex.you.rawValue)
+                        }//end first tab
+                        
+                        MainFamilyView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
                             .environmentObject(chatService)
-                    } else {
-                        MainKidView()
+                            .tabItem {
+                                Image(systemName: "house")
+                                Text("Family")
+                        }.tag(TabViewIndex.family.rawValue)
+                        
+                        MainBucksStoreView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
                             .environmentObject(chatService)
+                            .tabItem {
+                                Image(systemName: "dollarsign.circle")
+                                // .font(.system(size: 28, weight: .light))
+                                Text("Bucks")
+                        }.tag(TabViewIndex.bucksStore.rawValue)
                     }
                 }
                 
@@ -83,7 +110,7 @@ struct ContentView: View {
                 // EmptyView()
             }
         }//end group
-        .sheet(isPresented: $showNoiCloudConnection) {
+            .sheet(isPresented: $showNoiCloudConnection) {
                 iCloudSheetView(showSheetView: self.$showNoiCloudConnection)
         }
         .onAppear {

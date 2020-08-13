@@ -48,9 +48,10 @@ struct CKChoreActiveItemView: View {
         }
         .padding(.leading, 15)
         .onAppear {
-            if let coverPhotoAsset = self.model.coverPhoto, let coverPhotoAsset_fileURL = coverPhotoAsset.fileURL {
+            
+            if let resultAssetImage = self.model.resultAssetImage, let resultAssetImage_fileURL = resultAssetImage.fileURL {
                 do {
-                    let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
+                    let imageData = try Data(contentsOf: resultAssetImage_fileURL)
                     if let loadedUIImage = UIImage(data: imageData) {
                         self.coverPhotoImage = Image(uiImage: loadedUIImage)
                         return
@@ -58,11 +59,11 @@ struct CKChoreActiveItemView: View {
                 } catch {
                     print("Error loading image : \(error)")
                 }
-            } else
-            {
-                if let resultAssetImage = self.model.resultAssetImage, let resultAssetImage_fileURL = resultAssetImage.fileURL {
+            } else {
+                
+                if let coverPhotoAsset = self.model.coverPhoto, let coverPhotoAsset_fileURL = coverPhotoAsset.fileURL {
                     do {
-                        let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+                        let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
                         if let loadedUIImage = UIImage(data: imageData) {
                             self.coverPhotoImage = Image(uiImage: loadedUIImage)
                             return
@@ -70,8 +71,47 @@ struct CKChoreActiveItemView: View {
                     } catch {
                         print("Error loading image : \(error)")
                     }
+                } else {
+                    if let emoji = self.model.emoji {
+                        self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
+                    } else {
+                        self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
+                    }
                 }
             }
+            
+            
+            //            if let emoji = self.model.emoji {
+            //                self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
+            //            } else {
+            //                self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
+            //            }
+                        
+            //            if let coverPhotoAsset = self.model.coverPhoto, let coverPhotoAsset_fileURL = coverPhotoAsset.fileURL {
+            //                do {
+            //                    let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
+            //                    if let loadedUIImage = UIImage(data: imageData) {
+            //                        self.coverPhotoImage = Image(uiImage: loadedUIImage)
+            //                        return
+            //                    }
+            //                } catch {
+            //                    print("Error loading image : \(error)")
+            //                }
+            //            } else
+            //            {
+            //                if let resultAssetImage = self.model.resultAssetImage, let resultAssetImage_fileURL = resultAssetImage.fileURL {
+            //                    do {
+            //                        let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+            //                        if let loadedUIImage = UIImage(data: imageData) {
+            //                            self.coverPhotoImage = Image(uiImage: loadedUIImage)
+            //                            return
+            //                        }
+            //                    } catch {
+            //                        print("Error loading image : \(error)")
+            //                    }
+            //                }
+            //            }
+            
             
             // TODO: Load the reference stuff
 //            if let emoji = self.model.emoji {

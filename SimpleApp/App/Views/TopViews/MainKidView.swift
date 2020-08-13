@@ -28,13 +28,7 @@ struct MainKidView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if devMessage != nil {
-                    Text("\(devMessage!)")
-                        .foregroundColor(.red)
-                        .onTapGesture {
-                            self.devMessage = nil
-                    }
-                }
+                DevMessageView(devMessage: $devMessage)
                 VStack {
                     Text("Kid View")
                 }

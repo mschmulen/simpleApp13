@@ -13,14 +13,19 @@ public struct ChatSessionView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var chatService: ChatService
     
+//    @Binding var model: CKActivityModel
+//    @State var chatSession: CKChatSessionModel
+    
     @State var typingMessage: String = ""
     
     @State var devMessage: String?
     
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    public init() {
+    public init() { //chatSessions: Binding<CKChatSessionModel>) {
+//        self._model = model
 //        self._chatService = chatService
+        
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
     }
@@ -58,11 +63,7 @@ public struct ChatSessionView: View {
         }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.chatService.chatMessageService.fetch(
-                sortDescriptor: .creationDateAscending
-            ) { (result) in
-                print( "fetch \(result)")
-            }
+            self.chatService.onRefresh()
         }
     }
     

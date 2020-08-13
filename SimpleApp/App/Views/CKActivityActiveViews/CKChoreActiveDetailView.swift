@@ -50,13 +50,7 @@ struct CKChoreActiveDetailView: View {
     
     var body: some View {
         VStack {
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             
             infoView
             

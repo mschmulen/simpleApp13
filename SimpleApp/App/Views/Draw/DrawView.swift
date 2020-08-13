@@ -23,17 +23,11 @@ struct DrawView: View {
     @Binding var model: CKActivityModel
     @State var drawingState:DrawingState = DrawingState.mock
     
-    var enableEdit: Bool
+    var isReadOnly: Bool
     
     var body: some View {
         VStack {
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             DrawingView(
                 drawingState: $drawingState,
                 saveCallback: saveCallback
@@ -148,7 +142,7 @@ struct DrawView_Previews: PreviewProvider {
     static var previews: some View {
         DrawView(
             model: .constant(CKActivityModel.mock),
-            enableEdit: true
+            isReadOnly: true
         )
     }
 }

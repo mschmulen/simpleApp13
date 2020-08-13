@@ -18,6 +18,7 @@ struct PhotoActivityView: View {
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
+    var isReadOnly:Bool
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false
@@ -165,8 +166,15 @@ struct PhotoActivityView: View {
 
 struct PhotoActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoActivityView(
-            model: .constant(CKActivityModel.mock)
-        )
+        Group {
+            PhotoActivityView(
+                model: .constant(CKActivityModel.mock),
+                isReadOnly: true
+            )
+            PhotoActivityView(
+                model: .constant(CKActivityModel.mock),
+                isReadOnly: true
+            )
+        }
     }
 }

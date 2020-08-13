@@ -42,6 +42,9 @@
 		76208BA424D8C50C001F46E2 /* AudioRecorderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA324D8C50C001F46E2 /* AudioRecorderList.swift */; };
 		76208BA624D8C55F001F46E2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA524D8C55F001F46E2 /* AudioPlayer.swift */; };
 		76208BA824D8C589001F46E2 /* AudioRecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA724D8C589001F46E2 /* AudioRecordingsList.swift */; };
+		7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837B24E5BFA000097C4D /* DevMessageView.swift */; };
+		7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837D24E6039F00097C4D /* MainFamilyView.swift */; };
+		7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainBucksStoreView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
 		76BADB4224CA57AD004950C0 /* stmarylake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3424CA57AC004950C0 /* stmarylake.jpg */; };
@@ -158,6 +161,9 @@
 		76208BA524D8C55F001F46E2 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		76208BA724D8C589001F46E2 /* AudioRecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingsList.swift; sourceTree = "<group>"; };
 		7649837724E594FC00097C4D /* Production_SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Production_SimpleApp.entitlements; sourceTree = "<group>"; };
+		7649837B24E5BFA000097C4D /* DevMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMessageView.swift; sourceTree = "<group>"; };
+		7649837D24E6039F00097C4D /* MainFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyView.swift; sourceTree = "<group>"; };
+		7649837F24E603C100097C4D /* MainBucksStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBucksStoreView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 			children = (
 				76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */,
 				7616F66724DC7723003488EB /* MainKidView.swift */,
+				7649837D24E6039F00097C4D /* MainFamilyView.swift */,
+				7649837F24E603C100097C4D /* MainBucksStoreView.swift */,
 			);
 			path = TopViews;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 				7675FAF824C8AC1800C95453 /* UserSettings.swift */,
 				76208B8C24D663F6001F46E2 /* String+Image.swift */,
 				76208B9724D71787001F46E2 /* EmojiView.swift */,
+				7649837B24E5BFA000097C4D /* DevMessageView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -638,11 +647,13 @@
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKChoreActiveListView.swift in Sources */,
 				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
+				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
 				76BADB6124CA599A004950C0 /* FunModel.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKChoreDescriptionItemView.swift in Sources */,
 				76BADB7424CB0A03004950C0 /* ChoreDetailView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKChoreDescriptionListView.swift in Sources */,
+				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKChoreDescriptionAddItemView.swift in Sources */,
 				76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
@@ -675,6 +686,7 @@
 				76BADB7F24CB0EA3004950C0 /* FunDetailView.swift in Sources */,
 				76BADB5F24CA58D8004950C0 /* ChoreStore.swift in Sources */,
 				76208BA824D8C589001F46E2 /* AudioRecordingsList.swift in Sources */,
+				7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */,
 				76208B8424D60AE5001F46E2 /* TextField+Helper.swift in Sources */,
 				76BADB5A24CA589E004950C0 /* FunStore.swift in Sources */,
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,

@@ -128,13 +128,7 @@ struct CKChoreDescriptionDetailView: View {
     
     var body: some View {
         List{
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             
             if enableEdit {
                 Button(action:onSave) {

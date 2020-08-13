@@ -17,7 +17,7 @@ public class ChatService : ObservableObject {
     // public let objectWillChange = ObservableObjectPublisher()
     // var anyCancellable: AnyCancellable? = nil
     
-    var didChange = PassthroughSubject<Void, Never>()
+    //var didChange = PassthroughSubject<Void, Never>()
     
     @Published public private (set) var chatMessageService: CKPrivateModelService<CKChatMessageModel>
     
@@ -39,6 +39,7 @@ public class ChatService : ObservableObject {
     private func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()
+            //self.didChange.send(())
         }
     }
     
@@ -60,17 +61,13 @@ public class ChatService : ObservableObject {
 //                        print( "result")
 //                    }
                     self.onRefresh()
-                    self.didChange.send(())
-                    self.updateChanges()
                 }
             }
         }
     }
     
     func makeSession(_ sessionName: String) {
-        
         // TODO find the chat session, specifically the global chat session
-        
     }
 }
 
@@ -82,7 +79,6 @@ extension ChatService {
         { (result) in
             print( "chatMessageService fetch \(result)")
             self.updateChanges()
-            self.didChange.send(())
         }
     }
 }

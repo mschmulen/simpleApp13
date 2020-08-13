@@ -27,13 +27,7 @@ struct KidUserView: View {
     
     var body: some View {
         List{
-            if devMessage != nil {
-                Text("\(devMessage!)")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        self.devMessage = nil
-                }
-            }
+            DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Current Player")) {
                 Text("\(familyKitAppState.currentPlayer.name)")
