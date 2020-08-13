@@ -30,22 +30,28 @@ struct MainFamilyView: View {
     @State var devMessage: String?
     
     var playerPickerView: some View {
-        HStack{
-            VStack {
-                Text("🏡")
-                Text("Family")
-                    .font(.headline)
-            }.padding()
-                .border(Color.gray)
-            
-            ForEach( self.familyKitAppState.playerService.models ) { player in
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack {
                 VStack {
-                    Text("\(player.emoji ?? "")")
-                    Text("\(player.name ?? "")")
+                    Text("🏡")
+                    Text("Family")
                         .font(.headline)
-                }.padding()
+                }
+                .frame(width: 80, height: 80)
+                .padding()
+                .border(Color.gray)
+                
+                ForEach( self.familyKitAppState.playerService.models ) { player in
+                    VStack {
+                        Text("\(player.emoji ?? "")")
+                        Text("\(player.name ?? "")")
+                            .font(.headline)
+                    }
+                    .frame(width: 80, height: 80)
+                    .padding()
                     .border(Color.gray)
-            }
+                }
+            }.padding()
         }
     }
     
