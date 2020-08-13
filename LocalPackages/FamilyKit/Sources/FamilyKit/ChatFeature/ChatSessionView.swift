@@ -58,7 +58,9 @@ public struct ChatSessionView: View {
         }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.chatService.chatMessageService.fetch { (result) in
+            self.chatService.chatMessageService.fetch(
+                sortDescriptor: .creationDateAscending
+            ) { (result) in
                 print( "fetch \(result)")
             }
         }

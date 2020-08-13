@@ -64,8 +64,8 @@ struct PlayersListView: View {
                 switch result {
                 case .failure(let error):
                     print("delete.error \(error)")
-                case .success(let recordID):
-                    print("delete.success \(recordID)")
+                case .success(_):
+                    self.familyKitAppState.onRefresh()
                 }
             }
         }

@@ -50,6 +50,8 @@ public struct CKActivityModel: CKModel {
     public var status: ActivityStatus = .unknown
     public var category: ActivityCategory = .none
     
+    public var chatSession: CKRecord.Reference?
+    
     public var title: String? {
         return name
     }
@@ -78,6 +80,7 @@ public struct CKActivityModel: CKModel {
         model.statusMessage = nil
         model.status = .active
         model.category = .chore
+        model.chatSession = nil
         
         return model
     }
@@ -101,6 +104,7 @@ public struct CKActivityModel: CKModel {
         self.statusMessage = nil
         self.status = .active
         self.category = .chore
+        self.chatSession = nil
     }
     
     public init?(record: CKRecord) {
@@ -146,6 +150,7 @@ public struct CKActivityModel: CKModel {
             self.category = .none
         }
         
+        self.chatSession = record["chatSession"] as? CKRecord.Reference
     }
     
     enum CustomError: Error {
@@ -210,6 +215,10 @@ extension CKActivityModel {
         
         if let activityAsset = activityAsset {
             record["activityAsset"] = activityAsset as CKRecordValue
+        }
+        
+        if let chatSession = chatSession {
+            record["chatSession"] = chatSession as CKRecordValue
         }
         
         return record

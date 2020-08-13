@@ -72,6 +72,11 @@ struct CKChoreNewActiveDetailView: View {
             self.model.category = self.descriptionModel.category
             self.model.status = ActivityStatus.active
             
+            // create a new Chat Session
+//            let newChatSession = CKChatSessionModel()
+//            newChatSession.name = "activityChat"
+//            self.model.chatSession = newChatSession
+            
             self.privateActiveChoreService.pushUpdateCreate(model: self.model) { (result) in
                 switch result {
                 case .failure(let error):

@@ -75,14 +75,23 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     
     public enum SortDescriptor {
         case creationDate
-        case nameShort
+        case creationDateAscending
+        //case none
+        // case updateDate
+        // case name
         
-        var sortDescriptor: NSSortDescriptor {
+        var sortDescriptors: [NSSortDescriptor] {
             switch self {
             case .creationDate:
-                return NSSortDescriptor(key: "creationDate", ascending: false)
-            case .nameShort:
-                return NSSortDescriptor(key: "nameShort", ascending: true)
+                return [NSSortDescriptor(key: "creationDate", ascending: false)]
+            case .creationDateAscending:
+                return [NSSortDescriptor(key: "creationDate", ascending: true)]
+//            case .none:
+                
+//            case .updateDate:
+//                    return NSSortDescriptor(key: "creationDate", ascending: false)
+//            case .name:
+//                return NSSortDescriptor(key: "name", ascending: true)
             }
         }
     }
@@ -98,9 +107,14 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
 extension CKPrivateModelService {
 
     public func fetch(
+        sortDescriptor: SortDescriptor? = nil,
         completion: @escaping (Result<[T], Error>) -> ()
     ) {
         let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
+        
+        if let sortDescriptor = sortDescriptor {
+            query.sortDescriptors = sortDescriptor.sortDescriptors
+        }
         
         queryRecords(
             query: query,

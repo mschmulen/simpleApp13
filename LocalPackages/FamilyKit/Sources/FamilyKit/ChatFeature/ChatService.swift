@@ -21,12 +21,14 @@ public class ChatService : ObservableObject {
     
     @Published public private (set) var chatMessageService: CKPrivateModelService<CKChatMessageModel>
     
+    @Published public private (set) var chatSessionService: CKPrivateModelService<CKChatSessionModel>
+    
     public init(
         container: CKContainer
     ) {
-        
         self.container = container
         chatMessageService = CKPrivateModelService<CKChatMessageModel>(container: container)
+        chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: container)
         
 //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
 //            self.objectWillChange.send()
@@ -40,6 +42,7 @@ public class ChatService : ObservableObject {
         }
     }
     
+    // TODO: make use of the ChatSessions ...
     func sendMessage(_ chatMessageModel: CKChatMessageModel) {
         // TODO Send Message
         print( "TODO fix this update")
@@ -63,13 +66,20 @@ public class ChatService : ObservableObject {
             }
         }
     }
+    
+    func makeSession(_ sessionName: String) {
+        
+        // TODO find the chat session, specifically the global chat session
+        
+    }
 }
 
 // MARK: - StartupServices
 extension ChatService {
     
     public func onRefresh() {
-        chatMessageService.fetch { (result) in
+        chatMessageService.fetch ( sortDescriptor: .creationDateAscending)
+        { (result) in
             print( "chatMessageService fetch \(result)")
             self.updateChanges()
             self.didChange.send(())
