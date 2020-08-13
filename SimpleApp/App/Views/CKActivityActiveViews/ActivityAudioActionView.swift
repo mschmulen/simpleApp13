@@ -208,3 +208,18 @@ struct AudioRecordingPlayerView: View {
     }
     
 }
+
+struct ActivityAudioActionView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ActivityAudioActionView(
+                model: .constant(CKActivityModel.mock),
+                enableRecording: true
+            )
+            ActivityAudioActionView(
+                model: .constant(CKActivityModel.mock),
+                enableRecording: false
+            )
+        }
+    }
+}

@@ -48,8 +48,19 @@ struct CKChoreActiveItemView: View {
         }
         .padding(.leading, 15)
         .onAppear {
-            if let resultAssetImage = self.model.resultAssetImage {
-                if let resultAssetImage_fileURL = resultAssetImage.fileURL {
+            if let coverPhotoAsset = self.model.coverPhoto, let coverPhotoAsset_fileURL = coverPhotoAsset.fileURL {
+                do {
+                    let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
+                    if let loadedUIImage = UIImage(data: imageData) {
+                        self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                        return
+                    }
+                } catch {
+                    print("Error loading image : \(error)")
+                }
+            } else
+            {
+                if let resultAssetImage = self.model.resultAssetImage, let resultAssetImage_fileURL = resultAssetImage.fileURL {
                     do {
                         let imageData = try Data(contentsOf: resultAssetImage_fileURL)
                         if let loadedUIImage = UIImage(data: imageData) {
@@ -86,7 +97,7 @@ struct CKChoreActiveItemView: View {
 struct CKChoreActiveItemView_Previews: PreviewProvider {
     static var previews: some View {
         CKChoreActiveItemView( model: CKActivityModel.mock)
-            .previewLayout(.fixed(width: 300, height: 300))
+            .previewLayout(.fixed(width: 200, height: 200))
     }
 }
 #endif

@@ -73,7 +73,7 @@ struct DrawView: View {
         }
     }
     
-    func saveCallback( updatedDrawingState:DrawingState) {
+    func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
         self.devMessage = "save DrawingState"
         do {
             let encoder = JSONEncoder()
@@ -108,6 +108,47 @@ struct DrawView: View {
         } catch let error {
             print( "error \(error)")
         }
+        
+        if let screenShot = screenShot {
+            saveScreenShot(screenShot: screenShot)
+        }
     }
     
+    func saveScreenShot(screenShot:UIImage) {
+        print( " TODO save the screenshot")
+        
+            privateActiveChoreService.uploadPhotoAsset(
+                model:model,
+                image: screenShot,
+                assetPropertyName: "coverPhoto"
+            ) { result in
+                switch result {
+                case .failure( let error):
+                    print( "uploadFileAsset error \(error)")
+//                    DispatchQueue.main.async {
+//                        self.statusMessage = "There was an error uploading \(error)"
+//                    }
+                case .success(_):
+                     print( "upload success")
+//                    self.statusMessage = "Reloading ..."
+//                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
+//                        print( "result")
+//                        DispatchQueue.main.async {
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        }
+//                    }
+                }
+        }
+        
+    }
+    
+}
+
+struct DrawView_Previews: PreviewProvider {
+    static var previews: some View {
+        DrawView(
+            model: .constant(CKActivityModel.mock),
+            enableEdit: true
+        )
+    }
 }

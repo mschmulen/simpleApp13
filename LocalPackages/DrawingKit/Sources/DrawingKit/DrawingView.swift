@@ -46,7 +46,34 @@ public struct DrawingView:View {
     @State private var currentColor: Color = Color.red
     @State private var currentLineWidth: CGFloat = 3.0
     
-    var saveCallback: ((DrawingState)->())?
+    var saveCallback: ((DrawingState, UIImage?)->())?
+    
+    @State var frameOrigin: CGPoint = .zero
+    @State var frameSize: CGSize = .zero
+    @State private var screenShotImage: UIImage?
+    
+    public var drawPad: some View {
+        GeometryReader { geometry in
+            self.makeDrawPadView(geometry)
+        }
+    }
+    
+    func makeDrawPadView(_ geometry: GeometryProxy) -> some View {
+        print(geometry.size.width, geometry.size.height)
+        
+        DispatchQueue.main.async {
+            self.frameSize = geometry.size
+            self.frameOrigin = geometry.frame(in: .global).origin
+        }
+        
+        return DrawingPad(
+            drawingState: self.$drawingState,
+            currentColor: self.$currentColor,
+            currentLineWidth: self.$currentLineWidth
+        )
+//
+//                .frame(width: geometry.size.width)
+    }
     
     public var body: some View {
         VStack(alignment: .center) {
@@ -55,11 +82,12 @@ public struct DrawingView:View {
             }) {
                 Text("save")
             }
-            DrawingPad(
-                drawingState: $drawingState,
-                currentColor: $currentColor,
-                currentLineWidth: $currentLineWidth
-            )
+            drawPad
+//            DrawingPad(
+//                drawingState: self.$drawingState,
+//                currentColor: self.$currentColor,
+//                currentLineWidth: self.$currentLineWidth
+//            )
             DrawingControls(
                 drawingState: $drawingState,
                 currentColor: $currentColor,
@@ -71,14 +99,41 @@ public struct DrawingView:View {
     
     public init(
         drawingState: Binding<DrawingState>,
-        saveCallback: ((DrawingState)->())?
+        saveCallback: ((DrawingState,UIImage?)->())?
     ){
         self._drawingState = drawingState
         self.saveCallback = saveCallback
     }
     
     func save() {
-        saveCallback?(drawingState)
+        // TODO Take a screen shot of this view
+        
+//        let image = self.takeScreenshot(
+//            origin: drawPad.frame(in: .global).origin,
+//            size: drawPad.size
+//        )
+        
+//        DispatchQueue.main.async {
+            
+        print( "frameOrigin: \(self.frameOrigin)")
+        print( "frameSize: \(self.frameSize)")
+            
+        if let image = screenShotImage {
+            self.saveCallback?(self.drawingState, image)
+        } else {
+            self.saveCallback?(self.drawingState, nil)
+        }
+        
+//            if let image = self.drawPad.takeScreenshot(
+//                origin: self.frameOrigin,
+//                size: self.frameSize
+//                ) {
+//                self.saveCallback?(self.drawingState, image)
+//            } else {
+//                self.saveCallback?(self.drawingState, nil)
+//            }
+//        }
+        
     }
 }
 

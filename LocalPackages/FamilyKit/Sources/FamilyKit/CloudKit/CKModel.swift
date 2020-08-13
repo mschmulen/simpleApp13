@@ -11,7 +11,6 @@ import CloudKit
 
 public protocol CKModel: Identifiable {
     
-    // TODO fix the associatedtype type setup
     associatedtype ItemType
     
     static var recordName: String { get }

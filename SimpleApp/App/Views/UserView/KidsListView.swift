@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct KidsListView: View {
     
@@ -72,4 +73,14 @@ struct KidsListView: View {
         }
     }
 
+}
+
+struct KidsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        KidsListView()
+        .environmentObject(AppState())
+        .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+        .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+    }
 }

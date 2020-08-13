@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct AdultsListView: View {
     
@@ -72,5 +73,14 @@ struct AdultsListView: View {
             }
         }
     }
+}
 
+struct AdultsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdultsListView()
+        .environmentObject(AppState())
+        .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+        .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+    }
 }

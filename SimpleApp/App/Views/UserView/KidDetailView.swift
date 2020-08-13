@@ -80,3 +80,9 @@ struct KidDetailView: View {
         print( "onTrailing")
     }
 }
+
+struct KidDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        KidDetailView(model: CKKidModel.mock)
+    }
+}

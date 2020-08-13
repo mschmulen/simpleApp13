@@ -162,3 +162,11 @@ struct PhotoActivityView: View {
     }
 }
 
+
+struct PhotoActivityView_Previews: PreviewProvider {
+    static var previews: some View {
+        PhotoActivityView(
+            model: .constant(CKActivityModel.mock)
+        )
+    }
+}

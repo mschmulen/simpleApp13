@@ -311,7 +311,6 @@
 			children = (
 				7601814E24C4A53200B339E4 /* AppState.swift */,
 				7601816C24C54AC100B339E4 /* Views */,
-				7675FAF824C8AC1800C95453 /* UserSettings.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -345,13 +344,13 @@
 		7601817624C61E1100B339E4 /* UserView */ = {
 			isa = PBXGroup;
 			children = (
-				7601817024C54B8800B339E4 /* PurchaseView.swift */,
 				7601815F24C4B01300B339E4 /* AdultUserView.swift */,
 				7616F66924DC77B7003488EB /* KidUserView.swift */,
 				76208B7F24D60051001F46E2 /* KidDetailView.swift */,
 				76208B8124D6005E001F46E2 /* AdultDetailView.swift */,
 				76EDF11024E03CDE00C68408 /* KidsListView.swift */,
 				76EDF11224E03DF100C68408 /* AdultsListView.swift */,
+				7601817024C54B8800B339E4 /* PurchaseView.swift */,
 			);
 			path = UserView;
 			sourceTree = "<group>";
@@ -359,12 +358,12 @@
 		76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */ = {
 			isa = PBXGroup;
 			children = (
-				76208B8524D60C12001F46E2 /* CKChoreDescriptionRowView.swift */,
 				76208B9124D70AC5001F46E2 /* CKChoreDescriptionAddItemView.swift */,
 				76208B9324D70ACE001F46E2 /* CKChoreDescriptionItemView.swift */,
 				76208B9524D70AD6001F46E2 /* CKChoreDescriptionDetailView.swift */,
 				76208B9C24D723AE001F46E2 /* CKChoreDescriptionNoItemsView.swift */,
 				76208B8824D61C6A001F46E2 /* CKChoreDescriptionListView.swift */,
+				76208B8524D60C12001F46E2 /* CKChoreDescriptionRowView.swift */,
 			);
 			path = CKActivityDescriptionViews;
 			sourceTree = "<group>";
@@ -372,6 +371,7 @@
 		76208B8B24D663DE001F46E2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				7675FAF824C8AC1800C95453 /* UserSettings.swift */,
 				76208B8C24D663F6001F46E2 /* String+Image.swift */,
 				76208B9724D71787001F46E2 /* EmojiView.swift */,
 			);

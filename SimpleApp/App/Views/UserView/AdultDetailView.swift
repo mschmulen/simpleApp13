@@ -78,4 +78,8 @@ struct AdultDetailView: View {
     }
 }
 
-
+struct AdultDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdultDetailView(model: CKAdultModel.mock)
+    }
+}

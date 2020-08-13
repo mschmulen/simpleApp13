@@ -95,7 +95,6 @@ struct CKChoreDescriptionDetailView: View {
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
-            
 //            TextField("who", text: $model.who ?? "")
 //                .textFieldStyle(RoundedBorderTextFieldStyle())
             

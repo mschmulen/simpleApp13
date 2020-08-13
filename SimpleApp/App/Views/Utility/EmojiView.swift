@@ -19,3 +19,8 @@ struct EmojiPicker: View {
     }
 }
 
+struct EmojiView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmojiPicker(emoji: .constant("😀"))
+    }
+}

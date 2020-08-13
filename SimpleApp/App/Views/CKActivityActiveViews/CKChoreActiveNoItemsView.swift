@@ -34,5 +34,6 @@ struct CKChoreActiveNoItemsView: View {
 struct CKChoreActiveNoItemsView_Previews: PreviewProvider {
     static var previews: some View {
         CKChoreActiveNoItemsView()
+        .previewLayout(.fixed(width: 200, height: 200))
     }
 }

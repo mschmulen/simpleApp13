@@ -16,7 +16,7 @@ struct DrawingControls: View {
     @Binding var currentColor: Color
     @Binding var currentLineWidth: CGFloat
     
-    let saveCallback: ((DrawingState)->())?
+    let saveCallback: ((DrawingState, UIImage?)->())?
     
     @State private var colorPickerShown = false
     

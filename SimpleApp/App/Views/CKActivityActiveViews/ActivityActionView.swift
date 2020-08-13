@@ -96,3 +96,11 @@ struct ActivityActionView: View {
     
 }
 
+
+struct ActivityActionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ActivityActionView(
+            model: .constant(CKActivityModel.mock)
+        )
+    }
+}

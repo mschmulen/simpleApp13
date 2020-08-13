@@ -66,7 +66,7 @@ struct CKChoreDescriptionItemView: View {
 struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
         CKChoreDescriptionItemView( model: CKActivityDescriptionModel.mock)
-            .previewLayout(.fixed(width: 300, height: 300))
+            .previewLayout(.fixed(width: 200, height: 200))
     }
 }
 #endif

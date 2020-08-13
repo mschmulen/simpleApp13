@@ -88,18 +88,18 @@ struct CKChoreRowView_Previews: PreviewProvider {
             )
                 .previewLayout(.fixed(width: 400, height: 100))
             
-            CKChoreDescriptionRowView(
-                categoryName: "CATEGORY",
-                items: [
-                    CKActivityDescriptionModel.mock,
-                    CKActivityDescriptionModel.mock,
-                    CKActivityDescriptionModel.mock,
-                    CKActivityDescriptionModel.mock ],
-                isPrivate: true,
-                showAdd: true
-            )
-                .previewLayout(.fixed(width: 400, height: 100))
-                .environment(\.colorScheme, .dark)
+//            CKChoreDescriptionRowView(
+//                categoryName: "CATEGORY",
+//                items: [
+//                    CKActivityDescriptionModel.mock,
+//                    CKActivityDescriptionModel.mock,
+//                    CKActivityDescriptionModel.mock,
+//                    CKActivityDescriptionModel.mock ],
+//                isPrivate: true,
+//                showAdd: true
+//            )
+//                .previewLayout(.fixed(width: 400, height: 100))
+//                .environment(\.colorScheme, .dark)
         }
     }
 }

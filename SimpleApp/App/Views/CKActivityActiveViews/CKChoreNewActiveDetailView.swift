@@ -142,12 +142,18 @@ struct CKChoreNewActiveDetailView: View {
     
 }//end CKChoreActiveDetailView
 
-//struct CKChoreActiveDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            CKChoreActiveDetailView(model: CKChoreActiveModel.mock, enableEdit: false, moduleType: "picture")
-//
-//            CKChoreActiveDetailView(model: CKChoreActiveModel.mock, enableEdit: true, moduleType: "picture")
-//        }
-//    }
-//}
+struct CKChoreNewActiveDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            CKChoreNewActiveDetailView(
+                descriptionModel: CKActivityDescriptionModel.mock
+            )
+            .environmentObject(AppState())
+            .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+        }
+    }
+}
