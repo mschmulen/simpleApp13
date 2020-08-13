@@ -1,5 +1,5 @@
 //
-//  KidsListView.swift
+//  PlayersListView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/9/20.
@@ -10,7 +10,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct KidsListView: View {
+struct PlayersListView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -33,14 +33,15 @@ struct KidsListView: View {
                         self.devMessage = nil
                 }
             }
-            Section(header: Text("Kids: \(self.familyKitAppState.kidService.models.count)")) {
-                NavigationLink(destination: KidDetailView(model: CKKidModel())) {
-                    Text("Add a new Kid to this account")
+            Section(header: Text("Players: \(self.familyKitAppState.playerService.models.count)")) {
+                
+                NavigationLink(destination: PlayerDetailView(model: CKPlayerModel())) {
+                    Text("Add a new Player to this account")
                         .foregroundColor(.blue)
                 }
                 
-                ForEach( self.familyKitAppState.kidService.models ) { model in
-                    NavigationLink(destination: KidDetailView(model: model)) {
+                ForEach( self.familyKitAppState.playerService.models ) { model in
+                    NavigationLink(destination: PlayerDetailView(model: model)) {
                         HStack {
                             Text("\(model.emoji ?? "~")")
                             Text("\(model.name ?? "~")")
@@ -50,10 +51,7 @@ struct KidsListView: View {
                     .onDelete(perform: delete)
             }//end section kids
         }.onAppear(perform: {
-            self.familyKitAppState.kidService.fetch { (result) in
-                print("result")
-                self.familyKitAppState.onRefresh()
-            }
+            self.familyKitAppState.onRefresh()
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")
@@ -61,8 +59,8 @@ struct KidsListView: View {
     
     func delete(at offsets: IndexSet) {
         for deleteIndex in offsets {
-            let deleteModel = self.familyKitAppState.kidService.models[deleteIndex]
-            self.familyKitAppState.kidService.pushDelete(model: deleteModel) { (result) in
+            let deleteModel = self.familyKitAppState.playerService.models[deleteIndex]
+            self.familyKitAppState.playerService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
                     print("delete.error \(error)")
@@ -75,9 +73,9 @@ struct KidsListView: View {
 
 }
 
-struct KidsListView_Previews: PreviewProvider {
+struct PlayersListView_Previews: PreviewProvider {
     static var previews: some View {
-        KidsListView()
+        PlayersListView()
         .environmentObject(AppState())
         .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
         .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))

@@ -58,41 +58,49 @@ public struct PlayerOnboardingView: View {
                 }
                 
                 List {
-                    
-                    Section(header: Text("kids")) {
-                        ForEach(self.familyKitAppState.kidService.models) { model in
+                    Section(header: Text("players")) {
+                        ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
-                                self.familyKitAppState.setCurrentPlayer(player: Player.kid(model))
+                                self.familyKitAppState.setCurrentPlayer(
+                                    player: Player.kid(model),
+                                    playerModel: model
+                                )
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
                                 HStack {
                                     Text("\(model.emoji ?? "~")")
                                     Text("\(model.name ?? "~")")
+                                    if model.isAdult != nil {
+                                        Text( "\(model.isAdult! ? "(Adult)": "(Kid)")")
+                                    }
                                 }
                             }
                         }
                     }
                     
-                    Section(header: Text("adults")) {
-                        ForEach(self.familyKitAppState.adultService.models) { model in
-                            Button(action: {
-                                self.familyKitAppState.setCurrentPlayer(player: Player.adult(model))
-                                self.presentationMode.wrappedValue.dismiss()
-                            }) {
-                                HStack {
-                                    Text("\(model.emoji ?? "~")")
-                                    Text("\(model.name ?? "~")")
-                                }
-                            }
-                        }
-                    }//end Section
+//                    Section(header: Text("adults")) {
+//                        ForEach(self.familyKitAppState.adultService.models) { model in
+//                            Button(action: {
+//                                self.familyKitAppState.setCurrentPlayer(player: Player.adult(model))
+//                                self.presentationMode.wrappedValue.dismiss()
+//                            }) {
+//                                HStack {
+//                                    Text("\(model.emoji ?? "~")")
+//                                    Text("\(model.name ?? "~")")
+//                                }
+//                            }
+//                        }
+//                    }//end Section
                 }//end List
                 
                 VStack {
                     if familyKitAppState.isSimulator == true {
                         Button(action: {
                             
-                            self.familyKitAppState.setCurrentPlayer(player: Player.kid(CKKidModel.mock))
+                            self.familyKitAppState.setCurrentPlayer(
+                                player: Player.kid(CKPlayerModel.mockKid),
+                                playerModel: CKPlayerModel.mockKid
+                            )
                             
                             // lets also set up some mock cards.
                             self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
@@ -109,7 +117,10 @@ public struct PlayerOnboardingView: View {
                     if familyKitAppState.isSimulator == true {
                         Button(action: {
                             
-                            self.familyKitAppState.setCurrentPlayer(player: Player.adult(CKAdultModel.mock))
+                            self.familyKitAppState.setCurrentPlayer(
+                                player: Player.adult(CKPlayerModel.mock),
+                                playerModel: CKPlayerModel.mock
+                            )
                             
                             // lets also set up some mock cards.
                             self.privateChoreService.models.append( CKActivityDescriptionModel.mock )

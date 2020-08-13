@@ -62,19 +62,15 @@ struct CKChoreNewActiveDetailView: View {
             self.model.name = self.descriptionModel.name
             self.model.description = self.descriptionModel.description
             self.model.bucks = self.descriptionModel.bucks
-            //self.model.category = self.descriptionModel.category
             
             self.model.ckChoreDescriptionReference = choreDescriptionReference
             self.model.kidReference = kidRecordReference
             self.model.moduleType = self.descriptionModel.moduleType
             
-//            if let emoji = self.descriptionModel.emoji {
-//                // TODO: upload the emoji as an image
-//                //self.coverPhotoImage = Image(uiImage: emojiToImage(text: emoji))
-//                self.model.coverPhoto = self.descriptionModel.coverPhoto
-//            } else {
-//                self.model.coverPhoto = self.descriptionModel.coverPhoto
-//            }
+            self.model.emoji = self.descriptionModel.emoji
+            
+            self.model.category = self.descriptionModel.category
+            self.model.status = ActivityStatus.active
             
             self.privateActiveChoreService.pushUpdateCreate(model: self.model) { (result) in
                 switch result {

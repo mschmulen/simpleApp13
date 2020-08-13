@@ -50,10 +50,7 @@ struct KidUserView: View {
             }
             
         }.onAppear(perform: {
-            self.familyKitAppState.kidService.fetch { (result) in
-                print("result")
-                self.familyKitAppState.onRefresh()
-            }
+            self.familyKitAppState.onRefresh()
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")

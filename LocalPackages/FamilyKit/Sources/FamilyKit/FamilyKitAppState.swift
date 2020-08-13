@@ -12,8 +12,8 @@ import Combine
 import CloudKit
 
 public enum Player {
-    case adult( CKAdultModel )
-    case kid( CKKidModel )
+    case adult( CKPlayerModel )
+    case kid( CKPlayerModel )
     case none
     
     public var name: String {
@@ -34,7 +34,7 @@ public enum Player {
         case .kid(let model):
             return model.emoji ?? "🌞"
         case .none:
-            return "none"
+            return "🌞"
         }
     }
     
@@ -51,10 +51,10 @@ public enum Player {
         switch self {
         case .none:
             return false
-        case .adult(_) :
-            return true
-        case .kid(_):
-            return false
+        case .adult(let model):
+            return model.isAdult ?? false
+        case .kid(let model):
+            return model.isAdult ?? false
         }
     }
     
@@ -79,6 +79,17 @@ public enum Player {
         }
     }
     
+    public var ckPlayerModel: CKPlayerModel? {
+        switch self {
+        case .adult(let model):
+            return model
+        case .kid(let model):
+            return model
+        case .none:
+            return nil
+        }
+    }
+    
 }
 
 public class FamilyKitAppState: ObservableObject {
@@ -94,9 +105,9 @@ public class FamilyKitAppState: ObservableObject {
     var anyCancellable: AnyCancellable? = nil
     
     @Published public private (set) var userService: CKUserService<CKUser>
-    @Published public private (set) var kidService: CKPrivateModelService<CKKidModel>
-    @Published public private (set) var adultService: CKPrivateModelService<CKAdultModel>
+    @Published public private (set) var playerService: CKPrivateModelService<CKPlayerModel>
     
+    @Published public private (set) var currentPlayerModel: CKPlayerModel?
     @Published public private (set) var currentPlayer: Player = Player.none {
         didSet {
             print( "did update the current player")
@@ -111,11 +122,7 @@ public class FamilyKitAppState: ObservableObject {
         self.container = container
         userService = CKUserService<CKUser>(container: container)
         
-        kidService = CKPrivateModelService<CKKidModel>(
-            container: container
-        )
-        
-        adultService = CKPrivateModelService<CKAdultModel>(
+        playerService = CKPrivateModelService<CKPlayerModel>(
             container: container
         )
         
@@ -129,9 +136,9 @@ public class FamilyKitAppState: ObservableObject {
             isSimulator = false
         #endif
         
-        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
-            self.objectWillChange.send()
-        })
+//        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
+//            self.objectWillChange.send()
+//        })
         
     }
     
@@ -140,91 +147,51 @@ public class FamilyKitAppState: ObservableObject {
             self.objectWillChange.send()
         }
     }
+    
 }
 
 // MARK: - StartupServices
 extension FamilyKitAppState {
     
-    public func findUserForRecord(recordReference: CKRecord.Reference ) -> Player? {
-        print( "findUserForRecord \(recordReference.recordID)")
-        
-        for kid in kidService.models {
-            if let kidRecordID = kid.recordID {
-                if kidRecordID == recordReference.recordID {
-                    return Player.kid(kid)
-                }
-            }
-        }
-        
-        for adult in adultService.models {
-            if let aRecordID = adult.recordID {
-                if aRecordID == recordReference.recordID {
-                    return Player.adult(adult)
-                }
-            }
-        }
-
-        print( "findUserForRecord not found")
-        return nil
-    }
-    
-    public func onRefresh() {
-        kidService.fetch { (result) in
-            print( "kidService fetch \(result)")
-            self.updateChanges()
-        }
-        
-        adultService.fetch { (result) in
-            print( "adultService fetch \(result)")
-            self.updateChanges()
-        }
-        self.updateChanges()
-    }
-    
     public func onStartup() {
         
-        kidService.fetch(completion: { result in
+        playerService.fetch(completion: { result in
             switch result {
             case .success(let models) :
                 print( "kidService success \(models)")
                 //self.kids = self.kidService.models
-                self.onRefresh()
+                self.updateChanges()
             case .failure(let error):
                 print( "kidService error \(error)")
-                self.onRefresh()
             }
         })
-        kidService.subscribe()
-        kidService.listenForNotifications()
-        
-        adultService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "adultService success \(models)")
-                //self.kids = self.kidService.models
-                self.onRefresh()
-            case .failure(let error):
-                print( "adultService error \(error)")
-                self.onRefresh()
-            }
-        })
-        adultService.subscribe()
-        adultService.listenForNotifications()
+        playerService.subscribe()
+        playerService.listenForNotifications()
         
         // TODO: fetch create the CKDevice Model based on device
-        print( "thisDeviceModel idfv \(self.thisDeviceModel.idfv?.uuidString ?? "~")")
+        //print( "thisDeviceModel idfv \(self.thisDeviceModel.idfv?.uuidString ?? "~")")
         //        ckDeviceModel = CKDeviceModel(deviceModel: DeviceModel())
 //            deviceService.pushUpdateCreate(model: ckDeviceModel) { (result) in
 //                print( "device push update create \(result)")
 //            }
         
     }
+    
+    public func onRefresh() {
+        playerService.fetch { (result) in
+            print( "kidService fetch \(result)")
+            self.updateChanges()
+        }
+        
+        self.updateChanges()
+    }
 }
 
-// MARK: - Authentication Services
+// MARK: - User Services
 extension FamilyKitAppState {
-
-    public func setCurrentPlayer(player: Player){
+    
+    public func setCurrentPlayer(player: Player, playerModel:CKPlayerModel){
+        self.currentPlayerModel = playerModel
         self.currentPlayer = player
         self.updateChanges()
     }
@@ -254,32 +221,44 @@ extension FamilyKitAppState {
 //            }
 //        }
     }
-//    func modifyCurrentPlayersBucks( amount: Int) {
-//        if let currentPlayer = currentPlayer, let bucks = currentPlayer.bucks {
-//            self.currentPlayer?.bucks = bucks + amount
-//            kidService.pushUpdateCreate(model: currentPlayer) { (result) in
-//                print( "reasult \(result)")
-//            }
-//        }
-//        self.updateChanges()
-//    }
+}
+
+// MARK: - findUserForRecord
+extension FamilyKitAppState {
     
-//    func addPlayer( model: CKKidModel ) {
-//        updateChanges()
-//    }
+    public func findUserForRecord(recordReference: CKRecord.Reference ) -> Player? {
+        for kid in playerService.models {
+            if let kidRecordID = kid.recordID {
+                if kidRecordID == recordReference.recordID {
+                    return Player.kid(kid)
+                }
+            }
+        }
+        return nil
+    }
+    
 }
 
 // MARK: - Player Points
 extension FamilyKitAppState {
     
-    public func modifyCurrentPlayersBucks( bucks:Int) {
-        // TODO: Fix the bucks
-//        switch currentPlayer {
-//        case .adult(let adultModel):
-//            adultModel.bucks += bucks
-//        case .kid(let kidModel):
-//            adultModel.bucks += bucks
-//        }
-    }
+    public func addBucksToCurrentPlayer( bucks: Int) {
+        if let model = currentPlayerModel {
+            if let currentBucks = model.bucks {
+                currentPlayerModel?.bucks = currentBucks + bucks
+            } else {
+                currentPlayerModel?.bucks = bucks
+            }
+            
+            self.playerService.pushUpdateCreate(model: currentPlayerModel!) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("failed up updaet the player \(error)" )
+                case .success(_):
+                    print( "player is updated")
+                }
+            }
+        }
+    }//end addBucksToCurrentPlayer
 }
 

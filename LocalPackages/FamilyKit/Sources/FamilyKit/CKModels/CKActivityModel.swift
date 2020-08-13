@@ -10,6 +10,7 @@ import SwiftUI
 import CloudKit
 
 public enum ActivityStatus: String, CaseIterable {
+    case unknown
     case active
     case completed
 }
@@ -30,7 +31,6 @@ public struct CKActivityModel: CKModel {
     public var description: String?
     public var bucks: Int?
     public var emoji: String?
-    //public var category: ActivityCategory = .none
     
     public var ckChoreDescriptionReference: CKRecord.Reference?
     public var kidReference: CKRecord.Reference?
@@ -46,8 +46,9 @@ public struct CKActivityModel: CKModel {
     public var activityAsset: CKAsset?
     
     // TODO add to the data store
-//    public var closeString: String?
-//    public var status: ActivityStatus = .active
+    public var statusMessage: String?
+    public var status: ActivityStatus = .unknown
+    public var category: ActivityCategory = .none
     
     public var title: String? {
         return name
@@ -60,7 +61,7 @@ public struct CKActivityModel: CKModel {
         model.description = "mock activity description"
         model.bucks = 3
         model.emoji = "🧳"
-        //model.category = .chore
+        model.category = .chore
         
         model.ckChoreDescriptionReference = nil
         model.kidReference = nil
@@ -74,6 +75,10 @@ public struct CKActivityModel: CKModel {
         
         model.activityAsset = nil
         
+        model.statusMessage = nil
+        model.status = .active
+        model.category = .chore
+        
         return model
     }
     
@@ -84,8 +89,6 @@ public struct CKActivityModel: CKModel {
         self.description = nil
         self.bucks = nil
         
-        //self.category = .none
-        
         self.ckChoreDescriptionReference = nil
         self.kidReference = nil
         self.coverPhoto = nil
@@ -94,6 +97,10 @@ public struct CKActivityModel: CKModel {
         //self.resultAssetAudio = nil
         
         self.activityAsset = nil
+        
+        self.statusMessage = nil
+        self.status = .active
+        self.category = .chore
     }
     
     public init?(record: CKRecord) {
@@ -111,16 +118,10 @@ public struct CKActivityModel: CKModel {
         self.description = record["description"] as? String
         self.bucks = record["bucks"] as? Int
         
-//        if let categoryString = record["category"] as? String {
-//            self.category = ActivityCategory(rawValue: categoryString) ?? ActivityCategory.none
-//        } else {
-//            self.category = .none
-//        }
-        
         self.ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference
         self.kidReference = record["kidReference"] as? CKRecord.Reference
         self.coverPhoto = record["coverPhoto"] as? CKAsset
-
+        
         self.resultAssetText = record["resultAssetText"] as? CKAsset
         self.resultAssetImage = record["resultAssetImage"] as? CKAsset
         //self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
@@ -130,6 +131,21 @@ public struct CKActivityModel: CKModel {
         }
         
         self.activityAsset = record["activityAsset"] as? CKAsset
+        
+        self.statusMessage = record["statusMessage"] as? String
+        
+        if let statusString = record["status"] as? String {
+            self.status = ActivityStatus(rawValue: statusString) ?? ActivityStatus.unknown
+        } else {
+            self.status = ActivityStatus.unknown
+        }
+        
+        if let categoryString = record["category"] as? String {
+            self.category = ActivityCategory(rawValue: categoryString) ?? ActivityCategory.none
+        } else {
+            self.category = .none
+        }
+        
     }
     
     enum CustomError: Error {
@@ -170,14 +186,14 @@ extension CKActivityModel {
         
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         
-//        record["category"] = category.rawValue as CKRecordValue
+        record["category"] = category.rawValue as CKRecordValue
         
         if let kidReference = kidReference {
             record["kidReference"] = kidReference as CKRecordValue
         }
         
         if let coverPhoto = coverPhoto {
-            record["coverPhoto"] = coverPhoto as CKRecordValue
+            record["coverPhoto"] = coverPhoto as CKAsset
         }
         
         if let resultAssetText = resultAssetText {

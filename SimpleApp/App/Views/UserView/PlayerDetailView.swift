@@ -1,5 +1,5 @@
 //
-//  KidDetailView.swift
+//  PlayerDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import FamilyKit
 
-struct KidDetailView: View {
+struct PlayerDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -20,7 +20,7 @@ struct KidDetailView: View {
     
     @State var devMessage: String?
     
-    @State var model: CKKidModel
+    @State var model: CKPlayerModel
     
     @State private var stateBirthDate = Date()
     var starterDate: Date {
@@ -39,7 +39,7 @@ struct KidDetailView: View {
                     Image(systemName: "square.and.arrow.up")
                 }.foregroundColor(.blue)
             }
-            Text("Kid name \(model.name ?? "~")")
+            Text("name \(model.name ?? "~")")
             Section(header: Text("Data")) {
                 TextField("name", text: $model.name ?? "")
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -64,7 +64,7 @@ struct KidDetailView: View {
     }//end body
     
     func onSave() {
-        self.familyKitAppState.kidService.pushUpdateCreate(model: model) { (result) in
+        self.familyKitAppState.playerService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = error.localizedDescription
@@ -81,8 +81,11 @@ struct KidDetailView: View {
     }
 }
 
-struct KidDetailView_Previews: PreviewProvider {
+struct PlayerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        KidDetailView(model: CKKidModel.mock)
+        Group {
+            PlayerDetailView(model: CKPlayerModel.mockKid)
+            PlayerDetailView(model: CKPlayerModel.mock)
+        }
     }
 }

@@ -54,7 +54,7 @@ struct MainAdultView: View {
                         )
                     }
                     .listRowInsets(EdgeInsets())
-                    ForEach( self.familyKitAppState.kidService.models ) { kid in
+                    ForEach( self.familyKitAppState.playerService.models ) { kid in
                         Section() {
                             CKChoreActiveRowView(
                                 categoryName: " \(kid.name ?? "~") Activities",
@@ -133,14 +133,16 @@ struct MainAdultView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+    
+    static let container = CKContainer(identifier: CKContainerIdentifier)
+    
     static var previews: some View {
         MainAdultView()
-            //.environment(\.window, window)
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject((FamilyKitAppState(container: container)))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
+            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject(CKPublicModelService<CKFunModel>(container: container))
+            .environmentObject(CKPublicModelService<CKConnectModel>(container: container))
     }
 }

@@ -46,15 +46,15 @@ struct AdultUserView: View {
             }
             
             Section(header: Text("Family")) {
-                NavigationLink(destination: KidsListView()) {
-                    Text("Show Kids")
+                NavigationLink(destination: PlayersListView()) {
+                    Text("Show Players")
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: AdultsListView()) {
-                    Text("Show Adults")
-                        .foregroundColor(.blue)
-                }
+//                NavigationLink(destination: AdultsListView()) {
+//                    Text("Show Adults")
+//                        .foregroundColor(.blue)
+//                }
                 
                 NavigationLink(destination: ChatSessionView()) {
                     Text("Show Chat")
@@ -144,10 +144,7 @@ struct AdultUserView: View {
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                 .font(.caption)
         }.onAppear(perform: {
-            self.familyKitAppState.kidService.fetch { (result) in
-                print("result")
-                self.familyKitAppState.onRefresh()
-            }
+            self.familyKitAppState.onRefresh()
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")

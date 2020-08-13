@@ -31,6 +31,7 @@ import CloudKit
  service.subscribe()
  service.listenForNotifications()
 */
+
 public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     
     public let objectWillChange = ObservableObjectPublisher()

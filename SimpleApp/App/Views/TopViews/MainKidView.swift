@@ -52,7 +52,7 @@ struct MainKidView: View {
                     
                     Section() {
                         CKChoreActiveRowView(
-                            categoryName: "Activities (\(familyKitAppState.currentPlayer.name)",
+                            categoryName: "Activities (\(familyKitAppState.currentPlayer.name))",
                             items: privateActiveChoreService.models.filter({ (model) -> Bool in
                                 if model.kidReference == familyKitAppState.currentPlayer.recordReference {
                                     return true
@@ -114,15 +114,16 @@ struct MainKidView: View {
 }
 
 struct MainKidView_Previews: PreviewProvider {
+    
+    static let container = CKContainer(identifier: CKContainerIdentifier)
+    
     static var previews: some View {
         MainKidView()
-            //.environment(\.window, window)
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKFunModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-            .environmentObject(CKPublicModelService<CKConnectModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+            .environmentObject((FamilyKitAppState(container: container)))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
+            .environmentObject(ChatService(container: container))
     }
 }
 

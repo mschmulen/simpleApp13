@@ -53,12 +53,13 @@ struct NewPlayerView: View {
                         
                         switch self.selectedPlayerType {
                         case .kid:
-                            var newModel = CKKidModel()
+                            var newModel = CKPlayerModel()
+                            newModel.isAdult = false
                             newModel.bucks = 0
                             newModel.dateOfBirth = self.stateBirthDate
                             newModel.name = self.newPlayerName
                             newModel.emoji = self.newPlayerEmoji
-                            self.familyKitAppState.kidService.pushUpdateCreate(model: newModel) { (result) in
+                            self.familyKitAppState.playerService.pushUpdateCreate(model: newModel) { (result) in
                                 switch result {
                                 case .failure(let error):
                                     print( "NewPlayerView failure \(error)")
@@ -68,12 +69,13 @@ struct NewPlayerView: View {
                                 }
                             }
                         case .adult:
-                            var newModel = CKAdultModel()
+                            var newModel = CKPlayerModel()
+                            newModel.isAdult = true
                             newModel.bucks = 0
                             newModel.dateOfBirth = self.stateBirthDate
                             newModel.name = self.newPlayerName
                             newModel.emoji = self.newPlayerEmoji
-                            self.familyKitAppState.adultService.pushUpdateCreate(model: newModel) { (result) in
+                            self.familyKitAppState.playerService.pushUpdateCreate(model: newModel) { (result) in
                                 switch result {
                                 case .failure(let error):
                                     print( "NewPlayerView failure \(error)")

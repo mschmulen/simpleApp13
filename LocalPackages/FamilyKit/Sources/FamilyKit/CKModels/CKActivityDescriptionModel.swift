@@ -65,6 +65,10 @@ public struct CKActivityDescriptionModel: CKModel {
     
     public var moduleType: ActivityModuleType = ActivityModuleType.none
     
+    // TODO: add to cloud kit
+    public var minAgeInYears: Int?
+    public var maxAgeInYears: Int?
+    
     public var title: String? {
         return name
     }
@@ -99,6 +103,9 @@ public struct CKActivityDescriptionModel: CKModel {
         self.who = nil
         self.frequency = .once
         self.timeofday = nil
+        
+        self.minAgeInYears = nil
+        self.maxAgeInYears = nil
     }
     
     public init?(record: CKRecord) {
@@ -134,6 +141,10 @@ public struct CKActivityDescriptionModel: CKModel {
         }
         self.who = record["who"] as? String
         self.timeofday = record["timeofday"] as? String
+        
+        self.minAgeInYears = record["minAgeInYears"] as? Int
+        self.maxAgeInYears = record["maxAgeInYears"] as? Int
+        
     }
     
     enum CustomError: Error {
@@ -177,8 +188,18 @@ extension CKActivityDescriptionModel {
         
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         
-        // TODO: handle the imageAsset
-        //record["coverPhoto"] = coverPhoto as CKRecordValue
+        // TODO: handle the coverPhoto
+        //if let coverPhoto = coverPhoto {
+            //record["coverPhoto"] = coverPhoto as CKAsset
+        //}
+        
+        if let minAgeInYears = minAgeInYears {
+            record["minAgeInYears"] = minAgeInYears as CKRecordValue
+        }
+        
+        if let maxAgeInYears = maxAgeInYears {
+            record["maxAgeInYears"] = maxAgeInYears as CKRecordValue
+        }
         
         return record
     }
