@@ -22,11 +22,6 @@ struct MainFamilyView: View {
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
     
-    // TODO: Clean up remove
-    @State var funStore:FunStore = FunStore(storeConfig: StoreConfig.local)
-    @State var choreStore:ChoreStore = ChoreStore(storeConfig: StoreConfig.local)
-    @State var connectStore:ConnectStore = ConnectStore(storeConfig: StoreConfig.local)
-    
     @State var devMessage: String?
     
     var playerPickerView: some View {
