@@ -65,20 +65,15 @@ struct MainFamilyView: View {
                 playerPickerView
                 
                 List {
-                    
-                    // TODO: change this to be more like instagram rows
-                    // Section for each kid
-                    ForEach( self.familyKitAppState.playerService.models ) { kid in
-                        Section() {
-                            CKChoreActiveRowView(
-                                categoryName: " \(kid.name ?? "~") Activities",
-                                items: self.privateActiveChoreService.models.filter({ (model) -> Bool in
-                                    model.kidReference?.recordID == kid.recordID
-                                })
+                    ForEach( self.privateActiveChoreService.models) { model in
+                        NavigationLink(
+                            destination: CKChoreActiveDetailView(
+                                model: model
                             )
+                        ){
+                            FamilyActivityCardView(model:model)
                         }
-                        .listRowInsets(EdgeInsets())
-                    }//end ForEach
+                    }
                 }
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
