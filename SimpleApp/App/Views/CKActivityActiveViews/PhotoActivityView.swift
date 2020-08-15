@@ -8,7 +8,6 @@
 
 import SwiftUI
 import FamilyKit
-import CameraView
 import AVFoundation
 
 extension Player {

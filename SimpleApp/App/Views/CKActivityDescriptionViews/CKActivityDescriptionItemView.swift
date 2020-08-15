@@ -29,6 +29,8 @@ struct CKActivityDescriptionItemView: View {
                 Rectangle()
                     .fill(Color.blue)
                     .frame(width: 100, height: 100)
+                //.border(Color.blue, width: 2)
+                .cornerRadius(5)
             }
             HStack {
                 Spacer()
@@ -38,7 +40,11 @@ struct CKActivityDescriptionItemView: View {
                 Spacer()
             }
         }
-        .padding(.leading, 15)
+        .padding()
+        
+//            .overlay(
+//            RoundedRectangle(cornerRadius: 25)
+//                .stroke(Color.white, lineWidth: 2)
         .onAppear {
             
             self.loadCoverPhoto()

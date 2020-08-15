@@ -82,6 +82,7 @@ struct KidYouView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
+                    Text("(\(familyKitAppState.currentPlayer.bucks))")
                 }
             }
         }

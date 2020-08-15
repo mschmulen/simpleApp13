@@ -27,6 +27,17 @@ public enum Player {
         }
     }
     
+    public var bucks: Int {
+        switch self {
+        case .adult(let model) :
+            return model.bucks ?? 0
+        case .kid(let model):
+            return model.bucks ?? 0
+        case .none:
+            return 0
+        }
+    }
+    
     public var emoji: String {
         switch self {
         case .adult(let model):

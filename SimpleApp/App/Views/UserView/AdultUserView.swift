@@ -34,6 +34,8 @@ struct AdultUserView: View {
                 Text("\(familyKitAppState.currentPlayer.name)")
             }
             
+            Text("Bucks: \(familyKitAppState.currentPlayer.bucks)")
+            
             NavigationLink(destination: PlayerOnboardingView()) {
                 Text("Change Current Player")
                     .foregroundColor(.blue)
@@ -44,11 +46,6 @@ struct AdultUserView: View {
                     Text("Show Players")
                         .foregroundColor(.blue)
                 }
-                
-//                NavigationLink(destination: AdultsListView()) {
-//                    Text("Show Adults")
-//                        .foregroundColor(.blue)
-//                }
                 
                 NavigationLink(destination: ChatSessionView()) {
                     Text("Show Chat")
@@ -65,27 +62,8 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
             }
-            
-            // Dev Stuff
-            Section(header: Text("Dev Stuff")) {
-                
-                NavigationLink(destination: AudioRecordView(audioRecorder: AudioRecorder())) {
-                    Text("Show AudioRecordView")
-                        .foregroundColor(.blue)
-                }
-                
-//                NavigationLink(destination: DrawView(model: <#Binding<CKActivityModel>#>, enableEdit: <#Bool#>)) {
-//                    Text("Show SimpleDrawingView")
-//                        .foregroundColor(.blue)
-//                }
-                
-                NavigationLink(destination: SimpleGameView()) {
-                    Text("Show SimpleGameView")
-                        .foregroundColor(.blue)
-                }
-            }
-            
-            Section(header: Text("More Dev Stuff")) {
+                        
+            Section(header: Text(" Dev Stuff")) {
                 
                 NavigationLink(destination: PurchaseView()) {
                     Text("PurchaseView")
@@ -109,30 +87,30 @@ struct AdultUserView: View {
                     }
                 }
                 
-                if familyKitAppState.isSimulator == false {
-                    // Notifications
-                    Button(action: {
-                        print("Enable Notifications")
-                        let center = UNUserNotificationCenter.current()
-                        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                            if let error = error {
-                                // Handle the error here.
-                                print( "UNUserNotificationCenter requestAuthorization.error \(error)")
-                            }
-                            // TODO: Enable or disable features based on the authorization.
-                        }
-                    }) {
-                        HStack {
-                            Text("Enable Notifications")
-                                .font(.system(size: 27, weight: .medium, design: .rounded))
-                                .foregroundColor(Color(.systemBackground))
-                                .padding()
-                        }
-                        .frame(height: 50)
-                        .background(Color(.label))
-                        .cornerRadius(25)
-                    }
-                }
+//                if familyKitAppState.isSimulator == false {
+//                    // Notifications
+//                    Button(action: {
+//                        print("Enable Notifications")
+//                        let center = UNUserNotificationCenter.current()
+//                        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+//                            if let error = error {
+//                                // Handle the error here.
+//                                print( "UNUserNotificationCenter requestAuthorization.error \(error)")
+//                            }
+//                            // TODO: Enable or disable features based on the authorization.
+//                        }
+//                    }) {
+//                        HStack {
+//                            Text("Enable Notifications")
+//                                .font(.system(size: 27, weight: .medium, design: .rounded))
+//                                .foregroundColor(Color(.systemBackground))
+//                                .padding()
+//                        }
+//                        .frame(height: 50)
+//                        .background(Color(.label))
+//                        .cornerRadius(25)
+//                    }
+//                }
             }
             
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
@@ -140,8 +118,7 @@ struct AdultUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.onRefresh()
         })
-        //.navigationBarItems(trailing: trailingButton)
-        //                    .navigationBarTitle("CKUser")
+        .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
     }
 }
 

@@ -29,6 +29,8 @@ struct MainBucksStoreView: View {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
+                Text("\(familyKitAppState.currentPlayer.name)")
+                Text("\(familyKitAppState.currentPlayer.bucks)")
                 // TODO: finish the bucks store
                 List {
                     Text("TODO")
@@ -66,6 +68,7 @@ struct MainBucksStoreView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
+                    Text("\(familyKitAppState.currentPlayer.bucks)")
                 }
             }
         }

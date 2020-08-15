@@ -29,7 +29,7 @@ struct CKActivityDescriptionAddItemView: View {
                 //.foregroundColor(Color(.white))
             .padding()
         }
-        .padding(.leading, 15)
+        .padding()
     }
 }//end CKChoreAddItemView
 

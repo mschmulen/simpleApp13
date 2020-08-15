@@ -69,33 +69,13 @@ extension CKPrivateModelService {
             return
         }
         
-        // fetch the model and the update the model
-        
-        // TODO: error saving record to server: record to insert already exists
-        
-//        self.container.privateCloudDatabase.save(record) { record, error in
-//            if let record = record, error == nil {
-//                if let updatedModel = T(record: record) {
-//                    print( "push updatedModel \(updatedModel)")
-//                    completion(.success(updatedModel) )
-//                    self.updateChanges()
-//                } else {
-//                    completion(.failure(CustomError.unknown))
-//                }
-//                return
-//            } else {
-//                completion(.failure(error ?? CustomError.unknown))
-//                return
-//            }
-//        }
-        
         container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {
                 if let updatedRecord = model.ckRecord {
                     for key in T.ckSchemeKeys {
                         record[key] = updatedRecord[key]
                     }
-
+                    
                     self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
                             if let updatedModel = T(record: record) {

@@ -46,8 +46,7 @@ struct KidUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.onRefresh()
         })
-        //.navigationBarItems(trailing: trailingButton)
-        //                    .navigationBarTitle("CKUser")
+        .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
     }
 }
 

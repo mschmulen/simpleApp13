@@ -28,7 +28,7 @@ struct ContentView: View {
         case purchaseView
     }
     
-    @State private var selectedTab: Int = TabViewIndex.family.rawValue
+    @State private var selectedTab: Int = TabViewIndex.you.rawValue
     
     public enum TabViewIndex: Int {
         case you = 0

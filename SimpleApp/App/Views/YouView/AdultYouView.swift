@@ -99,7 +99,7 @@ struct AdultYouView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
-                    //Image(systemName: "person.circle.fill")
+                    Text("(\(familyKitAppState.currentPlayer.bucks))")
                 }
             }
         }
