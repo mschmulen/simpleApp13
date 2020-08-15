@@ -39,6 +39,10 @@ public struct CKPlayerModel: CKModel {
         return name
     }
     
+    mutating public func mutateBucks( newBucks:Int ) {
+        self.bucks = newBucks
+    }
+    
     public static var mock: CKPlayerModel {
         var model = CKPlayerModel()
         model.name = "mock Adult"

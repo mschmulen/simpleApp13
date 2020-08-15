@@ -164,7 +164,7 @@ extension FamilyKitAppState {
                 print( "kidService error \(error)")
             }
         })
-        playerService.subscribe(message: "player Change")
+        playerService.subscribe(isSilent: true, message: "player Change")
         playerService.listenForNotifications()
         
         // TODO: fetch create the CKDevice Model based on device
@@ -241,15 +241,16 @@ extension FamilyKitAppState {
 // MARK: - Player Points
 extension FamilyKitAppState {
     
-    public func addBucksToCurrentPlayer( bucks: Int) {
-        if let model = currentPlayerModel {
-            if let currentBucks = model.bucks {
-                currentPlayerModel?.bucks = currentBucks + bucks
+    public func addBucks( player:Player, bucks: Int) {
+        switch player {
+        case .adult(var playerModel):
+            if let currentBucks = playerModel.bucks {
+                playerModel.mutateBucks(newBucks: currentBucks + bucks)
             } else {
-                currentPlayerModel?.bucks = bucks
+                playerModel.mutateBucks(newBucks: bucks)
             }
             
-            self.playerService.pushUpdateCreate(model: currentPlayerModel!) { (result) in
+            self.playerService.pushUpdateCreate(model: playerModel) { (result) in
                 switch result {
                 case .failure(let error):
                     print("failed up updaet the player \(error)" )
@@ -257,7 +258,25 @@ extension FamilyKitAppState {
                     print( "player is updated")
                 }
             }
+        case .kid(var playerModel):
+            if let currentBucks = playerModel.bucks {
+                playerModel.mutateBucks(newBucks: currentBucks + bucks)
+            } else {
+                playerModel.mutateBucks(newBucks: bucks)
+            }
+            
+            self.playerService.pushUpdateCreate(model: playerModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("failed up updaet the player \(error)" )
+                case .success(_):
+                    print( "player is updated")
+                }
+            }
+        case .none:
+            print( "yack")
         }
-    }//end addBucksToCurrentPlayer
+        
+    }//end addBucks
 }
 

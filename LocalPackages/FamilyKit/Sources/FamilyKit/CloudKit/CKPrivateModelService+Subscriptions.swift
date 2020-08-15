@@ -13,7 +13,7 @@ import CloudKit
 
 extension CKPrivateModelService {
     
-    public func subscribe( message:String ) {
+    public func subscribe( isSilent:Bool, message:String ) {
         print( "CKModelService.subscribe \(T.recordName)")
         
         let predicate = SearchPredicate.predicateTrue.predicate
@@ -23,12 +23,16 @@ extension CKPrivateModelService {
             options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation]
         )
         let notificationInfo = CKSubscription.NotificationInfo()
-        notificationInfo.alertBody = message
-        notificationInfo.soundName = "default"
-        notificationInfo.shouldBadge = true
+        if isSilent {
+            notificationInfo.shouldSendContentAvailable = true
+        } else {
+            notificationInfo.alertBody = message
+            notificationInfo.soundName = "default"
+            notificationInfo.shouldBadge = true
+        }
+
         
         // Note: set shouldSendContentAvailable = true if you want it to be a silent push
-        //notificationInfo.shouldSendContentAvailable = true
         
         subscription.notificationInfo = notificationInfo
         

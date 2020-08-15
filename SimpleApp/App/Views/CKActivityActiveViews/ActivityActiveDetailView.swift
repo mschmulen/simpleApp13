@@ -61,6 +61,7 @@ struct CKActivityActiveDetailView: View {
                         Text($0.rawValue)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+                .padding()
                     .onReceive([localActivityStatus].publisher.first()) { value in
                         print( "save the change \(self.localActivityStatus.friendlyName)")
                         // self.doSomethingWith(value: value)
@@ -68,6 +69,14 @@ struct CKActivityActiveDetailView: View {
                             self.model.changeStatus (status: value)
                             //self.model.status = value
                             self.onSave()
+                            if let playerReference = self.model.kidReference {
+                                if value == .verified {
+                                    if let player = self.familyKitAppState.findUserForRecord(recordReference: playerReference) {
+                                        self.familyKitAppState.addBucks( player: player, bucks: self.model.bucks ?? 0)
+                                    }
+                                }
+                            }
+
                         }
                 }
 
@@ -95,7 +104,6 @@ struct CKActivityActiveDetailView: View {
                         .padding()
                     }
                 }
-                Text("Status: \(model.status.friendlyName)")
             }
             
             //            Button(action: {
