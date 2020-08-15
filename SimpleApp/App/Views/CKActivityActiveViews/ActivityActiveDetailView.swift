@@ -48,42 +48,29 @@ struct CKActivityActiveDetailView: View {
         }
     }
     
-    var statusView: some View {
+    var activityStatusView: some View {
         HStack {
-//            Button(action:onChangeStatus(XXX)) {
-//                HStack {
-//                    Spacer()
-//                    Text("active")
-//                        .foregroundColor(.blue)
-//                        .padding()
-//                }
-//                .foregroundColor(.blue)
-//                .padding()
-//            }
-            
-            Spacer()
-            Button(action:onDone) {
-                HStack {
-                    Spacer()
-                    Text("Done")
+            if familyKitAppState.currentPlayer.isAdult {
+                Picker(selection: $model.status, label: Text("Status")) {
+                    ForEach(ActivityStatus.allCases, id: \.self) {
+                        Text($0.rawValue)
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+            } else {
+                if model.status == .active {
+                    Button(action: onDone ) {
+                        HStack {
+                            Spacer()
+                            Text("Done")
+                                .foregroundColor(.blue)
+                                .padding()
+                        }
                         .foregroundColor(.blue)
                         .padding()
+                    }
                 }
-                .foregroundColor(.blue)
-                .padding()
+                Text("Status: \(model.status.friendlyName)")
             }
-            Spacer()
-            Button(action:onVerify) {
-                HStack {
-                    Spacer()
-                    Text("Verify")
-                        .foregroundColor(.blue)
-                        .padding()
-                }
-                .foregroundColor(.blue)
-                .padding()
-            }
-            Spacer()
             
             //            Button(action: {
             //                print("Delete")
@@ -107,24 +94,24 @@ struct CKActivityActiveDetailView: View {
             DevMessageView(devMessage: $devMessage)
             if model.moduleType == .photo {
                 infoView
-                statusView
+                activityStatusView
                 PhotoActivityView(
                     model: $model
                 )
             } else if model.moduleType == .audio {
                 infoView
-                statusView
+                activityStatusView
                 ActivityAudioActionView(
                     model: $model,
                     isReadOnly: false
                 )
             } else if model.moduleType == .chat {
                 infoView
-                statusView
+                activityStatusView
                 ChatSessionView()
             } else if model.moduleType == .drawing {
                 infoView
-                statusView
+                activityStatusView
                 DrawView(
                     model: $model,
                     isReadOnly: false
@@ -132,7 +119,7 @@ struct CKActivityActiveDetailView: View {
             }
             else {
                 infoView
-                statusView
+                activityStatusView
             }
             
             //            if model.kidReference != nil {
@@ -189,10 +176,7 @@ struct CKActivityActiveDetailView: View {
             self.devMessage = "invalid playerRecordReference"
             return
         }
-        
-        self.model.kidReference = playerRecordReference
-        
-        model.status = .completed
+        model.status = ActivityStatus.completed
         privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):

@@ -65,7 +65,7 @@
 		76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6224CA59C4004950C0 /* ImageStore.swift */; };
 		76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
-		76C2FDF424DB193D00E030C2 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF324DB193D00E030C2 /* CameraView.swift */; };
+		76C2FDF424DB193D00E030C2 /* CameraViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */; };
 		76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */; };
 		76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */; };
 		76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */; };
@@ -180,7 +180,7 @@
 		76BADB6224CA59C4004950C0 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdultView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
-		76C2FDF324DB193D00E030C2 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewRepresentable.swift; sourceTree = "<group>"; };
 		76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveNoItemsView.swift; sourceTree = "<group>"; };
 		76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveItemView.swift; sourceTree = "<group>"; };
 		76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
@@ -302,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				7601814E24C4A53200B339E4 /* AppState.swift */,
+				76B86F8724E8477A009955F7 /* Libraries */,
 				7601816C24C54AC100B339E4 /* Views */,
 			);
 			path = App;
@@ -377,7 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				76CFA22124DA5402007A02CF /* ImagePicker.swift */,
-				76C2FDF324DB193D00E030C2 /* CameraView.swift */,
+				76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -416,6 +417,13 @@
 				76208B7D24D5F8FE001F46E2 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76B86F8724E8477A009955F7 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		76BADB3124CA571B004950C0 /* Resources */ = {
@@ -577,6 +585,8 @@
 				Base,
 			);
 			mainGroup = 7601810A24C4A4B400B339E4;
+			packageReferences = (
+			);
 			productRefGroup = 7601811424C4A4B400B339E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -665,7 +675,7 @@
 				7616F66824DC7723003488EB /* MainKidView.swift in Sources */,
 				7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
-				76C2FDF424DB193D00E030C2 /* CameraView.swift in Sources */,
+				76C2FDF424DB193D00E030C2 /* CameraViewRepresentable.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,

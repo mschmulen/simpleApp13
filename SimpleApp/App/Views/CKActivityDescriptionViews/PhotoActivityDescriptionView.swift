@@ -88,7 +88,7 @@ struct PhotoActivityDescriptionView: View {
                         }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                    ImagePicker(image: self.$inputImage)
+                    ImagePickerRepresentable(image: self.$inputImage)
                 }
             }
             

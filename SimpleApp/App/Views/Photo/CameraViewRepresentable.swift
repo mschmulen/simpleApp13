@@ -1,5 +1,5 @@
 //
-//  CameraView.swift
+//  CameraViewRepresentable.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/5/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import AVFoundation
 
-struct CameraView : UIViewControllerRepresentable {
+struct CameraViewRepresentable : UIViewControllerRepresentable {
     
     @Binding var isShown: Bool
     @Binding var image: Image?
@@ -28,7 +28,7 @@ struct CameraView : UIViewControllerRepresentable {
 //    var frontCameraInput: AVCaptureDeviceInput?
 //    var previewLayer: AVCaptureVideoPreviewLayer?
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<CameraView>) -> UIViewController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<CameraViewRepresentable>) -> UIViewController {
         let controller = CameraViewController()
         
 //        let captureSession = AVCaptureSession()
@@ -48,7 +48,7 @@ struct CameraView : UIViewControllerRepresentable {
         return controller
     }
     
-    func updateUIViewController(_ uiViewController: CameraView.UIViewControllerType, context: UIViewControllerRepresentableContext<CameraView>) {
+    func updateUIViewController(_ uiViewController: CameraViewRepresentable.UIViewControllerType, context: UIViewControllerRepresentableContext<CameraViewRepresentable>) {
     }
 }
 

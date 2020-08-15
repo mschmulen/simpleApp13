@@ -276,8 +276,8 @@ extension CKActivityModel {
     public static var mockNoEmoji: CKActivityModel {
         var model = CKActivityModel()
         
-        model.name = "mock activity"
-        model.description = "mock activity description"
+        model.name = "mock noEmoji"
+        model.description = "mock noEmoji activity description"
         model.bucks = 3
 //        model.emoji = "🧳"
         model.category = .chore
@@ -302,4 +302,90 @@ extension CKActivityModel {
         return model
     }
     
+    public static var mockPhoto: CKActivityModel {
+            var model = CKActivityModel()
+            
+            model.name = "mock photo activity"
+            model.description = "mock photo activity description"
+            model.bucks = 3
+            model.emoji = "🧳"
+            model.category = .chore
+            
+            model.ckChoreDescriptionReference = nil
+            model.kidReference = nil
+            model.coverPhoto = nil
+            
+            model.moduleType = ActivityModuleType.photo
+            
+            model.resultAssetText = nil
+            model.resultAssetImage = nil
+            //model.resultAssetAudio = nil
+            
+            model.activityAsset = nil
+            
+            model.statusMessage = nil
+            model.status = .active
+            model.category = .chore
+            model.chatSession = nil
+            
+            return model
+        }
+    
+    public static var mockDrawing: CKActivityModel {
+        var model = CKActivityModel()
+        
+        model.name = "mock drawing activity"
+        model.description = "mock drawing activity description"
+        model.bucks = 3
+        model.emoji = "🧳"
+        model.category = .chore
+        
+        model.ckChoreDescriptionReference = nil
+        model.kidReference = nil
+        model.coverPhoto = nil
+        
+        model.moduleType = ActivityModuleType.drawing
+        
+        model.resultAssetText = nil
+        model.resultAssetImage = nil
+        //model.resultAssetAudio = nil
+        
+        model.activityAsset = nil
+        
+        model.statusMessage = nil
+        model.status = .active
+        model.category = .chore
+        model.chatSession = nil
+        
+        return model
+    }
+    
+    public static var mockAudio: CKActivityModel {
+        var model = CKActivityModel()
+        
+        model.name = "mock audio"
+        model.description = "mock audio activity description"
+        model.bucks = 3
+        model.emoji = "🧳"
+        model.category = .chore
+        
+        model.ckChoreDescriptionReference = nil
+        model.kidReference = nil
+        model.coverPhoto = nil
+        
+        model.moduleType = ActivityModuleType.audio
+        
+        model.resultAssetText = nil
+        model.resultAssetImage = nil
+        //model.resultAssetAudio = nil
+        
+        model.activityAsset = nil
+        
+        model.statusMessage = nil
+        model.status = .active
+        model.category = .chore
+        model.chatSession = nil
+        
+        return model
+    }
 }

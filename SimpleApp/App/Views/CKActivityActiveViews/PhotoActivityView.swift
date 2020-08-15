@@ -8,6 +8,8 @@
 
 import SwiftUI
 import FamilyKit
+import CameraView
+import AVFoundation
 
 extension Player {
     
@@ -79,7 +81,6 @@ struct PhotoActivityView: View {
             if statusMessage != nil {
                 Text(statusMessage!)
             }
-            
             imageView
             
             Spacer()
@@ -101,32 +102,16 @@ struct PhotoActivityView: View {
                     }) {
                         HStack {
                             Text("PICK IMAGE")
-                            Image(systemName: "camera")
+                            //Image(systemName: "camera")
                         }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                    ImagePicker(image: self.$inputImage)
+                    ImagePickerRepresentable(image: self.$inputImage)
                 }
             }
             
             Spacer()
-
-            // TODO: Fix the camera live photo
-//            if inputImage == nil {
-//                Group {
-//                    Button(action: {
-//                        // TODO: Camera photo
-//                        self.showingCameraView.toggle()
-//                    }) {
-//                        HStack {
-//                            Image(systemName: "camera")
-//                            Text("Camera photo")
-//                        }
-//                    }
-//                }.sheet(isPresented: $showingCameraView, content: {
-//                    CameraView(isShown: self.$showingCameraView, image: self.$image)
-//                })
-//            }
+            
         }.onAppear {
             print("onAppear")
             
@@ -198,3 +183,4 @@ struct PhotoActivityView_Previews: PreviewProvider {
         }
     }
 }
+
