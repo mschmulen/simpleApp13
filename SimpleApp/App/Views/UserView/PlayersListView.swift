@@ -68,11 +68,14 @@ struct PlayersListView: View {
 }
 
 struct PlayersListView_Previews: PreviewProvider {
+    
+    static let container = CKContainer(identifier: CKContainerIdentifier)
+    
     static var previews: some View {
         PlayersListView()
         .environmentObject(AppState())
-        .environmentObject((FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier))))
-        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
-        .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: CKContainer(identifier: CKContainerIdentifier)))
+        .environmentObject((FamilyKitAppState(container: container)))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+        .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
     }
 }

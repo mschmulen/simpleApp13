@@ -35,7 +35,7 @@ struct MainAdultView: View {
                 
                 List {
                     Section() {
-                        CKChoreDescriptionRowView(
+                        CKActivityDescriptionRowView(
                             categoryName: "Activity Definition",
                             items: privateChoreService.models,
                             isPrivate: true,
@@ -45,7 +45,7 @@ struct MainAdultView: View {
                     .listRowInsets(EdgeInsets())
                     ForEach( self.familyKitAppState.playerService.models ) { kid in
                         Section() {
-                            CKChoreActiveRowView(
+                            CKActivityActiveRowView(
                                 categoryName: " \(kid.name ?? "~") Activities",
                                 items: self.privateActiveChoreService.models.filter({ (model) -> Bool in
                                     model.kidReference?.recordID == kid.recordID
@@ -72,7 +72,7 @@ struct MainAdultView: View {
                 }
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 
@@ -83,6 +83,7 @@ struct MainAdultView: View {
                     print( "result")
                 }
             }
+            .navigationBarTitle("\(familyKitAppState.currentPlayer.name) (Adult)")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }
@@ -129,9 +130,7 @@ struct MainView_Previews: PreviewProvider {
         MainAdultView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
-            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: container))
-            .environmentObject(CKPublicModelService<CKFunModel>(container: container))
-            .environmentObject(CKPublicModelService<CKConnectModel>(container: container))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
     }
 }

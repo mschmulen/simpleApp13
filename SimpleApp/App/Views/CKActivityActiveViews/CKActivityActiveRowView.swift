@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKChoreActiveRowView: View {
+struct CKActivityActiveRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
@@ -29,15 +29,15 @@ struct CKChoreActiveRowView: View {
                 HStack(alignment: .top, spacing: 0) {
                     
                     if self.items.count <= 0 {
-                        CKChoreActiveNoItemsView()
+                        CKActivityActiveNoItemsView()
                     }
                     ForEach(self.items) { model in
                         NavigationLink(
-                            destination: CKChoreActiveDetailView(
+                            destination: CKActivityActiveDetailView(
                                 model: model
                             )
                         ) {
-                            CKChoreActiveItemView(model: model)
+                            CKActivityActiveItemView(model: model)
                         }.contextMenu {
                             Button(action: {
                                 self.privateActiveChoreService.pushDelete(model: model) { (result) in
@@ -61,7 +61,7 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
     static var previews: some View {
             
         Group {
-            CKChoreActiveRowView(
+            CKActivityActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKActivityModel.mock,
@@ -72,7 +72,7 @@ struct CKChoreActiveRowView_Previews: PreviewProvider {
             )
                 .previewLayout(.fixed(width: 400, height: 100))
             
-            CKChoreActiveRowView(
+            CKActivityActiveRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKActivityModel.mock,

@@ -12,7 +12,7 @@ struct DevMessageView: View {
     
     @Binding var devMessage: String?
     
-    var showEnabled:Bool = false
+    var showEnabled:Bool = true
     
     var body: some View {
         VStack {

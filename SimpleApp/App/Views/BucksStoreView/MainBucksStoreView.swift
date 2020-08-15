@@ -29,14 +29,17 @@ struct MainBucksStoreView: View {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                VStack {
-                    Text("Bucks View")
+                // TODO: finish the bucks store
+                List {
+                    Text("TODO")
+                    Text("TODO")
+                    Text("TODO")
+                    Text("TODO")
                 }
                 
-                Text("TODO")
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 
@@ -47,6 +50,7 @@ struct MainBucksStoreView: View {
                     print( "result")
                 }
             }
+            .navigationBarTitle("Bucks Store")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }
@@ -90,8 +94,6 @@ struct MainBucksStoreView_Previews: PreviewProvider {
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
-            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: container))
-            .environmentObject(CKPublicModelService<CKFunModel>(container: container))
-            .environmentObject(CKPublicModelService<CKConnectModel>(container: container))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
     }
 }

@@ -14,6 +14,15 @@ public enum ActivityStatus: String, CaseIterable {
     case active // started activity.
     case completed // they think they are done.
     case verified  // adult "verify button" and they get bucks
+    
+    public var friendlyName: String {
+        switch self {
+        case .unknown: return "unknown"
+        case .active: return "active"
+        case .completed: return "completed"
+        case .verified: return "verified"
+        }
+    }
 }
 
 public struct CKActivityModel: CKModel {
@@ -88,10 +97,10 @@ public struct CKActivityModel: CKModel {
     
     public init(
     ){
-        
         self.name = nil
         self.description = nil
         self.bucks = nil
+        self.emoji = nil
         
         self.ckChoreDescriptionReference = nil
         self.kidReference = nil
@@ -103,9 +112,31 @@ public struct CKActivityModel: CKModel {
         self.activityAsset = nil
         
         self.statusMessage = nil
-        self.status = .active
+        self.status = .unknown
         self.category = .chore
         self.chatSession = nil
+    }
+    
+    public init( descriptionModel: CKActivityDescriptionModel, playerRecordReference: CKRecord.Reference) {
+        
+        guard let descriptionRecordID = descriptionModel.recordID else {
+            fatalError("")
+        }
+        
+        let descriptionReference = CKRecord.Reference(recordID: descriptionRecordID, action: .deleteSelf)
+        
+        self.name = descriptionModel.name
+        self.description = descriptionModel.description
+        self.bucks = descriptionModel.bucks
+        
+        self.ckChoreDescriptionReference = descriptionReference
+        self.kidReference = playerRecordReference
+        self.moduleType = descriptionModel.moduleType
+        
+        self.emoji = descriptionModel.emoji
+        
+        self.category = descriptionModel.category
+        self.status = ActivityStatus.active
     }
     
     public init?(record: CKRecord) {
@@ -122,6 +153,7 @@ public struct CKActivityModel: CKModel {
         self.name = record["name"] as? String
         self.description = record["description"] as? String
         self.bucks = record["bucks"] as? Int
+        self.emoji = record["emoji"] as? String
         
         self.ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference
         self.kidReference = record["kidReference"] as? CKRecord.Reference
@@ -186,6 +218,10 @@ extension CKActivityModel {
             record["bucks"] = bucks as CKRecordValue
         }
         
+        if let emoji = emoji {
+            record["emoji"] = emoji as CKRecordValue
+        }
+        
         if let ckChoreDescriptionReference = ckChoreDescriptionReference {
             record["ckChoreDescriptionReference"] = ckChoreDescriptionReference as CKRecordValue
         }
@@ -218,10 +254,52 @@ extension CKActivityModel {
             record["activityAsset"] = activityAsset as CKRecordValue
         }
         
+        if let statusMessage = statusMessage {
+            record["statusMessage"] = statusMessage as CKRecordValue
+        }
+
+        record["status"] = status.rawValue
+        
+        record["category"] = category.rawValue
+        
         if let chatSession = chatSession {
             record["chatSession"] = chatSession as CKRecordValue
         }
         
         return record
     }
+}
+
+
+extension CKActivityModel {
+    
+    public static var mockNoEmoji: CKActivityModel {
+        var model = CKActivityModel()
+        
+        model.name = "mock activity"
+        model.description = "mock activity description"
+        model.bucks = 3
+//        model.emoji = "🧳"
+        model.category = .chore
+        
+        model.ckChoreDescriptionReference = nil
+        model.kidReference = nil
+        model.coverPhoto = nil
+        
+        model.moduleType = ActivityModuleType.photo
+        
+        model.resultAssetText = nil
+        model.resultAssetImage = nil
+        //model.resultAssetAudio = nil
+        
+        model.activityAsset = nil
+        
+        model.statusMessage = nil
+        model.status = .active
+        model.category = .chore
+        model.chatSession = nil
+        
+        return model
+    }
+    
 }

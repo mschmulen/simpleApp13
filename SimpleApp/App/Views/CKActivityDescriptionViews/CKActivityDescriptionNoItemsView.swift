@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CKChoreDescriptionNoItemsView: View {
+struct CKActivityDescriptionNoItemsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,7 +18,7 @@ struct CKChoreDescriptionNoItemsView: View {
                     .frame(width: 155, height: 155)
                     .cornerRadius(5)
                 VStack {
-                    Text("No Chores")
+                    Text("No Activities")
                         .foregroundColor(.white)
                         .font(.body)
                     Text("ask an Adult")
@@ -32,10 +32,10 @@ struct CKChoreDescriptionNoItemsView: View {
         }
         .padding(.leading, 15)
     }
-}//end CKChoreNoItemsView
+}//end CKActivityDescriptionNoItemsView
 
-struct CKChoreNoItemsView_Previews: PreviewProvider {
+struct CKActivityDescriptionNoItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        CKChoreDescriptionNoItemsView()
+        CKActivityDescriptionNoItemsView()
     }
 }

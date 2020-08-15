@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionNoItemsView.swift
+//  CKActivityDescriptionNoItemsView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.

@@ -1,5 +1,5 @@
 //
-//  CKChoreNewActiveDetailView.swift
+//  StartActivityView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/6/20.
@@ -11,7 +11,7 @@ import FamilyKit
 import SimpleGames
 import CloudKit
 
-struct CKActivityActiveNewDetailView: View {
+struct StartActivityView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -96,7 +96,7 @@ struct CKActivityActiveNewDetailView: View {
             return
         }
         
-        guard let choreDescriptionRecordID = descriptionModel.recordID else {
+        guard let activityDescriptionRecordID = descriptionModel.recordID else {
             return
         }
         
@@ -135,15 +135,15 @@ struct CKActivityActiveNewDetailView: View {
         }
     }
     
-}//end CKChoreActiveDetailView
+}//end StartActivityDetailView
 
-struct CKChoreNewActiveDetailView_Previews: PreviewProvider {
+struct StartActivityDetailView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
         Group {
-            CKActivityActiveNewDetailView(
+            StartActivityView(
                 descriptionModel: CKActivityDescriptionModel.mock
             )
             .environmentObject(AppState())

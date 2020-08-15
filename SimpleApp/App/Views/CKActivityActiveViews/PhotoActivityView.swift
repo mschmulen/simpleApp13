@@ -9,16 +9,33 @@
 import SwiftUI
 import FamilyKit
 
+extension Player {
+    
+    public func isOwner(model: CKActivityModel) ->Bool {
+        guard let myReference = self.recordReference else {
+            return false
+        }
+        guard let modelReference = model.kidReference else {
+            return false
+        }
+        
+        if modelReference == myReference {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
 struct PhotoActivityView: View {
     
+    @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
-    var isReadOnly:Bool
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false
@@ -29,25 +46,32 @@ struct PhotoActivityView: View {
     @State private var statusMessage: String?
     
     var imageView: some View {
-        Group {
-            if image != nil {
-                image!
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    //.aspectRatio(contentMode: .fill)
-                    //.frame(width: 200)//, height: 200)
-                    // .frame(width: 50)
-                    .clipped()
-            } else {
-                Rectangle()
-                    .fill(Color.red)
-                    //.frame(width: 200, height: 200)
+        VStack {
+            GeometryReader { geo in
+                if self.image != nil {
+                    self.image!
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width)
+                        .clipped()
+                        .onTapGesture {
+                            self.showingImagePicker.toggle()
+                    }
+                } else {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .border(Color.gray)
+                            .onTapGesture {
+                                self.showingImagePicker.toggle()
+                        }
+                        Image(systemName: "camera")
+                    }
+                }
             }
         }
-        .frame(width: 300)
-        .onTapGesture {
-            self.showingImagePicker.toggle()
-        }
+        .frame(width: 300, height: 200)
     }
     
     var body: some View {
@@ -56,22 +80,21 @@ struct PhotoActivityView: View {
                 Text(statusMessage!)
             }
             
-            if image != nil {
-                imageView
-            }
+            imageView
             
             Spacer()
             
-            if inputImage != nil {
+            if inputImage != nil && model.recordID != nil && familyKitAppState.currentPlayer.isOwner(model: model) {
                 Button(action: {
                     self.saveImage()
                 }) {
                     Text("SAVE IMAGE")
                 }
             }
+            
             Spacer()
             
-            if inputImage == nil {
+            if inputImage == nil && familyKitAppState.currentPlayer.isOwner(model: model) {
                 Group {
                     Button(action: {
                         self.showingImagePicker.toggle()
@@ -163,17 +186,14 @@ struct PhotoActivityView: View {
     }
 }
 
-
 struct PhotoActivityView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PhotoActivityView(
-                model: .constant(CKActivityModel.mock),
-                isReadOnly: true
+                model: .constant(CKActivityModel.mock)
             )
             PhotoActivityView(
-                model: .constant(CKActivityModel.mock),
-                isReadOnly: true
+                model: .constant(CKActivityModel.mock)
             )
         }
     }

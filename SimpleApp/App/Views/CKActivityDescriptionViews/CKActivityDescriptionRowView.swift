@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionRowView.swift
+//  CKActivityDescriptionRowView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -71,7 +71,7 @@ struct CKActivityDescriptionRowView: View {
 }//end CKChoreRowView
 
 #if DEBUG
-struct CKChoreRowView_Previews: PreviewProvider {
+struct CKActivityDescriptionRowView_Previews: PreviewProvider {
     static var previews: some View {
             
         Group {

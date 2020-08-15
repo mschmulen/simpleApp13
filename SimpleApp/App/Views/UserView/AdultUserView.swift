@@ -55,12 +55,12 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: CKChoreDescriptionListView()) {
+                NavigationLink(destination: CKActivityDescriptionListView()) {
                     Text("Show Activity Descriptions")
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: CKChoreActiveListView()) {
+                NavigationLink(destination: CKActivityActiveListView()) {
                     Text("Show Active Activities")
                         .foregroundColor(.blue)
                 }

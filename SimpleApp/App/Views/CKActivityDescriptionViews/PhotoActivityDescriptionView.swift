@@ -9,12 +9,16 @@
 import SwiftUI
 import FamilyKit
 
+
+
+
 struct PhotoActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var appState: AppState
     
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var chatService: ChatService
     
@@ -29,26 +33,31 @@ struct PhotoActivityDescriptionView: View {
     @State private var statusMessage: String?
     
     var imageView: some View {
-        Group {
-            if image != nil {
-                image!
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    //.aspectRatio(contentMode: .fill)
-                .frame(width: 200)//, height: 200)
-                    // .frame(width: 50)
-                .clipped()
-            } else {
-                Rectangle()
-                .fill(Color.red)
-                .frame(width: 200, height: 200)
+        VStack {
+            GeometryReader { geo in
+                if self.image != nil {
+                    self.image!
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width)
+                        .clipped()
+                        .onTapGesture {
+                            self.showingImagePicker.toggle()
+                    }
+                } else {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .onTapGesture {
+                                self.showingImagePicker.toggle()
+                        }
+                        Image(systemName: "camera")
+                    }
+                }
             }
         }
-        .frame(width: 280, height: 200)
-            .onTapGesture {
-                self.showingImagePicker.toggle()
-        }
-
+        .frame(width: 300, height: 200)
     }
     
     var body: some View {

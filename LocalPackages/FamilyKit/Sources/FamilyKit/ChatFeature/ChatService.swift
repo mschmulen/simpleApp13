@@ -44,7 +44,7 @@ public class ChatService : ObservableObject {
     }
     
     // TODO: make use of the ChatSessions ...
-    func sendMessage(_ chatMessageModel: CKChatMessageModel) {
+    public func sendMessage(_ chatMessageModel: CKChatMessageModel) {
         // TODO Send Message
         print( "TODO fix this update")
         //realTimeMessages.append(chatMessage)

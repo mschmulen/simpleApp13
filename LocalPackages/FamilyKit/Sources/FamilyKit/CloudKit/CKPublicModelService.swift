@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 import CloudKit
 
-public let CKChangedNotification = Notification.Name("CloudKitModelService")
+
 public let CKContainerIdentifier = "iCloud.com.jumptack.FamilyKit"
 
 /**

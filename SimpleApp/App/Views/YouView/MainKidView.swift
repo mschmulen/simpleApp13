@@ -29,13 +29,9 @@ struct MainKidView: View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
-                VStack {
-                    Text("\(familyKitAppState.currentPlayer.name) (Kid)")
-                }
-                
                 List{
                     Section() {
-                        CKChoreDescriptionRowView(
+                        CKActivityDescriptionRowView(
                             categoryName: "Activities (Family)",
                             items: privateChoreService.models,
                             isPrivate: true,
@@ -45,7 +41,7 @@ struct MainKidView: View {
                     .listRowInsets(EdgeInsets())
                     
                     Section() {
-                        CKChoreActiveRowView(
+                        CKActivityActiveRowView(
                             categoryName: "Activities (\(familyKitAppState.currentPlayer.name))",
                             items: privateActiveChoreService.models.filter({ (model) -> Bool in
                                 if model.kidReference == familyKitAppState.currentPlayer.recordReference {
@@ -60,7 +56,7 @@ struct MainKidView: View {
                 }
                 Text("version \(appInfo.appShortVersion)(\(appInfo.appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 self.privateChoreService.fetch { (result) in
@@ -70,6 +66,7 @@ struct MainKidView: View {
                     print( "result")
                 }
             }
+            .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }

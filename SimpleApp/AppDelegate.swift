@@ -110,12 +110,13 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         //let dict = userInfo as! [String : NSObject]
-        print( "didReceiveRemoteNotification userInfo:\(userInfo)")
+        //print( "didReceiveRemoteNotification userInfo:\(userInfo)")
         
         if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
             
+            // TODO: hande specific notifications
             print( "HANDLE SPECIFIC STORE NOTIFCATIONS")
-            CKPublicModelService<CKActivityDescriptionModel>.notificationReceive( notification: notification)
+            CKPrivateModelService<CKActivityDescriptionModel>.notificationReceive( notification: notification)
             if notification.queryNotificationReason == .recordCreated {
                 print( ".recordCreated")
                 // ContentView().fetchRecord(record: (notification?.recordID)!)

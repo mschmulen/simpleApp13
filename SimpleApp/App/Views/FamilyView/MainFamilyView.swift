@@ -24,68 +24,103 @@ struct MainFamilyView: View {
     
     @State var devMessage: String?
     
+    // playerPickerView
+    let cardSize:CGFloat = 50
+    let cardRadius:CGFloat = 20
+    
+    enum Filter {
+        case allFamily
+        case person( CKPlayerModel)
+        
+        var name:String {
+            switch self {
+            case .allFamily:
+                return "All Family"
+            case .person( let playerModel):
+                return "\(playerModel.name ?? "~")"
+            }
+        }
+    }
+    @State var currentFilter = Filter.allFamily
+    
     var playerPickerView: some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack {
                 VStack {
                     Text("🏡")
+                        .font(.body)
+                    Spacer()
                     Text("Family")
-                        .font(.headline)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(.white))
                 }
-                .frame(width: 80, height: 80)
+                .frame(width: cardSize, height: cardSize)
                 .padding()
-                .border(Color.gray)
+                .background(Color.blue)
+                .cornerRadius(cardRadius)
+                .onTapGesture {
+                    self.currentFilter = Filter.allFamily
+                }
                 
                 ForEach( self.familyKitAppState.playerService.models ) { player in
                     VStack {
                         Text("\(player.emoji ?? "")")
+                        Spacer()
                         Text("\(player.name ?? "")")
-                            .font(.headline)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
                     }
-                    .frame(width: 80, height: 80)
+                    .frame(width: self.cardSize, height: self.cardSize)
                     .padding()
-                    .border(Color.gray)
+                    .background(Color.green)
+                    .cornerRadius(self.cardRadius)
+                    .onTapGesture {
+                        self.currentFilter = Filter.person( player )
+                    }
                 }
             }.padding()
-        }
-    }
+        }//end ScrollView
+    }//end playerPickerView
     
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                Text("Family View")
-                
-                playerPickerView
-                
                 List {
-                    ForEach( self.privateActiveChoreService.models) { model in
-                        NavigationLink(
-                            destination: CKChoreActiveDetailView(
-                                model: model
-                            )
-                        ){
-                            FamilyActivityCardView(model:model)
+                    playerPickerView
+                    Section(header: Text("\(currentFilter.name)")) {
+                        ForEach( privateActiveChoreService.models) { model in
+                            NavigationLink(
+                                destination: CKActivityActiveDetailView(
+                                    model: model
+                                )
+                            ){
+                                FamilyActivityCardView(model:model)
+                            }
                         }
+                        
                     }
                 }
+                
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
-                print("Notification.Name(CloudKitModelService) recieved")
-                self.devMessage = "silent Push! DB changed"
+            }//end VStack
+                .navigationBarTitle("Family")
                 
-                self.privateChoreService.fetch { (result) in
-                    print( "result")
-                }
-                self.privateActiveChoreService.fetch { (result) in
-                    print( "result")
-                }
-            }
-            .navigationBarItems(leading: leadingButton, trailing: trailingButton)
-        }
-    }
+                .navigationBarItems(leading: leadingButton, trailing: trailingButton)
+                .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+                    print("Notification.Name(CloudKitModelService) recieved")
+                    self.devMessage = "silent Push! DB changed"
+                    
+                    self.privateChoreService.fetch { (result) in
+                        print( "result")
+                    }
+                    self.privateActiveChoreService.fetch { (result) in
+                        print( "result")
+                    } }
+            
+        }//end Navigation
+    }//end body
     
     private var trailingButton: some View {
         Group {
@@ -126,8 +161,8 @@ struct MainFamilyView_Previews: PreviewProvider {
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
-            .environmentObject(CKPublicModelService<CKActivityDescriptionModel>(container: container))
-            .environmentObject(CKPublicModelService<CKFunModel>(container: container))
-            .environmentObject(CKPublicModelService<CKConnectModel>(container: container))
+            .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
+            .environmentObject(ChatService(container:container))
+        
     }
 }

@@ -22,7 +22,7 @@ extension String {
     }
 }
 
-func emojiToImage(text: String, size: CGFloat = 128) -> UIImage {
+func emojiToImage(text: String, size: CGFloat = 128, backgroundColor: UIColor = UIColor.clear) -> UIImage {
     
     let outputImageSize = CGSize.init(width: size, height: size)
     let baseSize = text.boundingRect(with: CGSize(width: size, height: size),

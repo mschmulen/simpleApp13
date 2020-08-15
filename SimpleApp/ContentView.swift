@@ -28,7 +28,7 @@ struct ContentView: View {
         case purchaseView
     }
     
-    @State private var selectedTab: Int = TabViewIndex.you.rawValue
+    @State private var selectedTab: Int = TabViewIndex.family.rawValue
     
     public enum TabViewIndex: Int {
         case you = 0
@@ -60,6 +60,7 @@ struct ContentView: View {
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
                                 .environmentObject(privateChoreService)
+                                .environmentObject(privateActiveChoreService)
                                 .environmentObject(chatService)
                                 .tabItem {
                                     Image(systemName: "person.circle")
@@ -71,10 +72,11 @@ struct ContentView: View {
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
                                 .environmentObject(privateChoreService)
+                                .environmentObject(privateActiveChoreService)
                                 .environmentObject(chatService)
                                 .tabItem {
                                     Image(systemName: "person.circle")
-                                    Text("You")
+                                    Text("\(familyKitAppState.currentPlayer.name)")
                             }.tag(TabViewIndex.you.rawValue)
                         }//end first tab
                         
@@ -83,6 +85,7 @@ struct ContentView: View {
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
+                            .environmentObject(privateActiveChoreService)
                             .environmentObject(chatService)
                             .tabItem {
                                 Image(systemName: "house")
@@ -94,6 +97,7 @@ struct ContentView: View {
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
+                            .environmentObject(privateActiveChoreService)
                             .environmentObject(chatService)
                             .tabItem {
                                 Image(systemName: "dollarsign.circle")
@@ -118,7 +122,7 @@ struct ContentView: View {
                 self.showNoiCloudConnection.toggle()
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
         }

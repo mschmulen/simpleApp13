@@ -1,8 +1,8 @@
 //
-//  ActivityActionView.swift
+//  DrawingActivityView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 8/6/20.
+//  Created by Matthew Schmulen on 8/14/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import SimpleGames
 import DrawingKit
 import CloudKit
 
-struct ActivityActionView: View {
+struct DrawingActivityView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -21,11 +21,13 @@ struct ActivityActionView: View {
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
     
-    @State var devMessage: String? = nil    
+    @State var devMessage: String? = nil
     
     @Binding var model: CKActivityModel
     
     var isReadOnly:Bool = false
+    
+    @State var isChatFocus = false
     
     var doneView: some View {
         Button(action:onDone) {
@@ -52,8 +54,7 @@ struct ActivityActionView: View {
             //ScrollView(.vertical, showsIndicators: false) {
                 if model.moduleType == .photo {
                     PhotoActivityView(
-                        model: $model,
-                        isReadOnly: isReadOnly
+                        model: $model
                     )
                 }
                 
@@ -71,22 +72,31 @@ struct ActivityActionView: View {
                     )
                 }
                 
-                if model.moduleType == .chat {
-                    ChatSessionView() // model: $model
-                }
+//                if model.moduleType == .chat {
+//                    ChatSessionView() // model: $model
+//                }
                 
-                // show the ChatSessionView
-                //if model.chatSession != nil {
-//                    ChatSessionView()
-                //} else {
+//                if isChatFocus == true {
+//                    ChatEmbeddedScrollView(
+//                        model:$model,
+//                        isChatFocus: $isChatFocus
+//                    )
+//                    .frame(height: 500)
+//                    Spacer()
+//                } else {
+//                    Spacer()
+//                    ChatEmbeddedScrollView(
+//                        model:$model,
+//                        isChatFocus: $isChatFocus
+//                    )
+//                        .frame(height: 200)
+//                }
                 
                 NavigationLink(destination: ChatSessionView()) {
                     Text("Show Chat")
                         .foregroundColor(.blue)
                 }
                 
-                 //EmptyView()
-                //}
             }
         }
     }
@@ -116,11 +126,9 @@ struct ActivityActionView: View {
             }
         }
     }
-    
 }
 
-
-struct ActivityActionView_Previews: PreviewProvider {
+struct DrawingActivityView_Previews: PreviewProvider {
     static var previews: some View {
         ActivityActionView(
             model: .constant(CKActivityModel.mock)

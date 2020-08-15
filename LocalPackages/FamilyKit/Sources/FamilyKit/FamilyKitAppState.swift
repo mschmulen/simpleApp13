@@ -89,7 +89,6 @@ public enum Player {
             return nil
         }
     }
-    
 }
 
 public class FamilyKitAppState: ObservableObject {

@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionDetailView.swift
+//  CKActivityDescriptionDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -7,10 +7,21 @@
 //
 
 import SwiftUI
+import Combine
 import FamilyKit
 import SimpleGames
 
-struct CKChoreDescriptionDetailView: View {
+class ActivityDescriptionViewModel: ObservableObject {
+    
+    // Input
+    @Published var name = ""
+    
+    // Output
+    @Published var isValid = false
+    
+}
+
+struct CKActivityDescriptionDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -38,7 +49,7 @@ struct CKChoreDescriptionDetailView: View {
             Text("timeofday: \(model.timeofday ?? "~")")
             
             Text("moduleType: \(model.moduleType.rawValue)")
-
+            
             
             // TODO: handle the imageAsset
             //Text("imageAsset: \(model.imageName ?? "~")")
@@ -95,11 +106,11 @@ struct CKChoreDescriptionDetailView: View {
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
-//            TextField("who", text: $model.who ?? "")
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
+            //            TextField("who", text: $model.who ?? "")
+            //                .textFieldStyle(RoundedBorderTextFieldStyle())
             
-//            TextField("timeofday", text: $model.timeofday ?? "")
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
+            //            TextField("timeofday", text: $model.timeofday ?? "")
+            //                .textFieldStyle(RoundedBorderTextFieldStyle())
             
             NavigationLink(destination: PhotoActivityDescriptionView(model: model) ) {
                 Text("change coverPhoto")
@@ -114,9 +125,9 @@ struct CKChoreDescriptionDetailView: View {
                         print( "success")
                         self.privateChoreService.fetchSingle( model: self.model) { result in
                             print( "result")
-//                            DispatchQueue.main.async {
-//                                self.presentationMode.wrappedValue.dismiss()
-//                            }
+                            //                            DispatchQueue.main.async {
+                            //                                self.presentationMode.wrappedValue.dismiss()
+                            //                            }
                         }
                     }
                 }
@@ -139,14 +150,28 @@ struct CKChoreDescriptionDetailView: View {
                 }
                 editView
             } else {
-                NavigationLink(destination: CKChoreNewActiveDetailView(
-                    descriptionModel: model
-                )) {
-                    VStack {
-                        Text("START THIS ACTIVITY")
-                        Image(systemName: "plus")
-                    }.foregroundColor(.blue)
+                //                NavigationLink(destination: StartActivityView(
+                //                    descriptionModel: model
+                //                )) {
+                //                    VStack {
+                //                        Text("START THIS ACTIVITY")
+                //                        Image(systemName: "plus")
+                //                    }.foregroundColor(.blue)
+                //                }
+                
+                if familyKitAppState.currentPlayer.recordReference != nil {
+                    NavigationLink(destination: CKActivityActiveDetailView(
+                        model: CKActivityModel(
+                            descriptionModel: model,
+                            playerRecordReference: familyKitAppState.currentPlayer.recordReference!)
+                    )) {
+                        HStack {
+                            Text("START THIS ACTIVITY")
+                            Image(systemName: "plus")
+                        }.foregroundColor(.blue)
+                    }
                 }
+                
                 readOnlyView
             }
             
@@ -156,6 +181,7 @@ struct CKChoreDescriptionDetailView: View {
             
         }//end List
             .onAppear {
+                
                 // try and download the image
                 self.model.loadCoverPhoto { (result) in
                     switch result {
@@ -184,14 +210,15 @@ struct CKChoreDescriptionDetailView: View {
             }
         }
     }
-}//end CKChoreDetailView
+    
+}//end CKActivityDetailView
 
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKChoreDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: false)
+            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: false)
             
-            CKChoreDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: true)
+            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: true)
         }
     }
 }
