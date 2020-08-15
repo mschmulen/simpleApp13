@@ -35,10 +35,13 @@ public struct CKActivityDescriptionModel: CKModel {
         "bucks",
         "emoji",
         "category",
-        "who",
+        "coverPhoto",
+        "moduleType",
         "frequency",
+        "who",
         "timeofday",
-        "coverPhoto"
+        "minAgeInYears",
+        "maxAgeInYears"
     ]
     
     public enum Frequency: String, CaseIterable {
@@ -190,10 +193,9 @@ extension CKActivityDescriptionModel {
         
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         
-        // TODO: handle the coverPhoto
-        //if let coverPhoto = coverPhoto {
-            //record["coverPhoto"] = coverPhoto as CKAsset
-        //}
+        if let coverPhoto = coverPhoto {
+            record["coverPhoto"] = coverPhoto as CKAsset
+        }
         
         if let minAgeInYears = minAgeInYears {
             record["minAgeInYears"] = minAgeInYears as CKRecordValue

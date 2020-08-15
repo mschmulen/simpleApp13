@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  AdultYouView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 7/23/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainAdultView: View {
+struct AdultYouView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -72,7 +72,7 @@ struct MainAdultView: View {
                 }
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 
@@ -127,7 +127,7 @@ struct MainView_Previews: PreviewProvider {
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainAdultView()
+        AdultYouView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))

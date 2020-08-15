@@ -23,7 +23,7 @@
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */; };
 		7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66524DC692C003488EB /* _ActivityActionView.swift */; };
-		7616F66824DC7723003488EB /* MainKidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* MainKidView.swift */; };
+		7616F66824DC7723003488EB /* KidYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* KidYouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		7616F66C24DC8823003488EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616F66B24DC8823003488EB /* StoreKit.framework */; };
 		76208B7B24D5F7A0001F46E2 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76208B7A24D5F7A0001F46E2 /* FamilyKit */; };
@@ -63,9 +63,8 @@
 		76BADB5424CA5877004950C0 /* connectData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB5124CA5877004950C0 /* connectData.json */; };
 		76BADB5524CA5877004950C0 /* funData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB5224CA5877004950C0 /* funData.json */; };
 		76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6224CA59C4004950C0 /* ImageStore.swift */; };
-		76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */; };
+		76BADB6D24CA5A7A004950C0 /* AdultYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
-		76C2FDF424DB193D00E030C2 /* CameraViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */; };
 		76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */; };
 		76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */; };
 		76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */; };
@@ -76,7 +75,7 @@
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
 		76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DD24D9E902007A02CF /* SimpleGames */; };
 		76CFA22024DA53AA007A02CF /* PhotoActivityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA21F24DA53AA007A02CF /* PhotoActivityDescriptionView.swift */; };
-		76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA22124DA5402007A02CF /* ImagePicker.swift */; };
+		76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA22124DA5402007A02CF /* ImagePickerRepresentable.swift */; };
 		76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11024E03CDE00C68408 /* PlayersListView.swift */; };
 		76EDF11524E05AEC00C68408 /* _ActivityAudioActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11424E05AEC00C68408 /* _ActivityAudioActionView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
@@ -135,7 +134,7 @@
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityDetailView.swift; sourceTree = "<group>"; };
 		7616F66524DC692C003488EB /* _ActivityActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ActivityActionView.swift; sourceTree = "<group>"; };
-		7616F66724DC7723003488EB /* MainKidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainKidView.swift; sourceTree = "<group>"; };
+		7616F66724DC7723003488EB /* KidYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidYouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		7616F66B24DC8823003488EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		76208B7924D5F794001F46E2 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
@@ -178,9 +177,8 @@
 		76BADB5124CA5877004950C0 /* connectData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = connectData.json; sourceTree = "<group>"; };
 		76BADB5224CA5877004950C0 /* funData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = funData.json; sourceTree = "<group>"; };
 		76BADB6224CA59C4004950C0 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
-		76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdultView.swift; sourceTree = "<group>"; };
+		76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultYouView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
-		76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewRepresentable.swift; sourceTree = "<group>"; };
 		76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveNoItemsView.swift; sourceTree = "<group>"; };
 		76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveItemView.swift; sourceTree = "<group>"; };
 		76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
@@ -191,7 +189,7 @@
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76CFA1DA24D9E8F4007A02CF /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
 		76CFA21F24DA53AA007A02CF /* PhotoActivityDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivityDescriptionView.swift; sourceTree = "<group>"; };
-		76CFA22124DA5402007A02CF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		76CFA22124DA5402007A02CF /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
 		76EDF11024E03CDE00C68408 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
 		76EDF11424E05AEC00C68408 /* _ActivityAudioActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ActivityAudioActionView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
 				76C2FDF724DB9B9000E030C2 /* CKActivityActiveViews */,
 				76CFA1D624D9E0A2007A02CF /* Draw */,
-				76208BA924D8C6A3001F46E2 /* Photo */,
 				76208BA224D8C4AF001F46E2 /* Audio */,
 				76208B8B24D663DE001F46E2 /* Utility */,
 				7601817624C61E1100B339E4 /* UserView */,
@@ -377,8 +374,7 @@
 		76208BA924D8C6A3001F46E2 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				76CFA22124DA5402007A02CF /* ImagePicker.swift */,
-				76C2FDF324DB193D00E030C2 /* CameraViewRepresentable.swift */,
+				76CFA22124DA5402007A02CF /* ImagePickerRepresentable.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -396,8 +392,8 @@
 		7649838224E6218100097C4D /* YouView */ = {
 			isa = PBXGroup;
 			children = (
-				76BADB6C24CA5A7A004950C0 /* MainAdultView.swift */,
-				7616F66724DC7723003488EB /* MainKidView.swift */,
+				76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */,
+				7616F66724DC7723003488EB /* KidYouView.swift */,
 			);
 			path = YouView;
 			sourceTree = "<group>";
@@ -422,6 +418,7 @@
 		76B86F8724E8477A009955F7 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				76208BA924D8C6A3001F46E2 /* Photo */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -646,7 +643,7 @@
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsView.swift in Sources */,
-				76CFA22224DA5402007A02CF /* ImagePicker.swift in Sources */,
+				76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */,
 				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
@@ -657,7 +654,7 @@
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddItemView.swift in Sources */,
-				76BADB6D24CA5A7A004950C0 /* MainAdultView.swift in Sources */,
+				76BADB6D24CA5A7A004950C0 /* AdultYouView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
@@ -672,10 +669,9 @@
 				7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */,
 				76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */,
 				76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */,
-				7616F66824DC7723003488EB /* MainKidView.swift in Sources */,
+				7616F66824DC7723003488EB /* KidYouView.swift in Sources */,
 				7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
-				76C2FDF424DB193D00E030C2 /* CameraViewRepresentable.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,

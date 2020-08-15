@@ -1,5 +1,5 @@
 //
-//  MainKidView.swift
+//  KidYouView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/6/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainKidView: View {
+struct KidYouView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -56,7 +56,7 @@ struct MainKidView: View {
                 }
                 Text("version \(appInfo.appShortVersion)(\(appInfo.appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 self.privateChoreService.fetch { (result) in
@@ -105,7 +105,7 @@ struct MainKidView_Previews: PreviewProvider {
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainKidView()
+        KidYouView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))

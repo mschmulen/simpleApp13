@@ -164,7 +164,7 @@ extension FamilyKitAppState {
                 print( "kidService error \(error)")
             }
         })
-        playerService.subscribe()
+        playerService.subscribe(message: "player Change")
         playerService.listenForNotifications()
         
         // TODO: fetch create the CKDevice Model based on device

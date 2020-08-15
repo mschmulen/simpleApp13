@@ -9,61 +9,28 @@
 import Foundation
 import CloudKit
 
+
+
 extension CKPrivateModelService {
     
-    public func listenForNotifications() {
-        
-        let NotificationSubscriber = NotificationCenter.default.addObserver(forName: FamilyKitNotifications.CKChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
-            print( "CKModelService.CKChangedNotification notification recieved updating AllModels")
-            self.fetch(completion: { result in
-                switch result {
-                case .success(let models) :
-                    print( "CKModelService.listenForNotifications fetch success \(models)")
-                    self.updateChanges()
-                case .failure(let error):
-                    print( "CKModelService.listenForNotifications fetch error \(error)")
-                }
-            })
-        }
-        
-        //        let NotificationSubscriber = Subscribers.Assign(object: lastPostLabel, keyPath: \.text)
-        //        somePublisher.subscribe(lastPostLabelSubscriber)
-        
-        //        .onReceive(NotificationCenter.default.publisher(for: DBChangedNotification)) { _ in
-        //                   print("Notification.Name(CloudKitModelService) recieved")
-        //                   self.devMessage = "silent Push! DB changed"
-        //                   // self.myService.updateAllModels()
-        //               }
-    }
-    
-    public static func notificationReceive( notification: CKQueryNotification) {
-        print( "CKModelService.notificationReceive")
-        NotificationCenter.default.post(name: FamilyKitNotifications.CKChangedNotification, object: nil)
-        
-        if notification.queryNotificationReason == .recordCreated {
-            print( ".recordCreated")
-            // ContentView().fetchRecord(record: (notification?.recordID)!)
-        }
-        if notification.queryNotificationReason == .recordUpdated {
-            print( ".recordUpdated")
-            //later
-        }
-        if notification.queryNotificationReason == .recordDeleted {
-            print( ".recordDeleted")
-            //ContentView().deleteRecord(record: (notification?.recordID)!)
-        }
-    }
-    
-    public func subscribe() {
+    public func subscribe( message:String ) {
         print( "CKModelService.subscribe \(T.recordName)")
+        
+        let predicate = SearchPredicate.predicateTrue.predicate
         let subscription = CKQuerySubscription(
             recordType: T.recordName,
-            predicate: SearchPredicate.predicateTrue.predicate,
+            predicate: predicate,
             options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation]
         )
-        let info = CKSubscription.NotificationInfo()
-        info.shouldSendContentAvailable = true
-        subscription.notificationInfo = info
+        let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.alertBody = message
+        notificationInfo.soundName = "default"
+        notificationInfo.shouldBadge = true
+        
+        // Note: set shouldSendContentAvailable = true if you want it to be a silent push
+        //notificationInfo.shouldSendContentAvailable = true
+        
+        subscription.notificationInfo = notificationInfo
         
         self.container.privateCloudDatabase.save(subscription) { (savedSubscription, error) in
             if error != nil {
@@ -91,5 +58,79 @@ extension CKPrivateModelService {
                 print(error!.localizedDescription)
             }
         }
+    }
+}
+
+
+extension CKPrivateModelService {
+    
+    public func listenForNotifications() {
+        
+        let NotificationSubscriber = NotificationCenter.default.addObserver(forName: FamilyKitNotifications.CKRemoteModelChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
+            print( "CKModelService.CKChangedNotification notification recieved updating AllModels")
+            self.fetch(completion: { result in
+                switch result {
+                case .success(let models) :
+                    print( "CKModelService.listenForNotifications fetch success \(models)")
+                    self.updateChanges()
+                case .failure(let error):
+                    print( "CKModelService.listenForNotifications fetch error \(error)")
+                }
+            })
+        }
+        
+        //        let NotificationSubscriber = Subscribers.Assign(object: lastPostLabel, keyPath: \.text)
+        //        somePublisher.subscribe(lastPostLabelSubscriber)
+        
+        //        .onReceive(NotificationCenter.default.publisher(for: DBChangedNotification)) { _ in
+        //                   print("Notification.Name(CloudKitModelService) recieved")
+        //                   self.devMessage = "silent Push! DB changed"
+        //                   // self.myService.updateAllModels()
+        //               }
+    }
+    
+}
+
+extension CKPrivateModelService {
+    
+    public static func notificationReceive( notification: CKQueryNotification) {
+        print( "CKModelService.notificationReceive")
+        
+        var userInfo:[String : String] = [:]
+        
+        if let recordID = notification.recordID {
+            print( "\(recordID)")
+            print( "notification.recordID.recordName = \(recordID.recordName) ")
+            print( "notification.recordID.zoneID.zoneName = \(recordID.zoneID.zoneName) ")
+            userInfo["recordID.recordName"] = recordID.recordName
+        }
+        
+        if let recordFields = notification.recordFields {
+            print( "notification.recordFields \(recordFields.count)")
+            for field in recordFields {
+                print( "\(field.key) : \(field.value)")
+            }
+        }
+        
+        switch notification.queryNotificationReason {
+        case .recordCreated:
+            print( "notification: recordCreated")
+            userInfo["operation"] = "recordCreated"
+        case .recordDeleted:
+            print( "notification: recordDeleted")
+            userInfo["operation"] = "recordDeleted"
+        case .recordUpdated:
+            print( "notification: recordUpdated")
+            userInfo["operation"] = "recordUpdated"
+        default:
+            print( "unknown")
+        }
+        
+        NotificationCenter.default.post(
+            name: FamilyKitNotifications.CKRemoteModelChangedNotification,
+            object: nil,
+            userInfo: userInfo
+        )
+
     }
 }

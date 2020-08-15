@@ -60,7 +60,7 @@ public struct ChatSessionView: View {
                 self.endEditing(true)
         }.onAppear {
             self.chatService.onRefresh()
-        }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+        }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
             self.chatService.onRefresh()

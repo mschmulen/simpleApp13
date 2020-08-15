@@ -56,7 +56,7 @@ struct CKActivityDescriptionListView: View {
         }.onAppear {
             
         }
-        .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
             self.privateChoreService.fetch { (result) in

@@ -55,7 +55,7 @@ struct ContentView: View {
                 TabView(selection: $selectedTab) {
                     if appState.topView == .mainView {
                         if familyKitAppState.currentPlayer.isAdult {
-                            MainAdultView()
+                            AdultYouView()
                                 .environment(\.window, window)
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
@@ -67,7 +67,7 @@ struct ContentView: View {
                                     Text("You")
                             }.tag(TabViewIndex.you.rawValue)
                         } else {
-                            MainKidView()
+                            KidYouView()
                                 .environment(\.window, window)
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
@@ -122,7 +122,7 @@ struct ContentView: View {
                 self.showNoiCloudConnection.toggle()
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKChangedNotification)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
         }

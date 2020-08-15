@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "privateChoreService error \(error)")
             }
         })
-        privateChoreService.subscribe()
+        privateChoreService.subscribe(message: "new ActivityDescription or change")
         privateChoreService.listenForNotifications()
        
         // CKChoreActiveModel
@@ -56,12 +56,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print( "privateActiveChoreService error \(error)")
             }
         })
-        privateActiveChoreService.subscribe()
+        privateActiveChoreService.subscribe(message: "new Activity or activity changed")
         privateActiveChoreService.listenForNotifications()
         
         let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
         chatService.onRefresh()
-        chatService.chatMessageService.subscribe()
+        chatService.chatMessageService.subscribe(message: "New Chat")
         chatService.chatMessageService.listenForNotifications()
         
         let appState = AppState()

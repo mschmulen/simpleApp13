@@ -11,9 +11,8 @@ import Foundation
 // App Notifications
 public struct FamilyKitNotifications {
     
-    // TODO: Rename CKRemoteModelChangedNotification
     /// This is for when things are remotely changed
-    static public let CKChangedNotification = Notification.Name("CloudKitModelService")
+    static public let CKRemoteModelChangedNotification = Notification.Name("CKRemoteModelChangedNotification")
     
     /// This is for when things change locally
     static public let CKLocalModelChangedNotification = Notification.Name("CKLocalModelChangedNotification")

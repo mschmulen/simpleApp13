@@ -63,7 +63,31 @@ extension CKPrivateModelService {
             return
         }
         
+        guard let record = model.ckRecord else {
+            print( "CANNOT UPDATE A MODEL WITOUT A CKRecord")
+            completion(.failure(CustomError.unknown))
+            return
+        }
+        
         // fetch the model and the update the model
+        
+        // TODO: error saving record to server: record to insert already exists
+        
+//        self.container.privateCloudDatabase.save(record) { record, error in
+//            if let record = record, error == nil {
+//                if let updatedModel = T(record: record) {
+//                    print( "push updatedModel \(updatedModel)")
+//                    completion(.success(updatedModel) )
+//                    self.updateChanges()
+//                } else {
+//                    completion(.failure(CustomError.unknown))
+//                }
+//                return
+//            } else {
+//                completion(.failure(error ?? CustomError.unknown))
+//                return
+//            }
+//        }
         
         container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {
@@ -71,10 +95,11 @@ extension CKPrivateModelService {
                     for key in T.ckSchemeKeys {
                         record[key] = updatedRecord[key]
                     }
-                    
+
                     self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
                             if let updatedModel = T(record: record) {
+                                print( "push updatedModel \(updatedModel)")
                                 completion(.success(updatedModel) )
                                 self.updateChanges()
                             } else {
@@ -97,6 +122,8 @@ extension CKPrivateModelService {
                 return
             }
         }
+        
+        
     }
 }
 

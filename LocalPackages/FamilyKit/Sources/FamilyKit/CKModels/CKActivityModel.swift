@@ -30,9 +30,19 @@ public struct CKActivityModel: CKModel {
     public typealias ItemType = CKActivityModel
     public static let recordName = "ChoreActive"
     public static let ckSchemeKeys = [
+        "name",
+        "description",
+        "bucks",
+        "emoji",
         "ckChoreDescriptionReference",
         "kidReference",
-        "coverPhoto"
+        "coverPhoto",
+        "resultAssetImage",
+        "moduleType",
+        "activityAsset",
+        "status",
+        "category",
+        "chatSession"
     ]
     public var id = UUID()
     public var recordID: CKRecord.ID?
@@ -48,15 +58,12 @@ public struct CKActivityModel: CKModel {
     
     public var moduleType: ActivityModuleType = ActivityModuleType.none
     
-    // TODO
     public var resultAssetText: CKAsset?
     public var resultAssetImage: CKAsset?
-    //public var resultAssetAudio: CKAsset?
     
     public var activityAsset: CKAsset?
     
-    // TODO add to the data store
-    public var statusMessage: String?
+    //public var statusMessage: String?
     public var status: ActivityStatus = .unknown
     public var category: ActivityCategory = .none
     
@@ -64,6 +71,10 @@ public struct CKActivityModel: CKModel {
     
     public var title: String? {
         return name
+    }
+    
+    public mutating func changeStatus(status:ActivityStatus) {
+        self.status = status
     }
     
     public static var mock: CKActivityModel {
@@ -81,13 +92,10 @@ public struct CKActivityModel: CKModel {
         
         model.moduleType = ActivityModuleType.photo
         
-        model.resultAssetText = nil
         model.resultAssetImage = nil
-        //model.resultAssetAudio = nil
         
         model.activityAsset = nil
         
-        model.statusMessage = nil
         model.status = .active
         model.category = .chore
         model.chatSession = nil
@@ -101,17 +109,11 @@ public struct CKActivityModel: CKModel {
         self.description = nil
         self.bucks = nil
         self.emoji = nil
-        
         self.ckChoreDescriptionReference = nil
         self.kidReference = nil
         self.coverPhoto = nil
-        self.resultAssetText = nil
         self.resultAssetImage = nil
-        //self.resultAssetAudio = nil
-        
         self.activityAsset = nil
-        
-        self.statusMessage = nil
         self.status = .unknown
         self.category = .chore
         self.chatSession = nil
@@ -140,50 +142,66 @@ public struct CKActivityModel: CKModel {
     }
     
     public init?(record: CKRecord) {
-//        guard
-//            let _name = record["name"] as? String
-//            else {
-//                print("CKChoreActiveModel incomplete record")
-//                print( "\(record["name"] as? String ?? "Unknown title")")
-//                return nil
-//        }
         
         self.recordID = record.recordID
         
-        self.name = record["name"] as? String
-        self.description = record["description"] as? String
-        self.bucks = record["bucks"] as? Int
-        self.emoji = record["emoji"] as? String
+        if let name  = record["name"] as? String {
+            self.name = name
+        }
         
-        self.ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference
-        self.kidReference = record["kidReference"] as? CKRecord.Reference
-        self.coverPhoto = record["coverPhoto"] as? CKAsset
+        if let description = record["description"] as? String {
+            self.description = description
+        }
         
-        self.resultAssetText = record["resultAssetText"] as? CKAsset
-        self.resultAssetImage = record["resultAssetImage"] as? CKAsset
-        //self.resultAssetAudio = record["resultAssetAudio"] as? CKAsset
+        if let bucks = record["bucks"] as? Int {
+            self.bucks = bucks
+        }
+        
+        if let emoji = record["emoji"] as? String {
+            self.emoji = emoji
+        }
+        
+        if let ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference {
+            self.ckChoreDescriptionReference = ckChoreDescriptionReference
+        }
+
+        if let kidReference = record["kidReference"] as? CKRecord.Reference {
+            self.kidReference = kidReference
+        }
+        
+        if let coverPhoto = record["coverPhoto"] as? CKAsset {
+            self.coverPhoto = coverPhoto
+        }
+        
+        if let resultAssetImage = record["resultAssetImage"] as? CKAsset {
+            self.resultAssetImage = resultAssetImage
+        }
         
         if let moduleTypeString =  record["moduleType"] as? String {
             self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
         }
         
-        self.activityAsset = record["activityAsset"] as? CKAsset
-        
-        self.statusMessage = record["statusMessage"] as? String
+        if let activityAsset = record["activityAsset"] as? CKAsset {
+            self.activityAsset = activityAsset
+        }
         
         if let statusString = record["status"] as? String {
-            self.status = ActivityStatus(rawValue: statusString) ?? ActivityStatus.unknown
-        } else {
-            self.status = ActivityStatus.unknown
+            if let statusEnum = ActivityStatus(rawValue: statusString) {
+                self.status =  statusEnum
+                print( "init?(record: CKRecord) \(statusEnum.friendlyName)")
+            } else {
+                print("cast fail")
+            }
         }
         
         if let categoryString = record["category"] as? String {
             self.category = ActivityCategory(rawValue: categoryString) ?? ActivityCategory.none
-        } else {
-            self.category = .none
         }
         
-        self.chatSession = record["chatSession"] as? CKRecord.Reference
+        if let chatSession = record["chatSession"] as? CKRecord.Reference {
+            self.chatSession = chatSession
+        }
+        
     }
     
     enum CustomError: Error {
@@ -238,27 +256,16 @@ extension CKActivityModel {
             record["coverPhoto"] = coverPhoto as CKAsset
         }
         
-        if let resultAssetText = resultAssetText {
-            record["resultAssetText"] = resultAssetText as CKRecordValue
-        }
-        
         if let resultAssetImage = resultAssetImage {
             record["resultAssetImage"] = resultAssetImage as CKRecordValue
         }
-
-//        if let resultAssetAudio = resultAssetAudio {
-//            record["resultAssetAudio"] = resultAssetAudio as CKRecordValue
-//        }
         
         if let activityAsset = activityAsset {
             record["activityAsset"] = activityAsset as CKRecordValue
         }
         
-        if let statusMessage = statusMessage {
-            record["statusMessage"] = statusMessage as CKRecordValue
-        }
-
         record["status"] = status.rawValue
+        print( "status.rawValue \(status.rawValue)")
         
         record["category"] = category.rawValue
         
@@ -294,7 +301,7 @@ extension CKActivityModel {
         
         model.activityAsset = nil
         
-        model.statusMessage = nil
+        //model.statusMessage = nil
         model.status = .active
         model.category = .chore
         model.chatSession = nil
@@ -310,20 +317,13 @@ extension CKActivityModel {
             model.bucks = 3
             model.emoji = "🧳"
             model.category = .chore
-            
             model.ckChoreDescriptionReference = nil
             model.kidReference = nil
             model.coverPhoto = nil
-            
             model.moduleType = ActivityModuleType.photo
-            
             model.resultAssetText = nil
             model.resultAssetImage = nil
-            //model.resultAssetAudio = nil
-            
             model.activityAsset = nil
-            
-            model.statusMessage = nil
             model.status = .active
             model.category = .chore
             model.chatSession = nil
@@ -339,20 +339,13 @@ extension CKActivityModel {
         model.bucks = 3
         model.emoji = "🧳"
         model.category = .chore
-        
         model.ckChoreDescriptionReference = nil
         model.kidReference = nil
         model.coverPhoto = nil
-        
         model.moduleType = ActivityModuleType.drawing
-        
         model.resultAssetText = nil
         model.resultAssetImage = nil
-        //model.resultAssetAudio = nil
-        
         model.activityAsset = nil
-        
-        model.statusMessage = nil
         model.status = .active
         model.category = .chore
         model.chatSession = nil
@@ -368,20 +361,13 @@ extension CKActivityModel {
         model.bucks = 3
         model.emoji = "🧳"
         model.category = .chore
-        
         model.ckChoreDescriptionReference = nil
         model.kidReference = nil
         model.coverPhoto = nil
-        
         model.moduleType = ActivityModuleType.audio
-        
         model.resultAssetText = nil
         model.resultAssetImage = nil
-        //model.resultAssetAudio = nil
-        
         model.activityAsset = nil
-        
-        model.statusMessage = nil
         model.status = .active
         model.category = .chore
         model.chatSession = nil

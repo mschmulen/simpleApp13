@@ -48,14 +48,40 @@ struct CKActivityActiveDetailView: View {
         }
     }
     
+    @State var localActivityStatus: ActivityStatus = ActivityStatus.active
+    
     var activityStatusView: some View {
-        HStack {
+        VStack {
+            Text("status: \(model.status.friendlyName)")
+            
             if familyKitAppState.currentPlayer.isAdult {
-                Picker(selection: $model.status, label: Text("Status")) {
+
+                Picker(selection: $localActivityStatus, label: Text("Status")) {
                     ForEach(ActivityStatus.allCases, id: \.self) {
                         Text($0.rawValue)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
+                    .onReceive([localActivityStatus].publisher.first()) { value in
+                        print( "save the change \(self.localActivityStatus.friendlyName)")
+                        // self.doSomethingWith(value: value)
+                        if value != self.model.status {
+                            self.model.changeStatus (status: value)
+                            //self.model.status = value
+                            self.onSave()
+                        }
+                }
+
+                
+//                Picker(selection: $model.status, label: Text("Status")) {
+//                    ForEach(ActivityStatus.allCases, id: \.self) {
+//                        Text($0.rawValue)
+//                    }
+//                }.pickerStyle(SegmentedPickerStyle())
+//                .onReceive([model.status].publisher.first()) { value in
+//                    print( "save the change \(self.model.status.friendlyName)")
+//                    // self.doSomethingWith(value: value)
+//                    self.onSave()
+//                }
             } else {
                 if model.status == .active {
                     Button(action: onDone ) {
@@ -140,6 +166,7 @@ struct CKActivityActiveDetailView: View {
             if self.model.recordID == nil {
                 self.onSave()
             }
+            self.localActivityStatus = self.model.status
         }
     }
     
@@ -197,7 +224,10 @@ struct CKActivityActiveDetailView: View {
             case .success(let record):
                 print( "success \(record)")
                 self.devMessage = "success"
+                print( "record \(record.status.friendlyName)")
+                print( "model \(self.model.status.friendlyName)")
                 self.model = record
+//                self.localActivityStatus = record.status
             }
         }
     }

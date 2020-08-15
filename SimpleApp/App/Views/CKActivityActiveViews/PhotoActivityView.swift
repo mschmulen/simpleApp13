@@ -45,7 +45,7 @@ struct PhotoActivityView: View {
     
     @State private var image: Image?
     
-    @State private var statusMessage: String?
+    @State var devMessage: String?
     
     var imageView: some View {
         VStack {
@@ -78,9 +78,8 @@ struct PhotoActivityView: View {
     
     var body: some View {
         VStack {
-            if statusMessage != nil {
-                Text(statusMessage!)
-            }
+            DevMessageView(devMessage: $devMessage)
+            
             imageView
             
             Spacer()
@@ -143,7 +142,7 @@ struct PhotoActivityView: View {
     
     func saveImage() {
         DispatchQueue.main.async {
-            self.statusMessage = "Updating ..."
+            self.devMessage = "Updating ..."
         }
         
         if let inputImage = inputImage {
@@ -155,10 +154,10 @@ struct PhotoActivityView: View {
                 switch result {
                 case .failure( let error):
                     DispatchQueue.main.async {
-                        self.statusMessage = "There was an error uploading \(error)"
+                        self.devMessage = "There was an error uploading \(error)"
                     }
                 case .success(_):
-                    self.statusMessage = "Reloading ..."
+                    self.devMessage = "Reloading ..."
                     self.privateActiveChoreService.fetchSingle( model: self.model) { result in
                         print( "result")
                         DispatchQueue.main.async {

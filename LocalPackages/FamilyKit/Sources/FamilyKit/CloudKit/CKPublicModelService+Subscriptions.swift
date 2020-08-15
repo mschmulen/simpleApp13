@@ -13,7 +13,7 @@ extension CKPublicModelService {
     
     public func listenForNotifications() {
         
-        let NotificationSubscriber = NotificationCenter.default.addObserver(forName: FamilyKitNotifications.CKChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
+        let NotificationSubscriber = NotificationCenter.default.addObserver(forName: FamilyKitNotifications.CKRemoteModelChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
             print( "CKModelService.CKChangedNotification notification recieved updating AllModels")
             self.fetch(completion: { result in
                 switch result {
@@ -38,7 +38,7 @@ extension CKPublicModelService {
     
     public static func notificationReceive( notification: CKQueryNotification) {
         print( "CKModelService.notificationReceive")
-        NotificationCenter.default.post(name: FamilyKitNotifications.CKChangedNotification, object: nil)
+        NotificationCenter.default.post(name: FamilyKitNotifications.CKRemoteModelChangedNotification, object: nil)
         
         if notification.queryNotificationReason == .recordCreated {
             print( ".recordCreated")
