@@ -63,7 +63,6 @@
 		76BADB5424CA5877004950C0 /* connectData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB5124CA5877004950C0 /* connectData.json */; };
 		76BADB5524CA5877004950C0 /* funData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB5224CA5877004950C0 /* funData.json */; };
 		76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6224CA59C4004950C0 /* ImageStore.swift */; };
-		76BADB6D24CA5A7A004950C0 /* AdultYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */; };
 		76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BADB8424CB1676004950C0 /* StoreConfig.swift */; };
 		76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */; };
 		76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */; };
@@ -177,7 +176,6 @@
 		76BADB5124CA5877004950C0 /* connectData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = connectData.json; sourceTree = "<group>"; };
 		76BADB5224CA5877004950C0 /* funData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = funData.json; sourceTree = "<group>"; };
 		76BADB6224CA59C4004950C0 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
-		76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultYouView.swift; sourceTree = "<group>"; };
 		76BADB8424CB1676004950C0 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
 		76C2FDF924DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveNoItemsView.swift; sourceTree = "<group>"; };
 		76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveItemView.swift; sourceTree = "<group>"; };
@@ -312,7 +310,6 @@
 				7649838324E6218A00097C4D /* BucksStoreView */,
 				7649838224E6218100097C4D /* YouView */,
 				7649838124E6216900097C4D /* FamilyView */,
-				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
 				76C2FDF724DB9B9000E030C2 /* CKActivityActiveViews */,
 				76CFA1D624D9E0A2007A02CF /* Draw */,
 				76208BA224D8C4AF001F46E2 /* Audio */,
@@ -392,7 +389,7 @@
 		7649838224E6218100097C4D /* YouView */ = {
 			isa = PBXGroup;
 			children = (
-				76BADB6C24CA5A7A004950C0 /* AdultYouView.swift */,
+				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
 				7616F66724DC7723003488EB /* KidYouView.swift */,
 			);
 			path = YouView;
@@ -654,7 +651,6 @@
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddItemView.swift in Sources */,
-				76BADB6D24CA5A7A004950C0 /* AdultYouView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
@@ -855,7 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -878,7 +874,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

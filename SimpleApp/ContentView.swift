@@ -54,20 +54,7 @@ struct ContentView: View {
             } else {
                 TabView(selection: $selectedTab) {
                     if appState.topView == .mainView {
-                        if familyKitAppState.currentPlayer.isAdult {
-                            AdultYouView()
-                                .environment(\.window, window)
-                                .environmentObject(appState)
-                                .environmentObject(familyKitAppState)
-                                .environmentObject(privateChoreService)
-                                .environmentObject(privateActiveChoreService)
-                                .environmentObject(chatService)
-                                .tabItem {
-                                    Image(systemName: "person.circle")
-                                    Text("You")
-                            }.tag(TabViewIndex.you.rawValue)
-                        } else {
-                            KidYouView()
+                            YouView()
                                 .environment(\.window, window)
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
@@ -78,7 +65,6 @@ struct ContentView: View {
                                     Image(systemName: "person.circle")
                                     Text("\(familyKitAppState.currentPlayer.name)")
                             }.tag(TabViewIndex.you.rawValue)
-                        }//end first tab
                         
                         MainFamilyView()
                             .environment(\.window, window)

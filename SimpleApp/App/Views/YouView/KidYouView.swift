@@ -1,5 +1,5 @@
 //
-//  KidYouView.swift
+//  YouView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/6/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct KidYouView: View {
+struct YouView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -106,7 +106,7 @@ struct MainKidView_Previews: PreviewProvider {
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        KidYouView()
+        YouView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
