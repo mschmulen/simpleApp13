@@ -78,22 +78,11 @@ struct PhotoActivityView: View {
     var body: some View {
         VStack {
             DevMessageView(devMessage: $devMessage)
-            Spacer()
-            
-            if inputImage != nil && model.recordID != nil && familyKitAppState.currentPlayer.isOwner(model: model) {
-                Button(action: {
-                    self.saveImage()
-                }) {
-                    Text("SAVE IMAGE")
-                }
-            }
             imageView
-            Spacer()
-            
         }.onAppear {
             print("onAppear")
             self.loadImage()
-        }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+        }.sheet(isPresented: $showingImagePicker, onDismiss: dismissFromImagePicker) {
             #if targetEnvironment(simulator)
             ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
             #else
@@ -101,6 +90,13 @@ struct PhotoActivityView: View {
             #endif
         }
     }//end body
+    
+    func dismissFromImagePicker() {
+        loadImage()
+        DispatchQueue.main.async {
+            self.saveImage()
+        }
+    }
     
     func loadImage() {
         if image == nil {
@@ -118,7 +114,9 @@ struct PhotoActivityView: View {
                 }
             }
         }
-        guard let inputImage = inputImage else { return }
+        guard let inputImage = inputImage else {
+            return
+        }
         image = Image(uiImage: inputImage)
     }
     

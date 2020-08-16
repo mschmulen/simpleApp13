@@ -25,6 +25,8 @@ struct CKActivityActiveDetailView: View {
     @State var model: CKActivityModel
     @State var localActivityStatus: ActivityStatus = ActivityStatus.active
     
+    @State var showChatSession: Bool = false
+    
     var infoView: some View {
         VStack {
             Text("\(model.description ?? "~")")
@@ -36,7 +38,6 @@ struct CKActivityActiveDetailView: View {
     var activityStatusView: some View {
         VStack {
             if familyKitAppState.currentPlayer.isAdult {
-                
                 Picker(selection: $localActivityStatus, label: Text("Status")) {
                     ForEach(ActivityStatus.allCases, id: \.self) {
                         Text($0.rawValue)
@@ -128,6 +129,28 @@ struct CKActivityActiveDetailView: View {
                 activityStatusView
             }
             Spacer()
+            
+            // Chat Session View
+            VStack {
+                GeometryReader { geo in
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .border(Color.gray)
+                            .onTapGesture {
+                                // TODO Show the full Chat
+                                self.showChatSession.toggle()
+                        }
+                        Text("CHAT")
+                    }
+                }
+            }
+            .frame(width: 300, height: 200)
+            .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
+                ChatSessionView()
+            }
+            
             
             // TODO: Show the specific chat session associated with this view
             
