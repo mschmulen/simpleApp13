@@ -216,7 +216,7 @@ extension CKActivityModel {
     
     public mutating func changeResultAssetImage(asset: CKAsset) {
         self.resultAssetImage = asset
-    }    
+    }
 }
 
 // MARK: - Create a CKRecord from this model

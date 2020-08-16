@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// TODO: Rename ImagePicker to PhotPicker
 struct ImagePickerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?

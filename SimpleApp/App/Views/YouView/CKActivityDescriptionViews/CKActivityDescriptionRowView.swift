@@ -16,7 +16,7 @@ struct CKActivityDescriptionRowView: View {
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var categoryName: String
-    var items: [CKActivityDescriptionModel]
+    @State var items: [CKActivityDescriptionModel]
     var isPrivate: Bool
     var showAdd: Bool
     
@@ -54,6 +54,10 @@ struct CKActivityDescriptionRowView: View {
                             CKActivityDescriptionItemView(model: model)
                         }.contextMenu {
                             Button(action: {
+                                // items
+                                //items.remove
+                                //self.items = self.items.filter { $0.id == model.id }
+                                
                                 self.privateChoreService.pushDelete(model: model) { (result) in
                                     print("delete result \(result)")
                                 }

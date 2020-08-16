@@ -52,8 +52,9 @@ struct PhotoActivityView: View {
                 if self.image != nil {
                     self.image!
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geo.size.width)
+                        .scaledToFit()
+//                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width, height:geo.size.width)
                         .clipped()
                         .onTapGesture {
                             self.showingImagePicker.toggle()
@@ -72,7 +73,10 @@ struct PhotoActivityView: View {
                 }
             }
         }
-        .frame(width: 300, height: 200)
+        .frame(width: 300, height: 300)
+        
+        // .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
+
     }
     
     var body: some View {

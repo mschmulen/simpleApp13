@@ -28,6 +28,8 @@ struct MainFamilyView: View {
     let cardSize:CGFloat = 50
     let cardRadius:CGFloat = 20
     
+    @State var activities: [CKActivityModel] = [CKActivityModel]()
+    
     enum Filter {
         case allFamily
         case person( CKPlayerModel)
@@ -89,7 +91,9 @@ struct MainFamilyView: View {
                 List {
                     playerPickerView
                     Section(header: Text("\(currentFilter.name)")) {
-                        ForEach( privateActiveChoreService.models) { model in
+                        
+                        ForEach( activities, id: \.self) { model in
+                            //Text("\(model.status.friendlyName)")
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
                                     model: model
@@ -98,13 +102,27 @@ struct MainFamilyView: View {
                                 FamilyActivityCardView(model:model)
                             }
                         }
+
                         
-                    }
+//                        ForEach( privateActiveChoreService.models, id: \.self) { model in
+//                            NavigationLink(
+//                                destination: CKActivityActiveDetailView(
+//                                    model: model
+//                                )
+//                            ){
+//                                FamilyActivityCardView(model:model)
+//                            }
+//                        }
+                        
+                    }//end Section
                 }
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
             }//end VStack
+                .onAppear(perform: {
+                    self.activities = self.privateActiveChoreService.models
+                })
                 .navigationBarTitle("Family")
                 
                 .navigationBarItems(leading: leadingButton, trailing: trailingButton)

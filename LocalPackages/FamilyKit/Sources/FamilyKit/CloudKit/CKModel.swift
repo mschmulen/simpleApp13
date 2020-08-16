@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public protocol CKModel: Identifiable {
+public protocol CKModel: Identifiable, Hashable {
     
     associatedtype ItemType
     
