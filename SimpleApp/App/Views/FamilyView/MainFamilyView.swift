@@ -92,19 +92,8 @@ struct MainFamilyView: View {
                     playerPickerView
                     Section(header: Text("\(currentFilter.name)")) {
                         
-                        ForEach( activities, id: \.self) { model in
-                            //Text("\(model.status.friendlyName)")
-                            NavigationLink(
-                                destination: CKActivityActiveDetailView(
-                                    model: model
-                                )
-                            ){
-                                FamilyActivityCardView(model:model)
-                            }
-                        }
-
-                        
-//                        ForEach( privateActiveChoreService.models, id: \.self) { model in
+//                        ForEach( activities, id: \.self) { model in
+//                            //Text("\(model.status.friendlyName)")
 //                            NavigationLink(
 //                                destination: CKActivityActiveDetailView(
 //                                    model: model
@@ -113,6 +102,17 @@ struct MainFamilyView: View {
 //                                FamilyActivityCardView(model:model)
 //                            }
 //                        }
+
+                        
+                        ForEach( privateActiveChoreService.models, id: \.self) { model in
+                            NavigationLink(
+                                destination: CKActivityActiveDetailView(
+                                    model: model
+                                )
+                            ){
+                                FamilyActivityCardView(model:model)
+                            }
+                        }
                         
                     }//end Section
                 }

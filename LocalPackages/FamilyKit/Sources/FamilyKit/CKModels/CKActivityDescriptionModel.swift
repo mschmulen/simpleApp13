@@ -25,7 +25,16 @@ public enum ActivityCategory: String, CaseIterable {
     case none
 }
 
-public struct CKActivityDescriptionModel: CKModel {
+//public struct CKActivityDescriptionModel: CKModel {
+public final class CKActivityDescriptionModel: CKModel, ObservableObject {
+
+    public static func == (lhs: CKActivityDescriptionModel, rhs: CKActivityDescriptionModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     public typealias ItemType = CKActivityDescriptionModel
     public static let recordName = "Chore"

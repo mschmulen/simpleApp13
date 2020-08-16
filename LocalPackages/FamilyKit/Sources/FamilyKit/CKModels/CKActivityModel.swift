@@ -25,7 +25,14 @@ public enum ActivityStatus: String, CaseIterable {
     }
 }
 
-public struct CKActivityModel: CKModel {
+//public struct CKActivityModel: CKModel {
+public final class CKActivityModel: CKModel, ObservableObject {
+    
+    public static func == (lhs: CKActivityModel, rhs: CKActivityModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKActivityModel
     public static let recordName = "ChoreActive"
@@ -210,11 +217,11 @@ public struct CKActivityModel: CKModel {
 // MARK: - mutating functions
 extension CKActivityModel {
     
-    public mutating func changeStatus(status: ActivityStatus) {
+    public func changeStatus(status: ActivityStatus) {
         self.status = status
     }
     
-    public mutating func changeResultAssetImage(asset: CKAsset) {
+    public func changeResultAssetImage(asset: CKAsset) {
         self.resultAssetImage = asset
     }
 }

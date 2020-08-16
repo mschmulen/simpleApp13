@@ -20,7 +20,14 @@ public protocol CKUserModel: Identifiable {
     
 }
 
-public struct CKUser: CKUserModel {
+//public struct CKUser: CKUserModel {
+public final class CKUser: CKUserModel, ObservableObject {
+    
+    public static func == (lhs: CKUser, rhs: CKUser) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKUser
     public static let recordName = "User"
@@ -36,7 +43,7 @@ public struct CKUser: CKUserModel {
     public var localeCurrentRegionCode: String?
     public var localePreferredLanguages: [String]?
     
-    static var mock: CKUser {
+    public static var mock: CKUser {
         
         var model = CKUser()
 

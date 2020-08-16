@@ -142,13 +142,15 @@ struct CKActivityActiveDetailView: View {
                                 // TODO Show the full Chat
                                 self.showChatSession.toggle()
                         }
-                        Text("CHAT")
+                        Text("CHAT PEEK VIEW (TODO)")
                     }
                 }
             }
-            .frame(width: 300, height: 200)
+            .frame(height: 100)
             .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
                 ChatSessionView()
+                    .environmentObject(self.familyKitAppState)
+                    .environmentObject(self.chatService)
             }
             
             

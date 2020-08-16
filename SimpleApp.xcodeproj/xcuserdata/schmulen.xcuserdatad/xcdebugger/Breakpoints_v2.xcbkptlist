@@ -254,8 +254,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKActivityModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "init(record:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKActivityModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "init(record:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKActivityModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "ckRecord"
             landmarkType = "24">
          </BreakpointContent>
@@ -382,26 +382,42 @@
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/YouView/CKActivityDescriptionViews/CKActivityDescriptionRowView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "219">
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "34">
                </Location>
                <Location
-                  uuid = "7E8A68DE-5E6E-46B1-9814-138637334F85 - 2e9251f038c991a0"
+                  uuid = "7E8A68DE-5E6E-46B1-9814-138637334F85 - 4d5ddc40572c7aa1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Result&lt;__C.CKRecordID, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in closure #2 () -&gt; SwiftUI.Button&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Image)&gt;&gt; in closure #2 (FamilyKit.CKActivityDescriptionModel) -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;P_S_Family.CKActivityDescriptionNoItemsView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;P_S_Family.CKActivityDescriptionAddItemView, P_S_Family.CKActivityDescriptionDetailView&gt;&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;FamilyKit.CKActivityDescriptionModel&gt;, Foundation.UUID, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;P_S_Family.CKActivityDescriptionNoItemsView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;P_S_Family.CKActivityDescriptionAddItemView, P_S_Family.CKActivityDescriptionDetailView&gt;&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;FamilyKit.CKActivityDescriptionModel&gt;, Foundation.UUID, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in P_S_Family.CKActivityDescriptionRowView.body.getter : some"
+                  symbolName = "closure #1 (Swift.Result&lt;__C.CKRecordID, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in closure #2 () -&gt; SwiftUI.Button&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Image)&gt;&gt; in closure #2 (FamilyKit.CKActivityDescriptionModel) -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;P_S_Family.CKActivityDescriptionNoItemsView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;P_S_Family.CKActivityDescriptionAddItemView, P_S_Family.CKActivityDescriptionDetailView&gt;&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;FamilyKit.CKActivityDescriptionModel&gt;, Foundation.UUID, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;P_S_Family.CKActivityDescriptionNoItemsView&gt;, Swift.Optional&lt;SwiftUI.NavigationLink&lt;P_S_Family.CKActivityDescriptionAddItemView, P_S_Family.CKActivityDescriptionDetailView&gt;&gt;, SwiftUI.ForEach&lt;Swift.Array&lt;FamilyKit.CKActivityDescriptionModel&gt;, Foundation.UUID, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.contextMenu&lt;A where A1: SwiftUI.View&gt;(menuItems: () -&gt; A1) -&gt; some&gt;&gt;.0&gt;)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in P_S_Family.CKActivityDescriptionRowView.body.getter : some"
                   moduleName = "P&amp;S Family"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/YouView/CKActivityDescriptionViews/CKActivityDescriptionRowView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
                   offsetFromSymbolStart = "44">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D17E206-9AEE-4434-96DC-139C67FF63A1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
