@@ -32,7 +32,7 @@ struct YouView: View {
                 List{
                     Section() {
                         CKActivityDescriptionRowView(
-                            categoryName: "Activities (Family)",
+                            categoryName: "Activities Todo:",
                             items: privateChoreService.models,
                             isPrivate: true,
                             showAdd: familyKitAppState.currentPlayer.isAdult
@@ -42,7 +42,7 @@ struct YouView: View {
                     
                     Section() {
                         CKActivityActiveRowView(
-                            categoryName: "Activities (\(familyKitAppState.currentPlayer.name))",
+                            categoryName: "Active Activities (\(familyKitAppState.currentPlayer.name))",
                             items: privateActiveChoreService.models.filter({ (model) -> Bool in
                                 if model.kidReference == familyKitAppState.currentPlayer.recordReference {
                                     return true
@@ -73,16 +73,31 @@ struct YouView: View {
     
     private var trailingButton: some View {
         Group {
-            NavigationLink(destination:
-                KidUserView()
-                    .environment(\.window, window)
-                    .environmentObject(appState)
-                    .environmentObject(familyKitAppState)
-            ){
-                HStack {
-                    Text("\(familyKitAppState.currentPlayer.name)")
-                    Text("\(familyKitAppState.currentPlayer.emoji)")
-                    Text("(\(familyKitAppState.currentPlayer.bucks))")
+            if familyKitAppState.currentPlayer.isAdult {
+                NavigationLink(destination:
+                    AdultUserView()
+                        .environment(\.window, window)
+                        .environmentObject(appState)
+                        .environmentObject(familyKitAppState)
+                ){
+                    HStack {
+                        Text("\(familyKitAppState.currentPlayer.name)")
+                        Text("\(familyKitAppState.currentPlayer.emoji)")
+                        Text("(\(familyKitAppState.currentPlayer.bucks))")
+                    }
+                }
+            } else {
+                NavigationLink(destination:
+                    KidUserView()
+                        .environment(\.window, window)
+                        .environmentObject(appState)
+                        .environmentObject(familyKitAppState)
+                ){
+                    HStack {
+                        Text("\(familyKitAppState.currentPlayer.name)")
+                        Text("\(familyKitAppState.currentPlayer.emoji)")
+                        Text("(\(familyKitAppState.currentPlayer.bucks))")
+                    }
                 }
             }
         }

@@ -94,7 +94,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //        }
 //    }
+}
 
+// MARK: - Application Lifecycle
+extension AppDelegate {
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // reset the badge number
+        application.applicationIconBadgeNumber = 0
+    }
 }
 
 extension AppDelegate {

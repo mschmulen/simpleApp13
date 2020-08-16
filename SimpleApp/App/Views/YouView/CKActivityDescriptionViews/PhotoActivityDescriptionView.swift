@@ -62,13 +62,6 @@ struct PhotoActivityDescriptionView: View {
     
     var body: some View {
         VStack {
-            
-            if statusMessage != nil {
-                Text(statusMessage!)
-            }
-            
-            imageView
-            
             if inputImage != nil {
                 Button(action: {
                     self.saveImage()
@@ -88,9 +81,16 @@ struct PhotoActivityDescriptionView: View {
                         }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                    ImagePickerRepresentable(image: self.$inputImage)
+                    #if targetEnvironment(simulator)
+                    ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
+                    #else
+                    ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
+                    #endif
                 }
             }
+            
+            imageView
+
             
             // TODO: Fix the camera live photo
 //            if inputImage == nil {

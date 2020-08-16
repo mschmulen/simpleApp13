@@ -78,9 +78,6 @@ struct PhotoActivityView: View {
     var body: some View {
         VStack {
             DevMessageView(devMessage: $devMessage)
-            
-            imageView
-            
             Spacer()
             
             if inputImage != nil && model.recordID != nil && familyKitAppState.currentPlayer.isOwner(model: model) {
@@ -90,32 +87,18 @@ struct PhotoActivityView: View {
                     Text("SAVE IMAGE")
                 }
             }
-            
-            Spacer()
-            
-            if inputImage == nil && familyKitAppState.currentPlayer.isOwner(model: model) {
-                Group {
-                    Button(action: {
-                        self.showingImagePicker.toggle()
-                    }) {
-                        HStack {
-                            Text("PICK IMAGE")
-                            //Image(systemName: "camera")
-                        }
-                    }
-                }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                    ImagePickerRepresentable(image: self.$inputImage)
-                }
-            }
-            
+            imageView
             Spacer()
             
         }.onAppear {
             print("onAppear")
-            
-            // TODO Load the image in the
             self.loadImage()
-            
+        }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            #if targetEnvironment(simulator)
+            ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
+            #else
+            ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
+            #endif
         }
     }//end body
     
@@ -155,13 +138,12 @@ struct PhotoActivityView: View {
                     DispatchQueue.main.async {
                         self.devMessage = "There was an error uploading \(error)"
                     }
-                case .success(_):
-                    self.devMessage = "Reloading ..."
-                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
-                        print( "result")
-                        DispatchQueue.main.async {
-                            self.presentationMode.wrappedValue.dismiss()
+                case .success(let updatedModel):
+                    DispatchQueue.main.async {
+                        if let resultAssetImage = updatedModel.resultAssetImage {
+                            self.model.changeResultAssetImage(asset: resultAssetImage)
                         }
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
             }

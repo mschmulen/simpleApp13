@@ -49,7 +49,7 @@ extension CKPrivateModelService  {
         model: T,
         image: UIImage,
         assetPropertyName: String,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
         let tempImageName = "Image_\(UUID().uuidString).jpg"
@@ -89,10 +89,23 @@ extension CKPrivateModelService  {
                 record[assetPropertyName] = fileAsset
                 self.container.privateCloudDatabase.save(record) { record, error in
                     if let record = record, error == nil {
-                        completion(.success(record))
+                        if let updatedModel = T(record: record) {
+                            completion(.success(updatedModel) )
+                            self.updateChanges()
+                        } else {
+                            completion(.failure(CustomError.unknown))
+                        }
+                        return
                     } else {
                         completion(.failure(error ?? CustomError.unknown))
+                        return
                     }
+                    
+//                    if let record = record, error == nil {
+//                        completion(.success(record))
+//                    } else {
+//                        completion(.failure(error ?? CustomError.unknown))
+//                    }
                 }
             } else {
                 completion(.failure(CustomError.unknown))

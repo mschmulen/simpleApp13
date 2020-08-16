@@ -27,7 +27,7 @@ struct PlayersListView: View {
     var body: some View {
         List{
             DevMessageView(devMessage: $devMessage)
-            Section(header: Text("Players: \(self.familyKitAppState.playerService.models.count)")) {
+            Section(header: Text("Family: \(self.familyKitAppState.playerService.models.count)")) {
                 
                 NavigationLink(destination: PlayerDetailView(model: CKPlayerModel())) {
                     Text("Add a new Player to this account")

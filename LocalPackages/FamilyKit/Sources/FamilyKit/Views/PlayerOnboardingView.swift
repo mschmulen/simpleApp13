@@ -58,7 +58,7 @@ public struct PlayerOnboardingView: View {
                 }
                 
                 List {
-                    Section(header: Text("players")) {
+                    Section(header: Text("family")) {
                         ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
                                 self.familyKitAppState.setCurrentPlayer(

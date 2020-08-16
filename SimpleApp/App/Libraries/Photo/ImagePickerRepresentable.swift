@@ -12,18 +12,21 @@ struct ImagePickerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
     
-    var imageSourceType:ImagePickerSourceType = .camera
+    var imageSourceType: ImagePickerSourceType
     
     public enum ImagePickerSourceType {
         case camera
-        case library
+        case photoLibrary
+        case savedPhotosAlbum
         
         var sourceType: UIImagePickerController.SourceType {
             switch self {
             case .camera:
                 return UIImagePickerController.SourceType.camera
-            case .library:
+            case .photoLibrary:
                 return UIImagePickerController.SourceType.photoLibrary
+            case .savedPhotosAlbum:
+                return UIImagePickerController.SourceType.savedPhotosAlbum
             }
         }
     }
@@ -34,7 +37,10 @@ extension ImagePickerRepresentable : UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerRepresentable>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
+        picker.allowsEditing = true
         picker.sourceType = imageSourceType.sourceType
+        // picker.mediaTypes = ["public.image"]
+        //picker.imageSourceType =
         return picker
     }
     

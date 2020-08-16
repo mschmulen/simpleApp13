@@ -73,10 +73,6 @@ public struct CKActivityModel: CKModel {
         return name
     }
     
-    public mutating func changeStatus(status:ActivityStatus) {
-        self.status = status
-    }
-    
     public static var mock: CKActivityModel {
         var model = CKActivityModel()
         
@@ -208,6 +204,19 @@ public struct CKActivityModel: CKModel {
         case unknown
     }
     
+}
+
+
+// MARK: - mutating functions
+extension CKActivityModel {
+    
+    public mutating func changeStatus(status: ActivityStatus) {
+        self.status = status
+    }
+    
+    public mutating func changeResultAssetImage(asset: CKAsset) {
+        self.resultAssetImage = asset
+    }    
 }
 
 // MARK: - Create a CKRecord from this model

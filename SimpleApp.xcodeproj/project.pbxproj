@@ -23,7 +23,7 @@
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */; };
 		7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66524DC692C003488EB /* _ActivityActionView.swift */; };
-		7616F66824DC7723003488EB /* KidYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* KidYouView.swift */; };
+		7616F66824DC7723003488EB /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* YouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		7616F66C24DC8823003488EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616F66B24DC8823003488EB /* StoreKit.framework */; };
 		76208B7B24D5F7A0001F46E2 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76208B7A24D5F7A0001F46E2 /* FamilyKit */; };
@@ -133,7 +133,7 @@
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityDetailView.swift; sourceTree = "<group>"; };
 		7616F66524DC692C003488EB /* _ActivityActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ActivityActionView.swift; sourceTree = "<group>"; };
-		7616F66724DC7723003488EB /* KidYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidYouView.swift; sourceTree = "<group>"; };
+		7616F66724DC7723003488EB /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		7616F66B24DC8823003488EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		76208B7924D5F794001F46E2 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
-				7616F66724DC7723003488EB /* KidYouView.swift */,
+				7616F66724DC7723003488EB /* YouView.swift */,
 			);
 			path = YouView;
 			sourceTree = "<group>";
@@ -665,7 +665,7 @@
 				7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */,
 				76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */,
 				76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */,
-				7616F66824DC7723003488EB /* KidYouView.swift in Sources */,
+				7616F66824DC7723003488EB /* YouView.swift in Sources */,
 				7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,

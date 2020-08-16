@@ -36,7 +36,6 @@ struct ActivityActionView: View {
                 if model.moduleType == .photo {
                     PhotoActivityView(
                         model: $model
-                        
                     )
                 }
                 
