@@ -23,7 +23,7 @@ struct CKActivityActiveDetailView: View {
     @State var devMessage: String?
     
     @State var model: CKActivityModel
-    @State var localActivityStatus: ActivityStatus = ActivityStatus.active
+    @State var localActivityStatus: ActivityStatus
     
     @State var showChatSession: Bool = false
     
@@ -46,9 +46,8 @@ struct CKActivityActiveDetailView: View {
                     .padding()
                     .onReceive([localActivityStatus].publisher.first()) { value in
                         if value != self.model.status {
-                            print( "save the change \(self.localActivityStatus.friendlyName)")
+                            print( "save the change \(value.friendlyName)")
                             self.model.changeStatus(status: value)
-                            //self.model.status = value
                             self.onSave()
                             
                             // give them points
@@ -59,32 +58,18 @@ struct CKActivityActiveDetailView: View {
                                     }
                                 }
                             }
-                            
                         }
                 }
-                
-                
-                //                Picker(selection: $model.status, label: Text("Status")) {
-                //                    ForEach(ActivityStatus.allCases, id: \.self) {
-                //                        Text($0.rawValue)
-                //                    }
-                //                }.pickerStyle(SegmentedPickerStyle())
-                //                .onReceive([model.status].publisher.first()) { value in
-                //                    print( "save the change \(self.model.status.friendlyName)")
-                //                    // self.doSomethingWith(value: value)
-                //                    self.onSave()
-                //                }
-            } else {
-                //                if model.status == .active {
-                //                    Button(action: onDone ) {
-                //                        HStack {
-                //                            Spacer()
-                //                            Text("Done")
-                //                                .foregroundColor(.blue)
-                //                                .padding()
+            }// end if is adult
+            else {
+                //                if familyKitAppState.currentPlayer.isOwner(model: model) {
+                //                    if model.status == .active {
+                //                        Button(action: {
+                //                            self.model.changeStatus(status: .completed)
+                //                            self.onSave()
+                //                        }) {
+                //                            Text("Complete")
                 //                        }
-                //                        .foregroundColor(.blue)
-                //                        .padding()
                 //                    }
                 //                }
             }
@@ -145,29 +130,13 @@ struct CKActivityActiveDetailView: View {
                 }
             }
             .frame(height: 100)
-            .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
-                ChatSessionView()
-                    .environmentObject(self.familyKitAppState)
-                    .environmentObject(self.chatService)
+                .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
+                    
+                    // TODO: Show the specific chat session associated with this view
+                    ChatSessionView()
+                        .environmentObject(self.familyKitAppState)
+                        .environmentObject(self.chatService)
             }
-            
-            
-            // TODO: Show the specific chat session associated with this view
-            
-            
-            //            if model.kidReference != nil {
-            //                if model.kidReference == familyKitAppState.currentPlayer.recordReference {
-            //                    ActivityActionView(model: $model)
-            //                } else {
-            //                    // TODO fetch the user information
-            //                    Text("this is not your activity")
-            //                    Text("\(familyKitAppState.findUserForRecord(recordReference: model.kidReference!)?.name ?? "~")")
-            //                    ActivityActionView(model: $model)
-            //                }
-            //            }
-            //            else {
-            //                ActivityActionView(model: $model)
-            //            }
         }//end VStack
             .navigationBarTitle("\(model.title ?? "~")")
             .navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
@@ -175,72 +144,26 @@ struct CKActivityActiveDetailView: View {
                 if self.model.recordID == nil {
                     self.onSave()
                 }
-                self.localActivityStatus = self.model.status
         }
     }
     
-    //    private var trailingButton: some View {
-    //        Group {
-    //            if familyKitAppState.currentPlayer.isAdult {
-    //                NavigationLink(destination:
-    //                    AdultUserView()
-    //                        .environment(\.window, window)
-    //                        .environmentObject(appState)
-    //                        .environmentObject(familyKitAppState)
-    //                ){
-    //                    HStack {
-    //                        Text("\(familyKitAppState.currentPlayer.name)")
-    //                        Text("\(familyKitAppState.currentPlayer.emoji)")
-    //                        Text("(\(familyKitAppState.currentPlayer.bucks))")
-    //                    }
-    //                }
-    //            } else {
-    //                NavigationLink(destination:
-    //                    KidUserView()
-    //                        .environment(\.window, window)
-    //                        .environmentObject(appState)
-    //                        .environmentObject(familyKitAppState)
-    //                ){
-    //                    HStack {
-    //                        Text("\(familyKitAppState.currentPlayer.name)")
-    //                        Text("\(familyKitAppState.currentPlayer.emoji)")
-    //                        Text("(\(familyKitAppState.currentPlayer.bucks))")
-    //                    }
-    //                }
+    //    func onDone() {
+    //        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
+    //            self.devMessage = "invalid playerRecordReference"
+    //            return
+    //        }
+    //        model.status = ActivityStatus.completed
+    //        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+    //            switch result {
+    //            case .failure(let error):
+    //                self.devMessage = "save error\(error.localizedDescription)"
+    //            case .success(let record):
+    //                print( "success \(record)")
+    //                self.devMessage = "success"
+    //                self.model = record
     //            }
     //        }
     //    }
-    //
-    //    private var leadingButton: some View {
-    //        NavigationLink(destination:
-    //            PlayerOnboardingView()
-    //                .environment(\.window, window)
-    //                .environmentObject(familyKitAppState)
-    //        ){
-    //            HStack {
-    //                Text("change player")
-    //            }
-    //        }
-    //    }
-    //
-    
-    func onDone() {
-        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
-            self.devMessage = "invalid playerRecordReference"
-            return
-        }
-        model.status = ActivityStatus.completed
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
-            switch result {
-            case .failure(let error):
-                self.devMessage = "save error\(error.localizedDescription)"
-            case .success(let record):
-                print( "success \(record)")
-                self.devMessage = "success"
-                self.model = record
-            }
-        }
-    }
     
     func onSave() {
         privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
@@ -265,7 +188,8 @@ struct CKChoreActiveDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         CKActivityActiveDetailView(
-            model: CKActivityModel.mock
+            model: CKActivityModel.mock,
+            localActivityStatus: ActivityStatus.active
         )
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: container)))

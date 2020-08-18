@@ -32,6 +32,7 @@ struct NewPlayerView: View {
     }
     
     @State private var stateBirthDate:Date = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+    
     var starterDate: Date {
         switch selectedPlayerType {
         case .adult:
@@ -100,8 +101,18 @@ struct NewPlayerView: View {
             
             TextField("playerName", text: $newPlayerName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+            
             TextField("newPlayerEmoji", text: $newPlayerEmoji)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+
+            Picker(selection: $selectedPlayerType, label: Text("Type")) {
+                ForEach(PlayerType.allCases) { v in
+                    Text(v.name).tag(v)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
             
             VStack{
                 Text("birthday")
@@ -110,14 +121,9 @@ struct NewPlayerView: View {
                 }
                 .labelsHidden()
             }
-            .padding()
+            .padding(EdgeInsets(top: 0, leading: 3, bottom: 0, trailing: 3))
             .border(Color.gray)
             
-            Picker(selection: $selectedPlayerType, label: Text("Type")) {
-                ForEach(PlayerType.allCases) { v in
-                    Text(v.name).tag(v)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
         }//end VStack
     }
 }

@@ -26,7 +26,6 @@ struct DrawView: View {
     var body: some View {
         VStack {
             DevMessageView(devMessage: $devMessage)
-            // TODO make this read only ? not the onSave hack below
             DrawingView(
                 drawingState: $drawingState,
                 isReadOnly: !familyKitAppState.currentPlayer.isOwnerOrEmpty(model: model),
@@ -40,17 +39,14 @@ struct DrawView: View {
     func loadDrawingState() {
         if let activityAsset = model.activityAsset {
             if let activityAsset_FileURL = activityAsset.fileURL {
-                
-                print( "activityAsset_FileURL \(activityAsset_FileURL)")
-                
+                // print( "activityAsset_FileURL \(activityAsset_FileURL)")
                 guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
-                    print("Failed to load \(activityAsset_FileURL) ")
                     self.devMessage = "Failed to load \(activityAsset_FileURL) "
                     return
                 }
                 
-                let string = String(data:data, encoding: .utf8)
-                print( "loadDrawingState. data string \(string)")
+                //let string = String(data:data, encoding: .utf8)
+                //print( "loadDrawingState. data string \(string)")
                 
                 let decoder = JSONDecoder()
                 // decoder.dateDecodingStrategy = dateDecodingStrategy
@@ -73,15 +69,15 @@ struct DrawView: View {
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
             
-            let string = String(data:data, encoding: .utf8)
-            print( "saveCallback data string \(string)")
+            // let string = String(data:data, encoding: .utf8)
+            // print( "saveCallback data string \(string)")
             
             let fileNamePrefix = "updatedDrawingState"
             let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             var localFileURL = documentPath.appendingPathComponent(fileNamePrefix)
             localFileURL.appendPathExtension("json")
             
-            print( "localFile URL \(localFileURL)")
+            // print( "localFile URL \(localFileURL)")
             // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
             try data.write(to: localFileURL, options: [.atomicWrite])
             
@@ -92,15 +88,13 @@ struct DrawView: View {
             ) { (result) in
                 switch result {
                 case .failure(let error):
-                    print( "uploadFileAsset error \(error)")
                     self.devMessage = "upload failure"
                 case .success(_):
-                    print( "upload success")
                     self.devMessage = "upload success"
                 }
             }
         } catch let error {
-            print( "error \(error)")
+            self.devMessage = "error \(error)"
         }
         
         if let screenShot = screenShot {
@@ -109,29 +103,30 @@ struct DrawView: View {
     }
     
     func saveScreenShot(screenShot:UIImage) {
-        print( " TODO save the screenshot")
         
-            privateActiveChoreService.uploadPhotoAsset(
-                model:model,
-                image: screenShot,
-                assetPropertyName: "coverPhoto"
-            ) { result in
-                switch result {
-                case .failure( let error):
-                    print( "uploadFileAsset error \(error)")
-//                    DispatchQueue.main.async {
-//                        self.statusMessage = "There was an error uploading \(error)"
-//                    }
-                case .success(_):
-                     print( "upload success")
-//                    self.statusMessage = "Reloading ..."
-//                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
-//                        print( "result")
-//                        DispatchQueue.main.async {
-//                            self.presentationMode.wrappedValue.dismiss()
-//                        }
-//                    }
-                }
+        // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
+        
+        privateActiveChoreService.uploadPhotoAsset(
+            model:model,
+            image: screenShot,
+            assetPropertyName: "coverPhoto"
+        ) { result in
+            switch result {
+            case .failure( let error):
+                print( "uploadFileAsset error \(error)")
+                //                    DispatchQueue.main.async {
+                //                        self.statusMessage = "There was an error uploading \(error)"
+            //                    }
+            case .success(_):
+                print( "upload success")
+                //                    self.statusMessage = "Reloading ..."
+                //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
+                //                        print( "result")
+                //                        DispatchQueue.main.async {
+                //                            self.presentationMode.wrappedValue.dismiss()
+                //                        }
+                //                    }
+            }
         }
         
     }

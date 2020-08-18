@@ -32,7 +32,8 @@ struct CKActivityActiveListView: View {
                 ForEach( self.privateActiveChoreService.models) { model in
                     NavigationLink(
                         destination: CKActivityActiveDetailView(
-                            model: model
+                            model: model,
+                            localActivityStatus: model.status
                         )
                     ){
                         CKActivityActiveItemView(model: model)

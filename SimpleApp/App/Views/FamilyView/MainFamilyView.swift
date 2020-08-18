@@ -108,7 +108,7 @@ struct MainFamilyView: View {
                         ForEach( privateActiveChoreService.models, id: \.self) { model in
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
-                                    model: model
+                                    model: model, localActivityStatus: model.status
                                 )
                             ){
                                 FamilyActivityCardView(model:model)
@@ -124,7 +124,7 @@ struct MainFamilyView: View {
                         ForEach( privateActiveChoreService.models.filter({ $0.status == currentActivityStatusFilter}), id: \.self) { model in
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
-                                    model: model
+                                    model: model, localActivityStatus: model.status
                                 )
                             ){
                                 FamilyActivityCardView(model:model)

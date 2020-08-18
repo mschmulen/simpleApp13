@@ -34,7 +34,7 @@ struct CKActivityActiveRowView: View {
                     ForEach(self.items) { model in
                         NavigationLink(
                             destination: CKActivityActiveDetailView(
-                                model: model
+                                model: model, localActivityStatus: model.status
                             )
                         ) {
                             CKActivityActiveItemView(model: model)
