@@ -52,6 +52,9 @@ public struct DrawingView:View {
     @State var frameSize: CGSize = .zero
     @State private var screenShotImage: UIImage?
     
+    // TODO: isReadOnly make this function
+    var isReadOnly: Bool
+    
     public var drawPad: some View {
         GeometryReader { geometry in
             self.makeDrawPadView(geometry)
@@ -71,23 +74,19 @@ public struct DrawingView:View {
             currentColor: self.$currentColor,
             currentLineWidth: self.$currentLineWidth
         )
-//
-//                .frame(width: geometry.size.width)
+        // .frame(width: geometry.size.width)
     }
     
     public var body: some View {
         VStack(alignment: .center) {
-            Button(action: {
-                self.save()
-            }) {
-                Text("save")
+            if isReadOnly == false {
+                Button(action: {
+                    self.save()
+                }) {
+                    Text("save")
+                }
             }
             drawPad
-//            DrawingPad(
-//                drawingState: self.$drawingState,
-//                currentColor: self.$currentColor,
-//                currentLineWidth: self.$currentLineWidth
-//            )
             DrawingControls(
                 drawingState: $drawingState,
                 currentColor: $currentColor,
@@ -99,14 +98,16 @@ public struct DrawingView:View {
     
     public init(
         drawingState: Binding<DrawingState>,
+        isReadOnly: Bool,
         saveCallback: ((DrawingState,UIImage?)->())?
     ){
         self._drawingState = drawingState
+        self.isReadOnly = isReadOnly
         self.saveCallback = saveCallback
     }
     
     func save() {
-        // TODO Take a screen shot of this view
+        // TODO: Take a screen shot of this view
         
 //        let image = self.takeScreenshot(
 //            origin: drawPad.frame(in: .global).origin,
@@ -141,6 +142,7 @@ struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
         DrawingView(
             drawingState: .constant(DrawingState.mock),
+            isReadOnly: false,
             saveCallback: nil
         )
     }

@@ -23,13 +23,13 @@ struct DrawView: View {
     @Binding var model: CKActivityModel
     @State var drawingState:DrawingState = DrawingState.mock
     
-    var isReadOnly: Bool
-    
     var body: some View {
         VStack {
             DevMessageView(devMessage: $devMessage)
+            // TODO make this read only ? not the onSave hack below
             DrawingView(
                 drawingState: $drawingState,
+                isReadOnly: !familyKitAppState.currentPlayer.isOwnerOrEmpty(model: model),
                 saveCallback: saveCallback
             )
         }.onAppear {
@@ -68,7 +68,7 @@ struct DrawView: View {
     }
     
     func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
-        self.devMessage = "save DrawingState"
+        self.devMessage = "saving DrawingState"
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
@@ -141,8 +141,7 @@ struct DrawView: View {
 struct DrawView_Previews: PreviewProvider {
     static var previews: some View {
         DrawView(
-            model: .constant(CKActivityModel.mock),
-            isReadOnly: true
+            model: .constant(CKActivityModel.mock)
         )
     }
 }

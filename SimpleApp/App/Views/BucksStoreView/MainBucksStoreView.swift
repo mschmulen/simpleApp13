@@ -24,13 +24,34 @@ struct MainBucksStoreView: View {
     
     @State var devMessage: String?
     
+    var leaderBoard: some View {
+        VStack {
+            Text("Leaderboard")
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+            
+            ForEach( self.familyKitAppState.playerService.models.sorted(by: { (modelA, modelB) -> Bool in
+                (modelA.bucks ?? 0) > (modelB.bucks ?? 0)
+            }) ) { player in
+                HStack {
+                    Text("\(player.emoji ?? "")")
+                    Text("\(player.name ?? ""):")
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                    Text("\(player.bucks ?? 0)")
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                    Spacer()
+                }
+            }
+        }
+        .padding()
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                Text("\(familyKitAppState.currentPlayer.name)")
-                Text("\(familyKitAppState.currentPlayer.bucks)")
+                leaderBoard
+                
                 // TODO: finish the bucks store
                 List {
                     Text("TODO")
@@ -68,7 +89,7 @@ struct MainBucksStoreView: View {
                 HStack {
                     Text("\(familyKitAppState.currentPlayer.name)")
                     Text("\(familyKitAppState.currentPlayer.emoji)")
-                    Text("\(familyKitAppState.currentPlayer.bucks)")
+                    Text("(\(familyKitAppState.currentPlayer.bucks))")
                 }
             }
         }

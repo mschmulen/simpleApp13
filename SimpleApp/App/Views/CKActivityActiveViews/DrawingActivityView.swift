@@ -66,8 +66,7 @@ struct DrawingActivityView: View {
                 
                 if model.moduleType == .drawing {
                     DrawView(
-                        model: $model,
-                        isReadOnly: isReadOnly
+                        model: $model
                     )
                 }
                 

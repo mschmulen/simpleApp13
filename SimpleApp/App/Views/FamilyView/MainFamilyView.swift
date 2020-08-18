@@ -44,6 +44,7 @@ struct MainFamilyView: View {
         }
     }
     @State var currentFilter = Filter.allFamily
+    @State var currentActivityStatusFilter = ActivityStatus.active
     
     var playerPickerView: some View {
         ScrollView(.horizontal, showsIndicators: false){
@@ -83,27 +84,27 @@ struct MainFamilyView: View {
         }//end ScrollView
     }//end playerPickerView
     
+    var statusFilterView: some View {
+        VStack {
+            Picker(selection: $currentActivityStatusFilter, label: Text("Status")) {
+                ForEach(ActivityStatus.allCases, id: \.self) {
+                    Text($0.rawValue)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+                .padding()
+        }.padding()
+    }//end statusFilterView
+    
+    
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
                 List {
+                    
                     playerPickerView
                     Section(header: Text("\(currentFilter.name)")) {
-                        
-//                        ForEach( activities, id: \.self) { model in
-//                            //Text("\(model.status.friendlyName)")
-//                            NavigationLink(
-//                                destination: CKActivityActiveDetailView(
-//                                    model: model
-//                                )
-//                            ){
-//                                FamilyActivityCardView(model:model)
-//                            }
-//                        }
-
-                        
                         ForEach( privateActiveChoreService.models, id: \.self) { model in
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
@@ -113,8 +114,24 @@ struct MainFamilyView: View {
                                 FamilyActivityCardView(model:model)
                             }
                         }
-                        
                     }//end Section
+                        
+                    
+                    statusFilterView
+                    
+                    Section(header: Text("\(currentActivityStatusFilter.friendlyName) Activities")) {
+                        
+                        ForEach( privateActiveChoreService.models.filter({ $0.status == currentActivityStatusFilter}), id: \.self) { model in
+                            NavigationLink(
+                                destination: CKActivityActiveDetailView(
+                                    model: model
+                                )
+                            ){
+                                FamilyActivityCardView(model:model)
+                            }
+                        }
+                    }//end Section
+                    
                 }
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")

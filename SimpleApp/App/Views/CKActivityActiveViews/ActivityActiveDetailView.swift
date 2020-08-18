@@ -119,8 +119,7 @@ struct CKActivityActiveDetailView: View {
                 
                 // TODO: just show the image ... then if the tap it show a full screen sheet view of it
                 DrawView(
-                    model: $model,
-                    isReadOnly: false
+                    model: $model
                 )
             }
             else {

@@ -69,7 +69,7 @@ struct ActivityAudioActionView: View {
                     }
                 }
             } else {
-                Text("NO AUDIO")
+                Text("NO AUDIO SAVED :(")
             }
         }.onAppear {
             self.loadRecording()
@@ -159,45 +159,6 @@ struct ActivityAudioActionView: View {
             return Date()
         }
     }
-}
-
-
-
-
-struct AudioRecordingPlayerView: View {
-    
-    var audioURL: URL
-    
-    @ObservedObject var audioPlayer = AudioPlayer()
-    
-    var body: some View {
-        HStack {
-            if audioPlayer.isPlaying == false {
-                Button(action: {
-                    self.audioPlayer.startPlayback(audio: self.audioURL)
-                }) {
-                    Image(systemName: "play.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
-                        .clipped()
-                        .padding(.bottom, 40)
-                }
-            } else {
-                Button(action: {
-                    self.audioPlayer.stopPlayback()
-                }) {
-                    Image(systemName: "stop.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
-                        .clipped()
-                        .padding(.bottom, 40)
-                }
-            }
-        }
-    }
-    
 }
 
 struct ActivityAudioActionView_Previews: PreviewProvider {
