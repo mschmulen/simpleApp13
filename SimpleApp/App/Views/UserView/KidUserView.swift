@@ -30,7 +30,7 @@ struct KidUserView: View {
             DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Current Player")) {
-                Text("\(familyKitAppState.currentPlayer.name)")
+                Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
                 
                 NavigationLink(destination: PlayerOnboardingView()) {
                     Text("Change Current Player")
@@ -46,7 +46,7 @@ struct KidUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.onRefresh()
         })
-        .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
+        .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
 }
 

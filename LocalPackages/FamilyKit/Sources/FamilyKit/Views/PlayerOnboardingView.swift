@@ -70,9 +70,7 @@ public struct PlayerOnboardingView: View {
                                 HStack {
                                     Text("\(model.emoji ?? "~")")
                                     Text("\(model.name ?? "~")")
-                                    if model.isAdult != nil {
-                                        Text( "\(model.isAdult! ? "(Adult)": "(Kid)")")
-                                    }
+                                    Text( "\(model.isAdult ? "(Adult)": "(Kid)")")
                                 }
                             }
                         }

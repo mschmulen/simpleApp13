@@ -37,7 +37,7 @@ struct CKActivityActiveDetailView: View {
     
     var activityStatusView: some View {
         VStack {
-            if familyKitAppState.currentPlayer.isAdult {
+            if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
                 Picker(selection: $localActivityStatus, label: Text("Status")) {
                     ForEach(ActivityStatus.allCases, id: \.self) {
                         Text($0.rawValue)

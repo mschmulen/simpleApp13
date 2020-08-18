@@ -39,16 +39,9 @@ struct CKActivityDescriptionListView: View {
                 ForEach( self.privateChoreService.models) { model in
                     NavigationLink(destination: CKActivityDescriptionDetailView(
                         model: model,
-                        enableEdit: true
+                        enableEdit: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
                     )) {
-                        NavigationLink(
-                            destination: CKActivityDescriptionDetailView(
-                                model: model,
-                                enableEdit: self.familyKitAppState.currentPlayer.isAdult
-                            )
-                        ) {
-                            CKActivityDescriptionItemView(model: model)
-                        }
+                        CKActivityDescriptionItemView(model: model)
                     }
                 }//end ForEach
                     .onDelete(perform: deletePrivate)

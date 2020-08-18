@@ -70,8 +70,8 @@ public struct ChatSessionView: View {
     func sendMessage() {
         var newMessage = CKChatMessageModel()
         newMessage.message = typingMessage
-        newMessage.ownerEmoji = familyKitAppState.currentPlayer.emoji
-        newMessage.ownerName = familyKitAppState.currentPlayer.name
+        newMessage.ownerEmoji = familyKitAppState.currentPlayerModel?.emoji ?? "🌞"
+        newMessage.ownerName = familyKitAppState.currentPlayerModel?.name ?? "none"
         newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
         chatService.sendMessage(newMessage)
         typingMessage = ""

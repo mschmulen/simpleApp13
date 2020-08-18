@@ -48,7 +48,7 @@ struct ContentView: View {
                 }
             }
             
-            if familyKitAppState.currentPlayer.isNone {
+            if familyKitAppState.currentPlayerModel == nil {
                 PlayerOnboardingView()
                     .environmentObject(familyKitAppState)
             } else {
@@ -63,7 +63,7 @@ struct ContentView: View {
                                 .environmentObject(chatService)
                                 .tabItem {
                                     Image(systemName: "person.circle")
-                                    Text("\(familyKitAppState.currentPlayer.name)")
+                                    Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
                             }.tag(TabViewIndex.you.rawValue)
                         
                         MainFamilyView()

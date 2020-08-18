@@ -30,7 +30,7 @@ public struct CKPlayerModel: CKModel {
     public var dateOfBirth: Date?
     public var emoji: String?
     
-    public var isAdult: Bool?
+    public var isAdult: Bool
     
     // TODO: finish the cover photo for the kid
     //public var coverPhoto: CKAsset?
@@ -65,7 +65,7 @@ public struct CKPlayerModel: CKModel {
         self.bucks = nil
         self.dateOfBirth = nil
         self.emoji = nil
-        self.isAdult = nil
+        self.isAdult = false
         //self.coverPhoto = nil
     }
     
@@ -83,12 +83,15 @@ public struct CKPlayerModel: CKModel {
         self.bucks = record["bucks"] as? Int
         self.emoji = record["emoji"] as? String
         self.dateOfBirth = record["dateOfBirth"] as? Date
+        
         if let isAdultValue = record["isAdult"] as? Int {
             if isAdultValue == 1 {
                 self.isAdult = true
             } else {
                 self.isAdult = false
             }
+        } else {
+            self.isAdult = false
         }
     }
     
@@ -135,14 +138,11 @@ extension CKPlayerModel {
             record["dateOfBirth"] = dateOfBirth as CKRecordValue
         }
         
-        if let isAdult = isAdult {
-            record["isAdult"] = isAdult as CKRecordValue
-        }
+        record["isAdult"] = isAdult as CKRecordValue
         
         return record
     }
 }
-
 
 
 

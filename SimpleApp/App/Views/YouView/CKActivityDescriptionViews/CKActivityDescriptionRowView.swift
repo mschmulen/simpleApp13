@@ -48,7 +48,7 @@ struct CKActivityDescriptionRowView: View {
                         NavigationLink(
                             destination: CKActivityDescriptionDetailView(
                                 model: model,
-                                enableEdit: self.familyKitAppState.currentPlayer.isAdult
+                                enableEdit: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
                             )
                         ) {
                             CKActivityDescriptionItemView(model: model)

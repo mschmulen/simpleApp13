@@ -149,6 +149,21 @@ struct CKActivityDescriptionDetailView: View {
                     }.foregroundColor(.blue)
                 }
                 editView
+                
+                if familyKitAppState.currentPlayer.recordReference != nil {
+                    NavigationLink(destination: CKActivityActiveDetailView(
+                        model: CKActivityModel(
+                            descriptionModel: model,
+                            playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
+                        localActivityStatus: ActivityStatus.active
+                    )) {
+                        HStack {
+                            Text("START THIS ACTIVITY")
+                            Image(systemName: "plus")
+                        }.foregroundColor(.blue)
+                    }
+                }
+                
             } else {
                 if familyKitAppState.currentPlayer.recordReference != nil {
                     NavigationLink(destination: CKActivityActiveDetailView(

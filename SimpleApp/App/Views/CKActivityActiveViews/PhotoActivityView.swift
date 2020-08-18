@@ -40,7 +40,7 @@ struct PhotoActivityView: View {
                         .frame(width: geo.size.width, height:geo.size.width)
                         .clipped()
                         .onTapGesture {
-                            if self.familyKitAppState.currentPlayer.isOwnerOrEmpty(model: self.model) {
+                            if self.familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: self.model) {
                                 self.showingImagePicker.toggle()
                             }
                     }

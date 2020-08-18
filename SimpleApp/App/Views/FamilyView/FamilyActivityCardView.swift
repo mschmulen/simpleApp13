@@ -40,7 +40,7 @@ struct FamilyActivityCardView: View {
                         VStack(alignment: .leading) {
                             HStack {
                                 if self.model.kidReference != nil {
-                                    Text("\(self.familyKitAppState.findUserForRecord(recordReference: self.model.kidReference!)?.name ?? "~")")
+                                    Text("\(self.familyKitAppState.findPlayerModelForRecord(recordReference: self.model.kidReference!)?.name ?? "~")")
                                         .font(.system(size: 22, weight: .bold, design: .rounded))
                                         .foregroundColor(Color(.white))
                                         .padding()

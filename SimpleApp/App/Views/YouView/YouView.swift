@@ -35,14 +35,14 @@ struct YouView: View {
                             categoryName: "Activities Todo:",
                             items: $privateChoreService.models,
                             isPrivate: true,
-                            showAdd: familyKitAppState.currentPlayer.isAdult
+                            showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
                         )
                     }
                     .listRowInsets(EdgeInsets())
                     
                     Section() {
                         CKActivityActiveRowView(
-                            categoryName: "Active Activities (\(familyKitAppState.currentPlayer.name))",
+                            categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
                             items: privateActiveChoreService.models.filter({ (model) -> Bool in
                                 if model.kidReference == familyKitAppState.currentPlayer.recordReference {
                                     return true
@@ -66,14 +66,14 @@ struct YouView: View {
                     print( "result")
                 }
             }
-            .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
+            .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
             .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }
     }
     
     private var trailingButton: some View {
         Group {
-            if familyKitAppState.currentPlayer.isAdult {
+            if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
                 NavigationLink(destination:
                     AdultUserView()
                         .environment(\.window, window)
@@ -81,9 +81,9 @@ struct YouView: View {
                         .environmentObject(familyKitAppState)
                 ){
                     HStack {
-                        Text("\(familyKitAppState.currentPlayer.name)")
-                        Text("\(familyKitAppState.currentPlayer.emoji)")
-                        Text("(\(familyKitAppState.currentPlayer.bucks))")
+                        Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                        Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
+                        Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
                     }
                 }
             } else {
@@ -94,9 +94,9 @@ struct YouView: View {
                         .environmentObject(familyKitAppState)
                 ){
                     HStack {
-                        Text("\(familyKitAppState.currentPlayer.name)")
-                        Text("\(familyKitAppState.currentPlayer.emoji)")
-                        Text("(\(familyKitAppState.currentPlayer.bucks))")
+                        Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                        Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
+                        Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
                     }
                 }
             }

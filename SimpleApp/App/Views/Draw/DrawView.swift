@@ -28,7 +28,7 @@ struct DrawView: View {
             DevMessageView(devMessage: $devMessage)
             DrawingView(
                 drawingState: $drawingState,
-                isReadOnly: !familyKitAppState.currentPlayer.isOwnerOrEmpty(model: model),
+                 isReadOnly: !familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model),
                 saveCallback: saveCallback
             )
         }.onAppear {

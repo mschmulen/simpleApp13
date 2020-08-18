@@ -87,9 +87,9 @@ struct MainBucksStoreView: View {
                     .environmentObject(familyKitAppState)
             ){
                 HStack {
-                    Text("\(familyKitAppState.currentPlayer.name)")
-                    Text("\(familyKitAppState.currentPlayer.emoji)")
-                    Text("(\(familyKitAppState.currentPlayer.bucks))")
+                    Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                    Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
+                    Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
                 }
             }
         }

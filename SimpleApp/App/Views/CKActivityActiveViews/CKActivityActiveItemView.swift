@@ -37,7 +37,7 @@ struct CKActivityActiveItemView: View {
                 }
                 VStack {
                     if model.kidReference != nil {
-                        Text("\(familyKitAppState.findUserForRecord(recordReference: model.kidReference!)?.name ?? "~")")
+                        Text("\(familyKitAppState.findPlayerModelForRecord(recordReference: model.kidReference!)?.name ?? "~")")
                             .lineLimit(1)
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundColor(.white)

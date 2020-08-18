@@ -41,7 +41,7 @@ public struct DrawingState: Codable {
 
 public struct DrawingView:View {
     
-    @Binding var drawingState: DrawingState// = DrawingState.mock
+    @Binding var drawingState: DrawingState
     
     @State private var currentColor: Color = Color.red
     @State private var currentLineWidth: CGFloat = 3.0

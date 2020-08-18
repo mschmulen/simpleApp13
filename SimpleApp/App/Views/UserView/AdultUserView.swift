@@ -30,11 +30,11 @@ struct AdultUserView: View {
             DevMessageView(devMessage: $devMessage)
             
             HStack {
-                Text("\(familyKitAppState.currentPlayer.emoji)")
-                Text("\(familyKitAppState.currentPlayer.name)")
+                Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞" )")
+                Text("\(familyKitAppState.currentPlayerModel?.name ?? "none" )")
             }
             
-            Text("Bucks: \(familyKitAppState.currentPlayer.bucks)")
+            Text("Bucks: \(familyKitAppState.currentPlayerModel?.bucks ?? 0 )")
             
             NavigationLink(destination: PlayerOnboardingView()) {
                 Text("Change Current Player")
@@ -118,7 +118,7 @@ struct AdultUserView: View {
         }.onAppear(perform: {
             self.familyKitAppState.onRefresh()
         })
-        .navigationBarTitle("\(familyKitAppState.currentPlayer.name)")
+        .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
 }
 

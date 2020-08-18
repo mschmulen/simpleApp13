@@ -390,3 +390,5 @@ extension CKActivityModel {
         return model
     }
 }
+
+

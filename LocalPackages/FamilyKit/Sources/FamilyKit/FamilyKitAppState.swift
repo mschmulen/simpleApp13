@@ -11,63 +11,11 @@ import SwiftUI
 import Combine
 import CloudKit
 
+// TODO: Deprecate this Player enum
 public enum Player {
     case adult( CKPlayerModel )
     case kid( CKPlayerModel )
     case none
-    
-    public var name: String {
-        switch self {
-        case .adult(let model) :
-            return model.name ?? "~"
-        case .kid(let model):
-            return model.name ?? "~"
-        case .none:
-            return "none"
-        }
-    }
-    
-    public var bucks: Int {
-        switch self {
-        case .adult(let model) :
-            return model.bucks ?? 0
-        case .kid(let model):
-            return model.bucks ?? 0
-        case .none:
-            return 0
-        }
-    }
-    
-    public var emoji: String {
-        switch self {
-        case .adult(let model):
-            return model.emoji ?? "🌞"
-        case .kid(let model):
-            return model.emoji ?? "🌞"
-        case .none:
-            return "🌞"
-        }
-    }
-    
-    public var isNone: Bool {
-        switch self {
-        case .none:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    public var isAdult: Bool {
-        switch self {
-        case .none:
-            return false
-        case .adult(let model):
-            return model.isAdult ?? false
-        case .kid(let model):
-            return model.isAdult ?? false
-        }
-    }
     
     public var recordReference: CKRecord.Reference? {
         switch self {
@@ -90,16 +38,6 @@ public enum Player {
         }
     }
     
-    public var ckPlayerModel: CKPlayerModel? {
-        switch self {
-        case .adult(let model):
-            return model
-        case .kid(let model):
-            return model
-        case .none:
-            return nil
-        }
-    }
 }
 
 public class FamilyKitAppState: ObservableObject {
@@ -244,6 +182,17 @@ extension FamilyKitAppState {
         return nil
     }
     
+    public func findPlayerModelForRecord(recordReference: CKRecord.Reference ) -> CKPlayerModel? {
+        for kid in playerService.models {
+            if let kidRecordID = kid.recordID {
+                if kidRecordID == recordReference.recordID {
+                    return kid
+                }
+            }
+        }
+        return nil
+    }
+    
 }
 
 // MARK: - Player Points
@@ -287,4 +236,28 @@ extension FamilyKitAppState {
         
     }//end addBucks
 }
+
+// MARK: - Helper methods
+
+extension FamilyKitAppState {
+    
+    public func isCurrentPlayerOwnerOrEmpty(model: CKActivityModel) ->Bool {
+        
+        guard let playerReference = self.currentPlayerModel?.ckRecord?.recordID else {
+            return false
+        }
+        
+        guard let modelKidReferenceRecordID = model.kidReference?.recordID else {
+            return true
+        }
+        
+        if modelKidReferenceRecordID == playerReference {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+
 

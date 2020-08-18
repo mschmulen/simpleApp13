@@ -42,7 +42,7 @@ struct ActivityAudioActionView: View {
                 AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
             }
             
-            if familyKitAppState.currentPlayer.isOwnerOrEmpty(model: model) {
+            if familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model) {
                 if isRecording == false {
                     Button(action: {
                         self.startRecording(audioFileNamePrefix: UUID().uuidString)

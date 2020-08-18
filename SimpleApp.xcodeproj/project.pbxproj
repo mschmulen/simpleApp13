@@ -46,7 +46,6 @@
 		7649838924E73D2D00097C4D /* DrawingActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838824E73D2D00097C4D /* DrawingActivityView.swift */; };
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
-		76AA9EB424EC3385005FDB88 /* FamilyKit+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB324EC3385005FDB88 /* FamilyKit+Player.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
@@ -157,7 +156,6 @@
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		76AA9EB324EC3385005FDB88 /* FamilyKit+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FamilyKit+Player.swift"; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
@@ -410,7 +408,6 @@
 		76AA9EB524EC33AD005FDB88 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				76AA9EB324EC3385005FDB88 /* FamilyKit+Player.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -651,7 +648,6 @@
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionItemView.swift in Sources */,
 				7649838924E73D2D00097C4D /* DrawingActivityView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
-				76AA9EB424EC3385005FDB88 /* FamilyKit+Player.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddItemView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
