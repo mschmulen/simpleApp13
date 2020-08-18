@@ -74,7 +74,9 @@ struct PhotoActivityView: View {
                         .frame(width: geo.size.width, height:geo.size.width)
                         .clipped()
                         .onTapGesture {
-                            self.showingImagePicker.toggle()
+                            if self.familyKitAppState.currentPlayer.isOwnerOrEmpty(model: self.model) {
+                                self.showingImagePicker.toggle()
+                            }
                     }
                 } else {
                     ZStack {

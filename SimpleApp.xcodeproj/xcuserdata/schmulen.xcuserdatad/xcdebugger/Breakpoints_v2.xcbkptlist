@@ -356,5 +356,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B5BB3A5-BB4C-4D2A-A760-E84EDFEFD7A4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "onSave()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5B5BB3A5-BB4C-4D2A-A760-E84EDFEFD7A4 - b7fa901b74911ac5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "P_S_Family.CKActivityActiveDetailView.onSave() -&gt; ()"
+                  moduleName = "P&amp;S Family"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "5B5BB3A5-BB4C-4D2A-A760-E84EDFEFD7A4 - d1da5c70f6464cd2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKActivityModel, Swift.Error&gt;) -&gt; () in P_S_Family.CKActivityActiveDetailView.onSave() -&gt; ()"
+                  moduleName = "P&amp;S Family"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

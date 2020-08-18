@@ -131,7 +131,6 @@ struct CKActivityActiveDetailView: View {
             }
             .frame(height: 100)
                 .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
-                    
                     // TODO: Show the specific chat session associated with this view
                     ChatSessionView()
                         .environmentObject(self.familyKitAppState)
@@ -146,6 +145,22 @@ struct CKActivityActiveDetailView: View {
                 }
         }
     }
+    
+    func onSave() {
+        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+            switch result {
+            case .failure(let error):
+                self.devMessage = "save error\(error.localizedDescription)"
+            case .success(let record):
+                print( "success \(record)")
+                self.devMessage = "success"
+                print( "record \(record.status.friendlyName)")
+                print( "model \(self.model.status.friendlyName)")
+                self.model = record
+            }
+        }
+    }
+    
     
     //    func onDone() {
     //        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
@@ -165,21 +180,6 @@ struct CKActivityActiveDetailView: View {
     //        }
     //    }
     
-    func onSave() {
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
-            switch result {
-            case .failure(let error):
-                self.devMessage = "save error\(error.localizedDescription)"
-            case .success(let record):
-                print( "success \(record)")
-                self.devMessage = "success"
-                print( "record \(record.status.friendlyName)")
-                print( "model \(self.model.status.friendlyName)")
-                self.model = record
-                //                self.localActivityStatus = record.status
-            }
-        }
-    }
 }//end CKChoreActiveDetailView
 
 struct CKChoreActiveDetailView_Previews: PreviewProvider {
