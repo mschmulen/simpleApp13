@@ -167,9 +167,7 @@ extension FamilyKitAppState {
         
         playerService.fetch(completion: { result in
             switch result {
-            case .success(let models) :
-                print( "kidService success \(models)")
-                //self.kids = self.kidService.models
+            case .success(_) :
                 self.updateChanges()
             case .failure(let error):
                 print( "kidService error \(error)")
@@ -189,7 +187,6 @@ extension FamilyKitAppState {
     
     public func onRefresh() {
         playerService.fetch { (result) in
-            print( "kidService fetch \(result)")
             self.updateChanges()
         }
         

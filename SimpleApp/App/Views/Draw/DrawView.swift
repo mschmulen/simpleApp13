@@ -65,6 +65,7 @@ struct DrawView: View {
     
     func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
         self.devMessage = "saving DrawingState"
+        
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
@@ -81,18 +82,30 @@ struct DrawView: View {
             // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
             try data.write(to: localFileURL, options: [.atomicWrite])
             
-            privateActiveChoreService.uploadFileAsset(
-                model: model,
-                fileURL: localFileURL,
-                assetPropertyName: "activityAsset"
-            ) { (result) in
+            
+            // automatically push to status .completed
+            self.model.changeStatus(status: .completed)
+            
+            privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
                 switch result {
+                case .success( let resultModel):
+                    self.privateActiveChoreService.uploadFileAsset(
+                        model: resultModel,
+                        fileURL: localFileURL,
+                        assetPropertyName: "activityAsset"
+                    ) { (result) in
+                        switch result {
+                        case .failure(let error):
+                            self.devMessage = "upload failure \(error)"
+                        case .success(_):
+                            self.devMessage = "upload success"
+                        }
+                    }
                 case .failure(let error):
-                    self.devMessage = "upload failure"
-                case .success(_):
-                    self.devMessage = "upload success"
+                    print( "error \(error)")
                 }
             }
+            
         } catch let error {
             self.devMessage = "error \(error)"
         }

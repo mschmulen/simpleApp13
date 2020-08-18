@@ -191,9 +191,8 @@ public final class CKActivityModel: CKModel, ObservableObject {
         if let statusString = record["status"] as? String {
             if let statusEnum = ActivityStatus(rawValue: statusString) {
                 self.status =  statusEnum
-                print( "init?(record: CKRecord) \(statusEnum.friendlyName)")
             } else {
-                print("cast fail")
+                print("status cast fail")
             }
         }
         

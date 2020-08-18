@@ -34,12 +34,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             container: container
         )
         privateChoreService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "privateChoreService success \(models)")
-            case .failure(let error):
-                print( "privateChoreService error \(error)")
-            }
+//            switch result {
+//            case .success(let models) :
+//                print( "privateChoreService success \(models)")
+//            case .failure(let error):
+//                print( "privateChoreService error \(error)")
+//            }
         })
         privateChoreService.subscribe(isSilent: false, message: "new ActivityDescription or change")
         privateChoreService.listenForNotifications()
@@ -49,12 +49,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             container: container
         )
         privateActiveChoreService.fetch(completion: { result in
-            switch result {
-            case .success(let models) :
-                print( "privateActiveChoreService success \(models)")
-            case .failure(let error):
-                print( "privateActiveChoreService error \(error)")
-            }
+//            switch result {
+//            case .success(let models) :
+//                print( "privateActiveChoreService success \(models)")
+//            case .failure(let error):
+//                print( "privateActiveChoreService error \(error)")
+//            }
         })
         privateActiveChoreService.subscribe(isSilent: false, message: "new Activity or activity changed")
         privateActiveChoreService.listenForNotifications()

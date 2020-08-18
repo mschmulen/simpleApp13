@@ -28,74 +28,12 @@ struct MainFamilyView: View {
     let cardSize:CGFloat = 50
     let cardRadius:CGFloat = 20
     
-    @State var activities: [CKActivityModel] = [CKActivityModel]()
+//    @State var activities: [CKActivityModel] = [CKActivityModel]()
     
-    enum Filter {
-        case allFamily
-        case person( CKPlayerModel)
+    @State var playerFilter = MainFamilyPlayerFilterView.PlayerFilter.none
+    @State var showFilterOptions:Bool = true
+    @State var activityStatusFilter = ActivityStatus.active
         
-        var name:String {
-            switch self {
-            case .allFamily:
-                return "All Family"
-            case .person( let playerModel):
-                return "\(playerModel.name ?? "~")"
-            }
-        }
-    }
-    @State var currentFilter = Filter.allFamily
-    @State var currentActivityStatusFilter = ActivityStatus.active
-    
-    var playerPickerView: some View {
-        ScrollView(.horizontal, showsIndicators: false){
-            HStack {
-                VStack {
-                    Text("🏡")
-                        .font(.body)
-                    Spacer()
-                    Text("Family")
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(.white))
-                }
-                .frame(width: cardSize, height: cardSize)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(cardRadius)
-                .onTapGesture {
-                    self.currentFilter = Filter.allFamily
-                }
-                
-                ForEach( self.familyKitAppState.playerService.models ) { player in
-                    VStack {
-                        Text("\(player.emoji ?? "")")
-                        Spacer()
-                        Text("\(player.name ?? "")")
-                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                    }
-                    .frame(width: self.cardSize, height: self.cardSize)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(self.cardRadius)
-                    .onTapGesture {
-                        self.currentFilter = Filter.person( player )
-                    }
-                }
-            }.padding()
-        }//end ScrollView
-    }//end playerPickerView
-    
-    var statusFilterView: some View {
-        VStack {
-            Picker(selection: $currentActivityStatusFilter, label: Text("Status")) {
-                ForEach(ActivityStatus.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-                .padding()
-        }.padding()
-    }//end statusFilterView
-    
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -103,9 +41,27 @@ struct MainFamilyView: View {
                 
                 List {
                     
-                    playerPickerView
-                    Section(header: Text("\(currentFilter.name)")) {
-                        ForEach( privateActiveChoreService.models, id: \.self) { model in
+                    MainFamilyPlayerFilterView(
+                        currentFilter: $playerFilter,
+                        showFilterOptions: $showFilterOptions
+                    )
+                    
+                    Section(
+                        header: Text("\(playerFilter.name)")
+                    ) {
+                        ForEach( privateActiveChoreService.models.filter({ (model) -> Bool in
+                            switch playerFilter {
+                            case .none: return true
+                            case .person(let player):
+                                guard let kidReference = model.kidReference?.recordID else { return true }
+                                guard let playerReference = player.ckRecord?.recordID else {  return true }
+                                if kidReference == playerReference {
+                                    return true
+                                } else {
+                                    return false
+                                }
+                            }
+                        }), id: \.self) { model in
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
                                     model: model, localActivityStatus: model.status
@@ -115,22 +71,21 @@ struct MainFamilyView: View {
                             }
                         }
                     }//end Section
-                        
                     
-                    statusFilterView
                     
-                    Section(header: Text("\(currentActivityStatusFilter.friendlyName) Activities")) {
-                        
-                        ForEach( privateActiveChoreService.models.filter({ $0.status == currentActivityStatusFilter}), id: \.self) { model in
-                            NavigationLink(
-                                destination: CKActivityActiveDetailView(
-                                    model: model, localActivityStatus: model.status
-                                )
-                            ){
-                                FamilyActivityCardView(model:model)
-                            }
-                        }
-                    }//end Section
+                    
+//                    MainFamilyViewStatusFilterView(activityStatusFilter: $activityStatusFilter)
+//                    Section(header: Text("\(activityStatusFilter.friendlyName) Activities")) {
+//                        ForEach( privateActiveChoreService.models.filter({ $0.status == activityStatusFilter}), id: \.self) { model in
+//                            NavigationLink(
+//                                destination: CKActivityActiveDetailView(
+//                                    model: model, localActivityStatus: model.status
+//                                )
+//                            ){
+//                                FamilyActivityCardView(model:model)
+//                            }
+//                        }
+//                    }//end Section
                     
                 }
                 
@@ -138,7 +93,7 @@ struct MainFamilyView: View {
                     .font(.caption)
             }//end VStack
                 .onAppear(perform: {
-                    self.activities = self.privateActiveChoreService.models
+                    //self.activities = self.privateActiveChoreService.models
                 })
                 .navigationBarTitle("Family")
                 

@@ -41,7 +41,7 @@ func emojiToImage(text: String, size: CGFloat = 128, backgroundColor: UIColor = 
     let attr : [NSAttributedString.Key : Any] = [
         NSAttributedString.Key.font : font,
         NSAttributedString.Key.paragraphStyle: style,
-        NSAttributedString.Key.backgroundColor: UIColor.clear
+        NSAttributedString.Key.backgroundColor: backgroundColor //UIColor.clear
     ]
     
     UIGraphicsBeginImageContextWithOptions(outputImageSize, false, 0)

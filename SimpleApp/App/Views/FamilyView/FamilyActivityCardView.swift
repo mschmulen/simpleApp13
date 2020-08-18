@@ -16,15 +16,15 @@ struct FamilyActivityCardView: View {
     
     var model: CKActivityModel
     
-    @State private var coverPhotoImage: Image?
+    @State private var cardThumbnailImage: Image?
     private let frameHeight: CGFloat = 200
     
     var body: some View {
         VStack {
             ZStack {
                 GeometryReader { geo in
-                    if self.coverPhotoImage != nil {
-                        self.coverPhotoImage!
+                    if self.cardThumbnailImage != nil {
+                        self.cardThumbnailImage!
                             .resizable()
                             //.aspectRatio(contentMode: .fit)
                             .aspectRatio(contentMode: .fill)
@@ -33,6 +33,7 @@ struct FamilyActivityCardView: View {
                     } else {
                         Rectangle().fill(Color.blue)
                             .frame(width: geo.size.width, height: geo.size.height)
+                            .clipped()
                     }
                     
                     HStack {
@@ -78,7 +79,7 @@ struct FamilyActivityCardView: View {
             do {
                 let imageData = try Data(contentsOf: resultAssetImage_fileURL)
                 if let loadedUIImage = UIImage(data: imageData) {
-                    self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                    self.cardThumbnailImage = Image(uiImage: loadedUIImage)
                     return
                 }
             } catch {
@@ -90,7 +91,7 @@ struct FamilyActivityCardView: View {
             do {
                 let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
                 if let loadedUIImage = UIImage(data: imageData) {
-                    self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                    self.cardThumbnailImage = Image(uiImage: loadedUIImage)
                     return
                 }
             } catch {
@@ -98,11 +99,9 @@ struct FamilyActivityCardView: View {
             }
         }
         
-        //                        if let emoji = self.model.emoji {
-        //                            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
-        //                        } else {
-        //                            return
-        //                        }
+        if let emoji = self.model.emoji {
+            self.cardThumbnailImage =  Image(uiImage: emojiToImage(text: emoji, backgroundColor: UIColor.gray))
+        }
         
     }
 }

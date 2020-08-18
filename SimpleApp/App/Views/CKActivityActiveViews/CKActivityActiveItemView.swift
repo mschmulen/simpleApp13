@@ -86,7 +86,7 @@ struct CKActivityActiveItemView: View {
         }
         
         if let emoji = self.model.emoji {
-            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, backgroundColor: UIColor.green))
+            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, backgroundColor: UIColor.gray))
         }
         
     }

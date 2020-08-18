@@ -11,40 +11,6 @@ import FamilyKit
 import AVFoundation
 
 
-
-extension Player {
-    
-    public func isOwnerOrEmpty(model: CKActivityModel) ->Bool {
-        guard let myReference = self.recordReference else {
-            return false
-        }
-        guard let modelReference = model.kidReference else {
-            return true
-        }
-        
-        if modelReference == myReference {
-            return true
-        } else {
-            return false
-        }
-    }
-        
-    public func isOwner(model: CKActivityModel) ->Bool {
-        guard let myReference = self.recordReference else {
-            return false
-        }
-        guard let modelReference = model.kidReference else {
-            return false
-        }
-        
-        if modelReference == myReference {
-            return true
-        } else {
-            return false
-        }
-    }
-}
-
 struct PhotoActivityView: View {
     
     @Environment(\.window) var window: UIWindow?
@@ -149,23 +115,34 @@ struct PhotoActivityView: View {
         }
         
         if let inputImage = inputImage {
-            privateActiveChoreService.uploadPhotoAsset(
-                model:model,
-                image: inputImage,
-                assetPropertyName: "resultAssetImage"
-            ) { result in
+            
+            // automatically push to status .completed
+            self.model.changeStatus(status: .completed)
+            
+            privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
                 switch result {
-                case .failure( let error):
-                    DispatchQueue.main.async {
-                        self.devMessage = "There was an error uploading \(error)"
-                    }
-                case .success(let updatedModel):
-                    DispatchQueue.main.async {
-                        if let resultAssetImage = updatedModel.resultAssetImage {
-                            self.model.changeResultAssetImage(asset: resultAssetImage)
+                case .success( let resultModel):
+                    self.privateActiveChoreService.uploadPhotoAsset(
+                        model:resultModel,
+                        image: inputImage,
+                        assetPropertyName: "resultAssetImage"
+                    ) { result in
+                        switch result {
+                        case .failure( let error):
+                            DispatchQueue.main.async {
+                                self.devMessage = "There was an error uploading \(error)"
+                            }
+                        case .success(let updatedModel):
+                            DispatchQueue.main.async {
+                                if let resultAssetImage = updatedModel.resultAssetImage {
+                                    self.model.changeResultAssetImage(asset: resultAssetImage)
+                                }
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
                         }
-                        self.presentationMode.wrappedValue.dismiss()
                     }
+                case .failure(let error):
+                    print( "error")
                 }
             }
         }
