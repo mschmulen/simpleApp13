@@ -25,8 +25,6 @@ struct ActivityAudioActionView: View {
     
     @Binding var model: CKActivityModel
     
-    var isReadOnly: Bool
-    
     @State var avAudioRecorder: AVAudioRecorder?
     
     @State var isRecording = false
@@ -40,15 +38,11 @@ struct ActivityAudioActionView: View {
             
             DevMessageView(devMessage: $devMessage)
             
-            Text("RECORD")
-            
             if audioRecording != nil {
                 AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
             }
             
-            
-            // Recording feature
-            if isReadOnly == false {
+            if familyKitAppState.currentPlayer.isOwnerOrEmpty(model: model) {
                 if isRecording == false {
                     Button(action: {
                         self.startRecording(audioFileNamePrefix: UUID().uuidString)
@@ -74,6 +68,8 @@ struct ActivityAudioActionView: View {
                             .padding(.bottom, 40)
                     }
                 }
+            } else {
+                Text("NO AUDIO")
             }
         }.onAppear {
             self.loadRecording()
@@ -208,12 +204,10 @@ struct ActivityAudioActionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ActivityAudioActionView(
-                model: .constant(CKActivityModel.mock),
-                isReadOnly: true
+                model: .constant(CKActivityModel.mock)
             )
             ActivityAudioActionView(
-                model: .constant(CKActivityModel.mock),
-                isReadOnly: false
+                model: .constant(CKActivityModel.mock)
             )
         }
     }

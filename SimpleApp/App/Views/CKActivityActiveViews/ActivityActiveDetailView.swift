@@ -105,8 +105,7 @@ struct CKActivityActiveDetailView: View {
                 infoView
                 activityStatusView
                 ActivityAudioActionView(
-                    model: $model,
-                    isReadOnly: false
+                    model: $model
                 )
             } else if model.moduleType == .chat {
                 infoView

@@ -60,8 +60,7 @@ struct DrawingActivityView: View {
                 
                 if model.moduleType == .audio {
                     ActivityAudioActionView(
-                        model: $model,
-                        isReadOnly: isReadOnly
+                        model: $model
                     )
                 }
                 

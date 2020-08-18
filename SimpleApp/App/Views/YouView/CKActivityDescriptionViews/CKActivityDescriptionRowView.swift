@@ -16,7 +16,7 @@ struct CKActivityDescriptionRowView: View {
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var categoryName: String
-    @State var items: [CKActivityDescriptionModel]
+    @Binding var items: [CKActivityDescriptionModel]
     var isPrivate: Bool
     var showAdd: Bool
     
@@ -54,10 +54,6 @@ struct CKActivityDescriptionRowView: View {
                             CKActivityDescriptionItemView(model: model)
                         }.contextMenu {
                             Button(action: {
-                                // items
-                                //items.remove
-                                //self.items = self.items.filter { $0.id == model.id }
-                                
                                 self.privateChoreService.pushDelete(model: model) { (result) in
                                     print("delete result \(result)")
                                 }
@@ -81,29 +77,17 @@ struct CKActivityDescriptionRowView_Previews: PreviewProvider {
         Group {
             CKActivityDescriptionRowView(
                 categoryName: "CATEGORY",
-                items: [
+                items: .constant([
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock
-                ],
+                ]),
                 isPrivate: true,
                 showAdd: true
             )
                 .previewLayout(.fixed(width: 400, height: 100))
-            
-//            CKChoreDescriptionRowView(
-//                categoryName: "CATEGORY",
-//                items: [
-//                    CKActivityDescriptionModel.mock,
-//                    CKActivityDescriptionModel.mock,
-//                    CKActivityDescriptionModel.mock,
-//                    CKActivityDescriptionModel.mock ],
-//                isPrivate: true,
-//                showAdd: true
-//            )
-//                .previewLayout(.fixed(width: 400, height: 100))
-//                .environment(\.colorScheme, .dark)
+            //                .environment(\.colorScheme, .dark)
         }
     }
 }

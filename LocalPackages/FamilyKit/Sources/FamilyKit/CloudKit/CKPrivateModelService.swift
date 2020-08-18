@@ -56,7 +56,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     public enum SearchPredicate {
         
         case predicateTrue
-        
         //case tagsSearch(_ searchString:String )
         
         //let predicate = NSPredicate(format: "info_en CONTAINS %@", searchString)
@@ -66,7 +65,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
             switch self {
                 case .predicateTrue:
                     return NSPredicate(value: true)
-                
 //                case .tagsSearch( let searchString ) :
 //                    return NSPredicate(format: "tags CONTAINS %@", searchString.lowercased())
             }
@@ -76,7 +74,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     public enum SortDescriptor {
         case creationDate
         case creationDateAscending
-        //case none
         // case updateDate
         // case name
         
@@ -86,8 +83,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
                 return [NSSortDescriptor(key: "creationDate", ascending: false)]
             case .creationDateAscending:
                 return [NSSortDescriptor(key: "creationDate", ascending: true)]
-//            case .none:
-                
 //            case .updateDate:
 //                    return NSSortDescriptor(key: "creationDate", ascending: false)
 //            case .name:
@@ -95,7 +90,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
             }
         }
     }
-    // query.sortDescriptors = [sortName]
     
     internal func updateChanges() {
         DispatchQueue.main.async {

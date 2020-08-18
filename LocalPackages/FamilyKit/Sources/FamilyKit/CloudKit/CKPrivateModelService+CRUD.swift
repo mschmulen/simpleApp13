@@ -40,7 +40,10 @@ extension CKPrivateModelService {
                 if let record = record {
                     if let newModel = T(record: record) {
                         completion(.success(newModel) )
+                        
+                        // immediately add it to the local list
                         self.models.append(newModel)
+                        
                         self.updateChanges()
                     } else {
                         completion(.failure(CustomError.unknown))
@@ -81,6 +84,8 @@ extension CKPrivateModelService {
                             if let updatedModel = T(record: record) {
                                 print( "push updatedModel \(updatedModel)")
                                 completion(.success(updatedModel) )
+                                
+                                // TODO: can you just update this model in the list
                                 self.updateChanges()
                             } else {
                                 completion(.failure(CustomError.unknown))
@@ -102,8 +107,6 @@ extension CKPrivateModelService {
                 return
             }
         }
-        
-        
     }
 }
 
@@ -118,6 +121,7 @@ extension CKPrivateModelService  {
             completion( .failure(CustomError.unknown))
             return
         }
+        
         container.privateCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
             if let recordID = recordID{
                 completion(  .success(recordID) )
@@ -126,36 +130,11 @@ extension CKPrivateModelService  {
                 completion(  .failure(CustomError.unknown) )
             }
         }
+        
+        // immediately remove if from the local list
+        models.removeAll { (model) -> Bool in
+            model.recordID == modelRecordID
+        }
+        self.updateChanges()
     }
 }
-
-// TODO: Clean up
-//    func add(suggestion: String) {
-//        let whistleRecord = CKRecord(recordType: "Suggestions")
-//        let reference = CKRecord.Reference(recordID: whistle.recordID, action: .deleteSelf)
-//        whistleRecord["text"] = suggestion as CKRecordValue
-//        whistleRecord["owningWhistle"] = reference as CKRecordValue
-//
-//        // more code to come!
-//    }
-
-
-
-//    public func pushNewPrivate(
-//        model: T,
-//        completion: ((Result<CKRecord,Error>) -> Void)?
-//    ){
-//        if let record = model.ckRecord {
-//            container.publicCloudDatabase.save(record) { (record, error) in
-//                if let error = error {
-//                    completion?(.failure(error) )
-//                }
-//
-//                if let record = record {
-//                    completion?(.success(record) )
-//                } else {
-//                    completion?(.failure(CustomError.unknown))
-//                }
-//            }//end save
-//        }
-//    }//end pushNewPrivate

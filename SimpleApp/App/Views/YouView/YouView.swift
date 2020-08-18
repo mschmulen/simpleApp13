@@ -21,7 +21,7 @@ struct YouView: View {
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
-
+    
     @State var devMessage: String?
     let appInfo = AppModel()
     
@@ -33,7 +33,7 @@ struct YouView: View {
                     Section() {
                         CKActivityDescriptionRowView(
                             categoryName: "Activities Todo:",
-                            items: privateChoreService.models,
+                            items: $privateChoreService.models,
                             isPrivate: true,
                             showAdd: familyKitAppState.currentPlayer.isAdult
                         )
