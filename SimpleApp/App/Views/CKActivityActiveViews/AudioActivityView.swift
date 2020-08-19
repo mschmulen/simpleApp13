@@ -40,6 +40,8 @@ struct ActivityAudioActionView: View {
             
             if audioRecording != nil {
                 AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
+            } else {
+                Text("NO AUDIO")
             }
             
             if familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model) {
@@ -68,8 +70,6 @@ struct ActivityAudioActionView: View {
                             .padding(.bottom, 40)
                     }
                 }
-            } else {
-                Text("NO AUDIO SAVED :(")
             }
         }.onAppear {
             self.loadRecording()
@@ -111,7 +111,7 @@ struct ActivityAudioActionView: View {
         loadRecording()
         saveRecording()
     }
-
+    
     func loadRecording() {
         if let resultAssetAudio = model.activityAsset {
             if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {

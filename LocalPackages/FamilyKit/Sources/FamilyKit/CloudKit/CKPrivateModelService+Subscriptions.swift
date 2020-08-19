@@ -24,15 +24,13 @@ extension CKPrivateModelService {
         )
         let notificationInfo = CKSubscription.NotificationInfo()
         if isSilent {
+            // Note: set shouldSendContentAvailable = true if you want it to be a silent push
             notificationInfo.shouldSendContentAvailable = true
         } else {
             notificationInfo.alertBody = message
             notificationInfo.soundName = "default"
-            notificationInfo.shouldBadge = true
+            notificationInfo.shouldBadge = false // badge count
         }
-
-        
-        // Note: set shouldSendContentAvailable = true if you want it to be a silent push
         
         subscription.notificationInfo = notificationInfo
         

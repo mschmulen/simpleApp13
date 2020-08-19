@@ -21,7 +21,6 @@
 		7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817024C54B8800B339E4 /* PurchaseView.swift */; };
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
-		7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */; };
 		7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66524DC692C003488EB /* _ActivityActionView.swift */; };
 		7616F66824DC7723003488EB /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* YouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
@@ -128,7 +127,6 @@
 		7601817024C54B8800B339E4 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityDetailView.swift; sourceTree = "<group>"; };
 		7616F66524DC692C003488EB /* _ActivityActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ActivityActionView.swift; sourceTree = "<group>"; };
 		7616F66724DC7723003488EB /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
@@ -466,7 +464,6 @@
 				76C2FDFA24DB9B9000E030C2 /* CKActivityActiveItemView.swift */,
 				76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */,
 				76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */,
-				7616F66324DC4E2A003488EB /* StartActivityDetailView.swift */,
 				76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */,
 				7616F66524DC692C003488EB /* _ActivityActionView.swift */,
 				76CFA1D124D9DA00007A02CF /* PhotoActivityView.swift */,
@@ -659,7 +656,6 @@
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */,
-				7616F66424DC4E2A003488EB /* StartActivityDetailView.swift in Sources */,
 				76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */,
 				76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */,
 				7616F66824DC7723003488EB /* YouView.swift in Sources */,
@@ -847,7 +843,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -870,7 +866,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

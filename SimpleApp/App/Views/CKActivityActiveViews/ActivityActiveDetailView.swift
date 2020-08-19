@@ -143,7 +143,13 @@ struct CKActivityActiveDetailView: View {
                 if self.model.recordID == nil {
                     self.onSave()
                 }
+                
+                self.configureChatSession()
         }
+    }
+    
+    func configureChatSession() {
+        chatService.findOrMakeSession(model:model)
     }
     
     func onSave() {

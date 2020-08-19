@@ -37,7 +37,8 @@ struct CKActivityDescriptionRowView: View {
                     if showAdd {
                         NavigationLink(
                             destination: CKActivityDescriptionDetailView(
-                                model: CKActivityDescriptionModel(), enableEdit: true
+                                model: CKActivityDescriptionModel(),
+                                enableEdit: true
                             )
                         ) {
                             CKActivityDescriptionAddItemView()

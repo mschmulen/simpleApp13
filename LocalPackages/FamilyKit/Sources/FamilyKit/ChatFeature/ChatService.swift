@@ -66,7 +66,8 @@ public class ChatService : ObservableObject {
         }
     }
     
-    func makeSession(_ sessionName: String) {
+    public func findOrMakeSession(model: CKActivityModel) {
+        print( "findOrMakeSession \(model)")
         // TODO find the chat session, specifically the global chat session
     }
 }
@@ -77,7 +78,7 @@ extension ChatService {
     public func onRefresh() {
         chatMessageService.fetch ( sortDescriptor: .creationDateAscending)
         { (result) in
-            print( "chatMessageService fetch \(result)")
+            //print( "chatMessageService fetch \(result)")
             self.updateChanges()
         }
     }

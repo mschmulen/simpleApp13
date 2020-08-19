@@ -94,12 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //        }
 //    }
-}
-
-// MARK: - Application Lifecycle
-extension AppDelegate {
+    
+    // MARK: - Application Lifecycle
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        print("applicationDidBecomeActive")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -149,7 +148,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        print("userNotificationCenter.willPresent notification")
+        print("userNotificationCenter.willPresent notification \(notification)")
+        
         // show the notification alert (banner), and with sound
         completionHandler([.alert, .sound, .badge])
     }
@@ -160,8 +160,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
 }
-
-//extension AppDelegate : UNUserNotificationCenterDelegate {
-//
-//}
-
