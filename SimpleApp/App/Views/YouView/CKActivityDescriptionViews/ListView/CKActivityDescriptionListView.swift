@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionListView.swift
+//  CKActivityDescriptionListView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -29,19 +29,25 @@ struct CKActivityDescriptionListView: View {
             DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Activities (Family)")) {
-                NavigationLink(destination: CKActivityDescriptionDetailView(
-                    model: CKActivityDescriptionModel(),
-                    enableEdit: true
+                NavigationLink(destination: CKActivityDescriptionDetailEditView(
+                    model: CKActivityDescriptionModel()
                 )) {
                     Image(systemName: "plus")
                 }
                 
                 ForEach( self.privateChoreService.models) { model in
-                    NavigationLink(destination: CKActivityDescriptionDetailView(
-                        model: model,
-                        enableEdit: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
-                    )) {
-                        CKActivityDescriptionItemView(model: model)
+                    if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
+                        NavigationLink(destination: CKActivityDescriptionDetailEditView(
+                            model: model
+                        )) {
+                            CKActivityDescriptionCardView(model: model)
+                        }
+                    } else {
+                        NavigationLink(destination: CKActivityDescriptionDetailView(
+                            model: model
+                        )) {
+                            CKActivityDescriptionCardView(model: model)
+                        }
                     }
                 }//end ForEach
                     .onDelete(perform: deletePrivate)
@@ -74,7 +80,7 @@ struct CKActivityDescriptionListView: View {
     }
 }
 
-struct CKChoreListView_Previews: PreviewProvider {
+struct CKActivityDescriptionListView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     

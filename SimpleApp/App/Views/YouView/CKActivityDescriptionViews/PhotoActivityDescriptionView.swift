@@ -9,9 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-
-
-
+// TODO:  rename to CKActivityDescriptionPhotoView
 struct PhotoActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode

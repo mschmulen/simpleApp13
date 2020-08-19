@@ -9,28 +9,30 @@
 import SwiftUI
 import FamilyKit
 
-struct CKActivityDescriptionAddItemView: View {
+struct CKActivityDescriptionAddCardView: View {
     
-    var image: Image {
-        Image(systemName:"plus")
-    }
+    let cardSize: CGFloat = 100
     
     var body: some View {
         VStack(alignment: .leading) {
-            image
+            Image(systemName:"plus")
                 .renderingMode(.original)
                 .resizable()
-                .frame(width: 100, height: 100)
+                //.scaledToFill()
+                .frame(width: cardSize, height: cardSize)
                 .cornerRadius(5)
                 .padding()
-            Text("New Activity")
-                .font(.system(size: 12, weight: .medium, design: .rounded))
-                .foregroundColor(.primary)
-                //.foregroundColor(Color(.white))
-            .padding()
+            HStack {
+                Spacer()
+                Text("New Activity")
+                    .foregroundColor(.primary)
+                    .font(.caption)
+                Spacer()
+            }
         }
         .padding()
     }
+    
 }//end CKChoreAddItemView
 
 #if DEBUG
@@ -38,11 +40,11 @@ struct CKChoreAddItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             
-            CKActivityDescriptionAddItemView()
+            CKActivityDescriptionAddCardView()
                 .previewLayout(.fixed(width: 300, height: 300))
             .previewDisplayName("300x300 view")
             
-            CKActivityDescriptionAddItemView()
+            CKActivityDescriptionAddCardView()
                 .previewLayout(.fixed(width: 300, height: 300))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("dark mode")

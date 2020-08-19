@@ -1,5 +1,5 @@
 //
-//  CKActivityDescriptionNoItemsView.swift
+//  CKChoreDescriptionNoItemsView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -8,20 +8,25 @@
 
 import SwiftUI
 
-struct CKActivityActiveNoItemsView: View {
+struct CKActivityDescriptionNoItemsView: View {
+    
+    let cardSize: CGFloat = 100
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
                     .foregroundColor(.gray)
-                    .frame(width: 155, height: 155)
+                    .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
                 VStack {
-                    Text("No Active Chores")
+                    Text("No Activities")
                         .foregroundColor(.white)
                         .font(.body)
-                    Text("get busy")
+                    Text("ask an Adult")
+                        .foregroundColor(.white)
+                        .font(.body)
+                    Text("to add some")
                         .foregroundColor(.white)
                         .font(.body)
                 }
@@ -29,11 +34,10 @@ struct CKActivityActiveNoItemsView: View {
         }
         .padding(.leading, 15)
     }
-}//end CKChoreNoItemsView
+}//end CKActivityDescriptionNoItemsView
 
-struct CKChoreActiveNoItemsView_Previews: PreviewProvider {
+struct CKActivityDescriptionNoItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        CKActivityActiveNoItemsView()
-        .previewLayout(.fixed(width: 200, height: 200))
+        CKActivityDescriptionNoItemsView()
     }
 }

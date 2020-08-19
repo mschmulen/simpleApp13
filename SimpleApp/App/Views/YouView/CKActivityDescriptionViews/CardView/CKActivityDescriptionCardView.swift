@@ -1,5 +1,5 @@
 //
-//  CKActivityDescriptionItemView.swift
+//  CKActivityDescriptionCardView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -9,12 +9,14 @@
 import SwiftUI
 import FamilyKit
 
-struct CKActivityDescriptionItemView: View {
+struct CKActivityDescriptionCardView: View {
     
     var model: CKActivityDescriptionModel
     
     // Image(systemName: "rosette")
     @State var coverPhotoImage:Image? = ImageStore.shared.image(name: "turtlerock")
+    
+    let cardSize: CGFloat = 100
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,12 +25,12 @@ struct CKActivityDescriptionItemView: View {
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 100, height: 100)
+                    .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
             } else {
                 Rectangle()
                     .fill(Color.blue)
-                    .frame(width: 100, height: 100)
+                    .frame(width: cardSize, height: cardSize)
                 //.border(Color.blue, width: 2)
                 .cornerRadius(5)
             }
@@ -73,7 +75,7 @@ struct CKActivityDescriptionItemView: View {
 #if DEBUG
 struct CKChoreItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CKActivityDescriptionItemView( model: CKActivityDescriptionModel.mock)
+        CKActivityDescriptionCardView( model: CKActivityDescriptionModel.mock)
             .previewLayout(.fixed(width: 200, height: 200))
     }
 }

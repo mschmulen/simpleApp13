@@ -17,6 +17,8 @@ struct CKActivityActiveItemView: View {
     
     @State var coverPhotoImage: Image?
     
+    let cardSize: CGFloat = 100
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -27,12 +29,12 @@ struct CKActivityActiveItemView: View {
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 100, height: 100)
+                        .frame(width: cardSize, height: cardSize)
                         .cornerRadius(5)
                 } else {
                     Rectangle()
                         .fill(Color.blue)
-                        .frame(width: 100, height: 100)
+                        .frame(width: cardSize, height: cardSize)
                         .cornerRadius(5)
                 }
                 VStack {

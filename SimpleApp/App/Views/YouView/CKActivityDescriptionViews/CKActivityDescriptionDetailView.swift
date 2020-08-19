@@ -35,8 +35,6 @@ struct CKActivityDescriptionDetailView: View {
     @State var model: CKActivityDescriptionModel
     @State private var coverPhotoImage:UIImage?
     
-    var enableEdit:Bool
-    
     var readOnlyView: some View {
         Section(header: Text("Info")) {
             Text("name: \(model.name ?? "~")")
@@ -72,115 +70,27 @@ struct CKActivityDescriptionDetailView: View {
         }
     }
     
-    var editView: some View {
-        Section(header: Text("Data")) {
-            Text("title \(model.title ?? "~")")
-            
-            TextField("name", text: $model.name ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("emoji", text: $model.emoji ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("description", text: $model.description ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Picker(selection: $model.moduleType, label: Text("Type")) {
-                ForEach(ActivityModuleType.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            
-            Picker(selection: $model.category, label: Text("Category")) {
-                ForEach(ActivityCategory.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            
-            Picker(selection: $model.frequency, label: Text("Frequency")) {
-                ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            
-            //            TextField("who", text: $model.who ?? "")
-            //                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            //            TextField("timeofday", text: $model.timeofday ?? "")
-            //                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            NavigationLink(destination: PhotoActivityDescriptionView(model: model) ) {
-                Text("change coverPhoto")
-            }
-            
-            Button(action: ({
-                self.privateChoreService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
-                    switch result {
-                    case .failure( let error):
-                        print( "there was an error \(error)")
-                    case .success(_):
-                        print( "success")
-                        self.privateChoreService.fetchSingle( model: self.model) { result in
-                            print( "result")
-                            //                            DispatchQueue.main.async {
-                            //                                self.presentationMode.wrappedValue.dismiss()
-                            //                            }
-                        }
-                    }
-                }
-            })) {
-                Text("remove coverPhoto")
-            }
-        }
-    }
-    
     var body: some View {
         List{
             DevMessageView(devMessage: $devMessage)
             
-            if enableEdit {
-                Button(action:onSave) {
+            
+            if familyKitAppState.currentPlayer.recordReference != nil {
+                NavigationLink(destination: CKActivityActiveDetailView(
+                    model: CKActivityModel(
+                        descriptionModel: model,
+                        playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
+                    localActivityStatus: ActivityStatus.active
+                )) {
                     HStack {
-                        Text("Save")
-                        Image(systemName: "square.and.arrow.up")
+                        Text("START THIS ACTIVITY")
+                        Image(systemName: "plus")
                     }.foregroundColor(.blue)
                 }
-                editView
-                
-//                if familyKitAppState.currentPlayer.recordReference != nil {
-//                    NavigationLink(destination: CKActivityActiveDetailView(
-//                        model: CKActivityModel(
-//                            descriptionModel: model,
-//                            playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
-//                        localActivityStatus: ActivityStatus.active
-//                    )) {
-//                        HStack {
-//                            Text("START THIS ACTIVITY")
-//                            Image(systemName: "plus")
-//                        }.foregroundColor(.blue)
-//                    }
-//                }
-                
-            } else {
-                if familyKitAppState.currentPlayer.recordReference != nil {
-                    NavigationLink(destination: CKActivityActiveDetailView(
-                        model: CKActivityModel(
-                            descriptionModel: model,
-                            playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
-                        localActivityStatus: ActivityStatus.active
-                    )) {
-                        HStack {
-                            Text("START THIS ACTIVITY")
-                            Image(systemName: "plus")
-                        }.foregroundColor(.blue)
-                    }
-                }
-                
-                readOnlyView
             }
+            
+            readOnlyView
+            
             
             Section(header:Text("Assets")) {
                 coverPhotoView
@@ -223,9 +133,8 @@ struct CKActivityDescriptionDetailView: View {
 struct CKChoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: false)
-            
-            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock, enableEdit: true)
+            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock)
+            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock)
         }
     }
 }

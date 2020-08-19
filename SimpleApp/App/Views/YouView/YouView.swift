@@ -31,7 +31,7 @@ struct YouView: View {
                 DevMessageView(devMessage: $devMessage)
                 List{
                     Section() {
-                        CKActivityDescriptionRowView(
+                        CKActivityDescriptionCardsRowView(
                             categoryName: "Activities Todo:",
                             items: $privateChoreService.models,
                             isPrivate: true,

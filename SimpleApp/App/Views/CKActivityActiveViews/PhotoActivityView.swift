@@ -10,7 +10,6 @@ import SwiftUI
 import FamilyKit
 import AVFoundation
 
-
 struct PhotoActivityView: View {
     
     @Environment(\.window) var window: UIWindow?
