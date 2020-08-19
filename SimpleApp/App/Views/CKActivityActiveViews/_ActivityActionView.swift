@@ -6,89 +6,89 @@
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
-import SwiftUI
-import FamilyKit
-import SimpleGames
-import DrawingKit
-import CloudKit
-
-struct ActivityActionView: View {
-    
-    @Environment(\.window) var window: UIWindow?
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
-    
-    @State var devMessage: String? = nil    
-    
-    @Binding var model: CKActivityModel
-    
-    var isReadOnly:Bool = false
-    
-    @State var isChatFocus = false
-    
-    var body: some View {
-        VStack {
-            
-            VStack {
-                if model.moduleType == .photo {
-                    PhotoActivityView(
-                        model: $model
-                    )
-                }
-                
-                if model.moduleType == .audio {
-                    ActivityAudioActionView(
-                        model: $model
-                    )
-                }
-                
-                if model.moduleType == .drawing {
-                    DrawView(
-                        model: $model
-                    )
-                }
-                
-//                if model.moduleType == .chat {
-//                    ChatSessionView() // model: $model
-//                }
-                
-//                if isChatFocus == true {
-//                    ChatEmbeddedScrollView(
-//                        model:$model,
-//                        isChatFocus: $isChatFocus
+//import SwiftUI
+//import FamilyKit
+//import SimpleGames
+//import DrawingKit
+//import CloudKit
+//
+//struct ActivityActionView: View {
+//
+//    @Environment(\.window) var window: UIWindow?
+//    @Environment(\.presentationMode) var presentationMode
+//    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+//
+//    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+//    @EnvironmentObject var chatService: ChatService
+//
+//    @State var devMessage: String? = nil
+//
+//    @Binding var model: CKActivityModel
+//
+//    var isReadOnly:Bool = false
+//
+//    @State var isChatFocus = false
+//
+//    var body: some View {
+//        VStack {
+//
+//            VStack {
+//                if model.moduleType == .photo {
+//                    PhotoActivityView(
+//                        model: $model
 //                    )
-//                    .frame(height: 500)
-//                    Spacer()
-//                } else {
-//                    Spacer()
-//                    ChatEmbeddedScrollView(
-//                        model:$model,
-//                        isChatFocus: $isChatFocus
-//                    )
-//                        .frame(height: 200)
 //                }
-                
-                NavigationLink(destination: ChatSessionView()) {
-                    Text("Show Chat")
-                        .foregroundColor(.blue)
-                }
-                
-            }
-        }
-    }
-}
-
-
-struct ActivityActionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityActionView(
-            model: .constant(CKActivityModel.mock)
-        )
-    }
-}
+//
+//                if model.moduleType == .audio {
+//                    ActivityAudioActionView(
+//                        model: $model
+//                    )
+//                }
+//
+//                if model.moduleType == .drawing {
+//                    DrawView(
+//                        model: $model
+//                    )
+//                }
+//
+////                if model.moduleType == .chat {
+////                    ChatSessionView() // model: $model
+////                }
+//
+////                if isChatFocus == true {
+////                    ChatEmbeddedScrollView(
+////                        model:$model,
+////                        isChatFocus: $isChatFocus
+////                    )
+////                    .frame(height: 500)
+////                    Spacer()
+////                } else {
+////                    Spacer()
+////                    ChatEmbeddedScrollView(
+////                        model:$model,
+////                        isChatFocus: $isChatFocus
+////                    )
+////                        .frame(height: 200)
+////                }
+//
+//                NavigationLink(destination: ChatSessionView()) {
+//                    Text("Show Chat")
+//                        .foregroundColor(.blue)
+//                }
+//
+//            }
+//        }
+//    }
+//}
+//
+//
+//struct ActivityActionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ActivityActionView(
+//            model: .constant(CKActivityModel.mock)
+//        )
+//    }
+//}
 
 //struct ChatEmbeddedScrollView: View {
 //

@@ -81,7 +81,7 @@ struct MainBucksStoreView: View {
     private var trailingButton: some View {
         Group {
             NavigationLink(destination:
-                AdultUserView()
+                UserView()
                     .environment(\.window, window)
                     .environmentObject(appState)
                     .environmentObject(familyKitAppState)

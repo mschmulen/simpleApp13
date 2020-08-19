@@ -122,7 +122,7 @@ struct AdultUserView: View {
     }
 }
 
-struct UserView_Previews: PreviewProvider {
+struct AdultUserView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AdultUserView()

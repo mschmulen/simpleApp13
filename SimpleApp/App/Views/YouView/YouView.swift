@@ -73,31 +73,16 @@ struct YouView: View {
     
     private var trailingButton: some View {
         Group {
-            if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
-                NavigationLink(destination:
-                    AdultUserView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                ){
-                    HStack {
-                        Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-                        Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
-                        Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
-                    }
-                }
-            } else {
-                NavigationLink(destination:
-                    KidUserView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                ){
-                    HStack {
-                        Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-                        Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
-                        Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
-                    }
+            NavigationLink(destination:
+                UserView()
+                    .environment(\.window, window)
+                    .environmentObject(appState)
+                    .environmentObject(familyKitAppState)
+            ){
+                HStack {
+                    Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                    Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
+                    Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
                 }
             }
         }

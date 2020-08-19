@@ -128,8 +128,8 @@ struct DrawingActivityView: View {
 
 struct DrawingActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityActionView(
-            model: .constant(CKActivityModel.mock)
+        DrawingActivityView(
+            model: .constant(CKActivityModel.mockDrawing)
         )
     }
 }
