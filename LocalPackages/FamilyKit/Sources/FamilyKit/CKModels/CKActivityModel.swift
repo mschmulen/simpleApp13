@@ -56,7 +56,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
     
     public var name: String?
     public var description: String?
-    public var bucks: Int?
+    public var bucks: Int
     public var emoji: String?
     
     public var ckChoreDescriptionReference: CKRecord.Reference?
@@ -110,7 +110,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
     ){
         self.name = nil
         self.description = nil
-        self.bucks = nil
+        self.bucks = 0
         self.emoji = nil
         self.ckChoreDescriptionReference = nil
         self.kidReference = nil
@@ -156,8 +156,10 @@ public final class CKActivityModel: CKModel, ObservableObject {
             self.description = description
         }
         
-        if let bucks = record["bucks"] as? Int {
-            self.bucks = bucks
+        if let _bucks = record["bucks"] as? Int {
+            self.bucks = _bucks
+        } else {
+            self.bucks = 0
         }
         
         if let emoji = record["emoji"] as? String {
@@ -247,10 +249,6 @@ extension CKActivityModel {
             record["description"] = description as CKRecordValue
         }
         
-        if let bucks = bucks {
-            record["bucks"] = bucks as CKRecordValue
-        }
-        
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
         }
@@ -258,6 +256,8 @@ extension CKActivityModel {
         if let ckChoreDescriptionReference = ckChoreDescriptionReference {
             record["ckChoreDescriptionReference"] = ckChoreDescriptionReference as CKRecordValue
         }
+
+        record["bucks"] = bucks as CKRecordValue
         
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         

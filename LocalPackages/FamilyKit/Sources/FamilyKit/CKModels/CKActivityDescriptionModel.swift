@@ -65,7 +65,7 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
     
     public var name: String?
     public var description: String?
-    public var bucks: Int?
+    public var bucks: Int
     public var emoji: String?
     public var category: ActivityCategory = .none
     
@@ -135,7 +135,11 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         self.recordID = record.recordID
         self.name = _name
         self.description = _description
-        self.bucks = record["bucks"] as? Int
+        if let _bucks = record["bucks"] as? Int {
+            self.bucks = _bucks
+        } else {
+            self.bucks = 0
+        }
         self.emoji = record["emoji"] as? String
         
         if let categoryString = record["category"] as? String {
@@ -188,20 +192,15 @@ extension CKActivityDescriptionModel {
             record["description"] = description as CKRecordValue
         }
         
-        if let bucks = bucks {
-            record["bucks"] = bucks as CKRecordValue
-        }
-        
         if let emoji = emoji {
             record["emoji"] = emoji as CKRecordValue
         }
         
+        record["bucks"] = bucks as CKRecordValue
         record["category"] = category.rawValue as CKRecordValue
-        
-        record["frequency"] = frequency.rawValue as CKRecordValue
-        
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         
+        record["frequency"] = frequency.rawValue as CKRecordValue
         if let coverPhoto = coverPhoto {
             record["coverPhoto"] = coverPhoto as CKAsset
         }

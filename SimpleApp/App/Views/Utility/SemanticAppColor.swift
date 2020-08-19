@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-// Semantic Colors
 //For example, Color.red isn’t the pure red of RGB(255, 0, 0), but instead slightly lighter or slightly darker based on the environment – it adapts automatically without us needing to think about it.
 //
 //Similarly, Color.primary, Color.secondary, and Color.accentColor all refer to fixed values that are provided by the environment, allowing us to structure and highlight content in a standardized way.
-//
+
+// Question: how do Semantic Colors relate to Adaptive colors
 
 struct SemanticAppColor {
     

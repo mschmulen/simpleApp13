@@ -37,17 +37,24 @@ struct CKActivityDescriptionDetailView: View {
     
     var readOnlyView: some View {
         Section(header: Text("Info")) {
-            Text("name: \(model.name ?? "~")")
-            Text("emoji: \(model.emoji ?? "~")")
-            Text("description: \(model.description ?? "~")")
+            
+            if model.emoji != nil {
+                Text(model.emoji!)
+            }
+            
+            if model.name != nil {
+                Text("name:")
+                Text(model.name ?? "~")
+            }
+            
+            if model.description != nil {
+                Text("description:")
+                Text(model.description ?? "~")
+            }
+            
             Text("bucks: \(model.bucks ?? 0)")
-            
-            Text("frequency: \(model.frequency.rawValue)")
-            Text("who: \(model.who ?? "~")")
-            Text("timeofday: \(model.timeofday ?? "~")")
-            
+                
             Text("moduleType: \(model.moduleType.rawValue)")
-            
             
             // TODO: handle the imageAsset
             //Text("imageAsset: \(model.imageName ?? "~")")

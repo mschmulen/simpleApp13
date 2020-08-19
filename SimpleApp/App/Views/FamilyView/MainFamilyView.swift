@@ -68,20 +68,22 @@ struct MainFamilyView: View {
                                 )
                             ){
                                 FamilyActivityCardView(model:model)
-                            }.contextMenu {
-                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
-                                    Button(action: {
-                                        self.privateActiveChoreService.pushDelete(model: model) { (result) in
-                                            print("delete result \(result)")
-                                        }
-                                    }) {
-                                        Text("Delete")
-                                        Image(systemName: "trash")
-                                    }
-                                } else {
-                                    Text("No Context Action")
-                                }
                             }
+                            // TODO: fix this context menu ... it breaks stuffq
+//                            .contextMenu {
+//                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
+//                                    Button(action: {
+//                                        self.privateActiveChoreService.pushDelete(model: model) { (result) in
+//                                            print("delete result \(result)")
+//                                        }
+//                                    }) {
+//                                        Text("Delete")
+//                                        Image(systemName: "trash")
+//                                    }
+//                                } else {
+//                                    Text("No Context Action")
+//                                }
+//                            }
                         }
                     }//end Section
                     

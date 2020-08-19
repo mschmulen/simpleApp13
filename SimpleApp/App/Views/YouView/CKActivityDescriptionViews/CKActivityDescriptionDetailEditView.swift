@@ -54,7 +54,7 @@ struct CKActivityDescriptionDetailEditView: View {
             TextField("description", text: $model.description ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
+            TextField("bucks", value: $model.bucks, formatter: NumberFormatter())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
             Picker(selection: $model.moduleType, label: Text("Type")) {
