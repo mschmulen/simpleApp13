@@ -46,7 +46,7 @@ struct PhotoActivityView: View {
                 } else {
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray)
+                            .fill(SemanticAppColor.random)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .border(Color.gray)
                             .onTapGesture {
@@ -141,7 +141,10 @@ struct PhotoActivityView: View {
                         }
                     }
                 case .failure(let error):
-                    print( "error")
+                    print( "PhotoActivityView.error: \(error)")
+                    DispatchQueue.main.async {
+                        self.devMessage = "There was an error updating \(error)"
+                    }
                 }
             }
         }

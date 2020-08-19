@@ -257,6 +257,34 @@ extension FamilyKitAppState {
             return false
         }
     }
+    
+    
+    public func isCurrentPlayerOwnerOrAdult(model: CKActivityModel) ->Bool {
+        
+        guard let currentPlayer = self.currentPlayerModel else {
+            return false
+        }
+
+        guard let playerReference = currentPlayer.ckRecord?.recordID else {
+            return false
+        }
+        
+        if currentPlayer.isAdult {
+            return true
+        }
+        
+        guard let modelKidReferenceRecordID = model.kidReference?.recordID else {
+            return true
+        }
+        
+        if modelKidReferenceRecordID == playerReference {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
 }
 
 

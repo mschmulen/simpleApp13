@@ -39,13 +39,17 @@ struct CKActivityActiveRowView: View {
                         ) {
                             CKActivityActiveItemView(model: model)
                         }.contextMenu {
-                            Button(action: {
-                                self.privateActiveChoreService.pushDelete(model: model) { (result) in
-                                    print("delete result \(result)")
+                            if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
+                                Button(action: {
+                                    self.privateActiveChoreService.pushDelete(model: model) { (result) in
+                                        print("delete result \(result)")
+                                    }
+                                }) {
+                                    Text("Delete")
+                                    Image(systemName: "trash")
                                 }
-                            }) {
-                                Text("Delete")
-                                Image(systemName: "trash")
+                            } else {
+                                Text("No Context Action")
                             }
                         }
                     }

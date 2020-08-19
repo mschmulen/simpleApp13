@@ -33,7 +33,7 @@ struct CKActivityActiveItemView: View {
                         .cornerRadius(5)
                 } else {
                     Rectangle()
-                        .fill(Color.blue)
+                        .fill(SemanticAppColor.random)
                         .frame(width: cardSize, height: cardSize)
                         .cornerRadius(5)
                 }

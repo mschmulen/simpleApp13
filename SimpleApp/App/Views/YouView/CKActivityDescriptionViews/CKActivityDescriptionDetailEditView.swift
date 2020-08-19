@@ -64,16 +64,16 @@ struct CKActivityDescriptionDetailEditView: View {
             }.pickerStyle(SegmentedPickerStyle())
             
             Picker(selection: $model.category, label: Text("Category")) {
-                ForEach(ActivityCategory.allCases, id: \.self) {
+                ForEach(ActivityCategory.allCases.filter { $0 != .none }, id: \.self) {
                     Text($0.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
-            Picker(selection: $model.frequency, label: Text("Frequency")) {
-                ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
+//            Picker(selection: $model.frequency, label: Text("Frequency")) {
+//                ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
+//                    Text($0.rawValue)
+//                }
+//            }.pickerStyle(SegmentedPickerStyle())
             
             //            TextField("who", text: $model.who ?? "")
             //                .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -125,12 +125,14 @@ struct CKActivityDescriptionDetailEditView: View {
         }//end List
             .onAppear {
                 // try and download the image
-                self.model.loadCoverPhoto { (result) in
-                    switch result {
-                    case .failure(_):
-                        break
-                    case .success(let image):
-                        self.coverPhotoImage = image
+                if self.model.coverPhoto != nil {
+                    self.model.loadCoverPhoto { (result) in
+                        switch result {
+                        case .failure(_):
+                            break
+                        case .success(let image):
+                            self.coverPhotoImage = image
+                        }
                     }
                 }
         }

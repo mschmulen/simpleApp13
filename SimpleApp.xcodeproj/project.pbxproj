@@ -74,6 +74,7 @@
 		76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA22124DA5402007A02CF /* ImagePickerRepresentable.swift */; };
 		76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */; };
 		76DF241C24ED74EF009222AF /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241B24ED74EF009222AF /* UserView.swift */; };
+		76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */; };
 		76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11024E03CDE00C68408 /* PlayersListView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
@@ -185,6 +186,7 @@
 		76CFA22124DA5402007A02CF /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
 		76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionDetailEditView.swift; sourceTree = "<group>"; };
 		76DF241B24ED74EF009222AF /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticAppColor.swift; sourceTree = "<group>"; };
 		76EDF11024E03CDE00C68408 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -349,6 +351,7 @@
 				76208B8C24D663F6001F46E2 /* String+Image.swift */,
 				76208B9724D71787001F46E2 /* EmojiView.swift */,
 				7649837B24E5BFA000097C4D /* DevMessageView.swift */,
+				76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
 				76208BA624D8C55F001F46E2 /* AudioPlayerView.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
+				76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
 				7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */,
 				76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */,
@@ -883,7 +887,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -906,7 +910,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

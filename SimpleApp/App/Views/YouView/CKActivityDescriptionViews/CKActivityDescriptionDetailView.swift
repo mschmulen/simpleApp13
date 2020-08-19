@@ -100,6 +100,7 @@ struct CKActivityDescriptionDetailView: View {
             .onAppear {
                 
                 // try and download the image
+                if self.model.coverPhoto != nil {
                 self.model.loadCoverPhoto { (result) in
                     switch result {
                     case .failure(_):
@@ -107,6 +108,7 @@ struct CKActivityDescriptionDetailView: View {
                     case .success(let image):
                         self.coverPhotoImage = image
                     }
+                }
                 }
         }
     }

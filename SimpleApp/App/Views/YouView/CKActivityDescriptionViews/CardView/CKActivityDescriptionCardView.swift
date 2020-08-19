@@ -29,7 +29,7 @@ struct CKActivityDescriptionCardView: View {
                     .cornerRadius(5)
             } else {
                 Rectangle()
-                    .fill(Color.blue)
+                    .fill(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
                 //.border(Color.blue, width: 2)
                 .cornerRadius(5)
@@ -60,12 +60,14 @@ struct CKActivityDescriptionCardView: View {
             self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
         }
         
-        self.model.loadCoverPhoto { (result) in
-            switch result {
-            case .failure(let error):
-                print( "CKChoreDescriptionItemView failure \(error)")
-            case .success(let image):
-                self.coverPhotoImage = Image(uiImage:image )
+        if self.model.coverPhoto != nil {
+            self.model.loadCoverPhoto { (result) in
+                switch result {
+                case .failure(let error):
+                    print( "CKActivityDescriptionCardView.loadCoverPhoto failure \(error)")
+                case .success(let image):
+                    self.coverPhotoImage = Image(uiImage:image )
+                }
             }
         }
     }

@@ -30,10 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         familyKitAppState.onStartup()
         
-        let privateChoreService = CKPrivateModelService<CKActivityDescriptionModel>(
+        let activityDescriptionService = CKPrivateModelService<CKActivityDescriptionModel>(
             container: container
         )
-        privateChoreService.fetch(completion: { result in
+        activityDescriptionService.fetch(completion: { result in
 //            switch result {
 //            case .success(let models) :
 //                print( "privateChoreService success \(models)")
@@ -41,14 +41,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                print( "privateChoreService error \(error)")
 //            }
         })
-        privateChoreService.subscribe(isSilent: false, message: "new ActivityDescription or change")
-        privateChoreService.listenForNotifications()
+        activityDescriptionService.subscribe(isSilent: true, message: "new ActivityDescription or change")
+        activityDescriptionService.listenForNotifications()
        
         // CKChoreActiveModel
-        let privateActiveChoreService = CKPrivateModelService<CKActivityModel>(
+        let activityService = CKPrivateModelService<CKActivityModel>(
             container: container
         )
-        privateActiveChoreService.fetch(completion: { result in
+        activityService.fetch(completion: { result in
 //            switch result {
 //            case .success(let models) :
 //                print( "privateActiveChoreService success \(models)")
@@ -56,8 +56,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                print( "privateActiveChoreService error \(error)")
 //            }
         })
-        privateActiveChoreService.subscribe(isSilent: false, message: "new Activity or activity changed")
-        privateActiveChoreService.listenForNotifications()
+        activityService.subscribe(isSilent: false, message: "new Activity or activity changed")
+        activityService.listenForNotifications()
         
         let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
         chatService.onRefresh()
@@ -71,8 +71,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environment(\.window, window)
             .environmentObject(appState)
             .environmentObject(familyKitAppState)
-            .environmentObject(privateChoreService)
-            .environmentObject(privateActiveChoreService)
+            .environmentObject(activityDescriptionService)
+            .environmentObject(activityService)
             .environmentObject(chatService)
         
         //        let contentView = ContentView()
@@ -96,6 +96,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }

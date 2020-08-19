@@ -88,7 +88,7 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
     }
     
     public static var mock: CKActivityDescriptionModel {
-        var model = CKActivityDescriptionModel()
+        let model = CKActivityDescriptionModel()
         model.name = "Get ready for bed"
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
         model.who = "kids"
@@ -109,7 +109,7 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         self.description = nil
         self.bucks = 2
         self.emoji = nil
-        self.category = .none
+        self.category = .chore
         
         self.coverPhoto = nil
         self.moduleType = .drawing

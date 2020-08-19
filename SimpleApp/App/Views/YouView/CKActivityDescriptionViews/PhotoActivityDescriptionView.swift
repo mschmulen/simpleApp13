@@ -45,7 +45,7 @@ struct PhotoActivityDescriptionView: View {
                 } else {
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray)
+                            .fill(SemanticAppColor.random)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .onTapGesture {
                                 self.showingImagePicker.toggle()

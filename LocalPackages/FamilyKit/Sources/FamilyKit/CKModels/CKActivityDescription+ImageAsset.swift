@@ -13,18 +13,20 @@ extension CKActivityDescriptionModel {
     
     /// loadCoverPhoto
     public func loadCoverPhoto(completion: @escaping (_ result: Result<UIImage, Error>) -> ()) {
+        
         DispatchQueue.global(qos: .utility).async {
             
             var image: UIImage?
+            var loadError: Error?
             
             defer {
                 DispatchQueue.main.async {
                     if let image = image {
                         completion(.success(image))
                     } else {
-                        completion(.failure(CustomError.unknown))
+                         completion(.failure(loadError ?? CustomError.unknown))
                     }
-                    completion(.failure(CustomError.unknown))
+                    completion(.failure(loadError ?? CustomError.unknown))
                 }
             }
             
@@ -40,6 +42,7 @@ extension CKActivityDescriptionModel {
                 imageData = try Data(contentsOf: fileURL)
             } catch let error {
                 print( "error \(error)")
+                loadError = error
                 return
             }
             image = UIImage(data: imageData)

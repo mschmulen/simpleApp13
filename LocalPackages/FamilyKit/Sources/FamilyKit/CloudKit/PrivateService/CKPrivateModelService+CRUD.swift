@@ -1,5 +1,5 @@
 //
-//  CKModelService+CRUD.swift
+//  CKPrivateModelService+CRUD.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/29/20.
@@ -10,11 +10,11 @@ import Foundation
 import CloudKit
 
 // MARK: - Create/Update CRUD
-extension CKPublicModelService {
+extension CKPrivateModelService {
     
     public func pushUpdateCreate(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         if model.recordID != nil {
             pushUpdate(model: model) { (result) in
@@ -29,28 +29,35 @@ extension CKPublicModelService {
     
     private func pushNew(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ){
         if let record = model.ckRecord {
-            container.publicCloudDatabase.save(record) { (record, error) in
+            container.privateCloudDatabase.save(record) { (record, error) in
                 if let error = error {
                     completion(.failure(error) )
                 }
                 
                 if let record = record {
-                    completion(.success(record) )
-                    self.models.append(model)
-                    self.updateChanges()
+                    if let newModel = T(record: record) {
+                        completion(.success(newModel) )
+                        
+                        // immediately add it to the local list
+                        self.models.append(newModel)
+                        
+                        self.updateChanges()
+                    } else {
+                        completion(.failure(CustomError.unknown))
+                    }
                 } else {
                     completion(.failure(CustomError.unknown))
                 }
             }//end save
         }
-    }//end pushNewPublic
+    }//end pushNew
     
     private func pushUpdate(
         model: T,
-        completion: @escaping ((Result<CKRecord,Error>) -> Void)
+        completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
         guard let recordID = model.recordID else {
@@ -59,20 +66,30 @@ extension CKPublicModelService {
             return
         }
         
-        // fetch the model and the update the model
+        guard let record = model.ckRecord else {
+            print( "CANNOT UPDATE A MODEL WITOUT A CKRecord")
+            completion(.failure(CustomError.unknown))
+            return
+        }
         
-        
-        container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {
                 if let updatedRecord = model.ckRecord {
                     for key in T.ckSchemeKeys {
                         record[key] = updatedRecord[key]
                     }
                     
-                    self.container.publicCloudDatabase.save(record) { record, error in
+                    self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
-                            completion(.success(record))
-                            self.updateChanges()
+                            if let updatedModel = T(record: record) {
+                                print( "push updatedModel \(updatedModel)")
+                                completion(.success(updatedModel) )
+                                
+                                // TODO: can you just update this model in the list
+                                self.updateChanges()
+                            } else {
+                                completion(.failure(CustomError.unknown))
+                            }
                             return
                         } else {
                             completion(.failure(error ?? CustomError.unknown))
@@ -94,7 +111,7 @@ extension CKPublicModelService {
 }
 
 // MARK: - Delete CRUD
-extension CKPublicModelService  {
+extension CKPrivateModelService  {
     
     public func pushDelete(
         model: T,
@@ -104,7 +121,8 @@ extension CKPublicModelService  {
             completion( .failure(CustomError.unknown))
             return
         }
-        container.publicCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
+        
+        container.privateCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
             if let recordID = recordID{
                 completion(  .success(recordID) )
                 self.updateChanges()
@@ -112,36 +130,11 @@ extension CKPublicModelService  {
                 completion(  .failure(CustomError.unknown) )
             }
         }
+        
+        // immediately remove if from the local list
+        models.removeAll { (model) -> Bool in
+            model.recordID == modelRecordID
+        }
+        self.updateChanges()
     }
 }
-
-// TODO: Clean up
-//    func add(suggestion: String) {
-//        let whistleRecord = CKRecord(recordType: "Suggestions")
-//        let reference = CKRecord.Reference(recordID: whistle.recordID, action: .deleteSelf)
-//        whistleRecord["text"] = suggestion as CKRecordValue
-//        whistleRecord["owningWhistle"] = reference as CKRecordValue
-//
-//        // more code to come!
-//    }
-
-
-
-//    public func pushNewPrivate(
-//        model: T,
-//        completion: ((Result<CKRecord,Error>) -> Void)?
-//    ){
-//        if let record = model.ckRecord {
-//            container.publicCloudDatabase.save(record) { (record, error) in
-//                if let error = error {
-//                    completion?(.failure(error) )
-//                }
-//
-//                if let record = record {
-//                    completion?(.success(record) )
-//                } else {
-//                    completion?(.failure(CustomError.unknown))
-//                }
-//            }//end save
-//        }
-//    }//end pushNewPrivate

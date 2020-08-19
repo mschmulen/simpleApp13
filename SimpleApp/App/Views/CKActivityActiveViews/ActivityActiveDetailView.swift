@@ -118,7 +118,7 @@ struct CKActivityActiveDetailView: View {
                 GeometryReader { geo in
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray)
+                            .fill(SemanticAppColor.random)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .border(Color.gray)
                             .onTapGesture {

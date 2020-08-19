@@ -24,35 +24,69 @@ struct YouView: View {
     
     @State var devMessage: String?
     let appInfo = AppModel()
+
+    var activeActivities: some View {
+        Section() {
+            CKActivityActiveRowView(
+                categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
+                items: privateActiveChoreService.models.filter({ (model) -> Bool in
+                    if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+            )
+        }
+        .listRowInsets(EdgeInsets())
+    }
+    
+    func sectionHeader(title:String, showAdd:Bool) -> some View {
+        return HStack {
+            if showAdd == true {
+                Text("\(title)")
+                .padding(.leading, 5)
+                Spacer()
+                NavigationLink(
+                    destination: CKActivityDescriptionDetailEditView(
+                        model: CKActivityDescriptionModel()
+                    )
+                ) {
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                        Text("ADD")
+                    }.padding(.trailing, 20)
+                }
+            } else {
+                Text("\(title)")
+                    .padding(.leading, 5)
+                Spacer()
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 List{
-                    Section() {
-                        CKActivityDescriptionCardsRowView(
-                            categoryName: "Activities Todo:",
-                            items: $privateChoreService.models,
-                            isPrivate: true,
-                            showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
-                        )
+                    ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
+                        
+                        // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
+                        Section()
+                        {
+                            CKActivityDescriptionCardsRowView(
+                                categoryName: "\(category.rawValue) Activities:",
+                                items: self.privateChoreService.models.filter { $0.category == category },
+                                isPrivate: true,
+                                showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
+                            )
+                        }
+                        .listRowInsets(EdgeInsets())
                     }
-                    .listRowInsets(EdgeInsets())
-                    
-                    Section() {
-                        CKActivityActiveRowView(
-                            categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
-                            items: privateActiveChoreService.models.filter({ (model) -> Bool in
-                                if model.kidReference == familyKitAppState.currentPlayer.recordReference {
-                                    return true
-                                } else {
-                                    return false
-                                }
-                            })
-                        )
-                    }
-                    .listRowInsets(EdgeInsets())
+
+                    // this users active activities
+                    activeActivities
                 }
                 Text("version \(appInfo.appShortVersion)(\(appInfo.appBuildVersion))")
                     .font(.caption)

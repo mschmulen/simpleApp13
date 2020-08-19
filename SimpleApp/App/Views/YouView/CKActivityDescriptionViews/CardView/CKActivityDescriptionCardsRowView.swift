@@ -16,12 +16,13 @@ struct CKActivityDescriptionCardsRowView: View {
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var categoryName: String
-    @Binding var items: [CKActivityDescriptionModel]
+    var items: [CKActivityDescriptionModel]
     var isPrivate: Bool
     var showAdd: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
+            
             Text(self.categoryName)
                 .font(.headline)
                 .padding(.leading, 15)
@@ -30,10 +31,6 @@ struct CKActivityDescriptionCardsRowView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     
-                    if self.items.count <= 0 {
-                        CKActivityDescriptionNoItemsView()
-                    }
-                    
                     if showAdd {
                         NavigationLink(
                             destination: CKActivityDescriptionDetailEditView(
@@ -41,6 +38,10 @@ struct CKActivityDescriptionCardsRowView: View {
                             )
                         ) {
                             CKActivityDescriptionAddCardView()
+                        }
+                    } else {
+                        if self.items.count <= 0 {
+                            CKActivityDescriptionNoItemsView()
                         }
                     }
                     
@@ -69,15 +70,6 @@ struct CKActivityDescriptionCardsRowView: View {
                                 )
                             ) {
                                 CKActivityDescriptionCardView(model: model)
-                            }.contextMenu {
-                                Button(action: {
-                                    self.privateChoreService.pushDelete(model: model) { (result) in
-                                        print("delete result \(result)")
-                                    }
-                                }) {
-                                    Text("Delete")
-                                    Image(systemName: "trash")
-                                }
                             }
                         }
                     }
@@ -91,16 +83,17 @@ struct CKActivityDescriptionCardsRowView: View {
 #if DEBUG
 struct CKActivityDescriptionRowView_Previews: PreviewProvider {
     static var previews: some View {
-            
+
         Group {
             CKActivityDescriptionCardsRowView(
                 categoryName: "CATEGORY",
-                items: .constant([
+                items: [
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock,
                     CKActivityDescriptionModel.mock
-                ]),
+                ],
+                
                 isPrivate: true,
                 showAdd: true
             )

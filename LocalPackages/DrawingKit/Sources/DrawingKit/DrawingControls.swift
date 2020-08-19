@@ -141,7 +141,7 @@ extension DrawingColor : Codable {
             let greenComponent = try container.decode(CGFloat.self, forKey: .greenComponent)
             let blueComponent = try container.decode(CGFloat.self, forKey: .blueComponent)
             let alphaComponent = try container.decode(CGFloat.self, forKey: .alphaComponent)
-            let uiColor = UIColor(red: redComponent, green: greenComponent, blue: blueComponent, alpha: alphaComponent)
+//            let uiColor = UIColor(red: redComponent, green: greenComponent, blue: blueComponent, alpha: alphaComponent)
 //            self = .swiftColor(Color(uiColor))
             self = .swiftColor(Color.blue) // TODO: fix this hack
             

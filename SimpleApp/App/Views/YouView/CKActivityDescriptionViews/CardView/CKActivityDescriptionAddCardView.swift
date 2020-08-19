@@ -15,19 +15,22 @@ struct CKActivityDescriptionAddCardView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(systemName:"plus")
-                .renderingMode(.original)
-                .resizable()
-                //.scaledToFill()
-                .frame(width: cardSize, height: cardSize)
-                .cornerRadius(5)
-                .padding()
-            HStack {
-                Spacer()
-                Text("New Activity")
-                    .foregroundColor(.primary)
-                    .font(.caption)
-                Spacer()
+            ZStack {
+                Rectangle()
+                    .foregroundColor(SemanticAppColor.random)
+                    .frame(width: cardSize, height: cardSize)
+                    .cornerRadius(5)
+                VStack {
+                    Text("+")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                    Text("New")
+                        .foregroundColor(.white)
+                        .font(.body)
+                    Text("Activity")
+                    .foregroundColor(.white)
+                    .font(.body)
+                }
             }
         }
         .padding()

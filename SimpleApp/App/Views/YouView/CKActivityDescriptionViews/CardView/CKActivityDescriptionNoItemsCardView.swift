@@ -16,23 +16,23 @@ struct CKActivityDescriptionNoItemsView: View {
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
-                    .foregroundColor(.gray)
+                    .foregroundColor(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
                 VStack {
                     Text("No Activities")
                         .foregroundColor(.white)
-                        .font(.body)
+                        .font(.caption)
                     Text("ask an Adult")
                         .foregroundColor(.white)
-                        .font(.body)
+                        .font(.caption)
                     Text("to add some")
                         .foregroundColor(.white)
-                        .font(.body)
+                        .font(.caption)
                 }
             }
         }
-        .padding(.leading, 15)
+        .padding()
     }
 }//end CKActivityDescriptionNoItemsView
 

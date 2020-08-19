@@ -45,8 +45,7 @@ public final class CKUser: CKUserModel, ObservableObject {
     
     public static var mock: CKUser {
         
-        var model = CKUser()
-
+        let model = CKUser()
         model.name = "mock user"
         model.emoji = "😄"
         model.birthDate = nil

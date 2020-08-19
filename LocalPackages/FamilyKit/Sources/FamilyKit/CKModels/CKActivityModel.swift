@@ -63,7 +63,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
     public var kidReference: CKRecord.Reference?
     public var coverPhoto: CKAsset?
     
-    public var moduleType: ActivityModuleType = ActivityModuleType.none
+    public var moduleType: ActivityModuleType = ActivityModuleType.photo
     
     public var resultAssetText: CKAsset?
     public var resultAssetImage: CKAsset?
@@ -72,7 +72,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
     
     //public var statusMessage: String?
     public var status: ActivityStatus = .unknown
-    public var category: ActivityCategory = .none
+    public var category: ActivityCategory = .chore
     
     public var chatSession: CKRecord.Reference?
     
@@ -81,7 +81,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
     }
     
     public static var mock: CKActivityModel {
-        var model = CKActivityModel()
+        let model = CKActivityModel()
         
         model.name = "mock activity"
         model.description = "mock activity description"
@@ -167,7 +167,7 @@ public final class CKActivityModel: CKModel, ObservableObject {
         if let ckChoreDescriptionReference = record["ckChoreDescriptionReference"] as? CKRecord.Reference {
             self.ckChoreDescriptionReference = ckChoreDescriptionReference
         }
-
+        
         if let kidReference = record["kidReference"] as? CKRecord.Reference {
             self.kidReference = kidReference
         }
@@ -296,12 +296,12 @@ extension CKActivityModel {
 extension CKActivityModel {
     
     public static var mockNoEmoji: CKActivityModel {
-        var model = CKActivityModel()
+        let model = CKActivityModel()
         
         model.name = "mock noEmoji"
         model.description = "mock noEmoji activity description"
         model.bucks = 3
-//        model.emoji = "🧳"
+        //        model.emoji = "🧳"
         model.category = .chore
         
         model.ckChoreDescriptionReference = nil
@@ -325,29 +325,29 @@ extension CKActivityModel {
     }
     
     public static var mockPhoto: CKActivityModel {
-            var model = CKActivityModel()
-            
-            model.name = "mock photo activity"
-            model.description = "mock photo activity description"
-            model.bucks = 3
-            model.emoji = "🧳"
-            model.category = .chore
-            model.ckChoreDescriptionReference = nil
-            model.kidReference = nil
-            model.coverPhoto = nil
-            model.moduleType = ActivityModuleType.photo
-            model.resultAssetText = nil
-            model.resultAssetImage = nil
-            model.activityAsset = nil
-            model.status = .active
-            model.category = .chore
-            model.chatSession = nil
-            
-            return model
-        }
+        let model = CKActivityModel()
+        
+        model.name = "mock photo activity"
+        model.description = "mock photo activity description"
+        model.bucks = 3
+        model.emoji = "🧳"
+        model.category = .chore
+        model.ckChoreDescriptionReference = nil
+        model.kidReference = nil
+        model.coverPhoto = nil
+        model.moduleType = ActivityModuleType.photo
+        model.resultAssetText = nil
+        model.resultAssetImage = nil
+        model.activityAsset = nil
+        model.status = .active
+        model.category = .chore
+        model.chatSession = nil
+        
+        return model
+    }
     
     public static var mockDrawing: CKActivityModel {
-        var model = CKActivityModel()
+        let model = CKActivityModel()
         
         model.name = "mock drawing activity"
         model.description = "mock drawing activity description"
@@ -369,7 +369,7 @@ extension CKActivityModel {
     }
     
     public static var mockAudio: CKActivityModel {
-        var model = CKActivityModel()
+        let model = CKActivityModel()
         
         model.name = "mock audio"
         model.description = "mock audio activity description"

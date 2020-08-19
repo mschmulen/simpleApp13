@@ -16,7 +16,7 @@ struct CKActivityActiveNoItemsView: View {
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
-                    .foregroundColor(.gray)
+                    .foregroundColor(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
                 VStack {
@@ -29,7 +29,7 @@ struct CKActivityActiveNoItemsView: View {
                 }
             }
         }
-        .padding(.leading, 15)
+        .padding()
     }
 }//end CKChoreNoItemsView
 
