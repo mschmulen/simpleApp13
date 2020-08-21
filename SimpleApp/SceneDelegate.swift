@@ -36,7 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let activityDescriptionService = CKPrivateModelService<CKActivityDescriptionModel>(
             container: container
         )
-        activityDescriptionService.fetch(completion: { result in
+        activityDescriptionService.fetch(
+            sortDescriptor: .none,
+            completion: { result in
 //            switch result {
 //            case .success(let models) :
 //                print( "privateChoreService success \(models)")
@@ -54,7 +56,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let activityService = CKPrivateModelService<CKActivityModel>(
             container: container
         )
-        activityService.fetch(completion: { result in
+        activityService.fetch(
+            sortDescriptor: .none,
+            completion: { result in
 //            switch result {
 //            case .success(let models) :
 //                print( "privateActiveChoreService success \(models)")

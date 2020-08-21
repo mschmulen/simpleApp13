@@ -27,6 +27,8 @@ struct CKActivityActiveDetailView: View {
     
     @State var showChatSession: Bool = false
     
+    @State var chatSessionModel: CKChatSessionModel?
+    
     var infoView: some View {
         VStack {
             Text("\(model.description ?? "~")")
@@ -97,7 +99,9 @@ struct CKActivityActiveDetailView: View {
                 activityStatusView
                 
                 // TODO: just show the abridged view then if the tap it show the full screen sheet
-                ChatSessionView()
+                
+                // TODO: Fix the global chat
+                //ChatSessionView()
             } else if model.moduleType == .drawing {
                 infoView
                 activityStatusView
@@ -122,19 +126,29 @@ struct CKActivityActiveDetailView: View {
                             .frame(width: geo.size.width, height: geo.size.height)
                             .border(Color.gray)
                             .onTapGesture {
-                                // TODO Show the full Chat
-                                self.showChatSession.toggle()
+                                if self.chatSessionModel != nil {
+                                    // TODO Show the full Chat
+                                    self.showChatSession.toggle()
+                                }
                         }
-                        Text("CHAT PEEK VIEW (TODO)")
+                        if self.chatSessionModel != nil {
+                            Text("CHAT PEEK VIEW (TODO)")
+                        } else {
+                            Text("NO CHAT Session VIEW (TODO)")
+                        }
                     }
                 }
             }
             .frame(height: 100)
                 .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
                     // TODO: Show the specific chat session associated with this view
-                    ChatSessionView()
-                        .environmentObject(self.familyKitAppState)
-                        .environmentObject(self.chatService)
+                    if self.chatSessionModel != nil {
+                        ChatSessionView(chatSession: self.chatSessionModel!)
+                            .environmentObject(self.familyKitAppState)
+                            .environmentObject(self.chatService)
+                    } else {
+                        Text("NO CHAT SESSION")
+                    }
             }
         }//end VStack
             .navigationBarTitle("\(model.title ?? "~")")
@@ -149,7 +163,14 @@ struct CKActivityActiveDetailView: View {
     }
     
     func configureChatSession() {
-        chatService.findOrMakeSession(model:model)
+        let chatSession = chatService.findOrMakeSession(model:model) { result in
+            switch result {
+            case .success(let sessionModel):
+                self.chatSessionModel = sessionModel
+            case .failure(let error):
+                self.devMessage = "error! \(error)"
+            }
+        }
     }
     
     func onSave() {
@@ -166,7 +187,6 @@ struct CKActivityActiveDetailView: View {
             }
         }
     }
-    
     
     //    func onDone() {
     //        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {

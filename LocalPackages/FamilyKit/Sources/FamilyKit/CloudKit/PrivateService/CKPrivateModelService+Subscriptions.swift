@@ -82,7 +82,7 @@ extension CKPrivateModelService {
             
             switch notificationUserInfo.operation {
             case .recordCreated, .recordDeleted:
-                self.fetch(completion: { result in
+                self.fetch(sortDescriptor: .none, completion: { result in
                     switch result {
                     case .success(let models) :
                         print( "CKModelService.listenForNotifications fetch success \(models)")
@@ -95,7 +95,7 @@ extension CKPrivateModelService {
             case .recordUpdated:
                 print( "TODO: recordUpdated recordName: \(notificationUserInfo.recordName ?? "~")")
                 print( "TODO: recordUpdated recordZoneName: \(notificationUserInfo.recordZoneName ?? "~")")
-                self.fetch(completion: { result in
+                self.fetch(sortDescriptor: .none, completion: { result in
                     switch result {
                     case .success(let models) :
                         print( "CKModelService.listenForNotifications fetch success \(models)")

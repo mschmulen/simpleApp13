@@ -38,10 +38,11 @@ struct KidUserView: View {
                 }
             }
             
-            NavigationLink(destination: ChatSessionView()) {
-                Text("Show Chat")
-                    .foregroundColor(.blue)
-            }
+            // TODO: Fix the global chat
+//            NavigationLink(destination: ChatSessionView()) {
+//                Text("Show Chat")
+//                    .foregroundColor(.blue)
+//            }
             
         }.onAppear(perform: {
             self.familyKitAppState.onRefresh()

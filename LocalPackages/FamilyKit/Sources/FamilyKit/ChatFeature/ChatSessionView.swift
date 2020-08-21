@@ -13,8 +13,7 @@ public struct ChatSessionView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var chatService: ChatService
     
-//    @Binding var model: CKActivityModel
-//    @State var chatSession: CKChatSessionModel
+    var chatSessionModel: CKChatSessionModel
     
     @State var typingMessage: String = ""
     
@@ -22,9 +21,8 @@ public struct ChatSessionView: View {
     
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    public init() { //chatSessions: Binding<CKChatSessionModel>) {
-//        self._model = model
-//        self._chatService = chatService
+    public init( chatSession: CKChatSessionModel ) {
+        self.chatSessionModel = chatSession
         
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
@@ -54,6 +52,9 @@ public struct ChatSessionView: View {
                     }
                 }.frame(minHeight: CGFloat(50)).padding()
             }//.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
+                .navigationBarTitle("\(chatSessionModel.title ?? "~")")
+                //.navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
+                
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {

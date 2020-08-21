@@ -23,7 +23,6 @@ struct CKActivityActiveItemView: View {
         
         VStack(alignment: .leading) {
             ZStack {
-                
                 if coverPhotoImage != nil {
                     coverPhotoImage!
                         .renderingMode(.original)
@@ -53,7 +52,9 @@ struct CKActivityActiveItemView: View {
                 }
             }
         }
-        .padding(.leading, 15)
+        .cornerRadius(5)
+        .shadow(radius: 10)
+        .padding()
         .onAppear {
             self.loadCoverImage()
         }

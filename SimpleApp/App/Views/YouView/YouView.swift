@@ -93,10 +93,14 @@ struct YouView: View {
             }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
-                self.privateChoreService.fetch { (result) in
+                self.privateChoreService.fetch(
+                    sortDescriptor: .none
+                ) { (result) in
                     print( "result")
                 }
-                self.privateActiveChoreService.fetch { (result) in
+                self.privateActiveChoreService.fetch(
+                    sortDescriptor: .none
+                ) { (result) in
                     print( "result")
                 }
             }

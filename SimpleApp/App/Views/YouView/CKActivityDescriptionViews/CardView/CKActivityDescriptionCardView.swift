@@ -13,8 +13,7 @@ struct CKActivityDescriptionCardView: View {
     
     var model: CKActivityDescriptionModel
     
-    // Image(systemName: "rosette")
-    @State var coverPhotoImage:Image? = ImageStore.shared.image(name: "turtlerock")
+    @State var coverPhotoImage: Image?
     
     let cardSize: CGFloat = 100
     
@@ -31,31 +30,31 @@ struct CKActivityDescriptionCardView: View {
                 Rectangle()
                     .fill(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
-                //.border(Color.blue, width: 2)
-                .cornerRadius(5)
+                    .cornerRadius(5)
             }
             HStack {
                 Spacer()
                 Text(model.name ?? "~")
-                    .foregroundColor(.primary)
+                    .foregroundColor(.white)
                     .font(.caption)
                 Spacer()
             }
         }
+        .background(SemanticAppColor.random)
+        .cornerRadius(5)
+        .shadow(radius: 10)
         .padding()
-        
 //            .overlay(
 //            RoundedRectangle(cornerRadius: 25)
 //                .stroke(Color.white, lineWidth: 2)
         .onAppear {
-            
             self.loadCoverPhoto()
         }
     }
     
     func loadCoverPhoto() {
         if let emoji = self.model.emoji {
-            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji))
+            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, size:60))
         } else {
             self.coverPhotoImage =  ImageStore.shared.image(name: "turtlerock")
         }

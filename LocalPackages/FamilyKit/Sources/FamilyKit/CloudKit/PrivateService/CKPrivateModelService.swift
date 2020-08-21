@@ -73,10 +73,14 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     }
     
     public enum SortDescriptor {
+        
         case creationDate
         case creationDateAscending
-        // case updateDate
-        // case name
+        
+        case modifiedDate
+        case modifiedDateAscending
+        
+        case none
         
         var sortDescriptors: [NSSortDescriptor] {
             switch self {
@@ -84,6 +88,14 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
                 return [NSSortDescriptor(key: "creationDate", ascending: false)]
             case .creationDateAscending:
                 return [NSSortDescriptor(key: "creationDate", ascending: true)]
+            case .modifiedDate:
+                    return [NSSortDescriptor(key: "modifiedAt", ascending: false)]
+            case .modifiedDateAscending:
+                return [NSSortDescriptor(key: "modifiedAt", ascending: true)]
+                
+            case .none:
+                return [NSSortDescriptor]()
+            
 //            case .updateDate:
 //                    return NSSortDescriptor(key: "creationDate", ascending: false)
 //            case .name:
@@ -102,12 +114,15 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
 extension CKPrivateModelService {
 
     public func fetch(
-        sortDescriptor: SortDescriptor? = nil,
+        sortDescriptor: SortDescriptor,
         completion: @escaping (Result<[T], Error>) -> ()
     ) {
         let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
         
-        if let sortDescriptor = sortDescriptor {
+        switch sortDescriptor {
+        case .none:
+            break
+        default:
             query.sortDescriptors = sortDescriptor.sortDescriptors
         }
         
@@ -219,3 +234,57 @@ extension CKPrivateModelService {
         }
     }
 }
+
+extension CKPrivateModelService {
+    
+    public func fetchByReference(
+        modelReference: CKRecord.Reference,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        let recordID = modelReference.recordID
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            if let record = record, let model = T( record: record) {
+                completion(.success(model))
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+            
+    }
+}
+
+extension CKPrivateModelService {
+    
+    public func fetchByName(
+        name: String,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+
+        // TODO: move this to the model and expand it for the general use case
+        //let pred = NSPredicate(value: true)
+        let pred = NSPredicate(format: "name == %@", name)
+        let query = CKQuery(recordType: T.recordName, predicate: pred)
+        
+        let operation = CKQueryOperation(query: query)
+        //operation.desiredKeys = ["genre", "comments"]
+        operation.resultsLimit = 5
+        
+        var resultModels = [T]()
+        
+//        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+//            if let record = record, let model = T( record: record) {
+//                completion(.success(model))
+//            } else {
+                completion(.failure(CustomError.unknown))
+//            }
+//        }
+        
+        if let first = resultModels.first {
+            completion(.failure(CustomError.unknown))
+        } else {
+            completion(.failure(CustomError.unknown))
+        }
+    }//end fetchByName
+}
+
+

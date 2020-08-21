@@ -47,10 +47,11 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: ChatSessionView()) {
-                    Text("Show Chat")
-                        .foregroundColor(.blue)
-                }
+                            // TODO: Fix the global chat
+//                NavigationLink(destination: ChatSessionView()) {
+//                    Text("Show Chat")
+//                        .foregroundColor(.blue)
+//                }
                 
                 NavigationLink(destination: CKActivityDescriptionListView()) {
                     Text("Show Activity Descriptions")

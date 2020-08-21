@@ -23,17 +23,25 @@ public class ChatService : ObservableObject {
     
     @Published public private (set) var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
+    private var activityService: CKPrivateModelService<CKActivityModel>
+    
+    private var familyChatSessionModel: CKChatSessionModel?
+    
     public init(
         container: CKContainer
     ) {
         self.container = container
         chatMessageService = CKPrivateModelService<CKChatMessageModel>(container: container)
         chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: container)
+        activityService = CKPrivateModelService<CKActivityModel>(container: container)
+        //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
+        //            self.objectWillChange.send()
+        //        })
         
-//        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
-//            self.objectWillChange.send()
-//        })
-        
+    }
+    
+    enum CustomError: Error {
+        case unknown
     }
     
     private func updateChanges() {
@@ -57,26 +65,94 @@ public class ChatService : ObservableObject {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     //self.presentationMode.wrappedValue.dismiss()
-//                    self.privateActiveChoreService.fetch { (result) in
-//                        print( "result")
-//                    }
+                    //                    self.privateActiveChoreService.fetch { (result) in
+                    //                        print( "result")
+                    //                    }
                     self.onRefresh()
                 }
             }
         }
     }
     
-    public func findOrMakeSession(model: CKActivityModel) {
-        print( "findOrMakeSession \(model)")
-        // TODO find the chat session, specifically the global chat session
-    }
+    
+    public func findOrMakeSession(
+        model: CKActivityModel,
+        completion: @escaping ((Result<CKChatSessionModel,Error>) -> Void)
+    ) {
+        if let chatSessionReference = model.chatSession  {
+            chatSessionService.fetchByReference(modelReference: chatSessionReference) { (result) in
+                completion(result)
+            }
+        } else {
+            var newChatSession = CKChatSessionModel()
+            newChatSession.name = "\(model.name ?? "~")"
+            chatSessionService.pushUpdateCreate(model: newChatSession) { (result) in
+                switch result {
+                case .failure(let error):
+                    completion(result)
+                case .success(let resultSession):
+                    if let recordRef = resultSession.ckRecord {
+                        model.chatSession = CKRecord.Reference(recordID: recordRef.recordID, action: .deleteSelf)
+                        self.activityService.pushUpdateCreate(model: model) { (activityResult) in
+                            switch activityResult {
+                            case .failure(let error):
+                                completion(.failure(error))
+                            case .success(_):
+                                completion(result)
+                            }
+                        }
+                    } else {
+                        completion(.failure(CustomError.unknown))
+                    }
+                }
+            }
+        }
+    }// end findOrMakeSession
+    
+    
+    public func findOrMakeFamilySession(
+        completion: @escaping ((Result<CKChatSessionModel,Error>) -> Void)
+    ) {
+//        if let familyChatSessionModel = familyChatSessionModel  {
+//            completion(.success(familyChatSessionModel))
+//        }
+//        else {
+//
+//            //find the chat session
+//            chatSessionService.fetchByName(name:"Family Chat") { result in
+//                switch self{
+//                case .success(let resultSession):
+//                    completion(result)
+//
+//                case .failure(let error):
+//                    // TRY and Make it !
+//                    completion(.failure(CustomError.unknown))
+//
+//                    var newChatSession = CKChatSessionModel()
+//                    newChatSession.name = "Family Chat"
+//
+//                    chatSessionService.pushUpdateCreate(model: newChatSession) { (newChatSessionResult) in
+//                        switch newChatSessionResult {
+//                        case .failure(let error):
+//                            completion(newChatSessionResult)
+//                        case .success(let resultSession):
+//                            self.familyChatSessionModel = resultSession
+//                            completion(.success(resultSession))
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        
+        completion(.failure(CustomError.unknown))
+    }// end findOrMakeSession
 }
 
 // MARK: - StartupServices
 extension ChatService {
     
     public func onRefresh() {
-        chatMessageService.fetch ( sortDescriptor: .creationDateAscending)
+        chatMessageService.fetch ( sortDescriptor: .none)
         { (result) in
             //print( "chatMessageService fetch \(result)")
             self.updateChanges()

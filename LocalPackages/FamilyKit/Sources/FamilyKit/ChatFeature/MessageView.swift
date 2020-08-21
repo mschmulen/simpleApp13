@@ -10,6 +10,7 @@ import SwiftUI
 public struct MessageView : View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    @EnvironmentObject var chatService: ChatService
     
     var currentMessage: CKChatMessageModel
     
@@ -18,28 +19,75 @@ public struct MessageView : View {
     }
     
     public var body: some View {
-        HStack(alignment: .bottom, spacing: 15) {
-            if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
-                Spacer()
-            } else {
-                Text("\(currentMessage.ownerEmoji ?? "")\(currentMessage.ownerName ?? "~"):")
-                    .font(.body)
+        VStack {
+            HStack(alignment: .bottom, spacing: 15) {
+                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                    Spacer()
+                    Text("\(currentMessage.ownerEmoji ?? "")")
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                    Text("\(currentMessage.ownerName ?? "~")")
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                } else {
+                    Text("\(currentMessage.ownerEmoji ?? "")")
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                    Text("\(currentMessage.ownerName ?? "~"):")
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                    Spacer()
+                }
             }
-            //            if !currentMessage.user.isCurrentUser {
-            //                Text(currentMessage.ownerEmoji)
-            //                    .font(.largeTitle)
-            //                //Image(systemName: "person")
-            //                //Image(currentMessage.user.avatar)
-            //                //.resizable()
-            //                //.frame(width: 40, height: 40, alignment: .center)
-            //                .cornerRadius(20)
-            //            } else {
-            //                Spacer()
-            //            }
-            ChatContentMessageView(contentMessage: currentMessage.message ?? "~",
-                               isCurrentUser: false)
-        }.padding()
+            .padding(.leading, 5)
+            .padding(.trailing, 5)
+            HStack {
+                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                    Spacer()
+                    ChatContentMessageView(
+                        contentMessage: currentMessage.message ?? "~",
+                        isCurrentUser: false
+                    )
+                } else {
+                    ChatContentMessageView(
+                        contentMessage: currentMessage.message ?? "~",
+                        isCurrentUser: false
+                    )
+                    Spacer()
+                }
+            }
+        }//end VStack
+            
+            .contextMenu {
+                
+                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                    Button(action: {
+                        self.chatService.chatMessageService.pushDelete(model: self.currentMessage) { (result) in
+                            print("delete result \(result)")
+                        }
+                        print("todo delete")
+                    }) {
+                        Text("Delete")
+                        Image(systemName: "trash")
+                    }
+                } else {
+                    VStack {
+                    Button(action: {
+                        print("todo Like")
+                    }) {
+                        Text("Like")
+                        Image(systemName: "trash")
+                    }
+                    
+                    Button(action: {
+                        print("todo Like")
+                    }) {
+                        Text("No Like")
+                        Image(systemName: "trash")
+                    }
+                    }
+                }
+        }
+        //.border(Color.gray)
+        //.padding()
     }
+    
 }
 
 //struct MessageView_Previews: PreviewProvider {

@@ -31,9 +31,9 @@ struct MainFamilyView: View {
 //    @State var activities: [CKActivityModel] = [CKActivityModel]()
     
     @State var playerFilter = MainFamilyPlayerFilterView.PlayerFilter.none
-    @State var showFilterOptions:Bool = true
+    @State var showFilterOptions: Bool = true
     @State var activityStatusFilter = ActivityStatus.active
-        
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -117,10 +117,14 @@ struct MainFamilyView: View {
                     print("Notification.Name(CloudKitModelService) recieved")
                     self.devMessage = "silent Push! DB changed"
                     
-                    self.privateChoreService.fetch { (result) in
+                    self.privateChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     }
-                    self.privateActiveChoreService.fetch { (result) in
+                    self.privateActiveChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     } }
             

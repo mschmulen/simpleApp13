@@ -13,7 +13,7 @@ struct ChatContentMessageView: View {
     
     var body: some View {
         Text(contentMessage)
-            .font(.body)
+            .font(.system(size: 12, weight: .medium, design: .rounded))
             .lineLimit(nil)
             .padding(10)
             .foregroundColor(isCurrentUser ? Color.white : Color.black)
