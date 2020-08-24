@@ -77,27 +77,26 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         case creationDate
         case creationDateAscending
         
-        case modifiedDate
-        case modifiedDateAscending
+        case modificationDate
+        case modificationDateAscending
         
         case none
         
         var sortDescriptors: [NSSortDescriptor] {
             switch self {
             case .creationDate:
+                //return [NSSortDescriptor(key: "creationDate", ascending: false)]
                 return [NSSortDescriptor(key: "creationDate", ascending: false)]
             case .creationDateAscending:
                 return [NSSortDescriptor(key: "creationDate", ascending: true)]
-            case .modifiedDate:
-                    return [NSSortDescriptor(key: "modifiedAt", ascending: false)]
-            case .modifiedDateAscending:
-                return [NSSortDescriptor(key: "modifiedAt", ascending: true)]
-                
+            case .modificationDate:
+                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
+            case .modificationDateAscending:
+                return [NSSortDescriptor(key: "modificationDate", ascending: true)]
             case .none:
-                return [NSSortDescriptor]()
-            
-//            case .updateDate:
-//                    return NSSortDescriptor(key: "creationDate", ascending: false)
+                // return [NSSortDescriptor]()
+                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
+                
 //            case .name:
 //                return NSSortDescriptor(key: "name", ascending: true)
             }
@@ -120,8 +119,8 @@ extension CKPrivateModelService {
         let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
         
         switch sortDescriptor {
-        case .none:
-            break
+//        case .none:
+//            break
         default:
             query.sortDescriptors = sortDescriptor.sortDescriptors
         }

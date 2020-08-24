@@ -152,7 +152,7 @@ public class ChatService : ObservableObject {
 extension ChatService {
     
     public func onRefresh() {
-        chatMessageService.fetch ( sortDescriptor: .none)
+        chatMessageService.fetch ( sortDescriptor: .creationDateAscending)
         { (result) in
             //print( "chatMessageService fetch \(result)")
             self.updateChanges()
