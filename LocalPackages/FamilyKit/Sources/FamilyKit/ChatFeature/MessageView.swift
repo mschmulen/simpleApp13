@@ -10,7 +10,6 @@ import SwiftUI
 public struct MessageView : View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    @EnvironmentObject var chatService: ChatService
     
     var currentMessage: CKChatMessageModel
     
@@ -58,9 +57,10 @@ public struct MessageView : View {
                 
                 if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
                     Button(action: {
-                        self.chatService.chatMessageService.pushDelete(model: self.currentMessage) { (result) in
-                            print("delete result \(result)")
-                        }
+                        // TODO: fix the delete
+//                        self.chatService.chatMessageService.pushDelete(model: self.currentMessage) { (result) in
+//                            print("delete result \(result)")
+//                        }
                         print("todo delete")
                     }) {
                         Text("Delete")

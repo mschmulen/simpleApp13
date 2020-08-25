@@ -22,7 +22,6 @@
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
 		760AF32E24F01F6E00EC815A /* ChatPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760AF32D24F01F6E00EC815A /* ChatPreviews.swift */; };
-		7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66524DC692C003488EB /* _ActivityActionView.swift */; };
 		7616F66824DC7723003488EB /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* YouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		7616F66C24DC8823003488EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616F66B24DC8823003488EB /* StoreKit.framework */; };
@@ -132,7 +131,6 @@
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		760AF32D24F01F6E00EC815A /* ChatPreviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPreviews.swift; sourceTree = "<group>"; };
-		7616F66524DC692C003488EB /* _ActivityActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ActivityActionView.swift; sourceTree = "<group>"; };
 		7616F66724DC7723003488EB /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		7616F66B24DC8823003488EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -483,7 +481,6 @@
 				7649838A24E73DCB00097C4D /* AudioActivityView.swift */,
 				76DF241A24ED7392009222AF /* ListView */,
 				76DF241924ED738C009222AF /* CardView */,
-				7616F66524DC692C003488EB /* _ActivityActionView.swift */,
 			);
 			path = CKActivityActiveViews;
 			sourceTree = "<group>";
@@ -715,7 +712,6 @@
 				7616F66824DC7723003488EB /* YouView.swift in Sources */,
 				76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */,
 				76DF241C24ED74EF009222AF /* UserView.swift in Sources */,
-				7616F66624DC692C003488EB /* _ActivityActionView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,

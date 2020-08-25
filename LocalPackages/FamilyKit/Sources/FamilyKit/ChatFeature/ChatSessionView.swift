@@ -11,7 +11,8 @@ import CloudKit
 public struct ChatSessionView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    @EnvironmentObject var chatService: ChatService
+    
+    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
     
     var chatSessionModel: CKChatSessionModel
     
@@ -23,7 +24,6 @@ public struct ChatSessionView: View {
     
     public init( chatSession: CKChatSessionModel ) {
         self.chatSessionModel = chatSession
-        
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
     }
@@ -38,8 +38,11 @@ public struct ChatSessionView: View {
                             self.devMessage = nil
                     }
                 }
+                Text("# \(self.chatService.chatMessages.count)")
                 List {
-                    ForEach( self.chatService.chatMessageService.models ) { model in
+                    // chatMessages
+                    //ForEach( self.chatService.chatMessageService.models ) { model in
+                    ForEach( self.chatService.chatMessages ) { model in
                         MessageView(currentMessage: model)
                     }
                 }
@@ -60,12 +63,14 @@ public struct ChatSessionView: View {
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
-            self.chatService.onRefresh()
+            self.chatService.onStartUp()
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
-            print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
             self.chatService.onRefresh()
         }
+//        .onReceive(self.chatService.$chatMessages) { (publisher) in
+//            self.devMessage = "changed \(UUID().uuidString)"
+//        }
     }
     
     func sendMessage() {
@@ -74,7 +79,7 @@ public struct ChatSessionView: View {
         newMessage.ownerEmoji = familyKitAppState.currentPlayerModel?.emoji ?? "🌞"
         newMessage.ownerName = familyKitAppState.currentPlayerModel?.name ?? "none"
         newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
-        chatService.sendMessage(newMessage)
+        chatService.sendMessage(newMessage, sessionModel: chatSessionModel)
         typingMessage = ""
     }
 }

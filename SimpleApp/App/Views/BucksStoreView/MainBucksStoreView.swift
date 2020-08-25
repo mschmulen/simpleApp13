@@ -20,7 +20,6 @@ struct MainBucksStoreView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
     

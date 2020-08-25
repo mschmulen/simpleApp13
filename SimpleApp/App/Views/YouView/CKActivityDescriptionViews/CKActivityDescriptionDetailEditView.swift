@@ -18,7 +18,6 @@ struct CKActivityDescriptionDetailEditView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
     

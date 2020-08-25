@@ -21,9 +21,12 @@ struct KidUserView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
+    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
+    
+    @State var showChatSession:Bool = false
+    @State var chatSessionModel: CKChatSessionModel?
     
     var body: some View {
         List{
@@ -37,18 +40,45 @@ struct KidUserView: View {
                         .foregroundColor(.blue)
                 }
             }
+                        
+            if self.chatSessionModel != nil {
+                Button(action: {
+                    self.showChatSession.toggle()
+                }){
+                    Text("Show Chat")
+                        .foregroundColor(.blue)
+                }
+            }
             
-            // TODO: Fix the global chat
-//            NavigationLink(destination: ChatSessionView()) {
-//                Text("Show Chat")
-//                    .foregroundColor(.blue)
-//            }
+        }
+        .sheet(isPresented: $showChatSession) {
+            if self.chatSessionModel != nil {
+                ChatSessionView(chatSession: self.chatSessionModel!)
+                    .environmentObject(self.familyKitAppState)
+                    //.environmentObject(self.chatService)
+            } else {
+                Text("NO CHAT SESSION")
+            }
+        }//end sheet
+        .onAppear(perform: {
             
-        }.onAppear(perform: {
+            self.configureChatSession()
             self.familyKitAppState.onRefresh()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
+    
+    func configureChatSession() {
+        chatService.findOrMakeFamilySession { (result) in
+            switch result {
+            case .success(let sessionModel):
+                self.chatSessionModel = sessionModel
+            case .failure(let error):
+                self.devMessage = "error! \(error)"
+            }
+        }
+    }
+    
 }
 
 

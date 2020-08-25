@@ -9,12 +9,19 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKChatSessionModel: CKModel {
+// public struct CKChatSessionModel: CKModel {
+public final class CKChatSessionModel: CKModel, ObservableObject {
+    
+    public static func == (lhs: CKChatSessionModel, rhs: CKChatSessionModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKChatSessionModel
     public static let recordName = "ChatSession"
     public static let ckSchemeKeys = [
-        "name"
+        "name",
+        "messages"
     ]
     
 
@@ -22,6 +29,8 @@ public struct CKChatSessionModel: CKModel {
     public var recordID: CKRecord.ID?
     
     public var name: String?
+    
+    public var chatMessages: [CKRecord.Reference]
     
     public var title: String? {
         return name
@@ -36,6 +45,7 @@ public struct CKChatSessionModel: CKModel {
     public init(
     ){
         self.name = nil
+        self.chatMessages =  [CKRecord.Reference]()
     }
     
     public init?(record: CKRecord) {
@@ -49,6 +59,13 @@ public struct CKChatSessionModel: CKModel {
         
         self.recordID = record.recordID
         self.name = _name
+        
+        if let _chatMessages = record["messages"] as? [CKRecord.Reference] {
+            self.chatMessages = _chatMessages
+        } else {
+            self.chatMessages =  [CKRecord.Reference]()
+        }
+        
     }
     
     enum CustomError: Error {
@@ -84,6 +101,12 @@ extension CKChatSessionModel {
         
         if let name = name {
             record["name"] = name as CKRecordValue
+        }
+        
+        if chatMessages.count > 0 {
+            record["messages"] = chatMessages as? [CKRecord.Reference]
+        } else {
+            print( "no messages")
         }
         
         return record

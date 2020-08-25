@@ -258,7 +258,7 @@ extension CKPrivateModelService {
         name: String,
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
-
+        
         // TODO: move this to the model and expand it for the general use case
         //let pred = NSPredicate(value: true)
         let pred = NSPredicate(format: "name == %@", name)
@@ -266,23 +266,30 @@ extension CKPrivateModelService {
         
         let operation = CKQueryOperation(query: query)
         //operation.desiredKeys = ["genre", "comments"]
-        operation.resultsLimit = 5
+        operation.resultsLimit = 2
         
-        var resultModels = [T]()
+        container.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            if let records = records, let firstRecord = records.first, let model = T(record: firstRecord) {
+                completion(.success(model))
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
         
 //        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
 //            if let record = record, let model = T( record: record) {
 //                completion(.success(model))
 //            } else {
-                completion(.failure(CustomError.unknown))
+//        completion(.failure(CustomError.unknown))
 //            }
 //        }
-        
-        if let first = resultModels.first {
-            completion(.failure(CustomError.unknown))
-        } else {
-            completion(.failure(CustomError.unknown))
-        }
+
+//        var resultModels = [T]()
+//        if let first = resultModels.first {
+//            completion(.failure(CustomError.unknown))
+//        } else {
+//            completion(.failure(CustomError.unknown))
+//        }
     }//end fetchByName
 }
 

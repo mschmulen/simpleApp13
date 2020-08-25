@@ -20,7 +20,7 @@ struct MainFamilyView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
+    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
     
@@ -172,7 +172,7 @@ struct MainFamilyView_Previews: PreviewProvider {
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
             .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
-            .environmentObject(ChatService(container:container))
+            //.environmentObject(ChatService(container:container))
         
     }
 }

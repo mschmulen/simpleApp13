@@ -89,11 +89,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         // ---------------------------------------------
-
-        let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
-        chatService.onRefresh()
-        chatService.chatMessageService.subscribe(isSilent: false, message: "New Chat")
-        chatService.chatMessageService.listenForNotifications()
+//        let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
+//        chatService.onRefresh()
+//        chatService.chatMessageService.subscribe(isSilent: false, message: "New Chat")
+//        chatService.chatMessageService.listenForNotifications()
+//        chatService.onStartUp()
         // ---------------------------------------------
         
         let appState = AppState()
@@ -105,7 +105,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(familyKitAppState)
             .environmentObject(activityDescriptionService)
             .environmentObject(activityService)
-            .environmentObject(chatService)
+            //.environmentObject(chatService)
         
         //        let contentView = ContentView()
         //            .environment(\.window, window)

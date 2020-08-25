@@ -18,7 +18,6 @@ struct PhotoActivityDescriptionView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var chatService: ChatService
     
     var model: CKActivityDescriptionModel
     

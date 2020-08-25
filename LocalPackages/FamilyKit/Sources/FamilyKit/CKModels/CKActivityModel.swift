@@ -31,7 +31,6 @@ public final class CKActivityModel: CKModel, ObservableObject {
     public static func == (lhs: CKActivityModel, rhs: CKActivityModel) -> Bool {
         return lhs.id == rhs.id
     }
-    
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKActivityModel

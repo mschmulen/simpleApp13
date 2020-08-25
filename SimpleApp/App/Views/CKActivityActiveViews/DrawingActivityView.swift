@@ -19,7 +19,6 @@ struct DrawingActivityView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String? = nil
     

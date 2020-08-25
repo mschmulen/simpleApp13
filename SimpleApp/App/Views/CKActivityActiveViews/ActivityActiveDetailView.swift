@@ -18,7 +18,7 @@ struct CKActivityActiveDetailView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
+    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
     
@@ -145,7 +145,7 @@ struct CKActivityActiveDetailView: View {
                     if self.chatSessionModel != nil {
                         ChatSessionView(chatSession: self.chatSessionModel!)
                             .environmentObject(self.familyKitAppState)
-                            .environmentObject(self.chatService)
+                            //.environmentObject(self.chatService)
                     } else {
                         Text("NO CHAT SESSION")
                     }
