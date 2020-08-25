@@ -18,8 +18,7 @@ struct CKActivityActiveListView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
-        
+    
     @State var devMessage: String?
     
     var deleteDisabled = false
@@ -47,7 +46,9 @@ struct CKActivityActiveListView: View {
         .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.privateChoreService.fetch { (result) in
+            self.privateChoreService.fetch(
+                sortDescriptor: .creationDate
+            ) { (result) in
                 print( "fetch \(result)")
             }
         }

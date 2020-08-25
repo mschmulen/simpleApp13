@@ -10,7 +10,7 @@ import SwiftUI
 import CloudKit
 
 public struct CKStoreItemPurchaseModel: CKModel {
-
+    
     public typealias ItemType = CKStoreItemPurchaseModel
     public static let recordName = "StoreItemPurchase"
     public static let ckSchemeKeys = [
@@ -30,18 +30,20 @@ public struct CKStoreItemPurchaseModel: CKModel {
     public var info: String?
     
     // TODO: support these properites
-    public var storeItemReference: CKRecord.Reference?
-    public var purchasePlayer: CKRecord.Reference?
-    public var fulfilmentStatus: FulfilmentStatus = .unknown
+//    public var fulfillmentStatus: FulfillmentStatus = .unknown
+//    public var storeItemReference: CKRecord.Reference?
+//    public var purchasePlayer: CKRecord.Reference?
     
-    public enum FulfilmentStatus{
+    public enum FulfillmentStatus {
         case unknown
         case purchased
+        case fulfilled
     }
+    
     public var title: String? {
         return name
     }
-
+    
     public static var mock: CKStoreItemPurchaseModel {
         var model = CKStoreItemPurchaseModel()
         model.name = "mock store item"
@@ -49,19 +51,19 @@ public struct CKStoreItemPurchaseModel: CKModel {
         model.info = "some mock store item info"
         return model
     }
-
+    
     public init(
     ){
         self.name = nil
         self.bucks = nil
         self.info = nil
     }
-
+    
     public init?(record: CKRecord) {
         guard
             let _name = record["name"] as? String
             else {
-                print("CKKidModel incomplete record")
+                print("CKStoreItemPurchaseModel incomplete record")
                 print( "\(record["name"] as? String ?? "no name")")
                 return nil
         }

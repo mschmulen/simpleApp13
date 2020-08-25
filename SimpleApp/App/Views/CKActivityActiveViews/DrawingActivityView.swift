@@ -19,7 +19,6 @@ struct DrawingActivityView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String? = nil
     
@@ -90,10 +89,12 @@ struct DrawingActivityView: View {
 //                        .frame(height: 200)
 //                }
                 
-                NavigationLink(destination: ChatSessionView()) {
-                    Text("Show Chat")
-                        .foregroundColor(.blue)
-                }
+                
+                // TODO: Fix the global chat
+//                NavigationLink(destination: ChatSessionView()) {
+//                    Text("Show Chat")
+//                        .foregroundColor(.blue)
+//                }
                 
             }
         }
@@ -117,7 +118,9 @@ struct DrawingActivityView: View {
                 self.devMessage = "success"
                 DispatchQueue.main.async {
                     //self.presentationMode.wrappedValue.dismiss()
-                    self.privateActiveChoreService.fetch { (result) in
+                    self.privateActiveChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     }
                 }

@@ -18,7 +18,6 @@ struct CKActivityDescriptionDetailEditView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
     
@@ -147,7 +146,9 @@ struct CKActivityDescriptionDetailEditView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.privateChoreService.fetch { (result) in
+                    self.privateChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     }
                 }

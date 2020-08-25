@@ -68,6 +68,7 @@ struct FamilyActivityCardView: View {
             } //end ZStack
         }//end VStack
             .frame(height: frameHeight)
+            //.frame(width: .infinity)
             .onAppear {
                 self.loadCoverPhotoImage()
         }// end onAppear

@@ -20,7 +20,7 @@ struct MainFamilyView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var chatService: ChatService
+    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
     
@@ -31,9 +31,9 @@ struct MainFamilyView: View {
 //    @State var activities: [CKActivityModel] = [CKActivityModel]()
     
     @State var playerFilter = MainFamilyPlayerFilterView.PlayerFilter.none
-    @State var showFilterOptions:Bool = true
+    @State var showFilterOptions: Bool = true
     @State var activityStatusFilter = ActivityStatus.active
-        
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -65,10 +65,12 @@ struct MainFamilyView: View {
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
                                     model: model, localActivityStatus: model.status
-                                )
+                                ).buttonStyle(PlainButtonStyle())
                             ){
                                 FamilyActivityCardView(model:model)
+                                    .edgesIgnoringSafeArea(.horizontal)
                             }
+                            
                             // TODO: fix this context menu ... it breaks stuffq
 //                            .contextMenu {
 //                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
@@ -108,6 +110,7 @@ struct MainFamilyView: View {
                     .font(.caption)
             }//end VStack
                 .onAppear(perform: {
+                    print( "test")
                     //self.activities = self.privateActiveChoreService.models
                 })
                 .navigationBarTitle("Family")
@@ -117,10 +120,14 @@ struct MainFamilyView: View {
                     print("Notification.Name(CloudKitModelService) recieved")
                     self.devMessage = "silent Push! DB changed"
                     
-                    self.privateChoreService.fetch { (result) in
+                    self.privateChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     }
-                    self.privateActiveChoreService.fetch { (result) in
+                    self.privateActiveChoreService.fetch(
+                        sortDescriptor: .none
+                    ) { (result) in
                         print( "result")
                     } }
             
@@ -168,7 +175,7 @@ struct MainFamilyView_Previews: PreviewProvider {
             .environmentObject((FamilyKitAppState(container: container)))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
             .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
-            .environmentObject(ChatService(container:container))
+            //.environmentObject(ChatService(container:container))
         
     }
 }

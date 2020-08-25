@@ -32,6 +32,7 @@ struct CKActivityDescriptionNoItemsView: View {
                 }
             }
         }
+        .shadow(radius: 10)
         .padding()
     }
 }//end CKActivityDescriptionNoItemsView

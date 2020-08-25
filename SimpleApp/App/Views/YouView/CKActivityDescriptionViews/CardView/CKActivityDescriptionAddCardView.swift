@@ -33,6 +33,7 @@ struct CKActivityDescriptionAddCardView: View {
                 }
             }
         }
+        .shadow(radius: 10)
         .padding()
     }
     

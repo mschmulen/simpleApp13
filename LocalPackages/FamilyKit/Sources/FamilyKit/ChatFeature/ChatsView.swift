@@ -12,8 +12,6 @@ public struct ChatsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var chatService: ChatService
-    
     @State var errorMessage: String?
     
     @State var chatSessions: [UUID] = [UUID]()

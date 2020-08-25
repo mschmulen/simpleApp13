@@ -103,7 +103,9 @@ extension FamilyKitAppState {
     
     public func onStartup() {
         
-        playerService.fetch(completion: { result in
+        playerService.fetch(
+            sortDescriptor: .none,
+            completion: { result in
             switch result {
             case .success(_) :
                 self.updateChanges()
@@ -124,7 +126,9 @@ extension FamilyKitAppState {
     }
     
     public func onRefresh() {
-        playerService.fetch { (result) in
+        playerService.fetch(
+            sortDescriptor: .none
+        ) { (result) in
             self.updateChanges()
         }
         

@@ -70,6 +70,8 @@ struct MainFamilyPlayerFilterView: View {
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(cardRadius)
+                        .shadow(radius: 10)
+                        
                         .onTapGesture {
                             self.currentFilter = PlayerFilter.none
                         }
@@ -85,6 +87,7 @@ struct MainFamilyPlayerFilterView: View {
                             .padding()
                             .background(Color.green)
                             .cornerRadius(self.cardRadius)
+                            .shadow(radius: 10)
                             .onTapGesture {
                                 self.currentFilter = PlayerFilter.person( player )
                             }

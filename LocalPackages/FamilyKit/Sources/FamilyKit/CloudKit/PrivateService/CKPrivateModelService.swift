@@ -73,19 +73,30 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     }
     
     public enum SortDescriptor {
+        
         case creationDate
         case creationDateAscending
-        // case updateDate
-        // case name
+        
+        case modificationDate
+        case modificationDateAscending
+        
+        case none
         
         var sortDescriptors: [NSSortDescriptor] {
             switch self {
             case .creationDate:
+                //return [NSSortDescriptor(key: "creationDate", ascending: false)]
                 return [NSSortDescriptor(key: "creationDate", ascending: false)]
             case .creationDateAscending:
                 return [NSSortDescriptor(key: "creationDate", ascending: true)]
-//            case .updateDate:
-//                    return NSSortDescriptor(key: "creationDate", ascending: false)
+            case .modificationDate:
+                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
+            case .modificationDateAscending:
+                return [NSSortDescriptor(key: "modificationDate", ascending: true)]
+            case .none:
+                // return [NSSortDescriptor]()
+                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
+                
 //            case .name:
 //                return NSSortDescriptor(key: "name", ascending: true)
             }
@@ -102,12 +113,15 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
 extension CKPrivateModelService {
 
     public func fetch(
-        sortDescriptor: SortDescriptor? = nil,
+        sortDescriptor: SortDescriptor,
         completion: @escaping (Result<[T], Error>) -> ()
     ) {
         let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
         
-        if let sortDescriptor = sortDescriptor {
+        switch sortDescriptor {
+//        case .none:
+//            break
+        default:
             query.sortDescriptors = sortDescriptor.sortDescriptors
         }
         
@@ -219,3 +233,64 @@ extension CKPrivateModelService {
         }
     }
 }
+
+extension CKPrivateModelService {
+    
+    public func fetchByReference(
+        modelReference: CKRecord.Reference,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        let recordID = modelReference.recordID
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            if let record = record, let model = T( record: record) {
+                completion(.success(model))
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+            
+    }
+}
+
+extension CKPrivateModelService {
+    
+    public func fetchByName(
+        name: String,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        
+        // TODO: move this to the model and expand it for the general use case
+        //let pred = NSPredicate(value: true)
+        let pred = NSPredicate(format: "name == %@", name)
+        let query = CKQuery(recordType: T.recordName, predicate: pred)
+        
+        let operation = CKQueryOperation(query: query)
+        //operation.desiredKeys = ["genre", "comments"]
+        operation.resultsLimit = 2
+        
+        container.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            if let records = records, let firstRecord = records.first, let model = T(record: firstRecord) {
+                completion(.success(model))
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+        
+//        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+//            if let record = record, let model = T( record: record) {
+//                completion(.success(model))
+//            } else {
+//        completion(.failure(CustomError.unknown))
+//            }
+//        }
+
+//        var resultModels = [T]()
+//        if let first = resultModels.first {
+//            completion(.failure(CustomError.unknown))
+//        } else {
+//            completion(.failure(CustomError.unknown))
+//        }
+    }//end fetchByName
+}
+
+
