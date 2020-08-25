@@ -558,8 +558,8 @@
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "167"
-                  endingLineNumber = "167"
+                  startingLineNumber = "166"
+                  endingLineNumber = "166"
                   offsetFromSymbolStart = "64">
                </Location>
                <Location
@@ -573,8 +573,8 @@
                   urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
                   offsetFromSymbolStart = "137">
                </Location>
             </Locations>
@@ -594,38 +594,6 @@
             endingLineNumber = "169"
             landmarkName = "configureChatSession()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0C715B32-9486-4C4D-B2C9-FC8250DE7279 - 9be0345d16ee69f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKChatSessionModel, Swift.Error&gt;) -&gt; () in P_S_Family.CKActivityActiveDetailView.configureChatSession() -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "171">
-               </Location>
-               <Location
-                  uuid = "0C715B32-9486-4C4D-B2C9-FC8250DE7279 - 9be0345d16ee69f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKChatSessionModel, Swift.Error&gt;) -&gt; () in P_S_Family.CKActivityActiveDetailView.configureChatSession() -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "196">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

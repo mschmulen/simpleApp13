@@ -65,10 +65,12 @@ struct MainFamilyView: View {
                             NavigationLink(
                                 destination: CKActivityActiveDetailView(
                                     model: model, localActivityStatus: model.status
-                                )
+                                ).buttonStyle(PlainButtonStyle())
                             ){
                                 FamilyActivityCardView(model:model)
+                                    .edgesIgnoringSafeArea(.horizontal)
                             }
+                            
                             // TODO: fix this context menu ... it breaks stuffq
 //                            .contextMenu {
 //                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
@@ -108,6 +110,7 @@ struct MainFamilyView: View {
                     .font(.caption)
             }//end VStack
                 .onAppear(perform: {
+                    print( "test")
                     //self.activities = self.privateActiveChoreService.models
                 })
                 .navigationBarTitle("Family")
