@@ -45,17 +45,15 @@ struct KidUserView: View {
                 Button(action: {
                     self.showChatSession.toggle()
                 }){
-                    Text("Show Chat")
+                    Text("Family Chat")
                         .foregroundColor(.blue)
                 }
             }
-            
         }
         .sheet(isPresented: $showChatSession) {
             if self.chatSessionModel != nil {
                 ChatSessionView(chatSession: self.chatSessionModel!)
                     .environmentObject(self.familyKitAppState)
-                    //.environmentObject(self.chatService)
             } else {
                 Text("NO CHAT SESSION")
             }

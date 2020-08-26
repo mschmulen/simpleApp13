@@ -54,7 +54,7 @@ struct AdultUserView: View {
                     Button(action: {
                         self.showChatSession.toggle()
                     }){
-                        Text("Show Chat")
+                        Text("Family Chat")
                             .foregroundColor(.blue)
                     }
                 }
@@ -126,8 +126,7 @@ struct AdultUserView: View {
         .sheet(isPresented: $showChatSession) {
                    if self.chatSessionModel != nil {
                        ChatSessionView(chatSession: self.chatSessionModel!)
-                           .environmentObject(self.familyKitAppState)
-                           //.environmentObject(self.chatService)
+                           .environmentObject(self.familyKitAppState)                           
                    } else {
                        Text("NO CHAT SESSION")
                    }

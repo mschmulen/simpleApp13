@@ -142,7 +142,6 @@ struct CKActivityActiveDetailView: View {
                     if self.chatSessionModel != nil {
                         ChatSessionView(chatSession: self.chatSessionModel!)
                             .environmentObject(self.familyKitAppState)
-                            //.environmentObject(self.chatService)
                     } else {
                         Text("NO CHAT SESSION")
                     }

@@ -34,6 +34,7 @@ struct ContentView: View {
         case you = 0
         case family = 1
         case bucksStore = 2
+        case familyChat = 3
     }
     
     @ViewBuilder
@@ -60,7 +61,6 @@ struct ContentView: View {
                                 .environmentObject(familyKitAppState)
                                 .environmentObject(privateChoreService)
                                 .environmentObject(privateActiveChoreService)
-                                //.environmentObject(chatService)
                                 .tabItem {
                                     Image(systemName: "person.circle")
                                     Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
@@ -72,7 +72,6 @@ struct ContentView: View {
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
                             .environmentObject(privateActiveChoreService)
-                            //.environmentObject(chatService)
                             .tabItem {
                                 Image(systemName: "house")
                                 Text("Family")
@@ -84,12 +83,22 @@ struct ContentView: View {
                             .environmentObject(familyKitAppState)
                             .environmentObject(privateChoreService)
                             .environmentObject(privateActiveChoreService)
-                            //.environmentObject(chatService)
                             .tabItem {
                                 Image(systemName: "dollarsign.circle")
                                 // .font(.system(size: 28, weight: .light))
                                 Text("Bucks")
                         }.tag(TabViewIndex.bucksStore.rawValue)
+                        
+                        FamilyChatView()
+                            .environment(\.window, window)
+                            .environmentObject(appState)
+                            .environmentObject(familyKitAppState)
+                            .environmentObject(privateChoreService)
+                            .environmentObject(privateActiveChoreService)
+                            .tabItem {
+                                Image(systemName: "person.3")
+                                Text("Chat")
+                        }.tag(TabViewIndex.familyChat.rawValue)
                     }
                 }
                 
