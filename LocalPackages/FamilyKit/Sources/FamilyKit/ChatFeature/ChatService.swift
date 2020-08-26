@@ -23,6 +23,12 @@ public class ChatService: ObservableObject {
     private var chatMessageService: CKPrivateModelService<CKChatMessageModel>
     static var familyChatSessionModel: CKChatSessionModel?
     
+    public var chatSessionModel: CKChatSessionModel? {
+        didSet {
+            print( "did set chatSessionModel")
+        }
+    }
+    
     @Published public private (set) var chatSessionService: CKPrivateModelService<CKChatSessionModel> {
         willSet {
             updateChanges()
@@ -44,10 +50,6 @@ public class ChatService: ObservableObject {
         chatMessageService = CKPrivateModelService<CKChatMessageModel>(container: container)
         chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: container)
         activityService = CKPrivateModelService<CKActivityModel>(container: container)
-        
-// anyCancellable = Publishers.CombineLatest(chatSessionService.$models,familyChatSessionModel).sink(receiveValue: {_ in
-//            self.objectWillChange.send()
-//        })
     }
     
     enum CustomError: Error {
@@ -62,13 +64,17 @@ public class ChatService: ObservableObject {
     }
     
     public func onStartUp() {
-        self.findOrMakeFamilySession { (result) in
-            switch result {
-            case .failure(let error):
-                print( "error \(error)")
-            case .success(let sessionModel):
-                ChatService.familyChatSessionModel = sessionModel
-                self.onRefetchFromServer()
+        self.onRefetchFromServer()
+        
+        if ChatService.familyChatSessionModel == nil {
+            self.findOrMakeFamilySession { (result) in
+                switch result {
+                case .failure(let error):
+                    print( "error \(error)")
+                case .success(let sessionModel):
+                    ChatService.familyChatSessionModel = sessionModel
+                    self.onRefetchFromServer()
+                }
             }
         }
     }
@@ -150,14 +156,12 @@ public class ChatService: ObservableObject {
     ) {
         if let familyChatSessionModel = ChatService.familyChatSessionModel  {
             completion(.success(familyChatSessionModel))
-        }
-        else {
+        } else {
             chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
                 switch fetchResult {
                 case .success(let fetchResultModel):
                     completion(.success(fetchResultModel))
                 case .failure(_):
-                    completion(.failure(CustomError.unknown))
                     let newChatSession = CKChatSessionModel()
                     newChatSession.name = "Family Chat"
                     self.chatSessionService.pushUpdateCreate(model: newChatSession) { (newChatSessionResult) in
@@ -173,7 +177,6 @@ public class ChatService: ObservableObject {
                 }
             }//end fetchByName
         }
-        completion(.failure(CustomError.unknown))
     }// end findOrMakeSession
 }
 
@@ -181,8 +184,28 @@ public class ChatService: ObservableObject {
 extension ChatService {
     
     public func onRefetchFromServer( afterDelay: Double = 0.5) {
+        
+        guard let chatSessionModel = chatSessionModel else {
+            print( "no chat session model")
+            return
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + afterDelay) {
-            self.chatMessageService.fetch ( sortDescriptor: .creationDate)
+            
+            guard let chatSessionModelRecordID = chatSessionModel.recordID else {
+                return
+            }
+            //let chatSessionReference = CKRecord.Reference(recordID: chatSessionModelRecordID, action: .none)
+            // let searchPredicate = CKPrivateModelService<CKChatMessageModel>.SearchPredicate.predicateTrue
+            
+            let searchPredicate = CKPrivateModelService<CKChatMessageModel>.SearchPredicate.customEqualsSearch(
+                searchKey: "sessionReferenceID",
+                searchValue: chatSessionModelRecordID.recordName
+            )
+            
+            self.chatMessageService.fetch (
+                sortDescriptor: .creationDate,
+                searchPredicate: searchPredicate
+                )
             { (result) in
                 switch result {
                 case .success( let models):

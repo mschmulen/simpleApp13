@@ -147,7 +147,8 @@ struct CKActivityDescriptionDetailEditView: View {
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
                     self.privateChoreService.fetch(
-                        sortDescriptor: .none
+                        sortDescriptor: .none,
+                        searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")
                     }

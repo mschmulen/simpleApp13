@@ -28,7 +28,9 @@ public struct CKChatMessageModel: CKModel {
 
     public var audioAsset: CKAsset?
     public var imageAsset: CKAsset?
-
+    
+    public var sessionReferenceID: String?
+    
     public var title: String? {
         return message
     }
@@ -47,6 +49,7 @@ public struct CKChatMessageModel: CKModel {
         self.ownerEmoji = nil
         self.ownerName  = nil
         self.ownerReference = nil
+        self.sessionReferenceID = nil
     }
     
     public init?(record: CKRecord) {
@@ -64,6 +67,7 @@ public struct CKChatMessageModel: CKModel {
         self.ownerEmoji = _ownerEmoji
         self.message = record["message"] as? String
         self.ownerReference = record["ownerReference"] as? CKRecord.Reference
+        self.sessionReferenceID = record["sessionReferenceID"] as? String
     }
     
     enum CustomError: Error {
@@ -115,6 +119,10 @@ extension CKChatMessageModel {
         
         if let ownerReference = ownerReference {
             record["ownerReference"] = ownerReference as CKRecordValue
+        }
+        
+        if let sessionReferenceID = sessionReferenceID {
+            record["sessionReferenceID"] = sessionReferenceID as CKRecordValue
         }
         
         return record

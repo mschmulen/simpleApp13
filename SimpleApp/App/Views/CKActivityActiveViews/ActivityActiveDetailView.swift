@@ -97,11 +97,8 @@ struct CKActivityActiveDetailView: View {
             } else if model.moduleType == .chat {
                 infoView
                 activityStatusView
-                
                 // TODO: just show the abridged view then if the tap it show the full screen sheet
-                
                 // TODO: Fix the global chat
-                //ChatSessionView()
             } else if model.moduleType == .drawing {
                 infoView
                 activityStatusView

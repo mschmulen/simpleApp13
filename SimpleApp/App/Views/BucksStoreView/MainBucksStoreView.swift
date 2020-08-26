@@ -66,12 +66,12 @@ struct MainBucksStoreView: View {
                 self.devMessage = "silent Push! DB changed"
                 
                 self.privateChoreService.fetch(
-                    sortDescriptor: .none
+                    sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
                 }
                 self.privateActiveChoreService.fetch(
-                    sortDescriptor: .none
+                    sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
                 }

@@ -57,15 +57,20 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     public enum SearchPredicate {
         
         case predicateTrue
-        //case tagsSearch(_ searchString:String )
+        case customEqualsSearch( searchKey:String, searchValue: String)
         
+        
+        //case tagsSearch(_ searchString:String )
         //let predicate = NSPredicate(format: "info_en CONTAINS %@", searchString)
         //let predicate = NSPredicate(format: "nameShort CONTAINS %@", searchString)
         
         var predicate: NSPredicate {
             switch self {
-                case .predicateTrue:
-                    return NSPredicate(value: true)
+            case .predicateTrue:
+                return NSPredicate(value: true)
+            case .customEqualsSearch(let searchKey, let searchValue):
+                return NSPredicate(format: "\(searchKey) == %@", searchValue)
+                
 //                case .tagsSearch( let searchString ) :
 //                    return NSPredicate(format: "tags CONTAINS %@", searchString.lowercased())
             }
@@ -114,10 +119,12 @@ extension CKPrivateModelService {
 
     public func fetch(
         sortDescriptor: SortDescriptor,
+        searchPredicate: SearchPredicate,
         completion: @escaping (Result<[T], Error>) -> ()
     ) {
-        let query = CKQuery(recordType: T.recordName, predicate: SearchPredicate.predicateTrue.predicate)
+        let query = CKQuery(recordType: T.recordName, predicate: searchPredicate.predicate)
         
+        print( "searchPredicate: \(searchPredicate.predicate)")
         switch sortDescriptor {
 //        case .none:
 //            break

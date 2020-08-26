@@ -11,16 +11,16 @@ import CloudKit
 public struct ChatSessionView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
-    @State var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
-    
-    var chatSessionModel: CKChatSessionModel
-    
-    @State var typingMessage: String = ""
-    
-    @State var devMessage: String?
-    
+
     @ObservedObject private var keyboard = KeyboardResponder()
+    
+    @State private var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
+    
+    @State private var typingMessage: String = ""
+    
+    @State private var devMessage: String?
+    
+    private var chatSessionModel: CKChatSessionModel
     
     public init( chatSession: CKChatSessionModel ) {
         self.chatSessionModel = chatSession
@@ -30,6 +30,8 @@ public struct ChatSessionView: View {
     
     public var headerView: some View {
         VStack {
+            //Text("\(self.chatSessionModel.recordID?.recordName ?? "~")")
+                //.font(.caption)
             Text("# \(self.chatService.chatMessages.count)")
         }
     }
@@ -72,6 +74,7 @@ public struct ChatSessionView: View {
         }.onTapGesture {
                 self.endEditing(true)
         }.onAppear {
+            self.chatService.chatSessionModel = self.chatSessionModel
             self.chatService.onStartUp()
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             self.devMessage = "silent Push! DB changed"
@@ -79,15 +82,22 @@ public struct ChatSessionView: View {
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in
             self.devMessage = "\(UUID().uuidString)"
+            print("\(UUID().uuidString)")
         }
     }
     
     func sendMessage() {
+        guard let chatSessionModelRecordID = chatSessionModel.recordID else {
+            print( "early out on no chatSessionModel !!! ")
+            return
+        }
+
         var newMessage = CKChatMessageModel()
         newMessage.message = typingMessage
         newMessage.ownerEmoji = familyKitAppState.currentPlayerModel?.emoji ?? "🌞"
         newMessage.ownerName = familyKitAppState.currentPlayerModel?.name ?? "none"
         newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
+        newMessage.sessionReferenceID = chatSessionModelRecordID.recordName
         chatService.sendMessage(newMessage, sessionModel: chatSessionModel)
         typingMessage = ""
     }

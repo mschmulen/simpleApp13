@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             container: container
         )
         activityDescriptionService.fetch(
-            sortDescriptor: .none,
+            sortDescriptor: .none, searchPredicate: .predicateTrue,
             completion: { result in
 //            switch result {
 //            case .success(let models) :
@@ -57,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             container: container
         )
         activityService.fetch(
-            sortDescriptor: .none,
+            sortDescriptor: .none, searchPredicate: .predicateTrue,
             completion: { result in
 //            switch result {
 //            case .success(let models) :

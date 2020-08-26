@@ -105,6 +105,7 @@ extension FamilyKitAppState {
         
         playerService.fetch(
             sortDescriptor: .none,
+            searchPredicate: .predicateTrue,
             completion: { result in
             switch result {
             case .success(_) :
@@ -127,7 +128,8 @@ extension FamilyKitAppState {
     
     public func onRefresh() {
         playerService.fetch(
-            sortDescriptor: .none
+            sortDescriptor: .none,
+            searchPredicate: .predicateTrue
         ) { (result) in
             self.updateChanges()
         }
