@@ -24,7 +24,6 @@ public final class CKChatSessionModel: CKModel, ObservableObject {
         "messages"
     ]
     
-
     public var id = UUID()
     public var recordID: CKRecord.ID?
     

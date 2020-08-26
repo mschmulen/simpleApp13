@@ -21,7 +21,7 @@ struct AdultUserView: View {
     
     @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
+    @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
     

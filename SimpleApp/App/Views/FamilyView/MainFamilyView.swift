@@ -110,7 +110,6 @@ struct MainFamilyView: View {
                     .font(.caption)
             }//end VStack
                 .onAppear(perform: {
-                    print( "test")
                     //self.activities = self.privateActiveChoreService.models
                 })
                 .navigationBarTitle("Family")

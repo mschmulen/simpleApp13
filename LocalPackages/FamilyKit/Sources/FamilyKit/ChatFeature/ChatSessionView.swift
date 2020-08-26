@@ -28,24 +28,33 @@ public struct ChatSessionView: View {
         UITableView.appearance().tableFooterView = UIView()
     }
     
+    public var headerView: some View {
+        VStack {
+            Text("# \(self.chatService.chatMessages.count)")
+        }
+    }
+    
     public var body: some View {
         NavigationView {
             VStack {
                 if devMessage != nil {
                     Text("\(devMessage!)")
+                        .font(.caption)
                         .foregroundColor(.red)
                         .onTapGesture {
                             self.devMessage = nil
                     }
                 }
-                Text("# \(self.chatService.chatMessages.count)")
+                headerView
                 List {
-                    // chatMessages
-                    //ForEach( self.chatService.chatMessageService.models ) { model in
                     ForEach( self.chatService.chatMessages ) { model in
-                        MessageView(currentMessage: model)
+                        ChatMessageView(
+                            currentMessage: model,
+                            chatService: self.$chatService
+                        )
+                            .flip()
                     }
-                }
+                }.flip()
                 HStack {
                     TextField("Message...", text: $typingMessage)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -66,11 +75,11 @@ public struct ChatSessionView: View {
             self.chatService.onStartUp()
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             self.devMessage = "silent Push! DB changed"
-            self.chatService.onRefresh()
+            self.chatService.onRefetchFromServer()
         }
-//        .onReceive(self.chatService.$chatMessages) { (publisher) in
-//            self.devMessage = "changed \(UUID().uuidString)"
-//        }
+        .onReceive(self.chatService.$chatMessages) { (publisher) in
+            self.devMessage = "\(UUID().uuidString)"
+        }
     }
     
     func sendMessage() {
@@ -90,3 +99,13 @@ public struct ChatSessionView: View {
 //    }
 //}
 
+
+// reference https://stackoverflow.com/questions/57258846/how-to-make-a-swiftui-list-scroll-automatically
+
+extension View {
+    public func flip() -> some View {
+        return self
+            .rotationEffect(.radians(.pi))
+            .scaleEffect(x: -1, y: 1, anchor: .center)
+    }
+}

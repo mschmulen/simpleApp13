@@ -82,11 +82,9 @@ extension CKPrivateModelService {
                     self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
                             if let updatedModel = T(record: record) {
-                                print( "push updatedModel \(updatedModel)")
-                                completion(.success(updatedModel) )
-                                
                                 // TODO: can you just update this model in the list
                                 self.updateChanges()
+                                completion(.success(updatedModel) )
                             } else {
                                 completion(.failure(CustomError.unknown))
                             }

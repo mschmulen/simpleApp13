@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ChatMessageView.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/1/20.
@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-public struct MessageView : View {
+public struct ChatMessageView : View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var currentMessage: CKChatMessageModel
+    @Binding var chatService: ChatService
     
-    public init( currentMessage: CKChatMessageModel ){
+    public init(
+        currentMessage: CKChatMessageModel,
+        chatService: Binding<ChatService>
+    ){
         self.currentMessage = currentMessage
+        self._chatService = chatService
     }
     
     public var body: some View {
@@ -52,16 +57,13 @@ public struct MessageView : View {
                 }
             }
         }//end VStack
-            
             .contextMenu {
                 
                 if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
                     Button(action: {
                         // TODO: fix the delete
-//                        self.chatService.chatMessageService.pushDelete(model: self.currentMessage) { (result) in
-//                            print("delete result \(result)")
-//                        }
-                        print("todo delete")
+                        print( "fix this")
+                        self.chatService.onDelete(model: self.currentMessage)
                     }) {
                         Text("Delete")
                         Image(systemName: "trash")
@@ -84,14 +86,12 @@ public struct MessageView : View {
                     }
                 }
         }
-        //.border(Color.gray)
-        //.padding()
     }
     
 }
 
-//struct MessageView_Previews: PreviewProvider {
+//struct ChatMessageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MessageView(currentMessage: ChatMessage(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser))
+//        ChatMessageView(currentMessage: ChatMessage(content: "There are a lot of premium iOS templates on iosapptemplates.com", user: DataSource.secondUser))
 //    }
 //}

@@ -10,16 +10,16 @@ import SwiftUI
 import Combine
 import CloudKit
 
-public class ChatService : ObservableObject {
+public class ChatService: ObservableObject {
     
     private let container: CKContainer
+    public let objectWillChange = ObservableObjectPublisher()
+    // var anyCancellable: AnyCancellable? = nil
     
-    // public let objectWillChange = ObservableObjectPublisher()
-    //var anyCancellable: AnyCancellable? = nil
-    
-//    var didChange = PassthroughSubject<Void, Never>()
+    // var didChange = PassthroughSubject<Void, Never>()
     
     //@Published public private (set) var chatMessageService: CKPrivateModelService<CKChatMessageModel>
+    
     private var chatMessageService: CKPrivateModelService<CKChatMessageModel>
     static var familyChatSessionModel: CKChatSessionModel?
     
@@ -45,7 +45,7 @@ public class ChatService : ObservableObject {
         chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: container)
         activityService = CKPrivateModelService<CKActivityModel>(container: container)
         
-//        anyCancellable = Publishers.CombineLatest(chatSessionService.$models,familyChatSessionModel).sink(receiveValue: {_ in
+// anyCancellable = Publishers.CombineLatest(chatSessionService.$models,familyChatSessionModel).sink(receiveValue: {_ in
 //            self.objectWillChange.send()
 //        })
     }
@@ -67,13 +67,8 @@ public class ChatService : ObservableObject {
             case .failure(let error):
                 print( "error \(error)")
             case .success(let sessionModel):
-                DispatchQueue.main.async {
-                    ChatService.familyChatSessionModel = sessionModel
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 500)) {
-                    self.onRefresh()
-                }
+                ChatService.familyChatSessionModel = sessionModel
+                self.onRefetchFromServer()
             }
         }
     }
@@ -81,24 +76,22 @@ public class ChatService : ObservableObject {
     // TODO: make use of the ChatSessions ...
     public func sendMessage(_ chatMessageModel: CKChatMessageModel, sessionModel: CKChatSessionModel) {
         
-        chatMessages.append(chatMessageModel)
         guard let chatMessage = chatMessageModel.message else {
-            self.onRefresh()
+            self.updateChanges()
             return
         }
         
         if chatMessage.isEmpty == true {
-            self.onRefresh()
+            self.updateChanges()
             return
         }
         
+        chatMessages.insert(chatMessageModel, at: 0)
         chatMessageService.pushUpdateCreate(model: chatMessageModel) { (result) in
             switch result {
-            case .failure(let error):
-                print("save error\(error.localizedDescription)")
+            case .failure(_):
+                break
             case .success(let record):
-                print( "success \(record)")
-                
                 if let recordID = record.ckRecord?.recordID {
                     
                     let chatRecoredReference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
@@ -106,25 +99,17 @@ public class ChatService : ObservableObject {
                     
                     self.chatSessionService.pushUpdateCreate(model: sessionModel) { (resultSession) in
                         switch resultSession {
-                        case .failure(let error):
-                            print( "failure \(error)")
-                        case .success(let sessionResult):
-                            print( "session Result \(sessionResult)")
-                            
-                            DispatchQueue.main.async {
-                                //self.presentationMode.wrappedValue.dismiss()
-                                //                    self.privateActiveChoreService.fetch { (result) in
-                                //                        print( "result")
-                                //                    }
-                                self.onRefresh()
-                            }
+                        case .failure(_):
+                            break
+                        case .success(_):
+                            self.onRefetchFromServer(afterDelay:2)
+                            break
                         }
                     }
                 }
             }
         }
     }
-    
     
     public func findOrMakeSession(
         model: CKActivityModel,
@@ -135,7 +120,7 @@ public class ChatService : ObservableObject {
                 completion(result)
             }
         } else {
-            var newChatSession = CKChatSessionModel()
+            let newChatSession = CKChatSessionModel()
             newChatSession.name = "\(model.name ?? "~")"
             chatSessionService.pushUpdateCreate(model: newChatSession) { (result) in
                 switch result {
@@ -173,7 +158,7 @@ public class ChatService : ObservableObject {
                     completion(.success(fetchResultModel))
                 case .failure(_):
                     completion(.failure(CustomError.unknown))
-                    var newChatSession = CKChatSessionModel()
+                    let newChatSession = CKChatSessionModel()
                     newChatSession.name = "Family Chat"
                     self.chatSessionService.pushUpdateCreate(model: newChatSession) { (newChatSessionResult) in
                         switch newChatSessionResult {
@@ -182,6 +167,7 @@ public class ChatService : ObservableObject {
                         case .success(let resultSession):
                             ChatService.familyChatSessionModel = resultSession
                             completion(.success(resultSession))
+                            self.onRefetchFromServer()
                         }
                     }
                 }
@@ -194,25 +180,29 @@ public class ChatService : ObservableObject {
 // MARK: - StartupServices
 extension ChatService {
     
-    // TODO: Rename onRefresh onRefetchFromServer
-    public func onRefresh() {
-        chatMessageService.fetch ( sortDescriptor: .creationDateAscending)
-        { (result) in
-            switch result {
-            case .success( let models):
-                print( "onRefresh.models: \(models.count)")
-                self.chatMessages = models
-                self.updateChanges()
-            case .failure( let error):
-                print( "onRefresh.error: \(error)")
-                self.updateChanges()
+    public func onRefetchFromServer( afterDelay: Double = 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + afterDelay) {
+            self.chatMessageService.fetch ( sortDescriptor: .creationDate)
+            { (result) in
+                switch result {
+                case .success( let models):
+                    self.chatMessages = models
+                    self.updateChanges()
+                case .failure(_):
+                    self.updateChanges()
+                }
             }
         }
     }
     
     public func onDelete( model:CKChatMessageModel ) {
         self.chatMessageService.pushDelete(model: model) { (result) in
-            print("delete result \(result)")
+            switch result {
+            case .failure(_):
+                break
+            case .success(_):
+                self.onRefetchFromServer(afterDelay: 0.01)
+            }
         }
     }
 }

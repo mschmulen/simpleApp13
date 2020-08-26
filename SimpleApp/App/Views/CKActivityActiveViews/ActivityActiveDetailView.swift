@@ -18,7 +18,7 @@ struct CKActivityActiveDetailView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
-    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
+    @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
     
