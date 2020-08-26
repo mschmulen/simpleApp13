@@ -57,12 +57,8 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     public enum SearchPredicate {
         
         case predicateTrue
-        case customEqualsSearch( searchKey:String, searchValue: String)
-        
-        
-        //case tagsSearch(_ searchString:String )
-        //let predicate = NSPredicate(format: "info_en CONTAINS %@", searchString)
-        //let predicate = NSPredicate(format: "nameShort CONTAINS %@", searchString)
+        case customEqualsSearch( searchKey: String, searchValue: String)
+        case customContainsSearch( searchKey: String, searchValue: String)
         
         var predicate: NSPredicate {
             switch self {
@@ -70,9 +66,8 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
                 return NSPredicate(value: true)
             case .customEqualsSearch(let searchKey, let searchValue):
                 return NSPredicate(format: "\(searchKey) == %@", searchValue)
-                
-//                case .tagsSearch( let searchString ) :
-//                    return NSPredicate(format: "tags CONTAINS %@", searchString.lowercased())
+            case .customContainsSearch(let searchKey, let searchValue):
+                return NSPredicate(format: "\(searchKey) CONTAINS %@", searchValue)
             }
         }
     }
@@ -87,10 +82,12 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         
         case none
         
+        // TODO:
+        // case custom(key: String, ascending:Bool )
+        
         var sortDescriptors: [NSSortDescriptor] {
             switch self {
             case .creationDate:
-                //return [NSSortDescriptor(key: "creationDate", ascending: false)]
                 return [NSSortDescriptor(key: "creationDate", ascending: false)]
             case .creationDateAscending:
                 return [NSSortDescriptor(key: "creationDate", ascending: true)]
@@ -99,11 +96,9 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
             case .modificationDateAscending:
                 return [NSSortDescriptor(key: "modificationDate", ascending: true)]
             case .none:
-                // return [NSSortDescriptor]()
-                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
-                
-//            case .name:
-//                return NSSortDescriptor(key: "name", ascending: true)
+                // TODO: Matt I think you hacked this for debug and you need to find out where and why so you can move it back to empty, but for now its fine
+                return [NSSortDescriptor]()
+                //return [NSSortDescriptor(key: "modificationDate", ascending: false)]
             }
         }
     }
@@ -120,17 +115,11 @@ extension CKPrivateModelService {
     public func fetch(
         sortDescriptor: SortDescriptor,
         searchPredicate: SearchPredicate,
+        // TODO add resultsLimit
         completion: @escaping (Result<[T], Error>) -> ()
     ) {
         let query = CKQuery(recordType: T.recordName, predicate: searchPredicate.predicate)
-        
-        print( "searchPredicate: \(searchPredicate.predicate)")
-        switch sortDescriptor {
-//        case .none:
-//            break
-        default:
-            query.sortDescriptors = sortDescriptor.sortDescriptors
-        }
+        query.sortDescriptors = sortDescriptor.sortDescriptors
         
         queryRecords(
             query: query,
@@ -157,11 +146,6 @@ extension CKPrivateModelService {
         completion: @escaping (Result<[T], Error>) -> (),
         errorHandler: ((_ error: Error) -> Void)? = nil
     ) {
-        
-        // TODO enable the sort descriptor by date
-//        if !(query.sortDescriptors != nil) {
-//            query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-//        }
         let operation = CKQueryOperation(query: query)
         var results = [T]()
         operation.recordFetchedBlock = { record in
@@ -266,8 +250,7 @@ extension CKPrivateModelService {
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
-        // TODO: move this to the model and expand it for the general use case
-        //let pred = NSPredicate(value: true)
+        // TODO: move this use the SearchPredicate.custom(key, value) and remove this function
         let pred = NSPredicate(format: "name == %@", name)
         let query = CKQuery(recordType: T.recordName, predicate: pred)
         

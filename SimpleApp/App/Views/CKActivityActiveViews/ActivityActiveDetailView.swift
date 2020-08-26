@@ -25,8 +25,6 @@ struct CKActivityActiveDetailView: View {
     @State var model: CKActivityModel
     @State var localActivityStatus: ActivityStatus
     
-    @State var showChatSession: Bool = false
-    
     @State var chatSessionModel: CKChatSessionModel?
     
     var infoView: some View {
@@ -114,37 +112,12 @@ struct CKActivityActiveDetailView: View {
             }
             Spacer()
             
-            // Chat Session View
-            VStack {
-                GeometryReader { geo in
-                    ZStack {
-                        Rectangle()
-                            .fill(SemanticAppColor.random)
-                            .frame(width: geo.size.width, height: geo.size.height)
-                            .border(Color.gray)
-                            .onTapGesture {
-                                if self.chatSessionModel != nil {
-                                    // TODO Show the full Chat
-                                    self.showChatSession.toggle()
-                                }
-                        }
-                        if self.chatSessionModel != nil {
-                            Text("CHAT PEEK VIEW (TODO)")
-                        } else {
-                            Text("NO CHAT Session VIEW (TODO)")
-                        }
-                    }
-                }
-            }
-            .frame(height: 100)
-                .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
-                    // TODO: Show the specific chat session associated with this view
-                    if self.chatSessionModel != nil {
-                        ChatSessionView(chatSession: self.chatSessionModel!)
-                            .environmentObject(self.familyKitAppState)
-                    } else {
-                        Text("NO CHAT SESSION")
-                    }
+            if chatSessionModel != nil {
+                ChatPeekView(chatSessionModel: chatSessionModel!)
+                    //.frame(minWidth: 200, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+                    .frame(height: 200)
+            } else {
+                Text("NO CHAT Session Model :( ")
             }
         }//end VStack
             .navigationBarTitle("\(model.title ?? "~")")

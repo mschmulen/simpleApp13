@@ -45,13 +45,11 @@ public struct ChatMessageView : View {
                 if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
                     Spacer()
                     ChatContentMessageView(
-                        contentMessage: currentMessage.message ?? "~",
-                        isCurrentUser: false
+                        contentMessage: currentMessage.message ?? "~"
                     )
                 } else {
                     ChatContentMessageView(
-                        contentMessage: currentMessage.message ?? "~",
-                        isCurrentUser: false
+                        contentMessage: currentMessage.message ?? "~"
                     )
                     Spacer()
                 }

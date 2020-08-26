@@ -25,7 +25,7 @@ public class ChatService: ObservableObject {
     
     public var chatSessionModel: CKChatSessionModel? {
         didSet {
-            print( "did set chatSessionModel")
+            onRefetchFromServer(afterDelay: 0.001)
         }
     }
     
@@ -64,8 +64,6 @@ public class ChatService: ObservableObject {
     }
     
     public func onStartUp() {
-        self.onRefetchFromServer()
-        
         if ChatService.familyChatSessionModel == nil {
             self.findOrMakeFamilySession { (result) in
                 switch result {
@@ -76,6 +74,8 @@ public class ChatService: ObservableObject {
                     self.onRefetchFromServer()
                 }
             }
+        } else {
+            self.onRefetchFromServer()
         }
     }
     
@@ -183,10 +183,9 @@ public class ChatService: ObservableObject {
 // MARK: - StartupServices
 extension ChatService {
     
-    public func onRefetchFromServer( afterDelay: Double = 0.5) {
+    public func onRefetchFromServer( afterDelay: Double = 0.01) {
         
         guard let chatSessionModel = chatSessionModel else {
-            print( "no chat session model")
             return
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + afterDelay) {

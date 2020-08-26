@@ -7,23 +7,29 @@
 
 import SwiftUI
 
-struct ChatContentMessageView: View {
-    var contentMessage: String
-    var isCurrentUser: Bool
+public struct ChatContentMessageView: View {
     
-    var body: some View {
+    private var contentMessage: String
+    
+    public init (
+        contentMessage: String
+    ) {
+        self.contentMessage = contentMessage
+    }
+    
+    public var body: some View {
         Text(contentMessage)
             .font(.system(size: 12, weight: .medium, design: .rounded))
             .lineLimit(nil)
             .padding(10)
-            .foregroundColor(isCurrentUser ? Color.white : Color.black)
-            .background(isCurrentUser ? Color.blue : Color(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)))
+            .foregroundColor(Color.black)
+            .background(Color(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)))
             .cornerRadius(10)
     }
 }
 
 struct ContentMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatContentMessageView(contentMessage: "Hi, how are you doing", isCurrentUser: false)
+        ChatContentMessageView(contentMessage: "Hi, how are you doing")
     }
 }

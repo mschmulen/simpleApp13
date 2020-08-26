@@ -20,21 +20,18 @@ public struct ChatSessionView: View {
     
     @State private var devMessage: String?
     
+    @State private var messageCount: Int = 0
     private var chatSessionModel: CKChatSessionModel
     
     public init( chatSession: CKChatSessionModel ) {
         self.chatSessionModel = chatSession
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
+        
+        self.testView = Text("yack")
     }
     
-    public var headerView: some View {
-        VStack {
-            //Text("\(self.chatSessionModel.recordID?.recordName ?? "~")")
-                //.font(.caption)
-            Text("# \(self.chatService.chatMessages.count)")
-        }
-    }
+    private var testView: Text
     
     public var body: some View {
         NavigationView {
@@ -47,14 +44,18 @@ public struct ChatSessionView: View {
                             self.devMessage = nil
                     }
                 }
-                headerView
+                
+                // Header section
+                Text("\(messageCount)")
+                //Text("\(self.chatSessionModel.recordID?.recordName ?? "~")")
+                //.font(.caption)
+                
                 List {
                     ForEach( self.chatService.chatMessages ) { model in
                         ChatMessageView(
                             currentMessage: model,
                             chatService: self.$chatService
-                        )
-                            .flip()
+                        ).flip()
                     }
                 }.flip()
                 HStack {
@@ -65,10 +66,8 @@ public struct ChatSessionView: View {
                         Text("Send")
                     }
                 }.frame(minHeight: CGFloat(50)).padding()
-            }//.navigationBarTitle(Text("\(DataSource.firstUser.emoji) \(DataSource.firstUser.name)"), displayMode: .inline)
-                .navigationBarTitle("\(chatSessionModel.title ?? "~")")
-                //.navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
-                
+            }
+            .navigationBarTitle("\(chatSessionModel.title ?? "~") (\(messageCount))")
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
@@ -76,22 +75,23 @@ public struct ChatSessionView: View {
         }.onAppear {
             self.chatService.chatSessionModel = self.chatSessionModel
             self.chatService.onStartUp()
+            self.messageCount = self.chatService.chatMessages.count
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
-            self.devMessage = "silent Push! DB changed"
+            //self.devMessage = "silent Push! DB changed"
             self.chatService.onRefetchFromServer()
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in
-            self.devMessage = "\(UUID().uuidString)"
-            print("\(UUID().uuidString)")
+            self.messageCount = self.chatService.chatMessages.count
+//            self.devMessage = "\(self.messageCount) \(UUID().uuidString)"
         }
     }
     
     func sendMessage() {
         guard let chatSessionModelRecordID = chatSessionModel.recordID else {
-            print( "early out on no chatSessionModel !!! ")
+            self.devMessage = "no chatSessionModel !"
             return
         }
-
+        
         var newMessage = CKChatMessageModel()
         newMessage.message = typingMessage
         newMessage.ownerEmoji = familyKitAppState.currentPlayerModel?.emoji ?? "🌞"
@@ -110,8 +110,11 @@ public struct ChatSessionView: View {
 //}
 
 
-// reference https://stackoverflow.com/questions/57258846/how-to-make-a-swiftui-list-scroll-automatically
-
+/**
+ flip()
+ View extension hack for bottom to top scrolling
+ reference https://stackoverflow.com/questions/57258846/how-to-make-a-swiftui-list-scroll-automatically
+*/
 extension View {
     public func flip() -> some View {
         return self
