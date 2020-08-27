@@ -1,5 +1,5 @@
 //
-//  AudioActivityView.swift
+//  AudioActivitySubView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/14/20.
@@ -13,7 +13,7 @@ import SimpleGames
 import DrawingKit
 import AVFoundation
 
-struct ActivityAudioActionView: View {
+struct AudioActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -175,10 +175,10 @@ struct ActivityAudioActionView: View {
 struct ActivityAudioActionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityAudioActionView(
+            AudioActivitySubView(
                 model: .constant(CKActivityModel.mock)
             )
-            ActivityAudioActionView(
+            AudioActivitySubView(
                 model: .constant(CKActivityModel.mock)
             )
         }

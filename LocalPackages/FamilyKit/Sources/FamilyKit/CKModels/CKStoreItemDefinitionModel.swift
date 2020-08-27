@@ -11,6 +11,10 @@ import CloudKit
 
 public struct CKStoreItemDefinitionModel: CKModel {
 
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .none
+    }
+    
     public typealias ItemType = CKStoreItemDefinitionModel
     public static let recordName = "StoreItemDefinition"
     public static let ckSchemeKeys = [

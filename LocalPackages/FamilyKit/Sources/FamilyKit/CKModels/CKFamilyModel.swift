@@ -12,6 +12,10 @@ import CloudKit
 
 public struct CKFamilyModel: CKModel {
     
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .none
+    }
+    
     public typealias ItemType = CKFamilyModel
     public static let recordName = "Family"
     public static let ckSchemeKeys = [

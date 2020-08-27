@@ -116,7 +116,7 @@ struct PhotoActivityDescriptionView: View {
     
     func saveImage() {
         DispatchQueue.main.async {
-            self.statusMessage = "Updating ..."
+            self.statusMessage = "saving image ..."
         }
         
         if let inputImage = inputImage {
@@ -133,6 +133,7 @@ struct PhotoActivityDescriptionView: View {
                 case .success(_):
                     self.activityDescriptionService.fetchSingle( model: self.model) { result in
                         DispatchQueue.main.async {
+                            self.statusMessage = "Done"
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }

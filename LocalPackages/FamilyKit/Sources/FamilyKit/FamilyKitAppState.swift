@@ -71,7 +71,7 @@ extension FamilyKitAppState {
     public func onStartup() {
         
         playerService.fetch(
-            sortDescriptor: .none,
+            sortDescriptor: .custom(key: "creationDate", ascending: false),
             searchPredicate: .predicateTrue,
             completion: { result in
             switch result {
@@ -96,7 +96,7 @@ extension FamilyKitAppState {
     public func onRefetchFromServer(afterDelay: Double = 0.00) {
         DispatchQueue.main.asyncAfter(deadline: .now() + afterDelay) {
             self.playerService.fetch(
-                sortDescriptor: .none,
+                sortDescriptor: CKPlayerModel.defaultSortDescriptor,
                 searchPredicate: .predicateTrue
             ) { (result) in
                 switch result {

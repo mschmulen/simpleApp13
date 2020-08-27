@@ -11,6 +11,10 @@ import CloudKit
 
 public struct CKChatMessageModel: CKModel {
     
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .custom(key: "creationDate", ascending: false)
+    }
+    
     public typealias ItemType = CKChatMessageModel
     public static let recordName = "ChatMessage"
     public static let ckSchemeKeys = [

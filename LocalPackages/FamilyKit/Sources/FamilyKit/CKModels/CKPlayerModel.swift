@@ -17,6 +17,9 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         return lhs.id == rhs.id
     }
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .none
+    }
     
     public typealias ItemType = CKPlayerModel
     public static let recordName = "Player"
@@ -40,13 +43,13 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     // TODO: change this to a computed property and remove it from the database instead use the PlayerType
     public var isAdult: Bool
     
-    public enum PlayerType: String {
-        case adultCustodian // this is basically admin
+    public enum PlayerType: String, CaseIterable {
+        case custodian // this is basically admin
         case adult
         case kid
         case unknown
     }
-    public var playerType: PlayerType = .unknown
+    public var playerType: PlayerType = .adult
     
     // TODO: finish the cover photo for the kid
     //public var coverPhoto: CKAsset?
@@ -64,7 +67,7 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     }
     
     public static var mock: CKPlayerModel {
-        var model = CKPlayerModel()
+        let model = CKPlayerModel()
         model.name = "mock Adult"
         model.isAdult = true
         model.bucks = 3
@@ -75,7 +78,7 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     }
     
     public static var mockKid: CKPlayerModel {
-        var model = CKPlayerModel()
+        let model = CKPlayerModel()
         model.name = "mock kid"
         model.isAdult = false
         model.bucks = 3
@@ -92,8 +95,7 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         self.dateOfBirth = nil
         self.emoji = nil
         self.isAdult = false
-        self.playerType = .kid
-        //self.coverPhoto = nil
+        self.playerType = .adult
     }
     
     public init?(record: CKRecord) {
@@ -138,15 +140,6 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     }
     
 }
-
-// MARK: - mutating functions
-//extension CKPlayerModel {
-//    
-//    mutating public func mutateBucks( newBucks:Int ) {
-//        self.bucks = newBucks
-//    }
-//    
-//}
 
 // MARK: - Create a CKRecord from this model
 extension CKPlayerModel {

@@ -36,6 +36,10 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         hasher.combine(id)
     }
     
+    public static var defaultSortDescriptor: SortDescriptor {
+        .custom(key: "creationDate", ascending: true)
+    }
+    
     public typealias ItemType = CKActivityDescriptionModel
     public static let recordName = "Chore"
     public static let ckSchemeKeys = [

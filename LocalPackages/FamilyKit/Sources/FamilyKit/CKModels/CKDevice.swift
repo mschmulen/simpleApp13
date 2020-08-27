@@ -34,6 +34,10 @@ internal struct DeviceModel {
 
 public struct CKDeviceModel: CKModel {
     
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .none
+    }
+    
     public typealias ItemType = CKDeviceModel
     public static let recordName = "Device"
     public static let ckSchemeKeys = [

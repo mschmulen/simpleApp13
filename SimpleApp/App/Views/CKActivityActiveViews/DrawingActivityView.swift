@@ -12,7 +12,7 @@ import SimpleGames
 import DrawingKit
 import CloudKit
 
-struct DrawingActivityView: View {
+struct DrawingActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -52,7 +52,7 @@ struct DrawingActivityView: View {
             VStack {
             //ScrollView(.vertical, showsIndicators: false) {
                 if model.moduleType == .photo {
-                    PhotoActivityView(
+                    PhotoActivitySubView(
                         model: $model
                     )
                 }
@@ -132,7 +132,7 @@ struct DrawingActivityView: View {
 
 struct DrawingActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingActivityView(
+        DrawingActivitySubView(
             model: .constant(CKActivityModel.mockDrawing)
         )
     }

@@ -61,6 +61,13 @@ struct PlayerDetailView: View {
                     TextField("emoji", text: $model.emoji ?? "😀")
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
+                    Picker(selection: $model.playerType, label: Text("playerType")) {
+                        ForEach(CKPlayerModel.PlayerType.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                    
                     VStack{
                         Text("birthday")
                         DatePicker(selection: $stateBirthDate, in: ...starterDate, displayedComponents: .date) {

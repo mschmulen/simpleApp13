@@ -46,9 +46,28 @@ struct CKActivityDescriptionCardsRowView: View {
                     }
                     
                     ForEach(self.items) { model in
-                        if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
+                        // TODO: clean up
+//                        if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
+//                            NavigationLink(
+//                                destination: CKActivityDescriptionDetailEditView(
+//                                    model: model
+//                                )
+//                            ) {
+//                                CKActivityDescriptionCardView(model: model)
+//                            }.contextMenu {
+//                                Button(action: {
+//                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
+//                                        print("delete result \(result)")
+//                                    }
+//                                }) {
+//                                    Text("Delete")
+//                                    Image(systemName: "trash")
+//                                }
+//                            }
+//                        } else {
+                        
                             NavigationLink(
-                                destination: CKActivityDescriptionDetailEditView(
+                                destination: CKActivityDescriptionDetailView(
                                     model: model
                                 )
                             ) {
@@ -62,15 +81,6 @@ struct CKActivityDescriptionCardsRowView: View {
                                     Text("Delete")
                                     Image(systemName: "trash")
                                 }
-                            }
-                        } else {
-                            NavigationLink(
-                                destination: CKActivityDescriptionDetailView(
-                                    model: model
-                                )
-                            ) {
-                                CKActivityDescriptionCardView(model: model)
-                            }
                         }
                     }
                 }

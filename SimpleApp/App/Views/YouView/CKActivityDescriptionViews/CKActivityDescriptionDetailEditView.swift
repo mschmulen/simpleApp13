@@ -142,7 +142,7 @@ struct CKActivityDescriptionDetailEditView: View {
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
-            case .success(let record):
+            case .success(_):
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
                 }

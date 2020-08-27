@@ -196,7 +196,7 @@ extension ChatService {
             //let chatSessionReference = CKRecord.Reference(recordID: chatSessionModelRecordID, action: .none)
             // let searchPredicate = CKPrivateModelService<CKChatMessageModel>.SearchPredicate.predicateTrue
             
-            let searchPredicate = CKPrivateModelService<CKChatMessageModel>.SearchPredicate.customEqualsSearch(
+            let searchPredicate = SearchPredicate.customEqualsSearch(
                 searchKey: "sessionReferenceID",
                 searchValue: chatSessionModelRecordID.recordName
             )

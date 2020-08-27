@@ -19,6 +19,7 @@ struct PhotoActivitySubView: View {
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
+    @Binding var isUploading: Bool
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false
@@ -35,7 +36,7 @@ struct PhotoActivitySubView: View {
                     self.image!
                         .resizable()
                         .scaledToFit()
-//                        .aspectRatio(contentMode: .fit)
+                        //                        .aspectRatio(contentMode: .fit)
                         .frame(width: geo.size.width, height:geo.size.width)
                         .clipped()
                         .onTapGesture {
@@ -50,7 +51,9 @@ struct PhotoActivitySubView: View {
                             .frame(width: geo.size.width, height: geo.size.height)
                             .border(Color.gray)
                             .onTapGesture {
-                                self.showingImagePicker.toggle()
+                                if self.isUploading == false {
+                                    self.showingImagePicker.toggle()
+                                }
                         }
                         Image(systemName: "camera")
                     }
@@ -60,7 +63,7 @@ struct PhotoActivitySubView: View {
         .frame(width: 300, height: 300)
         
         // .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.2)
-
+        
     }
     
     var body: some View {
@@ -82,7 +85,7 @@ struct PhotoActivitySubView: View {
     func dismissFromImagePicker() {
         loadImage()
         DispatchQueue.main.async {
-            self.saveImage()
+            self.saveImageToModel()
         }
     }
     
@@ -108,46 +111,80 @@ struct PhotoActivitySubView: View {
         image = Image(uiImage: inputImage)
     }
     
-    func saveImage() {
-        DispatchQueue.main.async {
-            self.devMessage = "Updating ..."
+    func saveImageToModel() {
+        
+        self.devMessage = "sub saving image ..."
+        
+        guard let inputImage = inputImage else {
+            self.devMessage = "no image"
+            return
         }
         
-        if let inputImage = inputImage {
-            
-            // automatically push to status .completed
-            self.model.changeStatus(status: .completed)
-            
-            activityService.pushUpdateCreate(model: model) { (result) in
-                switch result {
-                case .success( let resultModel):
-                    self.activityService.uploadPhotoAsset(
-                        model:resultModel,
-                        image: inputImage,
-                        assetPropertyName: "resultAssetImage"
-                    ) { result in
-                        switch result {
-                        case .failure( let error):
-                            DispatchQueue.main.async {
-                                self.devMessage = "There was an error uploading \(error)"
-                            }
-                        case .success(let updatedModel):
-                            DispatchQueue.main.async {
-                                if let resultAssetImage = updatedModel.resultAssetImage {
-                                    self.model.changeResultAssetImage(asset: resultAssetImage)
-                                }
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }
+        guard let modelRecordID = self.model.recordID else {
+            self.devMessage = "no model.recordID"
+            return
+        }
+        
+        // automatically push to status .completed
+        self.model.status = .completed
+        
+        self.devMessage = "uploading the image"
+        
+        self.isUploading = true
+        self.activityService.uploadPhotoAsset(
+            model: self.model,
+            image: inputImage,
+            assetPropertyName: "resultAssetImage"
+        ) { result in
+            switch result {
+            case .failure( let error):
+                DispatchQueue.main.async {
+                    self.devMessage = "There was an error uploading \(error)"
+                    self.isUploading = false
+                }
+            case .success(let updatedModel):
+                DispatchQueue.main.async {
+                    self.isUploading = false
+                    self.devMessage = "success"
+                    if let resultAssetImage = updatedModel.resultAssetImage {
+                        self.model.changeResultAssetImage(asset: resultAssetImage)
                     }
-                case .failure(let error):
-                    print( "PhotoActivityView.error: \(error)")
-                    DispatchQueue.main.async {
-                        self.devMessage = "There was an error updating \(error)"
-                    }
+                    self.presentationMode.wrappedValue.dismiss()
                 }
             }
         }
+        
+//        activityService.pushUpdateCreate(model: model) { (result) in
+//            switch result {
+//            case .success( let resultModel):
+//                self.activityService.uploadPhotoAsset(
+//                    model: self.model,
+//                    image: inputImage,
+//                    assetPropertyName: "resultAssetImage"
+//                ) { result in
+//                    switch result {
+//                    case .failure( let error):
+//                        DispatchQueue.main.async {
+//                            self.devMessage = "There was an error uploading \(error)"
+//                        }
+//                    case .success(let updatedModel):
+//                        DispatchQueue.main.async {
+//                            self.devMessage = "success"
+//                            if let resultAssetImage = updatedModel.resultAssetImage {
+//                                self.model.changeResultAssetImage(asset: resultAssetImage)
+//                            }
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        }
+//                    }
+//                }
+//            case .failure(let error):
+//                print( "PhotoActivityView.error: \(error)")
+//                DispatchQueue.main.async {
+//                    self.devMessage = "There was an error updating \(error)"
+//                }
+//            }
+//
+//        }
     }
 }
 
@@ -155,10 +192,12 @@ struct PhotoActivityView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PhotoActivitySubView(
-                model: .constant(CKActivityModel.mock)
+                model: .constant(CKActivityModel.mock),
+                isUploading: .constant(false)
             )
             PhotoActivitySubView(
-                model: .constant(CKActivityModel.mock)
+                model: .constant(CKActivityModel.mock),
+                isUploading: .constant(false)
             )
         }
     }

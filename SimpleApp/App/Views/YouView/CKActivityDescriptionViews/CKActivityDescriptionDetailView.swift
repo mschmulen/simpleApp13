@@ -11,16 +11,6 @@ import Combine
 import FamilyKit
 import SimpleGames
 
-class ActivityDescriptionViewModel: ObservableObject {
-    
-    // Input
-    @Published var name = ""
-    
-    // Output
-    @Published var isValid = false
-    
-}
-
 struct CKActivityDescriptionDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
@@ -52,11 +42,8 @@ struct CKActivityDescriptionDetailView: View {
             }
             
             Text("bucks: \(model.bucks ?? 0)")
-                
-            Text("moduleType: \(model.moduleType.rawValue)")
             
-            // TODO: handle the imageAsset
-            //Text("imageAsset: \(model.imageName ?? "~")")
+            Text("moduleType: \(model.moduleType.rawValue)")
         }
     }
     
@@ -77,9 +64,10 @@ struct CKActivityDescriptionDetailView: View {
     }
     
     var body: some View {
-        List{
-            DevMessageView(devMessage: $devMessage)
+        
+        VStack {
             
+            DevMessageView(devMessage: $devMessage)
             
             if familyKitAppState.currentPlayerModel?.recordReference != nil {
                 NavigationLink(destination: CKActivityActiveDetailView(
@@ -95,18 +83,33 @@ struct CKActivityDescriptionDetailView: View {
                 }
             }
             
-            readOnlyView
-            
-            
-            Section(header:Text("Assets")) {
-                coverPhotoView
+            NavigationLink(
+                destination: CKActivityDescriptionDetailEditView(
+                    model: model
+                )
+            ) {
+                HStack {
+                    Text("EDIT THIS ACTIVITY")
+                    Image(systemName: "square.and.arrow.up")
+                }.foregroundColor(.blue)
             }
             
-        }//end List
-            .onAppear {
+            
+            List{
                 
-                // try and download the image
-                if self.model.coverPhoto != nil {
+                readOnlyView
+                
+                
+                Section(header:Text("Assets")) {
+                    coverPhotoView
+                }
+                
+            }//end List
+        }
+        .onAppear {
+            
+            // try and download the image
+            if self.model.coverPhoto != nil {
                 self.model.loadCoverPhoto { (result) in
                     switch result {
                     case .failure(_):
@@ -115,7 +118,7 @@ struct CKActivityDescriptionDetailView: View {
                         self.coverPhotoImage = image
                     }
                 }
-                }
+            }
         }
     }
     

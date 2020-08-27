@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionDetailView.swift
+//  CKActivityActiveDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -24,6 +24,9 @@ struct CKActivityActiveDetailView: View {
     
     @State var model: CKActivityModel
     @State var localActivityStatus: ActivityStatus
+    
+    @State var showActivityIndicator: Bool = false
+    @State var indicatorMessage: String = "Saving"
     
     @State var chatSessionModel: CKChatSessionModel?
     
@@ -62,63 +65,61 @@ struct CKActivityActiveDetailView: View {
                 }
             }// end if is adult
             else {
-                //                if familyKitAppState.currentPlayer.isOwner(model: model) {
-                //                    if model.status == .active {
-                //                        Button(action: {
-                //                            self.model.changeStatus(status: .completed)
-                //                            self.onSave()
-                //                        }) {
-                //                            Text("Complete")
-                //                        }
-                //                    }
-                //                }
+                
             }
         }
     }
     
     var body: some View {
-        //ScrollView(.vertical, showsIndicators: false) {
         VStack {
-            //DevMessageView(devMessage: $devMessage)
-            if model.moduleType == .photo {
-                infoView
-                activityStatusView
-                PhotoActivityView(
-                    model: $model
-                )
-            } else if model.moduleType == .audio {
-                infoView
-                activityStatusView
-                ActivityAudioActionView(
-                    model: $model
-                )
-            } else if model.moduleType == .chat {
-                infoView
-                activityStatusView
-                // TODO: just show the abridged view then if the tap it show the full screen sheet
-                // TODO: Fix the global chat
-            } else if model.moduleType == .drawing {
-                infoView
-                activityStatusView
-                
-                // TODO: just show the image ... then if the tap it show a full screen sheet view of it
-                DrawView(
-                    model: $model
-                )
-            }
-            else {
-                infoView
-                activityStatusView
-            }
-            Spacer()
-            
-            if chatSessionModel != nil {
-                ChatPeekView(chatSessionModel: chatSessionModel!)
-                    //.frame(minWidth: 200, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                    .frame(height: 200)
-            } else {
-                Text("NO CHAT Session Model :( ")
-            }
+            ActivityIndicatorView(
+                isDisplayed: $showActivityIndicator,
+                indicatorMessage: $indicatorMessage
+            ) {
+                VStack {
+                    //DevMessageView(devMessage: $devMessage)
+                    if self.model.moduleType == .photo {
+                        self.infoView
+                        self.activityStatusView
+                        PhotoActivitySubView(
+                            model: self.$model,
+                            isUploading: self.$showActivityIndicator
+                        )
+                    } else if self.model.moduleType == .audio {
+                        self.infoView
+                        self.activityStatusView
+                        AudioActivitySubView(
+                            model: self.$model
+                        )
+                    } else if self.model.moduleType == .chat {
+                        self.infoView
+                        self.activityStatusView
+                        // TODO: just show the abridged view then if the tap it show the full screen sheet
+                        // TODO: Fix the global chat
+                    } else if self.model.moduleType == .drawing {
+                        self.infoView
+                        self.activityStatusView
+                        
+                        // TODO: just show the image ... then if the tap it show a full screen sheet view of it
+                        DrawView(
+                            model: self.$model
+                        )
+                    }
+                    else {
+                        self.infoView
+                        self.activityStatusView
+                    }
+                    Spacer()
+                    
+                    if self.chatSessionModel != nil {
+                        ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                            //.frame(minWidth: 200, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+                            .frame(height: 200)
+                    } else {
+                        Text("LOADING Chat Session ... ")
+                    }
+                }//end VStack
+            }//end ActivityIndicator
         }//end VStack
             .navigationBarTitle("\(model.title ?? "~")")
             .navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
@@ -155,28 +156,9 @@ struct CKActivityActiveDetailView: View {
             }
         }
     }
-    
-    //    func onDone() {
-    //        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
-    //            self.devMessage = "invalid playerRecordReference"
-    //            return
-    //        }
-    //        model.status = ActivityStatus.completed
-    //        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
-    //            switch result {
-    //            case .failure(let error):
-    //                self.devMessage = "save error\(error.localizedDescription)"
-    //            case .success(let record):
-    //                print( "success \(record)")
-    //                self.devMessage = "success"
-    //                self.model = record
-    //            }
-    //        }
-    //    }
-    
-}//end CKChoreActiveDetailView
+}//end CKActivityActiveDetailView
 
-struct CKChoreActiveDetailView_Previews: PreviewProvider {
+struct CKActivityActiveDetailView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
