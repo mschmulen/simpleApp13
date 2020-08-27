@@ -202,7 +202,7 @@ extension ChatService {
             )
             
             self.chatMessageService.fetch (
-                sortDescriptor: .creationDate,
+                sortDescriptor: .custom(key: "creationDate", ascending: false),
                 searchPredicate: searchPredicate
                 )
             { (result) in

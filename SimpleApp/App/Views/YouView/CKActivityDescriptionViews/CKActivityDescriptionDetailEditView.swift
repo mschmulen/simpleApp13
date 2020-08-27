@@ -143,15 +143,8 @@ struct CKActivityDescriptionDetailEditView: View {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
             case .success(let record):
-                print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.activityDescriptionService.fetch(
-                        sortDescriptor: .none,
-                        searchPredicate: .predicateTrue
-                    ) { (result) in
-                        print( "result")
-                    }
                 }
             }
         }

@@ -28,6 +28,8 @@ public class FamilyKitAppState: ObservableObject {
     
     @Published public private (set) var currentPlayerModel: CKPlayerModel?
     
+    // @State players:[CKPlayerModel] = [CKPlayerModel]()
+    
     public init(
         container: CKContainer
     ) {

@@ -92,7 +92,7 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         self.dateOfBirth = nil
         self.emoji = nil
         self.isAdult = false
-        self.playerType = .adult
+        self.playerType = .kid
         //self.coverPhoto = nil
     }
     

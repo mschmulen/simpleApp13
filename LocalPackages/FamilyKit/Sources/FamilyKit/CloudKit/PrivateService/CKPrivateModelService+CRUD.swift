@@ -18,11 +18,29 @@ extension CKPrivateModelService {
     ) {
         if model.recordID != nil {
             pushUpdate(model: model) { (result) in
-                completion(result)
+                switch result {
+                case .failure(_):
+                    completion(result)
+                case .success(let newModel):
+                    if let index = self.models.firstIndex(where: { (model) -> Bool in
+                        model.recordID == newModel.recordID
+                    }) {
+                        self.models[index] = newModel
+                        self.updateChanges()
+                    }
+                    completion(result)
+                }
             }
         } else {
             pushNew(model: model) { (result) in
-                completion(result)
+                switch result {
+                case .failure(_):
+                    completion(result)
+                case .success(let newModel):
+                    self.models.append(newModel)
+                    self.updateChanges()
+                    completion(result)
+                }
             }
         }
     }
@@ -40,11 +58,6 @@ extension CKPrivateModelService {
                 if let record = record {
                     if let newModel = T(record: record) {
                         completion(.success(newModel) )
-                        
-                        // immediately add it to the local list
-                        self.models.append(newModel)
-                        
-                        self.updateChanges()
                     } else {
                         completion(.failure(CustomError.unknown))
                     }
@@ -59,7 +72,6 @@ extension CKPrivateModelService {
         model: T,
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
-        
         guard let recordID = model.recordID else {
             print( "CANNOT UPDATE A MODEL WITOUT A RECORD ID")
             completion(.failure(CustomError.unknown))
@@ -82,8 +94,6 @@ extension CKPrivateModelService {
                     self.container.privateCloudDatabase.save(record) { record, error in
                         if let record = record, error == nil {
                             if let updatedModel = T(record: record) {
-                                // TODO: can you just update this model in the list
-                                self.updateChanges()
                                 completion(.success(updatedModel) )
                             } else {
                                 completion(.failure(CustomError.unknown))
@@ -110,7 +120,6 @@ extension CKPrivateModelService {
 
 // MARK: - Delete CRUD
 extension CKPrivateModelService  {
-    
     public func pushDelete(
         model: T,
         completion: @escaping ((Result<CKRecord.ID,Error>) -> Void)
@@ -121,18 +130,15 @@ extension CKPrivateModelService  {
         }
         
         container.privateCloudDatabase.delete(withRecordID: modelRecordID) { (recordID, error) in
-            if let recordID = recordID{
-                completion(  .success(recordID) )
+            if let recordID = recordID {
+                self.models.removeAll { (model) -> Bool in
+                    model.recordID == modelRecordID
+                }
                 self.updateChanges()
+                completion(.success(recordID) )
             } else {
-                completion(  .failure(CustomError.unknown) )
+                completion(.failure(CustomError.unknown) )
             }
         }
-        
-        // immediately remove if from the local list
-        models.removeAll { (model) -> Bool in
-            model.recordID == modelRecordID
-        }
-        self.updateChanges()
     }
 }

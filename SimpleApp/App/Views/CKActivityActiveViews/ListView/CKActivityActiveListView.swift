@@ -47,7 +47,8 @@ struct CKActivityActiveListView: View {
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
             self.activityDescriptionService.fetch(
-                sortDescriptor: .creationDate, searchPredicate: .predicateTrue
+                sortDescriptor: .custom(key: "creationDate", ascending: false),
+                searchPredicate: .predicateTrue
             ) { (result) in
                 print( "fetch \(result)")
             }
