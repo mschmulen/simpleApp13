@@ -16,8 +16,8 @@ struct CKActivityActiveListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
@@ -28,7 +28,7 @@ struct CKActivityActiveListView: View {
             DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Activities (CKChoreActiveModel)")) {
-                ForEach( self.privateActiveChoreService.models) { model in
+                ForEach( self.activityService.models) { model in
                     NavigationLink(
                         destination: CKActivityActiveDetailView(
                             model: model,
@@ -46,7 +46,7 @@ struct CKActivityActiveListView: View {
         .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
             self.devMessage = "silent Push! DB changed"
-            self.privateChoreService.fetch(
+            self.activityDescriptionService.fetch(
                 sortDescriptor: .creationDate, searchPredicate: .predicateTrue
             ) { (result) in
                 print( "fetch \(result)")
@@ -56,8 +56,8 @@ struct CKActivityActiveListView: View {
 
     func deletePrivate(at offsets: IndexSet) {
         for deleteIndex in offsets {
-            let deleteModel = self.privateChoreService.models[deleteIndex]
-            self.privateChoreService.pushDelete(model: deleteModel) { (result) in
+            let deleteModel = self.activityDescriptionService.models[deleteIndex]
+            self.activityDescriptionService.pushDelete(model: deleteModel) { (result) in
                 switch result {
                 case .failure(let error):
                     print("delete.error \(error)")

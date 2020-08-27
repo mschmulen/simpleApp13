@@ -59,12 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         activityService.fetch(
             sortDescriptor: .none, searchPredicate: .predicateTrue,
             completion: { result in
-//            switch result {
-//            case .success(let models) :
-//                print( "privateActiveChoreService success \(models)")
-//            case .failure(let error):
-//                print( "privateActiveChoreService error \(error)")
-//            }
         })
         activityService.subscribe(isSilent: false, message: "new Activity or activity changed")
         activityService.listenForNotifications()

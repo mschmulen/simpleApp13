@@ -17,7 +17,7 @@ struct CKActivityDescriptionDetailEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     @State var devMessage: String?
     
@@ -85,13 +85,13 @@ struct CKActivityDescriptionDetailEditView: View {
             }
             
             Button(action: ({
-                self.privateChoreService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
+                self.activityDescriptionService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
                     switch result {
                     case .failure( let error):
                         print( "there was an error \(error)")
                     case .success(_):
                         print( "success")
-                        self.privateChoreService.fetchSingle( model: self.model) { result in
+                        self.activityDescriptionService.fetchSingle( model: self.model) { result in
                             print( "result")
                             //                            DispatchQueue.main.async {
                             //                                self.presentationMode.wrappedValue.dismiss()
@@ -138,7 +138,7 @@ struct CKActivityDescriptionDetailEditView: View {
     }
     
     func onSave() {
-        privateChoreService.pushUpdateCreate(model: model) { (result) in
+        activityDescriptionService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -146,7 +146,7 @@ struct CKActivityDescriptionDetailEditView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.privateChoreService.fetch(
+                    self.activityDescriptionService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in

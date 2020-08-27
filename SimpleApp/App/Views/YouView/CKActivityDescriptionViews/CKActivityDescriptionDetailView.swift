@@ -27,7 +27,7 @@ struct CKActivityDescriptionDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     @State var devMessage: String?
     
@@ -120,7 +120,7 @@ struct CKActivityDescriptionDetailView: View {
     }
     
     func onSave() {
-        privateChoreService.pushUpdateCreate(model: model) { (result) in
+        activityDescriptionService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -128,7 +128,7 @@ struct CKActivityDescriptionDetailView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.privateChoreService.fetch(
+                    self.activityDescriptionService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in

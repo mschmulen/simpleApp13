@@ -18,8 +18,8 @@ struct MainFamilyView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
@@ -49,7 +49,7 @@ struct MainFamilyView: View {
                     Section(
                         header: Text("\(playerFilter.name)")
                     ) {
-                        ForEach( privateActiveChoreService.models.filter({ (model) -> Bool in
+                        ForEach( activityService.models.filter({ (model) -> Bool in
                             switch playerFilter {
                             case .none: return true
                             case .person(let player):
@@ -119,13 +119,13 @@ struct MainFamilyView: View {
                     print("Notification.Name(CloudKitModelService) recieved")
                     self.devMessage = "silent Push! DB changed"
                     
-                    self.privateChoreService.fetch(
+                    self.activityDescriptionService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")
                     }
-                    self.privateActiveChoreService.fetch(
+                    self.activityService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in
@@ -157,7 +157,7 @@ struct MainFamilyView: View {
             PlayerOnboardingView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
-                .environmentObject(privateChoreService)
+                .environmentObject(activityDescriptionService)
         ){
             HStack {
                 Text("change player")

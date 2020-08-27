@@ -18,7 +18,7 @@ struct DrawingActivityView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil
     
@@ -110,7 +110,7 @@ struct DrawingActivityView: View {
         self.model.kidReference = playerRecordReference
         
         model.status = .completed
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+        activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -119,7 +119,7 @@ struct DrawingActivityView: View {
                 self.devMessage = "success"
                 DispatchQueue.main.async {
                     //self.presentationMode.wrappedValue.dismiss()
-                    self.privateActiveChoreService.fetch(
+                    self.activityService.fetch(
                         sortDescriptor: .none, searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")

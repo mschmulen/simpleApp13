@@ -16,7 +16,7 @@ struct DrawView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil
     
@@ -86,10 +86,10 @@ struct DrawView: View {
             // automatically push to status .completed
             self.model.changeStatus(status: .completed)
             
-            privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+            activityService.pushUpdateCreate(model: model) { (result) in
                 switch result {
                 case .success( let resultModel):
-                    self.privateActiveChoreService.uploadFileAsset(
+                    self.activityService.uploadFileAsset(
                         model: resultModel,
                         fileURL: localFileURL,
                         assetPropertyName: "activityAsset"
@@ -119,7 +119,7 @@ struct DrawView: View {
         
         // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
         
-        privateActiveChoreService.uploadPhotoAsset(
+        activityService.uploadPhotoAsset(
             model:model,
             image: screenShot,
             assetPropertyName: "coverPhoto"

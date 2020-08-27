@@ -19,7 +19,7 @@ struct ActivityAudioActionView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil
     
@@ -140,10 +140,10 @@ struct ActivityAudioActionView: View {
         // automatically push to status .completed
         self.model.changeStatus(status: .completed)
         
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+        activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .success( let resultModel):
-                self.privateActiveChoreService.uploadAudioAsset(
+                self.activityService.uploadAudioAsset(
                     model: resultModel,
                     audioRecording: audioRecording,
                     assetPropertyName: "activityAsset"

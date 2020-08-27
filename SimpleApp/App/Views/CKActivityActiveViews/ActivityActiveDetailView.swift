@@ -17,7 +17,7 @@ struct CKActivityActiveDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
@@ -142,7 +142,7 @@ struct CKActivityActiveDetailView: View {
     }
     
     func onSave() {
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+        activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"

@@ -13,7 +13,7 @@ struct CKActivityDescriptionCardsRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var categoryName: String
     var items: [CKActivityDescriptionModel]
@@ -55,7 +55,7 @@ struct CKActivityDescriptionCardsRowView: View {
                                 CKActivityDescriptionCardView(model: model)
                             }.contextMenu {
                                 Button(action: {
-                                    self.privateChoreService.pushDelete(model: model) { (result) in
+                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
                                         print("delete result \(result)")
                                     }
                                 }) {
