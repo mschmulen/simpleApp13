@@ -323,7 +323,6 @@
 				76208BA224D8C4AF001F46E2 /* Audio */,
 				76208B8B24D663DE001F46E2 /* Utility */,
 				7601817624C61E1100B339E4 /* UserView */,
-				76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -440,6 +439,7 @@
 		76AA9EB524EC33AD005FDB88 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
