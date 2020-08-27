@@ -11,35 +11,6 @@ import SwiftUI
 import Combine
 import CloudKit
 
-// TODO: Deprecate this Player enum
-public enum Player {
-    case adult( CKPlayerModel )
-    case kid( CKPlayerModel )
-    case none
-    
-    public var recordReference: CKRecord.Reference? {
-        switch self {
-        case .adult(let model):
-            if let id = model.recordID {
-                let reference = CKRecord.Reference(recordID: id, action: .deleteSelf)
-                return reference
-            } else {
-                return nil
-            }
-        case .kid(let model):
-            if let id = model.recordID {
-                let reference = CKRecord.Reference(recordID: id, action: .deleteSelf)
-                return reference
-            } else {
-                return nil
-            }
-        case .none:
-            return nil
-        }
-    }
-    
-}
-
 public class FamilyKitAppState: ObservableObject {
     
     private let container: CKContainer
@@ -56,12 +27,6 @@ public class FamilyKitAppState: ObservableObject {
     @Published public private (set) var playerService: CKPrivateModelService<CKPlayerModel>
     
     @Published public private (set) var currentPlayerModel: CKPlayerModel?
-    @Published public private (set) var currentPlayer: Player = Player.none {
-        didSet {
-            print( "did update the current player")
-            // TODO: fire off an update to the device service to udpate the current CKDeviceModel
-        }
-    }
     
     public init(
         container: CKContainer
@@ -126,24 +91,29 @@ extension FamilyKitAppState {
         
     }
     
-    public func onRefresh() {
-        playerService.fetch(
-            sortDescriptor: .none,
-            searchPredicate: .predicateTrue
-        ) { (result) in
-            self.updateChanges()
+    public func onRefetchFromServer(afterDelay: Double = 0.00) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + afterDelay) {
+            self.playerService.fetch(
+                sortDescriptor: .none,
+                searchPredicate: .predicateTrue
+            ) { (result) in
+                switch result {
+                case .failure(_):
+                    self.updateChanges()
+                case .success(_):
+                    self.updateChanges()
+                }
+            }
         }
-        
-        self.updateChanges()
     }
 }
 
 // MARK: - User Services
 extension FamilyKitAppState {
     
-    public func setCurrentPlayer(player: Player, playerModel:CKPlayerModel){
+    public func setCurrentPlayer(playerModel:CKPlayerModel){
         self.currentPlayerModel = playerModel
-        self.currentPlayer = player
+        //self.currentPlayer = player
         self.updateChanges()
     }
     
@@ -177,17 +147,6 @@ extension FamilyKitAppState {
 // MARK: - findUserForRecord
 extension FamilyKitAppState {
     
-    public func findUserForRecord(recordReference: CKRecord.Reference ) -> Player? {
-        for kid in playerService.models {
-            if let kidRecordID = kid.recordID {
-                if kidRecordID == recordReference.recordID {
-                    return Player.kid(kid)
-                }
-            }
-        }
-        return nil
-    }
-    
     public func findPlayerModelForRecord(recordReference: CKRecord.Reference ) -> CKPlayerModel? {
         for kid in playerService.models {
             if let kidRecordID = kid.recordID {
@@ -204,43 +163,33 @@ extension FamilyKitAppState {
 // MARK: - Player Points
 extension FamilyKitAppState {
     
-    public func addBucks( player:Player, bucks: Int) {
-        switch player {
-        case .adult(var playerModel):
-            if let currentBucks = playerModel.bucks {
-                playerModel.mutateBucks(newBucks: currentBucks + bucks)
-            } else {
-                playerModel.mutateBucks(newBucks: bucks)
-            }
-            
-            self.playerService.pushUpdateCreate(model: playerModel) { (result) in
-                switch result {
-                case .failure(let error):
-                    print("failed up updaet the player \(error)" )
-                case .success(_):
-                    print( "player is updated")
-                }
-            }
-        case .kid(var playerModel):
-            if let currentBucks = playerModel.bucks {
-                playerModel.mutateBucks(newBucks: currentBucks + bucks)
-            } else {
-                playerModel.mutateBucks(newBucks: bucks)
-            }
-            
-            self.playerService.pushUpdateCreate(model: playerModel) { (result) in
-                switch result {
-                case .failure(let error):
-                    print("failed up updaet the player \(error)" )
-                case .success(_):
-                    print( "player is updated")
-                }
-            }
-        case .none:
-            print( "yack")
-        }
+    public func addBucks( playerModel:CKPlayerModel, bucks: Int) {
         
+        playerModel.bucks = (playerModel.bucks ?? 0) + bucks
+        self.playerService.pushUpdateCreate(model: playerModel) { (result) in
+            switch result {
+            case .failure(let error):
+                print("failed up updaet the player \(error)" )
+            case .success(_):
+                print( "player is updated")
+            }
+        }
     }//end addBucks
+    
+    public func resetAllFamilyBucks() {
+        for playerModel in self.playerService.models {
+            playerModel.bucks = 0
+            
+            self.playerService.pushUpdateCreate(model: playerModel) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("failed up updaet the player \(error)" )
+                case .success(_):
+                    print( "player is updated")
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Helper methods
@@ -263,7 +212,6 @@ extension FamilyKitAppState {
             return false
         }
     }
-    
     
     public func isCurrentPlayerOwnerOrAdult(model: CKActivityModel) ->Bool {
         

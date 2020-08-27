@@ -37,7 +37,7 @@ struct FamilyChatView: View {
                 }
             }.onAppear(perform: {
                     self.configureChatSession()
-                    self.familyKitAppState.onRefresh()
+                    self.familyKitAppState.onRefetchFromServer()
             })
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")

@@ -17,28 +17,28 @@ public struct CKStoreItemPurchaseModel: CKModel {
         "name",
         "info",
         "bucks",
+        "fulfilmentStatus"
 //        "storeItemReference",
 //        "purchasePlayer",
-//        "fulfilmentStatus"
     ]
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
-
+    
     public var name: String?
     public var bucks: Int?
     public var info: String?
     
-    // TODO: support these properites
-//    public var fulfillmentStatus: FulfillmentStatus = .unknown
-//    public var storeItemReference: CKRecord.Reference?
-//    public var purchasePlayer: CKRecord.Reference?
-    
-    public enum FulfillmentStatus {
+    public enum FulfillmentStatus: String, CaseIterable {
         case unknown
         case purchased
         case fulfilled
     }
+    public var fulfillmentStatus: FulfillmentStatus = .unknown
+    
+    // TODO: support these properites
+//    public var storeItemDefinitionReference: CKRecord.Reference?
+//    public var purchasingPlayerReference: CKRecord.Reference?
     
     public var title: String? {
         return name
@@ -72,6 +72,12 @@ public struct CKStoreItemPurchaseModel: CKModel {
         self.name = _name
         self.bucks = record["bucks"] as? Int
         self.info = record["info"] as? String
+        
+        if let fulfillmentStatusString = record["fulfillmentStatus"] as? String {
+            self.fulfillmentStatus = FulfillmentStatus(rawValue: fulfillmentStatusString) ?? .unknown
+        } else {
+            self.fulfillmentStatus = .unknown
+        }
     }
 
     enum CustomError: Error {
@@ -103,6 +109,8 @@ extension CKStoreItemPurchaseModel {
         if let info = info {
             record["info"] = info as CKRecordValue
         }
+        
+        record["fulfillmentStatus"] = fulfillmentStatus.rawValue
         
         return record
     }

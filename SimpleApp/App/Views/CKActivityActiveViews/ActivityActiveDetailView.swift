@@ -46,15 +46,15 @@ struct CKActivityActiveDetailView: View {
                     .padding()
                     .onReceive([localActivityStatus].publisher.first()) { value in
                         if value != self.model.status {
-                            print( "save the change \(value.friendlyName)")
+                            
                             self.model.changeStatus(status: value)
                             self.onSave()
                             
                             // give them points
                             if let playerReference = self.model.kidReference {
                                 if value == .verified {
-                                    if let player = self.familyKitAppState.findUserForRecord(recordReference: playerReference) {
-                                        self.familyKitAppState.addBucks( player: player, bucks: self.model.bucks ?? 0)
+                                    if let playerModel = self.familyKitAppState.findPlayerModelForRecord(recordReference: playerReference) {
+                                        self.familyKitAppState.addBucks(playerModel: playerModel, bucks: self.model.bucks)
                                     }
                                 }
                             }
@@ -126,13 +126,12 @@ struct CKActivityActiveDetailView: View {
                 if self.model.recordID == nil {
                     self.onSave()
                 }
-                
                 self.configureChatSession()
         }
     }
     
     func configureChatSession() {
-        let chatSession = chatService.findOrMakeSession(model:model) { result in
+        chatService.findOrMakeSession(model:model) { result in
             switch result {
             case .success(let sessionModel):
                 self.chatSessionModel = sessionModel

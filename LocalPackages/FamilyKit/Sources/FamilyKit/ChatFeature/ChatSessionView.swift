@@ -92,11 +92,16 @@ public struct ChatSessionView: View {
             return
         }
         
+        guard let currentPlayerRecord = familyKitAppState.currentPlayerModel?.ckRecord else {
+            self.devMessage = "no current player"
+            return
+        }
+        
         var newMessage = CKChatMessageModel()
         newMessage.message = typingMessage
         newMessage.ownerEmoji = familyKitAppState.currentPlayerModel?.emoji ?? "🌞"
         newMessage.ownerName = familyKitAppState.currentPlayerModel?.name ?? "none"
-        newMessage.ownerReference = familyKitAppState.currentPlayer.recordReference
+        newMessage.ownerReference = CKRecord.Reference(recordID: currentPlayerRecord.recordID, action: .deleteSelf)
         newMessage.sessionReferenceID = chatSessionModelRecordID.recordName
         chatService.sendMessage(newMessage, sessionModel: chatSessionModel)
         typingMessage = ""

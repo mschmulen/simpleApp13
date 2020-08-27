@@ -44,6 +44,20 @@ struct MainBucksStoreView: View {
         .padding()
     }
     
+    var adultView: some View {
+        VStack {
+//            Button(action: {
+//                print( "new")
+//            }) {
+//                Text("Add new item")
+//            }
+            
+            NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                Text("new Item definition")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -51,12 +65,34 @@ struct MainBucksStoreView: View {
                 
                 leaderBoard
                 
-                // TODO: finish the bucks store
+                adultView
+                
                 List {
-                    Text("TODO")
-                    Text("TODO")
-                    Text("TODO")
-                    Text("TODO")
+                    Section(header: Text("Items for purchase")) {
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                    }
+                    Section(header: Text("purchased items")) {
+                        
+                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                    }
                 }
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")

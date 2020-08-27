@@ -10,7 +10,13 @@ import SwiftUI
 import CloudKit
 
 // TODO: Should have been named CKPerson
-public struct CKPlayerModel: CKModel {
+//public struct CKPlayerModel: CKModel {
+public final class CKPlayerModel: CKModel, ObservableObject {
+    
+    public static func == (lhs: CKPlayerModel, rhs: CKPlayerModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKPlayerModel
     public static let recordName = "Player"
@@ -32,11 +38,27 @@ public struct CKPlayerModel: CKModel {
     
     public var isAdult: Bool
     
+    public enum PlayerType: String {
+        case adultCustodian // this is basically admin
+        case adult
+        case kid
+        case unknown
+    }
+    public var playerType: PlayerType = .unknown
+    
     // TODO: finish the cover photo for the kid
     //public var coverPhoto: CKAsset?
     
     public var title: String? {
         return name
+    }
+    
+    public var recordReference: CKRecord.Reference? {
+        if let recordID = self.recordID {
+            return CKRecord.Reference(recordID: recordID, action: .deleteSelf)
+        } else {
+            return nil
+        }
     }
     
     public static var mock: CKPlayerModel {
@@ -46,9 +68,10 @@ public struct CKPlayerModel: CKModel {
         model.bucks = 3
         model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())! // 5 years old
         model.emoji = "😀"
+        model.playerType = .adult
         return model
     }
-        
+    
     public static var mockKid: CKPlayerModel {
         var model = CKPlayerModel()
         model.name = "mock kid"
@@ -56,6 +79,7 @@ public struct CKPlayerModel: CKModel {
         model.bucks = 3
         model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())! // 5 years old
         model.emoji = "😀"
+        model.playerType = .kid
         return model
     }
     
@@ -66,6 +90,7 @@ public struct CKPlayerModel: CKModel {
         self.dateOfBirth = nil
         self.emoji = nil
         self.isAdult = false
+        self.playerType = .adult
         //self.coverPhoto = nil
     }
     
@@ -93,6 +118,17 @@ public struct CKPlayerModel: CKModel {
         } else {
             self.isAdult = false
         }
+        
+        if let playerTypeValue = record["playerType"] as? String,
+            let playerTypeEnum = PlayerType.init(rawValue: playerTypeValue) {
+            self.playerType = playerTypeEnum
+        } else {
+            if self.isAdult {
+                self.playerType = .adult
+            } else {
+                self.playerType = .kid
+            }
+        }
     }
     
     enum CustomError: Error {
@@ -102,13 +138,13 @@ public struct CKPlayerModel: CKModel {
 }
 
 // MARK: - mutating functions
-extension CKPlayerModel {
-    
-    mutating public func mutateBucks( newBucks:Int ) {
-        self.bucks = newBucks
-    }
-    
-}
+//extension CKPlayerModel {
+//    
+//    mutating public func mutateBucks( newBucks:Int ) {
+//        self.bucks = newBucks
+//    }
+//    
+//}
 
 // MARK: - Create a CKRecord from this model
 extension CKPlayerModel {
@@ -139,6 +175,8 @@ extension CKPlayerModel {
         }
         
         record["isAdult"] = isAdult as CKRecordValue
+        
+        record["playerType"] = playerType.rawValue as CKRecordValue
         
         return record
     }

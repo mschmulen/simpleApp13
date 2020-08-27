@@ -62,7 +62,6 @@ public struct PlayerOnboardingView: View {
                         ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
                                 self.familyKitAppState.setCurrentPlayer(
-                                    player: Player.kid(model),
                                     playerModel: model
                                 )
                                 self.presentationMode.wrappedValue.dismiss()
@@ -96,7 +95,6 @@ public struct PlayerOnboardingView: View {
                         Button(action: {
                             
                             self.familyKitAppState.setCurrentPlayer(
-                                player: Player.kid(CKPlayerModel.mockKid),
                                 playerModel: CKPlayerModel.mockKid
                             )
                             
@@ -116,7 +114,6 @@ public struct PlayerOnboardingView: View {
                         Button(action: {
                             
                             self.familyKitAppState.setCurrentPlayer(
-                                player: Player.adult(CKPlayerModel.mock),
                                 playerModel: CKPlayerModel.mock
                             )
                             

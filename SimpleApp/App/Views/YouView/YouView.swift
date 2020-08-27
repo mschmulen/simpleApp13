@@ -23,13 +23,13 @@ struct YouView: View {
     
     @State var devMessage: String?
     let appInfo = AppModel()
-
+    
     var activeActivities: some View {
         Section() {
             CKActivityActiveRowView(
                 categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
                 items: privateActiveChoreService.models.filter({ (model) -> Bool in
-                    if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                    if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
                         return true
                     } else {
                         return false

@@ -33,7 +33,7 @@ struct UserView: View {
                 KidUserView()
             }
         }.onAppear(perform: {
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }

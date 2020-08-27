@@ -45,7 +45,7 @@ struct PlayersListView: View {
                     .onDelete(perform: delete)
             }//end section kids
         }.onAppear(perform: {
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")
@@ -59,7 +59,7 @@ struct PlayersListView: View {
                 case .failure(let error):
                     print("delete.error \(error)")
                 case .success(_):
-                    self.familyKitAppState.onRefresh()
+                    self.familyKitAppState.onRefetchFromServer()
                 }
             }
         }

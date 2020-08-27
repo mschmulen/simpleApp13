@@ -101,7 +101,8 @@ struct DrawingActivityView: View {
     }
     
     func onDone() {
-        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
+        // guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
+        guard let playerRecordReference = familyKitAppState.currentPlayerModel?.recordReference else {
             self.devMessage = "invalid playerRecordReference"
             return
         }

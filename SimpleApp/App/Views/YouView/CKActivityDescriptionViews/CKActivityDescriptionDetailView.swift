@@ -81,11 +81,11 @@ struct CKActivityDescriptionDetailView: View {
             DevMessageView(devMessage: $devMessage)
             
             
-            if familyKitAppState.currentPlayer.recordReference != nil {
+            if familyKitAppState.currentPlayerModel?.recordReference != nil {
                 NavigationLink(destination: CKActivityActiveDetailView(
                     model: CKActivityModel(
                         descriptionModel: model,
-                        playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
+                        playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!),
                     localActivityStatus: ActivityStatus.active
                 )) {
                     HStack {

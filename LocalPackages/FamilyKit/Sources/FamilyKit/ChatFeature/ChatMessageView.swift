@@ -25,7 +25,7 @@ public struct ChatMessageView : View {
     public var body: some View {
         VStack {
             HStack(alignment: .bottom, spacing: 15) {
-                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                if currentMessage.ownerReference == familyKitAppState.currentPlayerModel?.recordReference {
                     Spacer()
                     Text("\(currentMessage.ownerEmoji ?? "")")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
@@ -42,7 +42,7 @@ public struct ChatMessageView : View {
             .padding(.leading, 5)
             .padding(.trailing, 5)
             HStack {
-                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                if currentMessage.ownerReference == familyKitAppState.currentPlayerModel?.recordReference {
                     Spacer()
                     ChatContentMessageView(
                         contentMessage: currentMessage.message ?? "~"
@@ -56,11 +56,8 @@ public struct ChatMessageView : View {
             }
         }//end VStack
             .contextMenu {
-                
-                if currentMessage.ownerReference == familyKitAppState.currentPlayer.recordReference {
+                if currentMessage.ownerReference == familyKitAppState.currentPlayerModel?.recordReference {
                     Button(action: {
-                        // TODO: fix the delete
-                        print( "fix this")
                         self.chatService.onDelete(model: self.currentMessage)
                     }) {
                         Text("Delete")

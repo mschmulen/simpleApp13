@@ -61,7 +61,7 @@ struct KidUserView: View {
         .onAppear(perform: {
             
             self.configureChatSession()
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
