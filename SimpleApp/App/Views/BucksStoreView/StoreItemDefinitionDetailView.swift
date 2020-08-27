@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 import FamilyKit
 import SimpleGames
+import CloudKit
 
 struct StoreItemDefinitionDetailView: View {
     
@@ -20,6 +21,11 @@ struct StoreItemDefinitionDetailView: View {
     @State var devMessage: String?
     
     @State var model: CKStoreItemDefinitionModel
+    
+    @State var showActivityIndicator: Bool = false
+    @State var activityIndicatorMessage: String = "Saving"
+    
+    let storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel> = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CKContainer(identifier: CKContainerIdentifier))
     
     var editView: some View {
         Section(header: Text("Data")) {
@@ -37,22 +43,56 @@ struct StoreItemDefinitionDetailView: View {
     }
     
     var body: some View {
-        List{
-            DevMessageView(devMessage: $devMessage)
-            
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }.foregroundColor(.blue)
+        VStack {
+            ActivityIndicatorView(
+                isDisplayed: $showActivityIndicator,
+                indicatorMessage: $activityIndicatorMessage
+            ) {
+                List{
+                    DevMessageView(devMessage: self.$devMessage)
+                    
+                    Button(action:self.onSave) {
+                        HStack {
+                            Text("Save")
+                            Image(systemName: "square.and.arrow.up")
+                        }.foregroundColor(.blue)
+                    }
+                    self.editView
+                }//end List
             }
-            editView
-        }//end List
-            .onAppear {
+        }
+        .onAppear {
+            
+            // Auto save it on open
+//            if self.model.ckRecord == nil {
+//                // save it
+//                self.showActivityIndicator = true
+//                self.storeItemDefinitionService.pushUpdateCreate(model: self.model) { (result) in
+//                    switch result {
+//                    case .success(let item):
+//                        self.model = item
+//                    case .failure(let error):
+//                        print( "error \(error)")
+//                    }
+//                    self.showActivityIndicator = false
+//                }
+//            }//end if
         }
     }
     
     func onSave() {
+        
+        self.showActivityIndicator = true
+        self.storeItemDefinitionService.pushUpdateCreate(model: self.model) { (result) in
+            switch result {
+            case .success(let item):
+                self.model = item
+            case .failure(let error):
+                print( "error \(error)")
+            }
+            self.showActivityIndicator = false
+        }
+        
 //        privateChoreService.pushUpdateCreate(model: model) { (result) in
 //            switch result {
 //            case .failure(let error):
@@ -74,10 +114,12 @@ struct StoreItemDefinitionDetailView: View {
     
 }//end StoreItemDefinitionDetailView
 
-struct StoreItemDefinitionDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel.mock)
-        }
-    }
-}
+//struct StoreItemDefinitionDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            StoreItemDefinitionDetailView(
+//                model: CKStoreItemDefinitionModel.mock, storeItemDefinitionService: <#CKPrivateModelService<CKStoreItemDefinitionModel>#>
+//            )
+//        }
+//    }
+//}

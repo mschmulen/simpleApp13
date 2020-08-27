@@ -57,6 +57,7 @@ struct PhotoActivitySubView: View {
                                 }
                         }
                         Image(systemName: "camera")
+                            .foregroundColor(.white)
                     }
                 }
             }

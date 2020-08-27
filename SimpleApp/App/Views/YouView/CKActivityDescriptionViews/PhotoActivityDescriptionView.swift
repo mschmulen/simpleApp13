@@ -50,6 +50,7 @@ struct PhotoActivityDescriptionView: View {
                                 self.showingImagePicker.toggle()
                         }
                         Image(systemName: "camera")
+                        .foregroundColor(.white)
                     }
                 }
             }
@@ -75,6 +76,7 @@ struct PhotoActivityDescriptionView: View {
                         HStack {
                             Text("PICK IMAGE")
                             Image(systemName: "camera")
+                            .foregroundColor(.white)
                         }
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {

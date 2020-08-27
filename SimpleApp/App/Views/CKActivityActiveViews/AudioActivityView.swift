@@ -148,29 +148,46 @@ struct AudioActivitySubView: View {
         // automatically push to status .completed
         self.model.status = .completed
         
-        activityService.pushUpdateCreate(model: model) { (result) in
+        self.activityService.uploadAudioAsset(
+            model: model,
+            audioRecording: audioRecording,
+            assetPropertyName: "activityAsset"
+        ) { (result) in
             switch result {
-            case .success( let resultModel):
-                self.activityService.uploadAudioAsset(
-                    model: resultModel,
-                    audioRecording: audioRecording,
-                    assetPropertyName: "activityAsset"
-                ) { (result) in
-                    switch result {
-                    case .failure(let error):
-                        print( "uploadAudioAsset error \(error)")
-                        self.devMessage = "upload failure"
-                        self.showActivityIndicator = false
-                    case .success(_):
-                        self.devMessage = "upload success"
-                        self.showActivityIndicator = false
-                    }
-                }
             case .failure(let error):
-                print( "error \(error)")
+                print( "uploadAudioAsset error \(error)")
+                self.devMessage = "upload failure"
+                self.showActivityIndicator = false
+            case .success(_):
+                self.devMessage = "upload success"
                 self.showActivityIndicator = false
             }
         }
+        
+        // TODO: Clean up
+//        activityService.pushUpdateCreate(model: model) { (result) in
+//            switch result {
+//            case .success( let resultModel):
+//                self.activityService.uploadAudioAsset(
+//                    model: resultModel,
+//                    audioRecording: audioRecording,
+//                    assetPropertyName: "activityAsset"
+//                ) { (result) in
+//                    switch result {
+//                    case .failure(let error):
+//                        print( "uploadAudioAsset error \(error)")
+//                        self.devMessage = "upload failure"
+//                        self.showActivityIndicator = false
+//                    case .success(_):
+//                        self.devMessage = "upload success"
+//                        self.showActivityIndicator = false
+//                    }
+//                }
+//            case .failure(let error):
+//                print( "error \(error)")
+//                self.showActivityIndicator = false
+//            }
+//        }
     }
     
     func getCreationDate(for file: URL) -> Date {

@@ -23,6 +23,9 @@ struct MainBucksStoreView: View {
     
     @State var devMessage: String?
     
+    // For tomorrow
+    // let storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel> = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CKContainer(identifier: CKContainerIdentifier))
+    
     var leaderBoard: some View {
         VStack {
             Text("Leaderboard")
@@ -46,12 +49,6 @@ struct MainBucksStoreView: View {
     
     var adultView: some View {
         VStack {
-//            Button(action: {
-//                print( "new")
-//            }) {
-//                Text("Add new item")
-//            }
-            
             NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
                 Text("new Item definition")
             }

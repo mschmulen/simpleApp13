@@ -103,9 +103,6 @@ struct CKActivityActiveDetailView: View {
                     } else if self.model.moduleType == .drawing {
                         self.infoView
                         self.activityStatusView
-                        
-                        // TODO: just show the DrawPreviewView ... then if the tap it show a full screen sheet view of it
-                        
                         DrawPreviewView(
                             model: self.$model,
                             showActivityIndicator: self.$showActivityIndicator,
@@ -157,9 +154,8 @@ struct CKActivityActiveDetailView: View {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
                 self.showActivityIndicator = false
-            case .success(let record):
-                //self.devMessage = "success"
-                self.model = record
+            case .success(let newModel):
+                self.model = newModel
                 self.showActivityIndicator = false
             }
         }

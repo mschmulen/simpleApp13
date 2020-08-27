@@ -41,6 +41,9 @@ struct DrawView: View {
     
     func loadDrawingState() {
         if let activityAsset = model.activityAsset {
+            self.showActivityIndicator = true
+            self.activityIndicatorMessage  = "loading .."
+            
             if let activityAsset_FileURL = activityAsset.fileURL {
                 // print( "activityAsset_FileURL \(activityAsset_FileURL)")
                 guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
@@ -63,12 +66,18 @@ struct DrawView: View {
                     self.devMessage = "failed to decode \(error)"
                 }
             }
+            self.showActivityIndicator = false
         }
     }
     
-    func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
+    func saveCallback(
+        updatedDrawingState: DrawingState,
+        screenShot:UIImage?
+    ) {
         self.devMessage = "saving DrawingState"
         
+        self.showActivityIndicator = true
+        self.activityIndicatorMessage  = "saving .."
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
@@ -88,28 +97,46 @@ struct DrawView: View {
             // automatically push to status .completed
             self.model.status = .completed
             
-            activityService.pushUpdateCreate(model: model) { (result) in
+            self.activityService.uploadFileAsset(
+                model: self.model,
+                fileURL: localFileURL,
+                assetPropertyName: "activityAsset"
+            ) { (result) in
                 switch result {
-                case .success( let resultModel):
-                    self.activityService.uploadFileAsset(
-                        model: resultModel,
-                        fileURL: localFileURL,
-                        assetPropertyName: "activityAsset"
-                    ) { (result) in
-                        switch result {
-                        case .failure(let error):
-                            self.devMessage = "upload failure \(error)"
-                        case .success(_):
-                            self.devMessage = "upload success"
-                        }
-                    }
                 case .failure(let error):
-                    print( "error \(error)")
+                    self.devMessage = "upload failure \(error)"
+                case .success(_):
+                    self.devMessage = "upload success"
                 }
+                self.showActivityIndicator = false
             }
+            
+            // TODO CleanUp 
+//            activityService.pushUpdateCreate(model: model) { (result) in
+//                switch result {
+//                case .success( let resultModel):
+//                    self.activityService.uploadFileAsset(
+//                        model: resultModel,
+//                        fileURL: localFileURL,
+//                        assetPropertyName: "activityAsset"
+//                    ) { (result) in
+//                        switch result {
+//                        case .failure(let error):
+//                            self.devMessage = "upload failure \(error)"
+//                        case .success(_):
+//                            self.devMessage = "upload success"
+//                        }
+//                        self.showActivityIndicator = false
+//                    }
+//                case .failure(let error):
+//                    print( "error \(error)")
+//                    self.showActivityIndicator = false
+//                }
+//            }
             
         } catch let error {
             self.devMessage = "error \(error)"
+            self.showActivityIndicator = false
         }
         
         if let screenShot = screenShot {

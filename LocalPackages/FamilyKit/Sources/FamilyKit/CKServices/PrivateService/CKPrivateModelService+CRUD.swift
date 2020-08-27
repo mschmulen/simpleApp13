@@ -37,7 +37,8 @@ extension CKPrivateModelService {
                 case .failure(_):
                     completion(result)
                 case .success(let newModel):
-                    self.models.append(newModel)
+                    //self.models.append(newModel)
+                    self.models.insert(newModel, at: 0)
                     self.updateChanges()
                     completion(result)
                 }
