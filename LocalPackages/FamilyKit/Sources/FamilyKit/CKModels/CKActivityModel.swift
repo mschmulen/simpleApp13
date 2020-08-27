@@ -220,9 +220,9 @@ public final class CKActivityModel: CKModel, ObservableObject {
 // MARK: - mutating functions
 extension CKActivityModel {
     
-    public func changeStatus(status: ActivityStatus) {
-        self.status = status
-    }
+//    public func changeStatus(status: ActivityStatus) {
+//        self.status = status
+//    }
     
     public func changeResultAssetImage(asset: CKAsset) {
         self.resultAssetImage = asset

@@ -26,7 +26,7 @@ struct CKActivityActiveDetailView: View {
     @State var localActivityStatus: ActivityStatus
     
     @State var showActivityIndicator: Bool = false
-    @State var indicatorMessage: String = "Saving"
+    @State var activityIndicatorMessage: String = "Saving"
     
     @State var chatSessionModel: CKChatSessionModel?
     
@@ -50,7 +50,8 @@ struct CKActivityActiveDetailView: View {
                     .onReceive([localActivityStatus].publisher.first()) { value in
                         if value != self.model.status {
                             
-                            self.model.changeStatus(status: value)
+                            //self.model.changeStatus(status: value)
+                            self.model.status = value
                             self.onSave()
                             
                             // give them points
@@ -74,7 +75,7 @@ struct CKActivityActiveDetailView: View {
         VStack {
             ActivityIndicatorView(
                 isDisplayed: $showActivityIndicator,
-                indicatorMessage: $indicatorMessage
+                indicatorMessage: $activityIndicatorMessage
             ) {
                 VStack {
                     //DevMessageView(devMessage: $devMessage)
@@ -83,13 +84,16 @@ struct CKActivityActiveDetailView: View {
                         self.activityStatusView
                         PhotoActivitySubView(
                             model: self.$model,
-                            isUploading: self.$showActivityIndicator
+                            showActivityIndicator: self.$showActivityIndicator,
+                            activityIndicatorMessage: self.$activityIndicatorMessage
                         )
                     } else if self.model.moduleType == .audio {
                         self.infoView
                         self.activityStatusView
                         AudioActivitySubView(
-                            model: self.$model
+                            model: self.$model,
+                            showActivityIndicator: self.$showActivityIndicator,
+                            activityIndicatorMessage: self.$activityIndicatorMessage
                         )
                     } else if self.model.moduleType == .chat {
                         self.infoView
@@ -100,9 +104,12 @@ struct CKActivityActiveDetailView: View {
                         self.infoView
                         self.activityStatusView
                         
-                        // TODO: just show the image ... then if the tap it show a full screen sheet view of it
-                        DrawView(
-                            model: self.$model
+                        // TODO: just show the DrawPreviewView ... then if the tap it show a full screen sheet view of it
+                        
+                        DrawPreviewView(
+                            model: self.$model,
+                            showActivityIndicator: self.$showActivityIndicator,
+                            activityIndicatorMessage: self.$activityIndicatorMessage
                         )
                     }
                     else {
@@ -143,16 +150,17 @@ struct CKActivityActiveDetailView: View {
     }
     
     func onSave() {
+        self.activityIndicatorMessage  = "Saving"
+        self.showActivityIndicator = true
         activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
+                self.showActivityIndicator = false
             case .success(let record):
-                print( "success \(record)")
-                self.devMessage = "success"
-                print( "record \(record.status.friendlyName)")
-                print( "model \(self.model.status.friendlyName)")
+                //self.devMessage = "success"
                 self.model = record
+                self.showActivityIndicator = false
             }
         }
     }

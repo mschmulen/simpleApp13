@@ -24,6 +24,8 @@ struct AudioActivitySubView: View {
     @State var devMessage: String? = nil
     
     @Binding var model: CKActivityModel
+    @Binding var showActivityIndicator: Bool
+    @Binding var activityIndicatorMessage:String
     
     @State var avAudioRecorder: AVAudioRecorder?
     
@@ -113,6 +115,8 @@ struct AudioActivitySubView: View {
     }
     
     func loadRecording() {
+        self.showActivityIndicator = true
+        self.activityIndicatorMessage = "loading ..."
         if let resultAssetAudio = model.activityAsset {
             if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
                 audioRecording = AudioRecording(
@@ -130,15 +134,19 @@ struct AudioActivitySubView: View {
             let recording = AudioRecording(fileURL: audioFileURL, createdAt: getCreationDate(for: audioFileURL))
             audioRecording = recording
         }
+        self.showActivityIndicator = false
     }
     
     func saveRecording() {
+        self.showActivityIndicator = true
+        self.activityIndicatorMessage = "saving ..."
         guard let audioRecording = audioRecording else {
+            self.showActivityIndicator = false
             return
         }
         
         // automatically push to status .completed
-        self.model.changeStatus(status: .completed)
+        self.model.status = .completed
         
         activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
@@ -152,12 +160,15 @@ struct AudioActivitySubView: View {
                     case .failure(let error):
                         print( "uploadAudioAsset error \(error)")
                         self.devMessage = "upload failure"
+                        self.showActivityIndicator = false
                     case .success(_):
                         self.devMessage = "upload success"
+                        self.showActivityIndicator = false
                     }
                 }
             case .failure(let error):
                 print( "error \(error)")
+                self.showActivityIndicator = false
             }
         }
     }
@@ -176,10 +187,9 @@ struct ActivityAudioActionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AudioActivitySubView(
-                model: .constant(CKActivityModel.mock)
-            )
-            AudioActivitySubView(
-                model: .constant(CKActivityModel.mock)
+                model: .constant(CKActivityModel.mock),
+                showActivityIndicator: .constant(false),
+                activityIndicatorMessage: .constant("some update message")
             )
         }
     }

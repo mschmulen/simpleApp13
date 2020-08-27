@@ -42,6 +42,7 @@
 		76241AC924F80D0200788592 /* StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC824F80D0100788592 /* StoreItemDefinitionDetailView.swift */; };
 		76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */; };
 		76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */; };
+		76241ACF24F84AD100788592 /* DrawPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACE24F84AD100788592 /* DrawPreviewView.swift */; };
 		7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837B24E5BFA000097C4D /* DevMessageView.swift */; };
 		7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837D24E6039F00097C4D /* MainFamilyView.swift */; };
 		7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainBucksStoreView.swift */; };
@@ -156,6 +157,7 @@
 		76241AC824F80D0100788592 /* StoreItemDefinitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemDefinitionDetailView.swift; sourceTree = "<group>"; };
 		76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemPurchaseDetailView.swift; sourceTree = "<group>"; };
 		76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		76241ACE24F84AD100788592 /* DrawPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawPreviewView.swift; sourceTree = "<group>"; };
 		7649837724E594FC00097C4D /* Production_SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Production_SimpleApp.entitlements; sourceTree = "<group>"; };
 		7649837B24E5BFA000097C4D /* DevMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMessageView.swift; sourceTree = "<group>"; };
 		7649837D24E6039F00097C4D /* MainFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyView.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				76CFA1D724D9E0AB007A02CF /* DrawView.swift */,
+				76241ACE24F84AD100788592 /* DrawPreviewView.swift */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionCardView.swift in Sources */,
+				76241ACF24F84AD100788592 /* DrawPreviewView.swift in Sources */,
 				7649838924E73D2D00097C4D /* _DrawingActivitySubView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,

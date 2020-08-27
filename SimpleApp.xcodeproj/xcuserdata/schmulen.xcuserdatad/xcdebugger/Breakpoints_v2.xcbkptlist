@@ -528,7 +528,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "118"
                   endingLineNumber = "118"
-                  offsetFromSymbolStart = "274">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   uuid = "BA5B2A99-11DA-4BB5-9424-908122F2B286 - 318e549d42192128"
@@ -543,7 +543,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
                   endingLineNumber = "117"
-                  offsetFromSymbolStart = "78">
+                  offsetFromSymbolStart = "104">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -583,22 +583,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3EF7A47C-1CF3-4A2A-9523-6EB0C8F7A141"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleApp/App/Views/CKActivityActiveViews/PhotoActivitySubView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "saveImageToModel()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "25911D62-9C4E-406F-9416-E369A56BE07F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -624,7 +608,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "2764">
+                  offsetFromSymbolStart = "2344">
                </Location>
                <Location
                   uuid = "25911D62-9C4E-406F-9416-E369A56BE07F - 277767bd5f1cff01"
@@ -639,7 +623,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
                   endingLineNumber = "61"
-                  offsetFromSymbolStart = "345">
+                  offsetFromSymbolStart = "424">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -673,22 +657,6 @@
             startingLineNumber = "102"
             endingLineNumber = "102"
             landmarkName = "uploadPhotoAsset(model:image:assetPropertyName:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "36518255-44CF-41B2-BBCB-B4D71A60BE5B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleApp/App/Views/CKActivityActiveViews/PhotoActivitySubView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "saveImageToModel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

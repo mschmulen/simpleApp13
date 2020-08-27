@@ -1,8 +1,8 @@
 //
-//  DrawView.swift
+//  DrawPreviewView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 8/4/20.
+//  Created by Matthew Schmulen on 8/27/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import SwiftUI
 import DrawingKit
 import FamilyKit
 
-struct DrawView: View {
+struct DrawPreviewView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -42,9 +42,13 @@ struct DrawView: View {
     func loadDrawingState() {
         if let activityAsset = model.activityAsset {
             if let activityAsset_FileURL = activityAsset.fileURL {
+                
+                showActivityIndicator = true
+                activityIndicatorMessage = "loading drawing"
                 // print( "activityAsset_FileURL \(activityAsset_FileURL)")
                 guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
                     self.devMessage = "Failed to load \(activityAsset_FileURL) "
+                    showActivityIndicator = false
                     return
                 }
                 
@@ -59,8 +63,10 @@ struct DrawView: View {
                     let decodedDrawingState = try decoder.decode(DrawingState.self, from: data)
                     drawingState = decodedDrawingState
                     self.devMessage = "success in decodedDrawingState \(drawingState.layers.count) \(drawingState.scribbles.count)"
+                    showActivityIndicator = false
                 } catch let error {
                     self.devMessage = "failed to decode \(error)"
+                    showActivityIndicator = false
                 }
             }
         }
@@ -69,6 +75,8 @@ struct DrawView: View {
     func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
         self.devMessage = "saving DrawingState"
         
+        showActivityIndicator = true
+        activityIndicatorMessage = "saving drawing"
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
@@ -99,17 +107,21 @@ struct DrawView: View {
                         switch result {
                         case .failure(let error):
                             self.devMessage = "upload failure \(error)"
+                             self.showActivityIndicator = false
                         case .success(_):
                             self.devMessage = "upload success"
+                             self.showActivityIndicator = false
                         }
                     }
                 case .failure(let error):
                     print( "error \(error)")
+                    self.showActivityIndicator = false
                 }
             }
             
         } catch let error {
             self.devMessage = "error \(error)"
+            self.showActivityIndicator = false
         }
         
         if let screenShot = screenShot {
@@ -148,9 +160,9 @@ struct DrawView: View {
     
 }
 
-struct DrawView_Previews: PreviewProvider {
+struct DrawPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawView(
+        DrawPreviewView(
             model: .constant(CKActivityModel.mock),
             showActivityIndicator: .constant(false),
             activityIndicatorMessage: .constant("some update message")

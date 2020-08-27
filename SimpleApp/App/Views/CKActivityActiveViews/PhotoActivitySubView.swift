@@ -19,7 +19,8 @@ struct PhotoActivitySubView: View {
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
-    @Binding var isUploading: Bool
+    @Binding var showActivityIndicator: Bool
+    @Binding var activityIndicatorMessage:String
     
     @State private var showingCameraView = false
     @State private var showingImagePicker = false
@@ -51,7 +52,7 @@ struct PhotoActivitySubView: View {
                             .frame(width: geo.size.width, height: geo.size.height)
                             .border(Color.gray)
                             .onTapGesture {
-                                if self.isUploading == false {
+                                if self.showActivityIndicator == false {
                                     self.showingImagePicker.toggle()
                                 }
                         }
@@ -130,7 +131,7 @@ struct PhotoActivitySubView: View {
         
         self.devMessage = "uploading the image"
         
-        self.isUploading = true
+        self.showActivityIndicator = true
         self.activityService.uploadPhotoAsset(
             model: self.model,
             image: inputImage,
@@ -140,11 +141,11 @@ struct PhotoActivitySubView: View {
             case .failure( let error):
                 DispatchQueue.main.async {
                     self.devMessage = "There was an error uploading \(error)"
-                    self.isUploading = false
+                    self.showActivityIndicator = false
                 }
             case .success(let updatedModel):
                 DispatchQueue.main.async {
-                    self.isUploading = false
+                    self.showActivityIndicator = false
                     self.devMessage = "success"
                     if let resultAssetImage = updatedModel.resultAssetImage {
                         self.model.changeResultAssetImage(asset: resultAssetImage)
@@ -153,38 +154,6 @@ struct PhotoActivitySubView: View {
                 }
             }
         }
-        
-//        activityService.pushUpdateCreate(model: model) { (result) in
-//            switch result {
-//            case .success( let resultModel):
-//                self.activityService.uploadPhotoAsset(
-//                    model: self.model,
-//                    image: inputImage,
-//                    assetPropertyName: "resultAssetImage"
-//                ) { result in
-//                    switch result {
-//                    case .failure( let error):
-//                        DispatchQueue.main.async {
-//                            self.devMessage = "There was an error uploading \(error)"
-//                        }
-//                    case .success(let updatedModel):
-//                        DispatchQueue.main.async {
-//                            self.devMessage = "success"
-//                            if let resultAssetImage = updatedModel.resultAssetImage {
-//                                self.model.changeResultAssetImage(asset: resultAssetImage)
-//                            }
-//                            self.presentationMode.wrappedValue.dismiss()
-//                        }
-//                    }
-//                }
-//            case .failure(let error):
-//                print( "PhotoActivityView.error: \(error)")
-//                DispatchQueue.main.async {
-//                    self.devMessage = "There was an error updating \(error)"
-//                }
-//            }
-//
-//        }
     }
 }
 
@@ -193,11 +162,8 @@ struct PhotoActivityView_Previews: PreviewProvider {
         Group {
             PhotoActivitySubView(
                 model: .constant(CKActivityModel.mock),
-                isUploading: .constant(false)
-            )
-            PhotoActivitySubView(
-                model: .constant(CKActivityModel.mock),
-                isUploading: .constant(false)
+                showActivityIndicator: .constant(false),
+                activityIndicatorMessage: .constant("Indicator Message")
             )
         }
     }
