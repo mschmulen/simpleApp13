@@ -18,8 +18,8 @@ struct MainBucksStoreView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
@@ -44,6 +44,20 @@ struct MainBucksStoreView: View {
         .padding()
     }
     
+    var adultView: some View {
+        VStack {
+//            Button(action: {
+//                print( "new")
+//            }) {
+//                Text("Add new item")
+//            }
+            
+            NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                Text("new Item definition")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -51,12 +65,34 @@ struct MainBucksStoreView: View {
                 
                 leaderBoard
                 
-                // TODO: finish the bucks store
+                adultView
+                
                 List {
-                    Text("TODO")
-                    Text("TODO")
-                    Text("TODO")
-                    Text("TODO")
+                    Section(header: Text("Items for purchase")) {
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                    }
+                    Section(header: Text("purchased items")) {
+                        
+                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
+                            Text("TODO")
+                        }
+                        
+                    }
                 }
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
@@ -65,12 +101,12 @@ struct MainBucksStoreView: View {
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 
-                self.privateChoreService.fetch(
+                self.activityDescriptionService.fetch(
                     sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
                 }
-                self.privateActiveChoreService.fetch(
+                self.activityService.fetch(
                     sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
@@ -103,7 +139,7 @@ struct MainBucksStoreView: View {
             PlayerOnboardingView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
-                .environmentObject(privateChoreService)
+                .environmentObject(activityDescriptionService)
         ){
             HStack {
                 Text("change player")

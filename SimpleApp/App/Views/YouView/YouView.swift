@@ -18,18 +18,18 @@ struct YouView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     let appInfo = AppModel()
-
+    
     var activeActivities: some View {
         Section() {
             CKActivityActiveRowView(
                 categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
-                items: privateActiveChoreService.models.filter({ (model) -> Bool in
-                    if model.kidReference == familyKitAppState.currentPlayer.recordReference {
+                items: activityService.models.filter({ (model) -> Bool in
+                    if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
                         return true
                     } else {
                         return false
@@ -76,7 +76,7 @@ struct YouView: View {
                         {
                             CKActivityDescriptionCardsRowView(
                                 categoryName: "\(category.rawValue) Activities:",
-                                items: self.privateChoreService.models.filter { $0.category == category },
+                                items: self.activityDescriptionService.models.filter { $0.category == category },
                                 isPrivate: true,
                                 showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
                             )
@@ -92,13 +92,13 @@ struct YouView: View {
             }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
-                self.privateChoreService.fetch(
+                self.activityDescriptionService.fetch(
                     sortDescriptor: .none,
                     searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
                 }
-                self.privateActiveChoreService.fetch(
+                self.activityService.fetch(
                     sortDescriptor: .none,
                     searchPredicate: .predicateTrue
                 ) { (result) in

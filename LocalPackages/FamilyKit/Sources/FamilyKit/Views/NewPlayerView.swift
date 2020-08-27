@@ -56,6 +56,7 @@ struct NewPlayerView: View {
                         case .kid:
                             var newModel = CKPlayerModel()
                             newModel.isAdult = false
+                            newModel.playerType = .kid
                             newModel.bucks = 0
                             newModel.dateOfBirth = self.stateBirthDate
                             newModel.name = self.newPlayerName
@@ -72,6 +73,7 @@ struct NewPlayerView: View {
                         case .adult:
                             var newModel = CKPlayerModel()
                             newModel.isAdult = true
+                            newModel.playerType = .adult
                             newModel.bucks = 0
                             newModel.dateOfBirth = self.stateBirthDate
                             newModel.name = self.newPlayerName

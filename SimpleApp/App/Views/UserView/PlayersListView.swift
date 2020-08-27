@@ -18,8 +18,9 @@ struct PlayersListView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
+    
     @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
@@ -45,7 +46,7 @@ struct PlayersListView: View {
                     .onDelete(perform: delete)
             }//end section kids
         }.onAppear(perform: {
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")
@@ -59,7 +60,7 @@ struct PlayersListView: View {
                 case .failure(let error):
                     print("delete.error \(error)")
                 case .success(_):
-                    self.familyKitAppState.onRefresh()
+                    self.familyKitAppState.onRefetchFromServer()
                 }
             }
         }

@@ -12,6 +12,10 @@ import CloudKit
 // public struct CKChatSessionModel: CKModel {
 public final class CKChatSessionModel: CKModel, ObservableObject {
     
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .none
+    }
+    
     public static func == (lhs: CKChatSessionModel, rhs: CKChatSessionModel) -> Bool {
         return lhs.id == rhs.id
     }

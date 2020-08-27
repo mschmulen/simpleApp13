@@ -18,8 +18,8 @@ struct FamilyChatView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
@@ -37,18 +37,18 @@ struct FamilyChatView: View {
                 }
             }.onAppear(perform: {
                     self.configureChatSession()
-                    self.familyKitAppState.onRefresh()
+                    self.familyKitAppState.onRefetchFromServer()
             })
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
                 
-                self.privateChoreService.fetch(
+                self.activityDescriptionService.fetch(
                     sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
                 }
-                self.privateActiveChoreService.fetch(
+                self.activityService.fetch(
                     sortDescriptor: .none, searchPredicate: .predicateTrue
                 ) { (result) in
                     print( "result")
@@ -81,7 +81,7 @@ struct FamilyChatView: View {
             PlayerOnboardingView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
-                .environmentObject(privateChoreService)
+                .environmentObject(activityDescriptionService)
         ){
             HStack {
                 Text("change player")

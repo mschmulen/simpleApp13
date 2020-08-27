@@ -14,15 +14,13 @@ struct PlayerDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    // @EnvironmentObject var privateChoreService: CKPrivateModelService<CKChoreModel>
-    
     @State var devMessage: String?
-    
     @State var model: CKPlayerModel
-    
     @State private var stateBirthDate = Date()
+    
     var starterDate: Date {
         if let dob = model.dateOfBirth {
             return dob
@@ -32,33 +30,54 @@ struct PlayerDetailView: View {
     }
     
     var body: some View {
-        List{
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }.foregroundColor(.blue)
+        VStack {
+            HStack {
+                Button(action: onDelete) {
+                    HStack {
+                        Text("Delete")
+                        Image(systemName: "trash")
+                    }.foregroundColor(.blue)
+                }.padding()
+                
+                Spacer()
+                
+                Button(action: onSave) {
+                    HStack {
+                        Text("Save")
+                        Image(systemName: "square.and.arrow.up")
+                    }.foregroundColor(.blue)
+                }.padding()
             }
-            Text("name \(model.name ?? "~")")
-            Section(header: Text("Data")) {
-                TextField("name", text: $model.name ?? "")
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                TextField("emoji", text: $model.emoji ?? "😀")
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                VStack{
-                    Text("birthday")
-                    DatePicker(selection: $stateBirthDate, in: ...starterDate, displayedComponents: .date) {
-                        Text("Select your birthday")
+            
+            List {
+                Text("name \(model.name ?? "~")")
+                Section(header: Text("Data")) {
+                    TextField("name", text: $model.name ?? "")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("bucks", value: $model.bucks ?? 2, formatter: NumberFormatter())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("emoji", text: $model.emoji ?? "😀")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Picker(selection: $model.playerType, label: Text("playerType")) {
+                        ForEach(CKPlayerModel.PlayerType.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                    
+                    VStack{
+                        Text("birthday")
+                        DatePicker(selection: $stateBirthDate, in: ...starterDate, displayedComponents: .date) {
+                            Text("Select your birthday")
+                        }
+                        .labelsHidden()
                     }
-                    .labelsHidden()
+                    .padding()
+                    .border(Color.gray)
                 }
-                .padding()
-                .border(Color.gray)
             }
         }
     }//end body
@@ -76,8 +95,17 @@ struct PlayerDetailView: View {
         }
     }
     
-    func onTrailing() {
-        print( "onTrailing")
+    func onDelete() {
+        self.familyKitAppState.playerService.pushDelete(model: model) { (result) in
+            switch result {
+            case .failure(let error):
+                self.devMessage = error.localizedDescription
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
     }
 }
 

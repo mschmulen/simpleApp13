@@ -11,23 +11,13 @@ import Combine
 import FamilyKit
 import SimpleGames
 
-class ActivityDescriptionViewModel: ObservableObject {
-    
-    // Input
-    @Published var name = ""
-    
-    // Output
-    @Published var isValid = false
-    
-}
-
 struct CKActivityDescriptionDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     @State var devMessage: String?
     
@@ -52,11 +42,8 @@ struct CKActivityDescriptionDetailView: View {
             }
             
             Text("bucks: \(model.bucks ?? 0)")
-                
-            Text("moduleType: \(model.moduleType.rawValue)")
             
-            // TODO: handle the imageAsset
-            //Text("imageAsset: \(model.imageName ?? "~")")
+            Text("moduleType: \(model.moduleType.rawValue)")
         }
     }
     
@@ -77,15 +64,16 @@ struct CKActivityDescriptionDetailView: View {
     }
     
     var body: some View {
-        List{
+        
+        VStack {
+            
             DevMessageView(devMessage: $devMessage)
             
-            
-            if familyKitAppState.currentPlayer.recordReference != nil {
+            if familyKitAppState.currentPlayerModel?.recordReference != nil {
                 NavigationLink(destination: CKActivityActiveDetailView(
                     model: CKActivityModel(
                         descriptionModel: model,
-                        playerRecordReference: familyKitAppState.currentPlayer.recordReference!),
+                        playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!),
                     localActivityStatus: ActivityStatus.active
                 )) {
                     HStack {
@@ -95,18 +83,33 @@ struct CKActivityDescriptionDetailView: View {
                 }
             }
             
-            readOnlyView
-            
-            
-            Section(header:Text("Assets")) {
-                coverPhotoView
+            NavigationLink(
+                destination: CKActivityDescriptionDetailEditView(
+                    model: model
+                )
+            ) {
+                HStack {
+                    Text("EDIT THIS ACTIVITY")
+                    Image(systemName: "square.and.arrow.up")
+                }.foregroundColor(.blue)
             }
             
-        }//end List
-            .onAppear {
+            
+            List{
                 
-                // try and download the image
-                if self.model.coverPhoto != nil {
+                readOnlyView
+                
+                
+                Section(header:Text("Assets")) {
+                    coverPhotoView
+                }
+                
+            }//end List
+        }
+        .onAppear {
+            
+            // try and download the image
+            if self.model.coverPhoto != nil {
                 self.model.loadCoverPhoto { (result) in
                     switch result {
                     case .failure(_):
@@ -115,12 +118,12 @@ struct CKActivityDescriptionDetailView: View {
                         self.coverPhotoImage = image
                     }
                 }
-                }
+            }
         }
     }
     
     func onSave() {
-        privateChoreService.pushUpdateCreate(model: model) { (result) in
+        activityDescriptionService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -128,7 +131,7 @@ struct CKActivityDescriptionDetailView: View {
                 print( "success \(record)")
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
-                    self.privateChoreService.fetch(
+                    self.activityDescriptionService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in

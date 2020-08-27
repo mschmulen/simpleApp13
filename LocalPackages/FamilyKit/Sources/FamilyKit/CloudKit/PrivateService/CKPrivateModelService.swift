@@ -11,6 +11,45 @@ import SwiftUI
 import Combine
 import CloudKit
 
+// TODO : Rename ModelServiceSearchPredicate
+public enum SearchPredicate {
+    
+    case predicateTrue
+    case customEqualsSearch( searchKey: String, searchValue: String)
+    case customContainsSearch( searchKey: String, searchValue: String)
+    
+    var predicate: NSPredicate {
+        switch self {
+        case .predicateTrue:
+            return NSPredicate(value: true)
+        case .customEqualsSearch(let searchKey, let searchValue):
+            return NSPredicate(format: "\(searchKey) == %@", searchValue)
+        case .customContainsSearch(let searchKey, let searchValue):
+            return NSPredicate(format: "\(searchKey) CONTAINS %@", searchValue)
+        }
+    }
+}
+
+// TODO : Rename ModelServiceSortDescriptor
+public enum SortDescriptor {
+    
+    /// custom "modificationDate", "creationDate",
+    /// note: ascending false for a date is most recent first
+    case custom(key: String, ascending:Bool )
+    case none
+    
+    var sortDescriptors: [NSSortDescriptor] {
+        switch self {
+        case .custom(let key, let ascending):
+            return [NSSortDescriptor(key: key, ascending: ascending)]
+        case .none:
+            // TODO: Matt I think you hacked this for debug and you need to find out where and why so you can move it back to empty, but for now its fine
+            return [NSSortDescriptor]()
+            //                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
+        }
+    }
+}
+
 /**
 
  Usage:
@@ -40,7 +79,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     
     @Published public var models: [T] = [] {
         willSet {
-            
             updateChanges()
         }
     }
@@ -54,54 +92,7 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         case cursorFailure
     }
     
-    public enum SearchPredicate {
-        
-        case predicateTrue
-        case customEqualsSearch( searchKey: String, searchValue: String)
-        case customContainsSearch( searchKey: String, searchValue: String)
-        
-        var predicate: NSPredicate {
-            switch self {
-            case .predicateTrue:
-                return NSPredicate(value: true)
-            case .customEqualsSearch(let searchKey, let searchValue):
-                return NSPredicate(format: "\(searchKey) == %@", searchValue)
-            case .customContainsSearch(let searchKey, let searchValue):
-                return NSPredicate(format: "\(searchKey) CONTAINS %@", searchValue)
-            }
-        }
-    }
     
-    public enum SortDescriptor {
-        
-        case creationDate
-        case creationDateAscending
-        
-        case modificationDate
-        case modificationDateAscending
-        
-        case none
-        
-        // TODO:
-        // case custom(key: String, ascending:Bool )
-        
-        var sortDescriptors: [NSSortDescriptor] {
-            switch self {
-            case .creationDate:
-                return [NSSortDescriptor(key: "creationDate", ascending: false)]
-            case .creationDateAscending:
-                return [NSSortDescriptor(key: "creationDate", ascending: true)]
-            case .modificationDate:
-                return [NSSortDescriptor(key: "modificationDate", ascending: false)]
-            case .modificationDateAscending:
-                return [NSSortDescriptor(key: "modificationDate", ascending: true)]
-            case .none:
-                // TODO: Matt I think you hacked this for debug and you need to find out where and why so you can move it back to empty, but for now its fine
-                return [NSSortDescriptor]()
-                //return [NSSortDescriptor(key: "modificationDate", ascending: false)]
-            }
-        }
-    }
     
     internal func updateChanges() {
         DispatchQueue.main.async {
@@ -111,7 +102,7 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
 }
 
 extension CKPrivateModelService {
-
+    
     public func fetch(
         sortDescriptor: SortDescriptor,
         searchPredicate: SearchPredicate,
@@ -227,7 +218,7 @@ extension CKPrivateModelService {
 
 extension CKPrivateModelService {
     
-    public func fetchByReference(
+    public func fetchByReference (
         modelReference: CKRecord.Reference,
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
@@ -245,17 +236,18 @@ extension CKPrivateModelService {
 
 extension CKPrivateModelService {
     
+    // TODO: move this use the SearchPredicate.custom(key, value) and remove this function
     public func fetchByName(
         name: String,
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
-        // TODO: move this use the SearchPredicate.custom(key, value) and remove this function
+        // TODO: replace with .customEqualsSearch("name", value)
         let pred = NSPredicate(format: "name == %@", name)
         let query = CKQuery(recordType: T.recordName, predicate: pred)
         
         let operation = CKQueryOperation(query: query)
-        //operation.desiredKeys = ["genre", "comments"]
+        //operation.desiredKeys = ["name", "yack"]
         operation.resultsLimit = 2
         
         container.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
@@ -265,21 +257,6 @@ extension CKPrivateModelService {
                 completion(.failure(CustomError.unknown))
             }
         }
-        
-//        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
-//            if let record = record, let model = T( record: record) {
-//                completion(.success(model))
-//            } else {
-//        completion(.failure(CustomError.unknown))
-//            }
-//        }
-
-//        var resultModels = [T]()
-//        if let first = resultModels.first {
-//            completion(.failure(CustomError.unknown))
-//        } else {
-//            completion(.failure(CustomError.unknown))
-//        }
     }//end fetchByName
 }
 

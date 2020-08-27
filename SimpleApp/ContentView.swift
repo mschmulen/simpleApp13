@@ -16,8 +16,8 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
     
     @State var devMessage: String?
@@ -59,8 +59,8 @@ struct ContentView: View {
                                 .environment(\.window, window)
                                 .environmentObject(appState)
                                 .environmentObject(familyKitAppState)
-                                .environmentObject(privateChoreService)
-                                .environmentObject(privateActiveChoreService)
+                                .environmentObject(activityDescriptionService)
+                                .environmentObject(activityService)
                                 .tabItem {
                                     Image(systemName: "person.circle")
                                     Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
@@ -70,8 +70,8 @@ struct ContentView: View {
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
-                            .environmentObject(privateChoreService)
-                            .environmentObject(privateActiveChoreService)
+                            .environmentObject(activityDescriptionService)
+                            .environmentObject(activityService)
                             .tabItem {
                                 Image(systemName: "house")
                                 Text("Family")
@@ -81,8 +81,8 @@ struct ContentView: View {
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
-                            .environmentObject(privateChoreService)
-                            .environmentObject(privateActiveChoreService)
+                            .environmentObject(activityDescriptionService)
+                            .environmentObject(activityService)
                             .tabItem {
                                 Image(systemName: "dollarsign.circle")
                                 // .font(.system(size: 28, weight: .light))
@@ -93,8 +93,8 @@ struct ContentView: View {
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
-                            .environmentObject(privateChoreService)
-                            .environmentObject(privateActiveChoreService)
+                            .environmentObject(activityDescriptionService)
+                            .environmentObject(activityService)
                             .tabItem {
                                 Image(systemName: "person.3")
                                 Text("Chat")

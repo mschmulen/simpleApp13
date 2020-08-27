@@ -15,8 +15,8 @@ public struct PlayerOnboardingView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     
     @State var errorMessage: String?
@@ -62,7 +62,6 @@ public struct PlayerOnboardingView: View {
                         ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
                                 self.familyKitAppState.setCurrentPlayer(
-                                    player: Player.kid(model),
                                     playerModel: model
                                 )
                                 self.presentationMode.wrappedValue.dismiss()
@@ -96,15 +95,14 @@ public struct PlayerOnboardingView: View {
                         Button(action: {
                             
                             self.familyKitAppState.setCurrentPlayer(
-                                player: Player.kid(CKPlayerModel.mockKid),
                                 playerModel: CKPlayerModel.mockKid
                             )
                             
                             // lets also set up some mock cards.
-                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
-                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
-                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
-                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+                            self.activityDescriptionService.models.append( CKActivityDescriptionModel.mock )
+                            self.activityDescriptionService.models.append( CKActivityDescriptionModel.mock )
+                            self.activityService.models.append( CKActivityModel.mock )
+                            self.activityService.models.append( CKActivityModel.mock )
                             
                         }) {
                             Text("Simulator only \"mock Kid\"")
@@ -116,15 +114,14 @@ public struct PlayerOnboardingView: View {
                         Button(action: {
                             
                             self.familyKitAppState.setCurrentPlayer(
-                                player: Player.adult(CKPlayerModel.mock),
                                 playerModel: CKPlayerModel.mock
                             )
                             
                             // lets also set up some mock cards.
-                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
-                            self.privateChoreService.models.append( CKActivityDescriptionModel.mock )
-                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
-                            self.privateActiveChoreService.models.append( CKActivityModel.mock )
+                            self.activityDescriptionService.models.append( CKActivityDescriptionModel.mock )
+                            self.activityDescriptionService.models.append( CKActivityDescriptionModel.mock )
+                            self.activityService.models.append( CKActivityModel.mock )
+                            self.activityService.models.append( CKActivityModel.mock )
 
                         }) {
                             Text("Simulator only \"mock Adult\"")

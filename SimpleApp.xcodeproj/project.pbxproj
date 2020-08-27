@@ -39,11 +39,14 @@
 		76208BA624D8C55F001F46E2 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA524D8C55F001F46E2 /* AudioPlayerView.swift */; };
 		76241ABF24F6C9DF00788592 /* FamilyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ABE24F6C9DF00788592 /* FamilyChatView.swift */; };
 		76241AC124F6CE5B00788592 /* ChatPeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC024F6CE5B00788592 /* ChatPeekView.swift */; };
+		76241AC924F80D0200788592 /* StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC824F80D0100788592 /* StoreItemDefinitionDetailView.swift */; };
+		76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */; };
+		76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */; };
 		7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837B24E5BFA000097C4D /* DevMessageView.swift */; };
 		7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837D24E6039F00097C4D /* MainFamilyView.swift */; };
 		7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainBucksStoreView.swift */; };
 		7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838424E621C000097C4D /* FamilyActivityCardView.swift */; };
-		7649838924E73D2D00097C4D /* DrawingActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838824E73D2D00097C4D /* DrawingActivityView.swift */; };
+		7649838924E73D2D00097C4D /* _DrawingActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838824E73D2D00097C4D /* _DrawingActivitySubView.swift */; };
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
@@ -67,7 +70,7 @@
 		76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */; };
 		76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */; };
 		76C2FE0324DB9B9000E030C2 /* CKActivityActiveRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */; };
-		76CFA1D224D9DA00007A02CF /* PhotoActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoActivityView.swift */; };
+		76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */; };
 		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
 		76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DD24D9E902007A02CF /* SimpleGames */; };
@@ -150,12 +153,15 @@
 		76208BA524D8C55F001F46E2 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		76241ABE24F6C9DF00788592 /* FamilyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyChatView.swift; sourceTree = "<group>"; };
 		76241AC024F6CE5B00788592 /* ChatPeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPeekView.swift; sourceTree = "<group>"; };
+		76241AC824F80D0100788592 /* StoreItemDefinitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemDefinitionDetailView.swift; sourceTree = "<group>"; };
+		76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemPurchaseDetailView.swift; sourceTree = "<group>"; };
+		76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		7649837724E594FC00097C4D /* Production_SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Production_SimpleApp.entitlements; sourceTree = "<group>"; };
 		7649837B24E5BFA000097C4D /* DevMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMessageView.swift; sourceTree = "<group>"; };
 		7649837D24E6039F00097C4D /* MainFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyView.swift; sourceTree = "<group>"; };
 		7649837F24E603C100097C4D /* MainBucksStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBucksStoreView.swift; sourceTree = "<group>"; };
 		7649838424E621C000097C4D /* FamilyActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyActivityCardView.swift; sourceTree = "<group>"; };
-		7649838824E73D2D00097C4D /* DrawingActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingActivityView.swift; sourceTree = "<group>"; };
+		7649838824E73D2D00097C4D /* _DrawingActivitySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DrawingActivitySubView.swift; sourceTree = "<group>"; };
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -180,7 +186,7 @@
 		76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
 		76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityActiveDetailView.swift; sourceTree = "<group>"; };
 		76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveRowView.swift; sourceTree = "<group>"; };
-		76CFA1D124D9DA00007A02CF /* PhotoActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivityView.swift; sourceTree = "<group>"; };
+		76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivitySubView.swift; sourceTree = "<group>"; };
 		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76CFA1DA24D9E8F4007A02CF /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
@@ -317,6 +323,7 @@
 				76208BA224D8C4AF001F46E2 /* Audio */,
 				76208B8B24D663DE001F46E2 /* Utility */,
 				7601817624C61E1100B339E4 /* UserView */,
+				76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -415,6 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				7649837F24E603C100097C4D /* MainBucksStoreView.swift */,
+				76241AC824F80D0100788592 /* StoreItemDefinitionDetailView.swift */,
+				76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */,
 			);
 			path = BucksStoreView;
 			sourceTree = "<group>";
@@ -486,9 +495,9 @@
 			isa = PBXGroup;
 			children = (
 				76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */,
-				76CFA1D124D9DA00007A02CF /* PhotoActivityView.swift */,
-				7649838824E73D2D00097C4D /* DrawingActivityView.swift */,
+				76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */,
 				7649838A24E73DCB00097C4D /* AudioActivityView.swift */,
+				7649838824E73D2D00097C4D /* _DrawingActivitySubView.swift */,
 				76DF241A24ED7392009222AF /* ListView */,
 				76DF241924ED738C009222AF /* CardView */,
 				76241AC024F6CE5B00788592 /* ChatPeekView.swift */,
@@ -700,10 +709,11 @@
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */,
 				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
+				76241AC924F80D0200788592 /* StoreItemDefinitionDetailView.swift in Sources */,
 				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionCardView.swift in Sources */,
-				7649838924E73D2D00097C4D /* DrawingActivityView.swift in Sources */,
+				7649838924E73D2D00097C4D /* _DrawingActivitySubView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddCardView.swift in Sources */,
@@ -725,10 +735,12 @@
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
+				76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */,
+				76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */,
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,
 				76208B8024D60051001F46E2 /* PlayerDetailView.swift in Sources */,
-				76CFA1D224D9DA00007A02CF /* PhotoActivityView.swift in Sources */,
+				76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */,
 				76241ABF24F6C9DF00788592 /* FamilyChatView.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
 				7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */,
@@ -907,7 +919,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -930,7 +942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

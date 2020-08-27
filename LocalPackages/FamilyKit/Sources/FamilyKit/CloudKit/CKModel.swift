@@ -16,6 +16,7 @@ public protocol CKModel: Identifiable, Hashable {
     static var recordName: String { get }
     static var ckSchemeKeys: [String] { get }
     static var mock: ItemType { get }
+    static var defaultSortDescriptor: SortDescriptor { get }
     
     var id: UUID { get }
     var recordID: CKRecord.ID? { get }
@@ -24,4 +25,6 @@ public protocol CKModel: Identifiable, Hashable {
     init?(record: CKRecord)
     
     var title: String? { get }
+    
+    
 }

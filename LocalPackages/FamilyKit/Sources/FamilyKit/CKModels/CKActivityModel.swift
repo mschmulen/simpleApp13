@@ -32,6 +32,9 @@ public final class CKActivityModel: CKModel, ObservableObject {
         return lhs.id == rhs.id
     }
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
+    public static var defaultSortDescriptor: SortDescriptor {
+        return .custom(key: "creationDate", ascending: true)
+    }
     
     public typealias ItemType = CKActivityModel
     public static let recordName = "ChoreActive"

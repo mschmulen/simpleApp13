@@ -88,13 +88,15 @@ extension CKPrivateModelService  {
                 let fileAsset = CKAsset(fileURL: filePath)
                 record[assetPropertyName] = fileAsset
                 self.container.privateCloudDatabase.save(record) { record, error in
-                    if let record = record, error == nil {
-                        if let updatedModel = T(record: record) {
-                            completion(.success(updatedModel) )
-                            self.updateChanges()
-                        } else {
-                            completion(.failure(CustomError.unknown))
-                        }
+                    if let record = record, error == nil, let updatedModel = T(record: record) {
+                        //                            if let index = self.models.firstIndex(where: { (model) -> Bool in
+                        //                                model.recordID == updatedModel.recordID
+                        //                            }) {
+                        //                                self.models[index] = updatedModel
+                        //                                self.updateChanges()
+                        //                            }
+                        self.updateChanges()
+                        completion(.success(updatedModel) )
                         return
                     } else {
                         completion(.failure(error ?? CustomError.unknown))

@@ -19,8 +19,8 @@ struct AdultUserView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
@@ -69,8 +69,15 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
             }
-                        
+            
             Section(header: Text(" Dev Stuff")) {
+                
+                Button(action: {
+                    self.familyKitAppState.resetAllFamilyBucks()
+                }) {
+                    Text("Reset All FamilyBucks")
+                }
+                
                 
                 NavigationLink(destination: PurchaseView()) {
                     Text("PurchaseView")
@@ -93,6 +100,8 @@ struct AdultUserView: View {
                         Text("\(self.familyKitAppState.userService.ckAccountStatus.friendlyString)")
                     }
                 }
+                
+                
                 
 //                if familyKitAppState.isSimulator == false {
 //                    // Notifications
@@ -133,7 +142,7 @@ struct AdultUserView: View {
                }//end sheet
         .onAppear(perform: {
             self.configureChatSession()
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }

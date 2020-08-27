@@ -1,5 +1,5 @@
 //
-//  AudioActivityView.swift
+//  AudioActivitySubView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/14/20.
@@ -13,13 +13,13 @@ import SimpleGames
 import DrawingKit
 import AVFoundation
 
-struct ActivityAudioActionView: View {
+struct AudioActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil
     
@@ -140,10 +140,10 @@ struct ActivityAudioActionView: View {
         // automatically push to status .completed
         self.model.changeStatus(status: .completed)
         
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+        activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .success( let resultModel):
-                self.privateActiveChoreService.uploadAudioAsset(
+                self.activityService.uploadAudioAsset(
                     model: resultModel,
                     audioRecording: audioRecording,
                     assetPropertyName: "activityAsset"
@@ -175,10 +175,10 @@ struct ActivityAudioActionView: View {
 struct ActivityAudioActionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityAudioActionView(
+            AudioActivitySubView(
                 model: .constant(CKActivityModel.mock)
             )
-            ActivityAudioActionView(
+            AudioActivitySubView(
                 model: .constant(CKActivityModel.mock)
             )
         }

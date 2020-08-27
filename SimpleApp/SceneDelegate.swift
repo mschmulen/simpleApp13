@@ -37,7 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             container: container
         )
         activityDescriptionService.fetch(
-            sortDescriptor: .none, searchPredicate: .predicateTrue,
+            sortDescriptor: .custom(key: "creationDate", ascending: true),
+            searchPredicate: .predicateTrue,
             completion: { result in
 //            switch result {
 //            case .success(let models) :
@@ -49,51 +50,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         activityDescriptionService.subscribe(isSilent: true, message: "new ActivityDescription or change")
         activityDescriptionService.listenForNotifications()
         // ---------------------------------------------
-
-       
+        
+        
         // ---------------------------------------------
         // Activity
         let activityService = CKPrivateModelService<CKActivityModel>(
             container: container
         )
         activityService.fetch(
-            sortDescriptor: .none, searchPredicate: .predicateTrue,
+            sortDescriptor: .custom(key: "modificationDate", ascending: false),
+            searchPredicate: .predicateTrue,
             completion: { result in
-//            switch result {
-//            case .success(let models) :
-//                print( "privateActiveChoreService success \(models)")
-//            case .failure(let error):
-//                print( "privateActiveChoreService error \(error)")
-//            }
         })
         activityService.subscribe(isSilent: false, message: "new Activity or activity changed")
         activityService.listenForNotifications()
-        // ---------------------------------------------
-        
-        // ---------------------------------------------
-        // StoreItem
-//        let storeService = CKPrivateModelService<CKStoreItemModel>(
-//            container: container
-//        )
-//        storeService.fetch(completion: { result in
-//            //            switch result {
-//            //            case .success(let models) :
-//            //                print( "privateActiveChoreService success \(models)")
-//            //            case .failure(let error):
-//            //                print( "privateActiveChoreService error \(error)")
-//            //            }
-//        })
-//        storeService.subscribe(isSilent: false, message: "new Store Item or changed")
-//        storeService.listenForNotifications()
-        // ---------------------------------------------
-        
-        
-        // ---------------------------------------------
-//        let chatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
-//        chatService.onRefresh()
-//        chatService.chatMessageService.subscribe(isSilent: false, message: "New Chat")
-//        chatService.chatMessageService.listenForNotifications()
-//        chatService.onStartUp()
         // ---------------------------------------------
         
         let appState = AppState()

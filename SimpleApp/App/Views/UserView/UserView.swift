@@ -11,7 +11,6 @@ import FamilyKit
 import CloudKit
 import SimpleGames
 
-// TODO: use the UserView instead of the Kid and Adult View
 struct UserView: View {
     
     @Environment(\.window) var window: UIWindow?
@@ -20,8 +19,8 @@ struct UserView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
     
@@ -33,7 +32,7 @@ struct UserView: View {
                 KidUserView()
             }
         }.onAppear(perform: {
-            self.familyKitAppState.onRefresh()
+            self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }

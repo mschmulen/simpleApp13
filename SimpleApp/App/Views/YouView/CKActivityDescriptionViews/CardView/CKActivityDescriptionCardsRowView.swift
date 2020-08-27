@@ -13,7 +13,7 @@ struct CKActivityDescriptionCardsRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var categoryName: String
     var items: [CKActivityDescriptionModel]
@@ -46,31 +46,41 @@ struct CKActivityDescriptionCardsRowView: View {
                     }
                     
                     ForEach(self.items) { model in
-                        if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
-                            NavigationLink(
-                                destination: CKActivityDescriptionDetailEditView(
-                                    model: model
-                                )
-                            ) {
-                                CKActivityDescriptionCardView(model: model)
-                            }.contextMenu {
-                                Button(action: {
-                                    self.privateChoreService.pushDelete(model: model) { (result) in
-                                        print("delete result \(result)")
-                                    }
-                                }) {
-                                    Text("Delete")
-                                    Image(systemName: "trash")
-                                }
-                            }
-                        } else {
+                        // TODO: clean up
+//                        if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
+//                            NavigationLink(
+//                                destination: CKActivityDescriptionDetailEditView(
+//                                    model: model
+//                                )
+//                            ) {
+//                                CKActivityDescriptionCardView(model: model)
+//                            }.contextMenu {
+//                                Button(action: {
+//                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
+//                                        print("delete result \(result)")
+//                                    }
+//                                }) {
+//                                    Text("Delete")
+//                                    Image(systemName: "trash")
+//                                }
+//                            }
+//                        } else {
+                        
                             NavigationLink(
                                 destination: CKActivityDescriptionDetailView(
                                     model: model
                                 )
                             ) {
                                 CKActivityDescriptionCardView(model: model)
-                            }
+                            }.contextMenu {
+                                Button(action: {
+                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
+                                        print("delete result \(result)")
+                                    }
+                                }) {
+                                    Text("Delete")
+                                    Image(systemName: "trash")
+                                }
                         }
                     }
                 }

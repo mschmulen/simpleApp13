@@ -12,13 +12,13 @@ import SimpleGames
 import DrawingKit
 import CloudKit
 
-struct DrawingActivityView: View {
+struct DrawingActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil
     
@@ -52,7 +52,7 @@ struct DrawingActivityView: View {
             VStack {
             //ScrollView(.vertical, showsIndicators: false) {
                 if model.moduleType == .photo {
-                    PhotoActivityView(
+                    PhotoActivitySubView(
                         model: $model
                     )
                 }
@@ -101,7 +101,8 @@ struct DrawingActivityView: View {
     }
     
     func onDone() {
-        guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
+        // guard let playerRecordReference = familyKitAppState.currentPlayer.recordReference else {
+        guard let playerRecordReference = familyKitAppState.currentPlayerModel?.recordReference else {
             self.devMessage = "invalid playerRecordReference"
             return
         }
@@ -109,7 +110,7 @@ struct DrawingActivityView: View {
         self.model.kidReference = playerRecordReference
         
         model.status = .completed
-        privateActiveChoreService.pushUpdateCreate(model: model) { (result) in
+        activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
@@ -118,7 +119,7 @@ struct DrawingActivityView: View {
                 self.devMessage = "success"
                 DispatchQueue.main.async {
                     //self.presentationMode.wrappedValue.dismiss()
-                    self.privateActiveChoreService.fetch(
+                    self.activityService.fetch(
                         sortDescriptor: .none, searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")
@@ -131,7 +132,7 @@ struct DrawingActivityView: View {
 
 struct DrawingActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingActivityView(
+        DrawingActivitySubView(
             model: .constant(CKActivityModel.mockDrawing)
         )
     }

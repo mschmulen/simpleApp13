@@ -13,7 +13,7 @@ struct CKActivityActiveRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var privateActiveChoreService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     var categoryName: String
     var items: [CKActivityModel]
@@ -41,7 +41,7 @@ struct CKActivityActiveRowView: View {
                         }.contextMenu {
                             if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
                                 Button(action: {
-                                    self.privateActiveChoreService.pushDelete(model: model) { (result) in
+                                    self.activityService.pushDelete(model: model) { (result) in
                                         print("delete result \(result)")
                                     }
                                 }) {

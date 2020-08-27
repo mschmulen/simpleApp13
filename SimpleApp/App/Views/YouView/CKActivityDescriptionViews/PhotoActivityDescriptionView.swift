@@ -17,7 +17,7 @@ struct PhotoActivityDescriptionView: View {
     @EnvironmentObject var appState: AppState
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    @EnvironmentObject var privateChoreService: CKPrivateModelService<CKActivityDescriptionModel>
+    @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     
     var model: CKActivityDescriptionModel
     
@@ -116,11 +116,11 @@ struct PhotoActivityDescriptionView: View {
     
     func saveImage() {
         DispatchQueue.main.async {
-            self.statusMessage = "Updating ..."
+            self.statusMessage = "saving image ..."
         }
         
         if let inputImage = inputImage {
-            privateChoreService.uploadPhotoAsset(
+            activityDescriptionService.uploadPhotoAsset(
             model:model,
             image: inputImage,
             assetPropertyName: "coverPhoto"
@@ -131,8 +131,9 @@ struct PhotoActivityDescriptionView: View {
                         self.statusMessage = "There was an error uploading \(error)"
                     }
                 case .success(_):
-                    self.privateChoreService.fetchSingle( model: self.model) { result in
+                    self.activityDescriptionService.fetchSingle( model: self.model) { result in
                         DispatchQueue.main.async {
+                            self.statusMessage = "Done"
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }
