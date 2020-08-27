@@ -25,7 +25,8 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         "bucks",
         "dateOfBirth",
         "emoji",
-        "isAdult"
+        "isAdult",
+        "playerType"
     ]
     
     public var id = UUID()
@@ -36,6 +37,7 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     public var dateOfBirth: Date?
     public var emoji: String?
     
+    // TODO: change this to a computed property and remove it from the database instead use the PlayerType
     public var isAdult: Bool
     
     public enum PlayerType: String {
