@@ -54,7 +54,7 @@ struct NewPlayerView: View {
                         
                         switch self.selectedPlayerType {
                         case .kid:
-                            var newModel = CKPlayerModel()
+                            let newModel = CKPlayerModel()
                             newModel.isAdult = false
                             newModel.playerType = .kid
                             newModel.bucks = 0
@@ -71,7 +71,7 @@ struct NewPlayerView: View {
                                 }
                             }
                         case .adult:
-                            var newModel = CKPlayerModel()
+                            let newModel = CKPlayerModel()
                             newModel.isAdult = true
                             newModel.playerType = .adult
                             newModel.bucks = 0

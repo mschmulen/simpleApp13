@@ -121,7 +121,7 @@ struct PhotoActivitySubView: View {
             return
         }
         
-        guard let modelRecordID = self.model.recordID else {
+        guard self.model.recordID != nil else {
             self.devMessage = "no model.recordID"
             return
         }

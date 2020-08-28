@@ -79,11 +79,11 @@ extension CKPrivateModelService {
             return
         }
         
-        guard let record = model.ckRecord else {
-            print( "CANNOT UPDATE A MODEL WITOUT A CKRecord")
-            completion(.failure(CustomError.unknown))
-            return
-        }
+//        guard let record = model.ckRecord else {
+//            print( "CANNOT UPDATE A MODEL WITOUT A CKRecord")
+//            completion(.failure(CustomError.unknown))
+//            return
+//        }
         
         container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
             if let record = record, error == nil {

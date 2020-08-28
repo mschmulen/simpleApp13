@@ -40,7 +40,7 @@ public final class CKChatSessionModel: CKModel, ObservableObject {
     }
     
     public static var mock: CKChatSessionModel {
-        var model = CKChatSessionModel()
+        let model = CKChatSessionModel()
         model.name = "Get ready for bed"
         return model
     }

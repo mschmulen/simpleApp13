@@ -88,6 +88,7 @@ struct LargeButton: View {
 }
 
 struct Buttons_Previews: PreviewProvider {
+    
     static var previews: some View {
         Group {
             LargeButton(title: "START ACTIVITY",
