@@ -24,33 +24,14 @@ struct CKActivityDescriptionDetailView: View {
     @State var model: CKActivityDescriptionModel
     @State private var coverPhotoImage:UIImage?
     
-    var readOnlyView: some View {
-        Section(header: Text("Info")) {
-            
-            if model.emoji != nil {
-                Text(model.emoji!)
-            }
-            
-            if model.name != nil {
-                Text("name:")
-                Text(model.name ?? "~")
-            }
-            
-            if model.description != nil {
-                Text("description:")
-                Text(model.description ?? "~")
-            }
-            
-            Text("bucks: \(model.bucks ?? 0)")
-            
-            Text("moduleType: \(model.moduleType.rawValue)")
-        }
-    }
-    
-    var coverPhotoView: some View {
+    var headerView: some View {
         Group {
             if coverPhotoImage == nil {
-                Text("NO IMAGE")
+                if model.emoji != nil {
+                    Text(model.emoji!)
+                } else {
+                    Text("~")
+                }
             } else {
                 VStack {
                     Image(uiImage: coverPhotoImage!)
@@ -63,12 +44,35 @@ struct CKActivityDescriptionDetailView: View {
         }
     }
     
+    
     var body: some View {
-        
         VStack {
-            
             DevMessageView(devMessage: $devMessage)
+            Group {
+                
+                headerView
+                
+                Spacer()
+                
+                Text(model.name ?? "~")
+                    .font(.system(size: 27, weight: .bold, design: .rounded))
+                    .padding()
+                
+                Text(model.description ?? "~")
+                    .font(.system(size: 27, weight: .regular, design: .rounded))
+                    .padding()
+                
+                HStack {
+                    Text("\(model.bucks)")
+                        .font(.system(size: 27, weight: .bold, design: .rounded))
+                    Text("bucks")
+                        .font(.system(size: 27, weight: .regular, design: .rounded))
+                }
+            }
             
+            Spacer()
+            
+            // START Button
             if familyKitAppState.currentPlayerModel?.recordReference != nil {
                 NavigationLink(destination: CKActivityActiveDetailView(
                     model: CKActivityModel(
@@ -76,12 +80,36 @@ struct CKActivityDescriptionDetailView: View {
                         playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!),
                     localActivityStatus: ActivityStatus.active
                 )) {
-                    HStack {
-                        Text("START THIS ACTIVITY")
-                        Image(systemName: "plus")
-                    }.foregroundColor(.blue)
+                    
+                    Text("START THIS ACTIVITY")
+                        .font(.system(size: 27, weight: .bold, design: .rounded))
+                        .padding()
+                        .background(SemanticAppColor.random)
+                        .cornerRadius(40)
+                        .foregroundColor(Color.white)
+                    //                        .padding(10)
+                    //                        .border(Color.purple, width: 5)
+                    
+                    
+                    //                        .overlay(
+                    //                            RoundedRectangle(cornerRadius: 40)
+                    //                                .stroke(Color.purple, lineWidth: 5)
+                    //                    )
+                    //                    }
+                    //                    .padding()
                 }
             }
+            
+            Spacer()
+            
+            Group {
+                Text("\(model.moduleType.rawValue)")
+                    .font(.system(size: 27, weight: .regular, design: .rounded))
+                Text("\(model.category.rawValue)")
+                    .font(.system(size: 27, weight: .regular, design: .rounded))
+            }
+            
+            Spacer()
             
             NavigationLink(
                 destination: CKActivityDescriptionDetailEditView(
@@ -91,20 +119,10 @@ struct CKActivityDescriptionDetailView: View {
                 HStack {
                     Text("EDIT THIS ACTIVITY")
                     Image(systemName: "square.and.arrow.up")
-                }.foregroundColor(.blue)
+                }
+                .foregroundColor(.blue)
             }
             
-            
-            List{
-                
-                readOnlyView
-                
-                
-                Section(header:Text("Assets")) {
-                    coverPhotoView
-                }
-                
-            }//end List
         }
         .onAppear {
             
@@ -120,27 +138,7 @@ struct CKActivityDescriptionDetailView: View {
                 }
             }
         }
-    }
-    
-    func onSave() {
-        activityDescriptionService.pushUpdateCreate(model: model) { (result) in
-            switch result {
-            case .failure(let error):
-                self.devMessage = "save error\(error.localizedDescription)"
-            case .success(let record):
-                print( "success \(record)")
-                DispatchQueue.main.async {
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.activityDescriptionService.fetch(
-                        sortDescriptor: .none,
-                        searchPredicate: .predicateTrue
-                    ) { (result) in
-                        print( "result")
-                    }
-                }
-            }
-        }
-    }
+    }//end body
     
 }//end CKActivityDetailView
 
