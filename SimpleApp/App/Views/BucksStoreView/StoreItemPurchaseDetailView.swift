@@ -17,6 +17,9 @@ struct StoreItemPurchaseDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    
     @State var devMessage: String?
     
     @State var model: CKStoreItemPurchaseModel

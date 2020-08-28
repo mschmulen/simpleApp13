@@ -70,6 +70,8 @@
 		76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */; };
 		76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */; };
 		76C2FE0324DB9B9000E030C2 /* CKActivityActiveRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */; };
+		76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEC81A24F96D8800F4231C /* LargeButton.swift */; };
+		76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEC81C24F970B100F4231C /* LargeTextPillBox.swift */; };
 		76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */; };
 		76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawContainerView.swift */; };
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
@@ -186,6 +188,8 @@
 		76C2FDFB24DB9B9000E030C2 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
 		76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityActiveDetailView.swift; sourceTree = "<group>"; };
 		76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveRowView.swift; sourceTree = "<group>"; };
+		76CEC81A24F96D8800F4231C /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		76CEC81C24F970B100F4231C /* LargeTextPillBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTextPillBox.swift; sourceTree = "<group>"; };
 		76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivitySubView.swift; sourceTree = "<group>"; };
 		76CFA1D724D9E0AB007A02CF /* DrawContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawContainerView.swift; sourceTree = "<group>"; };
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 			isa = PBXGroup;
 			children = (
 				76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */,
+				76CEC81A24F96D8800F4231C /* LargeButton.swift */,
+				76CEC81C24F970B100F4231C /* LargeTextPillBox.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -705,6 +711,7 @@
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
+				76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */,
 				76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */,
@@ -735,6 +742,7 @@
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
+				76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */,
 				76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */,
 				76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */,
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,

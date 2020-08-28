@@ -1,8 +1,9 @@
 //
-//  File.swift
-//  
+//  Buttons.swift
+//  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/28/20.
+//  Copyright © 2020 jumptack. All rights reserved.
 //
 
 import SwiftUI
@@ -44,6 +45,10 @@ struct LargeButtonStyle: ButtonStyle {
             .font(Font.system(size: 19, weight: .semibold))
     }
 }
+
+
+
+
 
 struct LargeButton: View {
     
@@ -99,3 +104,4 @@ struct Buttons_Previews: PreviewProvider {
         }
     }
 }
+

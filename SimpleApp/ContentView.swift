@@ -20,6 +20,10 @@ struct ContentView: View {
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
     
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+
+    
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
@@ -88,6 +92,8 @@ struct ContentView: View {
                             .environmentObject(familyKitAppState)
                             .environmentObject(activityDescriptionService)
                             .environmentObject(activityService)
+                            .environmentObject(storeItemDefinitionService)
+                            .environmentObject(storeItemPurchaseService)
                             .tabItem {
                                 Image(systemName: "dollarsign.circle")
                                 // .font(.system(size: 28, weight: .light))

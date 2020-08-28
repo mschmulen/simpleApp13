@@ -18,14 +18,15 @@ struct StoreItemDefinitionDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+
     @State var devMessage: String?
     
     @State var model: CKStoreItemDefinitionModel
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
-    
-    let storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel> = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CKContainer(identifier: CKContainerIdentifier))
     
     var editView: some View {
         Section(header: Text("Data")) {
@@ -37,8 +38,15 @@ struct StoreItemDefinitionDetailView: View {
             TextField("info", text: $model.info ?? "")
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("bucks", value: $model.bucks, formatter: NumberFormatter())
+            TextField("bucks", value: $model.bucks ?? 0, formatter: NumberFormatter())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
+    }
+    
+    var purchaseView: some View {
+        //LargeTextPillBox("PURCHASE")
+        LargeButton(title: "PURCHASE") {
+            self.onPurchase()
         }
     }
     
@@ -48,8 +56,10 @@ struct StoreItemDefinitionDetailView: View {
                 isDisplayed: $showActivityIndicator,
                 indicatorMessage: $activityIndicatorMessage
             ) {
-                List{
+                VStack{
                     DevMessageView(devMessage: self.$devMessage)
+                    
+                    self.purchaseView
                     
                     Button(action:self.onSave) {
                         HStack {
@@ -84,11 +94,13 @@ struct StoreItemDefinitionDetailView: View {
         
         self.showActivityIndicator = true
         self.storeItemDefinitionService.pushUpdateCreate(model: self.model) { (result) in
+            
             switch result {
             case .success(let item):
                 self.model = item
+                self.devMessage = "save success"
             case .failure(let error):
-                print( "error \(error)")
+                self.devMessage = "error \(error)"
             }
             self.showActivityIndicator = false
         }
@@ -110,6 +122,47 @@ struct StoreItemDefinitionDetailView: View {
 //                }
 //            }
 //        }
+    }
+    
+    func onPurchase() {
+        guard let name = model.name, let info = model.info, let bucks = model.bucks else {
+            self.devMessage = "invalid record info"
+            return
+        }
+        
+        guard let currrentPlayerModel = familyKitAppState.currentPlayerModel else {
+            self.devMessage = "invalid player"
+            return
+        }
+        
+        guard let currentPlayerBucks = currrentPlayerModel.bucks else {
+            self.devMessage = "no bucks"
+            return
+        }
+        
+        if currentPlayerBucks < bucks {
+            self.devMessage = "not enough bucks"
+            return
+        }
+        
+        var newPurchase = CKStoreItemPurchaseModel()
+        newPurchase.name = name
+        newPurchase.info = info
+        newPurchase.bucks = bucks
+        
+        storeItemPurchaseService.pushUpdateCreate(model: newPurchase) { (result) in
+            switch result {
+            case .failure(let error):
+                self.devMessage = "purchase failure\(error)"
+            case .success(let model):
+                self.devMessage = "purchase success\(model.name ?? "")"
+                self.familyKitAppState.addBucks(playerModel: currrentPlayerModel, bucks: (-1 * bucks))
+                
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
     }
     
 }//end StoreItemDefinitionDetailView

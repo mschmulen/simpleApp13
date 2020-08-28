@@ -79,12 +79,7 @@ struct CKActivityDescriptionDetailView: View {
                     localActivityStatus: ActivityStatus.active
                 )) {
                     
-                    Text("START THIS ACTIVITY")
-                        .font(.system(size: 27, weight: .bold, design: .rounded))
-                        .padding()
-                        .background(SemanticAppColor.random)
-                        .cornerRadius(10)
-                        .foregroundColor(Color.white)
+                    LargeTextPillBox( "START THIS ACTIVITY" )
                 }
             }
             
@@ -107,7 +102,6 @@ struct CKActivityDescriptionDetailView: View {
             ) {
                 HStack {
                     Text("EDIT THIS ACTIVITY")
-                    Image(systemName: "square.and.arrow.up")
                 }
                 .foregroundColor(.blue)
             }

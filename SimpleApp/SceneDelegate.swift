@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         // ---------------------------------------------
-        // Activity Description
+        // Activity Services
         let activityDescriptionService = CKPrivateModelService<CKActivityDescriptionModel>(
             container: container
         )
@@ -49,11 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         })
         activityDescriptionService.subscribe(isSilent: true, message: "new ActivityDescription or change")
         activityDescriptionService.listenForNotifications()
-        // ---------------------------------------------
         
-        
-        // ---------------------------------------------
-        // Activity
         let activityService = CKPrivateModelService<CKActivityModel>(
             container: container
         )
@@ -66,6 +62,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         activityService.listenForNotifications()
         // ---------------------------------------------
         
+        
+        // ---------------------------------------------
+        // Store Services
+        let storeItemDefinitionService = CKPrivateModelService<CKStoreItemDefinitionModel>(container: container)
+        storeItemDefinitionService.fetch(
+            sortDescriptor: .none, //.custom(key: "modificationDate", ascending: false),
+            searchPredicate: .predicateTrue,
+            completion: { result in
+        })
+        // storeItemDefinitionService.subscribe(isSilent: false, message: "new Activity or activity changed")
+        //storeItemDefinitionService.listenForNotifications()
+
+        let storeItemPurchaseService = CKPrivateModelService<CKStoreItemPurchaseModel>(container: container)
+        storeItemPurchaseService.fetch(
+            sortDescriptor: .none, // .custom(key: "modificationDate", ascending: false),
+            searchPredicate: .predicateTrue,
+            completion: { result in
+        })
+        // ---------------------------------------------
+        
+        
         let appState = AppState()
         appState.onStartup()
         
@@ -75,6 +92,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(familyKitAppState)
             .environmentObject(activityDescriptionService)
             .environmentObject(activityService)
+            .environmentObject(storeItemDefinitionService)
+            .environmentObject(storeItemPurchaseService)
             //.environmentObject(chatService)
         
         //        let contentView = ContentView()

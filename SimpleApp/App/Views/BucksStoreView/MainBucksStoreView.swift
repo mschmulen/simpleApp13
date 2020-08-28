@@ -21,10 +21,10 @@ struct MainBucksStoreView: View {
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+
     @State var devMessage: String?
-    
-    // For tomorrow
-    // let storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel> = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CKContainer(identifier: CKContainerIdentifier))
     
     var leaderBoard: some View {
         VStack {
@@ -66,29 +66,22 @@ struct MainBucksStoreView: View {
                 
                 List {
                     Section(header: Text("Items for purchase")) {
-                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
-                            Text("TODO")
-                        }
-                        
-                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
-                            Text("TODO")
-                        }
-                        
-                        NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
-                            Text("TODO")
-                        }
-                        
+                        ForEach( storeItemDefinitionService.models) { model in
+                            NavigationLink(destination: StoreItemDefinitionDetailView(model: model) ) {
+                                Text("\(model.name ?? "")")
+                            }
+                            //.deleteDisabled(self.deleteDisabled)
+                        }//end ForEach
+                        .onDelete(perform: onDeleteDefinition)
                     }
-                    Section(header: Text("purchased items")) {
-                        
-                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
-                            Text("TODO")
-                        }
-                        
-                        NavigationLink(destination: StoreItemPurchaseDetailView(model: CKStoreItemPurchaseModel()) ) {
-                            Text("TODO")
-                        }
-                        
+                    Section(header: Text("Purchased items")) {
+                        ForEach( storeItemPurchaseService.models) { model in
+                            NavigationLink(destination: StoreItemPurchaseDetailView(model: model) ) {
+                                Text("\(model.name ?? "")")
+                            }
+                            //.deleteDisabled(self.deleteDisabled)
+                        }//end ForEach
+                        .onDelete(perform: onDeletePurchase)
                     }
                 }
                 
@@ -127,6 +120,24 @@ struct MainBucksStoreView: View {
                     Text("\(familyKitAppState.currentPlayerModel?.emoji ?? "🌞")")
                     Text("(\(familyKitAppState.currentPlayerModel?.bucks ?? 0 ))")
                 }
+            }
+        }
+    }
+
+    func onDeleteDefinition(at offsets: IndexSet) {
+        for deleteIndex in offsets {
+            let deleteModel = self.storeItemDefinitionService.models[deleteIndex]
+            self.storeItemDefinitionService.pushDelete(model: deleteModel) { (result) in
+                print("delete result \(result)")
+            }
+        }
+    }
+    
+    func onDeletePurchase(at offsets: IndexSet) {
+        for deleteIndex in offsets {
+            let deleteModel = self.storeItemPurchaseService.models[deleteIndex]
+            self.storeItemPurchaseService.pushDelete(model: deleteModel) { (result) in
+                print("delete result \(result)")
             }
         }
     }
