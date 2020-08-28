@@ -50,8 +50,13 @@ struct ContentView: View {
             }
             
             if familyKitAppState.currentPlayerModel == nil {
-                PlayerOnboardingView()
-                    .environmentObject(familyKitAppState)
+                VStack {
+                    PlayerOnboardingView()
+                        .environmentObject(familyKitAppState)
+                    
+                    Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
+                        .font(.caption)
+                }
             } else {
                 TabView(selection: $selectedTab) {
                     if appState.topView == .mainView {
