@@ -52,8 +52,6 @@ struct CKActivityDescriptionDetailView: View {
                 
                 headerView
                 
-                Spacer()
-                
                 Text(model.name ?? "~")
                     .font(.system(size: 27, weight: .bold, design: .rounded))
                     .padding()
@@ -85,18 +83,8 @@ struct CKActivityDescriptionDetailView: View {
                         .font(.system(size: 27, weight: .bold, design: .rounded))
                         .padding()
                         .background(SemanticAppColor.random)
-                        .cornerRadius(40)
+                        .cornerRadius(10)
                         .foregroundColor(Color.white)
-                    //                        .padding(10)
-                    //                        .border(Color.purple, width: 5)
-                    
-                    
-                    //                        .overlay(
-                    //                            RoundedRectangle(cornerRadius: 40)
-                    //                                .stroke(Color.purple, lineWidth: 5)
-                    //                    )
-                    //                    }
-                    //                    .padding()
                 }
             }
             
@@ -111,6 +99,7 @@ struct CKActivityDescriptionDetailView: View {
             
             Spacer()
             
+            // Lets move this to Nav bar
             NavigationLink(
                 destination: CKActivityDescriptionDetailEditView(
                     model: model
@@ -122,7 +111,7 @@ struct CKActivityDescriptionDetailView: View {
                 }
                 .foregroundColor(.blue)
             }
-            
+            Spacer()
         }
         .onAppear {
             

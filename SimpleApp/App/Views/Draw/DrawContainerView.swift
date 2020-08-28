@@ -10,7 +10,7 @@ import SwiftUI
 import DrawingKit
 import FamilyKit
 
-struct DrawView: View {
+struct DrawContainerView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -33,7 +33,7 @@ struct DrawView: View {
                 drawingState: $drawingState,
                  isReadOnly: !familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model),
                 saveCallback: saveCallback
-            )
+            ).allowsHitTesting(familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model))
         }.onAppear {
             self.loadDrawingState()
         }
@@ -61,7 +61,7 @@ struct DrawView: View {
                 do {
                     let decodedDrawingState = try decoder.decode(DrawingState.self, from: data)
                     drawingState = decodedDrawingState
-                    self.devMessage = "success in decodedDrawingState \(drawingState.layers.count) \(drawingState.scribbles.count)"
+                    //self.devMessage = "success in decodedDrawingState \(drawingState.layers.count) \(drawingState.scribbles.count)"
                 } catch let error {
                     self.devMessage = "failed to decode \(error)"
                 }
@@ -72,13 +72,12 @@ struct DrawView: View {
     
     func saveCallback(
         updatedDrawingState: DrawingState,
-        screenShot:UIImage?
+        screenShot: UIImage?
     ) {
-        self.devMessage = "saving DrawingState"
         
-        self.showActivityIndicator = true
-        self.activityIndicatorMessage  = "saving .."
         do {
+            
+            // TODO: Move this to the Model code via extension
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
             
@@ -97,6 +96,8 @@ struct DrawView: View {
             // automatically push to status .completed
             self.model.status = .completed
             
+            self.showActivityIndicator = true
+            self.activityIndicatorMessage  = "saving draw asset"
             self.activityService.uploadFileAsset(
                 model: self.model,
                 fileURL: localFileURL,
@@ -105,35 +106,17 @@ struct DrawView: View {
                 switch result {
                 case .failure(let error):
                     self.devMessage = "upload failure \(error)"
-                case .success(_):
-                    self.devMessage = "upload success"
+                    self.showActivityIndicator = false
+                case .success(let updatedModel):
+                    DispatchQueue.main.async {
+                        self.showActivityIndicator = false
+                        if let activityAsset = updatedModel.activityAsset {
+                            self.model.activityAsset = activityAsset
+                        }
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
-                self.showActivityIndicator = false
             }
-            
-            // TODO CleanUp 
-//            activityService.pushUpdateCreate(model: model) { (result) in
-//                switch result {
-//                case .success( let resultModel):
-//                    self.activityService.uploadFileAsset(
-//                        model: resultModel,
-//                        fileURL: localFileURL,
-//                        assetPropertyName: "activityAsset"
-//                    ) { (result) in
-//                        switch result {
-//                        case .failure(let error):
-//                            self.devMessage = "upload failure \(error)"
-//                        case .success(_):
-//                            self.devMessage = "upload success"
-//                        }
-//                        self.showActivityIndicator = false
-//                    }
-//                case .failure(let error):
-//                    print( "error \(error)")
-//                    self.showActivityIndicator = false
-//                }
-//            }
-            
         } catch let error {
             self.devMessage = "error \(error)"
             self.showActivityIndicator = false
@@ -177,7 +160,7 @@ struct DrawView: View {
 
 struct DrawView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawView(
+        DrawContainerView(
             model: .constant(CKActivityModel.mock),
             showActivityIndicator: .constant(false),
             activityIndicatorMessage: .constant("some update message")

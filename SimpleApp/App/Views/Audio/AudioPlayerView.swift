@@ -24,23 +24,32 @@ struct AudioRecordingPlayerView: View {
                 Button(action: {
                     self.audioPlayer.startPlayback(audio: self.audioURL)
                 }) {
-                    Image(systemName: "play.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100)
-                        .clipped()
-                        .padding(.bottom, 40)
+                    ZStack {
+                        Image(systemName: "play.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 100, height: 100)
+                            .clipped()
+                            .padding(.bottom, 40)
+                        Text("PLAY")
+                    }
                 }
             } else {
                 Button(action: {
                     self.audioPlayer.stopPlayback()
                 }) {
+                    ZStack {
                     Image(systemName: "stop.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .clipped()
                         .padding(.bottom, 40)
+                        
+                        Text("STOP")
+                            .foregroundColor(.white)
+                    }
+
                 }
             }
         }

@@ -73,7 +73,6 @@ struct PhotoActivitySubView: View {
             DevMessageView(devMessage: $devMessage)
             imageView
         }.onAppear {
-            print("onAppear")
             self.loadImage()
         }.sheet(isPresented: $showingImagePicker, onDismiss: dismissFromImagePicker) {
             #if targetEnvironment(simulator)
@@ -115,7 +114,7 @@ struct PhotoActivitySubView: View {
     
     func saveImageToModel() {
         
-        self.devMessage = "sub saving image ..."
+        //self.devMessage = "sub saving image ..."
         
         guard let inputImage = inputImage else {
             self.devMessage = "no image"
@@ -130,8 +129,7 @@ struct PhotoActivitySubView: View {
         // automatically push to status .completed
         self.model.status = .completed
         
-        self.devMessage = "uploading the image"
-        
+        self.activityIndicatorMessage = "uploading image"
         self.showActivityIndicator = true
         self.activityService.uploadPhotoAsset(
             model: self.model,
@@ -147,9 +145,8 @@ struct PhotoActivitySubView: View {
             case .success(let updatedModel):
                 DispatchQueue.main.async {
                     self.showActivityIndicator = false
-                    self.devMessage = "success"
                     if let resultAssetImage = updatedModel.resultAssetImage {
-                        self.model.changeResultAssetImage(asset: resultAssetImage)
+                        self.model.resultAssetImage = resultAssetImage
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }

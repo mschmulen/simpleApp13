@@ -10,7 +10,7 @@ import SwiftUI
 import CloudKit
 
 // MARK: - remove Asset
-extension CKPrivateModelService  {
+extension CKPrivateModelService {
     
     public func removeAsset(
         model: T,
@@ -52,6 +52,11 @@ extension CKPrivateModelService  {
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         
+        guard let recordID = model.recordID else {
+            completion(.failure(CustomError.unknown))
+            return
+        }
+        
         let tempImageName = "Image_\(UUID().uuidString).jpg"
         // .documentDirectory, .cachesDirectory
         guard let documentsDirectoryPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
@@ -59,11 +64,9 @@ extension CKPrivateModelService  {
             return
         }
         let filePath = documentsDirectoryPath.appendingPathComponent(tempImageName)
-        print("filePath.absoluteString: \(filePath.absoluteString)")
         
         //if let imageData = image.pngData() else { // PNG save
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            print("failed to serialize the image")
             completion(.failure(CustomError.unknown))
             return
         }
@@ -71,14 +74,7 @@ extension CKPrivateModelService  {
         do {
             try imageData.write(to: filePath, options: .atomic)
         } catch let error {
-            print( "failed to write the image data to the disk \(error)")
             completion(.failure(error))
-            return
-        }
-        
-        guard let recordID = model.recordID else {
-            print( "no record ID !! ")
-            completion(.failure(CustomError.unknown))
             return
         }
         
@@ -89,12 +85,6 @@ extension CKPrivateModelService  {
                 record[assetPropertyName] = fileAsset
                 self.container.privateCloudDatabase.save(record) { record, error in
                     if let record = record, error == nil, let updatedModel = T(record: record) {
-                        //                            if let index = self.models.firstIndex(where: { (model) -> Bool in
-                        //                                model.recordID == updatedModel.recordID
-                        //                            }) {
-                        //                                self.models[index] = updatedModel
-                        //                                self.updateChanges()
-                        //                            }
                         self.updateChanges()
                         completion(.success(updatedModel) )
                         return
@@ -102,12 +92,6 @@ extension CKPrivateModelService  {
                         completion(.failure(error ?? CustomError.unknown))
                         return
                     }
-                    
-//                    if let record = record, error == nil {
-//                        completion(.success(record))
-//                    } else {
-//                        completion(.failure(error ?? CustomError.unknown))
-//                    }
                 }
             } else {
                 completion(.failure(CustomError.unknown))
@@ -116,3 +100,74 @@ extension CKPrivateModelService  {
     }
 }
 
+// MARK: - uploadFileAsset
+extension CKPrivateModelService  {
+    
+    public func uploadFileAsset(
+        model: T,
+        fileURL: URL,
+        assetPropertyName: String,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        guard let recordID = model.recordID else {
+            completion(.failure(CustomError.unknown))
+            return
+        }
+        
+        // fetch and save the update
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            if let record = record, error == nil {
+                let fileAsset = CKAsset(fileURL: fileURL)
+                record[assetPropertyName] = fileAsset
+                self.container.privateCloudDatabase.save(record) { record, error in
+                    if let record = record, error == nil, let updatedModel = T(record: record) {
+                        self.updateChanges()
+                        completion(.success(updatedModel) )
+                        return
+                    } else {
+                        completion(.failure(error ?? CustomError.unknown))
+                        return
+                    }
+                }
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+    }
+}
+
+// MARK: - AudioAsset
+extension CKPrivateModelService  {
+    
+    public func uploadAudioAsset(
+        model: T,
+        audioRecording: AudioRecording,
+        assetPropertyName: String,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        guard let recordID = model.recordID else {
+            completion(.failure(CustomError.unknown))
+            return
+        }
+        
+        // fetch and save the update
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            if let record = record, error == nil {
+                let fileAsset = CKAsset(fileURL: audioRecording.fileURL)
+                record[assetPropertyName] = fileAsset
+                self.container.privateCloudDatabase.save(record) { record, error in
+                    if let record = record, error == nil, let updatedModel = T(record: record) {
+                        self.updateChanges()
+                        completion(.success(updatedModel) )
+                        return
+                    } else {
+                        completion(.failure(error ?? CustomError.unknown))
+                        return
+                    }
+                }
+            } else {
+                completion(.failure(CustomError.unknown))
+            }
+        }
+    }
+}

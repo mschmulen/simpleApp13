@@ -286,8 +286,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKActivityModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "ckRecord"
             landmarkType = "24">
          </BreakpointContent>
@@ -647,16 +647,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B06B49EF-4653-41F7-BE85-E4A13C46E796"
+            uuid = "8A2BDCDF-C47F-437F-927F-B48EF07E53DD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SimpleApp/App/Views/Draw/DrawPreviewView.swift"
+            filePath = "SimpleApp/App/Views/CKActivityActiveViews/AudioActivityView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "loadPreview()"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "saveRecordingToServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41C4F32E-54CA-4EE0-A6EA-03D9CEB99325"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleApp/App/Views/CKActivityActiveViews/ActivityActiveDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "onSave()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

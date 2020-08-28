@@ -95,11 +95,6 @@ struct CKActivityActiveDetailView: View {
                             showActivityIndicator: self.$showActivityIndicator,
                             activityIndicatorMessage: self.$activityIndicatorMessage
                         )
-                    } else if self.model.moduleType == .chat {
-                        self.infoView
-                        self.activityStatusView
-                        // TODO: just show the abridged view then if the tap it show the full screen sheet
-                        // TODO: Fix the global chat
                     } else if self.model.moduleType == .drawing {
                         self.infoView
                         self.activityStatusView
@@ -108,6 +103,11 @@ struct CKActivityActiveDetailView: View {
                             showActivityIndicator: self.$showActivityIndicator,
                             activityIndicatorMessage: self.$activityIndicatorMessage
                         )
+                    } else if self.model.moduleType == .chat {
+                        self.infoView
+                        self.activityStatusView
+                        // TODO: just show the abridged view then if the tap it show the full screen sheet
+                        // TODO: Fix the global chat
                     }
                     else {
                         self.infoView

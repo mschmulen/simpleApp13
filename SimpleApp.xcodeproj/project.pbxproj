@@ -71,7 +71,7 @@
 		76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */; };
 		76C2FE0324DB9B9000E030C2 /* CKActivityActiveRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */; };
 		76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */; };
-		76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawView.swift */; };
+		76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA1D724D9E0AB007A02CF /* DrawContainerView.swift */; };
 		76CFA1DC24D9E901007A02CF /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DB24D9E901007A02CF /* DrawingKit */; };
 		76CFA1DE24D9E902007A02CF /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76CFA1DD24D9E902007A02CF /* SimpleGames */; };
 		76CFA22024DA53AA007A02CF /* PhotoActivityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFA21F24DA53AA007A02CF /* PhotoActivityDescriptionView.swift */; };
@@ -187,7 +187,7 @@
 		76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityActiveDetailView.swift; sourceTree = "<group>"; };
 		76C2FDFD24DB9B9000E030C2 /* CKActivityActiveRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveRowView.swift; sourceTree = "<group>"; };
 		76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivitySubView.swift; sourceTree = "<group>"; };
-		76CFA1D724D9E0AB007A02CF /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		76CFA1D724D9E0AB007A02CF /* DrawContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawContainerView.swift; sourceTree = "<group>"; };
 		76CFA1D924D9E8EF007A02CF /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76CFA1DA24D9E8F4007A02CF /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
 		76CFA21F24DA53AA007A02CF /* PhotoActivityDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivityDescriptionView.swift; sourceTree = "<group>"; };
@@ -507,7 +507,7 @@
 		76CFA1D624D9E0A2007A02CF /* Draw */ = {
 			isa = PBXGroup;
 			children = (
-				76CFA1D724D9E0AB007A02CF /* DrawView.swift */,
+				76CFA1D724D9E0AB007A02CF /* DrawContainerView.swift */,
 				76241ACE24F84AD100788592 /* DrawPreviewView.swift */,
 			);
 			path = Draw;
@@ -733,7 +733,7 @@
 				76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */,
 				76DF241C24ED74EF009222AF /* UserView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
-				76CFA1D824D9E0AB007A02CF /* DrawView.swift in Sources */,
+				76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */,
 				76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */,
@@ -919,7 +919,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -942,7 +942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

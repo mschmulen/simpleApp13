@@ -28,6 +28,7 @@ struct DrawPreviewView: View {
     
     @State var showDrawingView:Bool = false
     @State var drawingPreview:Image?
+    @State var dataMessage:String = "no data"
     
     var body: some View {
         VStack {
@@ -44,7 +45,7 @@ struct DrawPreviewView: View {
                 VStack {
                     Text("DRAWING PREVIEW")
                         .foregroundColor(.white)
-                    Text("TODO")
+                    Text("\(dataMessage)")
                         .foregroundColor(.white)
                     Image(systemName: "paintbrush")
                         .foregroundColor(.white)
@@ -55,7 +56,7 @@ struct DrawPreviewView: View {
         }
         //.sheet(isPresented: $showDrawingView, onDismiss: loadDrawingState) {
         .sheet(isPresented: $showDrawingView) {
-            DrawView(
+            DrawContainerView(
                 model: self.$model,
                 showActivityIndicator: self.$showActivityIndicator,
                 activityIndicatorMessage: self.$activityIndicatorMessage
@@ -67,9 +68,11 @@ struct DrawPreviewView: View {
     
     func loadPreview() {
         if let activityAsset = model.activityAsset {
+            
+            // TODO: Move this to the CKActivityModel maybe an extension for the loadDrawData
             if let activityAsset_FileURL = activityAsset.fileURL {
                 showActivityIndicator = true
-                activityIndicatorMessage = "loading drawing"
+                activityIndicatorMessage = "loading preview"
                 // print( "activityAsset_FileURL \(activityAsset_FileURL)")
                 guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
                     self.devMessage = "Failed to load \(activityAsset_FileURL) "
@@ -87,10 +90,11 @@ struct DrawPreviewView: View {
                 do {
                     let decodedDrawingState = try decoder.decode(DrawingState.self, from: data)
                     drawingState = decodedDrawingState
-                    self.devMessage = "success in decodedDrawingState \(drawingState.layers.count) \(drawingState.scribbles.count)"
+                    self.dataMessage = "loaded \(drawingState.layers.count) \(drawingState.scribbles.count)"
                     showActivityIndicator = false
                 } catch let error {
-                    self.devMessage = "failed to decode \(error)"
+                    print("failed to decode \(error)")
+                    self.dataMessage = "load failed"
                     showActivityIndicator = false
                 }
             }

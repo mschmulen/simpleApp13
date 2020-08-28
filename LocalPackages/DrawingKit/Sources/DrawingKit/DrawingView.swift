@@ -80,19 +80,26 @@ public struct DrawingView:View {
     public var body: some View {
         VStack(alignment: .center) {
             if isReadOnly == false {
-                Button(action: {
-                    self.save()
-                }) {
-                    Text("save")
+                HStack  {
+                    Spacer()
+                    Button(action: {
+                        self.save()
+                    }) {
+                        Text("save")
+                    }.padding()
                 }
             }
+            
             drawPad
-            DrawingControls(
-                drawingState: $drawingState,
-                currentColor: $currentColor,
-                currentLineWidth: $currentLineWidth,
-                saveCallback: saveCallback
-            )
+            
+            if isReadOnly == false {
+                DrawingControls(
+                    drawingState: $drawingState,
+                    currentColor: $currentColor,
+                    currentLineWidth: $currentLineWidth,
+                    saveCallback: saveCallback
+                )
+            }
         }
     }
     
