@@ -73,12 +73,14 @@ struct CKActivityActiveDetailView: View {
     
     var body: some View {
         VStack {
+            
+            //DevMessageView(devMessage: $devMessage)
+            
             ActivityIndicatorView(
                 isDisplayed: $showActivityIndicator,
                 indicatorMessage: $activityIndicatorMessage
             ) {
                 VStack {
-                    //DevMessageView(devMessage: $devMessage)
                     if self.model.moduleType == .photo {
                         self.infoView
                         self.activityStatusView
@@ -87,6 +89,12 @@ struct CKActivityActiveDetailView: View {
                             showActivityIndicator: self.$showActivityIndicator,
                             activityIndicatorMessage: self.$activityIndicatorMessage
                         )
+                        
+                        if self.chatSessionModel != nil {
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
+                            .frame(height: 200)
+                        }
+                        
                     } else if self.model.moduleType == .audio {
                         self.infoView
                         self.activityStatusView
@@ -95,6 +103,12 @@ struct CKActivityActiveDetailView: View {
                             showActivityIndicator: self.$showActivityIndicator,
                             activityIndicatorMessage: self.$activityIndicatorMessage
                         )
+                        
+                        if self.chatSessionModel != nil {
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
+                                .frame(height: 200)
+                        }
+                        // Spacer()
                     } else if self.model.moduleType == .drawing {
                         self.infoView
                         self.activityStatusView
@@ -103,24 +117,24 @@ struct CKActivityActiveDetailView: View {
                             showActivityIndicator: self.$showActivityIndicator,
                             activityIndicatorMessage: self.$activityIndicatorMessage
                         )
+                        
+                        if self.chatSessionModel != nil {
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
+                                .frame(height: 200)
+                        }
+                        
                     } else if self.model.moduleType == .chat {
                         self.infoView
                         self.activityStatusView
-                        // TODO: just show the abridged view then if the tap it show the full screen sheet
-                        // TODO: Fix the global chat
+                        
+                        if self.chatSessionModel != nil {
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: true)
+                        }
+                        // Spacer()
                     }
                     else {
                         self.infoView
                         self.activityStatusView
-                    }
-                    Spacer()
-                    
-                    if self.chatSessionModel != nil {
-                        ChatPeekView(chatSessionModel: self.chatSessionModel!)
-                            //.frame(minWidth: 200, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                            .frame(height: 200)
-                    } else {
-                        Text("LOADING Chat Session ... ")
                     }
                 }//end VStack
             }//end ActivityIndicator
@@ -130,18 +144,22 @@ struct CKActivityActiveDetailView: View {
             .onAppear {
                 if self.model.recordID == nil {
                     self.onSave()
+                } else {
+                    self.configureChatSession()
                 }
-                self.configureChatSession()
         }
     }
     
     func configureChatSession() {
+        self.showActivityIndicator = true
         chatService.findOrMakeSession(model:model) { result in
             switch result {
             case .success(let sessionModel):
                 self.chatSessionModel = sessionModel
+                self.showActivityIndicator = false
             case .failure(let error):
                 self.devMessage = "error! \(error)"
+                self.showActivityIndicator = false
             }
         }
     }
@@ -157,6 +175,7 @@ struct CKActivityActiveDetailView: View {
             case .success(let newModel):
                 self.model = newModel
                 self.showActivityIndicator = false
+                self.configureChatSession()
             }
         }
     }

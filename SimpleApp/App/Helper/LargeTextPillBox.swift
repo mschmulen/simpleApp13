@@ -29,13 +29,51 @@ struct LargeTextPillBox: View {
 }
 
 struct LargeTextPillBox_Previews: PreviewProvider {
+    
+    static let deviceNames: [String] = [
+        "iPhone SE",
+        //"iPhone 11 Pro Max",
+        "iPad Pro (11-inch)"
+    ]
+    
+    static let dynamicTypeSizes: [ContentSizeCategory] = [
+        .extraSmall,
+        .large,
+        .extraExtraExtraLarge
+    ]
+    
+    /// Filter out "base" to prevent a duplicate preview.
+    static let localizations = Bundle.main.localizations.map(Locale.init).filter { $0.identifier != "base" }
+    
     static var previews: some View {
         Group {
             LargeTextPillBox("START THIS ACTIVITY")
+                .previewLayout(PreviewLayout.sizeThatFits)
+                .padding()
+                .previewDisplayName("Default preview")
             
-            LargeTextPillBox("Hello, World!")
-                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-                .previewDisplayName("iPhone SE")
+            ForEach (deviceNames, id:\.self) { deviceName in
+                LargeTextPillBox("START THIS ACTIVITY")
+                    .previewDevice(PreviewDevice(rawValue: deviceName))
+                    .previewDisplayName("\(deviceName)")
+            }
+            
+            ForEach(dynamicTypeSizes, id: \.self) { sizeCategory in
+                LargeTextPillBox("START THIS ACTIVITY")
+                    .previewLayout(PreviewLayout.sizeThatFits)
+                    .padding()
+                    .environment(\.sizeCategory, sizeCategory)
+                    .previewDisplayName("\(sizeCategory)")
+            }
+            
+//            ForEach(localizations, id: \.identifier) { locale in
+//                self.LargeTextPillBox("START THIS ACTIVITY")
+//                    .previewLayout(PreviewLayout.sizeThatFits)
+//                    .padding()
+//                    .environment(\.locale, locale)
+//                    .previewDisplayName(Locale.current.localizedString(forIdentifier: locale.identifier))
+//            }
+            
         }
     }
 }

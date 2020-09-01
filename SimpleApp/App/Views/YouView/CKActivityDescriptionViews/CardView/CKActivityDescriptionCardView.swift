@@ -11,6 +11,8 @@ import FamilyKit
 
 struct CKActivityDescriptionCardView: View {
     
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
+    
     var model: CKActivityDescriptionModel
     
     @State var coverPhotoImage: Image?

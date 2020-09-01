@@ -18,44 +18,68 @@ struct ChatPeekView: View {
     
     @State var showChatSession: Bool = false
     var chatSessionModel: CKChatSessionModel
+    var showInLine:Bool
     
     var body: some View {
         VStack {
-            GeometryReader { geo in
-                ZStack {
-                    Rectangle()
-                        .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        //.border(SemanticAppColor.random)
-                        .cornerRadius(5)
-                        .onTapGesture {
-                            self.showChatSession.toggle()
-                    }
-                    VStack {
-                        Text("Chats: \(self.chatSessionModel.chatMessages.count)")
-                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(Color.black)
-                        if self.chatSessionModel.chatMessages.count > 0 {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach( self.chatSessionModel.chatMessages.prefix(3), id: \.self ) { messageRef in
-                                    MessageRefView(messageRef: messageRef)
-                                        .padding(.horizontal, 6)
-                                        .padding(.bottom, 3)
-                                }
-                            }
-                        } else {
-                            Text("No Messages, be the first!")
-                                .font(.system(size: 12, weight: .medium, design: .rounded))
-                                .foregroundColor(Color.white)
+            if showInLine == true {
+                GeometryReader { geo in
+                    ZStack {
+                        Rectangle()
+                            .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            //.border(SemanticAppColor.random)
+                            .cornerRadius(5)
+                            .onTapGesture {
+                                self.showChatSession.toggle()
                         }
+                        ChatSessionView(
+                            chatSession: self.chatSessionModel,
+                            showTextField: false
+                        )
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .allowsHitTesting(false)
                     }
-                    .allowsHitTesting(false)
                 }
-            }
+            } else {
+                GeometryReader { geo in
+                    ZStack {
+                        Rectangle()
+                            .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .cornerRadius(5)
+                            .onTapGesture {
+                                self.showChatSession.toggle()
+                        }
+                        VStack {
+                            Text("Chats: \(self.chatSessionModel.chatMessages.count)")
+                                .font(.system(size: 15, weight: .medium, design: .rounded))
+                                .foregroundColor(Color.black)
+                            if self.chatSessionModel.chatMessages.count > 0 {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach( self.chatSessionModel.chatMessages.prefix(3), id: \.self ) { messageRef in
+                                        MessageRefView(messageRef: messageRef)
+                                            .padding(.horizontal, 6)
+                                            .padding(.bottom, 3)
+                                    }
+                                }
+                            } else {
+                                Text("No Messages, be the first!")
+                                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                                    .foregroundColor(Color.white)
+                            }
+                        }
+                        .allowsHitTesting(false)
+                    }
+                }
+            }//end else
         }
         .padding()
             .sheet(isPresented: $showChatSession) { // }, onDismiss: loadImage) {
-                ChatSessionView(chatSession: self.chatSessionModel)
+                ChatSessionView(
+                    chatSession: self.chatSessionModel,
+                    showTextField: true
+                )
                     .environmentObject(self.familyKitAppState)
         }
     }

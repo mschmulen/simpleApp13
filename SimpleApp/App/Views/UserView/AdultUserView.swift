@@ -134,7 +134,10 @@ struct AdultUserView: View {
         }
         .sheet(isPresented: $showChatSession) {
                    if self.chatSessionModel != nil {
-                       ChatSessionView(chatSession: self.chatSessionModel!)
+                       ChatSessionView(
+                        chatSession: self.chatSessionModel!,
+                        showTextField: true
+                       )
                            .environmentObject(self.familyKitAppState)                           
                    } else {
                        Text("NO CHAT SESSION")

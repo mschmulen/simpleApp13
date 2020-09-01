@@ -31,7 +31,7 @@ struct DrawContainerView: View {
             DevMessageView(devMessage: $devMessage)
             DrawingView(
                 drawingState: $drawingState,
-                 isReadOnly: !familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model),
+                isReadOnly: !familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model),
                 saveCallback: saveCallback
             ).allowsHitTesting(familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model))
         }.onAppear {
@@ -159,11 +159,31 @@ struct DrawContainerView: View {
 }
 
 struct DrawView_Previews: PreviewProvider {
+    
+    static let deviceNames: [String] = [
+        "iPhone SE",
+        "iPad Pro (11-inch)"
+    ]
+    
     static var previews: some View {
-        DrawContainerView(
-            model: .constant(CKActivityModel.mock),
-            showActivityIndicator: .constant(false),
-            activityIndicatorMessage: .constant("some update message")
-        )
+        Group {
+            
+            //            ForEach (deviceNames, id:\.self) { deviceName in
+            //                DrawContainerView(
+            //                    model: .constant(CKActivityModel.mock),
+            //                    showActivityIndicator: .constant(false),
+            //                    activityIndicatorMessage: .constant("some update message")
+            //                )
+            //                    .previewDevice(PreviewDevice(rawValue: deviceName))
+            //                    .previewDisplayName("\(deviceName)")
+            //            }
+            
+            DrawContainerView(
+                model: .constant(CKActivityModel.mock),
+                showActivityIndicator: .constant(false),
+                activityIndicatorMessage: .constant("some update message")
+            )
+        }
     }
+    
 }

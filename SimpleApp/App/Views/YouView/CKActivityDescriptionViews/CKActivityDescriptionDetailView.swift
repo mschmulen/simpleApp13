@@ -44,7 +44,6 @@ struct CKActivityDescriptionDetailView: View {
         }
     }
     
-    
     var body: some View {
         VStack {
             DevMessageView(devMessage: $devMessage)
@@ -63,7 +62,7 @@ struct CKActivityDescriptionDetailView: View {
                 HStack {
                     Text("\(model.bucks)")
                         .font(.system(size: 27, weight: .bold, design: .rounded))
-                    Text("bucks")
+                    Text("bucks !")
                         .font(.system(size: 27, weight: .regular, design: .rounded))
                 }
             }
@@ -71,25 +70,29 @@ struct CKActivityDescriptionDetailView: View {
             Spacer()
             
             // START Button
-            if familyKitAppState.currentPlayerModel?.recordReference != nil {
+            if familyKitAppState.currentPlayerModel?.recordReference == nil {
+                 LargeTextPillBox( "NO USER" )
+            } else {
                 NavigationLink(destination: CKActivityActiveDetailView(
                     model: CKActivityModel(
                         descriptionModel: model,
                         playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!),
                     localActivityStatus: ActivityStatus.active
                 )) {
-                    
                     LargeTextPillBox( "START THIS ACTIVITY" )
                 }
             }
             
             Spacer()
             
-            Group {
+            HStack {
+                Spacer()
                 Text("\(model.moduleType.rawValue)")
                     .font(.system(size: 27, weight: .regular, design: .rounded))
+                Spacer()
                 Text("\(model.category.rawValue)")
                     .font(.system(size: 27, weight: .regular, design: .rounded))
+                Spacer()
             }
             
             Spacer()
@@ -108,7 +111,6 @@ struct CKActivityDescriptionDetailView: View {
             Spacer()
         }
         .onAppear {
-            
             // try and download the image
             if self.model.coverPhoto != nil {
                 self.model.loadCoverPhoto { (result) in
@@ -125,11 +127,21 @@ struct CKActivityDescriptionDetailView: View {
     
 }//end CKActivityDetailView
 
+import CloudKit
+
 struct CKChoreDetailView_Previews: PreviewProvider {
+    
+    static let container = CKContainer(identifier: CKContainerIdentifier)
+    
     static var previews: some View {
         Group {
-            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock)
-            CKActivityDescriptionDetailView(model: CKActivityDescriptionModel.mock)
+            CKActivityDescriptionDetailView(
+                model: CKActivityDescriptionModel.mock
+            )
+                .environmentObject(AppState())
+                .environmentObject((FamilyKitAppState(container: container)))
+                .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+                .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
         }
     }
 }

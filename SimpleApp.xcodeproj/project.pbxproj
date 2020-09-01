@@ -502,10 +502,10 @@
 			children = (
 				76C2FDFC24DB9B9000E030C2 /* ActivityActiveDetailView.swift */,
 				76CFA1D124D9DA00007A02CF /* PhotoActivitySubView.swift */,
+				76241AC024F6CE5B00788592 /* ChatPeekView.swift */,
 				7649838A24E73DCB00097C4D /* AudioActivityView.swift */,
 				76DF241A24ED7392009222AF /* ListView */,
 				76DF241924ED738C009222AF /* CardView */,
-				76241AC024F6CE5B00788592 /* ChatPeekView.swift */,
 			);
 			path = CKActivityActiveViews;
 			sourceTree = "<group>";
@@ -927,7 +927,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -950,7 +950,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

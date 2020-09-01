@@ -22,33 +22,32 @@ public struct ChatSessionView: View {
     
     @State private var messageCount: Int = 0
     private var chatSessionModel: CKChatSessionModel
+    var backgroundColor:Color? = Color(#colorLiteral(red: 0.8661809816, green: 1, blue: 1, alpha: 1))
     
-    public init( chatSession: CKChatSessionModel ) {
+    let showTextField: Bool
+    
+    public init( chatSession: CKChatSessionModel, showTextField: Bool ) {
         self.chatSessionModel = chatSession
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().tableFooterView = UIView()
-        
-        self.testView = Text("yack")
+        self.showTextField = showTextField
     }
     
-    private var testView: Text
-    
     public var body: some View {
-        NavigationView {
-            VStack {
-                if devMessage != nil {
-                    Text("\(devMessage!)")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                        .onTapGesture {
-                            self.devMessage = nil
-                    }
+        //NavigationView {
+        VStack {
+            if devMessage != nil {
+                Text("\(devMessage!)")
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        self.devMessage = nil
                 }
-                
-                // Header section
-                Text("\(messageCount)")
-                //Text("\(self.chatSessionModel.recordID?.recordName ?? "~")")
-                //.font(.caption)
+            }
+            VStack {
+                Text("\(self.chatSessionModel.name ?? "~") (\(messageCount))")
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .padding()
                 
                 List {
                     ForEach( self.chatService.chatMessages ) { model in
@@ -58,17 +57,20 @@ public struct ChatSessionView: View {
                         ).flip()
                     }
                 }.flip()
-                HStack {
-                    TextField("Message...", text: $typingMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(minHeight: CGFloat(30))
-                    Button(action: sendMessage) {
-                        Text("Send")
-                    }
-                }.frame(minHeight: CGFloat(50)).padding()
+                if showTextField == true {
+                    HStack {
+                        // TODO: Change to TextEditor(text: $typingMessage) for iOS14
+                        TextField("Message...", text: $typingMessage)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(minHeight: CGFloat(30))
+                        Button(action: sendMessage) {
+                            Text("Send")
+                        }
+                    }.frame(minHeight: CGFloat(30)).padding()
+                }
             }
-            .navigationBarTitle("\(chatSessionModel.title ?? "~") (\(messageCount))")
             .padding(.bottom, keyboard.currentHeight)
+            .background(backgroundColor ?? .white)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
                 self.endEditing(true)

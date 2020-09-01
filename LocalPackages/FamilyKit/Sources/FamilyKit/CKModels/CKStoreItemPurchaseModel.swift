@@ -30,7 +30,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
     public var recordID: CKRecord.ID?
     
     public var name: String?
-    public var bucks: Int?
+    public var bucks: Int
     public var info: String?
     
     public enum FulfillmentStatus: String, CaseIterable {
@@ -59,7 +59,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
     public init(
     ){
         self.name = nil
-        self.bucks = nil
+        self.bucks = 0
         self.info = nil
     }
     
@@ -74,7 +74,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
 
         self.recordID = record.recordID
         self.name = _name
-        self.bucks = record["bucks"] as? Int
+        self.bucks = record["bucks"] as? Int ?? 0
         self.info = record["info"] as? String
         
         if let fulfillmentStatusString = record["fulfillmentStatus"] as? String {
@@ -105,11 +105,9 @@ extension CKStoreItemPurchaseModel {
         if let name = name {
             record["name"] = name as CKRecordValue
         }
-
-        if let bucks = bucks {
-            record["bucks"] = bucks as CKRecordValue
-        }
-
+        
+        record["bucks"] = bucks as CKRecordValue
+        
         if let info = info {
             record["info"] = info as CKRecordValue
         }

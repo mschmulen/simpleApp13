@@ -23,6 +23,8 @@ struct StoreItemPurchaseDetailView: View {
     @State var devMessage: String?
     
     @State var model: CKStoreItemPurchaseModel
+    @State var showActivityIndicator: Bool = false
+    @State var activityIndicatorMessage: String = "Saving"
     
     var editView: some View {
         Section(header: Text("Data")) {
@@ -48,39 +50,36 @@ struct StoreItemPurchaseDetailView: View {
     }
     
     var body: some View {
-        List{
-            DevMessageView(devMessage: $devMessage)
-            
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }.foregroundColor(.blue)
-            }
-            editView
-        }//end List
-            .onAppear {
+        ActivityIndicatorView(
+            isDisplayed: $showActivityIndicator,
+            indicatorMessage: $activityIndicatorMessage
+        ) {
+            List{
+                DevMessageView(devMessage: self.$devMessage)
+                
+                Button(action:self.onSave) {
+                    HStack {
+                        Text("Save")
+                        Image(systemName: "square.and.arrow.up")
+                    }.foregroundColor(.blue)
+                }
+                self.editView
+            }//end List
         }
     }
     
     func onSave() {
-//        privateChoreService.pushUpdateCreate(model: model) { (result) in
-//            switch result {
-//            case .failure(let error):
-//                self.devMessage = "save error\(error.localizedDescription)"
-//            case .success(let record):
-//                print( "success \(record)")
-//                DispatchQueue.main.async {
-//                    self.presentationMode.wrappedValue.dismiss()
-//                    self.privateChoreService.fetch(
-//                        sortDescriptor: .none,
-//                        searchPredicate: .predicateTrue
-//                    ) { (result) in
-//                        print( "result")
-//                    }
-//                }
-//            }
-//        }
+        self.showActivityIndicator = true
+        self.storeItemPurchaseService.pushUpdateCreate(model: self.model) { (result) in
+            switch result {
+            case .success(let item):
+                self.model = item
+                self.devMessage = "save success"
+            case .failure(let error):
+                self.devMessage = "error \(error)"
+            }
+            self.showActivityIndicator = false
+        }
     }
     
 }//end StoreItemPurchaseDetailView
