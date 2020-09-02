@@ -68,7 +68,10 @@ struct MainBucksStoreView: View {
                     Section(header: Text("Items for purchase")) {
                         ForEach( storeItemDefinitionService.models) { model in
                             NavigationLink(destination: StoreItemDefinitionDetailView(model: model) ) {
-                                Text("\(model.name ?? "")")
+                                VStack {
+                                    Text("\(model.name ?? "")")
+                                    Text("\(model.bucks)")
+                                }
                             }
                             //.deleteDisabled(self.deleteDisabled)
                         }//end ForEach
@@ -77,7 +80,10 @@ struct MainBucksStoreView: View {
                     Section(header: Text("Purchased items")) {
                         ForEach( storeItemPurchaseService.models) { model in
                             NavigationLink(destination: StoreItemPurchaseDetailView(model: model) ) {
-                                Text("\(model.name ?? "")")
+                                VStack{
+                                    Text("\(model.name ?? "")")
+                                    Text("\(model.fulfillmentStatus.rawValue)")
+                                }
                             }
                             //.deleteDisabled(self.deleteDisabled)
                         }//end ForEach

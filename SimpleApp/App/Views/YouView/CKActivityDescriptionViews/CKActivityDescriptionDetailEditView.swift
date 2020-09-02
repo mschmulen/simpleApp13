@@ -22,7 +22,10 @@ struct CKActivityDescriptionDetailEditView: View {
     @State var devMessage: String?
     
     @State var model: CKActivityDescriptionModel
-    @State private var coverPhotoImage:UIImage?
+    @State private var coverPhotoImage: UIImage?
+    
+    @State var showActivityIndicator: Bool = false
+    @State var activityIndicatorMessage: String = "Saving"
     
     var coverPhotoView: some View {
         Group {
@@ -40,88 +43,85 @@ struct CKActivityDescriptionDetailEditView: View {
         }
     }
     
-    var editView: some View {
-        Section(header: Text("Data")) {
-            Text("title \(model.title ?? "~")")
-            
-            TextField("name", text: $model.name ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("emoji", text: $model.emoji ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("description", text: $model.description ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("bucks", value: $model.bucks, formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Picker(selection: $model.moduleType, label: Text("Type")) {
-                ForEach(ActivityModuleType.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            
-            Picker(selection: $model.category, label: Text("Category")) {
-                ForEach(ActivityCategory.allCases.filter { $0 != .none }, id: \.self) {
-                    Text($0.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            
-//            Picker(selection: $model.frequency, label: Text("Frequency")) {
-//                ForEach(CKActivityDescriptionModel.Frequency.allCases, id: \.self) {
-//                    Text($0.rawValue)
-//                }
-//            }.pickerStyle(SegmentedPickerStyle())
-            
-            //            TextField("who", text: $model.who ?? "")
-            //                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            //            TextField("timeofday", text: $model.timeofday ?? "")
-            //                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            NavigationLink(destination: PhotoActivityDescriptionView(model: model) ) {
-                Text("change coverPhoto")
-            }
-            
-            Button(action: ({
-                self.activityDescriptionService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
-                    switch result {
-                    case .failure( let error):
-                        print( "there was an error \(error)")
-                    case .success(_):
-                        print( "success")
-                        self.activityDescriptionService.fetchSingle( model: self.model) { result in
-                            print( "result")
-                            //                            DispatchQueue.main.async {
-                            //                                self.presentationMode.wrappedValue.dismiss()
-                            //                            }
-                        }
-                    }
-                }
-            })) {
-                Text("remove coverPhoto")
-            }
-        }
-    }
-    
     var body: some View {
-        List{
-            DevMessageView(devMessage: $devMessage)
+        VStack {
+            DevMessageView(devMessage: self.$devMessage)
             
-            Button(action:onSave) {
-                HStack {
-                    Text("Save")
-                    Image(systemName: "square.and.arrow.up")
-                }.foregroundColor(.blue)
-            }
-            editView
-            
-            Section(header:Text("Assets")) {
-                coverPhotoView
-            }
-            
-        }//end List
+            ActivityIndicatorView(
+                isDisplayed: $showActivityIndicator,
+                indicatorMessage: $activityIndicatorMessage
+            ) {
+                VStack {
+                    
+                    HStack {
+                        Spacer()
+                        Button(action:self.onSave) {
+                            HStack {
+                                Text("Save")
+                                Image(systemName: "square.and.arrow.up")
+                            }.foregroundColor(.blue)
+                        }.padding()
+                    }
+                    
+                    List{
+                        Section(header: Text("Data")) {
+                            TextField("name", text: self.$model.name ?? "")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            TextField("emoji", text: self.$model.emoji ?? "")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            TextField("description", text: self.$model.description ?? "")
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            TextField("bucks", value: self.$model.bucks, formatter: NumberFormatter())
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            Picker(selection: self.$model.moduleType, label: Text("Type")) {
+                                ForEach(ActivityModuleType.allCases, id: \.self) {
+                                    Text($0.rawValue)
+                                }
+                            }.pickerStyle(SegmentedPickerStyle())
+                            
+                            Picker(selection: self.$model.category, label: Text("Category")) {
+                                ForEach(ActivityCategory.allCases.filter { $0 != .none }, id: \.self) {
+                                    Text($0.rawValue)
+                                }
+                            }.pickerStyle(SegmentedPickerStyle())
+                            
+                            NavigationLink(destination: PhotoActivityDescriptionView(model: self.model) ) {
+                                Text("change coverPhoto")
+                            }
+                            
+                            Button(action: ({
+                                self.showActivityIndicator = true
+                                self.activityDescriptionService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
+                                    switch result {
+                                    case .failure( let error):
+                                        self.showActivityIndicator = false
+                                        self.devMessage = "save error\(error.localizedDescription)"
+                                    case .success(_):
+                                        print( "success")
+                                        self.activityDescriptionService.fetchSingle( model: self.model) { result in
+                                            self.showActivityIndicator = false
+                                        }
+                                    }
+                                }
+                            })) {
+                                Text("remove coverPhoto")
+                            }
+                        }
+                        
+                        Section(header:Text("Assets")) {
+                            self.coverPhotoView
+                        }
+                    }//end List
+                }//end VStack
+                //.navigationBarTitle("Activity")
+                // .navigationBarItems(trailing: self.trailingButton)
+            }//end ActivityIndicatorView
+            Spacer()
+        }//end VStack
             .onAppear {
                 // try and download the image
                 if self.model.coverPhoto != nil {
@@ -134,23 +134,37 @@ struct CKActivityDescriptionDetailEditView: View {
                         }
                     }
                 }
-        }
+        }//end onAppear
     }
     
+//    private var trailingButton: some View {
+//        Button(action:self.onSave) {
+//            HStack {
+//                Text("XSave")
+//                Image(systemName: "square.and.arrow.up")
+//            }
+//            .foregroundColor(.blue)
+//        }
+//        .padding()
+//    }
+    
     func onSave() {
+        self.showActivityIndicator = true
         activityDescriptionService.pushUpdateCreate(model: model) { (result) in
             switch result {
             case .failure(let error):
                 self.devMessage = "save error\(error.localizedDescription)"
+                self.showActivityIndicator = false
             case .success(_):
+                self.showActivityIndicator = false
                 DispatchQueue.main.async {
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }
         }
-    }
+    }//end onSave
     
-}//end CKActivityDetailView
+}//end CKActivityDescriptionDetailEditView
 
 struct CKActivityDescriptionDetailEditView_Previews: PreviewProvider {
     static var previews: some View {

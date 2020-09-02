@@ -471,22 +471,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "119CE869-C395-4A8F-B9F4-32D3367C6EF0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/ChatFeature/ChatSessionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "AE0FF6E9-8A8D-436C-B748-4B3018A7C2B8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -657,22 +641,6 @@
             startingLineNumber = "161"
             endingLineNumber = "161"
             landmarkName = "saveRecordingToServer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "689A2CA8-30DD-4EA2-930D-1EDF54A78E64"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleApp/App/Views/BucksStoreView/StoreItemDefinitionDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "onSave()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

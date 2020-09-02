@@ -35,12 +35,22 @@ struct DrawPreviewView: View {
             DevMessageView(devMessage: $devMessage)
             
             ZStack {
-                Rectangle()
-                    .fill(SemanticAppColor.random)
-                    .frame(width: 200, height: 200)
-                    //.frame(width: geo.size.width, height: geo.size.height)
-                    .onTapGesture {
-                        self.showDrawingView.toggle()
+                if model.activityAsset == nil  {
+                    Rectangle()
+                        .fill(SemanticAppColor.random)
+                        .frame(width: 200, height: 200)
+                        //.frame(width: geo.size.width, height: geo.size.height)
+                        .onTapGesture {
+                            self.showDrawingView.toggle()
+                    }
+                } else {
+                    Rectangle()
+                        .fill(SemanticAppColor.random)
+                        .frame(width: 200, height: 200)
+                        //.frame(width: geo.size.width, height: geo.size.height)
+                        .onTapGesture {
+                            self.showDrawingView.toggle()
+                    }
                 }
                 VStack {
                     Text("DRAWING PREVIEW")
@@ -54,15 +64,15 @@ struct DrawPreviewView: View {
         }.onAppear {
             self.loadPreview()
         }
-        //.sheet(isPresented: $showDrawingView, onDismiss: loadDrawingState) {
-        .sheet(isPresented: $showDrawingView) {
-            DrawContainerView(
-                model: self.$model,
-                showActivityIndicator: self.$showActivityIndicator,
-                activityIndicatorMessage: self.$activityIndicatorMessage
-            )
-                .environmentObject(self.familyKitAppState)
-                .environmentObject(self.activityService)
+            //.sheet(isPresented: $showDrawingView, onDismiss: loadDrawingState) {
+            .sheet(isPresented: $showDrawingView) {
+                DrawContainerView(
+                    model: self.$model,
+                    showActivityIndicator: self.$showActivityIndicator,
+                    activityIndicatorMessage: self.$activityIndicatorMessage
+                )
+                    .environmentObject(self.familyKitAppState)
+                    .environmentObject(self.activityService)
         }
     }
     
@@ -101,99 +111,119 @@ struct DrawPreviewView: View {
         }
     }
     
-//    func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
-//        self.devMessage = "saving DrawingState"
-//
-//        showActivityIndicator = true
-//        activityIndicatorMessage = "saving drawing"
-//        do {
-//            let encoder = JSONEncoder()
-//            let data = try encoder.encode(updatedDrawingState)
-//
-//            // let string = String(data:data, encoding: .utf8)
-//            // print( "saveCallback data string \(string)")
-//
-//            let fileNamePrefix = "updatedDrawingState"
-//            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//            var localFileURL = documentPath.appendingPathComponent(fileNamePrefix)
-//            localFileURL.appendPathExtension("json")
-//
-//            // print( "localFile URL \(localFileURL)")
-//            // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
-//            try data.write(to: localFileURL, options: [.atomicWrite])
-//
-//            // automatically push to status .completed
-//            self.model.status = .completed
-//
-//            activityService.pushUpdateCreate(model: model) { (result) in
-//                switch result {
-//                case .success( let resultModel):
-//                    self.activityService.uploadFileAsset(
-//                        model: resultModel,
-//                        fileURL: localFileURL,
-//                        assetPropertyName: "activityAsset"
-//                    ) { (result) in
-//                        switch result {
-//                        case .failure(let error):
-//                            self.devMessage = "upload failure \(error)"
-//                             self.showActivityIndicator = false
-//                        case .success(_):
-//                            self.devMessage = "upload success"
-//                             self.showActivityIndicator = false
-//                        }
-//                    }
-//                case .failure(let error):
-//                    print( "error \(error)")
-//                    self.showActivityIndicator = false
-//                }
-//            }
-//
-//        } catch let error {
-//            self.devMessage = "error \(error)"
-//            self.showActivityIndicator = false
-//        }
-//
-//        if let screenShot = screenShot {
-//            saveScreenShot(screenShot: screenShot)
-//        }
-//    }
+    //    func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
+    //        self.devMessage = "saving DrawingState"
+    //
+    //        showActivityIndicator = true
+    //        activityIndicatorMessage = "saving drawing"
+    //        do {
+    //            let encoder = JSONEncoder()
+    //            let data = try encoder.encode(updatedDrawingState)
+    //
+    //            // let string = String(data:data, encoding: .utf8)
+    //            // print( "saveCallback data string \(string)")
+    //
+    //            let fileNamePrefix = "updatedDrawingState"
+    //            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    //            var localFileURL = documentPath.appendingPathComponent(fileNamePrefix)
+    //            localFileURL.appendPathExtension("json")
+    //
+    //            // print( "localFile URL \(localFileURL)")
+    //            // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
+    //            try data.write(to: localFileURL, options: [.atomicWrite])
+    //
+    //            // automatically push to status .completed
+    //            self.model.status = .completed
+    //
+    //            activityService.pushUpdateCreate(model: model) { (result) in
+    //                switch result {
+    //                case .success( let resultModel):
+    //                    self.activityService.uploadFileAsset(
+    //                        model: resultModel,
+    //                        fileURL: localFileURL,
+    //                        assetPropertyName: "activityAsset"
+    //                    ) { (result) in
+    //                        switch result {
+    //                        case .failure(let error):
+    //                            self.devMessage = "upload failure \(error)"
+    //                             self.showActivityIndicator = false
+    //                        case .success(_):
+    //                            self.devMessage = "upload success"
+    //                             self.showActivityIndicator = false
+    //                        }
+    //                    }
+    //                case .failure(let error):
+    //                    print( "error \(error)")
+    //                    self.showActivityIndicator = false
+    //                }
+    //            }
+    //
+    //        } catch let error {
+    //            self.devMessage = "error \(error)"
+    //            self.showActivityIndicator = false
+    //        }
+    //
+    //        if let screenShot = screenShot {
+    //            saveScreenShot(screenShot: screenShot)
+    //        }
+    //    }
     
-//    func saveScreenShot(screenShot:UIImage) {
-//
-//        // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
-//
-//        activityService.uploadPhotoAsset(
-//            model:model,
-//            image: screenShot,
-//            assetPropertyName: "coverPhoto"
-//        ) { result in
-//            switch result {
-//            case .failure( let error):
-//                print( "uploadFileAsset error \(error)")
-//                //                    DispatchQueue.main.async {
-//                //                        self.statusMessage = "There was an error uploading \(error)"
-//            //                    }
-//            case .success(_):
-//                print( "upload success")
-//                //                    self.statusMessage = "Reloading ..."
-//                //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
-//                //                        print( "result")
-//                //                        DispatchQueue.main.async {
-//                //                            self.presentationMode.wrappedValue.dismiss()
-//                //                        }
-//                //                    }
-//            }
-//        }
-//    }
+    //    func saveScreenShot(screenShot:UIImage) {
+    //
+    //        // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
+    //
+    //        activityService.uploadPhotoAsset(
+    //            model:model,
+    //            image: screenShot,
+    //            assetPropertyName: "coverPhoto"
+    //        ) { result in
+    //            switch result {
+    //            case .failure( let error):
+    //                print( "uploadFileAsset error \(error)")
+    //                //                    DispatchQueue.main.async {
+    //                //                        self.statusMessage = "There was an error uploading \(error)"
+    //            //                    }
+    //            case .success(_):
+    //                print( "upload success")
+    //                //                    self.statusMessage = "Reloading ..."
+    //                //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
+    //                //                        print( "result")
+    //                //                        DispatchQueue.main.async {
+    //                //                            self.presentationMode.wrappedValue.dismiss()
+    //                //                        }
+    //                //                    }
+    //            }
+    //        }
+    //    }
     
 }
 
 struct DrawPreviewView_Previews: PreviewProvider {
+    
+    static let deviceNames: [String] = [
+        "iPhone SE",
+        "iPad Pro (11-inch)"
+    ]
+    
     static var previews: some View {
-        DrawPreviewView(
-            model: .constant(CKActivityModel.mock),
-            showActivityIndicator: .constant(false),
-            activityIndicatorMessage: .constant("some update message")
-        )
+        Group {
+            
+            DrawPreviewView (
+                model: .constant(CKActivityModel.mock),
+                showActivityIndicator: .constant(false),
+                activityIndicatorMessage: .constant("some update message")
+            )
+            
+//            ForEach (deviceNames, id:\.self) { deviceName in
+//                DrawPreviewView(
+//                    model: .constant(CKActivityModel.mock),
+//                    showActivityIndicator: .constant(false),
+//                    activityIndicatorMessage: .constant("some update message")
+//                )
+//                    .previewDevice(PreviewDevice(rawValue: deviceName))
+//                    .previewDisplayName("\(deviceName)")
+//            }
+        }
     }
+    
 }

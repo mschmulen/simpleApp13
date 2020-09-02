@@ -29,7 +29,9 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         "dateOfBirth",
         "emoji",
         "isAdult",
-        "playerType"
+        "playerType",
+//        "email",
+//        "password"
     ]
     
     public var id = UUID()
@@ -54,6 +56,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     // TODO: finish the cover photo for the kid
     //public var coverPhoto: CKAsset?
     
+    
+//    public var email: String?
+//    public var password: String?
+    
     public var title: String? {
         return name
     }
@@ -74,6 +80,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())! // 5 years old
         model.emoji = "😀"
         model.playerType = .adult
+        
+//        model.email = nil
+//        model.password = nil
+        
         return model
     }
     
@@ -85,6 +95,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         model.dateOfBirth = Calendar.current.date(byAdding: .year, value: -5, to: Date())! // 5 years old
         model.emoji = "😀"
         model.playerType = .kid
+        
+//        model.email = nil
+//        model.password = nil
+
         return model
     }
     
@@ -96,6 +110,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         self.emoji = nil
         self.isAdult = false
         self.playerType = .adult
+        
+//        self.email = nil
+//        self.password = nil
+        
     }
     
     public init?(record: CKRecord) {
@@ -133,6 +151,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
                 self.playerType = .kid
             }
         }
+        
+//        self.email = record["email"] as? String
+//        self.password = record["password"] as? String
+        
     }
     
     enum CustomError: Error {
@@ -172,6 +194,10 @@ extension CKPlayerModel {
         record["isAdult"] = isAdult as CKRecordValue
         
         record["playerType"] = playerType.rawValue as CKRecordValue
+        
+//        record["email"] as? String = email as CKRecordValue
+//
+//        record["password"] as? String = password as CKRecordValue
         
         return record
     }

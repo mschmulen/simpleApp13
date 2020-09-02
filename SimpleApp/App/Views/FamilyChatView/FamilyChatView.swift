@@ -26,19 +26,38 @@ struct FamilyChatView: View {
     @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     @State var chatSessionModel: CKChatSessionModel?
     
+//    @State var showActivityIndicator: Bool = false
+//    @State var activityIndicatorMessage: String = "Loading"
+    
     var body: some View {
-        //NavigationView {
+        NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
-                if self.chatSessionModel != nil {
-                    ChatSessionView(chatSession: self.chatSessionModel!)
-                } else {
-                    Text("NO FAMILY SESSION")
-                }
-            }.onAppear(perform: {
-                    self.configureChatSession()
-                    self.familyKitAppState.onRefetchFromServer()
-            })
+//                ActivityIndicatorView(
+//                    isDisplayed: $showActivityIndicator,
+//                    indicatorMessage: $activityIndicatorMessage
+//                ) {
+                    VStack {
+                        
+                        if self.chatSessionModel != nil {
+                            ChatSessionView(
+                                chatSession: self.chatSessionModel!,
+                                showTextField: true,
+                                enableBorder: false,
+                                enableDismiss: false
+                            )
+                        } else {
+                            Text("NO FAMILY SESSION")
+                        }
+                    }
+//                }
+            }
+            .navigationBarTitle("Family Chat")
+            //.navigationBarItems(leading: leadingButton, trailing: trailingButton)
+        }.onAppear(perform: {
+            self.configureChatSession()
+            self.familyKitAppState.onRefetchFromServer()
+        })
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 self.devMessage = "silent Push! DB changed"
@@ -53,9 +72,7 @@ struct FamilyChatView: View {
                 ) { (result) in
                     print( "result")
                 }
-            }
-            //.navigationBarTitle("Bucks Store")
-            //.navigationBarItems(leading: leadingButton, trailing: trailingButton)
+        }
         //}
     }
     
@@ -90,12 +107,15 @@ struct FamilyChatView: View {
     }
     
     func configureChatSession() {
+        //self.showActivityIndicator = true
         chatService.findOrMakeFamilySession { (result) in
             switch result {
             case .success(let sessionModel):
                 self.chatSessionModel = sessionModel
+                //self.showActivityIndicator = false
             case .failure(let error):
                 self.devMessage = "error! \(error)"
+                //self.showActivityIndicator = false
             }
         }
     }
