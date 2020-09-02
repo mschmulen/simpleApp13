@@ -91,7 +91,7 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
                             .frame(height: 200)
                         }
                         
@@ -105,10 +105,9 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
                                 .frame(height: 200)
                         }
-                        // Spacer()
                     } else if self.model.moduleType == .drawing {
                         self.infoView
                         self.activityStatusView
@@ -119,8 +118,8 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: false)
-                                .frame(height: 200)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                                //.frame(height: 200)
                         }
                         
                     } else if self.model.moduleType == .chat {
@@ -128,7 +127,7 @@ struct CKActivityActiveDetailView: View {
                         self.activityStatusView
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, showInLine: true)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
                         }
                         // Spacer()
                     }
