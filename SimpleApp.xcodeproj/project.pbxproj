@@ -21,6 +21,7 @@
 		7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817024C54B8800B339E4 /* PurchaseView.swift */; };
 		7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817724C61F2400B339E4 /* PurchaseModel.swift */; };
 		7601817B24C6457C00B339E4 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601817A24C6457C00B339E4 /* AppModel.swift */; };
+		76141DE824FFE37D00295FE5 /* PrimaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76141DE724FFE37D00295FE5 /* PrimaryLabel.swift */; };
 		7616F66824DC7723003488EB /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* YouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		7616F66C24DC8823003488EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616F66B24DC8823003488EB /* StoreKit.framework */; };
@@ -136,6 +137,7 @@
 		7601817024C54B8800B339E4 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		7601817724C61F2400B339E4 /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		7601817A24C6457C00B339E4 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		76141DE724FFE37D00295FE5 /* PrimaryLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryLabel.swift; sourceTree = "<group>"; };
 		7616F66724DC7723003488EB /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		7616F66B24DC8823003488EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -318,6 +320,7 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76141DE624FFE36800295FE5 /* ViewModifiers */,
 				76241ABD24F6C9BE00788592 /* FamilyChatView */,
 				7649838324E6218A00097C4D /* BucksStoreView */,
 				7649838224E6218100097C4D /* YouView */,
@@ -349,6 +352,14 @@
 			children = (
 			);
 			path = WIP;
+			sourceTree = "<group>";
+		};
+		76141DE624FFE36800295FE5 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				76141DE724FFE37D00295FE5 /* PrimaryLabel.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */ = {
@@ -733,6 +744,7 @@
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */,
 				7601817B24C6457C00B339E4 /* AppModel.swift in Sources */,
+				76141DE824FFE37D00295FE5 /* PrimaryLabel.swift in Sources */,
 				7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */,
 				76C2FDFF24DB9B9000E030C2 /* CKActivityActiveNoItemsView.swift in Sources */,
 				76C2FE0024DB9B9000E030C2 /* CKActivityActiveItemView.swift in Sources */,
@@ -927,7 +939,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -950,7 +962,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SimpleApp/SimpleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

@@ -20,7 +20,25 @@ class AppState: ObservableObject {
     
     var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: ContentView.TopView = .mainView {
+    @Published var topView: TopView = TopView.mainView {
+        willSet {
+            updateChanges()
+        }
+    }
+    
+    @Published var selectedTab: TabViewIndex = TabViewIndex.you {
+        willSet {
+            updateChanges()
+        }
+    }
+    
+    enum DeepLink {
+        case none
+        case chat
+        case activityUpdated ( activityID: String)
+    }
+    
+    @Published var activeDeepLink: DeepLink = .none {
         willSet {
             updateChanges()
         }

@@ -30,6 +30,9 @@ public class FamilyKitAppState: ObservableObject {
     
     // @State players:[CKPlayerModel] = [CKPlayerModel]()
     
+    private var chatService: CKPrivateModelService<CKChatMessageModel>
+    private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
+    
     public init(
         container: CKContainer
     ) {
@@ -55,6 +58,12 @@ public class FamilyKitAppState: ObservableObject {
 //            self.objectWillChange.send()
 //        })
         
+        chatService = CKPrivateModelService<CKChatMessageModel>(
+            container: container
+        )
+        chatSessionService = CKPrivateModelService<CKChatSessionModel>(
+            container: container
+        )
     }
     
     private func updateChanges() {
@@ -82,7 +91,7 @@ extension FamilyKitAppState {
             }
         })
         playerService.subscribe(isSilent: true, message: "player Change")
-        playerService.listenForNotifications()
+        playerService.listenForRemoteNotifications()
         
         // TODO: fetch create the CKDevice Model based on device
         //print( "thisDeviceModel idfv \(self.thisDeviceModel.idfv?.uuidString ?? "~")")
@@ -91,6 +100,24 @@ extension FamilyKitAppState {
 //                print( "device push update create \(result)")
 //            }
         
+        // TODO for Chat push notifications
+//        chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
+//            switch fetchResult {
+//            case .success(let fetchResultModel):
+//
+//                if let sessionModelIDString = fetchResultModel.recordID?.recordName {
+//                    self.chatService.subscribeToChat(
+//                        sessionReferenceIDString: sessionModelIDString,
+//                        message: "Family Chat was created"
+//                    )
+//                }
+//
+//            case .failure(_):
+//                print("failed to find it ... who cares, get it on the next try")
+//            }
+//        }//end fetchByName
+        
+
     }
     
     public func onRefetchFromServer(afterDelay: Double = 0.00) {

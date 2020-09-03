@@ -20,11 +20,10 @@ struct LargeTextPillBox: View {
     
     var body: some View {
         Text(title)
-            .font(.system(size: 27, weight: .bold, design: .rounded))
+            .modifier(PrimaryLargeBoldLabel(color: .white))
             .padding()
             .background(SemanticAppColor.random)
             .cornerRadius(10)
-            .foregroundColor(Color.white)
     }
 }
 

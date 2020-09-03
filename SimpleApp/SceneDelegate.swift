@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            }
         })
         activityDescriptionService.subscribe(isSilent: true, message: "new ActivityDescription or change")
-        activityDescriptionService.listenForNotifications()
+        activityDescriptionService.listenForRemoteNotifications()
         
         let activityService = CKPrivateModelService<CKActivityModel>(
             container: container
@@ -58,8 +58,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             searchPredicate: .predicateTrue,
             completion: { result in
         })
-        activityService.subscribe(isSilent: false, message: "new Activity or activity changed")
-        activityService.listenForNotifications()
+        activityService.subscribe(isSilent: true, message: "new Activity or activity changed")
+        activityService.listenForRemoteNotifications()
         // ---------------------------------------------
         
         
@@ -82,19 +82,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         })
         // ---------------------------------------------
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //let contentView = ContentView().environmentObject(appDelegate.viewRouter)
         
-        let appState = AppState()
-        appState.onStartup()
+        appDelegate.appState.onStartup()
         
         let contentView = ContentView()
             .environment(\.window, window)
-            .environmentObject(appState)
+            
             .environmentObject(familyKitAppState)
             .environmentObject(activityDescriptionService)
             .environmentObject(activityService)
             .environmentObject(storeItemDefinitionService)
             .environmentObject(storeItemPurchaseService)
-            //.environmentObject(chatService)
+            .environmentObject(storeItemPurchaseService)
+            .environmentObject(appDelegate.appState)
         
         //        let contentView = ContentView()
         //            .environment(\.window, window)
@@ -102,6 +104,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
+            
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
@@ -165,3 +168,5 @@ extension EnvironmentValues {
         set { self[WindowKey.self] = .init(value: newValue) }
     }
 }
+
+

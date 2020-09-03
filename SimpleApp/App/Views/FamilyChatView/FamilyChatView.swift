@@ -43,8 +43,8 @@ struct FamilyChatView: View {
                             ChatSessionView(
                                 chatSession: self.chatSessionModel!,
                                 showTextField: true,
-                                enableBorder: false,
-                                enableDismiss: false
+                                enableDismiss: false,
+                                enableBorder: false
                             )
                         } else {
                             Text("NO FAMILY SESSION")

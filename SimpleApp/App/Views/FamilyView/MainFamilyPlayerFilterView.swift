@@ -63,8 +63,7 @@ struct MainFamilyPlayerFilterView: View {
                                 .font(.body)
                             Spacer()
                             Text("Family")
-                                .font(.system(size: 15, weight: .bold, design: .rounded))
-                                .foregroundColor(Color(.white))
+                                .modifier(PrimarySmallBoldLabel(color: .white))
                         }
                         .frame(width: cardSize, height: cardSize)
                         .padding()
@@ -81,7 +80,7 @@ struct MainFamilyPlayerFilterView: View {
                                 Text("\(player.emoji ?? "")")
                                 Spacer()
                                 Text("\(player.name ?? "")")
-                                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                                    .modifier(PrimarySmallRegularLabel(color: .black))
                             }
                             .frame(width: self.cardSize, height: self.cardSize)
                             .padding()

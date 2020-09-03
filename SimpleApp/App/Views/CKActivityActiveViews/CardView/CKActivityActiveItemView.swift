@@ -40,14 +40,12 @@ struct CKActivityActiveItemView: View {
                     if model.kidReference != nil {
                         Text("\(familyKitAppState.findPlayerModelForRecord(recordReference: model.kidReference!)?.name ?? "~")")
                             .lineLimit(1)
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                            .modifier(PrimarySmallBoldLabel(color: .white))
                             .padding()
                     }
                     Text(model.title ?? "~")
                         .lineLimit(3)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundColor(.white)
+                        .modifier(PrimarySmallRegularLabel(color: .white))
                         .padding()
                 }
             }

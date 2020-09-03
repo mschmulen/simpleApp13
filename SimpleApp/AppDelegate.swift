@@ -14,6 +14,8 @@ import CloudKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    public var appState = AppState()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // ------------------------------------------------------------
@@ -145,7 +147,48 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("userNotificationCenter.willPresent didReceive")
+        
+        let userInfo = response.notification.request.content.userInfo
+        print( "title: \(response.notification.request.content.title)")
+        print( "subtitle: \(response.notification.request.content.subtitle)")
+        print( "body: \(response.notification.request.content.body)")
+        
+        presentView(with: userInfo)
         completionHandler()
     }
     
 }
+
+extension AppDelegate {
+    
+    func presentView(with pushNotificationInfo: [AnyHashable: Any]) {
+        print( "AppDelegate.presentView")
+        print( "pushNotificationInfo: \(pushNotificationInfo)")
+        
+        self.appState.activeDeepLink = .chat
+        self.appState.topView = TopView.mainView
+        self.appState.selectedTab = TabViewIndex.bucksStore
+    }
+    
+//    AppDelegate.presentView
+//    [AnyHashable("ck"): {
+//        ce = 2;
+//        cid = "iCloud.com.jumptack.FamilyKit";
+//        ckuserid = "_50125824373cb9a38c4142e6c601eb14";
+//        nid = "66a1bfd5-4f7c-437f-b5ad-4bae0b71b4a0";
+//        qry =     {
+//            dbs = 1;
+//            fo = 1;
+//            rid = "C8FA4AC1-B27B-4448-BDFD-5CCB048D40ED";
+//            sid = "AC91174C-55F0-49EA-ABA0-0D1B1796E273";
+//            zid = "_defaultZone";
+//            zoid = "_50125824373cb9a38c4142e6c601eb14";
+//        };
+//    }, AnyHashable("aps"): {
+//        alert = "New Chat";
+//        badge = 180;
+//        sound = default;
+//    }]
+}
+
+

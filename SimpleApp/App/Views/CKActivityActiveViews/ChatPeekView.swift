@@ -16,6 +16,9 @@ struct ChatPeekView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    let rectangleColor: Color = Color.white
+    // Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+    
     @State var showChatSession: Bool = false
     var chatSessionModel: CKChatSessionModel
     
@@ -24,9 +27,9 @@ struct ChatPeekView: View {
             GeometryReader { geo in
                 ZStack {
                     Rectangle()
-                        .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
+                        .fill(self.rectangleColor)
                         .frame(width: geo.size.width, height: geo.size.height)
-                        .cornerRadius(5)
+                        //.cornerRadius(5)
                         .onTapGesture {
                             self.showChatSession.toggle()
                     }
@@ -45,7 +48,11 @@ struct ChatPeekView: View {
                 ChatSessionView(
                     chatSession: self.chatSessionModel,
                     showTextField: true,
-                    enableDismiss: true
+                    enableDismiss: true,
+                    dismissCallback: {
+                        self.onDismissReload()
+                    },
+                    enableBorder: false
                 )
                     .environmentObject(self.familyKitAppState)
         }
@@ -56,4 +63,3 @@ struct ChatPeekView: View {
     }
     
 }
-

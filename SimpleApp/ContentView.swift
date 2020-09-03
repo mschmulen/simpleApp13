@@ -8,6 +8,19 @@
 import SwiftUI
 import FamilyKit
 
+enum TopView {
+    case mainView
+    case purchaseView
+    //case modalView
+}
+
+enum TabViewIndex: Int {
+    case you = 0
+    case family = 1
+    case bucksStore = 2
+    case familyChat = 3
+}
+
 struct ContentView: View {
     
     @Environment(\.window) var window: UIWindow?
@@ -22,29 +35,15 @@ struct ContentView: View {
     
     @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
     @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
-
     
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
-    enum TopView {
-        case mainView
-        case purchaseView
-    }
-    
     @State private var selectedTab: Int = TabViewIndex.you.rawValue
-    
-    public enum TabViewIndex: Int {
-        case you = 0
-        case family = 1
-        case bucksStore = 2
-        case familyChat = 3
-    }
     
     @ViewBuilder
     var body: some View {
         Group {
-            
             if devMessage != nil {
                 Text("\(devMessage!)")
                     .foregroundColor(.red)
@@ -57,23 +56,24 @@ struct ContentView: View {
                 VStack {
                     PlayerOnboardingView()
                         .environmentObject(familyKitAppState)
-                    
                     Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                         .font(.caption)
                 }
             } else {
-                TabView(selection: $selectedTab) {
-                    if appState.topView == .mainView {
-                            YouView()
-                                .environment(\.window, window)
-                                .environmentObject(appState)
-                                .environmentObject(familyKitAppState)
-                                .environmentObject(activityDescriptionService)
-                                .environmentObject(activityService)
-                                .tabItem {
-                                    Image(systemName: "person.circle")
-                                    Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-                            }.tag(TabViewIndex.you.rawValue)
+                if appState.topView == .mainView {
+                    
+                    //TabView(selection: $appState.selectedTab) {
+                    TabView(selection: $selectedTab) {
+                        YouView()
+                            .environment(\.window, window)
+                            .environmentObject(appState)
+                            .environmentObject(familyKitAppState)
+                            .environmentObject(activityDescriptionService)
+                            .environmentObject(activityService)
+                            .tabItem {
+                                Image(systemName: "person.circle")
+                                Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                        }.tag(TabViewIndex.you.rawValue)
                         
                         MainFamilyView()
                             .environment(\.window, window)
@@ -110,15 +110,18 @@ struct ContentView: View {
                                 Image(systemName: "person.3")
                                 Text("Chat")
                         }.tag(TabViewIndex.familyChat.rawValue)
-                    }
-                }
-                
-                if appState.topView == .purchaseView {
-                    PurchaseView()
-                        .environmentObject(appState)
-                }
-                // EmptyView()
-            }
+                    } //end TabView
+                    
+                } //end if
+            } // end else .currentPlayerModel == nil
+            
+            if appState.topView == .purchaseView {
+                PurchaseView()
+                    .environmentObject(appState)
+            }//end if .purchaseView
+            
+            //EmptyView()
+            
         }//end group
             .sheet(isPresented: $showNoiCloudConnection) {
                 iCloudSheetView(showSheetView: self.$showNoiCloudConnection)
@@ -127,6 +130,7 @@ struct ContentView: View {
             if self.familyKitAppState.isCloudKitAvailable == false {
                 self.showNoiCloudConnection.toggle()
             }
+            print( "ContentView.onAppear")
         }
         .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
@@ -185,3 +189,16 @@ struct iCloudSheetView: View {
     }
 }
 
+struct ModalView: View {
+    
+    var message: String
+    
+    var body: some View {
+        VStack {
+            Text("MODAL VIEW")
+            Text("\(message)")
+            Text("MODAL VIEW")
+            
+        }
+    }
+}

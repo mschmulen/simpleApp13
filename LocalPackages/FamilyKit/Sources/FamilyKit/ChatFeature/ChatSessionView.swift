@@ -24,19 +24,18 @@ public struct ChatSessionView: View {
     
     @State private var messageCount: Int = 0
     private var chatSessionModel: CKChatSessionModel
-    //var backgroundColor:Color? = Color(#colorLiteral(red: 0.8661809816, green: 1, blue: 1, alpha: 1))
-    var backgroundColor:Color? = nil
-    //var backgroundUIColor:UIColor? = UIColor(#colorLiteral(red: 0.8661809816, green: 1, blue: 1, alpha: 1))
     
     let showTextField: Bool
-    let enableBorder:Bool
-    let enableDismiss:Bool
+    let enableBorder: Bool
+    let enableDismiss: Bool
+    let dismissCallback: (()->Void)?
     
     public init(
         chatSession: CKChatSessionModel,
         showTextField: Bool,
-        enableBorder:Bool = true,
-        enableDismiss:Bool = true
+        enableDismiss:Bool = true,
+        dismissCallback: (()->Void)? = nil,
+        enableBorder:Bool = true
     ) {
         self.chatSessionModel = chatSession
         
@@ -46,8 +45,10 @@ public struct ChatSessionView: View {
         //UITableView.appearance().backgroundColor = backgroundUIColor ?? .white
         
         self.showTextField = showTextField
-        self.enableDismiss = enableDismiss
         self.enableBorder = enableBorder
+        
+        self.enableDismiss = enableDismiss
+        self.dismissCallback = dismissCallback
     }
     
     public var body: some View {
@@ -65,20 +66,19 @@ public struct ChatSessionView: View {
                 VStack {
                     HStack {
                         
-                        Text("\(self.chatSessionModel.name ?? "~") (\(messageCount))")
+                        Text("Messages: (\(messageCount))")
                             .font(.system(size: 12, weight: .medium, design: .rounded))
                             .padding()
                         
                         if enableDismiss {
                             Spacer()
                             Button(action: {
-                                // todo
+                                self.dismissCallback?()
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
                                 Text("CLOSE")
                             }.padding()
                         }
-                        
                     }
                     
                     List {
@@ -87,9 +87,8 @@ public struct ChatSessionView: View {
                                 currentMessage: model,
                                 chatService: self.$chatService
                             ).flip()
-                        }.listRowBackground(backgroundColor ?? .white)
+                        }
                     }.flip()
-                        .background(backgroundColor ?? .white)
                     
                     if showTextField == true {
                         HStack {
@@ -104,13 +103,8 @@ public struct ChatSessionView: View {
                     }
                 }
             }
-            //.border(Color.blue, width: 2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)), lineWidth: 3)
-                )
+            .if(enableBorder) { $0.overlay( RoundedRectangle(cornerRadius: 16).stroke(Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)), lineWidth: 3)) }
             .padding(.bottom, keyboard.currentHeight)
-            .background(backgroundColor ?? .white)
             .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
         }.onTapGesture {
             self.endEditing(true)
@@ -169,3 +163,53 @@ extension View {
             .scaleEffect(x: -1, y: 1, anchor: .center)
     }
 }
+
+
+
+/**
+ // https://fivestars.blog/swiftui/conditional-modifiers.html
+ // Conditional modifiers
+ */
+
+extension View {
+  @ViewBuilder
+  func `if`<Transform: View>(
+    _ condition: Bool,
+    transform: (Self) -> Transform
+  ) -> some View {
+    if condition {
+      transform(self)
+    } else {
+      self
+    }
+  }
+}
+
+//extension View {
+//  @ViewBuilder
+//  func `if`<TrueContent: View, FalseContent: View>(
+//    _ condition: Bool,
+//    if ifTransform: (Self) -> TrueContent,
+//    else elseTransform: (Self) -> FalseContent
+//  ) -> some View {
+//    if condition {
+//      ifTransform(self)
+//    } else {
+//      elseTransform(self)
+//    }
+//  }
+//}
+//
+//extension View {
+//  @ViewBuilder
+//  func ifLet<V, Transform: View>(
+//    _ value: V?,
+//    transform: (Self, V) -> Transform
+//  ) -> some View {
+//    if let value = value {
+//      transform(self, value)
+//    } else {
+//      self
+//    }
+//  }
+//}

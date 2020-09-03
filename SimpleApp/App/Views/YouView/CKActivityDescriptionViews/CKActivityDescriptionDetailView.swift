@@ -52,18 +52,18 @@ struct CKActivityDescriptionDetailView: View {
                 headerView
                 
                 Text(model.name ?? "~")
-                    .font(.system(size: 27, weight: .bold, design: .rounded))
+                    .modifier(PrimaryLargeBoldLabel(color: .black))
                     .padding()
                 
                 Text(model.description ?? "~")
-                    .font(.system(size: 27, weight: .regular, design: .rounded))
+                    .modifier(PrimaryLargeRegularLabel(color: .black))
                     .padding()
                 
                 HStack {
                     Text("\(model.bucks)")
-                        .font(.system(size: 27, weight: .bold, design: .rounded))
+                        .modifier(PrimaryLargeBoldLabel(color: .black))
                     Text("bucks !")
-                        .font(.system(size: 27, weight: .regular, design: .rounded))
+                        .modifier(PrimaryLargeRegularLabel(color: .black))
                 }
             }
             
@@ -88,10 +88,10 @@ struct CKActivityDescriptionDetailView: View {
             HStack {
                 Spacer()
                 Text("\(model.moduleType.rawValue)")
-                    .font(.system(size: 27, weight: .regular, design: .rounded))
+                    .modifier(PrimaryLargeRegularLabel(color: .black))
                 Spacer()
                 Text("\(model.category.rawValue)")
-                    .font(.system(size: 27, weight: .regular, design: .rounded))
+                    .modifier(PrimaryLargeRegularLabel(color: .black))
                 Spacer()
             }
             

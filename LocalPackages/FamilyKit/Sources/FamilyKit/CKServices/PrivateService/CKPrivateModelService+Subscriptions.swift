@@ -11,8 +11,8 @@ import CloudKit
 
 extension CKPrivateModelService {
     
-    public func subscribe( isSilent:Bool, message:String ) {
-        print( "CKModelService.subscribe \(T.recordName)")
+    public func subscribe( isSilent: Bool, message: String ) {
+        print( "CKModelService.subscribe: \(T.recordName) isSilent: \(isSilent)")
         
         let predicate = SearchPredicate.predicateTrue.predicate
         let subscription = CKQuerySubscription(
@@ -64,7 +64,7 @@ extension CKPrivateModelService {
 
 extension CKPrivateModelService {
     
-    public func listenForNotifications() {
+    public func listenForRemoteNotifications() {
         
         let NotificationSubscriber = NotificationCenter.default.addObserver(forName: FamilyKitNotifications.CKRemoteModelChangedNotification, object: nil, queue: OperationQueue.main) { (notification) in
             

@@ -29,7 +29,7 @@ struct MainBucksStoreView: View {
     var leaderBoard: some View {
         VStack {
             Text("Leaderboard")
-                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .modifier(PrimaryBoldLabel(color: .black))
             
             ForEach( self.familyKitAppState.playerService.models.sorted(by: { (modelA, modelB) -> Bool in
                 (modelA.bucks ?? 0) > (modelB.bucks ?? 0)
@@ -37,9 +37,9 @@ struct MainBucksStoreView: View {
                 HStack {
                     Text("\(player.emoji ?? "")")
                     Text("\(player.name ?? ""):")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .modifier(PrimaryMediumLabel(color: .black))
                     Text("\(player.bucks ?? 0)")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .modifier(PrimaryMediumLabel(color: .black))
                     Spacer()
                 }
             }

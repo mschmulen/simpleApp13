@@ -35,11 +35,9 @@ struct AudioActivitySubView: View {
     @State var audioRecording: AudioRecording?
     @State var audioFileNamePrefix: String?
     
-    var body: some View {
+
+    var audioView: some View {
         VStack {
-            
-            DevMessageView(devMessage: $devMessage)
-            
             if audioRecording != nil {
                 AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
             } else {
@@ -82,9 +80,62 @@ struct AudioActivitySubView: View {
                 }
             }//end if
             Text("~")
+        }
+    }
+    
+    var body: some View {
+        VStack {
+            
+            DevMessageView(devMessage: $devMessage)
+            
+            audioView
+            
+//            if audioRecording != nil {
+//                AudioRecordingPlayerView(audioURL: audioRecording!.fileURL)
+//            } else {
+//                Text("RECORD A MESSAGE ")
+//            }
+//
+//            if familyKitAppState.isCurrentPlayerOwnerOrEmpty(model: model) {
+//                if isRecording == false {
+//                    Button(action: {
+//                        self.startRecording(audioFileNamePrefix: UUID().uuidString)
+//                    }) {
+//                        ZStack {
+//                            Image(systemName: "circle.fill")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 100, height: 100)
+//                                .clipped()
+//                                .foregroundColor(.red)
+//                                .padding(.bottom, 40)
+//                            Text("RECORD")
+//                                .foregroundColor(.white)
+//                        }
+//                    }
+//                } else {
+//                    Button(action: {
+//                        self.stopRecording()
+//                    }) {
+//                        ZStack {
+//                            Image(systemName: "stop.fill")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 100, height: 100)
+//                                .clipped()
+//                                .foregroundColor(.red)
+//                                .padding(.bottom, 40)
+//                            Text("STOP")
+//                                .foregroundColor(.white)
+//                        }
+//                    }
+//                }
+//            }//end if
+//            Text("~")
         }//end VStack
         .onAppear {
-            self.loadRecording()
+            //self.loadLocalRecording()
+            self.loadReacordingFromTheServer()
         }
     }//end body
     
@@ -120,21 +171,21 @@ struct AudioActivitySubView: View {
     func stopRecording() {
         avAudioRecorder?.stop()
         isRecording = false
-        loadRecording()
+        loadLocalRecording()
         saveRecordingToServer()
     }
     
-    func loadRecording() {
-        self.showActivityIndicator = true
-        self.activityIndicatorMessage = "loading ..."
-        if let resultAssetAudio = model.activityAsset {
-            if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
-                audioRecording = AudioRecording(
-                    fileURL: resultAssetAudio_fileURL,
-                    createdAt: getCreationDate(for: resultAssetAudio_fileURL)
-                )
-            }
-        }
+    func loadLocalRecording() {
+        //self.showActivityIndicator = true
+        //self.activityIndicatorMessage = "loading ..."
+//        if let resultAssetAudio = model.activityAsset {
+//            if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
+//                audioRecording = AudioRecording(
+//                    fileURL: resultAssetAudio_fileURL,
+//                    createdAt: getCreationDate(for: resultAssetAudio_fileURL)
+//                )
+//            }
+//        }
         
         if let audioFileNamePrefix = audioFileNamePrefix {
             audioRecording = nil
@@ -143,7 +194,7 @@ struct AudioActivitySubView: View {
             let recording = AudioRecording(fileURL: audioFileURL, createdAt: getCreationDate(for: audioFileURL))
             audioRecording = recording
         }
-        self.showActivityIndicator = false
+        //self.showActivityIndicator = false
     }
     
     func saveRecordingToServer() {
@@ -155,8 +206,8 @@ struct AudioActivitySubView: View {
         // automatically push to status .completed
         self.model.status = .completed
         
-        self.showActivityIndicator = true
-        self.activityIndicatorMessage = "saving recording ..."
+        showActivityIndicator = true
+        activityIndicatorMessage = "saving recording ..."
         
         self.activityService.uploadAudioAsset(
             model: model,
@@ -169,6 +220,7 @@ struct AudioActivitySubView: View {
                     self.devMessage = "There was an error uploading \(error)"
                     //self.showActivityIndicator = false
                 }
+                self.showActivityIndicator = false
             case .success(let updatedModel):
                 DispatchQueue.main.async {
                     //self.showActivityIndicator = false
@@ -177,8 +229,26 @@ struct AudioActivitySubView: View {
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                self.showActivityIndicator = false
             }
         }
+    }
+    
+    func loadReacordingFromTheServer() {
+        
+        guard let remoteRecodingActivityAsset = model.activityAsset else {
+            return
+        }
+        
+        activityIndicatorMessage = "loading"
+        self.showActivityIndicator = true
+        if let resultAssetAudio_fileURL = remoteRecodingActivityAsset.fileURL {
+            audioRecording = AudioRecording(
+                fileURL: resultAssetAudio_fileURL,
+                createdAt: getCreationDate(for: resultAssetAudio_fileURL)
+            )
+        }
+        self.showActivityIndicator = false
     }
     
     func getCreationDate(for file: URL) -> Date {
