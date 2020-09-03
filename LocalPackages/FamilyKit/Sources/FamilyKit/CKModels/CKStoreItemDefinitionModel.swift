@@ -25,7 +25,7 @@ public struct CKStoreItemDefinitionModel: CKModel {
     
     public var id = UUID()
     public var recordID: CKRecord.ID?
-
+    
     public var name: String?
     public var bucks: Int
     public var info: String?

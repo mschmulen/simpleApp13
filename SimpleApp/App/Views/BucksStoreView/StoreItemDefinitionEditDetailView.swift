@@ -2,18 +2,17 @@
 //  StoreItemDefinitionDetailView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 9/3/20.
+//  Created by Matthew Schmulen on 8/27/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 import Combine
 import FamilyKit
 import SimpleGames
 import CloudKit
 
-struct StoreItemDefinitionDetailView: View {
+struct StoreItemDefinitionEditDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -46,10 +45,16 @@ struct StoreItemDefinitionDetailView: View {
                         }
                     }
                     
+                    // edit view
                     VStack {
-                        Text( "name: \(self.model.name ?? "")")
-                        Text( "info: \(self.model.info ?? "")")
-                        Text( "bucks: \(self.model.bucks)")
+                        TextField("name", text: self.$model.name ?? "")
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        TextField("info", text: self.$model.info ?? "")
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Stepper("Bucks: \(self.model.bucks)", value: self.$model.bucks, in: 1...50)
+                        
                     }
                     .padding()
                     .padding(.bottom, self.keyboard.currentHeight)
@@ -62,8 +67,25 @@ struct StoreItemDefinitionDetailView: View {
     }
     
     private var trailingButton: some View {
-        NavigationLink(destination: StoreItemDefinitionEditDetailView(model: model)) {
-            Text("EDIT")
+       Button(action:self.onSave) {
+            HStack {
+                Text("Save")
+                Image(systemName: "square.and.arrow.up")
+            }.foregroundColor(.blue)
+        }
+    }
+    
+    func onSave() {
+        self.showActivityIndicator = true
+        self.storeItemDefinitionService.pushUpdateCreate(model: self.model) { (result) in
+            switch result {
+            case .success(let item):
+                self.model = item
+                self.devMessage = "save success"
+            case .failure(let error):
+                self.devMessage = "error \(error)"
+            }
+            self.showActivityIndicator = false
         }
     }
     
@@ -112,3 +134,70 @@ struct StoreItemDefinitionDetailView: View {
 
     
 }//end StoreItemDefinitionDetailView
+
+
+//struct KeyboardAdaptive: ViewModifier {
+//
+//    @State private var keyboardHeight: CGFloat = 0
+//
+//    func body(content: Content) -> some View {
+//        content
+//            .padding(.bottom, keyboardHeight)
+//            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+//    }
+//}
+//
+//extension View {
+//    func keyboardAdaptive() -> some View {
+//        ModifiedContent(content: self, modifier: KeyboardAdaptive())
+//    }
+//}
+
+
+//struct StoreItemDefinitionDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            StoreItemDefinitionDetailView(
+//                model: CKStoreItemDefinitionModel.mock, storeItemDefinitionService: <#CKPrivateModelService<CKStoreItemDefinitionModel>#>
+//            )
+//        }
+//    }
+//}
+
+
+/*
+//    @ObservedObject var input = NumbersOnly()
+
+class NumbersOnly: ObservableObject {
+    @Published var value = "" {
+        didSet {
+            let filtered = value.filter { $0.isNumber }
+            
+            if value != filtered {
+                value = filtered
+            }
+        }
+    }
+}
+*/
+
+
+//struct IntSlider: View {
+//
+//    @Binding var sliderValue:Int
+//
+//    @State private var val = 0.0
+//
+//    var body: some View {
+//        VStack {
+//            Slider(value: $val, in: 1...50, step: 1)
+//                .padding()
+//                .accentColor(Color.green)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 15.0)
+//                        .stroke(lineWidth: 2.0)
+//                        .foregroundColor(Color.green)
+//            )
+//        }
+//    }
+//}

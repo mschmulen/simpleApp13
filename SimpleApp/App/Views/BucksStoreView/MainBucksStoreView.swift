@@ -49,7 +49,7 @@ struct MainBucksStoreView: View {
     
     var adultView: some View {
         VStack {
-            NavigationLink(destination: StoreItemDefinitionDetailView(model: CKStoreItemDefinitionModel()) ) {
+            NavigationLink(destination: StoreItemDefinitionEditDetailView(model: CKStoreItemDefinitionModel()) ) {
                 Text("new Item definition")
             }
         }
@@ -67,7 +67,7 @@ struct MainBucksStoreView: View {
                 List {
                     Section(header: Text("Items for purchase")) {
                         ForEach( storeItemDefinitionService.models) { model in
-                            NavigationLink(destination: StoreItemDefinitionDetailView(model: model) ) {
+                            NavigationLink(destination: StoreItemDefinitionEditDetailView(model: model) ) {
                                 VStack {
                                     Text("\(model.name ?? "")")
                                     Text("\(model.bucks)")
