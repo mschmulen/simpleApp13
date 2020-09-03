@@ -22,6 +22,12 @@ extension CKPrivateModelService {
 //            options: [.firesOnRecordCreation]
         )
         let notificationInfo = CKSubscription.NotificationInfo()
+//        notificationInfo.desiredKeys = [
+//            "ownerName",
+//            "ownerEmoji",
+//            "sessionReferenceID"
+//        ]
+        
         if isSilent {
             // Note: set shouldSendContentAvailable = true if you want it to be a silent push
             notificationInfo.shouldSendContentAvailable = true
@@ -75,6 +81,9 @@ extension CKPrivateModelService {
             }
             
             print( "notificationUserInfo: \(notificationUserInfo)")
+            
+//            notificationUserInfo: CKNotificationUserInfo(operation: FamilyKit.CKPrivateModelService<FamilyKit.CKPlayerModel>.CKNotificationUserInfo.Operation.recordCreated, recordName: nil, recordZoneName: nil)
+            
 //            if let userInfo = notification.userInfo {
 //                print( "specific user Info")
 //                let notificationUserInfo = CKNotificationUserInfo(userInfo)

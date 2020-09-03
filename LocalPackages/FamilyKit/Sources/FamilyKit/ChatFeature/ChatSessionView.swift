@@ -144,12 +144,6 @@ public struct ChatSessionView: View {
     }
 }
 
-//struct ChatSessionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChatSessionView(chatService: .constant(ChatService(container: CKContainer(identifier: CKContainerIdentifier))))
-//    }
-//}
-
 
 /**
  flip()

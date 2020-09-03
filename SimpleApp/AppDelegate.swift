@@ -112,11 +112,35 @@ extension AppDelegate {
         
         //let dict = userInfo as! [String : NSObject]
         //print( "didReceiveRemoteNotification userInfo:\(userInfo)")
-        
+        // THIS IS FOR SILENT PUSH ?
         if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
             
             // TODO: hande specific notifications
             print( "HANDLE SPECIFIC STORE NOTIFCATIONS")
+            
+            print( "userInfo \(userInfo)")
+            
+            print( "\(notification.recordFields)" )
+            
+//            userInfo [AnyHashable("ck"): {
+//                ce = 2;
+//                cid = "iCloud.com.jumptack.FamilyKit";
+//                ckuserid = "_50125824373cb9a38c4142e6c601eb14";
+//                nid = "c18c8006-e1e4-4870-9cc4-e118c97dffcc";
+//                qry =     {
+//                    dbs = 1;
+//                    fo = 1;
+//                    rid = "F339154A-3AE0-45C1-9191-78620DAF3458";
+//                    sid = "E5F7E902-C020-4F9F-9E7D-13E53B4D4615";
+//                    zid = "_defaultZone";
+//                    zoid = "_50125824373cb9a38c4142e6c601eb14";
+//                };
+//            }, AnyHashable("aps"): {
+//                "content-available" = 1;
+//            }]
+            
+            
+            
             CKPrivateModelService<CKActivityDescriptionModel>.notificationReceive( notification: notification)
             if notification.queryNotificationReason == .recordCreated {
                 print( ".recordCreated")
@@ -141,6 +165,36 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         print("userNotificationCenter.willPresent notification \(notification)")
         
+        let userInfo = notification.request.content.userInfo
+        print( "userInfo: \(userInfo)")
+        
+//        userInfo: [AnyHashable("ck"): {
+//            ce = 2;
+//            cid = "iCloud.com.jumptack.FamilyKit";
+//            ckuserid = "_50125824373cb9a38c4142e6c601eb14";
+//            nid = "3180cf65-1c66-4bfa-9226-e1f02160ead0";
+//            qry =     {
+//                af =         {
+//                    ownerEmoji = "\Ud83d\Udc26";
+//                    ownerName = Jay;
+//                    sessionReferenceID = "63E9CC48-4EAD-4E0F-92CC-16274352E82A";
+//                };
+//                dbs = 1;
+//                fo = 1;
+//                rid = "94D8C5DB-33DD-4D71-8A4D-7F2AC7F104CD";
+//                sid = "857D15A1-13F9-4C81-AC54-9C5154B5532B";
+//                zid = "_defaultZone";
+//                zoid = "_50125824373cb9a38c4142e6c601eb14";
+//            };
+//        }, AnyHashable("aps"): {
+//            alert =     {
+//                body = "Family Chat Message";
+//                title = "Family Chat";
+//            };
+//            sound = default;
+//        }]
+        
+        
         // show the notification alert (banner), and with sound
         completionHandler([.alert, .sound, .badge])
     }
@@ -152,6 +206,44 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print( "title: \(response.notification.request.content.title)")
         print( "subtitle: \(response.notification.request.content.subtitle)")
         print( "body: \(response.notification.request.content.body)")
+
+        
+        print( "userInfo: \(userInfo)")
+        
+        
+        if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+            
+            print( "now were taking !!!  this is a CKQueryNotification")
+            
+            print( "\(notification.recordFields)")
+            
+            print( "aaa")
+        }
+//        userNotificationCenter.willPresent didReceive
+//        title: TITLE XXX
+//        subtitle: SUBTITILE YYY
+//        body: Family Chat was created
+//        userInfo: [AnyHashable("ck"): {
+//            ce = 2;
+//            cid = "iCloud.com.jumptack.FamilyKit";
+//            ckuserid = "_50125824373cb9a38c4142e6c601eb14";
+//            nid = "44f3a9f0-bcc6-4913-834c-28014e97bea1";
+//            qry =     {
+//                dbs = 1;
+//                fo = 1;
+//                rid = "1C63E533-24E9-4B99-9317-28F895308868";
+//                sid = "314C3886-0EB9-4B78-A2EA-CD74D8739225";
+//                zid = "_defaultZone";
+//                zoid = "_50125824373cb9a38c4142e6c601eb14";
+//            };
+//        }, AnyHashable("aps"): {
+//            alert =     {
+//                body = "Family Chat was created";
+//                subtitle = "SUBTITILE YYY";
+//                title = "TITLE XXX";
+//            };
+//            sound = default;
+//        }]
         
         presentView(with: userInfo)
         completionHandler()
@@ -165,9 +257,9 @@ extension AppDelegate {
         print( "AppDelegate.presentView")
         print( "pushNotificationInfo: \(pushNotificationInfo)")
         
-        self.appState.activeDeepLink = .chat
+        self.appState.activeDeepLink = .chatFamily
         self.appState.topView = TopView.mainView
-        self.appState.selectedTab = TabViewIndex.bucksStore
+        self.appState.selectedTab = TabViewIndex.familyChat.rawValue
     }
     
 //    AppDelegate.presentView

@@ -21,12 +21,8 @@ struct KidUserView: View {
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
-    var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
-    
+
     @State var devMessage: String?
-    
-    @State var showChatSession:Bool = false
-    @State var chatSessionModel: CKChatSessionModel?
     
     var body: some View {
         List{
@@ -40,48 +36,13 @@ struct KidUserView: View {
                         .foregroundColor(.blue)
                 }
             }
-                        
-            if self.chatSessionModel != nil {
-                Button(action: {
-                    self.showChatSession.toggle()
-                }){
-                    Text("Family Chat")
-                        .foregroundColor(.blue)
-                }
-            }
         }
-        .sheet(isPresented: $showChatSession) {
-            if self.chatSessionModel != nil {
-                ChatSessionView(
-                    chatSession: self.chatSessionModel!,
-                    showTextField: true
-                )
-                    .environmentObject(self.familyKitAppState)
-            } else {
-                Text("NO CHAT SESSION")
-            }
-        }//end sheet
         .onAppear(perform: {
-            
-            self.configureChatSession()
             self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
-    
-    func configureChatSession() {
-        chatService.findOrMakeFamilySession { (result) in
-            switch result {
-            case .success(let sessionModel):
-                self.chatSessionModel = sessionModel
-            case .failure(let error):
-                self.devMessage = "error! \(error)"
-            }
-        }
-    }
-    
 }
-
 
 struct KidUserView_Previews: PreviewProvider {
     static var previews: some View {

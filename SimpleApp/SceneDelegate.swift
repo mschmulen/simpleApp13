@@ -15,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
+    //lazy var appState = AppState()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -146,6 +148,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
+    // TODO: handle openURLContexts
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print( "openURLContexts")
+        
+        // Parse the deep link
+        
+        //        if /*Deep link leads to the More tab*/ {
+        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //appDelegate.appState.selectedTab = TabViewIndex.familyChat.rawValue
+        //            appState.showActionSheet = true
+        //        }
+        
+    }
     
 }
 

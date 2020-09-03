@@ -39,7 +39,7 @@ struct ContentView: View {
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
-    @State private var selectedTab: Int = TabViewIndex.you.rawValue
+    //@State private var selectedTab: Int = TabViewIndex.you.rawValue
     
     @ViewBuilder
     var body: some View {
@@ -62,8 +62,8 @@ struct ContentView: View {
             } else {
                 if appState.topView == .mainView {
                     
-                    //TabView(selection: $appState.selectedTab) {
-                    TabView(selection: $selectedTab) {
+                    TabView(selection: $appState.selectedTab) {
+//                    TabView(selection: $selectedTab) {
                         YouView()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -138,6 +138,17 @@ struct ContentView: View {
         }
     }//end body
 }
+
+//extension ContentView {
+//     //@ObservedObject var viewModel: ViewModel
+//    class ViewModel: ObservableObject {
+//        var selectedTab: TabViewIndex = .family {
+//            willSet { objectWillChange.send() }
+//        }
+//        // Alternatively:
+//        // @Published var selectedTab: ContentView.Tab = .home
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

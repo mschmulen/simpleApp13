@@ -53,7 +53,6 @@ struct FamilyChatView: View {
 //                }
             }
             .navigationBarTitle("Family Chat")
-            //.navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }.onAppear(perform: {
             self.configureChatSession()
             self.familyKitAppState.onRefetchFromServer()

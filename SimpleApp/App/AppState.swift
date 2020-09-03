@@ -12,7 +12,7 @@ import CloudKit
 
 class AppState: ObservableObject {
     
-    public let objectWillChange = ObservableObjectPublisher()
+    //public let objectWillChange = ObservableObjectPublisher()
     
     public let isSimulator: Bool
     
@@ -20,29 +20,34 @@ class AppState: ObservableObject {
     
     var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: TopView = TopView.mainView {
-        willSet {
-            updateChanges()
-        }
-    }
+    @Published var topView: TopView = TopView.mainView
+//        {
+//        willSet {
+//            updateChanges()
+//        }
+//    }
     
-    @Published var selectedTab: TabViewIndex = TabViewIndex.you {
-        willSet {
-            updateChanges()
-        }
-    }
+    @Published var selectedTab: Int = TabViewIndex.you.rawValue
+//        {
+//        willSet {
+//            updateChanges()
+//        }
+//    }
     
     enum DeepLink {
         case none
-        case chat
-        case activityUpdated ( activityID: String)
+        case chatFamily
+        case activityDescription ( recordID: String )
+        case activityUpdated ( recordID: String )
+        case purchaseItem ( recordID: String )
     }
     
-    @Published var activeDeepLink: DeepLink = .none {
-        willSet {
-            updateChanges()
-        }
-    }
+    @Published var activeDeepLink: DeepLink = .none
+//        {
+//        willSet {
+//            updateChanges()
+//        }
+//    }
     
     init(
     ) {
@@ -55,11 +60,11 @@ class AppState: ObservableObject {
         #endif
     }
     
-    private func updateChanges() {
-        DispatchQueue.main.async {
-            self.objectWillChange.send()
-        }
-    }
+//    private func updateChanges() {
+//        DispatchQueue.main.async {
+//            self.objectWillChange.send()
+//        }
+//    }
 }
 
 // MARK: - StartupServices

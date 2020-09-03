@@ -14,6 +14,7 @@ extension CKPrivateModelService where T == CKChatMessageModel {
         sessionReferenceIDString: String, //  this is a string of the global chat
         message: String
     ) {
+        return
         
         print( "CKModelService.subscribeToModel: \(sessionReferenceIDString) \(T.recordName) ")
         
@@ -27,15 +28,21 @@ extension CKPrivateModelService where T == CKChatMessageModel {
             options: [.firesOnRecordCreation]//  [ .firesOnRecordUpdate]
         )
         let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.desiredKeys = [
+            "ownerName",
+            "ownerEmoji",
+            "sessionReferenceID"
+        ]
         
         // this is always a visible notification
         notificationInfo.title = "Family Chat"
-        notificationInfo.subtitle = "SUBTITILE YYY"
+        //notificationInfo.subtitle = "SUBTITILE YYY"
         notificationInfo.alertBody = message
         notificationInfo.soundName = "default"
         notificationInfo.shouldBadge = false // badge count
-        
         subscription.notificationInfo = notificationInfo
+        
+        
         
         self.container.privateCloudDatabase.save(subscription) { (savedSubscription, error) in
             if error != nil {

@@ -101,21 +101,21 @@ extension FamilyKitAppState {
 //            }
         
         // TODO for Chat push notifications
-//        chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
-//            switch fetchResult {
-//            case .success(let fetchResultModel):
-//
-//                if let sessionModelIDString = fetchResultModel.recordID?.recordName {
-//                    self.chatService.subscribeToChat(
-//                        sessionReferenceIDString: sessionModelIDString,
-//                        message: "Family Chat was created"
-//                    )
-//                }
-//
-//            case .failure(_):
-//                print("failed to find it ... who cares, get it on the next try")
-//            }
-//        }//end fetchByName
+        chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
+            switch fetchResult {
+            case .success(let fetchResultModel):
+
+                if let sessionModelIDString = fetchResultModel.recordID?.recordName {
+                    self.chatService.subscribeToChat(
+                        sessionReferenceIDString: sessionModelIDString,
+                        message: "Family Chat Message"
+                    )
+                }
+
+            case .failure(_):
+                print("failed to find it ... who cares, get it on the next try")
+            }
+        }//end fetchByName
         
 
     }

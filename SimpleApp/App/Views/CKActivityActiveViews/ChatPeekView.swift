@@ -17,10 +17,11 @@ struct ChatPeekView: View {
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     let rectangleColor: Color = Color.white
-    // Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+    
+    @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var showChatSession: Bool = false
-    var chatSessionModel: CKChatSessionModel
+    @State var chatSessionModel: CKChatSessionModel
     
     var body: some View {
         VStack {
@@ -44,7 +45,7 @@ struct ChatPeekView: View {
             }
         }
         .padding()
-            .sheet(isPresented: $showChatSession, onDismiss: onDismissReload) {
+            .sheet(isPresented: $showChatSession, onDismiss: onSheetDismiss) {
                 ChatSessionView(
                     chatSession: self.chatSessionModel,
                     showTextField: true,
@@ -58,8 +59,12 @@ struct ChatPeekView: View {
         }
     }
     
+    func onSheetDismiss() {
+        
+    }
+    
     func onDismissReload() {
-        // TODO: Reload on Dismiss
+        
     }
     
 }

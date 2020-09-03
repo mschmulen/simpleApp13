@@ -21,12 +21,8 @@ struct AdultUserView: View {
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
-    @State var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
-    
-    @State var chatSessionModel: CKChatSessionModel?
-    @State var showChatSession: Bool = false
     
     var body: some View {
         List{
@@ -48,15 +44,6 @@ struct AdultUserView: View {
                 NavigationLink(destination: PlayersListView()) {
                     Text("Show Family")
                         .foregroundColor(.blue)
-                }
-                
-                if self.chatSessionModel != nil {
-                    Button(action: {
-                        self.showChatSession.toggle()
-                    }){
-                        Text("Family Chat")
-                            .foregroundColor(.blue)
-                    }
                 }
                 
                 NavigationLink(destination: CKActivityDescriptionListView()) {
@@ -132,33 +119,10 @@ struct AdultUserView: View {
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                 .font(.caption)
         }
-        .sheet(isPresented: $showChatSession) {
-                   if self.chatSessionModel != nil {
-                       ChatSessionView(
-                        chatSession: self.chatSessionModel!,
-                        showTextField: true
-                       )
-                           .environmentObject(self.familyKitAppState)                           
-                   } else {
-                       Text("NO CHAT SESSION")
-                   }
-               }//end sheet
         .onAppear(perform: {
-            self.configureChatSession()
             self.familyKitAppState.onRefetchFromServer()
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-    }
-    
-    func configureChatSession() {
-        chatService.findOrMakeFamilySession { (result) in
-            switch result {
-            case .success(let sessionModel):
-                self.chatSessionModel = sessionModel
-            case .failure(let error):
-                self.devMessage = "error! \(error)"
-            }
-        }
     }
 }
 
