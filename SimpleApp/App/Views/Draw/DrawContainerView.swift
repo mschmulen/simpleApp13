@@ -42,7 +42,7 @@ struct DrawContainerView: View {
     func loadDrawingState() {
         if let activityAsset = model.activityAsset {
             self.showActivityIndicator = true
-            self.activityIndicatorMessage  = "loading .."
+            self.activityIndicatorMessage = "Loading"
             
             if let activityAsset_FileURL = activityAsset.fileURL {
                 // print( "activityAsset_FileURL \(activityAsset_FileURL)")
@@ -97,7 +97,7 @@ struct DrawContainerView: View {
             self.model.status = .completed
             
             self.showActivityIndicator = true
-            self.activityIndicatorMessage  = "saving draw asset"
+            self.activityIndicatorMessage  = "Saving drawing"
             self.activityService.uploadFileAsset(
                 model: self.model,
                 fileURL: localFileURL,

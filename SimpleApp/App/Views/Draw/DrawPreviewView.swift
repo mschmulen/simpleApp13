@@ -82,7 +82,7 @@ struct DrawPreviewView: View {
             // TODO: Move this to the CKActivityModel maybe an extension for the loadDrawData
             if let activityAsset_FileURL = activityAsset.fileURL {
                 showActivityIndicator = true
-                activityIndicatorMessage = "loading preview"
+                activityIndicatorMessage = "Loading preview"
                 // print( "activityAsset_FileURL \(activityAsset_FileURL)")
                 guard let data = try? Data(contentsOf: activityAsset_FileURL) else {
                     self.devMessage = "Failed to load \(activityAsset_FileURL) "
@@ -110,92 +110,6 @@ struct DrawPreviewView: View {
             }
         }
     }
-    
-    //    func saveCallback( updatedDrawingState:DrawingState, screenShot:UIImage?) {
-    //        self.devMessage = "saving DrawingState"
-    //
-    //        showActivityIndicator = true
-    //        activityIndicatorMessage = "saving drawing"
-    //        do {
-    //            let encoder = JSONEncoder()
-    //            let data = try encoder.encode(updatedDrawingState)
-    //
-    //            // let string = String(data:data, encoding: .utf8)
-    //            // print( "saveCallback data string \(string)")
-    //
-    //            let fileNamePrefix = "updatedDrawingState"
-    //            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    //            var localFileURL = documentPath.appendingPathComponent(fileNamePrefix)
-    //            localFileURL.appendPathExtension("json")
-    //
-    //            // print( "localFile URL \(localFileURL)")
-    //            // let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
-    //            try data.write(to: localFileURL, options: [.atomicWrite])
-    //
-    //            // automatically push to status .completed
-    //            self.model.status = .completed
-    //
-    //            activityService.pushUpdateCreate(model: model) { (result) in
-    //                switch result {
-    //                case .success( let resultModel):
-    //                    self.activityService.uploadFileAsset(
-    //                        model: resultModel,
-    //                        fileURL: localFileURL,
-    //                        assetPropertyName: "activityAsset"
-    //                    ) { (result) in
-    //                        switch result {
-    //                        case .failure(let error):
-    //                            self.devMessage = "upload failure \(error)"
-    //                             self.showActivityIndicator = false
-    //                        case .success(_):
-    //                            self.devMessage = "upload success"
-    //                             self.showActivityIndicator = false
-    //                        }
-    //                    }
-    //                case .failure(let error):
-    //                    print( "error \(error)")
-    //                    self.showActivityIndicator = false
-    //                }
-    //            }
-    //
-    //        } catch let error {
-    //            self.devMessage = "error \(error)"
-    //            self.showActivityIndicator = false
-    //        }
-    //
-    //        if let screenShot = screenShot {
-    //            saveScreenShot(screenShot: screenShot)
-    //        }
-    //    }
-    
-    //    func saveScreenShot(screenShot:UIImage) {
-    //
-    //        // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
-    //
-    //        activityService.uploadPhotoAsset(
-    //            model:model,
-    //            image: screenShot,
-    //            assetPropertyName: "coverPhoto"
-    //        ) { result in
-    //            switch result {
-    //            case .failure( let error):
-    //                print( "uploadFileAsset error \(error)")
-    //                //                    DispatchQueue.main.async {
-    //                //                        self.statusMessage = "There was an error uploading \(error)"
-    //            //                    }
-    //            case .success(_):
-    //                print( "upload success")
-    //                //                    self.statusMessage = "Reloading ..."
-    //                //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
-    //                //                        print( "result")
-    //                //                        DispatchQueue.main.async {
-    //                //                            self.presentationMode.wrappedValue.dismiss()
-    //                //                        }
-    //                //                    }
-    //            }
-    //        }
-    //    }
-    
 }
 
 struct DrawPreviewView_Previews: PreviewProvider {

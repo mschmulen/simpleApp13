@@ -129,7 +129,7 @@ struct PhotoActivitySubView: View {
         // automatically push to status .completed
         self.model.status = .completed
         
-        self.activityIndicatorMessage = "uploading image"
+        self.activityIndicatorMessage = "Saving Image"
         self.showActivityIndicator = true
         self.activityService.uploadPhotoAsset(
             model: self.model,

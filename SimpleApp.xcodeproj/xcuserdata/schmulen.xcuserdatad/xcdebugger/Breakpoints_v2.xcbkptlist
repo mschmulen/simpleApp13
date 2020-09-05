@@ -471,54 +471,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BA5B2A99-11DA-4BB5-9424-908122F2B286"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleApp/App/Views/YouView/CKActivityDescriptionViews/PhotoActivityDescriptionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "saveImage()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BA5B2A99-11DA-4BB5-9424-908122F2B286 - 956bedfe5a1df13c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "P_S_Family.PhotoActivityDescriptionView.saveImage() -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/YouView/CKActivityDescriptionViews/PhotoActivityDescriptionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "324">
-               </Location>
-               <Location
-                  uuid = "BA5B2A99-11DA-4BB5-9424-908122F2B286 - 318e549d42192128"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in P_S_Family.PhotoActivityDescriptionView.saveImage() -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/SimpleApp/App/Views/YouView/CKActivityDescriptionViews/PhotoActivityDescriptionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "104">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C6BFBEB1-2A34-46AB-AD0E-1D4C7E9B917D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

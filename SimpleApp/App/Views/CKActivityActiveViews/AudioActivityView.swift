@@ -176,17 +176,6 @@ struct AudioActivitySubView: View {
     }
     
     func loadLocalRecording() {
-        //self.showActivityIndicator = true
-        //self.activityIndicatorMessage = "loading ..."
-//        if let resultAssetAudio = model.activityAsset {
-//            if let resultAssetAudio_fileURL = resultAssetAudio.fileURL {
-//                audioRecording = AudioRecording(
-//                    fileURL: resultAssetAudio_fileURL,
-//                    createdAt: getCreationDate(for: resultAssetAudio_fileURL)
-//                )
-//            }
-//        }
-        
         if let audioFileNamePrefix = audioFileNamePrefix {
             audioRecording = nil
             let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -194,7 +183,6 @@ struct AudioActivitySubView: View {
             let recording = AudioRecording(fileURL: audioFileURL, createdAt: getCreationDate(for: audioFileURL))
             audioRecording = recording
         }
-        //self.showActivityIndicator = false
     }
     
     func saveRecordingToServer() {
@@ -207,7 +195,7 @@ struct AudioActivitySubView: View {
         self.model.status = .completed
         
         showActivityIndicator = true
-        activityIndicatorMessage = "saving recording ..."
+        activityIndicatorMessage = "Saving recording"
         
         self.activityService.uploadAudioAsset(
             model: model,
@@ -240,7 +228,7 @@ struct AudioActivitySubView: View {
             return
         }
         
-        activityIndicatorMessage = "loading"
+        activityIndicatorMessage = "Loading"
         self.showActivityIndicator = true
         if let resultAssetAudio_fileURL = remoteRecodingActivityAsset.fileURL {
             audioRecording = AudioRecording(

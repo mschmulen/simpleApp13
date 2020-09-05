@@ -26,7 +26,7 @@ struct CKActivityActiveDetailView: View {
     @State var localActivityStatus: ActivityStatus
     
     @State var showActivityIndicator: Bool = false
-    @State var activityIndicatorMessage: String = "Saving"
+    @State var activityIndicatorMessage: String = "Loading"
     
     @State var chatSessionModel: CKChatSessionModel?
     
@@ -164,7 +164,7 @@ struct CKActivityActiveDetailView: View {
     }
     
     func onSave() {
-        self.activityIndicatorMessage  = "Saving"
+        self.activityIndicatorMessage = "Saving"
         self.showActivityIndicator = true
         activityService.pushUpdateCreate(model: model) { (result) in
             switch result {
