@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-// TODO: Should have been named CKPerson
-//public struct CKPlayerModel: CKModel {
 public final class CKPlayerModel: CKModel, ObservableObject {
     
     public static func == (lhs: CKPlayerModel, rhs: CKPlayerModel) -> Bool {

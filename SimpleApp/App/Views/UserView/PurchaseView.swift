@@ -141,33 +141,6 @@ struct PurchaseView: View {
             ProductPurchaseStore.shared.handleUpdateStore()
         }
     }
-    
-//    var body: some View {
-//        VStack {
-//
-//            Text("PurchaseView")
-//
-//            // TODO: Figure out the PurchaseView and what triggers it
-//
-////            Spacer()
-////            VStack(alignment: .center, spacing: 20.0) {
-////                Button(action: {
-////                    let _ = self.appState.makePurchase(purchase: .premium)
-////                    self.appState.topView = .mainView
-////                }) {
-////                    Text("Yes! purchase premium for $X.XX")
-////                }.padding()
-////
-////                Button(action: {
-////                    self.appState.topView = .mainView
-////                }) {
-////                    Text("No Thanks")
-////                }.padding()
-////            }.padding()
-//
-//            Spacer()
-//        }
-//    }
 }
 
 struct PurchaseView_Previews: PreviewProvider {

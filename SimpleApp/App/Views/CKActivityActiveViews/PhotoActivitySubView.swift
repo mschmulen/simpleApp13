@@ -148,8 +148,6 @@ struct PhotoActivitySubView: View {
                     if let resultAssetImage = updatedModel.resultAssetImage {
                         self.model.resultAssetImage = resultAssetImage
                     }
-                    // TODO: MASNOTE, extended flow
-                    //self.presentationMode.wrappedValue.dismiss()
                 }
             }
         }
