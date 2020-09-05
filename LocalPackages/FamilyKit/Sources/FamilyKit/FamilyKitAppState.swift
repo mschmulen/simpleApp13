@@ -27,15 +27,9 @@ public class FamilyKitAppState: ObservableObject {
     @Published public private (set) var playerService: CKPrivateModelService<CKPlayerModel>
     
     @Published public private (set) var currentPlayerModel: CKPlayerModel?
-    
-    // @State players:[CKPlayerModel] = [CKPlayerModel]()
-    
+
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
-    
-    //    public init(
-    //        container: CKContainer
-    //    ) {
     
     public init(container: CloudKitContainer) {
         
@@ -71,15 +65,13 @@ public class FamilyKitAppState: ObservableObject {
                 container: CloudKitContainer.CloudContainer(container)
             )
         }
-        //self.container = container
+        
         chatService = CKPrivateModelService<CKChatMessageModel>(
             container: container
         )
         chatSessionService = CKPrivateModelService<CKChatSessionModel>(
             container: container
         )
-
-        
         
         //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
         //            self.objectWillChange.send()

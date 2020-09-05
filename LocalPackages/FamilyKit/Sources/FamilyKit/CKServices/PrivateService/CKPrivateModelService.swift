@@ -89,10 +89,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         }
     }
     
-//    public init(container: CKContainer) {
-//        self.container = container
-//    }
-    
     public init(container: CloudKitContainer) {
         switch container {
         case .CloudContainer(let container):
