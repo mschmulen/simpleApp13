@@ -53,6 +53,7 @@ struct FamilyChatView: View {
 //                }
             }
             .navigationBarTitle("Family Chat")
+            .navigationBarItems(trailing: trailingButton)
         }.onAppear(perform: {
             self.configureChatSession()
             self.familyKitAppState.onRefetchFromServer()
@@ -127,8 +128,8 @@ struct FamilyChatView_Previews: PreviewProvider {
     static var previews: some View {
         FamilyChatView()
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:CloudKitContainer.MockContainer(container)))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
     }
 }

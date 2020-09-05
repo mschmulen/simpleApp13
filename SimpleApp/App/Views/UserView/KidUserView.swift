@@ -45,25 +45,28 @@ struct KidUserView: View {
 }
 
 struct KidUserView_Previews: PreviewProvider {
+
+    static let container = CKContainer(identifier: CKContainerIdentifier)
+    
     static var previews: some View {
         Group {
             KidUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
+                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(container)))
                 .previewDevice(PreviewDevice(rawValue: "iPad Air 2"))
             
             KidUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
+                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(container)))
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
             .previewDisplayName("iPhone SE")
             
             KidUserView()
                 //.environment(\.window, window)
                 .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CKContainer(identifier: CKContainerIdentifier)))
+                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(container)))
             .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
             .previewDisplayName("iPhone XS Max")
 

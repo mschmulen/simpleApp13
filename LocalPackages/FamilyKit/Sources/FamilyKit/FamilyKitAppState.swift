@@ -33,37 +33,58 @@ public class FamilyKitAppState: ObservableObject {
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
-    public init(
-        container: CKContainer
-    ) {
-        
-        self.container = container
-        userService = CKUserService<CKUser>(container: container)
-        
-        playerService = CKPrivateModelService<CKPlayerModel>(
-            container: container
-        )
-        
-        deviceService = CKPrivateModelService<CKDeviceModel>(
-            container: container
-        )
+    //    public init(
+    //        container: CKContainer
+    //    ) {
+    
+    public init(container: CloudKitContainer) {
         
         #if targetEnvironment(simulator)
-            isSimulator = true
+        isSimulator = true
         #else
-            isSimulator = false
+        isSimulator = false
         #endif
         
-//        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
-//            self.objectWillChange.send()
-//        })
-        
+        switch container {
+        case .CloudContainer(let container):
+            self.container = container
+            
+            userService = CKUserService<CKUser>(container: container)
+            
+            playerService = CKPrivateModelService<CKPlayerModel>(
+                container: CloudKitContainer.CloudContainer(container)
+            )
+            
+            deviceService = CKPrivateModelService<CKDeviceModel>(
+                container: CloudKitContainer.CloudContainer(container)
+            )
+            
+        case .MockContainer(let container):
+            self.container = container
+            userService = CKUserService<CKUser>(container: container)
+            
+            playerService = CKPrivateModelService<CKPlayerModel>(
+                container: CloudKitContainer.CloudContainer(container)
+            )
+            
+            deviceService = CKPrivateModelService<CKDeviceModel>(
+                container: CloudKitContainer.CloudContainer(container)
+            )
+        }
+        //self.container = container
         chatService = CKPrivateModelService<CKChatMessageModel>(
             container: container
         )
         chatSessionService = CKPrivateModelService<CKChatSessionModel>(
             container: container
         )
+
+        
+        
+        //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
+        //            self.objectWillChange.send()
+        //        })
+        
     }
     
     private func updateChanges() {
@@ -83,41 +104,41 @@ extension FamilyKitAppState {
             sortDescriptor: .custom(key: "creationDate", ascending: false),
             searchPredicate: .predicateTrue,
             completion: { result in
-            switch result {
-            case .success(_) :
-                self.updateChanges()
-            case .failure(let error):
-                print( "kidService error \(error)")
-            }
+                switch result {
+                case .success(_) :
+                    self.updateChanges()
+                case .failure(let error):
+                    print( "kidService error \(error)")
+                }
         })
-        playerService.subscribe(isSilent: true, message: "player Change")
+        playerService.subscribeSilent()
         playerService.listenForRemoteNotifications()
         
         // TODO: fetch create the CKDevice Model based on device
         //print( "thisDeviceModel idfv \(self.thisDeviceModel.idfv?.uuidString ?? "~")")
         //        ckDeviceModel = CKDeviceModel(deviceModel: DeviceModel())
-//            deviceService.pushUpdateCreate(model: ckDeviceModel) { (result) in
-//                print( "device push update create \(result)")
-//            }
+        //            deviceService.pushUpdateCreate(model: ckDeviceModel) { (result) in
+        //                print( "device push update create \(result)")
+        //            }
         
         // TODO for Chat push notifications
         chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
             switch fetchResult {
             case .success(let fetchResultModel):
-
+                
                 if let sessionModelIDString = fetchResultModel.recordID?.recordName {
-                    self.chatService.subscribeToChat(
+                    self.chatService.subscribeToChatCreation(
                         sessionReferenceIDString: sessionModelIDString,
                         message: "Family Chat Message"
                     )
                 }
-
+                
             case .failure(_):
                 print("failed to find it ... who cares, get it on the next try")
             }
         }//end fetchByName
         
-
+        
     }
     
     public func onRefetchFromServer(afterDelay: Double = 0.00) {
@@ -154,22 +175,22 @@ extension FamilyKitAppState {
             return true
         }
         
-//        CKContainer.default().accountStatus { (accountStatus, error) in
-//            switch accountStatus {
-//            case .available:
-//                print("iCloud Available")
-//                return true
-//            case .noAccount:
-//                print("No iCloud account")
-//                return false
-//            case .restricted:
-//                print("iCloud restricted")
-//                return false
-//            case .couldNotDetermine:
-//                print("Unable to determine iCloud status")
-//                return false
-//            }
-//        }
+        //        CKContainer.default().accountStatus { (accountStatus, error) in
+        //            switch accountStatus {
+        //            case .available:
+        //                print("iCloud Available")
+        //                return true
+        //            case .noAccount:
+        //                print("No iCloud account")
+        //                return false
+        //            case .restricted:
+        //                print("iCloud restricted")
+        //                return false
+        //            case .couldNotDetermine:
+        //                print("Unable to determine iCloud status")
+        //                return false
+        //            }
+        //        }
     }
 }
 
@@ -247,7 +268,7 @@ extension FamilyKitAppState {
         guard let currentPlayer = self.currentPlayerModel else {
             return false
         }
-
+        
         guard let playerReference = currentPlayer.ckRecord?.recordID else {
             return false
         }

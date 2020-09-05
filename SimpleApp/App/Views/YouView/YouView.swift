@@ -147,9 +147,9 @@ struct MainKidView_Previews: PreviewProvider {
     static var previews: some View {
         YouView()
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
-            .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
+            .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
+            .environmentObject(CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.MockContainer(container)))
             //.environmentObject(ChatService(container: container))
     }
 }

@@ -10,17 +10,11 @@ import CloudKit
 
 extension CKPrivateModelService where T == CKChatMessageModel {
     
-    public func subscribeToChat(
+    public func subscribeToChatCreation(
         sessionReferenceIDString: String, //  this is a string of the global chat
         message: String
     ) {
-        return
-        
         print( "CKModelService.subscribeToModel: \(sessionReferenceIDString) \(T.recordName) ")
-        
-        //        CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
-        //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"artist = %@", artistRecordID];
-        
         let predicate = NSPredicate(format: "sessionReferenceID == %@", sessionReferenceIDString)
         let subscription = CKQuerySubscription(
             recordType: T.recordName,
@@ -31,7 +25,9 @@ extension CKPrivateModelService where T == CKChatMessageModel {
         notificationInfo.desiredKeys = [
             "ownerName",
             "ownerEmoji",
-            "sessionReferenceID"
+            "sessionReferenceID",
+            //"Type",
+            "recordType"
         ]
         
         // this is always a visible notification

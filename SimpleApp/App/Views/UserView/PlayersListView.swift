@@ -75,8 +75,8 @@ struct PlayersListView_Previews: PreviewProvider {
     static var previews: some View {
         PlayersListView()
         .environmentObject(AppState())
-        .environmentObject((FamilyKitAppState(container: container)))
-        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
-        .environmentObject(CKPrivateModelService<CKActivityModel>(container: container))
+        .environmentObject((FamilyKitAppState(container: CloudKitContainer.CloudContainer(container))))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.CloudContainer(container)))
+        .environmentObject(CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container)))
     }
 }

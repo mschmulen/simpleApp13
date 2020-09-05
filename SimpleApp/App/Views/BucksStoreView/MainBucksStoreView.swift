@@ -49,7 +49,11 @@ struct MainBucksStoreView: View {
     
     var adultView: some View {
         VStack {
-            NavigationLink(destination: StoreItemDefinitionEditDetailView(model: CKStoreItemDefinitionModel()) ) {
+            NavigationLink(
+                destination: StoreItemDefinitionEditDetailView(
+                    model: CKStoreItemDefinitionModel()
+                )
+            ) {
                 Text("new Item definition")
             }
         }
@@ -169,8 +173,20 @@ struct MainBucksStoreView_Previews: PreviewProvider {
     static var previews: some View {
         MainBucksStoreView()
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:container))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject(
+                FamilyKitAppState(
+                    container: CloudKitContainer.MockContainer(container)
+                )
+        )
+            .environmentObject(
+                CKPrivateModelService<CKActivityDescriptionModel>(
+                    container: CloudKitContainer.MockContainer(container)
+                )
+        )
+            .environmentObject(
+                CKPrivateModelService<CKActivityDescriptionModel>(
+                    container: CloudKitContainer.MockContainer(container)
+                )
+        )
     }
 }

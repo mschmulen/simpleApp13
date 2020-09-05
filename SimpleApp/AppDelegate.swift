@@ -108,6 +108,7 @@ extension AppDelegate {
         print( "didFailToRegisterForRemoteNotificationsWithError \(error)")
     }
     
+    // this is specific to silent notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         //let dict = userInfo as! [String : NSObject]
@@ -194,11 +195,24 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //            sound = default;
 //        }]
         
+        if let queryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+            print( "digested by a CKQueryNotification")
+            print( "notification \(notification)")
+            
+            let recordFields = queryNotification.recordFields
+            print( "recordFields \(recordFields)")
+            
+            //notification.request.content.subtitle = "yack"
+            
+            //recordFields Optional(["ownerName": Jay, "sessionReferenceID": B790B4D8-2011-4E89-B534-1A47DD057767, "ownerEmoji": 🐦])
+            
+        }
         
         // show the notification alert (banner), and with sound
         completionHandler([.alert, .sound, .badge])
     }
     
+    // User did tap the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("userNotificationCenter.willPresent didReceive")
         
@@ -206,18 +220,27 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print( "title: \(response.notification.request.content.title)")
         print( "subtitle: \(response.notification.request.content.subtitle)")
         print( "body: \(response.notification.request.content.body)")
-
         
         print( "userInfo: \(userInfo)")
-        
-        
-        if let notification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+        if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
             
-            print( "now were taking !!!  this is a CKQueryNotification")
-            
-            print( "\(notification.recordFields)")
-            
-            print( "aaa")
+             if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+                if let recordID = ckQueryNotification.recordID {
+                    let recordName = recordID.recordName
+                    print("recordName \(recordName)")
+                    // TODO Its possible to fetch it and get if from the record Type
+                }
+                
+                if let recordFields = ckQueryNotification.recordFields {
+                    if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
+                        let ownerName = recordFields["ownerName"] as? String,
+                        let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
+                        print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
+                        presentView(with: userInfo)
+                    }
+                    print( "recordFields \(recordFields)")
+                }
+            }
         }
 //        userNotificationCenter.willPresent didReceive
 //        title: TITLE XXX
@@ -245,10 +268,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //            sound = default;
 //        }]
         
-        presentView(with: userInfo)
         completionHandler()
     }
     
+    func fetchTypeByRecordID( recordID: CKRecord.ID) -> String {
+        return "YACK"
+    }
 }
 
 extension AppDelegate {

@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         container = CKContainer(identifier: CKContainerIdentifier)
         
         let familyKitAppState = FamilyKitAppState(
-            container: container
+            container: CloudKitContainer.CloudContainer(container)
         )
         familyKitAppState.onStartup()
         
@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // ---------------------------------------------
         // Activity Services
         let activityDescriptionService = CKPrivateModelService<CKActivityDescriptionModel>(
-            container: container
+            container: CloudKitContainer.CloudContainer(container)
         )
         activityDescriptionService.fetch(
             sortDescriptor: .custom(key: "creationDate", ascending: true),
@@ -49,25 +49,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                print( "privateChoreService error \(error)")
 //            }
         })
-        activityDescriptionService.subscribe(isSilent: true, message: "new ActivityDescription or change")
+        activityDescriptionService.subscribeSilent()
         activityDescriptionService.listenForRemoteNotifications()
         
         let activityService = CKPrivateModelService<CKActivityModel>(
-            container: container
+            container: CloudKitContainer.CloudContainer(container)
         )
         activityService.fetch(
             sortDescriptor: .custom(key: "modificationDate", ascending: false),
             searchPredicate: .predicateTrue,
             completion: { result in
         })
-        activityService.subscribe(isSilent: true, message: "new Activity or activity changed")
+        activityService.subscribeSilent()
         activityService.listenForRemoteNotifications()
         // ---------------------------------------------
         
         
         // ---------------------------------------------
         // Store Services
-        let storeItemDefinitionService = CKPrivateModelService<CKStoreItemDefinitionModel>(container: container)
+        let storeItemDefinitionService = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CloudKitContainer.CloudContainer(container))
         storeItemDefinitionService.fetch(
             sortDescriptor: .none, //.custom(key: "modificationDate", ascending: false),
             searchPredicate: .predicateTrue,
@@ -76,7 +76,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // storeItemDefinitionService.subscribe(isSilent: false, message: "new Activity or activity changed")
         //storeItemDefinitionService.listenForNotifications()
 
-        let storeItemPurchaseService = CKPrivateModelService<CKStoreItemPurchaseModel>(container: container)
+        let storeItemPurchaseService = CKPrivateModelService<CKStoreItemPurchaseModel>(container: CloudKitContainer.CloudContainer(container))
         storeItemPurchaseService.fetch(
             sortDescriptor: .none, // .custom(key: "modificationDate", ascending: false),
             searchPredicate: .predicateTrue,

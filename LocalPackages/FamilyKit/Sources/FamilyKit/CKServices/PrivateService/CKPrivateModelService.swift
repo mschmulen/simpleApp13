@@ -71,6 +71,12 @@ public enum SortDescriptor {
  service.listenForNotifications()
 */
 
+
+public enum CloudKitContainer {
+    case CloudContainer(_ container: CKContainer)
+    case MockContainer(_ container: CKContainer)
+}
+
 public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
     
     public let objectWillChange = ObservableObjectPublisher()
@@ -83,8 +89,17 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         }
     }
     
-    public init(container: CKContainer) {
-        self.container = container
+//    public init(container: CKContainer) {
+//        self.container = container
+//    }
+    
+    public init(container: CloudKitContainer) {
+        switch container {
+        case .CloudContainer(let container):
+            self.container = container
+        case .MockContainer(let container):
+            self.container = container
+        }
     }
     
     enum CustomError: Error {

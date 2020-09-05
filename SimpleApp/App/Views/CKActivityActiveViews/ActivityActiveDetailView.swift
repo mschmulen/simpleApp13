@@ -190,9 +190,9 @@ struct CKActivityActiveDetailView_Previews: PreviewProvider {
             localActivityStatus: ActivityStatus.active
         )
             .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: container))
+            .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
         
     }
 }

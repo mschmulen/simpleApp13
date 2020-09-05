@@ -47,9 +47,9 @@ public class ChatService: ObservableObject {
         container: CKContainer
     ) {
         self.container = container
-        chatMessageService = CKPrivateModelService<CKChatMessageModel>(container: container)
-        chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: container)
-        activityService = CKPrivateModelService<CKActivityModel>(container: container)
+        chatMessageService = CKPrivateModelService<CKChatMessageModel>(container: CloudKitContainer.CloudContainer(container))
+        chatSessionService = CKPrivateModelService<CKChatSessionModel>(container: CloudKitContainer.CloudContainer(container))
+        activityService = CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container))
     }
     
     enum CustomError: Error {
