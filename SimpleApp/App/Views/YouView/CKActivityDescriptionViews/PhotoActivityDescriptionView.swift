@@ -9,7 +9,6 @@
 import SwiftUI
 import FamilyKit
 
-// TODO:  rename to CKActivityDescriptionPhotoView
 struct PhotoActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -89,25 +88,6 @@ struct PhotoActivityDescriptionView: View {
             }
             
             imageView
-
-            
-            // TODO: Fix the camera live photo
-//            if inputImage == nil {
-//                Group {
-//                    Button(action: {
-//                        // TODO: Camera photo
-//                        self.showingCameraView.toggle()
-//                    }) {
-//                        HStack {
-//                            Image(systemName: "camera")
-//                            Text("Camera photo")
-//                        }
-//                    }
-//                }.sheet(isPresented: $showingCameraView, content: {
-//                    CameraView(isShown: self.$showingCameraView, image: self.$image)
-//                })
-//            }
-            
         }
     }//end body
     

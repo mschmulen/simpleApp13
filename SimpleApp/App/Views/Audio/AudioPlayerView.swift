@@ -11,7 +11,6 @@ import SwiftUI
 import Combine
 import AVFoundation
 
-// TODO: Rename to AudioView ??
 struct AudioRecordingPlayerView: View {
     
     var audioURL: URL

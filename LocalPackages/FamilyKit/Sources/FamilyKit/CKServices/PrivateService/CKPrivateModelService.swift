@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 import CloudKit
 
-// TODO : Rename ModelServiceSearchPredicate
+// TODO: Rename ModelServiceSearchPredicate
 public enum SearchPredicate {
     
     case predicateTrue
@@ -30,7 +30,7 @@ public enum SearchPredicate {
     }
 }
 
-// TODO : Rename ModelServiceSortDescriptor
+// TODO: Rename ModelServiceSortDescriptor
 public enum SortDescriptor {
     
     /// custom "modificationDate", "creationDate",

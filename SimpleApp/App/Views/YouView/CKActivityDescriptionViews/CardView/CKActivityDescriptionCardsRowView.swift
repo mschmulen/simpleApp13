@@ -46,26 +46,6 @@ struct CKActivityDescriptionCardsRowView: View {
                     }
                     
                     ForEach(self.items) { model in
-                        // TODO: clean up
-//                        if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
-//                            NavigationLink(
-//                                destination: CKActivityDescriptionDetailEditView(
-//                                    model: model
-//                                )
-//                            ) {
-//                                CKActivityDescriptionCardView(model: model)
-//                            }.contextMenu {
-//                                Button(action: {
-//                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
-//                                        print("delete result \(result)")
-//                                    }
-//                                }) {
-//                                    Text("Delete")
-//                                    Image(systemName: "trash")
-//                                }
-//                            }
-//                        } else {
-                        
                             NavigationLink(
                                 destination: CKActivityDescriptionDetailView(
                                     model: model

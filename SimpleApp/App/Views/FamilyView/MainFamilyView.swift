@@ -71,7 +71,7 @@ struct MainFamilyView: View {
                                     .edgesIgnoringSafeArea(.horizontal)
                             }
                             
-                            // TODO: fix this context menu ... it breaks stuffq
+                            // TODO: fix this context menu ... it breaks stuff
 //                            .contextMenu {
 //                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
 //                                    Button(action: {
