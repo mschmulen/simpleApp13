@@ -9,6 +9,8 @@
 import SwiftUI
 import FamilyKit
 
+
+
 struct CKActivityActiveItemView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
@@ -47,6 +49,14 @@ struct CKActivityActiveItemView: View {
                         .lineLimit(3)
                         .modifier(PrimarySmallRegularLabel(color: .white))
                         .padding()
+                }
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text(model.moduleType.emoji)
+                    }
+                    Spacer()
                 }
             }
         }

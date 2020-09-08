@@ -21,28 +21,45 @@ struct CKActivityDescriptionCardView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if coverPhotoImage != nil {
-                coverPhotoImage!
-                    .renderingMode(.original)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: cardSize, height: cardSize)
-                    .cornerRadius(5)
-            } else {
+            ZStack {
                 Rectangle()
                     .fill(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
-            }
-            HStack {
-                Spacer()
-                Text(model.name ?? "~")
-                    .foregroundColor(.white)
-                    .font(.caption)
-                Spacer()
+                
+                if coverPhotoImage != nil {
+                    coverPhotoImage!
+                        .renderingMode(.original)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: cardSize, height: cardSize)
+                        .cornerRadius(5)
+                } else {
+                    Rectangle()
+                        .fill(SemanticAppColor.random)
+                        .frame(width: cardSize, height: cardSize)
+                        .cornerRadius(5)
+                }
+                HStack {
+                    Spacer()
+                    Text(model.name ?? "~")
+                        .lineLimit(3)
+                        .modifier(PrimarySmallRegularLabel(color: .white))
+                        .padding()
+                    Spacer()
+                }
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text(model.moduleType.emoji)
+                            //.padding()
+                    }
+                    Spacer()
+                }
             }
         }
-        .background(SemanticAppColor.random)
+        //.background(SemanticAppColor.random)
         .cornerRadius(5)
         .shadow(radius: 10)
         .padding()

@@ -18,6 +18,25 @@ public enum ActivityModuleType: String, CaseIterable {
     case none
 }
 
+extension ActivityModuleType {
+    
+    public var emoji: String {
+        switch self {
+        case .audio:
+            return "🎧"
+        case .photo:
+            return "📷"
+        case .drawing:
+            return "🎨"
+        case .chat:
+            return "💬"
+        case .none:
+            return "🔖"
+        }
+    }
+}
+
+
 public enum ActivityCategory: String, CaseIterable {
     case chore
     case fun
