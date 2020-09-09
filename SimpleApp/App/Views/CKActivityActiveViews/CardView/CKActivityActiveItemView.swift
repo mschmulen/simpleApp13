@@ -25,6 +25,12 @@ struct CKActivityActiveItemView: View {
         
         VStack(alignment: .leading) {
             ZStack {
+                
+                Rectangle()
+                    .fill(SemanticAppColor.random)
+                    .frame(width: cardSize, height: cardSize)
+                    .cornerRadius(5)
+                    
                 if coverPhotoImage != nil {
                     coverPhotoImage!
                         .renderingMode(.original)
@@ -97,7 +103,7 @@ struct CKActivityActiveItemView: View {
         }
         
         if let emoji = self.model.emoji {
-            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, backgroundColor: UIColor.gray))
+            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, size:60))
         }
         
     }
