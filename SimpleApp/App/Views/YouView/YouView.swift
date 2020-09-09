@@ -91,7 +91,7 @@ struct YouView: View {
                     .font(.caption)
             }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
-                self.devMessage = "silent Push! DB changed"
+                //self.devMessage = "silent Push! DB changed"
                 self.activityDescriptionService.fetch(
                     sortDescriptor: .none,
                     searchPredicate: .predicateTrue

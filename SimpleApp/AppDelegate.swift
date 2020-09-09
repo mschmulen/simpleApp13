@@ -217,29 +217,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("userNotificationCenter.willPresent didReceive")
         
         let userInfo = response.notification.request.content.userInfo
-        print( "title: \(response.notification.request.content.title)")
-        print( "subtitle: \(response.notification.request.content.subtitle)")
-        print( "body: \(response.notification.request.content.body)")
-        
-        print( "userInfo: \(userInfo)")
+//        print( "title: \(response.notification.request.content.title)")
+//        print( "subtitle: \(response.notification.request.content.subtitle)")
+//        print( "body: \(response.notification.request.content.body)")
+//
+//        print( "userInfo: \(userInfo)")
         if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
-            
              if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
-                if let recordID = ckQueryNotification.recordID {
-                    let recordName = recordID.recordName
-                    print("recordName \(recordName)")
-                    // TODO Its possible to fetch it and get if from the record Type
-                }
-                
-                if let recordFields = ckQueryNotification.recordFields {
-                    if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
-                        let ownerName = recordFields["ownerName"] as? String,
-                        let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
-                        print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
-                        presentView(with: userInfo)
-                    }
-                    print( "recordFields \(recordFields)")
-                }
+                processNotification( with: ckQueryNotification )
             }
         }
 //        userNotificationCenter.willPresent didReceive
@@ -278,11 +263,29 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate {
     
-    func presentView(with pushNotificationInfo: [AnyHashable: Any]) {
-        print( "AppDelegate.presentView")
-        print( "pushNotificationInfo: \(pushNotificationInfo)")
+    func processNotification(with queryNotification: CKQueryNotification) {
+//        print( "AppDelegate.presentView")
+//        print( "pushNotificationInfo: \(queryNotification)")
+//
+//        if let recordID = queryNotification.recordID {
+//            let recordName = recordID.recordName
+//            print("recordName \(recordName)")
+//            // TODO Its possible to fetch it and get if from the record Type
+//        }
+//
+//        // check if it is a chat notification
+//        if let recordFields = queryNotification.recordFields {
+//            print( "recordFields \(recordFields)")
+//            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
+//                let ownerName = recordFields["ownerName"] as? String,
+//                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
+//
+//                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
+//                self.appState.goToScreen(deepLink: .tabFamilyChat)
+//            }
+//        }
         
-        self.appState.goToScreen(deepLink: .tabFamilyChat)
+        self.appState.processNotification( with: queryNotification)
     }
     
 //    AppDelegate.presentView

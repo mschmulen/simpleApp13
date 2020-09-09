@@ -9,7 +9,7 @@ import SwiftUI
 import CloudKit
 
 public struct ChatSessionView: View {
-//    @Environment(\.window) var window: UIWindow?
+    //    @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
@@ -29,6 +29,10 @@ public struct ChatSessionView: View {
     let enableBorder: Bool
     let enableDismiss: Bool
     let dismissCallback: (()->Void)?
+    
+    @State private var showPhotoUpload: Bool = false
+    @State private var showAudioUpload: Bool = false
+    @State private var showAdditionalOptions: Bool = false
     
     public init(
         chatSession: CKChatSessionModel,
@@ -92,12 +96,37 @@ public struct ChatSessionView: View {
                     
                     if showTextField == true {
                         HStack {
+                            if typingMessage.isEmpty {
+                                Button(action: showAdditional) {
+                                    Image(systemName: "plus")
+                                }.sheet(isPresented: $showAdditionalOptions) {
+                                    ChatUploadAdditionalView()
+                                }.padding(2.0)
+                            }
+                            
                             // TODO: Change to TextEditor(text: $typingMessage) for iOS14
                             TextField("Message...", text: $typingMessage)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .frame(minHeight: CGFloat(30))
-                            Button(action: sendMessage) {
-                                Text("Send")
+                            if typingMessage.isEmpty {
+                                Button(action: showPhoto) {
+                                    Image(systemName: "photo")
+                                }
+                                .padding(2.0)
+                                .sheet(isPresented: $showPhotoUpload) {
+                                    ChatUploadPhotoView()
+                                }
+                                Button(action: showAudio) {
+                                    Image(systemName: "mic")
+                                }
+                                .padding(2.0)
+                                .sheet(isPresented: $showAudioUpload) {
+                                    ChatUploadAudioView()
+                                }
+                            } else {
+                                Button(action: sendMessage) {
+                                    Image(systemName: "paperplane.fill")
+                                }
                             }
                         }.frame(minHeight: CGFloat(30)).padding()
                     }
@@ -113,13 +142,27 @@ public struct ChatSessionView: View {
             self.chatService.onStartUp()
             self.messageCount = self.chatService.chatMessages.count
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
-            //self.devMessage = "silent Push! DB changed"
+            self.devMessage = "silent Push! DB changed"
             self.chatService.onRefetchFromServer()
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in
             self.messageCount = self.chatService.chatMessages.count
             //            self.devMessage = "\(self.messageCount) \(UUID().uuidString)"
         }
+    }
+    
+    func showAudio() {
+        showAudioUpload.toggle()
+    }
+    
+    func showPhoto() {
+        print( "sendPhoto")
+        showPhotoUpload.toggle()
+    }
+    
+    func showAdditional() {
+        print( "additionalOptions")
+        showAdditionalOptions.toggle()
     }
     
     func sendMessage() {
@@ -166,17 +209,17 @@ extension View {
  */
 
 extension View {
-  @ViewBuilder
-  func `if`<Transform: View>(
-    _ condition: Bool,
-    transform: (Self) -> Transform
-  ) -> some View {
-    if condition {
-      transform(self)
-    } else {
-      self
+    @ViewBuilder
+    func `if`<Transform: View>(
+        _ condition: Bool,
+        transform: (Self) -> Transform
+    ) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
     }
-  }
 }
 
 //extension View {

@@ -121,7 +121,7 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
-            self.devMessage = "silent Push! DB changed"
+            //self.devMessage = "silent Push! DB changed"
         }
     }//end body
     

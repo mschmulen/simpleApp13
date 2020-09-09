@@ -72,7 +72,7 @@ struct CKChoreView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: CKChangedNotification)) { _ in
             print("Notification.Name(CloudKitModelService) recieved")
-            self.devMessage = "silent Push! DB changed"
+            //self.devMessage = "silent Push! DB changed"
             self.choreService.fetch { (result) in
                 print( "fetch \(result)")
             }

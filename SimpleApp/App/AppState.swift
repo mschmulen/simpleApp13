@@ -104,7 +104,29 @@ extension AppState {
         }
         updateChanges()
     }
+    
+    func processNotification(with queryNotification: CKQueryNotification) {
+        print( "AppDelegate.presentView")
+        print( "pushNotificationInfo: \(queryNotification)")
         
+        if let recordID = queryNotification.recordID {
+            let recordName = recordID.recordName
+            print("recordName \(recordName)")
+            // TODO Its possible to fetch it and get if from the record Type
+        }
+        
+        // check if it is a chat notification
+        if let recordFields = queryNotification.recordFields {
+            print( "recordFields \(recordFields)")
+            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
+                let ownerName = recordFields["ownerName"] as? String,
+                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
+                
+                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
+                goToScreen(deepLink: .tabFamilyChat)
+            }
+        }
+    }
 }
 
 // MARK: - Purchase Services
