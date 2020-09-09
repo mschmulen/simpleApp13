@@ -76,8 +76,10 @@ struct CKActivityDescriptionDetailView: View {
                 NavigationLink(destination: CKActivityActiveDetailView(
                     model: CKActivityModel(
                         descriptionModel: model,
-                        playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!),
-                    localActivityStatus: ActivityStatus.active
+                        playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!
+                    ),
+                    localActivityStatus: ActivityStatus.active,
+                    showStatusButtons: false
                 )) {
                     LargeTextPillBox( "START THIS ACTIVITY" )
                 }

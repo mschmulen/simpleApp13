@@ -24,6 +24,7 @@ struct CKActivityActiveDetailView: View {
     
     @State var model: CKActivityModel
     @State var localActivityStatus: ActivityStatus
+    let showStatusButtons:Bool
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Loading"
@@ -64,10 +65,47 @@ struct CKActivityActiveDetailView: View {
                             }
                         }
                 }
+                
+//                if self.model.status == .completed {
+//                    verifyButton
+//                }
+                
             }// end if is adult
             else {
-                
+                // TODO: only show the complete button if current user is owner of card
+                if self.model.status == .active {
+                    completeButton
+                } else if self.model.status == .unknown {
+                    activeButton
+                }
             }
+        }
+    }
+    
+    var verifyButton: some View {
+        Button(action: {
+            self.model.status = .verified
+            self.onSave()
+        }) {
+            LargeTextPillBox( "Verify" )
+        }
+    }
+    
+    var activeButton: some View {
+        Button(action: {
+            self.model.status = .active
+            self.onSave()
+        }) {
+            LargeTextPillBox( "Activate" )
+        }
+    }
+    
+    var completeButton: some View {
+        Button(action: {
+            self.model.status = .completed
+            self.onSave()
+        }) {
+            LargeTextPillBox("Complete")
         }
     }
     
@@ -81,9 +119,11 @@ struct CKActivityActiveDetailView: View {
                 indicatorMessage: $activityIndicatorMessage
             ) {
                 VStack {
-                    if self.model.moduleType == .photo {
-                        self.infoView
+                    self.infoView
+                    if self.showStatusButtons == true {
                         self.activityStatusView
+                    }
+                    if self.model.moduleType == .photo {
                         PhotoActivitySubView(
                             model: self.$model,
                             showActivityIndicator: self.$showActivityIndicator,
@@ -96,8 +136,6 @@ struct CKActivityActiveDetailView: View {
                         }
                         
                     } else if self.model.moduleType == .audio {
-                        self.infoView
-                        self.activityStatusView
                         AudioActivitySubView(
                             model: self.$model,
                             showActivityIndicator: self.$showActivityIndicator,
@@ -109,8 +147,6 @@ struct CKActivityActiveDetailView: View {
                                 .frame(height: 200)
                         }
                     } else if self.model.moduleType == .drawing {
-                        self.infoView
-                        self.activityStatusView
                         DrawPreviewView(
                             model: self.$model,
                             showActivityIndicator: self.$showActivityIndicator,
@@ -123,17 +159,10 @@ struct CKActivityActiveDetailView: View {
                         }
                         
                     } else if self.model.moduleType == .chat {
-                        self.infoView
-                        self.activityStatusView
-                        
                         if self.chatSessionModel != nil {
                             ChatPeekView(chatSessionModel: self.chatSessionModel!)
                         }
                         // Spacer()
-                    }
-                    else {
-                        self.infoView
-                        self.activityStatusView
                     }
                 }//end VStack
             }//end ActivityIndicator
@@ -187,7 +216,8 @@ struct CKActivityActiveDetailView_Previews: PreviewProvider {
     static var previews: some View {
         CKActivityActiveDetailView(
             model: CKActivityModel.mock,
-            localActivityStatus: ActivityStatus.active
+            localActivityStatus: ActivityStatus.active,
+            showStatusButtons: true
         )
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))

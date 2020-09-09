@@ -39,62 +39,78 @@ struct MainFamilyPlayerFilterView: View {
     
     var body: some View {
         HStack {
-            if showFilterOptions == false {
-                //Image(systemName: "plus.circle.fill")
-                Text("show filter options")
-                .padding()
-                    .onTapGesture {
-                        self.showFilterOptions.toggle()
+            HStack {
+                VStack {
+                    if showFilterOptions == false {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .padding()
+                                .onTapGesture {
+                                    self.showFilterOptions.toggle()
+                            }
+                            Text("Show Filter")
+                            .onTapGesture {
+                                self.showFilterOptions.toggle()
+                            }
+                        }
+                    } else {
+                        Image(systemName: "minus.square.fill")
+                            .padding()
+                            .onTapGesture {
+                                self.showFilterOptions.toggle()
+                        }
+                    }
+                }//end VStack
+                
+                if showFilterOptions {
+                    ScrollView(.horizontal, showsIndicators: false){
+                        HStack {
+                            VStack {
+                                Text("🏡")
+                                    .font(.body)
+                                Spacer()
+                                Text("Family")
+                                    .modifier(PrimarySmallBoldLabel(color: .white))
+                            }
+                            .frame(width: cardSize, height: cardSize)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(cardRadius)
+                            .shadow(radius: 10)
+                                
+                            .onTapGesture {
+                                self.currentFilter = PlayerFilter.none
+                            }
+                            
+                            ForEach( self.familyKitAppState.playerService.models ) { player in
+                                VStack {
+                                    Text("\(player.emoji ?? "")")
+                                    Spacer()
+                                    Text("\(player.name ?? "")")
+                                        .modifier(PrimarySmallRegularLabel(color: .black))
+                                }
+                                .frame(width: self.cardSize, height: self.cardSize)
+                                .padding()
+                                .background(Color.green)
+                                .cornerRadius(self.cardRadius)
+                                .shadow(radius: 10)
+                                .onTapGesture {
+                                    self.currentFilter = PlayerFilter.person( player )
+                                }
+                            }
+                        }.padding()
+                    }//end ScrollView
                 }
             }
-            
-            if showFilterOptions {
-                
-//                Image(systemName: "minus.circle.fill")
-//                    .padding()
-//                    .onTapGesture {
-//                        self.showFilterOptions.toggle()
-//                }
-                
-                ScrollView(.horizontal, showsIndicators: false){
-                    HStack {
-                        VStack {
-                            Text("🏡")
-                                .font(.body)
-                            Spacer()
-                            Text("Family")
-                                .modifier(PrimarySmallBoldLabel(color: .white))
-                        }
-                        .frame(width: cardSize, height: cardSize)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(cardRadius)
-                        .shadow(radius: 10)
-                        
-                        .onTapGesture {
-                            self.currentFilter = PlayerFilter.none
-                        }
-                        
-                        ForEach( self.familyKitAppState.playerService.models ) { player in
-                            VStack {
-                                Text("\(player.emoji ?? "")")
-                                Spacer()
-                                Text("\(player.name ?? "")")
-                                    .modifier(PrimarySmallRegularLabel(color: .black))
-                            }
-                            .frame(width: self.cardSize, height: self.cardSize)
-                            .padding()
-                            .background(Color.green)
-                            .cornerRadius(self.cardRadius)
-                            .shadow(radius: 10)
-                            .onTapGesture {
-                                self.currentFilter = PlayerFilter.person( player )
-                            }
-                        }
-                    }.padding()
-                }//end ScrollView
-            }
-        }
+        }//end HStack
+    }//end body
+}
 
-    }//end playerPickerView
+struct MainFamilyPlayerFilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainFamilyPlayerFilterView(
+            currentFilter: .constant(MainFamilyPlayerFilterView.PlayerFilter.none),
+            showFilterOptions: .constant(true)
+        )
+    }
 }

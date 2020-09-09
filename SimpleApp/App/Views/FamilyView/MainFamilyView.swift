@@ -28,80 +28,21 @@ struct MainFamilyView: View {
     let cardSize:CGFloat = 50
     let cardRadius:CGFloat = 20
     
-    //    @State var activities: [CKActivityModel] = [CKActivityModel]()
+    //@State var playerFilteredActivities: [CKActivityModel] = [CKActivityModel]()
     
+    @State var showFilterByPlayerOptions: Bool = false
     @State var playerFilter = MainFamilyPlayerFilterView.PlayerFilter.none
-    @State var showFilterOptions: Bool = true
-    @State var activityStatusFilter = ActivityStatus.active
     
-    var scrollView: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack (alignment: .center, spacing: 0) {
-                ForEach( activityService.models.filter({ (model) -> Bool in
-                    switch playerFilter {
-                    case .none: return true
-                    case .person(let player):
-                        guard let kidReference = model.kidReference?.recordID else { return true }
-                        guard let playerReference = player.ckRecord?.recordID else {  return true }
-                        if kidReference == playerReference {
-                            return true
-                        } else {
-                            return false
-                        }
-                    }
-                }), id: \.self) { model in
-                    NavigationLink(
-                        destination: CKActivityActiveDetailView(
-                            model: model, localActivityStatus: model.status
-                        )
-                    ) {
-                        CKActivityActiveItemView(model: model)
-                    }.contextMenu {
-                        if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
-                            Button(action: {
-                                self.activityService.pushDelete(model: model) { (result) in
-                                    print("delete result \(result)")
-                                }
-                            }) {
-                                Text("Delete")
-                                Image(systemName: "trash")
-                            }
-                        } else {
-                            Text("No Context Action")
-                        }
-                    }
-                }
-            }
-        }
-        //.frame(height: 185)
-    }
+    //@State var showActivityStatusFilter: Bool = false
+    //@State var activityStatusFilter = ActivityStatus.active
     
-    var listViewSlow: some View {
+    var listViewFancy: some View {
         List {
             
-            Section() {
-                CKActivityActiveRowView(
-                    categoryName: "Active",
-                    items: activityService.models.filter({ (model) -> Bool in
-                        switch playerFilter {
-                        case .none: return true
-                        case .person(let player):
-                            guard let kidReference = model.kidReference?.recordID else { return true }
-                            guard let playerReference = player.ckRecord?.recordID else {  return true }
-                            if kidReference != playerReference {
-                                return false
-                            }
-                        }
-                        
-                        if model.status == .active {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                )
-            }
-            .listRowInsets(EdgeInsets())
+            MainFamilyPlayerFilterView(
+                currentFilter: $playerFilter,
+                showFilterOptions: $showFilterByPlayerOptions
+            )
             
             Section() {
                 CKActivityActiveRowView(
@@ -118,16 +59,32 @@ struct MainFamilyView: View {
                             }
                         }
                         
-                        if model.status == .completed {
-                            return true
-                        } else {
-                            return false
-                        }
+                        return model.status == ActivityStatus.completed
                     })
                 )
             }
             .listRowInsets(EdgeInsets())
             
+            Section() {
+                CKActivityActiveRowView(
+                    categoryName: "Active",
+                    items: activityService.models.filter({ (model) -> Bool in
+                        
+                        switch playerFilter {
+                        case .none: return true
+                        case .person(let player):
+                            guard let kidReference = model.kidReference?.recordID else { return true }
+                            guard let playerReference = player.ckRecord?.recordID else {  return true }
+                            if kidReference != playerReference {
+                                return false
+                            }
+                        }
+                        
+                        return model.status == ActivityStatus.active
+                    })
+                )
+            }
+            .listRowInsets(EdgeInsets())
             
             Section() {
                 CKActivityActiveRowView(
@@ -144,47 +101,22 @@ struct MainFamilyView: View {
                             }
                         }
                         
-                        if model.status == .verified {
-                            return true
-                        } else {
-                            return false
-                        }
+                        return model.status == ActivityStatus.verified
                     })
                 )
             }
             .listRowInsets(EdgeInsets())
             
-            
-            Section() {
-                CKActivityActiveRowView(
-                    categoryName: "Unknown",
-                    items: activityService.models.filter({ (model) -> Bool in
-                        
-                        switch playerFilter {
-                        case .none: return true
-                        case .person(let player):
-                            guard let kidReference = model.kidReference?.recordID else { return true }
-                            guard let playerReference = player.ckRecord?.recordID else {  return true }
-                            if kidReference != playerReference {
-                                return false
-                            }
-                        }
-                        
-                        if model.status == .unknown {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                )
-            }
-            .listRowInsets(EdgeInsets())
         }//end List
-    }//end listViewSlow
+    }//end listViewFancy
     
-    
-    var listViewFast: some View {
+    var listViewSimple: some View {
         List {
+            
+            MainFamilyPlayerFilterView(
+                currentFilter: $playerFilter,
+                showFilterOptions: $showFilterByPlayerOptions
+            )
             
             Section(
                 header: Text("\(playerFilter.name)")
@@ -204,7 +136,9 @@ struct MainFamilyView: View {
                 }), id: \.self) { model in
                     NavigationLink(
                         destination: CKActivityActiveDetailView(
-                            model: model, localActivityStatus: model.status
+                            model: model,
+                            localActivityStatus: model.status,
+                            showStatusButtons: true
                         ).buttonStyle(PlainButtonStyle())
                     ){
                         FamilyActivityCardView(model:model)
@@ -212,23 +146,17 @@ struct MainFamilyView: View {
                     }
                 }
             }//end Section
-            
-        }
-    } //end listViewFast
+        }//end List
+    } //end listViewSimple
     
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                MainFamilyPlayerFilterView(
-                    currentFilter: $playerFilter,
-                    showFilterOptions: $showFilterOptions
-                )
+//                 listViewSimple
                 
-                listViewFast
-                // listViewSlow
-                // scrollView
+                listViewFancy
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
@@ -255,7 +183,6 @@ struct MainFamilyView: View {
                     ) { (result) in
                         print( "result")
                     } }
-            
         }//end Navigation
     }//end body
     
@@ -304,3 +231,4 @@ struct MainFamilyView_Previews: PreviewProvider {
         
     }
 }
+
