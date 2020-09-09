@@ -17,8 +17,9 @@ struct AudioActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String? = nil

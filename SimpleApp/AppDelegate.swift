@@ -282,9 +282,7 @@ extension AppDelegate {
         print( "AppDelegate.presentView")
         print( "pushNotificationInfo: \(pushNotificationInfo)")
         
-        self.appState.activeDeepLink = .chatFamily
-        self.appState.topView = TopView.mainView
-        self.appState.selectedTab = TabViewIndex.familyChat.rawValue
+        self.appState.goToScreen(deepLink: .tabFamilyChat)
     }
     
 //    AppDelegate.presentView

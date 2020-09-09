@@ -15,6 +15,7 @@ struct DrawPreviewView: View {
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
@@ -71,6 +72,7 @@ struct DrawPreviewView: View {
                     showActivityIndicator: self.$showActivityIndicator,
                     activityIndicatorMessage: self.$activityIndicatorMessage
                 )
+                    .environmentObject(self.appState)
                     .environmentObject(self.familyKitAppState)
                     .environmentObject(self.activityService)
         }

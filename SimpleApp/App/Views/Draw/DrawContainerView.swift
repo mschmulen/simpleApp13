@@ -14,6 +14,8 @@ struct DrawContainerView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
@@ -113,7 +115,8 @@ struct DrawContainerView: View {
                         if let activityAsset = updatedModel.activityAsset {
                             self.model.activityAsset = activityAsset
                         }
-                        self.presentationMode.wrappedValue.dismiss()
+                        //self.presentationMode.wrappedValue.dismiss()
+                        self.appState.goToScreen(deepLink: .tabFamily)
                     }
                 }
             }

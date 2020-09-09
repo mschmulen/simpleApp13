@@ -14,6 +14,7 @@ import CloudKit
 struct MainFamilyView: View {
     
     @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
@@ -176,25 +177,18 @@ struct MainFamilyView: View {
                 .onAppear(perform: {
                     //self.activities = self.privateActiveChoreService.models
                 })
-                .navigationBarTitle("Family")
-                
-                .navigationBarItems(leading: leadingButton, trailing: trailingButton)
                 .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                     print("Notification.Name(CloudKitModelService) recieved")
                     self.devMessage = "silent Push! DB changed"
                     
-                    self.activityDescriptionService.fetch(
-                        sortDescriptor: .none,
-                        searchPredicate: .predicateTrue
-                    ) { (result) in
-                        print( "result")
-                    }
                     self.activityService.fetch(
                         sortDescriptor: .none,
                         searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")
                     } }
+                .navigationBarTitle("Family")
+                .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }//end Navigation
     }//end body
     

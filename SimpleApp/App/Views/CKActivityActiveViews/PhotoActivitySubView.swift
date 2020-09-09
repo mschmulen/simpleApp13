@@ -14,8 +14,9 @@ struct PhotoActivitySubView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var familyKitAppState: FamilyKitAppState    
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @Binding var model: CKActivityModel
@@ -148,6 +149,7 @@ struct PhotoActivitySubView: View {
                     if let resultAssetImage = updatedModel.resultAssetImage {
                         self.model.resultAssetImage = resultAssetImage
                     }
+                    self.appState.goToScreen(deepLink: .tabFamily)
                 }
             }
         }

@@ -79,3 +79,8 @@ service.listenForNotifications()
 - dont forget to add parameters ?? 
 - add minAge and maxAge to Activity
 
+
+
+
+
+

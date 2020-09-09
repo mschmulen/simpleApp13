@@ -24,3 +24,10 @@ TODO
 
 
 
+## Release Notes
+
+##### Build 38
+
+- Fix for chat preview update.
+- Update MainFamilyTab look and feel.
+- Added "Complete" button to activity.

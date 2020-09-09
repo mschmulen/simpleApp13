@@ -14,6 +14,7 @@ import CloudKit
 struct FamilyChatView: View {
     
     @Environment(\.window) var window: UIWindow?
+    @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState

@@ -12,7 +12,7 @@ import CloudKit
 public struct PlayerOnboardingView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
+
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
@@ -74,20 +74,6 @@ public struct PlayerOnboardingView: View {
                             }
                         }
                     }
-                    
-//                    Section(header: Text("adults")) {
-//                        ForEach(self.familyKitAppState.adultService.models) { model in
-//                            Button(action: {
-//                                self.familyKitAppState.setCurrentPlayer(player: Player.adult(model))
-//                                self.presentationMode.wrappedValue.dismiss()
-//                            }) {
-//                                HStack {
-//                                    Text("\(model.emoji ?? "~")")
-//                                    Text("\(model.name ?? "~")")
-//                                }
-//                            }
-//                        }
-//                    }//end Section
                 }//end List
                 
                 VStack {

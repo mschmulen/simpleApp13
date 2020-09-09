@@ -14,6 +14,8 @@ struct ChatPeekView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     let rectangleColor: Color = Color.white
@@ -22,6 +24,8 @@ struct ChatPeekView: View {
     
     @State var showChatSession: Bool = false
     @State var chatSessionModel: CKChatSessionModel
+    
+    let updateCallback: (()->Void)
     
     var body: some View {
         VStack {
@@ -60,11 +64,13 @@ struct ChatPeekView: View {
     }
     
     func onSheetDismiss() {
-        
+        print( "onSheetDismiss")
+        updateCallback()
     }
     
     func onDismissReload() {
-        
+        print( "onDismissReload")
+        updateCallback()
     }
     
 }

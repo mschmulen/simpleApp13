@@ -15,6 +15,8 @@ struct CKActivityActiveDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
@@ -72,7 +74,6 @@ struct CKActivityActiveDetailView: View {
                 
             }// end if is adult
             else {
-                // TODO: only show the complete button if current user is owner of card
                 if self.model.status == .active {
                     completeButton
                 } else if self.model.status == .unknown {
@@ -131,7 +132,10 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                print( "update callback")
+                                self.fetchChatSession()
+                            })
                             .frame(height: 200)
                         }
                         
@@ -143,7 +147,11 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!,
+                                         updateCallback: {
+                                            print( "update callback")
+                                            self.fetchChatSession()
+                            })
                                 .frame(height: 200)
                         }
                     } else if self.model.moduleType == .drawing {
@@ -154,13 +162,19 @@ struct CKActivityActiveDetailView: View {
                         )
                         
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                print( "update callback")
+                                self.fetchChatSession()
+                            })
                                 //.frame(height: 200)
                         }
                         
                     } else if self.model.moduleType == .chat {
                         if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!)
+                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                print( "update callback")
+                                self.fetchChatSession()
+                            })
                         }
                         // Spacer()
                     }
@@ -173,12 +187,12 @@ struct CKActivityActiveDetailView: View {
                 if self.model.recordID == nil {
                     self.onSave()
                 } else {
-                    self.configureChatSession()
+                    self.fetchChatSession()
                 }
         }
     }
     
-    func configureChatSession() {
+    func fetchChatSession() {
         self.showActivityIndicator = true
         chatService.findOrMakeSession(model:model) { result in
             switch result {
@@ -203,7 +217,7 @@ struct CKActivityActiveDetailView: View {
             case .success(let newModel):
                 self.model = newModel
                 self.showActivityIndicator = false
-                self.configureChatSession()
+                self.fetchChatSession()
             }
         }
     }

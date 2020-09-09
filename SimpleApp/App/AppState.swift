@@ -36,8 +36,15 @@ class AppState: ObservableObject {
     
     enum DeepLink {
         case none
-        case chatFamily
-        case activityDescription ( recordID: String )
+
+        case tabYou
+        case tabFamilyChat
+        case tabFamily
+        case tabBucks
+        
+        
+        
+        case detailScreenActivityDescription ( recordID: String )
         case activityUpdated ( recordID: String )
         case purchaseItem ( recordID: String )
     }
@@ -60,18 +67,42 @@ class AppState: ObservableObject {
         #endif
     }
     
-//    private func updateChanges() {
-//        DispatchQueue.main.async {
-//            self.objectWillChange.send()
-//        }
-//    }
+    private func updateChanges() {
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
 }
 
 // MARK: - StartupServices
 extension AppState {
     
     public func onStartup() {
+    }
         
+}
+
+extension AppState {
+    
+    public func goToScreen(deepLink: DeepLink) {
+        print("goToScreen \(deepLink)")
+        switch deepLink {
+        case .tabYou:
+            topView = .mainView
+            selectedTab = TabViewIndex.you.rawValue
+        case .tabFamilyChat:
+            topView = .mainView
+            selectedTab = TabViewIndex.familyChat.rawValue
+        case .tabFamily:
+            topView = .mainView
+            selectedTab = TabViewIndex.family.rawValue
+        case .tabBucks:
+            topView = .mainView
+            selectedTab = TabViewIndex.bucksStore.rawValue
+        default:
+            return
+        }
+        updateChanges()
     }
         
 }
