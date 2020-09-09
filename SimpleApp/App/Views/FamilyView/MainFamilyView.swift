@@ -50,16 +50,18 @@ struct MainFamilyView: View {
                     items: activityService.models.filter({ (model) -> Bool in
                         
                         switch playerFilter {
-                        case .none: return true
+                        case .none:
+                            return model.status == ActivityStatus.completed
                         case .person(let player):
-                            guard let kidReference = model.kidReference?.recordID else { return true }
-                            guard let playerReference = player.ckRecord?.recordID else {  return true }
+                            guard let kidReference = model.kidReference?.recordID else {
+                                return false }
+                            guard let playerReference = player.ckRecord?.recordID else {
+                                return false }
                             if kidReference != playerReference {
                                 return false
                             }
+                            return model.status == ActivityStatus.completed
                         }
-                        
-                        return model.status == ActivityStatus.completed
                     })
                 )
             }
@@ -71,16 +73,20 @@ struct MainFamilyView: View {
                     items: activityService.models.filter({ (model) -> Bool in
                         
                         switch playerFilter {
-                        case .none: return true
+                        case .none:
+                            return model.status == ActivityStatus.active
                         case .person(let player):
-                            guard let kidReference = model.kidReference?.recordID else { return true }
-                            guard let playerReference = player.ckRecord?.recordID else {  return true }
+                            guard let kidReference = model.kidReference?.recordID else {
+                                return false
+                            }
+                            guard let playerReference = player.ckRecord?.recordID else {
+                                return false
+                            }
                             if kidReference != playerReference {
                                 return false
                             }
+                            return model.status == ActivityStatus.active
                         }
-                        
-                        return model.status == ActivityStatus.active
                     })
                 )
             }
@@ -92,20 +98,26 @@ struct MainFamilyView: View {
                     items: activityService.models.filter({ (model) -> Bool in
                         
                         switch playerFilter {
-                        case .none: return true
+                        case .none:
+                            return model.status == ActivityStatus.verified
                         case .person(let player):
-                            guard let kidReference = model.kidReference?.recordID else { return true }
-                            guard let playerReference = player.ckRecord?.recordID else {  return true }
+                            guard let kidReference = model.kidReference?.recordID else {
+                                return false
+                            }
+                            guard let playerReference = player.ckRecord?.recordID else {
+                                return false
+                            }
                             if kidReference != playerReference {
                                 return false
                             }
+                            return model.status == ActivityStatus.verified
                         }
-                        
-                        return model.status == ActivityStatus.verified
                     })
                 )
             }
             .listRowInsets(EdgeInsets())
+            
+            // TODO: "unknown" ... return model.status == ActivityStatus.unknown
             
         }//end List
     }//end listViewFancy
