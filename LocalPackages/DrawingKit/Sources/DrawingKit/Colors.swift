@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 struct ColorPicker: View {
     @Binding var color: Color
     @Binding var colorPickerShown: Bool
@@ -25,6 +26,7 @@ struct ColorPicker: View {
     }
 }
 
+@available(iOS 13.0, *)
 class ColorsProvider {
     
     static func supportedColors() -> [ColorInfo] {
@@ -41,6 +43,7 @@ class ColorsProvider {
     
 }
 
+@available(iOS 13.0, *)
 struct ColorEntry: View {
     let colorInfo: ColorInfo
     

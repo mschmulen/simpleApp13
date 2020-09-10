@@ -57,6 +57,48 @@ struct AdultUserView: View {
                 }
             }
             
+            Section(header: Text("Dev notificaiton stuff ")) {
+                Button(action: {
+                    let manager = LocalNotificationManager()
+                    manager.addNotification(
+                        title: "LOCAL_TEST_BUCKS_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_BUCKS_TAB
+                    )
+                    manager.schedule()
+                }) {
+                    Text("DeepLink BuckStore")
+                }
+                
+                Button(action: {
+                    let manager = LocalNotificationManager()
+                    manager.addNotification(
+                        title: "LOCAL_TEST_YOU_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_YOU_TAB
+                    )
+                    manager.schedule()
+                }) {
+                    Text("DeepLink You tab")
+                }
+                
+                Button(action: {
+                    let manager = LocalNotificationManager()
+                    manager.addNotification(
+                        title: "LOCAL_TEST_CHAT_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_CHAT_TAB
+                    )
+                    manager.schedule()
+                }) {
+                    Text("DeepLink Family Chat")
+                }
+                
+                Button(action: {
+                    let manager = LocalNotificationManager()
+                    manager.addNotification(
+                        title: "LOCAL_TEST_FAMILY_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_FAMILY_TAB
+                    )
+                    manager.schedule()
+                }) {
+                    Text("DeepLink Family Tab")
+                }
+            }
+            
             Section(header: Text(" Dev Stuff")) {
                 
                 Button(action: {
@@ -124,36 +166,41 @@ struct AdultUserView: View {
         })
         .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
-}
-
-struct AdultUserView_Previews: PreviewProvider {
     
-    static let ckContainer = CKContainer(identifier: CKContainerIdentifier)
-    static var previews: some View {
-        Group {
-            
-            AdultUserView()
-                //.environment(\.window, window)
-                .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
-                .previewDevice(PreviewDevice(rawValue: "iPad Air 2"))
-            
-            
-            AdultUserView()
-                //.environment(\.window, window)
-                .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-            .previewDisplayName("iPhone SE")
-            
-            
-            AdultUserView()
-                //.environment(\.window, window)
-                .environmentObject(AppState())
-                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
-            .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
-            .previewDisplayName("iPhone XS Max")
-
-        }
-    }
 }
+
+
+
+
+
+//struct AdultUserView_Previews: PreviewProvider {
+//    
+//    static let ckContainer = CKContainer(identifier: CKContainerIdentifier)
+//    static var previews: some View {
+//        Group {
+//            
+//            AdultUserView()
+//                //.environment(\.window, window)
+//                .environmentObject(AppState(container: CloudKitContainer.MockContainer(cKContainer)))
+//                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
+//                .previewDevice(PreviewDevice(rawValue: "iPad Air 2"))
+//            
+//            
+//            AdultUserView()
+//                //.environment(\.window, window)
+//                .environmentObject(AppState(container: CloudKitContainer.MockContainer(cKContainer)))
+//                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
+//            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+//            .previewDisplayName("iPhone SE")
+//            
+//            
+//            AdultUserView()
+//                //.environment(\.window, window)
+//                .environmentObject(AppState(container: CloudKitContainer.MockContainer(cKContainer)))
+//                .environmentObject(FamilyKitAppState(container: CloudKitContainer.MockContainer(ckContainer)))
+//            .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
+//            .previewDisplayName("iPhone XS Max")
+//
+//        }
+//    }
+//}

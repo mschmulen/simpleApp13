@@ -32,3 +32,5 @@ TODO
 - Update MainFamilyTab look and feel.
 - Added "Complete" button to activity.
 - Deeplink to family tab when an action is updated
+- Chat improvements
+

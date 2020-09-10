@@ -14,7 +14,7 @@ import CloudKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    public var appState = AppState()
+    public var appState:AppState! = AppState()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -162,130 +162,126 @@ extension AppDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
+    // will show the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         print("userNotificationCenter.willPresent notification \(notification)")
         
         let userInfo = notification.request.content.userInfo
-        print( "userInfo: \(userInfo)")
         
-//        userInfo: [AnyHashable("ck"): {
-//            ce = 2;
-//            cid = "iCloud.com.jumptack.FamilyKit";
-//            ckuserid = "_50125824373cb9a38c4142e6c601eb14";
-//            nid = "3180cf65-1c66-4bfa-9226-e1f02160ead0";
-//            qry =     {
-//                af =         {
-//                    ownerEmoji = "\Ud83d\Udc26";
-//                    ownerName = Jay;
-//                    sessionReferenceID = "63E9CC48-4EAD-4E0F-92CC-16274352E82A";
-//                };
-//                dbs = 1;
-//                fo = 1;
-//                rid = "94D8C5DB-33DD-4D71-8A4D-7F2AC7F104CD";
-//                sid = "857D15A1-13F9-4C81-AC54-9C5154B5532B";
-//                zid = "_defaultZone";
-//                zoid = "_50125824373cb9a38c4142e6c601eb14";
-//            };
-//        }, AnyHashable("aps"): {
-//            alert =     {
-//                body = "Family Chat Message";
-//                title = "Family Chat";
-//            };
-//            sound = default;
-//        }]
+        //print( "userInfo: \(userInfo)")
+        print( "notification.request.content.categoryIdentifier: \(notification.request.content.categoryIdentifier)")
         
-        if let queryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
-            print( "digested by a CKQueryNotification")
-            print( "notification \(notification)")
-            
-            let recordFields = queryNotification.recordFields
-            print( "recordFields \(recordFields)")
-            
-            //notification.request.content.subtitle = "yack"
-            
-            //recordFields Optional(["ownerName": Jay, "sessionReferenceID": B790B4D8-2011-4E89-B534-1A47DD057767, "ownerEmoji": 🐦])
-            
+        if let notificationCategory = NotificationCategory(rawValue: notification.request.content.categoryIdentifier) {
+            switch notificationCategory {
+            case .LOCAL_TEST_BUCKS_TAB:
+                completionHandler([.alert, .sound, .badge])
+                return
+            case .LOCAL_TEST_CHAT_TAB:
+                completionHandler([.alert, .sound, .badge])
+                return
+            case .LOCAL_TEST_FAMILY_TAB:
+                completionHandler([.alert, .sound, .badge])
+                return
+            case .LOCAL_TEST_YOU_TAB:
+                completionHandler([.alert, .sound, .badge])
+                return
+            }
+        } else {
+            if let queryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+                print( "digested by a CKQueryNotification")
+                print( "notification \(notification)")
+                
+                let recordFields = queryNotification.recordFields
+                print( "recordFields \(recordFields)")
+                
+                //notification.request.content.subtitle = "yack"
+                
+                //recordFields Optional(["ownerName": Jay, "sessionReferenceID": B790B4D8-2011-4E89-B534-1A47DD057767, "ownerEmoji": 🐦])
+                
+                completionHandler([.alert, .sound, .badge])
+                return
+            } else {
+                completionHandler(UNNotificationPresentationOptions(rawValue:0))
+                return
+            }
         }
-        
-        // show the notification alert (banner), and with sound
-        completionHandler([.alert, .sound, .badge])
     }
     
     // User did tap the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("userNotificationCenter.willPresent didReceive")
+        print("userNotificationCenter.didReceive didReceive")
         
         let userInfo = response.notification.request.content.userInfo
 //        print( "title: \(response.notification.request.content.title)")
 //        print( "subtitle: \(response.notification.request.content.subtitle)")
 //        print( "body: \(response.notification.request.content.body)")
-//
 //        print( "userInfo: \(userInfo)")
-        if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
-             if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
+        
+//        switch response.actionIdentifier {
+////        case NotificationActions.HighFive.rawValue:
+////            print("High Five Delivered!")
+//        default:
+//            print( "response.actionIdentifier: \(response.actionIdentifier)")
+//            break
+//        }
+        
+        print( "response.actionIdentifier: \(response.actionIdentifier)")
+        print( "categoryIdentifier: \(response.notification.request.content.categoryIdentifier)")
+        
+        if let notificationCategory = NotificationCategory(rawValue: response.notification.request.content.categoryIdentifier) {
+            
+            switch notificationCategory {
+            case .LOCAL_TEST_BUCKS_TAB:
+                self.appState.goToScreen(deepLink: .tabBucks)
+                completionHandler()
+                return
+            case .LOCAL_TEST_CHAT_TAB:
+                self.appState.goToScreen(deepLink: .tabFamilyChat)
+                completionHandler()
+                return
+            case .LOCAL_TEST_FAMILY_TAB:
+                self.appState.goToScreen(deepLink: .tabFamily)
+                completionHandler()
+                return
+            case .LOCAL_TEST_YOU_TAB:
+                self.appState.goToScreen(deepLink: .tabYou)
+                completionHandler()
+                return
+            }
+        } else {
+            //if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
+            if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
                 processNotification( with: ckQueryNotification )
             }
+            completionHandler()
         }
-//        userNotificationCenter.willPresent didReceive
-//        title: TITLE XXX
-//        subtitle: SUBTITILE YYY
-//        body: Family Chat was created
-//        userInfo: [AnyHashable("ck"): {
-//            ce = 2;
-//            cid = "iCloud.com.jumptack.FamilyKit";
-//            ckuserid = "_50125824373cb9a38c4142e6c601eb14";
-//            nid = "44f3a9f0-bcc6-4913-834c-28014e97bea1";
-//            qry =     {
-//                dbs = 1;
-//                fo = 1;
-//                rid = "1C63E533-24E9-4B99-9317-28F895308868";
-//                sid = "314C3886-0EB9-4B78-A2EA-CD74D8739225";
-//                zid = "_defaultZone";
-//                zoid = "_50125824373cb9a38c4142e6c601eb14";
-//            };
-//        }, AnyHashable("aps"): {
-//            alert =     {
-//                body = "Family Chat was created";
-//                subtitle = "SUBTITILE YYY";
-//                title = "TITLE XXX";
-//            };
-//            sound = default;
-//        }]
-        
-        completionHandler()
-    }
-    
-    func fetchTypeByRecordID( recordID: CKRecord.ID) -> String {
-        return "YACK"
     }
 }
 
 extension AppDelegate {
     
     func processNotification(with queryNotification: CKQueryNotification) {
-//        print( "AppDelegate.presentView")
-//        print( "pushNotificationInfo: \(queryNotification)")
-//
-//        if let recordID = queryNotification.recordID {
-//            let recordName = recordID.recordName
-//            print("recordName \(recordName)")
-//            // TODO Its possible to fetch it and get if from the record Type
-//        }
-//
-//        // check if it is a chat notification
-//        if let recordFields = queryNotification.recordFields {
-//            print( "recordFields \(recordFields)")
-//            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
-//                let ownerName = recordFields["ownerName"] as? String,
-//                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
-//
-//                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
-//                self.appState.goToScreen(deepLink: .tabFamilyChat)
-//            }
-//        }
+        print( "AppDelegate.processNotification")
+        print( "pushNotificationInfo: \(queryNotification)")
         
-        self.appState.processNotification( with: queryNotification)
+        if let recordID = queryNotification.recordID {
+            let recordName = recordID.recordName
+            print("recordName \(recordName)")
+            // TODO Its possible to fetch it and get if from the record Type
+        }
+
+        // check if it is a chat notification
+        if let recordFields = queryNotification.recordFields {
+            print( "recordFields \(recordFields)")
+            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
+                let ownerName = recordFields["ownerName"] as? String,
+                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
+
+                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
+                self.appState.goToScreen(deepLink: .tabFamilyChat)
+            }
+        }
     }
     
 //    AppDelegate.presentView

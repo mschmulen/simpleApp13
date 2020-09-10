@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 import CloudKit
+import FamilyKit
 
 class AppState: ObservableObject {
     
@@ -57,6 +58,7 @@ class AppState: ObservableObject {
 //    }
     
     init(
+        //container: CloudKitContainer
     ) {
         #if targetEnvironment(simulator)
             isSimulator = true
@@ -65,6 +67,19 @@ class AppState: ObservableObject {
             isSimulator = false
             serverConfig = .local
         #endif
+        
+//        switch container {
+//        case .CloudContainer(let container):
+//            self.container = container
+//
+//
+//
+//        case .MockContainer(let container):
+//            self.container = container
+////            deviceService = CKPrivateModelService<CKDeviceModel>(
+////                container: CloudKitContainer.CloudContainer(container)
+////            )
+//        }
     }
     
     private func updateChanges() {
@@ -105,28 +120,6 @@ extension AppState {
         updateChanges()
     }
     
-    func processNotification(with queryNotification: CKQueryNotification) {
-        print( "AppDelegate.presentView")
-        print( "pushNotificationInfo: \(queryNotification)")
-        
-        if let recordID = queryNotification.recordID {
-            let recordName = recordID.recordName
-            print("recordName \(recordName)")
-            // TODO Its possible to fetch it and get if from the record Type
-        }
-        
-        // check if it is a chat notification
-        if let recordFields = queryNotification.recordFields {
-            print( "recordFields \(recordFields)")
-            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
-                let ownerName = recordFields["ownerName"] as? String,
-                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
-                
-                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
-                goToScreen(deepLink: .tabFamilyChat)
-            }
-        }
-    }
 }
 
 // MARK: - Purchase Services

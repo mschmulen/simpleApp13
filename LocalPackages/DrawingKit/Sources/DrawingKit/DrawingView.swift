@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 public struct DrawingState: Codable {
     public var layers: [ScribbleLayer]
     public var scribbles: [Scribble]
@@ -38,7 +39,7 @@ public struct DrawingState: Codable {
 //    }
 //}
 
-
+@available(iOS 13.0, *)
 public struct DrawingView:View {
     
     @Binding var drawingState: DrawingState
@@ -145,6 +146,7 @@ public struct DrawingView:View {
     }
 }
 
+@available(iOS 13.0, *)
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
         DrawingView(

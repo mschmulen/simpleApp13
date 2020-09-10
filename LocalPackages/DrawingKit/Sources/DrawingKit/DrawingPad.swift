@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 struct DrawingPad: View {
     
     @Binding var drawingState: DrawingState

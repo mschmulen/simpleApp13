@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 public struct Scribble: Codable {
     var points: [CGPoint] = [CGPoint]()
 }
 
+@available(iOS 13.0, *)
 public struct ScribbleLayer: Codable, Identifiable {
     public let id:UUID = UUID()
     var scribbles: [Scribble] = [Scribble]()
@@ -24,6 +26,7 @@ public struct ScribbleLayer: Codable, Identifiable {
     }
 }
 
+@available(iOS 13.0, *)
 struct LayerDrawingPad: View {
     
     var layer: ScribbleLayer

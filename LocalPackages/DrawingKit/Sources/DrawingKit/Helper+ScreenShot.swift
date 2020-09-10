@@ -10,6 +10,7 @@ import SwiftUI
 
 // https://github.com/rushairer/ScreenshotableView/blob/master/Sources/ScreenshotableView/View%2BSnapshot.swift
 
+@available(iOS 13.0, *)
 public extension View {
     func takeScreenshot(frame:CGRect, afterScreenUpdates: Bool) -> UIImage {
         let hosting = UIHostingController(rootView: self)
@@ -19,6 +20,7 @@ public extension View {
     }
 }
 
+@available(iOS 13.0, *)
 public extension UIView {
     func takeScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, 0)
@@ -79,6 +81,7 @@ public extension UIView {
 //}
 
 
+@available(iOS 13.0, *)
 public struct ScreenshotableView<Content: View>: View {
     @Binding var shotting: Bool
     var completed: (UIImage) -> Void

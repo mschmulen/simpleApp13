@@ -9,6 +9,7 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
+@available(iOS 13.0, *)
 struct DrawingControls: View {
     
     @Binding var drawingState: DrawingState
@@ -93,14 +94,14 @@ struct DrawingControls: View {
 }
 
 
-
+@available(iOS 13.0, *)
 struct ColorInfo: Identifiable {
     let id: Int
     let displayName: String
     let color: Color
 }
 
-
+@available(iOS 13.0, *)
 enum DrawingColor {
     
     case swiftColor( Color )
@@ -116,6 +117,7 @@ enum DrawingColor {
     }
 }
 
+@available(iOS 13.0, *)
 extension DrawingColor : Codable {
     
     enum Key: CodingKey {
@@ -177,6 +179,7 @@ extension DrawingColor : Codable {
     }
 }
 
+@available(iOS 13.0, *)
 extension Color {
 
     func uiColor() -> UIColor {

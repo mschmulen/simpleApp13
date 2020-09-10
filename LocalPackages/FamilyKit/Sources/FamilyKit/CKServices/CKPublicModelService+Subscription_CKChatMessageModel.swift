@@ -36,8 +36,11 @@ extension CKPrivateModelService where T == CKChatMessageModel {
         notificationInfo.alertBody = message
         notificationInfo.soundName = "default"
         notificationInfo.shouldBadge = false // badge count
-        subscription.notificationInfo = notificationInfo
+        //notificationInfo.categoryIdentifier =
+        notificationInfo.category = "CategoryFamilyChat"
+        //notificationInfo.actionIdentifier
         
+        subscription.notificationInfo = notificationInfo
         
         
         self.container.privateCloudDatabase.save(subscription) { (savedSubscription, error) in
