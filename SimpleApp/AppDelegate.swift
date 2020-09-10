@@ -172,7 +172,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         //print( "userInfo: \(userInfo)")
         print( "notification.request.content.categoryIdentifier: \(notification.request.content.categoryIdentifier)")
         
-        if let notificationCategory = NotificationCategory(rawValue: notification.request.content.categoryIdentifier) {
+        if let notificationCategory = LocalNotificationCategory(rawValue: notification.request.content.categoryIdentifier) {
             switch notificationCategory {
             case .openBucksTab:
                 completionHandler([.alert, .sound, .badge])
@@ -232,7 +232,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print( "response.actionIdentifier: \(response.actionIdentifier)")
         print( "categoryIdentifier: \(response.notification.request.content.categoryIdentifier)")
         
-        if let notificationCategory = NotificationCategory(rawValue: response.notification.request.content.categoryIdentifier) {
+        // check for LocalNotification processing
+        if let notificationCategory = LocalNotificationCategory(rawValue: response.notification.request.content.categoryIdentifier) {
+            
+            print( "notificationCategory \(notificationCategory)")
             
             switch notificationCategory {
             case .openBucksTab:
@@ -272,7 +275,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         } else {
             //if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
             if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {
-                processNotification( with: ckQueryNotification )
+                processCKQueryNotification( with: ckQueryNotification )
             }
             completionHandler()
         }
@@ -281,27 +284,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate {
     
-    func processNotification(with queryNotification: CKQueryNotification) {
+    func processCKQueryNotification(with queryNotification: CKQueryNotification) {
         print( "AppDelegate.processNotification")
         print( "pushNotificationInfo: \(queryNotification)")
-        
         if let recordID = queryNotification.recordID {
             let recordName = recordID.recordName
             print("recordName \(recordName)")
-            // TODO Its possible to fetch it and get if from the record Type
         }
+        
+        if let categoryString = queryNotification.category, let familyKitCategory = FamilyKitCKNotificationCategory(rawValue: categoryString) {
+            print( "category \(categoryString)")
+            switch familyKitCategory {
+            case .familyKitCategoryFamilyChatCreate:
+                // check if it is a chat notification
+                if let recordFields = queryNotification.recordFields {
+                    print( "recordFields \(recordFields)")
+                    if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
+                        let ownerName = recordFields["ownerName"] as? String,
+                        let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
 
-        // check if it is a chat notification
-        if let recordFields = queryNotification.recordFields {
-            print( "recordFields \(recordFields)")
-            if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
-                let ownerName = recordFields["ownerName"] as? String,
-                let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
-
-                print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
-                self.appState.goToScreen(deepLink: .tabFamilyChat)
+                        print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
+                        self.appState.goToScreen(deepLink: .tabFamilyChat)
+                    }
+                }
             }
+        } else {
+            print( "failed to resovle the FamilyKitCKNotificationCategory from queryNotification.category: \(queryNotification.category ?? "~")")
         }
+        
     }
     
 //    AppDelegate.presentView

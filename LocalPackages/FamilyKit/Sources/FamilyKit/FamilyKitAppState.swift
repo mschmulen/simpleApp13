@@ -27,7 +27,7 @@ public class FamilyKitAppState: ObservableObject {
     @Published public private (set) var playerService: CKPrivateModelService<CKPlayerModel>
     
     @Published public private (set) var currentPlayerModel: CKPlayerModel?
-
+    
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
@@ -117,14 +117,26 @@ extension FamilyKitAppState {
         chatSessionService.fetchByName(name:"Family Chat") { fetchResult in
             switch fetchResult {
             case .success(let fetchResultModel):
-                
                 if let sessionModelIDString = fetchResultModel.recordID?.recordName {
                     self.chatService.subscribeToChatCreation(
                         sessionReferenceIDString: sessionModelIDString,
-                        message: "Family Chat Message"
-                    )
+                        message: "New Family Chat Message") { (result) in
+                            switch result {
+                            case .success(_):
+                                print( "sucess in subscripe")
+                            case .failure(let error):
+                                print( "falure in subscribe \(error)")
+                                
+//                                self.chatService.fetchAndDeleteAllSubscriptions { (result) in
+//                                    self.chatService.subscribeToChatCreation(
+//                                        sessionReferenceIDString: sessionModelIDString,
+//                                        message: "New Family Chat Message") { (result) in
+//                                            print( "try again result \(result)")
+//                                    }
+//                                }
+                            }
+                    }
                 }
-                
             case .failure(_):
                 print("failed to find it ... who cares, get it on the next try")
             }

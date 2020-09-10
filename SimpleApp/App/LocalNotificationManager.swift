@@ -10,7 +10,7 @@ import Foundation
 import UserNotifications
 
 
-enum NotificationCategory: String {
+enum LocalNotificationCategory: String {
     case openBucksTab
     case openChatTab
     case openFamilyTab
@@ -21,7 +21,7 @@ enum NotificationCategory: String {
 struct LocalNotification {
     var id: String
     var title: String
-    var category: NotificationCategory
+    var category: LocalNotificationCategory
     
     var userInfo: [String: AnyObject]?
     var subTitle: String?
@@ -44,7 +44,7 @@ class LocalNotificationManager {
     
     func addNotification(
         title: String,
-        category: NotificationCategory,
+        category: LocalNotificationCategory,
         userInfo: [String: AnyObject]?
     ) -> Void {
         notifications.append(

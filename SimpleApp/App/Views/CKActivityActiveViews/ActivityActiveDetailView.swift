@@ -68,9 +68,9 @@ struct CKActivityActiveDetailView: View {
                         }
                 }
                 
-//                if self.model.status == .completed {
-//                    verifyButton
-//                }
+                //                if self.model.status == .completed {
+                //                    verifyButton
+                //                }
                 
             }// end if is adult
             else {
@@ -136,7 +136,7 @@ struct CKActivityActiveDetailView: View {
                                 print( "update callback")
                                 self.fetchChatSession()
                             })
-                            .frame(height: 200)
+                                .frame(height: 200)
                         }
                         
                     } else if self.model.moduleType == .audio {
@@ -166,7 +166,7 @@ struct CKActivityActiveDetailView: View {
                                 print( "update callback")
                                 self.fetchChatSession()
                             })
-                                //.frame(height: 200)
+                            //.frame(height: 200)
                         }
                         
                     } else if self.model.moduleType == .chat {
@@ -191,7 +191,12 @@ struct CKActivityActiveDetailView: View {
                 }
                 
                 // reset the deep link :)
-                self.appState.activeDeepLink = .none
+                switch self.appState.activeDeepLink {
+                case .tabFamily(_, _) :
+                    self.appState.activeDeepLink = .none
+                default:
+                    break
+                }
         }
     }
     

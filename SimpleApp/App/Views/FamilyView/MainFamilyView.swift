@@ -197,7 +197,7 @@ struct MainFamilyView: View {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-//                 listViewSimple
+                // listViewSimple
                 
                 listViewFancy
                 
@@ -257,12 +257,8 @@ struct MainFamilyView: View {
         
         switch appState.activeDeepLink {
         case .none:
-            print( "none !")
             break
         case .tabFamily(let recordName, let recordType):
-            print( "we have a deep link \(recordType)")
-            print( "we have a deep link \(recordName)")
-            
             if let recordType = recordType, let recordName = recordName {
                 // self.showActivityIndicator = true
                 let ckRecordID = CKRecord.ID(recordName: recordName)
@@ -271,20 +267,17 @@ struct MainFamilyView: View {
                     switch result {
                     case .success(let model):
                         print( "found the model \(model)")
-                        //self.message = "SUCCESS \(model.name ?? "~") "
                         self.deepLinkModel = model
                     case .failure(let error):
                         print( "errors")
-                        //self.message = "ERROR \(error)"
                     }
                     //self.showActivityIndicator = false
                 }
             }
         default:
-            print( "break")
             break
         }
-    }
+    }//end check for deeplinks
 }
 
 struct MainFamilyView_Previews: PreviewProvider {

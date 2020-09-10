@@ -8,8 +8,11 @@
 
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct NotificationDevView: View {
+    
+    private var chatService: CKPrivateModelService<CKChatMessageModel> = CKPrivateModelService<CKChatMessageModel>(container: CloudKitContainer.CloudContainer(CKContainer(identifier: CKContainerIdentifier)))
     
     var body: some View {
         List{
@@ -17,7 +20,7 @@ struct NotificationDevView: View {
                 let manager = LocalNotificationManager()
                 manager.addNotification(
                     title: "LOCAL_TEST_BUCKS_TAB Notification Test",
-                    category: NotificationCategory.openBucksTab,
+                    category: LocalNotificationCategory.openBucksTab,
                     userInfo: [String:AnyObject]()
                 )
                 manager.schedule()
@@ -29,7 +32,7 @@ struct NotificationDevView: View {
                 let manager = LocalNotificationManager()
                 manager.addNotification(
                     title: "LOCAL_TEST_YOU_TAB Notification Test",
-                    category: NotificationCategory.openYouTab,
+                    category: LocalNotificationCategory.openYouTab,
                     userInfo: [String : AnyObject]()
                 )
                 manager.schedule()
@@ -41,7 +44,7 @@ struct NotificationDevView: View {
                 let manager = LocalNotificationManager()
                 manager.addNotification(
                     title: "LOCAL_TEST_CHAT_TAB Notification Test",
-                    category: NotificationCategory.openChatTab,
+                    category: LocalNotificationCategory.openChatTab,
                     userInfo: [String : AnyObject]()
                 )
                 manager.schedule()
@@ -53,13 +56,22 @@ struct NotificationDevView: View {
                 let manager = LocalNotificationManager()
                 manager.addNotification(
                     title: "LOCAL_TEST_FAMILY_TAB Notification Test",
-                    category: NotificationCategory.openFamilyTab,
+                    category: LocalNotificationCategory.openFamilyTab,
                     userInfo: [String : AnyObject]()
                 )
                 manager.schedule()
             }) {
                 Text("DeepLink Family Tab")
-            }            
+            }
+            
+            Button(action: {
+                self.chatService.fetchAndDeleteAllSubscriptions { (result) in
+                    print( "result fetchAndDeleteAllSubscriptions \(result)")
+                }
+            }) {
+                Text("DELETE ALL SUBSCRIPTIONS")
+            }
+            
         }
     }
 }

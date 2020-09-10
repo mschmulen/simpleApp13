@@ -49,7 +49,7 @@ struct CKActivityDescriptionListView: View {
                                 userInfo["RECORD_TYPE"] =  CKActivityDescriptionModel.recordName as AnyObject
                                 manager.addNotification(
                                     title: "deepLinkModalView CKActivityDescriptionModel",
-                                    category: NotificationCategory.deepLinkModalView,
+                                    category: LocalNotificationCategory.deepLinkModalView,
                                     userInfo: userInfo
                                 )
                                 manager.schedule()
