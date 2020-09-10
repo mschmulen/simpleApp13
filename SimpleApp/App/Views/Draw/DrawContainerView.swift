@@ -116,7 +116,7 @@ struct DrawContainerView: View {
                             self.model.activityAsset = activityAsset
                         }
                         //self.presentationMode.wrappedValue.dismiss()
-                        self.appState.goToScreen(deepLink: .tabFamily)
+                        self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
                     }
                 }
             }

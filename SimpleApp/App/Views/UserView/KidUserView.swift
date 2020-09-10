@@ -37,10 +37,28 @@ struct KidUserView: View {
                 }
             }
             
-            Section(header: Text(" Dev Stuff")) {
+            Section(header: Text("Dev Stuff")) {
                 NavigationLink(destination: NotificationDevView()) {
                     Text("NotificationDevView")
                         .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: CKActivityActiveListView()) {
+                    Text("Show Active Activities")
+                        .foregroundColor(.blue)
+                }
+                
+                if self.familyKitAppState.userService.ckAccountStatus == .available {
+                    Text("CloudKit is available")
+                    VStack {
+                        Text("appleIDCredentialIdentifier:")
+                        Text("\(self.familyKitAppState.userService.localUserDefaults_appleIDCredentialIdentifier ?? "")")
+                    }
+                } else {
+                    VStack {
+                        Text("CloudKit is NOT available")
+                        Text("\(self.familyKitAppState.userService.ckAccountStatus.friendlyString)")
+                    }
                 }
             }
             

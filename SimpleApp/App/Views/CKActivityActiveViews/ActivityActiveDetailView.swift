@@ -189,6 +189,9 @@ struct CKActivityActiveDetailView: View {
                 } else {
                     self.fetchChatSession()
                 }
+                
+                // reset the deep link :)
+                self.appState.activeDeepLink = .none
         }
     }
     

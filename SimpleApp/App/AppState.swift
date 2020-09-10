@@ -40,7 +40,7 @@ class AppState: ObservableObject {
 
         case tabYou
         case tabFamilyChat
-        case tabFamily
+        case tabFamily(recordName: String?, recordType: String?)
         case tabBucks
         
         case modalViewRecord ( recordName: String, recordType: String )
@@ -100,6 +100,7 @@ extension AppState {
             topView = .mainView
             selectedTab = TabViewIndex.familyChat.rawValue
         case .tabFamily:
+            activeDeepLink = deepLink
             topView = .mainView
             selectedTab = TabViewIndex.family.rawValue
         case .tabBucks:

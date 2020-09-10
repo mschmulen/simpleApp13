@@ -244,7 +244,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 completionHandler()
                 return
             case .openFamilyTab:
-                self.appState.goToScreen(deepLink: .tabFamily)
+                let recordName = userInfo["RECORD_NAME"] as? String
+                let recordType = userInfo["RECORD_TYPE"] as? String
+                self.appState.goToScreen(deepLink: .tabFamily(recordName: recordName, recordType: recordType))
                 completionHandler()
                 return
             case .openYouTab:

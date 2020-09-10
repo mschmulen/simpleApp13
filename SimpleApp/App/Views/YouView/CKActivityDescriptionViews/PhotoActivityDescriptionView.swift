@@ -116,7 +116,7 @@ struct PhotoActivityDescriptionView: View {
                     self.activityDescriptionService.fetchSingle( model: self.model) { result in
                         DispatchQueue.main.async {
                             self.statusMessage = "Done"
-                            self.appState.goToScreen(deepLink: .tabFamily)
+                            self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
                         }
                     }
                 }

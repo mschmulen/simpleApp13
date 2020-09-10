@@ -162,8 +162,38 @@ struct MainFamilyView: View {
         }//end List
     } //end listViewSimple
     
+    @State var deepLinkModel : CKActivityModel?
+    
+//    func view(for destination: Destination) -> some View {
+//        switch destination {
+//            // ...
+//        }
+//    }
+    
     var body: some View {
         NavigationView {
+            
+            if deepLinkModel != nil {
+//                NavigationLink(
+//                    destination: CKActivityActiveDetailView(
+//                    model: deepLinkModel!,
+//                    localActivityStatus: deepLinkModel!.status,
+//                    showStatusButtons: true
+//                    ),
+//                               isActive: self.isActiveBinding(for: deepLinkModel)
+//                )
+                
+                NavigationLink(destination: CKActivityActiveDetailView(
+                    model: deepLinkModel!,
+                    localActivityStatus: deepLinkModel!.status,
+                    showStatusButtons: true
+                    )
+                    ,tag: deepLinkModel!,
+                     selection: $deepLinkModel) {
+                        EmptyView()
+                }
+            }
+            
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
@@ -175,7 +205,7 @@ struct MainFamilyView: View {
                     .font(.caption)
             }//end VStack
                 .onAppear(perform: {
-                    //self.activities = self.privateActiveChoreService.models
+                    self.checkForDeepLink()
                 })
                 .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                     print("Notification.Name(CloudKitModelService) recieved")
@@ -219,6 +249,40 @@ struct MainFamilyView: View {
             HStack {
                 Text("change player")
             }
+        }
+    }
+    
+    private func checkForDeepLink() {
+        print( "check for deep link")
+        
+        switch appState.activeDeepLink {
+        case .none:
+            print( "none !")
+            break
+        case .tabFamily(let recordName, let recordType):
+            print( "we have a deep link \(recordType)")
+            print( "we have a deep link \(recordName)")
+            
+            if let recordType = recordType, let recordName = recordName {
+                // self.showActivityIndicator = true
+                let ckRecordID = CKRecord.ID(recordName: recordName)
+                let recordReference =  CKRecord.Reference(recordID: ckRecordID, action: .none)
+                activityService.fetchByReference(modelReference: recordReference) { (result) in
+                    switch result {
+                    case .success(let model):
+                        print( "found the model \(model)")
+                        //self.message = "SUCCESS \(model.name ?? "~") "
+                        self.deepLinkModel = model
+                    case .failure(let error):
+                        print( "errors")
+                        //self.message = "ERROR \(error)"
+                    }
+                    //self.showActivityIndicator = false
+                }
+            }
+        default:
+            print( "break")
+            break
         }
     }
 }

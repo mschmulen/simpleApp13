@@ -8,7 +8,7 @@
 
 import SwiftUI
 import FamilyKit
-
+/*
 struct CKUserView: View {
     
     @Environment(\.window) var window: UIWindow?
@@ -211,3 +211,4 @@ struct CKUserView: View {
     
 }
 
+*/

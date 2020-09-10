@@ -59,50 +59,7 @@ struct NotificationDevView: View {
                 manager.schedule()
             }) {
                 Text("DeepLink Family Tab")
-            }
-            
-            
-            Button(action: {
-                let manager = LocalNotificationManager()
-                
-                var userInfo = [String : AnyObject]()
-                userInfo["RECORD_NAME"] = "C41EF008-94CD-46BA-9763-7D55B95B93A9" as AnyObject
-                userInfo["RECORD_TYPE"] = CKActivityModel.recordName as AnyObject
-                manager.addNotification(
-                    title: "deepLinkActivity CKActivityModel",
-                    category: NotificationCategory.deepLinkModalView,
-                    userInfo: userInfo
-                )
-                manager.schedule()
-            }) {
-                VStack {
-                    Text("deepLinkModalView ChoreActive")
-                    Text("C41EF008-94CD-46BA-9763-7D55B95B93A9")
-                }
-            }
-            
-            Button(action: {
-                let manager = LocalNotificationManager()
-                
-                var userInfo = [String : AnyObject]()
-                userInfo["RECORD_NAME"] = "A9BD72F4-9468-42D2-A6E1-53B007524BC6" as AnyObject
-                userInfo["RECORD_TYPE"] = CKActivityDescriptionModel.recordName as AnyObject
-                
-                manager.addNotification(
-                    title: "deepLinkModalView CKActivityDescriptionModel",
-                    category: NotificationCategory.deepLinkModalView,
-                    userInfo: userInfo
-                )
-                manager.schedule()
-            }) {
-                VStack {
-                    Text("deepLinkActivityDescription Chore")
-                    Text("A9BD72F4-9468-42D2-A6E1-53B007524BC6")
-                }
-            }
-            
-            
-            
+            }            
         }
     }
 }

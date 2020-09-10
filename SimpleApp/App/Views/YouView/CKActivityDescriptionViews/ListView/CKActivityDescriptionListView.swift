@@ -43,10 +43,19 @@ struct CKActivityDescriptionListView: View {
                     }.contextMenu {
                         Button(action: {
                             if let recordName = model.recordID?.recordName {
-                                self.deepLinkNotification(recordName: recordName)
+                                let manager = LocalNotificationManager()
+                                var userInfo = [String : AnyObject]()
+                                userInfo["RECORD_NAME"] = recordName as AnyObject
+                                userInfo["RECORD_TYPE"] =  CKActivityDescriptionModel.recordName as AnyObject
+                                manager.addNotification(
+                                    title: "deepLinkModalView CKActivityDescriptionModel",
+                                    category: NotificationCategory.deepLinkModalView,
+                                    userInfo: userInfo
+                                )
+                                manager.schedule()
                             }
                         }) {
-                            Text("Make Notification")
+                            Text("Modal Notification")
                             Image(systemName: "timer")
                         }
                     }
@@ -82,19 +91,6 @@ struct CKActivityDescriptionListView: View {
                 }
             }
         }
-    }
-    
-    func deepLinkNotification(recordName: String ) {
-        let manager = LocalNotificationManager()
-        var userInfo = [String : AnyObject]()
-        userInfo["RECORD_NAME"] = recordName as AnyObject
-        userInfo["RECORD_TYPE"] =  CKActivityDescriptionModel.recordName as AnyObject
-        manager.addNotification(
-            title: "deepLinkModalView CKActivityDescriptionModel",
-            category: NotificationCategory.deepLinkModalView,
-            userInfo: userInfo
-        )
-        manager.schedule()
     }
 }
 

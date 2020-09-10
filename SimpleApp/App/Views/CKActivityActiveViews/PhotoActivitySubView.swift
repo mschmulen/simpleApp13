@@ -149,7 +149,7 @@ struct PhotoActivitySubView: View {
                     if let resultAssetImage = updatedModel.resultAssetImage {
                         self.model.resultAssetImage = resultAssetImage
                     }
-                    self.appState.goToScreen(deepLink: .tabFamily)
+                    self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
                 }
             }
         }

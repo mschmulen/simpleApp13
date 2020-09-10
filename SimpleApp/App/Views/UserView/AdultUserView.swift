@@ -45,6 +45,9 @@ struct AdultUserView: View {
                     Text("Show Family")
                         .foregroundColor(.blue)
                 }
+            }
+            
+            Section(header: Text("Dev Stuff")) {
                 
                 NavigationLink(destination: CKActivityDescriptionListView()) {
                     Text("Show Activity Descriptions")
@@ -55,13 +58,23 @@ struct AdultUserView: View {
                     Text("Show Active Activities")
                         .foregroundColor(.blue)
                 }
-            }
-            
-            Section(header: Text(" Dev Stuff")) {
                 
                 NavigationLink(destination: NotificationDevView()) {
                     Text("NotificationDevView")
                         .foregroundColor(.blue)
+                }
+                
+                if self.familyKitAppState.userService.ckAccountStatus == .available {
+                    Text("CloudKit is available")
+                    VStack {
+                        Text("appleIDCredentialIdentifier:")
+                        Text("\(self.familyKitAppState.userService.localUserDefaults_appleIDCredentialIdentifier ?? "")")
+                    }
+                } else {
+                    VStack {
+                        Text("CloudKit is NOT available")
+                        Text("\(self.familyKitAppState.userService.ckAccountStatus.friendlyString)")
+                    }
                 }
                 
                 Button(action: {
@@ -74,25 +87,6 @@ struct AdultUserView: View {
                     Text("PurchaseView")
                         .foregroundColor(.blue)
                 }
-                
-                // Dev stuff
-                if self.familyKitAppState.userService.ckAccountStatus == .available {
-                    Text("CloudKit is available")
-                    //                        if self.appState.userService.currentUser != nil {
-                    //                            Text("\(self.appState.userService.currentUser?.recordID?.recordName ?? "~")")
-                    //                        }
-                    VStack {
-                        Text("appleIDCredentialIdentifier:")
-                        Text("\(self.familyKitAppState.userService.localUserDefaults_appleIDCredentialIdentifier ?? "")")
-                    }
-                } else {
-                    VStack {
-                        Text("CloudKit is NOT available")
-                        Text("\(self.familyKitAppState.userService.ckAccountStatus.friendlyString)")
-                    }
-                }
-                
-                
                 
 //                if familyKitAppState.isSimulator == false {
 //                    // Notifications
