@@ -11,21 +11,25 @@ import UserNotifications
 
 
 enum NotificationCategory: String {
-    case LOCAL_TEST_BUCKS_TAB
-    case LOCAL_TEST_CHAT_TAB
-    case LOCAL_TEST_FAMILY_TAB
-    case LOCAL_TEST_YOU_TAB
+    case openBucksTab
+    case openChatTab
+    case openFamilyTab
+    case openYouTab
+    case deepLinkModalView
 }
 
-struct Notification {
+struct LocalNotification {
     var id: String
     var title: String
     var category: NotificationCategory
+    
+    var userInfo: [String: AnyObject]?
     var subTitle: String?
 }
 
 class LocalNotificationManager {
-    var notifications = [Notification]()
+    
+    var notifications = [LocalNotification]()
     
    func requestPermission() -> Void {
         UNUserNotificationCenter
@@ -40,13 +44,15 @@ class LocalNotificationManager {
     
     func addNotification(
         title: String,
-        category: NotificationCategory
+        category: NotificationCategory,
+        userInfo: [String: AnyObject]?
     ) -> Void {
         notifications.append(
-            Notification(
+            LocalNotification(
                 id: UUID().uuidString,
                 title: title,
-                category: category
+                category: category,
+                userInfo: userInfo
             )
         )
     }
@@ -57,6 +63,9 @@ class LocalNotificationManager {
             content.title = notification.title
             if let subTitle = notification.subTitle {
                 content.subtitle = subTitle
+            }
+            if let userInfo = notification.userInfo {
+                content.userInfo = userInfo
             }
             content.categoryIdentifier =  notification.category.rawValue
             

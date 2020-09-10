@@ -57,56 +57,18 @@ struct AdultUserView: View {
                 }
             }
             
-            Section(header: Text("Dev notificaiton stuff ")) {
-                Button(action: {
-                    let manager = LocalNotificationManager()
-                    manager.addNotification(
-                        title: "LOCAL_TEST_BUCKS_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_BUCKS_TAB
-                    )
-                    manager.schedule()
-                }) {
-                    Text("DeepLink BuckStore")
-                }
-                
-                Button(action: {
-                    let manager = LocalNotificationManager()
-                    manager.addNotification(
-                        title: "LOCAL_TEST_YOU_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_YOU_TAB
-                    )
-                    manager.schedule()
-                }) {
-                    Text("DeepLink You tab")
-                }
-                
-                Button(action: {
-                    let manager = LocalNotificationManager()
-                    manager.addNotification(
-                        title: "LOCAL_TEST_CHAT_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_CHAT_TAB
-                    )
-                    manager.schedule()
-                }) {
-                    Text("DeepLink Family Chat")
-                }
-                
-                Button(action: {
-                    let manager = LocalNotificationManager()
-                    manager.addNotification(
-                        title: "LOCAL_TEST_FAMILY_TAB Notification Test", category: NotificationCategory.LOCAL_TEST_FAMILY_TAB
-                    )
-                    manager.schedule()
-                }) {
-                    Text("DeepLink Family Tab")
-                }
-            }
-            
             Section(header: Text(" Dev Stuff")) {
+                
+                NavigationLink(destination: NotificationDevView()) {
+                    Text("NotificationDevView")
+                        .foregroundColor(.blue)
+                }
                 
                 Button(action: {
                     self.familyKitAppState.resetAllFamilyBucks()
                 }) {
                     Text("Reset All FamilyBucks")
                 }
-                
                 
                 NavigationLink(destination: PurchaseView()) {
                     Text("PurchaseView")

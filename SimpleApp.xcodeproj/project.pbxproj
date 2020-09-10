@@ -51,6 +51,8 @@
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */; };
+		768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9295250AAF4C00DB8818 /* NotificationDevView.swift */; };
+		768C9298250ABE6100DB8818 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9297250ABE6100DB8818 /* ModalView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76B0F4E225013430006774C0 /* StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* StoreItemDefinitionDetailView.swift */; };
@@ -171,6 +173,8 @@
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		768C9295250AAF4C00DB8818 /* NotificationDevView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDevView.swift; sourceTree = "<group>"; };
+		768C9297250ABE6100DB8818 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				7601814D24C4A51C00B339E4 /* App */,
 				7601811624C4A4B400B339E4 /* AppDelegate.swift */,
 				7601811824C4A4B400B339E4 /* SceneDelegate.swift */,
+				768C9297250ABE6100DB8818 /* ModalView.swift */,
 				7601811D24C4A4B400B339E4 /* ContentView.swift */,
 				7601811F24C4A4B500B339E4 /* Assets.xcassets */,
 				7601812424C4A4B500B339E4 /* LaunchScreen.storyboard */,
@@ -348,6 +353,7 @@
 				76208B7F24D60051001F46E2 /* PlayerDetailView.swift */,
 				76EDF11024E03CDE00C68408 /* PlayersListView.swift */,
 				7601817024C54B8800B339E4 /* PurchaseView.swift */,
+				768C9295250AAF4C00DB8818 /* NotificationDevView.swift */,
 			);
 			path = UserView;
 			sourceTree = "<group>";
@@ -728,6 +734,7 @@
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
+				768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */,
 				76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */,
 				76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
@@ -780,6 +787,7 @@
 				7601811C24C4A4B400B339E4 /* SimpleApp.xcdatamodeld in Sources */,
 				76241AC124F6CE5B00788592 /* ChatPeekView.swift in Sources */,
 				76C2FE0324DB9B9000E030C2 /* CKActivityActiveRowView.swift in Sources */,
+				768C9298250ABE6100DB8818 /* ModalView.swift in Sources */,
 				76208B9624D70AD6001F46E2 /* CKActivityDescriptionDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

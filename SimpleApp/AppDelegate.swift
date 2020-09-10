@@ -174,16 +174,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         if let notificationCategory = NotificationCategory(rawValue: notification.request.content.categoryIdentifier) {
             switch notificationCategory {
-            case .LOCAL_TEST_BUCKS_TAB:
+            case .openBucksTab:
                 completionHandler([.alert, .sound, .badge])
                 return
-            case .LOCAL_TEST_CHAT_TAB:
+            case .openChatTab:
                 completionHandler([.alert, .sound, .badge])
                 return
-            case .LOCAL_TEST_FAMILY_TAB:
+            case .openFamilyTab:
                 completionHandler([.alert, .sound, .badge])
                 return
-            case .LOCAL_TEST_YOU_TAB:
+            case .openYouTab:
+                completionHandler([.alert, .sound, .badge])
+                return
+            case .deepLinkModalView:
                 completionHandler([.alert, .sound, .badge])
                 return
             }
@@ -232,23 +235,38 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if let notificationCategory = NotificationCategory(rawValue: response.notification.request.content.categoryIdentifier) {
             
             switch notificationCategory {
-            case .LOCAL_TEST_BUCKS_TAB:
+            case .openBucksTab:
                 self.appState.goToScreen(deepLink: .tabBucks)
                 completionHandler()
                 return
-            case .LOCAL_TEST_CHAT_TAB:
+            case .openChatTab:
                 self.appState.goToScreen(deepLink: .tabFamilyChat)
                 completionHandler()
                 return
-            case .LOCAL_TEST_FAMILY_TAB:
+            case .openFamilyTab:
                 self.appState.goToScreen(deepLink: .tabFamily)
                 completionHandler()
                 return
-            case .LOCAL_TEST_YOU_TAB:
+            case .openYouTab:
                 self.appState.goToScreen(deepLink: .tabYou)
                 completionHandler()
                 return
-            }
+            case .deepLinkModalView:
+                if let recordName = userInfo["RECORD_NAME"] as? String,
+                    let recordType = userInfo["RECORD_TYPE"] as? String {
+                    
+                    self.appState.goToScreen(deepLink:
+                        .modalViewRecord(
+                            recordName: recordName,
+                            recordType: recordType
+                        )
+                    )
+                    completionHandler()
+                } else {
+                    print( "bad data")
+                    completionHandler()
+                }
+            }//end switch
         } else {
             //if let ckNotification = CKNotification(fromRemoteNotificationDictionary: userInfo ) {
             if let ckQueryNotification = CKQueryNotification(fromRemoteNotificationDictionary: userInfo) {

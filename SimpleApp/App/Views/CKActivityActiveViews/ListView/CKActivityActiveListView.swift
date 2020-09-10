@@ -37,6 +37,15 @@ struct CKActivityActiveListView: View {
                         )
                     ){
                         CKActivityActiveItemView(model: model)
+                    }.contextMenu {
+                        Button(action: {
+                            if let recordName = model.recordID?.recordName {
+                                self.deepLinkNotification(recordName: recordName)
+                            }
+                        }) {
+                            Text("Make Notification")
+                            Image(systemName: "timer")
+                        }
                     }
                 }//end ForEach
                     .onDelete(perform: deletePrivate)
@@ -70,6 +79,20 @@ struct CKActivityActiveListView: View {
             }
         }
     }
+    
+    func deepLinkNotification(recordName: String ) {
+        let manager = LocalNotificationManager()
+        var userInfo = [String : AnyObject]()
+        userInfo["RECORD_NAME"] = recordName as AnyObject
+        userInfo["RECORD_TYPE"] =  CKActivityModel.recordName as AnyObject
+        manager.addNotification(
+            title: "deepLinkModalView CKActivityDescriptionModel",
+            category: NotificationCategory.deepLinkModalView,
+            userInfo: userInfo
+        )
+        manager.schedule()
+    }
+    
 }
 
 struct CKChoreActiveListView_Previews: PreviewProvider {

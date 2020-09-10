@@ -11,7 +11,7 @@ import FamilyKit
 enum TopView {
     case mainView
     case purchaseView
-    //case modalView
+    case modalView
 }
 
 enum TabViewIndex: Int {
@@ -60,10 +60,19 @@ struct ContentView: View {
                         .font(.caption)
                 }
             } else {
-                if appState.topView == .mainView {
+                
+                if appState.topView == .modalView {
+                    ModalView()
+                        .environment(\.window, window)
+                        .environmentObject(appState)
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(activityDescriptionService)
+                        .environmentObject(activityService)
+                }
+                else if appState.topView == .mainView {
                     
                     TabView(selection: $appState.selectedTab) {
-//                    TabView(selection: $selectedTab) {
+                        //                    TabView(selection: $selectedTab) {
                         YouView()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -200,16 +209,3 @@ struct iCloudSheetView: View {
     }
 }
 
-struct ModalView: View {
-    
-    var message: String
-    
-    var body: some View {
-        VStack {
-            Text("MODAL VIEW")
-            Text("\(message)")
-            Text("MODAL VIEW")
-            
-        }
-    }
-}

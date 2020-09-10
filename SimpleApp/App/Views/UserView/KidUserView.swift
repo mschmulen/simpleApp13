@@ -36,6 +36,14 @@ struct KidUserView: View {
                         .foregroundColor(.blue)
                 }
             }
+            
+            Section(header: Text(" Dev Stuff")) {
+                NavigationLink(destination: NotificationDevView()) {
+                    Text("NotificationDevView")
+                        .foregroundColor(.blue)
+                }
+            }
+            
         }
         .onAppear(perform: {
             self.familyKitAppState.onRefetchFromServer()

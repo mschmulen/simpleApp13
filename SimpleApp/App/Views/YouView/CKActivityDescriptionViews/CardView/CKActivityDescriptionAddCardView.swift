@@ -13,29 +13,78 @@ struct CKActivityDescriptionAddCardView: View {
     
     let cardSize: CGFloat = 100
     
+//    var body: some View {
+//        VStack(alignment: .leading) {
+//            ZStack {
+//                Rectangle()
+//                    .foregroundColor(SemanticAppColor.random)
+//                    .frame(width: cardSize, height: cardSize)
+//                    .cornerRadius(5)
+//                VStack {
+//                    Text("+")
+//                        .foregroundColor(.white)
+//                        .font(.largeTitle)
+//                    Text("New")
+//                        .foregroundColor(.white)
+//                        .font(.body)
+//                    Text("Activity")
+//                    .foregroundColor(.white)
+//                    .font(.body)
+//                }
+//            }
+//        }
+//        .shadow(radius: 10)
+//        .padding()
+//    }
+    
+    
     var body: some View {
+        
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
-                    .foregroundColor(SemanticAppColor.random)
+                    .fill(SemanticAppColor.random)
                     .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
+                
+//                if coverPhotoImage != nil {
+//                    coverPhotoImage!
+//                        .renderingMode(.original)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(width: cardSize, height: cardSize)
+//                        .cornerRadius(5)
+//                } else {
+//                    Rectangle()
+//                        .fill(SemanticAppColor.random)
+//                        .frame(width: cardSize, height: cardSize)
+//                        .cornerRadius(5)
+//                }
+                
                 VStack {
-                    Text("+")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
                     Text("New")
                         .foregroundColor(.white)
                         .font(.body)
                     Text("Activity")
-                    .foregroundColor(.white)
-                    .font(.body)
+                        .foregroundColor(.white)
+                        .font(.body)
+                }
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("+")
+                            .foregroundColor(.black)
+                    }
+                    Spacer()
                 }
             }
         }
+        .cornerRadius(5)
         .shadow(radius: 10)
         .padding()
     }
+    
     
 }//end CKChoreAddItemView
 

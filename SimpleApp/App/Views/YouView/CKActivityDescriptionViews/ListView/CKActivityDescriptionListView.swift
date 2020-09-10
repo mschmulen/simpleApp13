@@ -35,19 +35,22 @@ struct CKActivityDescriptionListView: View {
                 }
                 
                 ForEach( self.activityDescriptionService.models) { model in
-                    if (self.familyKitAppState.currentPlayerModel?.isAdult ?? false) {
-                        NavigationLink(destination: CKActivityDescriptionDetailEditView(
-                            model: model
-                        )) {
-                            CKActivityDescriptionCardView(model: model)
-                        }
-                    } else {
-                        NavigationLink(destination: CKActivityDescriptionDetailView(
-                            model: model
-                        )) {
-                            CKActivityDescriptionCardView(model: model)
+                    
+                    NavigationLink(destination: CKActivityDescriptionDetailView(
+                        model: model
+                    )) {
+                        CKActivityDescriptionCardView(model: model)
+                    }.contextMenu {
+                        Button(action: {
+                            if let recordName = model.recordID?.recordName {
+                                self.deepLinkNotification(recordName: recordName)
+                            }
+                        }) {
+                            Text("Make Notification")
+                            Image(systemName: "timer")
                         }
                     }
+                    
                 }//end ForEach
                     .onDelete(perform: deletePrivate)
             }//end List
@@ -65,7 +68,7 @@ struct CKActivityDescriptionListView: View {
             }
         }
     }
-
+    
     func deletePrivate(at offsets: IndexSet) {
         for deleteIndex in offsets {
             let deleteModel = self.activityDescriptionService.models[deleteIndex]
@@ -79,6 +82,19 @@ struct CKActivityDescriptionListView: View {
                 }
             }
         }
+    }
+    
+    func deepLinkNotification(recordName: String ) {
+        let manager = LocalNotificationManager()
+        var userInfo = [String : AnyObject]()
+        userInfo["RECORD_NAME"] = recordName as AnyObject
+        userInfo["RECORD_TYPE"] =  CKActivityDescriptionModel.recordName as AnyObject
+        manager.addNotification(
+            title: "deepLinkModalView CKActivityDescriptionModel",
+            category: NotificationCategory.deepLinkModalView,
+            userInfo: userInfo
+        )
+        manager.schedule()
     }
 }
 

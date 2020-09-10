@@ -43,19 +43,10 @@ class AppState: ObservableObject {
         case tabFamily
         case tabBucks
         
-        
-        
-        case detailScreenActivityDescription ( recordID: String )
-        case activityUpdated ( recordID: String )
-        case purchaseItem ( recordID: String )
+        case modalViewRecord ( recordName: String, recordType: String )
     }
     
     @Published var activeDeepLink: DeepLink = .none
-//        {
-//        willSet {
-//            updateChanges()
-//        }
-//    }
     
     init(
         //container: CloudKitContainer
@@ -114,6 +105,10 @@ extension AppState {
         case .tabBucks:
             topView = .mainView
             selectedTab = TabViewIndex.bucksStore.rawValue
+        case .modalViewRecord(let recordName, let recordType):
+            topView = .modalView
+            selectedTab = TabViewIndex.familyChat.rawValue
+            activeDeepLink = deepLink
         default:
             return
         }

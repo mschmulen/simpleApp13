@@ -9,8 +9,6 @@
 import SwiftUI
 import FamilyKit
 
-
-
 struct CKActivityActiveItemView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
