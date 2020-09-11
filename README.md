@@ -33,4 +33,7 @@ TODO
 - Added "Complete" button to activity.
 - Deeplink to family tab when an action is updated
 - Chat improvements
+- DeepLinking and Notification management ( check out the dev view in the user profile )
+- Notification for Family chat deep links to the chat page
+- miscellaneous pixel pushing  
 
