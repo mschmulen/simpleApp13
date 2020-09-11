@@ -26,6 +26,10 @@ TODO
 
 ## Release Notes
 
+##### Build 39
+- TODO
+
+
 ##### Build 38
 
 - Fix for chat preview update.

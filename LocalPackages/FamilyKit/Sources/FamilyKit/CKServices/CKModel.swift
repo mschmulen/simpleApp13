@@ -13,6 +13,10 @@ public protocol CKModel: Identifiable, Hashable {
     
     associatedtype ItemType
     
+    // notification info
+    static var silentPushNotificationCategory: NotificationCategory { get }
+    static var silentPushNotificationDesiredKeys: [String]? { get }
+    
     static var recordName: String { get }
     static var ckSchemeKeys: [String] { get }
     static var mock: ItemType { get }

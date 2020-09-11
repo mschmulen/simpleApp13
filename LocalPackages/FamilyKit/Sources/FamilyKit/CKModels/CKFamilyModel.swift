@@ -17,6 +17,8 @@ public struct CKFamilyModel: CKModel {
     }
     
     public typealias ItemType = CKFamilyModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushGeneric
+    public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "Family"
     public static let ckSchemeKeys = [
         "name"

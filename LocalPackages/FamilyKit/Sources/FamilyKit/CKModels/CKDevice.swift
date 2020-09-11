@@ -39,6 +39,8 @@ public struct CKDeviceModel: CKModel {
     }
     
     public typealias ItemType = CKDeviceModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushGeneric
+    public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "Device"
     public static let ckSchemeKeys = [
         "idfv"

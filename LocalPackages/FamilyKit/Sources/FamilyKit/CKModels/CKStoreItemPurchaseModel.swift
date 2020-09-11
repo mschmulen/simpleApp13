@@ -16,6 +16,8 @@ public struct CKStoreItemPurchaseModel: CKModel {
     }
     
     public typealias ItemType = CKStoreItemPurchaseModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushStoreItemPurchase
+    public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "StoreItemPurchase"
     public static let ckSchemeKeys = [
         "name",

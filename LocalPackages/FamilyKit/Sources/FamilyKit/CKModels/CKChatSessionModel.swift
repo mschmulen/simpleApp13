@@ -22,6 +22,8 @@ public final class CKChatSessionModel: CKModel, ObservableObject {
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     
     public typealias ItemType = CKChatSessionModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushChatSession
+    public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "ChatSession"
     public static let ckSchemeKeys = [
         "name",

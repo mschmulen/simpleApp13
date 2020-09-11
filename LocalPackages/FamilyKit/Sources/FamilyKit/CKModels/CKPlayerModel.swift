@@ -20,6 +20,8 @@ public final class CKPlayerModel: CKModel, ObservableObject {
     }
     
     public typealias ItemType = CKPlayerModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushPlayer
+    public static let silentPushNotificationDesiredKeys: [String]? = ["name","emoji","bucks"]
     public static let recordName = "Player"
     public static let ckSchemeKeys = [
         "name",

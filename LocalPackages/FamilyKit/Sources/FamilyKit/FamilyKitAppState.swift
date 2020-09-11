@@ -103,7 +103,9 @@ extension FamilyKitAppState {
                     print( "kidService error \(error)")
                 }
         })
-        playerService.subscribeSilent()
+        playerService.createSilentSubscription() { result in
+            print( "createSilentSubscription \(result)")
+        }
         playerService.listenForRemoteNotifications()
         
         // TODO: fetch create the CKDevice Model based on device
@@ -141,7 +143,15 @@ extension FamilyKitAppState {
                 print("failed to find it ... who cares, get it on the next try")
             }
         }//end fetchByName
+        chatSessionService.createSilentSubscription() { result in
+            print( "createSilentSubscription \(result)")
+        }
+        chatSessionService.listenForRemoteNotifications()
         
+        chatService.createSilentSubscription() { result in
+            print( "createSilentSubscription \(result)")
+        }
+        chatService.listenForRemoteNotifications()
         
     }
     

@@ -37,6 +37,8 @@ public final class CKActivityModel: CKModel, ObservableObject {
     }
     
     public typealias ItemType = CKActivityModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushChoreActive
+    public static let silentPushNotificationDesiredKeys: [String]? = ["name","emoji","status","kidReference","bucks"]
     public static let recordName = "ChoreActive"
     public static let ckSchemeKeys = [
         "name",

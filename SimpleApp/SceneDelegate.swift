@@ -49,7 +49,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                print( "privateChoreService error \(error)")
 //            }
         })
-        activityDescriptionService.subscribeSilent()
+        activityDescriptionService.createSilentSubscription() { result in
+            print( "createSilentSubscription \(result)")
+        }
         activityDescriptionService.listenForRemoteNotifications()
         
         let activityService = CKPrivateModelService<CKActivityModel>(
@@ -60,7 +62,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             searchPredicate: .predicateTrue,
             completion: { result in
         })
-        activityService.subscribeSilent()
+        activityService.createSilentSubscription() { result in
+            print( "createSilentSubscription \(result)")
+        }
         activityService.listenForRemoteNotifications()
         // ---------------------------------------------
         

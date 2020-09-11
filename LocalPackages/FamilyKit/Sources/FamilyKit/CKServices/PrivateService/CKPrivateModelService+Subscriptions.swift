@@ -11,22 +11,23 @@ import CloudKit
 
 extension CKPrivateModelService {
     
-    public func subscribeSilent() {
-        print( "CKModelService.subscribe: \(T.recordName)")
+    public func createSilentSubscription(
+        completion: @escaping ((Result<Bool,Error>) -> Void)
+    ) {
+        print( "createSilentSubscription: \(T.recordName)")
         
         let predicate = SearchPredicate.predicateTrue.predicate
         let subscription = CKQuerySubscription(
             recordType: T.recordName,
             predicate: predicate,
             options: [.firesOnRecordDeletion, .firesOnRecordUpdate, .firesOnRecordCreation]
-//            options: [.firesOnRecordCreation]
         )
         let notificationInfo = CKSubscription.NotificationInfo()
-//        notificationInfo.desiredKeys = [
-//            "ownerName",
-//            "ownerEmoji",
-//            "sessionReferenceID"
-//        ]
+        
+        if let desiredKeys = T.silentPushNotificationDesiredKeys {
+          notificationInfo.desiredKeys = desiredKeys
+        }
+        notificationInfo.category = T.silentPushNotificationCategory.rawValue
         
         //if isSilent {
             // Note: set shouldSendContentAvailable = true if you want it to be a silent push
@@ -40,32 +41,34 @@ extension CKPrivateModelService {
         subscription.notificationInfo = notificationInfo
         
         self.container.privateCloudDatabase.save(subscription) { (savedSubscription, error) in
-            if error != nil {
-                print( "CKModelService.subscribe error \(error!.localizedDescription)")
+            if let error = error {
+                print( "CKModelService.subscribe error \(error.localizedDescription)")
+                completion(.failure(error))
             } else {
                 print("CKModelService.subscribe Subscribed!")
+                completion(.success(true))
             }
         }
     }
     
-    func deleteSubscriptions() {
-        print( "CKModelService.deleteSubscriptions")
-        self.container.privateCloudDatabase.fetchAllSubscriptions { subscriptions, error in
-            if error == nil {
-                if let subscriptions = subscriptions {
-                    for subscription in subscriptions {
-                        self.container.privateCloudDatabase.delete(withSubscriptionID: subscription.subscriptionID) { str, error in
-                            if error != nil {
-                                print(error!.localizedDescription)
-                            }
-                        }
-                    }
-                }
-            } else {
-                print(error!.localizedDescription)
-            }
-        }
-    }
+//    func deleteSubscriptions() {
+//        print( "CKModelService.deleteSubscriptions")
+//        self.container.privateCloudDatabase.fetchAllSubscriptions { subscriptions, error in
+//            if error == nil {
+//                if let subscriptions = subscriptions {
+//                    for subscription in subscriptions {
+//                        self.container.privateCloudDatabase.delete(withSubscriptionID: subscription.subscriptionID) { str, error in
+//                            if error != nil {
+//                                print(error!.localizedDescription)
+//                            }
+//                        }
+//                    }
+//                }
+//            } else {
+//                print(error!.localizedDescription)
+//            }
+//        }
+//    }
 }
 
 extension CKPrivateModelService {

@@ -292,7 +292,7 @@ extension AppDelegate {
             print("recordName \(recordName)")
         }
         
-        if let categoryString = queryNotification.category, let familyKitCategory = FamilyKitCKNotificationCategory(rawValue: categoryString) {
+        if let categoryString = queryNotification.category, let familyKitCategory = NotificationCategory(rawValue: categoryString) {
             print( "category \(categoryString)")
             switch familyKitCategory {
             case .familyKitCategoryFamilyChatCreate:
@@ -302,16 +302,36 @@ extension AppDelegate {
                     if let ownerEmoji = recordFields["ownerEmoji"] as? String ,
                         let ownerName = recordFields["ownerName"] as? String,
                         let sessionReferenceID = recordFields["sessionReferenceID"] as? String {
-
+                        
                         print( "\(ownerEmoji) \(ownerName) \(sessionReferenceID)")
                         self.appState.goToScreen(deepLink: .tabFamilyChat)
                     }
                 }
+            case .familyKitCategorySilentPushGeneric:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushPlayer:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushChore:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushChoreActive:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushChatMessage:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushStoreItemPurchase:
+                print( "silent push generic do nothing")
+                break
+            case .familyKitCategorySilentPushChatSession:
+                print( "silent push generic do nothing")
+                break
             }
         } else {
             print( "failed to resovle the FamilyKitCKNotificationCategory from queryNotification.category: \(queryNotification.category ?? "~")")
         }
-        
     }
     
 //    AppDelegate.presentView

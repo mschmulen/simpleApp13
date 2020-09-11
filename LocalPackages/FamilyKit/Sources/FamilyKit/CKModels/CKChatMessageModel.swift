@@ -16,6 +16,8 @@ public struct CKChatMessageModel: CKModel {
     }
     
     public typealias ItemType = CKChatMessageModel
+    public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushChatMessage
+    public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "ChatMessage"
     public static let ckSchemeKeys = [
         "person1",
