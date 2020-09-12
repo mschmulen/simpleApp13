@@ -12,26 +12,37 @@ enum CustomError: Error {
     case unknown
     case cursorFailure
     
+    // CKErrorDomain
     case networkUnavailable
     
-    case urlError401
+    // NSURLErrorDomain
     case urlError400
+    case urlError401
+    case urlError404
     
-    static func make(domain:String, code:Int) -> CustomError {
+    static func make(domain: String, code: Int) -> CustomError {
         switch domain {
         case "CKErrorDomain":
             switch code {
             case 3: return .networkUnavailable
+            // TODO: Extend error codes
+            // case X: return .networkFailure
+            // case X: return .quotaExceeded
+            // case X: return .permissionFailure
+            // case X: return .partialFailure
+            // case X: return .notAuthenticated
             default: return .unknown
             }
         case "NSURLErrorDomain":
             switch code {
-            case 401: return .urlError401
             case 400: return .urlError400
+            case 401: return .urlError401
+            case 404: return .urlError404
+            // TODO: Extend error codes
             default: return .unknown
             }
         default:
             return .unknown
         }
-    }
+    }// end make
 }
