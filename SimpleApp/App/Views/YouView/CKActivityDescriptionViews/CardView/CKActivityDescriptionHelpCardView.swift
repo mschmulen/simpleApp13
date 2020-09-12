@@ -1,17 +1,19 @@
 //
-//  CKChoreDescriptionAddItemView.swift
+//  CKActivityDescriptionAgentHelpCardView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 8/2/20.
+//  Created by Matthew Schmulen on 9/12/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
 import SwiftUI
 import FamilyKit
 
-struct CKActivityDescriptionAddCardView: View {
+struct CKActivityDescriptionAgentHelpCardView: View {
     
     let cardSize: CGFloat = 100
+    
+    var name: String
     
     var body: some View {
         
@@ -23,10 +25,10 @@ struct CKActivityDescriptionAddCardView: View {
                     .cornerRadius(5)
                 
                 VStack {
-                    Text("New")
+                    Text("Agent")
                         .foregroundColor(.white)
                         .font(.body)
-                    Text("Activity")
+                    Text("\(name)")
                         .foregroundColor(.white)
                         .font(.body)
                 }
@@ -46,23 +48,19 @@ struct CKActivityDescriptionAddCardView: View {
         .padding()
     }
     
-    
-}//end CKChoreAddItemView
+}//end CKActivityDescriptionAgentHelpCardView
 
 #if DEBUG
-struct CKChoreAddItemView_Previews: PreviewProvider {
+struct CKActivityDescriptionHelpCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             
-            CKActivityDescriptionAddCardView()
+            CKActivityDescriptionAgentHelpCardView(name: "yack")
                 .previewLayout(.fixed(width: 300, height: 300))
-            .previewDisplayName("300x300 view")
+                .previewDisplayName("300x300 view")
             
-            CKActivityDescriptionAddCardView()
-                .previewLayout(.fixed(width: 300, height: 300))
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("dark mode")
         }
     }
 }
 #endif
+

@@ -53,6 +53,9 @@
 		768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */; };
 		768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9295250AAF4C00DB8818 /* NotificationDevView.swift */; };
 		768C9298250ABE6100DB8818 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9297250ABE6100DB8818 /* ModalView.swift */; };
+		768C92A8250D5E6900DB8818 /* CKActivityDescriptionHelpCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92A7250D5E6900DB8818 /* CKActivityDescriptionHelpCardView.swift */; };
+		768C92AA250D5EEF00DB8818 /* CKActivityDescriptionAgentHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92A9250D5EEF00DB8818 /* CKActivityDescriptionAgentHelpView.swift */; };
+		768C92AC250D644600DB8818 /* AgentCardsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AB250D644600DB8818 /* AgentCardsRowView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76B0F4E225013430006774C0 /* StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* StoreItemDefinitionDetailView.swift */; };
@@ -175,6 +178,9 @@
 		768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		768C9295250AAF4C00DB8818 /* NotificationDevView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDevView.swift; sourceTree = "<group>"; };
 		768C9297250ABE6100DB8818 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		768C92A7250D5E6900DB8818 /* CKActivityDescriptionHelpCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionHelpCardView.swift; sourceTree = "<group>"; };
+		768C92A9250D5EEF00DB8818 /* CKActivityDescriptionAgentHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionAgentHelpView.swift; sourceTree = "<group>"; };
+		768C92AB250D644600DB8818 /* AgentCardsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCardsRowView.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 				76CFA21F24DA53AA007A02CF /* PhotoActivityDescriptionView.swift */,
 				76208B9524D70AD6001F46E2 /* CKActivityDescriptionDetailView.swift */,
 				76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */,
+				768C92A9250D5EEF00DB8818 /* CKActivityDescriptionAgentHelpView.swift */,
 			);
 			path = CKActivityDescriptionViews;
 			sourceTree = "<group>";
@@ -439,6 +446,7 @@
 			children = (
 				7616F66724DC7723003488EB /* YouView.swift */,
 				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
+				768C92AB250D644600DB8818 /* AgentCardsRowView.swift */,
 			);
 			path = YouView;
 			sourceTree = "<group>";
@@ -557,6 +565,7 @@
 				76208B8524D60C12001F46E2 /* CKActivityDescriptionCardsRowView.swift */,
 				76208B9324D70ACE001F46E2 /* CKActivityDescriptionCardView.swift */,
 				76208B9124D70AC5001F46E2 /* CKActivityDescriptionAddCardView.swift */,
+				768C92A7250D5E6900DB8818 /* CKActivityDescriptionHelpCardView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -733,12 +742,14 @@
 			files = (
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
+				768C92AC250D644600DB8818 /* AgentCardsRowView.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
 				768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */,
 				76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */,
 				76CFA22224DA5402007A02CF /* ImagePickerRepresentable.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,
 				76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */,
+				768C92A8250D5E6900DB8818 /* CKActivityDescriptionHelpCardView.swift in Sources */,
 				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
 				76241AC924F80D0200788592 /* StoreItemDefinitionEditDetailView.swift in Sources */,
 				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
@@ -767,6 +778,7 @@
 				76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */,
 				76DF241C24ED74EF009222AF /* UserView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
+				768C92AA250D5EEF00DB8818 /* CKActivityDescriptionAgentHelpView.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */,

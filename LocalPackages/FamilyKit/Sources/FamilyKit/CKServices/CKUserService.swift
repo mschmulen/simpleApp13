@@ -96,6 +96,7 @@ extension CKUserService {
             case .success(let user):
                 self.currentUser = user
             case .failure(let error):
+                // TODO: check for no network
                 print("fetchUserRecord.error \(error)")
             }
         }
@@ -106,10 +107,7 @@ extension CKUserService {
     ) {
         container.fetchUserRecordID(completionHandler: { (recordID, error) in
             guard let recordID = recordID, error == nil else {
-                if let error = error {
-                    print("error: \(error.localizedDescription)")
-                }
-                completion(.failure(CustomError.unknown))
+                completion(.failure( CustomError.make(error: (error as NSError?))))
                 return
             }
             
@@ -121,16 +119,7 @@ extension CKUserService {
             
             self.container.publicCloudDatabase.fetch(withRecordID: recordID) { fetchRecord, error in
                 guard let fetchRecord = fetchRecord else {
-                    
-                    guard let error = error else {
-                        completion(.failure(CustomError.unknown))
-                        return
-                    }
-                    
-                    completion(.failure( CustomError.make(
-                        domain: (error as NSError).domain,
-                        code: (error as NSError).code
-                    )))
+                    completion(.failure( CustomError.make(error: (error as NSError?))))
                     return
                 }
                 
@@ -169,7 +158,7 @@ extension CKUserService {
                     self.container.publicCloudDatabase.save(record) { record, error in
                         if let error = error {
                             print( "autoUpdateDeviceInfo.error \(error)")
-                            completion?(.failure(error))
+                            completion?(.failure( CustomError.make(error: (error as NSError?))))
                         } else {
                             if let returnRecordID = record?.recordID {
                                 completion?(.success(returnRecordID))

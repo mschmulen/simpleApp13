@@ -9,7 +9,9 @@ import Foundation
 import CloudKit
 
 enum CustomError: Error {
+    
     case unknown
+    
     case cursorFailure
     
     // CKErrorDomain
@@ -20,7 +22,17 @@ enum CustomError: Error {
     case urlError401
     case urlError404
     
-    static func make(domain: String, code: Int) -> CustomError {
+    static func make( error: NSError?) -> CustomError {
+        guard let error = error else {
+            return .unknown
+        }
+        return CustomError.make(
+            domain: (error as NSError).domain,
+            code: (error as NSError).code
+        )
+    }
+    
+    private static func make(domain: String, code: Int) -> CustomError {
         switch domain {
         case "CKErrorDomain":
             switch code {

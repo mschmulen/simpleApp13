@@ -69,11 +69,17 @@ struct YouView: View {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 List{
+                    
+                    Section() {
+                        AgentCardsRowView(
+                            categoryName: "Agents:"
+                        )
+                    }
+                    
                     ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
                         
                         // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
-                        Section()
-                        {
+                        Section() {
                             CKActivityDescriptionCardsRowView(
                                 categoryName: "\(category.rawValue) Activities:",
                                 items: self.activityDescriptionService.models.filter { $0.category == category },

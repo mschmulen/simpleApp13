@@ -211,7 +211,7 @@ extension CKPrivateModelService {
                 if let record = record, let model = T( record: record) {
                     completion(.success(model))
                 } else {
-                    completion(.failure(CustomError.unknown))
+                    completion(.failure( CustomError.make(error: (error as NSError?))))
                 }
             }
         } else {
@@ -231,7 +231,7 @@ extension CKPrivateModelService {
             if let record = record, let model = T( record: record) {
                 completion(.success(model))
             } else {
-                completion(.failure(CustomError.unknown))
+                completion(.failure( CustomError.make(error: (error as NSError?))))
             }
         }
             
@@ -258,7 +258,7 @@ extension CKPrivateModelService {
             if let records = records, let firstRecord = records.first, let model = T(record: firstRecord) {
                 completion(.success(model))
             } else {
-                completion(.failure(CustomError.unknown))
+                completion(.failure( CustomError.make(error: (error as NSError?))))
             }
         }
     }//end fetchByName

@@ -53,7 +53,7 @@ extension CKPrivateModelService {
         if let record = model.ckRecord {
             container.privateCloudDatabase.save(record) { (record, error) in
                 if let error = error {
-                    completion(.failure(error) )
+                    completion(.failure( CustomError.make(error: (error as NSError))))
                 }
                 
                 if let record = record {
