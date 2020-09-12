@@ -85,11 +85,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
             self.fulfillmentStatus = .unknown
         }
     }
-
-    enum CustomError: Error {
-        case unknown
-    }
-
+    
 }
 
 // MARK: - Create a CKRecord from this model

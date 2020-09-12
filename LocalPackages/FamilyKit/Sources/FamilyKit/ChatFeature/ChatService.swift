@@ -52,10 +52,6 @@ public class ChatService: ObservableObject {
         activityService = CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container))
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
     private func updateChanges() {
         DispatchQueue.main.async {
             //self.didChange.send()

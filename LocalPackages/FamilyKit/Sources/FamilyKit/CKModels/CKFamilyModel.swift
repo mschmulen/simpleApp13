@@ -57,10 +57,6 @@ public struct CKFamilyModel: CKModel {
         self.name = _name
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
 }
 
 // MARK: - Create a CKRecord from this model

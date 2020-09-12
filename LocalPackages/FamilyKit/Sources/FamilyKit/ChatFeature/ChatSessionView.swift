@@ -142,7 +142,7 @@ public struct ChatSessionView: View {
             self.chatService.onStartUp()
             self.messageCount = self.chatService.chatMessages.count
         }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
-            self.devMessage = "silent Push! DB changed"
+            //self.devMessage = "silent Push! DB changed"
             self.chatService.onRefetchFromServer()
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in

@@ -26,8 +26,15 @@ TODO
 
 ## Release Notes
 
+
+##### Build 40
+
+
 ##### Build 39
-- TODO
+- More work on Silent Push notifications 
+- Fix for the Chat push notification ( you need to delete your old stuff )
+- Deeplinking dev view for testing
+
 
 
 ##### Build 38

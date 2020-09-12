@@ -73,10 +73,6 @@ public final class CKChatSessionModel: CKModel, ObservableObject {
         
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
 }
 
 // TODO: add this to the generic CKModel requirement

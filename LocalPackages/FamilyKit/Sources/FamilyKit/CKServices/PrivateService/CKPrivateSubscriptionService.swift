@@ -44,11 +44,6 @@ public final class CKPrivateSubscriptionService: ObservableObject {
         }
     }
     
-    enum CustomError: Error {
-        case unknown
-        case cursorFailure
-    }
-    
     internal func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()

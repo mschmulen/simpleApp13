@@ -212,10 +212,6 @@ public final class CKActivityModel: CKModel, ObservableObject {
         
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
 }
 
 // MARK: - Create a CKRecord from this model

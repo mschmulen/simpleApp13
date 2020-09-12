@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 import CloudKit
 
+
+
 public class CKUserService<T>: ObservableObject where T:CKUserModel {
     
     public let objectWillChange = ObservableObjectPublisher()
@@ -33,10 +35,7 @@ public class CKUserService<T>: ObservableObject where T:CKUserModel {
         requestCloudKitAccountStatus()
     }
     
-    enum CustomError: Error {
-        case unknown
-        case cursorFailure
-    }
+    
     
     public func onStartup() {
         requestCloudKitAccountStatus()
@@ -97,7 +96,7 @@ extension CKUserService {
             case .success(let user):
                 self.currentUser = user
             case .failure(let error):
-                    print("fetchUserRecord.error \(error)")
+                print("fetchUserRecord.error \(error)")
             }
         }
     }
@@ -121,15 +120,27 @@ extension CKUserService {
             }
             
             self.container.publicCloudDatabase.fetch(withRecordID: recordID) { fetchRecord, error in
-                guard let fetchRecord = fetchRecord, error == nil else {
+                guard let fetchRecord = fetchRecord else {
+                    
+                    guard let error = error else {
+                        completion(.failure(CustomError.unknown))
+                        return
+                    }
+                    
+                    completion(.failure( CustomError.make(
+                        domain: (error as NSError).domain,
+                        code: (error as NSError).code
+                    )))
+                    return
+                }
+                
+                guard let userModel = CKUser(record: fetchRecord) else {
                     completion(.failure(CustomError.unknown))
                     return
                 }
                 
-                if let userModel = CKUser(record: fetchRecord) {
-                    completion(.success(userModel))
-                    self.currentUser = userModel
-                }
+                completion(.success(userModel))
+                self.currentUser = userModel
             }
         })//end fetchUserRecordID
     }//end fetchUserRecord
@@ -181,33 +192,33 @@ extension CKUserService {
 extension CKUserService {
     
     public func updateInterests(
-            explicitInterests: [String],
-            completion: ((Result<CKRecord.ID,Error>) -> Void)?
-        ) {
-            if currentUserRecordIDName != nil {
-                guard let userRecordIDName = currentUserRecordIDName else { return }
-                let recordID = CKRecord.ID(recordName: userRecordIDName)
-                
-                container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
-                    if let record = record, error == nil {
-                        
-                        record["explicitInterests"] = explicitInterests
-                        self.container.publicCloudDatabase.save(record) { record, error in
-                            if let error = error {
-                                completion?(.failure(error))
+        explicitInterests: [String],
+        completion: ((Result<CKRecord.ID,Error>) -> Void)?
+    ) {
+        if currentUserRecordIDName != nil {
+            guard let userRecordIDName = currentUserRecordIDName else { return }
+            let recordID = CKRecord.ID(recordName: userRecordIDName)
+            
+            container.publicCloudDatabase.fetch(withRecordID: recordID) { record, error in
+                if let record = record, error == nil {
+                    
+                    record["explicitInterests"] = explicitInterests
+                    self.container.publicCloudDatabase.save(record) { record, error in
+                        if let error = error {
+                            completion?(.failure(error))
+                        } else {
+                            if let returnRecordID = record?.recordID {
+                                completion?(.success(returnRecordID))
                             } else {
-                                if let returnRecordID = record?.recordID {
-                                    completion?(.success(returnRecordID))
-                                } else {
-                                    completion?(.failure(CustomError.unknown))
-                                }
-                            }//end else
-                        }
+                                completion?(.failure(CustomError.unknown))
+                            }
+                        }//end else
                     }
                 }
-            } else {
-                completion?(.failure(CustomError.unknown))
             }
-        }//end updateInterests
+        } else {
+            completion?(.failure(CustomError.unknown))
+        }
+    }//end updateInterests
 }
 

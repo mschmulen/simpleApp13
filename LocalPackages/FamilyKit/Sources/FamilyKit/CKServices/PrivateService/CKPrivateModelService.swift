@@ -98,13 +98,6 @@ public final class CKPrivateModelService<T>: ObservableObject where T:CKModel {
         }
     }
     
-    enum CustomError: Error {
-        case unknown
-        case cursorFailure
-    }
-    
-    
-    
     internal func updateChanges() {
         DispatchQueue.main.async {
             self.objectWillChange.send()

@@ -286,8 +286,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKActivityModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "ckRecord"
             landmarkType = "24">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKModels/CKChatSessionModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "ckRecord"
             landmarkType = "24">
          </BreakpointContent>
@@ -913,6 +913,22 @@
             startingLineNumber = "329"
             endingLineNumber = "329"
             landmarkName = "processCKQueryNotification(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69BD18E4-C27A-4FE0-8B4A-04C17250AC93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CKServices/CKUserService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "fetchCurrentUserRecord(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

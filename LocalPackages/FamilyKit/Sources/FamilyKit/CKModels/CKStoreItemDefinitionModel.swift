@@ -66,10 +66,6 @@ public struct CKStoreItemDefinitionModel: CKModel {
         self.info = record["info"] as? String
     }
 
-    enum CustomError: Error {
-        case unknown
-    }
-
 }
 
 // MARK: - Create a CKRecord from this model

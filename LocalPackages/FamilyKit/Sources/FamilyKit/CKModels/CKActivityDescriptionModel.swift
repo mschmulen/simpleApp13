@@ -189,10 +189,6 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         self.maxAgeInYears = record["maxAgeInYears"] as? Int
         
     }
-    
-    enum CustomError: Error {
-        case unknown
-    }    
 }
 
 // MARK: - Create a CKRecord from this model

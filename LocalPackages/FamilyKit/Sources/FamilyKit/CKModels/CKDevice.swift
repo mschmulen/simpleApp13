@@ -94,10 +94,6 @@ public struct CKDeviceModel: CKModel {
         self.localePreferredLanguages = record["localePreferredLanguages"] as? [String]
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
 }
 
 // MARK: - Create a CKRecord from this model

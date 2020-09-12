@@ -76,10 +76,6 @@ public struct CKChatMessageModel: CKModel {
         self.sessionReferenceID = record["sessionReferenceID"] as? String
     }
     
-    enum CustomError: Error {
-        case unknown
-    }
-    
 }
 
 // TODO: add this to the generic CKModel requirement
