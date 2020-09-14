@@ -1,5 +1,5 @@
 //
-//  CKActivityDescriptionAgentHelpCardView.swift
+//  AgentCardView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 9/12/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKActivityDescriptionAgentHelpCardView: View {
+struct AgentCardView: View {
     
     let cardSize: CGFloat = 100
     
@@ -48,14 +48,14 @@ struct CKActivityDescriptionAgentHelpCardView: View {
         .padding()
     }
     
-}//end CKActivityDescriptionAgentHelpCardView
+}//end AgentCardView
 
 #if DEBUG
-struct CKActivityDescriptionHelpCardView_Previews: PreviewProvider {
+struct AgentCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             
-            CKActivityDescriptionAgentHelpCardView(name: "yack")
+            AgentCardView(name: "yack")
                 .previewLayout(.fixed(width: 300, height: 300))
                 .previewDisplayName("300x300 view")
             

@@ -47,6 +47,13 @@ struct AdultUserView: View {
                 }
             }
             
+            Section(header: Text("Agent Stuff")) {
+                NavigationLink(destination: AgentConfigurationView(agent: .mock)) {
+                    Text("Agent Configuration")
+                        .foregroundColor(.blue)
+                }
+            }
+            
             Section(header: Text("Dev Stuff")) {
                 
                 NavigationLink(destination: CKActivityDescriptionListView()) {

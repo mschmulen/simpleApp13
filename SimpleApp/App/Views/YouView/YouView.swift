@@ -24,6 +24,8 @@ struct YouView: View {
     @State var devMessage: String?
     let appInfo = AppModel()
     
+    var showAgentRow = false
+    
     var activeActivities: some View {
         Section() {
             CKActivityActiveRowView(
@@ -70,10 +72,12 @@ struct YouView: View {
                 DevMessageView(devMessage: $devMessage)
                 List{
                     
-                    Section() {
-                        AgentCardsRowView(
-                            categoryName: "Agents:"
-                        )
+                    if showAgentRow {
+                        Section() {
+                            AgentCardsRowView(
+                                categoryName: "Agents:"
+                            )
+                        }
                     }
                     
                     ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in

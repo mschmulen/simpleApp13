@@ -1,60 +1,16 @@
 //
-//  CKActivityDescriptionAgentHelpView.swift
+//  AgentDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 9/12/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
-
 import SwiftUI
 import Combine
 import FamilyKit
-import SimpleGames
 
-enum Agent {
-    
-    case random
-    case mock
-    
-    var name: String {
-        switch self {
-        case .random: return "random"
-        case .mock: return "mock"
-        }
-    }
-    
-    var emoji: String {
-        switch self {
-        case .random: return "🦑"
-        case .mock: return "🦈"
-        }
-    }
-    
-    var reccomendations: [CKActivityDescriptionModel] {
-        
-        var models = [CKActivityDescriptionModel]()
-        
-        switch self {
-        case .random:
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-        case .mock:
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-            models.append(CKActivityDescriptionModel.mock)
-        }
-        
-        return models
-    }
-}
-
-struct CKActivityDescriptionAgentHelpView: View {
+struct AgentDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -98,12 +54,12 @@ struct CKActivityDescriptionAgentHelpView: View {
         }//end List
     }//end body
     
-}//end CKActivityDescriptionDetailEditView
+}//end AgentDetailView
 
-struct CKActivityDescriptionAgentHelpView_Previews: PreviewProvider {
+struct AgentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKActivityDescriptionAgentHelpView(agent: Agent.mock)
+            AgentDetailView(agent: Agent.mock)
         }
     }
 }

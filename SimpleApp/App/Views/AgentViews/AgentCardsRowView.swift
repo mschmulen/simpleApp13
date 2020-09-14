@@ -29,19 +29,19 @@ struct AgentCardsRowView: View {
                 HStack(alignment: .top, spacing: 0) {
                     
                         NavigationLink(
-                            destination: CKActivityDescriptionAgentHelpView(
+                            destination: AgentDetailView(
                                 agent: .random
                             )
                         ) {
-                            CKActivityDescriptionAgentHelpCardView(name: Agent.random.name)
+                            AgentCardView(name: Agent.random.name)
                         }
 
                     NavigationLink(
-                        destination: CKActivityDescriptionAgentHelpView(
+                        destination: AgentDetailView(
                             agent: .mock
                         )
                     ) {
-                        CKActivityDescriptionAgentHelpCardView(name: Agent.mock.name)
+                        AgentCardView(name: Agent.mock.name)
                     }
                 }
             }
