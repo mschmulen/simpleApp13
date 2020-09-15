@@ -21,6 +21,8 @@ struct MainFamilyView: View {
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    
     var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     
     @State var devMessage: String?
@@ -120,6 +122,30 @@ struct MainFamilyView: View {
             
             // TODO: "unknown" ... return model.status == ActivityStatus.unknown
             
+            Section() {
+                CKBuckPurchaseRowView(
+                    categoryName: "BUCK Purchases",
+                    items: storeItemPurchaseService.models
+                        .filter({ (model) -> Bool in
+                        switch playerFilter {
+                        case .none:
+                            return true
+                        case .person(let player):
+                            guard let kidReference = model.purchasingPlayerReference?.recordID else {
+                                return false
+                            }
+                            guard let playerReference = player.ckRecord?.recordID else {
+                                return false
+                            }
+                            if kidReference != playerReference {
+                                return false
+                            }
+                            return true
+                        }
+                    })
+                )
+            }
+            
         }//end List
     }//end listViewFancy
     
@@ -216,7 +242,13 @@ struct MainFamilyView: View {
                         searchPredicate: .predicateTrue
                     ) { (result) in
                         print( "result")
-                    } }
+                    }
+                    
+                    self.storeItemPurchaseService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { (result) in
+                        print( "result")
+                    }
+                    
+            }
                 .navigationBarTitle("Family")
                 .navigationBarItems(leading: leadingButton, trailing: trailingButton)
         }//end Navigation

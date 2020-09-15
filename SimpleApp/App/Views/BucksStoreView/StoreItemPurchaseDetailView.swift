@@ -26,28 +26,44 @@ struct StoreItemPurchaseDetailView: View {
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
     
-    var editView: some View {
+    var infoView: some View {
         Section(header: Text("Data")) {
             Text("title \(model.title ?? "~")")
+            Text("info: \(model.info ?? "~")")
+            Text("bucks: \(model.bucks)")
+            Text("status: \(model.fulfillmentStatus.rawValue)")
             
-            TextField("name", text: $model.name ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("info", text: $model.info ?? "")
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("bucks", value: $model.bucks, formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            
+            Text("purchasing player: \(model.purchasingPlayerReference?.recordID.recordName ?? "~")")
+            Text("store reference: \(model.storeItemReference?.recordID.recordName ?? "~")")
+        }
+    }
+    
+    var editView: some View {
+        Section(header: Text("edit")) {
             Picker(selection: $model.fulfillmentStatus, label: Text("status")) {
                 ForEach(CKStoreItemPurchaseModel.FulfillmentStatus.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             
+            Text("TODO Photo upload ")
+            Text("TODO chat ")
+            
         }
     }
+    
+    var photoView: some View {
+        Section(header: Text("Photos")) {
+            Text("TODO Photo upload ")
+        }
+    }
+    
+    var chatView: some View {
+        Section(header: Text("Chats")) {
+            Text("TODO chat ")
+        }
+    }
+
     
     var body: some View {
         ActivityIndicatorView(
@@ -63,8 +79,15 @@ struct StoreItemPurchaseDetailView: View {
                         Image(systemName: "square.and.arrow.up")
                     }.foregroundColor(.blue)
                 }
+                self.infoView
                 self.editView
+                self.photoView
+                self.chatView
+                
             }//end List
+                .onAppear {
+                    self.fetchData()
+            }
         }
     }
     
@@ -80,6 +103,10 @@ struct StoreItemPurchaseDetailView: View {
             }
             self.showActivityIndicator = false
         }
+    }
+    
+    func fetchData() {
+        print("fetchData")
     }
     
 }//end StoreItemPurchaseDetailView

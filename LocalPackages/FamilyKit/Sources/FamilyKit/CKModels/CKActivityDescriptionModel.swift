@@ -10,32 +10,6 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public enum ActivityModuleType: String, CaseIterable {
-    case audio
-    case photo
-    case drawing
-    case chat
-    case none
-}
-
-extension ActivityModuleType {
-    
-    public var emoji: String {
-        switch self {
-        case .audio:
-            return "🎧"
-        case .photo:
-            return "📷"
-        case .drawing:
-            return "🎨"
-        case .chat:
-            return "💬"
-        case .none:
-            return "🔖"
-        }
-    }
-}
-
 
 public enum ActivityCategory: String, CaseIterable {
     case chore

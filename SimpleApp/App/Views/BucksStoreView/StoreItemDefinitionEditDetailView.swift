@@ -110,7 +110,10 @@ struct StoreItemDefinitionEditDetailView: View {
             return
         }
         
-        var newPurchase = CKStoreItemPurchaseModel()
+        var newPurchase = CKStoreItemPurchaseModel(
+            purchasingPlayer: currrentPlayerModel,
+            storeItemReference: model
+        )
         newPurchase.name = name
         newPurchase.info = info
         newPurchase.bucks = model.bucks

@@ -23,9 +23,11 @@ public struct CKStoreItemPurchaseModel: CKModel {
         "name",
         "info",
         "bucks",
-        "fulfilmentStatus"
-//        "storeItemReference",
-//        "purchasePlayer",
+        "fulfilmentStatus",
+        "purchasingPlayerReference",
+        "storeItemReference",
+        "resultPhotos",
+        "chatSession"
     ]
     
     public var id = UUID()
@@ -34,6 +36,11 @@ public struct CKStoreItemPurchaseModel: CKModel {
     public var name: String?
     public var bucks: Int
     public var info: String?
+    
+    public var purchasingPlayerReference: CKRecord.Reference?
+    public var storeItemReference: CKRecord.Reference?
+    public var resultPhotos: [CKAsset]?
+    public var chatSession: CKRecord.Reference?
     
     public enum FulfillmentStatus: String, CaseIterable {
         case unknown
@@ -51,7 +58,10 @@ public struct CKStoreItemPurchaseModel: CKModel {
     }
     
     public static var mock: CKStoreItemPurchaseModel {
-        var model = CKStoreItemPurchaseModel()
+        var model = CKStoreItemPurchaseModel(
+            purchasingPlayer: CKPlayerModel.mock,
+            storeItemReference: CKStoreItemDefinitionModel.mock
+        )
         model.name = "mock store item"
         model.bucks = 3
         model.info = "some mock store item info"
@@ -59,10 +69,23 @@ public struct CKStoreItemPurchaseModel: CKModel {
     }
     
     public init(
+        purchasingPlayer: CKPlayerModel,
+        storeItemReference: CKStoreItemDefinitionModel
     ){
+        
+        guard let storeItemRecordID = storeItemReference.ckRecord?.recordID,
+            let playerRecordID = purchasingPlayer.ckRecord?.recordID else {
+                fatalError("oops fix this ")
+        }
+        
+        self.storeItemReference = CKRecord.Reference(recordID: storeItemRecordID, action: .deleteSelf)
+        self.purchasingPlayerReference = CKRecord.Reference(recordID: playerRecordID, action: .deleteSelf)
+        
         self.name = nil
         self.bucks = 0
         self.info = nil
+        self.chatSession = nil
+        self.resultPhotos = nil
     }
     
     public init?(record: CKRecord) {
@@ -73,7 +96,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
                 print( "\(record["name"] as? String ?? "no name")")
                 return nil
         }
-
+        
         self.recordID = record.recordID
         self.name = _name
         self.bucks = record["bucks"] as? Int ?? 0
@@ -84,6 +107,23 @@ public struct CKStoreItemPurchaseModel: CKModel {
         } else {
             self.fulfillmentStatus = .unknown
         }
+        
+        if let purchasingPlayerReference = record["purchasingPlayerReference"] as? CKRecord.Reference {
+            self.purchasingPlayerReference = purchasingPlayerReference
+        }
+        
+        if let storeItemReference = record["storeItemReference"] as? CKRecord.Reference {
+            self.storeItemReference = storeItemReference
+        }
+        
+        if let resultPhotos = record["resultPhotos"] as? [CKAsset] {
+            self.resultPhotos = resultPhotos
+        }
+        
+        if let chatSession = chatSession {
+            record["chatSession"] = chatSession as CKRecordValue
+        }
+        
     }
     
 }
@@ -111,6 +151,22 @@ extension CKStoreItemPurchaseModel {
         }
         
         record["fulfillmentStatus"] = fulfillmentStatus.rawValue
+        
+        if let purchasingPlayerReference = purchasingPlayerReference {
+            record["purchasingPlayerReference"] = purchasingPlayerReference as CKRecordValue
+        }
+        
+        if let storeItemReference = storeItemReference {
+            record["storeItemReference"] = storeItemReference as CKRecordValue
+        }
+        
+        if let resultPhotos = resultPhotos {
+            record["resultPhotos"] = resultPhotos as [CKAsset]
+        }
+        
+        if let chatSession = chatSession {
+            record["chatSession"] = chatSession as CKRecordValue
+        }
         
         return record
     }

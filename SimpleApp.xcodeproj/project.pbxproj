@@ -49,6 +49,8 @@
 		7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainBucksStoreView.swift */; };
 		7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838424E621C000097C4D /* FamilyActivityCardView.swift */; };
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
+		7658BEC625115BA5006149C9 /* CKBuckPurchaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658BEC525115BA5006149C9 /* CKBuckPurchaseRowView.swift */; };
+		7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
 		768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */; };
 		768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C9295250AAF4C00DB8818 /* NotificationDevView.swift */; };
@@ -176,6 +178,8 @@
 		7649837F24E603C100097C4D /* MainBucksStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBucksStoreView.swift; sourceTree = "<group>"; };
 		7649838424E621C000097C4D /* FamilyActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyActivityCardView.swift; sourceTree = "<group>"; };
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
+		7658BEC525115BA5006149C9 /* CKBuckPurchaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseRowView.swift; sourceTree = "<group>"; };
+		7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseItemView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		768C9293250A6F0A00DB8818 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		768C9295250AAF4C00DB8818 /* NotificationDevView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDevView.swift; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 				76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */,
 				76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */,
 				7649838424E621C000097C4D /* FamilyActivityCardView.swift */,
+				7658BEC525115BA5006149C9 /* CKBuckPurchaseRowView.swift */,
+				7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */,
 			);
 			path = FamilyView;
 			sourceTree = "<group>";
@@ -770,6 +776,7 @@
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionCardView.swift in Sources */,
 				76241ACF24F84AD100788592 /* DrawPreviewView.swift in Sources */,
+				7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */,
 				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
@@ -796,6 +803,7 @@
 				76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */,
+				7658BEC625115BA5006149C9 /* CKBuckPurchaseRowView.swift in Sources */,
 				76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */,
 				76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */,
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,

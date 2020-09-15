@@ -34,7 +34,8 @@ extension CKPrivateModelService {
         } else {
             pushNew(model: model) { (result) in
                 switch result {
-                case .failure(_):
+                case .failure(let error):
+                    print( "error \(error)")
                     completion(result)
                 case .success(let newModel):
                     //self.models.append(newModel)
