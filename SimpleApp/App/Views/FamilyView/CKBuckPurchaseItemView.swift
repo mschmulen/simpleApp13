@@ -9,7 +9,7 @@
 import SwiftUI
 import FamilyKit
 
-struct CKBuckPurchaseItemViewCard: View {
+struct CKRewardItemViewCard: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
@@ -99,7 +99,7 @@ struct CKBuckPurchaseItemViewCard: View {
 #if DEBUG
 struct CKBuckPurchaseItemViewCard_Previews: PreviewProvider {
     static var previews: some View {
-        CKBuckPurchaseItemViewCard( model: CKBuckRewardModel.mock)
+        CKRewardItemViewCard( model: CKBuckRewardModel.mock)
             .previewLayout(.fixed(width: 200, height: 200))
     }
 }

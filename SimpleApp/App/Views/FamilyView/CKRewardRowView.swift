@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import FamilyKit
 
-struct CKBuckPurchaseRowView: View {
+struct CKRewardRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
@@ -35,7 +35,7 @@ struct CKBuckPurchaseRowView: View {
                                 model: model
                             )
                         ) {
-                            CKBuckPurchaseItemViewCard(model: model)
+                            CKRewardItemViewCard(model: model)
                         }
                     }
                 }
@@ -49,7 +49,7 @@ struct CKBuckPurchaseRowView: View {
 struct CKBuckPurchaseRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKBuckPurchaseRowView(
+            CKRewardRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKBuckRewardModel.mock,

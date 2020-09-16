@@ -55,7 +55,7 @@ struct MainRewardsView: View {
                     model: CKBuckRewardDefinitionModel()
                 )
             ) {
-                Text("new Item definition")
+                Text("new reward definition")
             }
         }
     }
@@ -70,7 +70,7 @@ struct MainRewardsView: View {
                 adultView
                 
                 List {
-                    Section(header: Text("Items for purchase")) {
+                    Section(header: Text("available rewards")) {
                         ForEach( storeItemDefinitionService.models) { model in
                             NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
                                 VStack {
@@ -82,7 +82,7 @@ struct MainRewardsView: View {
                         }//end ForEach
                         .onDelete(perform: onDeleteDefinition)
                     }
-                    Section(header: Text("Purchased items")) {
+                    Section(header: Text("active rewards")) {
                         ForEach( storeItemPurchaseService.models) { model in
                             NavigationLink(destination: RewardDetailView(model: model) ) {
                                 VStack{

@@ -123,8 +123,8 @@ struct MainFamilyView: View {
             // TODO: "unknown" ... return model.status == ActivityStatus.unknown
             
             Section() {
-                CKBuckPurchaseRowView(
-                    categoryName: "BUCK Purchased",
+                CKRewardRowView(
+                    categoryName: "Active Rewards",
                     items: storeItemPurchaseService.models
                         .filter({ (model) -> Bool in
                         switch playerFilter {
@@ -147,8 +147,8 @@ struct MainFamilyView: View {
             }
             
             Section() {
-                CKBuckPurchaseRowView(
-                    categoryName: "BUCK Fulfilled",
+                CKRewardRowView(
+                    categoryName: "Fulfilled Rewards",
                     items: storeItemPurchaseService.models
                         .filter({ (model) -> Bool in
                         switch playerFilter {
