@@ -28,6 +28,12 @@ TODO
 
 
 ##### Build 40
+- Remove the emoji floating accessory above the cards
+- rename "bucks Something" to "Reward something"
+- improvement on bucks/rewards data models to support purchase player and also definition reference
+- added Rewards and bucks to the main family page.
+- Button on "fulfilling" purcheased "rewards" on reward detail screen.
+- misc clean up.
 
 
 ##### Build 39
