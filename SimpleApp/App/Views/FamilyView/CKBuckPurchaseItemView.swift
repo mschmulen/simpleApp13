@@ -30,12 +30,13 @@ struct CKBuckPurchaseItemView: View {
                     .cornerRadius(5)
 
                 VStack {
-//                    if model.purchasingPlayerReference != nil {
-//                        Text("\(familyKitAppState.findPlayerModelForRecord(recordReference: model.kidReference!)?.name ?? "~")")
-//                            .lineLimit(1)
-//                            .modifier(PrimarySmallBoldLabel(color: .white))
-//                            .padding()
-//                    }
+                    if model.purchasingPlayerReference != nil {
+                        Text("\(familyKitAppState.findPlayerModelForRecord(recordReference: model.purchasingPlayerReference!)?.name ?? "~")")
+                            .lineLimit(1)
+                            .modifier(PrimarySmallBoldLabel(color: .white))
+                            .padding()
+                    }
+                    
                     Text(model.title ?? "~")
                         .lineLimit(3)
                         .modifier(PrimarySmallRegularLabel(color: .white))

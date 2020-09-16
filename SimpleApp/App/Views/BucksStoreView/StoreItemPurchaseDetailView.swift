@@ -21,6 +21,7 @@ struct StoreItemPurchaseDetailView: View {
     @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
     
     @State var devMessage: String?
+    var enableEdit:Bool = true
     
     @State var model: CKStoreItemPurchaseModel
     @State var showActivityIndicator: Bool = false
@@ -40,15 +41,17 @@ struct StoreItemPurchaseDetailView: View {
     
     var editView: some View {
         Section(header: Text("edit")) {
+            Button(action:self.onSave) {
+                HStack {
+                    Text("Save")
+                    Image(systemName: "square.and.arrow.up")
+                }.foregroundColor(.blue)
+            }
             Picker(selection: $model.fulfillmentStatus, label: Text("status")) {
                 ForEach(CKStoreItemPurchaseModel.FulfillmentStatus.allCases, id: \.self) {
                     Text($0.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
-            
-            Text("TODO Photo upload ")
-            Text("TODO chat ")
-            
         }
     }
     
@@ -63,7 +66,6 @@ struct StoreItemPurchaseDetailView: View {
             Text("TODO chat ")
         }
     }
-
     
     var body: some View {
         ActivityIndicatorView(
@@ -73,14 +75,10 @@ struct StoreItemPurchaseDetailView: View {
             List{
                 DevMessageView(devMessage: self.$devMessage)
                 
-                Button(action:self.onSave) {
-                    HStack {
-                        Text("Save")
-                        Image(systemName: "square.and.arrow.up")
-                    }.foregroundColor(.blue)
-                }
                 self.infoView
-                self.editView
+                if self.enableEdit {
+                    self.editView
+                }
                 self.photoView
                 self.chatView
                 

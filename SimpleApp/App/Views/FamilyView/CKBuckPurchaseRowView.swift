@@ -14,7 +14,6 @@ struct CKBuckPurchaseRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    //@EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
     @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
     
@@ -30,17 +29,12 @@ struct CKBuckPurchaseRowView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
-                    
-                    if self.items.count <= 0 {
-                        CKActivityActiveNoItemsView()
-                    }
                     ForEach(self.items) { model in
                         NavigationLink(
                             destination: StoreItemPurchaseDetailView(
                                 model: model
                             )
                         ) {
-                            // Text("YACK TODO Buck thing")
                             CKBuckPurchaseItemView(model: model)
                         }
                     }

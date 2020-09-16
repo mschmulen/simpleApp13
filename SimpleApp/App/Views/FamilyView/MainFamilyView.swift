@@ -124,12 +124,12 @@ struct MainFamilyView: View {
             
             Section() {
                 CKBuckPurchaseRowView(
-                    categoryName: "BUCK Purchases",
+                    categoryName: "BUCK Purchased",
                     items: storeItemPurchaseService.models
                         .filter({ (model) -> Bool in
                         switch playerFilter {
                         case .none:
-                            return true
+                            return model.fulfillmentStatus == .purchased
                         case .person(let player):
                             guard let kidReference = model.purchasingPlayerReference?.recordID else {
                                 return false
@@ -140,7 +140,31 @@ struct MainFamilyView: View {
                             if kidReference != playerReference {
                                 return false
                             }
-                            return true
+                            return model.fulfillmentStatus == .purchased
+                        }
+                    })
+                )
+            }
+            
+            Section() {
+                CKBuckPurchaseRowView(
+                    categoryName: "BUCK Fulfilled",
+                    items: storeItemPurchaseService.models
+                        .filter({ (model) -> Bool in
+                        switch playerFilter {
+                        case .none:
+                            return model.fulfillmentStatus == .fulfilled
+                        case .person(let player):
+                            guard let kidReference = model.purchasingPlayerReference?.recordID else {
+                                return false
+                            }
+                            guard let playerReference = player.ckRecord?.recordID else {
+                                return false
+                            }
+                            if kidReference != playerReference {
+                                return false
+                            }
+                            return model.fulfillmentStatus == .fulfilled
                         }
                     })
                 )

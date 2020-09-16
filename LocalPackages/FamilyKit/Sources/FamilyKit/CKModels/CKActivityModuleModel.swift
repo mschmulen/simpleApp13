@@ -37,9 +37,9 @@ extension ActivityModuleType {
 
 public typealias SemVersionString = String
 
-public final class CKActivityModule: CKModel, ObservableObject {
+public final class CKActivityModuleModel: CKModel, ObservableObject {
     
-    public static func == (lhs: CKActivityModule, rhs: CKActivityModule) -> Bool {
+    public static func == (lhs: CKActivityModuleModel, rhs: CKActivityModuleModel) -> Bool {
         return lhs.id == rhs.id
     }
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
@@ -47,7 +47,7 @@ public final class CKActivityModule: CKModel, ObservableObject {
         return .custom(key: "creationDate", ascending: true)
     }
     
-    public typealias ItemType = CKActivityModule
+    public typealias ItemType = CKActivityModuleModel
     public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushChoreActive
     public static let silentPushNotificationDesiredKeys: [String]? = ["name", "version"]
     public static let recordName = "ActivityModule"
@@ -71,8 +71,8 @@ public final class CKActivityModule: CKModel, ObservableObject {
         return name
     }
     
-    public static var mock: CKActivityModule {
-        let model = CKActivityModule(
+    public static var mock: CKActivityModuleModel {
+        let model = CKActivityModuleModel(
             name: "photo",
             description:"simple photo activitys",
             version: "0.0.1"
@@ -109,17 +109,17 @@ public final class CKActivityModule: CKModel, ObservableObject {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKActivityModule {
+extension CKActivityModuleModel {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKActivityModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKActivityModuleModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKActivityModel.recordName)
+            record = CKRecord(recordType: CKActivityModuleModel.recordName)
         }
         
         if let name = name {
