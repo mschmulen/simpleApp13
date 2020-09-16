@@ -1,5 +1,5 @@
 //
-//  MainBucksStoreView.swift
+//  MainRewardsView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/13/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainBucksStoreView: View {
+struct MainRewardsView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -22,8 +22,8 @@ struct MainBucksStoreView: View {
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
-    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
 
     @State var devMessage: String?
     
@@ -51,8 +51,8 @@ struct MainBucksStoreView: View {
     var adultView: some View {
         VStack {
             NavigationLink(
-                destination: StoreItemDefinitionEditDetailView(
-                    model: CKStoreItemDefinitionModel()
+                destination: RewardDefinitionEditDetailView(
+                    model: CKBuckRewardDefinitionModel()
                 )
             ) {
                 Text("new Item definition")
@@ -72,7 +72,7 @@ struct MainBucksStoreView: View {
                 List {
                     Section(header: Text("Items for purchase")) {
                         ForEach( storeItemDefinitionService.models) { model in
-                            NavigationLink(destination: StoreItemDefinitionEditDetailView(model: model) ) {
+                            NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
                                 VStack {
                                     Text("\(model.name ?? "")")
                                     Text("\(model.bucks)")
@@ -84,7 +84,7 @@ struct MainBucksStoreView: View {
                     }
                     Section(header: Text("Purchased items")) {
                         ForEach( storeItemPurchaseService.models) { model in
-                            NavigationLink(destination: StoreItemPurchaseDetailView(model: model) ) {
+                            NavigationLink(destination: RewardDetailView(model: model) ) {
                                 VStack{
                                     Text("\(model.name ?? "")")
                                     Text("\(model.fulfillmentStatus.rawValue)")
@@ -172,7 +172,7 @@ struct MainBucksStoreView_Previews: PreviewProvider {
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainBucksStoreView()
+        MainRewardsView()
             .environmentObject(AppState())
             .environmentObject(
                 FamilyKitAppState(

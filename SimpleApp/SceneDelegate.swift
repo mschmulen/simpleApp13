@@ -71,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // ---------------------------------------------
         // Store Services
-        let storeItemDefinitionService = CKPrivateModelService<CKStoreItemDefinitionModel>(container: CloudKitContainer.CloudContainer(container))
+        let storeItemDefinitionService = CKPrivateModelService<CKBuckRewardDefinitionModel>(container: CloudKitContainer.CloudContainer(container))
         storeItemDefinitionService.fetch(
             sortDescriptor: .none, //.custom(key: "modificationDate", ascending: false),
             searchPredicate: .predicateTrue,
@@ -80,7 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // storeItemDefinitionService.subscribe(isSilent: false, message: "new Activity or activity changed")
         //storeItemDefinitionService.listenForNotifications()
 
-        let storeItemPurchaseService = CKPrivateModelService<CKStoreItemPurchaseModel>(container: CloudKitContainer.CloudContainer(container))
+        let storeItemPurchaseService = CKPrivateModelService<CKBuckRewardModel>(container: CloudKitContainer.CloudContainer(container))
         storeItemPurchaseService.fetch(
             sortDescriptor: .none, // .custom(key: "modificationDate", ascending: false),
             searchPredicate: .predicateTrue,

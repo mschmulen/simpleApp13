@@ -1,5 +1,5 @@
 //
-//  StoreItemDefinitionDetailView.swift
+//  RewardDefinitionEditDetailView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/27/20.

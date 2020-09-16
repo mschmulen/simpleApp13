@@ -1,5 +1,5 @@
 //
-//  CKBuckPurchaseItemView.swift
+//  CKBuckPurchaseItemViewCard.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 9/15/20.
@@ -9,11 +9,11 @@
 import SwiftUI
 import FamilyKit
 
-struct CKBuckPurchaseItemView: View {
+struct CKBuckPurchaseItemViewCard: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    var model: CKStoreItemPurchaseModel
+    var model: CKBuckRewardModel
     
     @State var coverPhotoImage: Image?
     
@@ -97,9 +97,9 @@ struct CKBuckPurchaseItemView: View {
 }//end CKActivityItemView
 
 #if DEBUG
-struct CKBuckPurchaseItemView_Previews: PreviewProvider {
+struct CKBuckPurchaseItemViewCard_Previews: PreviewProvider {
     static var previews: some View {
-        CKBuckPurchaseItemView( model: CKStoreItemPurchaseModel.mock)
+        CKBuckPurchaseItemViewCard( model: CKBuckRewardModel.mock)
             .previewLayout(.fixed(width: 200, height: 200))
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CKStoreItemDefinitionModel.swift
+//  CKBuckRewardDefinitionModel.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/19/20.
@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKStoreItemDefinitionModel: CKModel {
+public struct CKBuckRewardDefinitionModel: CKModel {
 
     public static var defaultSortDescriptor: SortDescriptor {
         return .none
     }
     
-    public typealias ItemType = CKStoreItemDefinitionModel
+    public typealias ItemType = CKBuckRewardDefinitionModel
     public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushGeneric
     public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "StoreItemDefinition"
@@ -36,8 +36,8 @@ public struct CKStoreItemDefinitionModel: CKModel {
         return name
     }
 
-    public static var mock: CKStoreItemDefinitionModel {
-        var model = CKStoreItemDefinitionModel()
+    public static var mock: CKBuckRewardDefinitionModel {
+        var model = CKBuckRewardDefinitionModel()
         model.name = "mock store item"
         model.bucks = 3
         model.info = "some mock store item info"
@@ -69,15 +69,15 @@ public struct CKStoreItemDefinitionModel: CKModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKStoreItemDefinitionModel {
+extension CKBuckRewardDefinitionModel {
 
     public var ckRecord: CKRecord? {
         let record: CKRecord
         if let recordID = recordID {
-            record = CKRecord(recordType: CKStoreItemDefinitionModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKBuckRewardDefinitionModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKStoreItemDefinitionModel.recordName)
+            record = CKRecord(recordType: CKBuckRewardDefinitionModel.recordName)
         }
 
         if let name = name {

@@ -40,13 +40,13 @@
 		76208BA624D8C55F001F46E2 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208BA524D8C55F001F46E2 /* AudioPlayerView.swift */; };
 		76241ABF24F6C9DF00788592 /* FamilyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ABE24F6C9DF00788592 /* FamilyChatView.swift */; };
 		76241AC124F6CE5B00788592 /* ChatPeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC024F6CE5B00788592 /* ChatPeekView.swift */; };
-		76241AC924F80D0200788592 /* StoreItemDefinitionEditDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC824F80D0100788592 /* StoreItemDefinitionEditDetailView.swift */; };
-		76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */; };
+		76241AC924F80D0200788592 /* RewardDefinitionEditDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241AC824F80D0100788592 /* RewardDefinitionEditDetailView.swift */; };
+		76241ACB24F80E3100788592 /* RewardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACA24F80E3100788592 /* RewardDetailView.swift */; };
 		76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */; };
 		76241ACF24F84AD100788592 /* DrawPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76241ACE24F84AD100788592 /* DrawPreviewView.swift */; };
 		7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837B24E5BFA000097C4D /* DevMessageView.swift */; };
 		7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837D24E6039F00097C4D /* MainFamilyView.swift */; };
-		7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainBucksStoreView.swift */; };
+		7649838024E603C100097C4D /* MainRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainRewardsView.swift */; };
 		7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838424E621C000097C4D /* FamilyActivityCardView.swift */; };
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
 		7658BEC625115BA5006149C9 /* CKBuckPurchaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658BEC525115BA5006149C9 /* CKBuckPurchaseRowView.swift */; };
@@ -62,7 +62,7 @@
 		768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92B0250D673900DB8818 /* AgentConfigurationView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
-		76B0F4E225013430006774C0 /* StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* StoreItemDefinitionDetailView.swift */; };
+		76B0F4E225013430006774C0 /* RewardDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */; };
 		76BADB3324CA5776004950C0 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3224CA5776004950C0 /* userData.json */; };
 		76BADB4224CA57AD004950C0 /* stmarylake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3424CA57AC004950C0 /* stmarylake.jpg */; };
 		76BADB4324CA57AD004950C0 /* charleyrivers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76BADB3524CA57AC004950C0 /* charleyrivers.jpg */; };
@@ -168,14 +168,14 @@
 		76208BA524D8C55F001F46E2 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		76241ABE24F6C9DF00788592 /* FamilyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyChatView.swift; sourceTree = "<group>"; };
 		76241AC024F6CE5B00788592 /* ChatPeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPeekView.swift; sourceTree = "<group>"; };
-		76241AC824F80D0100788592 /* StoreItemDefinitionEditDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemDefinitionEditDetailView.swift; sourceTree = "<group>"; };
-		76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemPurchaseDetailView.swift; sourceTree = "<group>"; };
+		76241AC824F80D0100788592 /* RewardDefinitionEditDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDefinitionEditDetailView.swift; sourceTree = "<group>"; };
+		76241ACA24F80E3100788592 /* RewardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailView.swift; sourceTree = "<group>"; };
 		76241ACC24F83D0600788592 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		76241ACE24F84AD100788592 /* DrawPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawPreviewView.swift; sourceTree = "<group>"; };
 		7649837724E594FC00097C4D /* Production_SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Production_SimpleApp.entitlements; sourceTree = "<group>"; };
 		7649837B24E5BFA000097C4D /* DevMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMessageView.swift; sourceTree = "<group>"; };
 		7649837D24E6039F00097C4D /* MainFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyView.swift; sourceTree = "<group>"; };
-		7649837F24E603C100097C4D /* MainBucksStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBucksStoreView.swift; sourceTree = "<group>"; };
+		7649837F24E603C100097C4D /* MainRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRewardsView.swift; sourceTree = "<group>"; };
 		7649838424E621C000097C4D /* FamilyActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyActivityCardView.swift; sourceTree = "<group>"; };
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		7658BEC525115BA5006149C9 /* CKBuckPurchaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseRowView.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
-		76B0F4E125013430006774C0 /* StoreItemDefinitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemDefinitionDetailView.swift; sourceTree = "<group>"; };
+		76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDefinitionDetailView.swift; sourceTree = "<group>"; };
 		76BADB3224CA5776004950C0 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		76BADB3424CA57AC004950C0 /* stmarylake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stmarylake.jpg; sourceTree = "<group>"; };
 		76BADB3524CA57AC004950C0 /* charleyrivers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = charleyrivers.jpg; sourceTree = "<group>"; };
@@ -463,10 +463,10 @@
 		7649838324E6218A00097C4D /* BucksStoreView */ = {
 			isa = PBXGroup;
 			children = (
-				7649837F24E603C100097C4D /* MainBucksStoreView.swift */,
-				76241AC824F80D0100788592 /* StoreItemDefinitionEditDetailView.swift */,
-				76B0F4E125013430006774C0 /* StoreItemDefinitionDetailView.swift */,
-				76241ACA24F80E3100788592 /* StoreItemPurchaseDetailView.swift */,
+				7649837F24E603C100097C4D /* MainRewardsView.swift */,
+				76241AC824F80D0100788592 /* RewardDefinitionEditDetailView.swift */,
+				76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */,
+				76241ACA24F80E3100788592 /* RewardDetailView.swift */,
 			);
 			path = BucksStoreView;
 			sourceTree = "<group>";
@@ -771,7 +771,7 @@
 				76C2FE0124DB9B9000E030C2 /* CKActivityActiveListView.swift in Sources */,
 				768C92A8250D5E6900DB8818 /* AgentCardView.swift in Sources */,
 				7601816024C4B01300B339E4 /* AdultUserView.swift in Sources */,
-				76241AC924F80D0200788592 /* StoreItemDefinitionEditDetailView.swift in Sources */,
+				76241AC924F80D0200788592 /* RewardDefinitionEditDetailView.swift in Sources */,
 				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionCardView.swift in Sources */,
@@ -779,14 +779,14 @@
 				7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */,
-				7649838024E603C100097C4D /* MainBucksStoreView.swift in Sources */,
+				7649838024E603C100097C4D /* MainRewardsView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddCardView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,
 				7601811724C4A4B400B339E4 /* AppDelegate.swift in Sources */,
 				7601814F24C4A53200B339E4 /* AppState.swift in Sources */,
 				76CFA22024DA53AA007A02CF /* PhotoActivityDescriptionView.swift in Sources */,
 				7601811924C4A4B400B339E4 /* SceneDelegate.swift in Sources */,
-				76B0F4E225013430006774C0 /* StoreItemDefinitionDetailView.swift in Sources */,
+				76B0F4E225013430006774C0 /* RewardDefinitionDetailView.swift in Sources */,
 				76208BA624D8C55F001F46E2 /* AudioPlayerView.swift in Sources */,
 				7601817824C61F2400B339E4 /* PurchaseModel.swift in Sources */,
 				76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */,
@@ -805,7 +805,7 @@
 				76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */,
 				7658BEC625115BA5006149C9 /* CKBuckPurchaseRowView.swift in Sources */,
 				76241ACD24F83D0600788592 /* ActivityIndicatorView.swift in Sources */,
-				76241ACB24F80E3100788592 /* StoreItemPurchaseDetailView.swift in Sources */,
+				76241ACB24F80E3100788592 /* RewardDetailView.swift in Sources */,
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,

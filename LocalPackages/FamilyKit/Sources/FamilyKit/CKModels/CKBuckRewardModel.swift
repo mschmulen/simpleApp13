@@ -1,5 +1,5 @@
 //
-//  CKStoreItemModel.swift
+//  CKBuckRewardModel.swift
 //  
 //
 //  Created by Matthew Schmulen on 8/19/20.
@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 import CloudKit
 
-public struct CKStoreItemPurchaseModel: CKModel {
+public struct CKBuckRewardModel: CKModel {
     
     public static var defaultSortDescriptor: SortDescriptor {
         return .none
     }
     
-    public typealias ItemType = CKStoreItemPurchaseModel
+    public typealias ItemType = CKBuckRewardModel
     public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushStoreItemPurchase
     public static let silentPushNotificationDesiredKeys: [String]? = nil
     public static let recordName = "StoreItemPurchase"
@@ -57,10 +57,10 @@ public struct CKStoreItemPurchaseModel: CKModel {
         return name
     }
     
-    public static var mock: CKStoreItemPurchaseModel {
-        var model = CKStoreItemPurchaseModel(
+    public static var mock: CKBuckRewardModel {
+        var model = CKBuckRewardModel(
             purchasingPlayer: CKPlayerModel.mock,
-            storeItemReference: CKStoreItemDefinitionModel.mock
+            storeItemReference: CKBuckRewardDefinitionModel.mock
         )
         model.name = "mock store item"
         model.bucks = 3
@@ -70,7 +70,7 @@ public struct CKStoreItemPurchaseModel: CKModel {
     
     public init(
         purchasingPlayer: CKPlayerModel,
-        storeItemReference: CKStoreItemDefinitionModel
+        storeItemReference: CKBuckRewardDefinitionModel
     ){
         
         guard let storeItemRecordID = storeItemReference.ckRecord?.recordID,
@@ -129,15 +129,15 @@ public struct CKStoreItemPurchaseModel: CKModel {
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKStoreItemPurchaseModel {
+extension CKBuckRewardModel {
 
     public var ckRecord: CKRecord? {
         let record: CKRecord
         if let recordID = recordID {
-            record = CKRecord(recordType: CKStoreItemPurchaseModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKBuckRewardModel.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKStoreItemPurchaseModel.recordName)
+            record = CKRecord(recordType: CKBuckRewardModel.recordName)
         }
 
         if let name = name {

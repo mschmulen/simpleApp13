@@ -105,7 +105,7 @@ extension AppState {
             selectedTab = TabViewIndex.family.rawValue
         case .tabBucks:
             topView = .mainView
-            selectedTab = TabViewIndex.bucksStore.rawValue
+            selectedTab = TabViewIndex.rewards.rawValue
         case .modalViewRecord(let recordName, let recordType):
             topView = .modalView
             selectedTab = TabViewIndex.familyChat.rawValue

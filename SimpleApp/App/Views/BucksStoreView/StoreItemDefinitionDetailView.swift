@@ -13,20 +13,20 @@ import FamilyKit
 import SimpleGames
 import CloudKit
 
-struct StoreItemDefinitionDetailView: View {
+struct RewardDefinitionDetailView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
     
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State var devMessage: String?
     
-    @State var model: CKStoreItemDefinitionModel
+    @State var model: CKBuckRewardDefinitionModel
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
@@ -62,7 +62,7 @@ struct StoreItemDefinitionDetailView: View {
     }
     
     private var trailingButton: some View {
-        NavigationLink(destination: StoreItemDefinitionEditDetailView(model: model)) {
+        NavigationLink(destination: RewardDefinitionEditDetailView(model: model)) {
             Text("EDIT")
         }
     }
@@ -88,7 +88,7 @@ struct StoreItemDefinitionDetailView: View {
             return
         }
         
-        var newPurchase = CKStoreItemPurchaseModel(
+        var newPurchase = CKBuckRewardModel(
             purchasingPlayer: currrentPlayerModel,
             storeItemReference: model
         )

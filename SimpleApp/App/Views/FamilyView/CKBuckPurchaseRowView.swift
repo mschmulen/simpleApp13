@@ -14,11 +14,11 @@ struct CKBuckPurchaseRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
-    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
     
     var categoryName: String
-    var items: [CKStoreItemPurchaseModel]
+    var items: [CKBuckRewardModel]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,11 +31,11 @@ struct CKBuckPurchaseRowView: View {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(self.items) { model in
                         NavigationLink(
-                            destination: StoreItemPurchaseDetailView(
+                            destination: RewardDetailView(
                                 model: model
                             )
                         ) {
-                            CKBuckPurchaseItemView(model: model)
+                            CKBuckPurchaseItemViewCard(model: model)
                         }
                     }
                 }
@@ -52,9 +52,9 @@ struct CKBuckPurchaseRowView_Previews: PreviewProvider {
             CKBuckPurchaseRowView(
                 categoryName: "CATEGORY",
                 items: [
-                    CKStoreItemPurchaseModel.mock,
-                    CKStoreItemPurchaseModel.mock,
-                    CKStoreItemPurchaseModel.mock
+                    CKBuckRewardModel.mock,
+                    CKBuckRewardModel.mock,
+                    CKBuckRewardModel.mock
                 ]
             )
                 .previewLayout(.fixed(width: 400, height: 100))

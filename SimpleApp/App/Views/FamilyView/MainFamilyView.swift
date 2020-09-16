@@ -21,7 +21,7 @@ struct MainFamilyView: View {
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
     
     var chatService: ChatService = ChatService( container: CKContainer(identifier: CKContainerIdentifier) )
     

@@ -17,7 +17,7 @@ enum TopView {
 enum TabViewIndex: Int {
     case you = 0
     case family = 1
-    case bucksStore = 2
+    case rewards = 2
     case familyChat = 3
 }
 
@@ -33,8 +33,8 @@ struct ContentView: View {
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
     
-    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKStoreItemDefinitionModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKStoreItemPurchaseModel>
+    @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
     
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
@@ -95,7 +95,7 @@ struct ContentView: View {
                                 Text("Family")
                         }.tag(TabViewIndex.family.rawValue)
                         
-                        MainBucksStoreView()
+                        MainRewardsView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
@@ -106,8 +106,8 @@ struct ContentView: View {
                             .tabItem {
                                 Image(systemName: "dollarsign.circle")
                                 // .font(.system(size: 28, weight: .light))
-                                Text("Bucks")
-                        }.tag(TabViewIndex.bucksStore.rawValue)
+                                Text("Rewards")
+                        }.tag(TabViewIndex.rewards.rawValue)
                         
                         FamilyChatView()
                             .environment(\.window, window)
