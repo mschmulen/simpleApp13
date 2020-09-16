@@ -28,7 +28,7 @@ TODO
 
 
 ##### Build 40
-- Remove the emoji floating accessory above the cards
+- Remove the emoji type floating accessory above the cards
 - rename "bucks Something" to "Reward something"
 - improvement on bucks/rewards data models to support purchase player and also definition reference
 - added Rewards and bucks to the main family page.
