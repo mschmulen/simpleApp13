@@ -18,7 +18,7 @@ struct CKActivityDescriptionCardView: View {
     @State var coverPhotoImage: Image?
     
     let cardSize: CGFloat = 100
-    
+    let showEmoji = false
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
@@ -49,13 +49,16 @@ struct CKActivityDescriptionCardView: View {
                     Spacer()
                 }
                 
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text(model.moduleType.emoji)
+                if showEmoji {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text(model.moduleType.emoji)
                             //.padding()
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    
                 }
             }
         }

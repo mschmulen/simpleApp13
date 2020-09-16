@@ -19,6 +19,8 @@ struct CKActivityActiveItemView: View {
     
     let cardSize: CGFloat = 100
     
+    let showEmoji = false
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -55,12 +57,14 @@ struct CKActivityActiveItemView: View {
                         .padding()
                 }
                 
-                VStack {
-                    HStack {
+                if showEmoji {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text(model.moduleType.emoji)
+                        }
                         Spacer()
-                        Text(model.moduleType.emoji)
                     }
-                    Spacer()
                 }
             }
         }
