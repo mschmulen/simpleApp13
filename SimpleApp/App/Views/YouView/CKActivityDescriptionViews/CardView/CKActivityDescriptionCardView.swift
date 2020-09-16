@@ -93,10 +93,10 @@ struct CKActivityDescriptionCardView: View {
         }
     }
     
-}//end CKChoreItemView
+}//end struct
 
 #if DEBUG
-struct CKChoreItemView_Previews: PreviewProvider {
+struct CKActivityDescriptionCardView_Previews: PreviewProvider {
     static var previews: some View {
         CKActivityDescriptionCardView( model: CKActivityDescriptionModel.mock)
             .previewLayout(.fixed(width: 200, height: 200))

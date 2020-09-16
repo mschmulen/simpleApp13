@@ -1,5 +1,5 @@
 //
-//  CKChoreDescriptionItemView.swift
+//  CKActivityActiveItemView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/2/20.
@@ -110,7 +110,7 @@ struct CKActivityActiveItemView: View {
         
     }
     
-}//end CKActivityItemView
+}//end struct
 
 #if DEBUG
 struct CKActivityActiveItemView_Previews: PreviewProvider {
