@@ -466,38 +466,6 @@
             endingLineNumber = "250"
             landmarkName = "addBucks(playerModel:bucks:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AE0FF6E9-8A8D-436C-B748-4B3018A7C2B8 - f342995c08638c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKPlayerModel, Swift.Error&gt;) -&gt; () in FamilyKit.FamilyKitAppState.addBucks(playerModel: FamilyKit.CKPlayerModel, bucks: Swift.Int) -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "250"
-                  endingLineNumber = "250"
-                  offsetFromSymbolStart = "125">
-               </Location>
-               <Location
-                  uuid = "AE0FF6E9-8A8D-436C-B748-4B3018A7C2B8 - f342995c08638c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKPlayerModel, Swift.Error&gt;) -&gt; () in FamilyKit.FamilyKitAppState.addBucks(playerModel: FamilyKit.CKPlayerModel, bucks: Swift.Int) -&gt; ()"
-                  moduleName = "P&amp;S Family"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "250"
-                  endingLineNumber = "250"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -702,8 +670,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -766,8 +734,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -776,22 +744,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7C6C1F87-9B50-428B-AE0F-8743E8F9E747"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleApp/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "processCKQueryNotification(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BA772038-971C-4C2F-9F50-B431051529B1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -807,6 +759,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "BA772038-971C-4C2F-9F50-B431051529B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleApp/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "processCKQueryNotification(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "99CA5F06-6696-4547-AAED-CEC7017EC2B5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -814,8 +782,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -830,8 +798,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -846,8 +814,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -862,8 +830,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -926,8 +894,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -942,8 +910,8 @@
             filePath = "SimpleApp/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "processCKQueryNotification(with:)"
             landmarkType = "7">
          </BreakpointContent>

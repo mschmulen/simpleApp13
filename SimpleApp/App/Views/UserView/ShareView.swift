@@ -1,8 +1,8 @@
 //
-//  PlayersListView.swift
+//  ShareView.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 8/9/20.
+//  Created by Matthew Schmulen on 9/22/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct PlayersListView: View {
+struct ShareView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -28,23 +28,19 @@ struct PlayersListView: View {
     var body: some View {
         List{
             DevMessageView(devMessage: $devMessage)
-            Section(header: Text("Family: \(self.familyKitAppState.playerService.models.count)")) {
-                
-                NavigationLink(destination: PlayerDetailView(model: CKPlayerModel())) {
-                    Text("Add a new Player to this account")
-                        .foregroundColor(.blue)
-                }
-                
+            
+            Section(header: Text("Share: Work In progress!")) {
                 ForEach( self.familyKitAppState.playerService.models ) { model in
-                    NavigationLink(destination: PlayerDetailView(model: model)) {
-                        HStack {
-                            Text("\(model.emoji ?? "~")")
-                            Text("\(model.name ?? "~")")
+                    if model.ckRecord != nil {
+                        NavigationLink(destination: ShareInviteView(share: CKShare(rootRecord: model.ckRecord!), rootRecord: model.ckRecord!)) {
+                            Text("\(model.name ?? "?"): share record ")
+                                .foregroundColor(.blue)
                         }
+                    } else {
+                        Text("nil record")
                     }
-                }//end ForEach
-                    .onDelete(perform: delete)
-            }//end section kids
+                }
+            }//end Share
             
         }.onAppear(perform: {
             self.familyKitAppState.onRefetchFromServer()
@@ -69,15 +65,16 @@ struct PlayersListView: View {
     
 }
 
-struct PlayersListView_Previews: PreviewProvider {
+struct ShareView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        PlayersListView()
+        ShareView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CloudKitContainer.CloudContainer(container))))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.CloudContainer(container)))
             .environmentObject(CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container)))
     }
 }
+

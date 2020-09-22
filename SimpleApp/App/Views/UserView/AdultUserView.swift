@@ -47,6 +47,13 @@ struct AdultUserView: View {
                 }
             }
             
+            Section(header: Text("ShareView")) {
+                NavigationLink(destination: ShareView()) {
+                    Text("ShareView")
+                        .foregroundColor(.blue)
+                }
+            }
+            
             Section(header: Text("Agent Stuff")) {
                 NavigationLink(destination: AgentConfigurationView(agent: .mock)) {
                     Text("Agent Configuration")

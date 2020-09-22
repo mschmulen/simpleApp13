@@ -62,6 +62,7 @@
 		768C92AF250D66AA00DB8818 /* AgentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AE250D66AA00DB8818 /* AgentModel.swift */; };
 		768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92B0250D673900DB8818 /* AgentConfigurationView.swift */; };
 		769484B6251A430C00957F16 /* ShareInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B5251A430C00957F16 /* ShareInviteView.swift */; };
+		769484B8251A55E500957F16 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B7251A55E500957F16 /* ShareView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76B0F4E225013430006774C0 /* RewardDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */; };
@@ -194,6 +195,7 @@
 		768C92AE250D66AA00DB8818 /* AgentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentModel.swift; sourceTree = "<group>"; };
 		768C92B0250D673900DB8818 /* AgentConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentConfigurationView.swift; sourceTree = "<group>"; };
 		769484B5251A430C00957F16 /* ShareInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteView.swift; sourceTree = "<group>"; };
+		769484B7251A55E500957F16 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				7601817024C54B8800B339E4 /* PurchaseView.swift */,
 				768C9295250AAF4C00DB8818 /* NotificationDevView.swift */,
 				769484B5251A430C00957F16 /* ShareInviteView.swift */,
+				769484B7251A55E500957F16 /* ShareView.swift */,
 			);
 			path = UserView;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				76DF241C24ED74EF009222AF /* UserView.swift in Sources */,
 				7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */,
 				768C92AA250D5EEF00DB8818 /* AgentDetailView.swift in Sources */,
+				769484B8251A55E500957F16 /* ShareView.swift in Sources */,
 				76CFA1D824D9E0AB007A02CF /* DrawContainerView.swift in Sources */,
 				76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */,
 				76CEC81D24F970B100F4231C /* LargeTextPillBox.swift in Sources */,

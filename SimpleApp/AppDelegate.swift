@@ -140,8 +140,6 @@ extension AppDelegate {
 //                "content-available" = 1;
 //            }]
             
-            
-            
             CKPrivateModelService<CKActivityDescriptionModel>.notificationReceive( notification: notification)
             if notification.queryNotificationReason == .recordCreated {
                 print( ".recordCreated")
@@ -158,6 +156,36 @@ extension AppDelegate {
         }
         
     }//end didReceiveRemoteNotification
+}
+
+extension AppDelegate {
+    
+    // TODO: userDidAcceptCloudKitShareWith
+    func application(_ application: UIApplication, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+        
+        let acceptShareOperation: CKAcceptSharesOperation =
+            CKAcceptSharesOperation(shareMetadatas:
+            [cloudKitShareMetadata])
+        
+        acceptShareOperation.qualityOfService = .userInteractive
+        acceptShareOperation.perShareCompletionBlock = {meta, share,
+            error in
+            print("userDidAcceptCloudKitShareWith share was accepted")
+        }
+        acceptShareOperation.acceptSharesCompletionBlock = {
+            error in
+            print( "error userDidAcceptCloudKitShareWith. error \(String(describing: error))")
+            /// Send your user to where they need to go in your app
+        }
+        fatalError("TODO: userDidAcceptCloudKitShareWith needs to be implimented")
+        
+        // TODO familyKitAppState.addShareAccept(acceptShareOperation) Update in Family Kit
+        //
+//        CKContainer(identifier:
+//            cloudKitShareMetadata.containerIdentifier).add
+//            (acceptShareOperation)
+    }
+    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

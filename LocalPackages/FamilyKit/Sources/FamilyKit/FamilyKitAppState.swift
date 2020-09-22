@@ -315,8 +315,11 @@ extension FamilyKitAppState {
             return false
         }
     }
-    
-    
 }
 
-
+extension FamilyKitAppState {
+    func addShareAccept(acceptShareOperation:CKAcceptSharesOperation) {
+        container.add(acceptShareOperation)
+    }
+    
+}
