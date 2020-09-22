@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // App Notifications
 public struct FamilyKitNotifications {
     

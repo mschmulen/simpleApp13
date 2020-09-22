@@ -8,6 +8,7 @@
 import Foundation
 import CloudKit
 
+// TODO: Rename CKCustomError
 enum CustomError: Error {
     
     case unknown

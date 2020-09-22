@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CKPrivateModel.swift
 //  
 //
 //  Created by Matthew Schmulen on 7/31/20.
@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CloudKit
 
+// TODO Rename: CKPrivateModel
 public protocol CKModel: Identifiable, Hashable {
     
     associatedtype ItemType
