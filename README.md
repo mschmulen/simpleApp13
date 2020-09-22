@@ -26,6 +26,8 @@ TODO
 
 ## Release Notes
 
+##### Build 41
+
 
 ##### Build 40
 - Remove the emoji type floating accessory above the cards

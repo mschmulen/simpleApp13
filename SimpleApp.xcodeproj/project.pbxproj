@@ -25,6 +25,7 @@
 		7616F66824DC7723003488EB /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66724DC7723003488EB /* YouView.swift */; };
 		7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7616F66924DC77B7003488EB /* KidUserView.swift */; };
 		7616F66C24DC8823003488EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616F66B24DC8823003488EB /* StoreKit.framework */; };
+		761A58912515193200529FD2 /* UIKitCloudKitSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761A58902515193200529FD2 /* UIKitCloudKitSharingButton.swift */; };
 		76208B7B24D5F7A0001F46E2 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76208B7A24D5F7A0001F46E2 /* FamilyKit */; };
 		76208B7E24D5F8FE001F46E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76208B7D24D5F8FE001F46E2 /* CloudKit.framework */; };
 		76208B8024D60051001F46E2 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76208B7F24D60051001F46E2 /* PlayerDetailView.swift */; };
@@ -152,6 +153,8 @@
 		7616F66724DC7723003488EB /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		7616F66924DC77B7003488EB /* KidUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidUserView.swift; sourceTree = "<group>"; };
 		7616F66B24DC8823003488EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		761A588D2514F53000529FD2 /* NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = NOTES.md; sourceTree = "<group>"; };
+		761A58902515193200529FD2 /* UIKitCloudKitSharingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCloudKitSharingButton.swift; sourceTree = "<group>"; };
 		76208B7924D5F794001F46E2 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
 		76208B7C24D5F8EC001F46E2 /* SimpleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleApp.entitlements; sourceTree = "<group>"; };
 		76208B7D24D5F8FE001F46E2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -264,6 +267,7 @@
 				76CFA1D924D9E8EF007A02CF /* SimpleGames */,
 				76208B7924D5F794001F46E2 /* FamilyKit */,
 				76A3F6D224C7DA5400763A8A /* README.md */,
+				761A588D2514F53000529FD2 /* NOTES.md */,
 				7601811524C4A4B400B339E4 /* SimpleApp */,
 				7601812F24C4A4B500B339E4 /* SimpleAppTests */,
 				7601813A24C4A4B500B339E4 /* SimpleAppUITests */,
@@ -344,6 +348,7 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				761A588F2515192300529FD2 /* WIPStuff */,
 				768C92AD250D665A00DB8818 /* AgentViews */,
 				76141DE624FFE36800295FE5 /* ViewModifiers */,
 				76241ABD24F6C9BE00788592 /* FamilyChatView */,
@@ -386,6 +391,14 @@
 				76141DE724FFE37D00295FE5 /* PrimaryLabel.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		761A588F2515192300529FD2 /* WIPStuff */ = {
+			isa = PBXGroup;
+			children = (
+				761A58902515193200529FD2 /* UIKitCloudKitSharingButton.swift */,
+			);
+			path = WIPStuff;
 			sourceTree = "<group>";
 		};
 		76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */ = {
@@ -808,6 +821,7 @@
 				76241ACB24F80E3100788592 /* RewardDetailView.swift in Sources */,
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */,
+				761A58912515193200529FD2 /* UIKitCloudKitSharingButton.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,
 				76208B8024D60051001F46E2 /* PlayerDetailView.swift in Sources */,
 				76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */,

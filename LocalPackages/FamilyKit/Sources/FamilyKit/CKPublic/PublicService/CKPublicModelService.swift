@@ -7,10 +7,228 @@
 //
 
 
-//import SwiftUI
-//import Combine
-//import CloudKit
-//
+import SwiftUI
+import Combine
+import CloudKit
+
+public final class CKPublicModelService<T>: ObservableObject where T:CKPublicModel {
+    
+    public let objectWillChange = ObservableObjectPublisher()
+    
+    internal var container: CKContainer
+    
+    @Published public var models: [T] = [] {
+        willSet {
+            updateChanges()
+        }
+    }
+    
+    public init(container: CloudKitContainer) {
+        switch container {
+        case .CloudContainer(let container):
+            self.container = container
+        case .MockContainer(let container):
+            self.container = container
+        }
+    }
+    
+    internal func updateChanges() {
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+}
+
+extension CKPublicModelService {
+    
+    public func fetch(
+        sortDescriptor: SortDescriptor,
+        searchPredicate: SearchPredicate,
+        // TODO add resultsLimit
+        completion: @escaping (Result<[T], Error>) -> ()
+    ) {
+        let query = CKQuery(recordType: T.recordName, predicate: searchPredicate.predicate)
+        query.sortDescriptors = sortDescriptor.sortDescriptors
+        
+        queryRecords(
+            query: query,
+            resultsLimit: 50,
+            enablePaging: true,
+            completion: { result in
+                switch result {
+                case .success(let models) :
+                    DispatchQueue.main.async {
+                        // TODO merge the model list together
+                        self.models = models
+                        completion(.success(models))
+                    }
+                case .failure(let error) :
+                    completion(.failure(error))
+                }
+        })
+    }//end fetchPrivate
+    
+    internal func queryRecords(
+        query: CKQuery,
+        resultsLimit: Int,
+        enablePaging: Bool,
+        completion: @escaping (Result<[T], Error>) -> (),
+        errorHandler: ((_ error: Error) -> Void)? = nil
+    ) {
+        let operation = CKQueryOperation(query: query)
+        var results = [T]()
+        operation.recordFetchedBlock = { record in
+            if let model = T( record: record) {
+                results.append(model)
+            }
+        }
+        
+        operation.queryCompletionBlock = { cursor, error in
+            if cursor != nil && enablePaging == true {
+                self.queryRecords(
+                    cursor: cursor!,
+                    resultsLimit: resultsLimit,
+                    continueWithResults: results,
+                    completion: completion,
+                    errorHandler: errorHandler
+                )
+            } else {
+                completion(.success(results))
+            }
+        }
+        operation.resultsLimit = resultsLimit
+        container.privateCloudDatabase.add(operation)
+    }
+    
+    private func queryRecords(
+        cursor: CKQueryOperation.Cursor,
+        resultsLimit: Int,
+        continueWithResults:[T],
+        completion: @escaping (Result<[T], Error>) -> (),
+        errorHandler:((_ error: Error) -> Void)? = nil
+    ) {
+        var results = continueWithResults
+        let operation = CKQueryOperation(cursor: cursor)
+        operation.recordFetchedBlock = { record in
+            if let model = T( record: record) {
+                results.append(model)
+            }
+            
+        }
+        
+        operation.queryCompletionBlock = { cursor, error in
+            if cursor != nil {
+                self.queryRecords(
+                    cursor: cursor!,
+                    resultsLimit: resultsLimit,
+                    continueWithResults: results,
+                    completion: completion,
+                    errorHandler: errorHandler
+                )
+            } else {
+                completion(.success(results))
+            }
+        }
+        operation.resultsLimit = resultsLimit
+        container.privateCloudDatabase.add(operation)
+    }
+}
+
+
+extension CKPublicModelService {
+    public func fetchSingle(
+        model: T,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        if let recordID = model.recordID {
+            container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+                if let record = record, let model = T( record: record) {
+                    completion(.success(model))
+                } else {
+                    completion(.failure( CustomError.make(error: (error as NSError?))))
+                }
+            }
+        } else {
+            completion(.failure(CustomError.unknown))
+        }
+    }
+}
+
+extension CKPublicModelService {
+    
+    public func fetchByReference (
+        modelReference: CKRecord.Reference,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        let recordID = modelReference.recordID
+        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            if let record = record, let model = T( record: record) {
+                completion(.success(model))
+            } else {
+                completion(.failure( CustomError.make(error: (error as NSError?))))
+            }
+        }
+            
+    }
+}
+
+extension CKPublicModelService {
+    
+    // TODO: move this use the SearchPredicate.custom(key, value) and remove this function
+    public func fetchByName(
+        name: String,
+        completion: @escaping ((Result<T,Error>) -> Void)
+    ) {
+        
+        // TODO: replace with .customEqualsSearch("name", value)
+        let pred = NSPredicate(format: "name == %@", name)
+        let query = CKQuery(recordType: T.recordName, predicate: pred)
+        
+        let operation = CKQueryOperation(query: query)
+        //operation.desiredKeys = ["name", "yack"]
+        operation.resultsLimit = 2
+        
+        container.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            if let records = records, let firstRecord = records.first, let model = T(record: firstRecord) {
+                completion(.success(model))
+            } else {
+                completion(.failure( CustomError.make(error: (error as NSError?))))
+            }
+        }
+    }//end fetchByName
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///**
 //
 // Usage:

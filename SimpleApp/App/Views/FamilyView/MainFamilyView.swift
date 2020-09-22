@@ -145,6 +145,7 @@ struct MainFamilyView: View {
                     })
                 )
             }
+            .listRowInsets(EdgeInsets())
             
             Section() {
                 CKRewardRowView(
@@ -169,6 +170,7 @@ struct MainFamilyView: View {
                     })
                 )
             }
+            .listRowInsets(EdgeInsets())
             
         }//end List
     }//end listViewFancy
@@ -325,7 +327,7 @@ struct MainFamilyView: View {
                         print( "found the model \(model)")
                         self.deepLinkModel = model
                     case .failure(let error):
-                        print( "errors")
+                        print( "errors \(error)")
                     }
                     //self.showActivityIndicator = false
                 }

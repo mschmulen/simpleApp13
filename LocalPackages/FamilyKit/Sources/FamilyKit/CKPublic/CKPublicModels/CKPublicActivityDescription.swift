@@ -1,27 +1,40 @@
 //
-//  CKChoreDescriptionModel.swift
-//  FamilyKit
+//  CKPublicActivityDescription.swift
+//  
 //
-//  Created by Matthew Schmulen on 7/25/20.
-//  Copyright © 2020 jumptack. All rights reserved.
+//  Created by Matthew Schmulen on 9/22/20.
 //
 
 import Foundation
 import SwiftUI
 import CloudKit
 
-
-public enum ActivityCategory: String, CaseIterable {
-    case chore
-    case fun
-    case connect
-    case none
+public protocol CKPublicModel: Identifiable, Hashable {
+    
+    associatedtype ItemType
+    
+    // notification info
+    static var silentPushNotificationCategory: NotificationCategory { get }
+    static var silentPushNotificationDesiredKeys: [String]? { get }
+    
+    static var recordName: String { get }
+    static var ckSchemeKeys: [String] { get }
+    static var mock: ItemType { get }
+    static var defaultSortDescriptor: SortDescriptor { get }
+    
+    var id: UUID { get }
+    var recordID: CKRecord.ID? { get }
+    var ckRecord: CKRecord? { get }
+    
+    init?(record: CKRecord)
+    
+    var title: String? { get }
 }
 
-//public struct CKActivityDescriptionModel: CKModel {
-public final class CKActivityDescriptionModel: CKModel, ObservableObject {
 
-    public static func == (lhs: CKActivityDescriptionModel, rhs: CKActivityDescriptionModel) -> Bool {
+public final class CKPublicActivityDescription: CKPublicModel, ObservableObject {
+
+    public static func == (lhs: CKPublicActivityDescription, rhs: CKPublicActivityDescription) -> Bool {
         return lhs.id == rhs.id
     }
     
@@ -33,10 +46,10 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         .custom(key: "creationDate", ascending: true)
     }
     
-    public typealias ItemType = CKActivityDescriptionModel
+    public typealias ItemType = CKPublicActivityDescription
     public static let silentPushNotificationCategory = NotificationCategory.familyKitCategorySilentPushChore
     public static let silentPushNotificationDesiredKeys: [String]? = ["name","emoji","bucks"]
-    public static let recordName = "Chore"
+    public static let recordName = "PublicActivityDescription"
     public static let ckSchemeKeys = [
         "name",
         "description",
@@ -44,12 +57,7 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         "emoji",
         "category",
         "coverPhoto",
-        "moduleType",
-        "frequency",
-        "who",
-        "timeofday",
-        "minAgeInYears",
-        "maxAgeInYears"
+        "moduleType"
     ]
     
     public enum Frequency: String, CaseIterable {
@@ -68,35 +76,26 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
     public var emoji: String?
     public var category: ActivityCategory = .none
     
-    public var who: String? // TODO: remove this
-    
-    // Keep them for now ... but hold off on doing work around them.
-    public var frequency: Frequency = .once
-    public var timeofday: String?
-    
     public var coverPhoto: CKAsset?
     
     public var moduleType: ActivityModuleType = ActivityModuleType.none
     
     // TODO: add to cloud kit
-    public var minAgeInYears: Int?
-    public var maxAgeInYears: Int?
+//    public var minAgeInYears: Int?
+//    public var maxAgeInYears: Int?
     
     public var title: String? {
         return name
     }
     
-    public static var mock: CKActivityDescriptionModel {
-        let model = CKActivityDescriptionModel()
+    public static var mock: CKPublicActivityDescription {
+        let model = CKPublicActivityDescription()
         model.name = "Get ready for bed"
         model.description = "Before going to be brush your teeth, put jammies on and get in bed. You only get points if mama and papa only have to remind you once!"
-        model.who = "kids"
         model.bucks = 2
         model.emoji = "🧵"
         model.category = .chore
         
-        model.frequency = .daily
-        model.timeofday = "Morning"
         model.coverPhoto = nil
         model.moduleType = .drawing
         return model
@@ -113,12 +112,8 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         self.coverPhoto = nil
         self.moduleType = .drawing
         
-        self.who = nil
-        self.frequency = .once
-        self.timeofday = nil
-        
-        self.minAgeInYears = nil
-        self.maxAgeInYears = nil
+//        self.minAgeInYears = nil
+//        self.maxAgeInYears = nil
     }
     
     public init?(record: CKRecord) {
@@ -153,30 +148,24 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
             self.moduleType = ActivityModuleType(rawValue: moduleTypeString) ?? ActivityModuleType.drawing
         }
         
-        if let frequencyString =  record["frequency"] as? String {
-            self.frequency = Frequency(rawValue: frequencyString) ?? Frequency.once
-        }
-        self.who = record["who"] as? String
-        self.timeofday = record["timeofday"] as? String
-        
-        self.minAgeInYears = record["minAgeInYears"] as? Int
-        self.maxAgeInYears = record["maxAgeInYears"] as? Int
+//        self.minAgeInYears = record["minAgeInYears"] as? Int
+//        self.maxAgeInYears = record["maxAgeInYears"] as? Int
         
     }
 }
 
 // MARK: - Create a CKRecord from this model
-extension CKActivityDescriptionModel {
+extension CKPublicActivityDescription {
     
     public var ckRecord: CKRecord? {
         
         let record: CKRecord
         
         if let recordID = recordID {
-            record = CKRecord(recordType: CKActivityDescriptionModel.recordName, recordID: recordID)
+            record = CKRecord(recordType: CKPublicActivityDescription.recordName, recordID: recordID)
         }
         else {
-            record = CKRecord(recordType: CKActivityDescriptionModel.recordName)
+            record = CKRecord(recordType: CKPublicActivityDescription.recordName)
         }
         
         if let name = name {
@@ -195,19 +184,19 @@ extension CKActivityDescriptionModel {
         record["category"] = category.rawValue as CKRecordValue
         record["moduleType"] = moduleType.rawValue as CKRecordValue
         
-        record["frequency"] = frequency.rawValue as CKRecordValue
         if let coverPhoto = coverPhoto {
             record["coverPhoto"] = coverPhoto as CKAsset
         }
         
-        if let minAgeInYears = minAgeInYears {
-            record["minAgeInYears"] = minAgeInYears as CKRecordValue
-        }
-        
-        if let maxAgeInYears = maxAgeInYears {
-            record["maxAgeInYears"] = maxAgeInYears as CKRecordValue
-        }
+//        if let minAgeInYears = minAgeInYears {
+//            record["minAgeInYears"] = minAgeInYears as CKRecordValue
+//        }
+//
+//        if let maxAgeInYears = maxAgeInYears {
+//            record["maxAgeInYears"] = maxAgeInYears as CKRecordValue
+//        }
         
         return record
     }
 }
+

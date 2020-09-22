@@ -82,7 +82,7 @@ struct MainRewardsView: View {
                         }//end ForEach
                         .onDelete(perform: onDeleteDefinition)
                     }
-                    Section(header: Text("active rewards")) {
+                    Section(header: Text("Active rewards")) {
                         ForEach( storeItemPurchaseService.models) { model in
                             NavigationLink(destination: RewardDetailView(model: model) ) {
                                 VStack{
