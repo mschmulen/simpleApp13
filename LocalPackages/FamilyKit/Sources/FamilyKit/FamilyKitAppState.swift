@@ -13,7 +13,7 @@ import CloudKit
 
 public class FamilyKitAppState: ObservableObject {
     
-    private let container: CKContainer
+    public let container: CKContainer
     
     private let thisDeviceModel: DeviceModel = DeviceModel()
     private var deviceService: CKPrivateModelService<CKDeviceModel>
@@ -31,7 +31,7 @@ public class FamilyKitAppState: ObservableObject {
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
-    private var cloudKitApplicationPermissionStatus: CKContainer_Application_PermissionStatus?
+    public let shareService:CKShareService
     
     public init(container: CloudKitContainer) {
         
@@ -40,8 +40,6 @@ public class FamilyKitAppState: ObservableObject {
         #else
         isSimulator = false
         #endif
-        
-        cloudKitApplicationPermissionStatus = nil
         
         switch container {
         case .CloudContainer(let container):
@@ -77,10 +75,22 @@ public class FamilyKitAppState: ObservableObject {
             container: container
         )
         
+        shareService = CKShareService(
+            container: container
+        )
+        
         //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
         //            self.objectWillChange.send()
         //        })
         
+        shareService.requestUserDiscoverability() { result in
+            switch result {
+            case .success(_):
+                print( "requestUserDiscoverability. success")
+            case .failure(let error):
+                print("requestUserDiscoverability. failure \(error)")
+            }
+        }
     }
     
     private func updateChanges() {
@@ -306,107 +316,6 @@ extension FamilyKitAppState {
         }
     }
     
-    
-}
-
-
-
-// reference https://medium.com/@valv0/custom-cloudkit-sharing-workflow-522d67ec0c00
-// MARK: CKSharing stuff
-extension FamilyKitAppState {
-    
-    // TODO: request this for sharing Step 1.
-    func requestUserDiscoverability() {
-        
-        print( "cloudKitApplicationPermissionStatus: \(String(describing: cloudKitApplicationPermissionStatus))")
-        
-        //ask for userDiscoverability otherwise you will obtain nil each time you try to search for him
-        CKContainer.default().requestApplicationPermission(CKContainer_Application_Permissions.userDiscoverability) { (status, error) in
-            
-            self.cloudKitApplicationPermissionStatus = status
-            
-            switch status {
-            case .granted:
-                print("granted")
-            case .denied:
-                print("denied")
-            case .initialState:
-                print("initial state")
-            case .couldNotComplete:
-                print("an error as occurred: ", error ?? "Unknown error")
-            default:
-                print( "some unknown default state")
-            }
-            
-        }
-
-    }
-    
-    
-    
-    // Demo only Step2
-    private func createPublicRecord_step2() {
-        let aRecord = CKRecord(recordType: "MyUser")
-        aRecord.setObject("John" as CKRecordValue, forKey: "firstName")
-        aRecord.setObject("Appleseed" as CKRecordValue, forKey: "lastName")
-
-        let container = CKContainer.default()
-        let publicDatabase = container.publicCloudDatabase
-        
-        publicDatabase.save(aRecord, completionHandler: { (record, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("record saved successfully")
-            }
-        })
-    }
-    
-    // Demo only Step3
-    func createFamilyZone_step3(completionHandler:@escaping (CKRecordZone?, Error?)->Void) {
-        let container = CKContainer.default()
-        let privateDatabase = container.privateCloudDatabase
-        let customZone = CKRecordZone(zoneName: "FamilyZone")
-        
-        privateDatabase.save(customZone, completionHandler: ({returnRecord, error in
-            completionHandler(returnRecord, error)
-        }))
-    }//end createFamilyZone
-    
-    // Demo only Step4
-    private func createPrivateRecord_step4() {
-        let container = CKContainer.default()
-        let privateDatabase = container.privateCloudDatabase
-
-        let recordZone: CKRecordZone = CKRecordZone(zoneName: "FamilyZone")
-        let aRecord = CKRecord(recordType: "PrivateInfo", zoneID: recordZone.zoneID)
-        
-        aRecord.setObject("+393331112223" as CKRecordValue, forKey: "phoneNumber")
-        aRecord.setObject("john@appleseed.com" as CKRecordValue, forKey: "email")
-
-        
-        privateDatabase.save(aRecord, completionHandler: { (record, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("record saved successfully")
-            }
-        })
-    }//end createPrivateRecord
-    
-    
-    // Demo only Step5
-    
-    /*
-    As you could point out, we still haven’t written the privateShareUrl field that is part of the public record; this is the crucial part of the whole approach described in this article. The standard behaviour, in fact, is based on the UICloudSharingController that will prompt the user with a dialog containing what and how to share the information. The result of the dialog is an URL that we need to use with third party apps such as Message, Email or whatever in order to communicate our intention to share something.
-     
-     To make things even worst, on the other side, the receiver needs to click the link that, in turn, will open our app calling a corresponding UIApplocation delegate method. The latter, at the end, will give us a CKShareMetadata instance that we can use to fetch shared information.
-     
-     Apple states that the share url for CKShare is stable and will not change unless you change the root record associated with it.
-     
-    */
     
 }
 

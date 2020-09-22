@@ -23,6 +23,12 @@ enum CustomError: Error {
     case urlError401
     case urlError404
     
+    
+    // requestApplicationPermission
+    case ckContainerApplicationPermissionError_denied
+    case ckContainerApplicationPermissionError_initialState
+    case ckContainerApplicationPermissionError_couldNotComplete
+    
     static func make( error: NSError?) -> CustomError {
         guard let error = error else {
             return .unknown

@@ -462,10 +462,42 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "addBucks(playerModel:bucks:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AE0FF6E9-8A8D-436C-B748-4B3018A7C2B8 - f342995c08638c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKPlayerModel, Swift.Error&gt;) -&gt; () in FamilyKit.FamilyKitAppState.addBucks(playerModel: FamilyKit.CKPlayerModel, bucks: Swift.Int) -&gt; ()"
+                  moduleName = "P&amp;S Family"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "125">
+               </Location>
+               <Location
+                  uuid = "AE0FF6E9-8A8D-436C-B748-4B3018A7C2B8 - f342995c08638c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;FamilyKit.CKPlayerModel, Swift.Error&gt;) -&gt; () in FamilyKit.FamilyKitAppState.addBucks(playerModel: FamilyKit.CKPlayerModel, bucks: Swift.Int) -&gt; ()"
+                  moduleName = "P&amp;S Family"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schmulen/trees/github/mschmulen/simpleApp13/LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1015,17 +1047,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F5FFB1A1-57A5-411D-A8E7-458725D1D28B"
+            uuid = "474F8522-EFB2-4E0A-910A-0EC60BF61F6A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleApp/App/Views/WIPStuff/UIKitCloudKitSharingButton.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "pressed(_:)"
-            landmarkType = "7">
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "shareController"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C491C77D-8E68-417E-AC33-602E65893C61"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleApp/App/Views/WIPStuff/UIKitCloudKitSharingButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "shareController"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

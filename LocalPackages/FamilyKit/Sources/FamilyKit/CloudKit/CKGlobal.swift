@@ -11,3 +11,9 @@ import CloudKit
 
 
 public let CKContainerIdentifier = "iCloud.com.jumptack.FamilyKit"
+
+public enum CloudKitContainer {
+    case CloudContainer(_ container: CKContainer)
+    case MockContainer(_ container: CKContainer)
+}
+

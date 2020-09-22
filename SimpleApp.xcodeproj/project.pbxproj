@@ -61,6 +61,7 @@
 		768C92AC250D644600DB8818 /* AgentCardsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AB250D644600DB8818 /* AgentCardsRowView.swift */; };
 		768C92AF250D66AA00DB8818 /* AgentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AE250D66AA00DB8818 /* AgentModel.swift */; };
 		768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92B0250D673900DB8818 /* AgentConfigurationView.swift */; };
+		769484B6251A430C00957F16 /* ShareInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B5251A430C00957F16 /* ShareInviteView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76B0F4E225013430006774C0 /* RewardDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */; };
@@ -192,6 +193,7 @@
 		768C92AB250D644600DB8818 /* AgentCardsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCardsRowView.swift; sourceTree = "<group>"; };
 		768C92AE250D66AA00DB8818 /* AgentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentModel.swift; sourceTree = "<group>"; };
 		768C92B0250D673900DB8818 /* AgentConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentConfigurationView.swift; sourceTree = "<group>"; };
+		769484B5251A430C00957F16 /* ShareInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteView.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				76EDF11024E03CDE00C68408 /* PlayersListView.swift */,
 				7601817024C54B8800B339E4 /* PurchaseView.swift */,
 				768C9295250AAF4C00DB8818 /* NotificationDevView.swift */,
+				769484B5251A430C00957F16 /* ShareInviteView.swift */,
 			);
 			path = UserView;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,
 				76208B8624D60C12001F46E2 /* CKActivityDescriptionCardsRowView.swift in Sources */,
 				7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */,
+				769484B6251A430C00957F16 /* ShareInviteView.swift in Sources */,
 				76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */,
 				7601811C24C4A4B400B339E4 /* SimpleApp.xcdatamodeld in Sources */,
 				76241AC124F6CE5B00788592 /* ChatPeekView.swift in Sources */,

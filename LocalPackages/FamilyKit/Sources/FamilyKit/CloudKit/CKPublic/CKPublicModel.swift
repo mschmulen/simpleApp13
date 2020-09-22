@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CKPublicModel.swift
 //  
 //
 //  Created by Matthew Schmulen on 9/22/20.

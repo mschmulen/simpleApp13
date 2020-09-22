@@ -45,6 +45,20 @@ struct PlayersListView: View {
                 }//end ForEach
                     .onDelete(perform: delete)
             }//end section kids
+            
+            Section(header: Text("Share: Work In progress")) {
+                ForEach( self.familyKitAppState.playerService.models ) { model in
+                    if model.ckRecord != nil {
+                        NavigationLink(destination: ShareInviteView(share: CKShare(rootRecord: model.ckRecord!), rootRecord: model.ckRecord!)) {
+                            Text("share record \(model.name ?? "?")")
+                                .foregroundColor(.blue)
+                        }
+                    } else {
+                        Text("nil record")
+                    }
+                }
+            }//end Share
+            
         }.onAppear(perform: {
             self.familyKitAppState.onRefetchFromServer()
         })
@@ -65,7 +79,7 @@ struct PlayersListView: View {
             }
         }
     }
-
+    
 }
 
 struct PlayersListView_Previews: PreviewProvider {
@@ -74,9 +88,9 @@ struct PlayersListView_Previews: PreviewProvider {
     
     static var previews: some View {
         PlayersListView()
-        .environmentObject(AppState())
-        .environmentObject((FamilyKitAppState(container: CloudKitContainer.CloudContainer(container))))
-        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.CloudContainer(container)))
-        .environmentObject(CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container)))
+            .environmentObject(AppState())
+            .environmentObject((FamilyKitAppState(container: CloudKitContainer.CloudContainer(container))))
+            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.CloudContainer(container)))
+            .environmentObject(CKPrivateModelService<CKActivityModel>(container: CloudKitContainer.CloudContainer(container)))
     }
 }
