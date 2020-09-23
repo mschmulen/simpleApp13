@@ -21,15 +21,14 @@ TODO
 - `com.apple.developer.icloud-container-environment` property in the SimpleApp.entitlements file
 
 
-
-
-
 ## Release Notes
 
-##### Build 41
+##### Build 41, WIP
+- Sharing infrastructure work
+- fix, remove "+" in "new activity" card
 
 
-##### Build 40
+##### Build 40, Released
 - Remove the emoji type floating accessory above the cards
 - rename "bucks Something" to "Reward something"
 - improvement on bucks/rewards data models to support purchase player and also definition reference
@@ -38,14 +37,12 @@ TODO
 - misc clean up.
 
 
-##### Build 39
+##### Build 39, Released
 - More work on Silent Push notifications 
 - Fix for the Chat push notification ( you need to delete your old stuff )
 - Deeplinking dev view for testing
 
-
-
-##### Build 38
+##### Build 38, Released
 
 - Fix for chat preview update.
 - Update MainFamilyTab look and feel.

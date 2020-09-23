@@ -169,6 +169,7 @@ extension CKActivityDescriptionModel {
         }
         else {
             record = CKRecord(recordType: CKActivityDescriptionModel.recordName)
+            // record.parent = FamilyGlobalRecord
         }
         
         if let name = name {

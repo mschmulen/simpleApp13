@@ -18,7 +18,6 @@ internal struct DeviceModel {
     let localePreferredLanguages: [String]
 
     init() {
-
         self.idfv = UIDevice.current.identifierForVendor
         let locale = Locale.current
         self.localeLanguageCode = locale.languageCode

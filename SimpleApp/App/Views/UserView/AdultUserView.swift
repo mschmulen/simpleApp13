@@ -47,18 +47,31 @@ struct AdultUserView: View {
                 }
             }
             
-            Section(header: Text("ShareView")) {
+            Section(header: Text("Dev Stuff")) {
                 NavigationLink(destination: ShareView()) {
                     Text("ShareView")
                         .foregroundColor(.blue)
                 }
-            }
-            
-            Section(header: Text("Agent Stuff")) {
-                NavigationLink(destination: AgentConfigurationView(agent: .mock)) {
+                
+                NavigationLink(destination: AgentConfigurationView(agentConfig: .mock)) {
                     Text("Agent Configuration")
                         .foregroundColor(.blue)
                 }
+                
+                NavigationLink(destination: PublicActivityDescriptionView()) {
+                    Text("PublicActivityDescriptionView")
+                        .foregroundColor(.blue)
+                }
+                
+                
+                NavigationLink(destination: MultipleChoiceView(viewModel:MultipleChoiceViewModel.mock)) {
+                    Text("MultipleChoiceView")
+                        .foregroundColor(.blue)
+                }
+
+                
+                
+                
             }
             
             Section(header: Text("Dev Stuff")) {
@@ -70,6 +83,11 @@ struct AdultUserView: View {
                 
                 NavigationLink(destination: CKActivityActiveListView()) {
                     Text("Show Active Activities")
+                        .foregroundColor(.blue)
+                }
+                
+                NavigationLink(destination: CKUserView()) {
+                    Text("CKUserView")
                         .foregroundColor(.blue)
                 }
                 

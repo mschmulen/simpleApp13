@@ -31,14 +31,14 @@ struct CKActivityDescriptionAddCardView: View {
                         .font(.body)
                 }
                 
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text("+")
-                            .foregroundColor(.black)
-                    }
-                    Spacer()
-                }
+//                VStack {
+//                    HStack {
+//                        Spacer()
+//                        Text("+")
+//                            .foregroundColor(.black)
+//                    }
+//                    Spacer()
+//                }
             }
         }
         .cornerRadius(5)

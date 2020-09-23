@@ -74,7 +74,7 @@ public final class CKPublicActivityDescription: CKPublicModel, ObservableObject 
         model.category = .chore
         
         model.coverPhoto = nil
-        model.moduleType = .drawing
+        model.moduleType = .photo
         return model
     }
     

@@ -10,6 +10,7 @@ import SwiftUI
 import CoreLocation
 import CloudKit
 
+/*
 public struct CKFamilyModel: CKModel {
     
     public static var defaultSortDescriptor: SortDescriptor {
@@ -78,3 +79,4 @@ extension CKFamilyModel {
         return record
     }
 }
+*/

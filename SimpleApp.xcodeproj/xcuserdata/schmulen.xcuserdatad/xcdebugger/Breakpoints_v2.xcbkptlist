@@ -462,8 +462,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "addBucks(playerModel:bucks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1042,6 +1042,22 @@
             endingLineNumber = "86"
             landmarkName = "shareController"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A9E42DB-1626-4B9D-A05D-5EF94691294F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CloudKit/CKUser/CKUserService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "fetchUserRecord()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -20,7 +20,7 @@ struct AgentDetailView: View {
     
     @State var devMessage: String?
     
-    @State var agent: Agent
+    @State var agentConfig: AgentModel
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
@@ -29,13 +29,18 @@ struct AgentDetailView: View {
         List {
             DevMessageView(devMessage: $devMessage)
             
-            Text("Agent: \(agent.name)")
+            Text("Agent: \(agentConfig.name)")
             Section(header: Text("Recommendations")) {
-                ForEach( agent.reccomendations) { model in
+                
+//                ForEach (familyKitAppState.publicActivityDescriptionService.models ) { model in
+//                    Text("yack \(model.name ?? "?")")
+//                }
+                
+                ForEach( agentConfig.generateRecommendations(agentInput:AgentModel.AgentInput())) { model in
                     
                     NavigationLink(destination:
-                        CKActivityDescriptionDetailView (
-                            model: CKActivityDescriptionModel()
+                        PublicActivityDescriptionDetailView (
+                            model: model
                         )
                     ) {
                         VStack {
@@ -59,7 +64,7 @@ struct AgentDetailView: View {
 struct AgentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AgentDetailView(agent: Agent.mock)
+            AgentDetailView(agentConfig: AgentModel.mock)
         }
     }
 }

@@ -24,7 +24,7 @@ struct YouView: View {
     @State var devMessage: String?
     let appInfo = AppModel()
     
-    var showAgentRow = false
+    @State var showAgent = true
     
     var activeActivities: some View {
         Section() {
@@ -70,16 +70,22 @@ struct YouView: View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
-                List{
-                    
-                    if showAgentRow {
-                        Section() {
-                            AgentCardsRowView(
-                                categoryName: "Agents:"
-                            )
+                
+                if showAgent {
+                    NavigationLink(
+                        destination: AgentDetailView(
+                            agentConfig: familyKitAppState.agentConfig
+                        )
+                    ) {
+                        HStack {
+                            Spacer()
+                            Text("Agent Wizard")
+                                .padding()
                         }
                     }
-                    
+                }
+                
+                List {
                     ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
                         
                         // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))

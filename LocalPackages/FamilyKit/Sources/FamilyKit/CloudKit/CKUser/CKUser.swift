@@ -15,6 +15,7 @@ public protocol CKUserModel: Identifiable {
     associatedtype ItemType
     
     static var recordName: String { get }
+    static var ckSchemeKeys: [String] { get }
     
     init?(record: CKRecord)
     
@@ -31,6 +32,14 @@ public final class CKUser: CKUserModel, ObservableObject {
     
     public typealias ItemType = CKUser
     public static let recordName = "User"
+    public static let ckSchemeKeys = [
+        "name",
+        "birthDate",
+        "emoji",
+        "localeCurrentLanguageCode",
+        "localeCurrentRegionCode",
+        "localePreferredLanguages"
+    ]
     
     public var id = UUID()
     public var recordID: CKRecord.ID?

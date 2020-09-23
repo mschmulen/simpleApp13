@@ -10,8 +10,6 @@ import SwiftUI
 import Combine
 import CloudKit
 
-
-
 public class CKUserService<T>: ObservableObject where T:CKUserModel {
     
     public let objectWillChange = ObservableObjectPublisher()
@@ -34,8 +32,6 @@ public class CKUserService<T>: ObservableObject where T:CKUserModel {
         self.container = container
         requestCloudKitAccountStatus()
     }
-    
-    
     
     public func onStartup() {
         requestCloudKitAccountStatus()
@@ -95,6 +91,17 @@ extension CKUserService {
             switch result {
             case .success(let user):
                 self.currentUser = user
+                
+                self.autoUpdateDeviceInfo() { updateResult in
+                    switch updateResult {
+                    case .success(let record) :
+                        print( "success")
+                    case .failure(let error ):
+                        print( "failure \(error)")
+                    }
+                }
+
+                
             case .failure(let error):
                 // TODO: check for no network
                 print("fetchUserRecord.error \(error)")
@@ -114,7 +121,6 @@ extension CKUserService {
             DispatchQueue.main.async {
                 self.currentUserRecordID = recordID
                 self.currentUserRecordIDName = recordID.recordName
-                //self.autoUpdateDeviceInfo(completion: nil)
             }
             
             self.container.publicCloudDatabase.fetch(withRecordID: recordID) { fetchRecord, error in

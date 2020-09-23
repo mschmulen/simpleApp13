@@ -20,7 +20,7 @@ struct AgentConfigurationView: View {
     
     @State var devMessage: String?
     
-    @State var agent: Agent
+    @State var agentConfig: AgentModel
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
@@ -29,7 +29,7 @@ struct AgentConfigurationView: View {
         List {
             DevMessageView(devMessage: $devMessage)
             Text("Agent Configuration View")
-            Text("Name: \(agent.name)")
+            Text("Name: \(agentConfig.name)")
         }//end List
     }//end body
     
@@ -38,7 +38,7 @@ struct AgentConfigurationView: View {
 struct AgentConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AgentConfigurationView(agent: Agent.mock)
+            AgentConfigurationView(agentConfig: AgentModel.mock)
         }
     }
 }

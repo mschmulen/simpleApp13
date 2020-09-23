@@ -31,6 +31,17 @@ public class FamilyKitAppState: ObservableObject {
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
+    
+    // Agent Stuff
+    public private (set) var agentConfig: AgentModel = AgentModel.mock
+    
+    @Published public private (set) var publicActivityDescriptionService: CKPublicModelService<CKPublicActivityDescription>
+    
+    // public let publicActivityDescriptionService: CKPublicModelService<CKPublicActivityDescription>
+    
+    
+    
+    // Share stuff
     public let shareService:CKShareService
     
     public init(container: CloudKitContainer) {
@@ -79,6 +90,11 @@ public class FamilyKitAppState: ObservableObject {
             container: container
         )
         
+        publicActivityDescriptionService = CKPublicModelService<CKPublicActivityDescription>(
+            container: container
+        )
+        
+        
         //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
         //            self.objectWillChange.send()
         //        })
@@ -105,6 +121,8 @@ public class FamilyKitAppState: ObservableObject {
 extension FamilyKitAppState {
     
     public func onStartup() {
+        
+        userService.onStartup()
         
         playerService.fetch(
             sortDescriptor: .custom(key: "creationDate", ascending: false),
@@ -166,6 +184,15 @@ extension FamilyKitAppState {
             print( "createSilentSubscription \(result)")
         }
         chatService.listenForRemoteNotifications()
+        
+        publicActivityDescriptionService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { result in
+            switch result {
+            case .success( let models):
+                print( "publicActivityDescriptionService \(models.count)")
+            case .failure( let error):
+                print( "publicActivityDescriptionService \(error)")
+            }
+        }
         
     }
     

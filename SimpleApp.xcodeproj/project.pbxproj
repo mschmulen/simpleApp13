@@ -50,6 +50,8 @@
 		7649838024E603C100097C4D /* MainRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649837F24E603C100097C4D /* MainRewardsView.swift */; };
 		7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838424E621C000097C4D /* FamilyActivityCardView.swift */; };
 		7649838B24E73DCB00097C4D /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649838A24E73DCB00097C4D /* AudioActivityView.swift */; };
+		764F86E8251A93A6008F3C2D /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F86E7251A93A6008F3C2D /* MultipleChoiceView.swift */; };
+		764F86EA251BA47E008F3C2D /* PublicActivityDescriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F86E9251BA47E008F3C2D /* PublicActivityDescriptionDetailView.swift */; };
 		7658BEC625115BA5006149C9 /* CKRewardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658BEC525115BA5006149C9 /* CKRewardRowView.swift */; };
 		7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */; };
 		7675FAF924C8AC1800C95453 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAF824C8AC1800C95453 /* UserSettings.swift */; };
@@ -59,10 +61,11 @@
 		768C92A8250D5E6900DB8818 /* AgentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92A7250D5E6900DB8818 /* AgentCardView.swift */; };
 		768C92AA250D5EEF00DB8818 /* AgentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92A9250D5EEF00DB8818 /* AgentDetailView.swift */; };
 		768C92AC250D644600DB8818 /* AgentCardsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AB250D644600DB8818 /* AgentCardsRowView.swift */; };
-		768C92AF250D66AA00DB8818 /* AgentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92AE250D66AA00DB8818 /* AgentModel.swift */; };
 		768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C92B0250D673900DB8818 /* AgentConfigurationView.swift */; };
 		769484B6251A430C00957F16 /* ShareInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B5251A430C00957F16 /* ShareInviteView.swift */; };
 		769484B8251A55E500957F16 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B7251A55E500957F16 /* ShareView.swift */; };
+		769484BA251A726600957F16 /* CKUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484B9251A726600957F16 /* CKUserView.swift */; };
+		769484BC251A7AAF00957F16 /* PublicActivityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769484BB251A7AAF00957F16 /* PublicActivityDescriptionView.swift */; };
 		76AA9EB724EC387C005FDB88 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */; };
 		76AA9EB924EC388B005FDB88 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */; };
 		76B0F4E225013430006774C0 /* RewardDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B0F4E125013430006774C0 /* RewardDefinitionDetailView.swift */; };
@@ -183,6 +186,8 @@
 		7649837F24E603C100097C4D /* MainRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRewardsView.swift; sourceTree = "<group>"; };
 		7649838424E621C000097C4D /* FamilyActivityCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyActivityCardView.swift; sourceTree = "<group>"; };
 		7649838A24E73DCB00097C4D /* AudioActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
+		764F86E7251A93A6008F3C2D /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
+		764F86E9251BA47E008F3C2D /* PublicActivityDescriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicActivityDescriptionDetailView.swift; sourceTree = "<group>"; };
 		7658BEC525115BA5006149C9 /* CKRewardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRewardRowView.swift; sourceTree = "<group>"; };
 		7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseItemView.swift; sourceTree = "<group>"; };
 		7675FAF824C8AC1800C95453 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -192,10 +197,11 @@
 		768C92A7250D5E6900DB8818 /* AgentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCardView.swift; sourceTree = "<group>"; };
 		768C92A9250D5EEF00DB8818 /* AgentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDetailView.swift; sourceTree = "<group>"; };
 		768C92AB250D644600DB8818 /* AgentCardsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCardsRowView.swift; sourceTree = "<group>"; };
-		768C92AE250D66AA00DB8818 /* AgentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentModel.swift; sourceTree = "<group>"; };
 		768C92B0250D673900DB8818 /* AgentConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentConfigurationView.swift; sourceTree = "<group>"; };
 		769484B5251A430C00957F16 /* ShareInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteView.swift; sourceTree = "<group>"; };
 		769484B7251A55E500957F16 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		769484B9251A726600957F16 /* CKUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUserView.swift; sourceTree = "<group>"; };
+		769484BB251A7AAF00957F16 /* PublicActivityDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicActivityDescriptionView.swift; sourceTree = "<group>"; };
 		76A3F6D224C7DA5400763A8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76AA9EB624EC387C005FDB88 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		76AA9EB824EC388B005FDB88 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		7601811524C4A4B400B339E4 /* SimpleApp */ = {
 			isa = PBXGroup;
 			children = (
+				764F86E5251A9378008F3C2D /* ActivityModules */,
 				7649837724E594FC00097C4D /* Production_SimpleApp.entitlements */,
 				76208B7C24D5F8EC001F46E2 /* SimpleApp.entitlements */,
 				76BADB5D24CA58BB004950C0 /* Stores */,
@@ -380,6 +387,7 @@
 				768C9295250AAF4C00DB8818 /* NotificationDevView.swift */,
 				769484B5251A430C00957F16 /* ShareInviteView.swift */,
 				769484B7251A55E500957F16 /* ShareView.swift */,
+				769484B9251A726600957F16 /* CKUserView.swift */,
 			);
 			path = UserView;
 			sourceTree = "<group>";
@@ -403,6 +411,8 @@
 			isa = PBXGroup;
 			children = (
 				761A58902515193200529FD2 /* UIKitCloudKitSharingButton.swift */,
+				769484BB251A7AAF00957F16 /* PublicActivityDescriptionView.swift */,
+				764F86E9251BA47E008F3C2D /* PublicActivityDescriptionDetailView.swift */,
 			);
 			path = WIPStuff;
 			sourceTree = "<group>";
@@ -490,6 +500,22 @@
 			path = BucksStoreView;
 			sourceTree = "<group>";
 		};
+		764F86E5251A9378008F3C2D /* ActivityModules */ = {
+			isa = PBXGroup;
+			children = (
+				764F86E6251A9386008F3C2D /* MultipleChoice */,
+			);
+			path = ActivityModules;
+			sourceTree = "<group>";
+		};
+		764F86E6251A9386008F3C2D /* MultipleChoice */ = {
+			isa = PBXGroup;
+			children = (
+				764F86E7251A93A6008F3C2D /* MultipleChoiceView.swift */,
+			);
+			path = MultipleChoice;
+			sourceTree = "<group>";
+		};
 		76773EA424CC828D004DC075 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,7 +531,6 @@
 				768C92AB250D644600DB8818 /* AgentCardsRowView.swift */,
 				768C92A7250D5E6900DB8818 /* AgentCardView.swift */,
 				768C92A9250D5EEF00DB8818 /* AgentDetailView.swift */,
-				768C92AE250D66AA00DB8818 /* AgentModel.swift */,
 				768C92B0250D673900DB8818 /* AgentConfigurationView.swift */,
 			);
 			path = AgentViews;
@@ -782,6 +807,7 @@
 				76208B8D24D663F6001F46E2 /* String+Image.swift in Sources */,
 				76BADB8524CB1676004950C0 /* StoreConfig.swift in Sources */,
 				768C92AC250D644600DB8818 /* AgentCardsRowView.swift in Sources */,
+				764F86E8251A93A6008F3C2D /* MultipleChoiceView.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
 				768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */,
 				76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */,
@@ -793,6 +819,7 @@
 				76241AC924F80D0200788592 /* RewardDefinitionEditDetailView.swift in Sources */,
 				7649837C24E5BFA000097C4D /* DevMessageView.swift in Sources */,
 				7601817124C54B8800B339E4 /* PurchaseView.swift in Sources */,
+				764F86EA251BA47E008F3C2D /* PublicActivityDescriptionDetailView.swift in Sources */,
 				76208B9424D70ACE001F46E2 /* CKActivityDescriptionCardView.swift in Sources */,
 				76241ACF24F84AD100788592 /* DrawPreviewView.swift in Sources */,
 				7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */,
@@ -829,14 +856,15 @@
 				76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				768C92B1250D673900DB8818 /* AgentConfigurationView.swift in Sources */,
 				761A58912515193200529FD2 /* UIKitCloudKitSharingButton.swift in Sources */,
+				769484BA251A726600957F16 /* CKUserView.swift in Sources */,
 				76C2FE0224DB9B9000E030C2 /* ActivityActiveDetailView.swift in Sources */,
 				76208B8024D60051001F46E2 /* PlayerDetailView.swift in Sources */,
 				76CFA1D224D9DA00007A02CF /* PhotoActivitySubView.swift in Sources */,
 				76241ABF24F6C9DF00788592 /* FamilyChatView.swift in Sources */,
-				768C92AF250D66AA00DB8818 /* AgentModel.swift in Sources */,
 				76BADB6324CA59C4004950C0 /* ImageStore.swift in Sources */,
 				7649837E24E6039F00097C4D /* MainFamilyView.swift in Sources */,
 				76208B8424D60AE5001F46E2 /* TextField+Helper.swift in Sources */,
+				769484BC251A7AAF00957F16 /* PublicActivityDescriptionView.swift in Sources */,
 				7601811E24C4A4B400B339E4 /* ContentView.swift in Sources */,
 				76208B8624D60C12001F46E2 /* CKActivityDescriptionCardsRowView.swift in Sources */,
 				7649838524E621C000097C4D /* FamilyActivityCardView.swift in Sources */,
