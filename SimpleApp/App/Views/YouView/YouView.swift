@@ -24,7 +24,7 @@ struct YouView: View {
     @State var devMessage: String?
     let appInfo = AppModel()
     
-    @State var showAgent = true
+    @State var showAgent = false
     
     var activeActivities: some View {
         Section() {
