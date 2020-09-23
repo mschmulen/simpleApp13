@@ -74,12 +74,12 @@ struct YouView: View {
                 if showAgent {
                     NavigationLink(
                         destination: AgentDetailView(
-                            agentConfig: familyKitAppState.agentConfig
+                            agentService: familyKitAppState.agentService
                         )
                     ) {
                         HStack {
                             Spacer()
-                            Text("Agent Wizard")
+                            Text("Agent \(familyKitAppState.agentService.name) \(familyKitAppState.agentService.emoji)")
                                 .padding()
                         }
                     }

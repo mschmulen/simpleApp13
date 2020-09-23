@@ -462,8 +462,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "addBucks(playerModel:bucks:)"
             landmarkType = "7">
          </BreakpointContent>

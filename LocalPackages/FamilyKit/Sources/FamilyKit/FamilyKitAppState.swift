@@ -31,14 +31,9 @@ public class FamilyKitAppState: ObservableObject {
     private var chatService: CKPrivateModelService<CKChatMessageModel>
     private var chatSessionService: CKPrivateModelService<CKChatSessionModel>
     
-    
     // Agent Stuff
-    public private (set) var agentConfig: AgentModel = AgentModel.mock
-    
-    @Published public private (set) var publicActivityDescriptionService: CKPublicModelService<CKPublicActivityDescription>
-    
-    // public let publicActivityDescriptionService: CKPublicModelService<CKPublicActivityDescription>
-    
+    //public private (set) var agentService: AgentService
+    @Published public private (set) var agentService: AgentService
     
     
     // Share stuff
@@ -90,11 +85,6 @@ public class FamilyKitAppState: ObservableObject {
             container: container
         )
         
-        publicActivityDescriptionService = CKPublicModelService<CKPublicActivityDescription>(
-            container: container
-        )
-        
-        
         //        anyCancellable = Publishers.CombineLatest(kidService.$models,adultService.$models).sink(receiveValue: {_ in
         //            self.objectWillChange.send()
         //        })
@@ -107,6 +97,8 @@ public class FamilyKitAppState: ObservableObject {
                 print("requestUserDiscoverability. failure \(error)")
             }
         }
+        
+        agentService = AgentService(container: container)
     }
     
     private func updateChanges() {
@@ -185,14 +177,7 @@ extension FamilyKitAppState {
         }
         chatService.listenForRemoteNotifications()
         
-        publicActivityDescriptionService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { result in
-            switch result {
-            case .success( let models):
-                print( "publicActivityDescriptionService \(models.count)")
-            case .failure( let error):
-                print( "publicActivityDescriptionService \(error)")
-            }
-        }
+        agentService.upateRecommendations(agentInput:AgentService.AgentInput())
         
     }
     

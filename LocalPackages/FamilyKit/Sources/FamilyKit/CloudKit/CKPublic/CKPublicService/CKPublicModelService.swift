@@ -97,7 +97,7 @@ extension CKPublicModelService {
             }
         }
         operation.resultsLimit = resultsLimit
-        container.privateCloudDatabase.add(operation)
+        container.publicCloudDatabase.add(operation)
     }
     
     private func queryRecords(
@@ -130,7 +130,7 @@ extension CKPublicModelService {
             }
         }
         operation.resultsLimit = resultsLimit
-        container.privateCloudDatabase.add(operation)
+        container.publicCloudDatabase.add(operation)
     }
 }
 
@@ -141,7 +141,7 @@ extension CKPublicModelService {
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         if let recordID = model.recordID {
-            container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            container.publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
                 if let record = record, let model = T( record: record) {
                     completion(.success(model))
                 } else {
@@ -161,7 +161,7 @@ extension CKPublicModelService {
         completion: @escaping ((Result<T,Error>) -> Void)
     ) {
         let recordID = modelReference.recordID
-        container.privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+        container.publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             if let record = record, let model = T( record: record) {
                 completion(.success(model))
             } else {
@@ -188,7 +188,7 @@ extension CKPublicModelService {
         //operation.desiredKeys = ["name", "yack"]
         operation.resultsLimit = 2
         
-        container.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+        container.publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             if let records = records, let firstRecord = records.first, let model = T(record: firstRecord) {
                 completion(.success(model))
             } else {

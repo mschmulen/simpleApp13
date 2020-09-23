@@ -20,7 +20,7 @@ struct AgentConfigurationView: View {
     
     @State var devMessage: String?
     
-    @State var agentConfig: AgentModel
+    @State var agentConfig: AgentService
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Saving"
@@ -35,10 +35,10 @@ struct AgentConfigurationView: View {
     
 }//end AgentConfigurationView
 
-struct AgentConfigurationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AgentConfigurationView(agentConfig: AgentModel.mock)
-        }
-    }
-}
+//struct AgentConfigurationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            AgentConfigurationView(agentConfig: AgentModel.mock)
+//        }
+//    }
+//}

@@ -53,7 +53,7 @@ struct AdultUserView: View {
                         .foregroundColor(.blue)
                 }
                 
-                NavigationLink(destination: AgentConfigurationView(agentConfig: .mock)) {
+                NavigationLink(destination: AgentConfigurationView(agentConfig: familyKitAppState.agentService)) {
                     Text("Agent Configuration")
                         .foregroundColor(.blue)
                 }

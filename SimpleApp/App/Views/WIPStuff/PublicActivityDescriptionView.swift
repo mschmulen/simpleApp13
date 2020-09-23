@@ -35,21 +35,24 @@ struct PublicActivityDescriptionView: View {
                 newModel.coverPhoto = nil
                 newModel.moduleType = .photo
                 
-                self.familyKitAppState.publicActivityDescriptionService.pushUpdateCreate(model: newModel) { (result) in
-                    switch result {
-                    case .failure(let error) :
-                        print( "error \(error)")
-                    case .success(let model):
-                        print( "success \(model)")
-                    }
-                }
+                self.familyKitAppState.agentService.pushNew(model: newModel)
+                
+//                self.familyKitAppState.agentService.publicActivityDescriptionService.pushUpdateCreate(model: newModel) { (result) in
+//                    switch result {
+//                    case .failure(let error) :
+//                        print( "error \(error)")
+//                    case .success(let model):
+//                        print( "success \(model)")
+//                    }
+//                }
+                
             }) {
                 Text("ADD NEW")
             }
             
-            Section(header: Text("public activity descriptions \(self.familyKitAppState.publicActivityDescriptionService.models.count)" )) {
+            Section(header: Text("public activity descriptions \(self.familyKitAppState.agentService.models.count)" )) {
                 
-                Text("yack \(self.familyKitAppState.publicActivityDescriptionService.models.count)")
+                Text("yack \(self.familyKitAppState.agentService.models.count)")
                 
                 //                ForEach( self.familyKitAppState.playerService.models ) { model in
                 //                    if model.ckRecord != nil {
@@ -64,10 +67,7 @@ struct PublicActivityDescriptionView: View {
             
         }.onAppear(perform: {
             self.familyKitAppState.onRefetchFromServer()
-            
-            self.familyKitAppState.publicActivityDescriptionService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { (result) in
-                print( "result \(result)")
-            }
+            self.familyKitAppState.agentService.upateRecommendations(agentInput: AgentService.AgentInput())
         })
         //.navigationBarItems(trailing: trailingButton)
         //                    .navigationBarTitle("CKUser")
