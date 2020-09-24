@@ -99,6 +99,7 @@
 		76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */; };
 		76DF241C24ED74EF009222AF /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241B24ED74EF009222AF /* UserView.swift */; };
 		76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */; };
+		76E71A4C251D474900E793CA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E71A4B251D474900E793CA /* OnboardingView.swift */; };
 		76EDF11124E03CDE00C68408 /* PlayersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF11024E03CDE00C68408 /* PlayersListView.swift */; };
 		ED4DF64524D0D2010091F712 /* chore1005Guitar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */; };
 /* End PBXBuildFile section */
@@ -236,6 +237,7 @@
 		76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionDetailEditView.swift; sourceTree = "<group>"; };
 		76DF241B24ED74EF009222AF /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticAppColor.swift; sourceTree = "<group>"; };
+		76E71A4B251D474900E793CA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		76EDF11024E03CDE00C68408 /* PlayersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListView.swift; sourceTree = "<group>"; };
 		ED4DF64224D0D2010091F712 /* chore1005Guitar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chore1005Guitar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -359,6 +361,7 @@
 		7601816C24C54AC100B339E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76E71A4A251D472100E793CA /* Onboarding */,
 				761A588F2515192300529FD2 /* WIPStuff */,
 				768C92AD250D665A00DB8818 /* AgentViews */,
 				76141DE624FFE36800295FE5 /* ViewModifiers */,
@@ -652,6 +655,14 @@
 			path = ListView;
 			sourceTree = "<group>";
 		};
+		76E71A4A251D472100E793CA /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				76E71A4B251D474900E793CA /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -825,6 +836,7 @@
 				7658BEC825116CB5006149C9 /* CKBuckPurchaseItemView.swift in Sources */,
 				76208B8924D61C6A001F46E2 /* CKActivityDescriptionListView.swift in Sources */,
 				768C9294250A6F0A00DB8818 /* LocalNotificationManager.swift in Sources */,
+				76E71A4C251D474900E793CA /* OnboardingView.swift in Sources */,
 				7649838024E603C100097C4D /* MainRewardsView.swift in Sources */,
 				76208B9224D70AC5001F46E2 /* CKActivityDescriptionAddCardView.swift in Sources */,
 				7616F66A24DC77B7003488EB /* KidUserView.swift in Sources */,

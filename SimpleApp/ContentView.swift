@@ -10,6 +10,7 @@ import FamilyKit
 
 enum TopView {
     case mainView
+    case onboardingView
     case purchaseView
     case modalView
 }
@@ -52,25 +53,38 @@ struct ContentView: View {
                 }
             }
             
-            if familyKitAppState.currentPlayerModel == nil {
-                VStack {
-                    PlayerOnboardingView()
-                        .environmentObject(familyKitAppState)
-                    Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
-                        .font(.caption)
-                }
-            } else {
+            // top level app state
+            if appState.topView == .onboardingView {
+                OnboardingView()
+                    .environment(\.window, window)
+                    .environmentObject(appState)
+                    .environmentObject(familyKitAppState)
+                    .environmentObject(activityDescriptionService)
+                    .environmentObject(activityService)
+            }//end if .onboardingView
+            else if appState.topView == .purchaseView {
+                PurchaseView()
+                    .environmentObject(appState)
+            }//end if .purchaseView
+            else if appState.topView == .modalView {
+                ModalView()
+                    .environment(\.window, window)
+                    .environmentObject(appState)
+                    .environmentObject(familyKitAppState)
+                    .environmentObject(activityDescriptionService)
+                    .environmentObject(activityService)
+            }//end .modalView
+            else if appState.topView == .mainView {
                 
-                if appState.topView == .modalView {
-                    ModalView()
-                        .environment(\.window, window)
-                        .environmentObject(appState)
-                        .environmentObject(familyKitAppState)
-                        .environmentObject(activityDescriptionService)
-                        .environmentObject(activityService)
-                }
-                else if appState.topView == .mainView {
-                    
+                if familyKitAppState.currentPlayerModel == nil {
+                    VStack {
+                        PlayerSelectView()
+                            .environmentObject(familyKitAppState)
+                        Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
+                            .font(.caption)
+                    }
+                } else {
+                    // we have a valid player
                     TabView(selection: $appState.selectedTab) {
                         //                    TabView(selection: $selectedTab) {
                         YouView()
@@ -121,16 +135,9 @@ struct ContentView: View {
                         }.tag(TabViewIndex.familyChat.rawValue)
                     } //end TabView
                     
-                } //end if
-            } // end else .currentPlayerModel == nil
-            
-            if appState.topView == .purchaseView {
-                PurchaseView()
-                    .environmentObject(appState)
-            }//end if .purchaseView
-            
+                } // end else .currentPlayerModel == nil
+            }//end .mainView
             //EmptyView()
-            
         }//end group
             .sheet(isPresented: $showNoiCloudConnection) {
                 iCloudSheetView(showSheetView: self.$showNoiCloudConnection)

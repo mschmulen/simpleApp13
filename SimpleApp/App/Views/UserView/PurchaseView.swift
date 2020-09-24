@@ -100,6 +100,7 @@ struct PurchaseView: View {
     func dismissButton() -> some View {
         Button(action: {
             self.dismiss()
+            self.appState.topView = TopView.mainView
         }) {
             Text("Not now").font(.footnote)
             }.padding()

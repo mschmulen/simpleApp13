@@ -25,6 +25,8 @@ TODO
 
 
 ##### Build 42, WIP
+- fix for fulfillmentStatus
+- 
 
 ##### Build 41, Released
 - Sharing infrastructure work

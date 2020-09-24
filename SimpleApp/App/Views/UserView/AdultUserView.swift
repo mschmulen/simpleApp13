@@ -35,7 +35,7 @@ struct AdultUserView: View {
             
             Text("Bucks: \(familyKitAppState.currentPlayerModel?.bucks ?? 0 )")
             
-            NavigationLink(destination: PlayerOnboardingView()) {
+            NavigationLink(destination: PlayerSelectView()) {
                 Text("Change Current Player")
                     .foregroundColor(.blue)
             }
@@ -62,17 +62,32 @@ struct AdultUserView: View {
                     Text("PublicActivityDescriptionView")
                         .foregroundColor(.blue)
                 }
-                
-                
+
                 NavigationLink(destination: MultipleChoiceView(viewModel:MultipleChoiceViewModel.mock)) {
                     Text("MultipleChoiceView")
                         .foregroundColor(.blue)
                 }
-
                 
+                Button(action: {
+                    self.appState.topView = TopView.onboardingView
+                }) {
+                    Text("SHOW ONBOARDING")
+                        .foregroundColor(.blue)
+                }
                 
+                Button(action: {
+                    self.appState.topView = TopView.purchaseView
+                }) {
+                    Text("SHOW PURCHASE VIEW")
+                        .foregroundColor(.blue)
+                }
                 
-            }
+                NavigationLink(destination: PurchaseView()) {
+                    Text("PurchaseView detail")
+                        .foregroundColor(.blue)
+                }
+                
+            }//end Section
             
             Section(header: Text("Dev Stuff")) {
                 
@@ -115,35 +130,31 @@ struct AdultUserView: View {
                     Text("Reset All FamilyBucks")
                 }
                 
-                NavigationLink(destination: PurchaseView()) {
-                    Text("PurchaseView")
-                        .foregroundColor(.blue)
-                }
                 
-//                if familyKitAppState.isSimulator == false {
-//                    // Notifications
-//                    Button(action: {
-//                        print("Enable Notifications")
-//                        let center = UNUserNotificationCenter.current()
-//                        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-//                            if let error = error {
-//                                // Handle the error here.
-//                                print( "UNUserNotificationCenter requestAuthorization.error \(error)")
-//                            }
-//                            // TODO: Enable or disable features based on the authorization.
-//                        }
-//                    }) {
-//                        HStack {
-//                            Text("Enable Notifications")
-//                                .font(.system(size: 27, weight: .medium, design: .rounded))
-//                                .foregroundColor(Color(.systemBackground))
-//                                .padding()
-//                        }
-//                        .frame(height: 50)
-//                        .background(Color(.label))
-//                        .cornerRadius(25)
-//                    }
-//                }
+                //                if familyKitAppState.isSimulator == false {
+                //                    // Notifications
+                //                    Button(action: {
+                //                        print("Enable Notifications")
+                //                        let center = UNUserNotificationCenter.current()
+                //                        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                //                            if let error = error {
+                //                                // Handle the error here.
+                //                                print( "UNUserNotificationCenter requestAuthorization.error \(error)")
+                //                            }
+                //                            // TODO: Enable or disable features based on the authorization.
+                //                        }
+                //                    }) {
+                //                        HStack {
+                //                            Text("Enable Notifications")
+                //                                .font(.system(size: 27, weight: .medium, design: .rounded))
+                //                                .foregroundColor(Color(.systemBackground))
+                //                                .padding()
+                //                        }
+                //                        .frame(height: 50)
+                //                        .background(Color(.label))
+                //                        .cornerRadius(25)
+                //                    }
+                //                }
             }
             
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
@@ -152,7 +163,7 @@ struct AdultUserView: View {
         .onAppear(perform: {
             self.familyKitAppState.onRefetchFromServer()
         })
-        .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+            .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
     }
     
 }

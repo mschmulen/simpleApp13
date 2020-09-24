@@ -1,5 +1,5 @@
 //
-//  PlayerOnboardingView.swift
+//  PlayerSelectView.swift
 //  FamilyKit
 //
 //  Created by Matthew Schmulen on 7/30/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import CloudKit
 
-public struct PlayerOnboardingView: View {
+public struct PlayerSelectView: View {
     
     @Environment(\.presentationMode) var presentationMode
 

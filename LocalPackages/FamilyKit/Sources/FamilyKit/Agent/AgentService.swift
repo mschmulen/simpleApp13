@@ -90,7 +90,6 @@ extension AgentService {
         publicActivityDescriptionService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { result in
             switch result {
             case .success( let models):
-                print( "fetchReccomendations publicActivityDescriptionService \(models.count)")
                 self.models.removeAll()
                 self.models.append(contentsOf: models)
                 self.agentFilter( agentInput: agentInput, config: self.agentConfig)

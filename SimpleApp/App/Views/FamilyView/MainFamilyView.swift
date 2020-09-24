@@ -299,7 +299,7 @@ struct MainFamilyView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-            PlayerOnboardingView()
+            PlayerSelectView()
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
                 .environmentObject(activityDescriptionService)
