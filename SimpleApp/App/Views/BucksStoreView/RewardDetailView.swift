@@ -43,12 +43,12 @@ struct RewardDetailView: View {
         Section(header: Text("edit")) {
             
             if model.fulfillmentStatus == CKBuckRewardModel.FulfillmentStatus.purchased {
-                Button(action: {
+
+                LargeButton(title: "FULFILL") {
                     self.model.fulfillmentStatus = .fulfilled
                     self.onSave()
-                }) {
-                    Text("Fulfill")
                 }
+                
             } else {
                 Text("\(model.fulfillmentStatus.rawValue)")
             }

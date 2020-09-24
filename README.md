@@ -23,7 +23,10 @@ TODO
 
 ## Release Notes
 
-##### Build 41, WIP
+
+##### Build 42, WIP
+
+##### Build 41, Released
 - Sharing infrastructure work
 - fix, remove "+" in "new activity" card
 

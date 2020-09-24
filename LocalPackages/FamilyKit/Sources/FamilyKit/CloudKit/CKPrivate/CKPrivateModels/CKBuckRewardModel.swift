@@ -23,7 +23,7 @@ public struct CKBuckRewardModel: CKModel {
         "name",
         "info",
         "bucks",
-        "fulfilmentStatus",
+        "fulfillmentStatus",
         "purchasingPlayerReference",
         "storeItemReference",
         "resultPhotos",
