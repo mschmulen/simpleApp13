@@ -80,9 +80,9 @@ struct PhotoActivityDescriptionView: View {
                     }
                 }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     #if targetEnvironment(simulator)
-                    ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
+                    PhotoPickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
                     #else
-                    ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
+                    PhotoPickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
                     #endif
                 }
             }

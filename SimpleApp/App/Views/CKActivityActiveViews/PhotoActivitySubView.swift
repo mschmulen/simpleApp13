@@ -77,9 +77,9 @@ struct PhotoActivitySubView: View {
             self.loadImage()
         }.sheet(isPresented: $showingImagePicker, onDismiss: dismissFromImagePicker) {
             #if targetEnvironment(simulator)
-            ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
+            PhotoPickerRepresentable(image: self.$inputImage, imageSourceType: .photoLibrary)
             #else
-            ImagePickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
+            PhotoPickerRepresentable(image: self.$inputImage, imageSourceType: .camera)
             #endif
         }
     }//end body

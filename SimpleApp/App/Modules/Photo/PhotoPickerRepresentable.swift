@@ -1,5 +1,5 @@
 //
-//  ImagePicker.swift
+//  PhotoPickerRepresentable.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 8/4/20.
@@ -8,9 +8,10 @@
 
 import SwiftUI
 
-// TODO: Rename ImagePicker to PhotoPicker
-struct ImagePickerRepresentable {
+struct PhotoPickerRepresentable {
+    
     @Environment(\.presentationMode) var presentationMode
+    
     @Binding var image: UIImage?
     
     var imageSourceType: ImagePickerSourceType
@@ -33,9 +34,9 @@ struct ImagePickerRepresentable {
     }
 }
 
-extension ImagePickerRepresentable : UIViewControllerRepresentable {
+extension PhotoPickerRepresentable : UIViewControllerRepresentable {
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerRepresentable>) -> UIImagePickerController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PhotoPickerRepresentable>) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.allowsEditing = true
@@ -49,16 +50,16 @@ extension ImagePickerRepresentable : UIViewControllerRepresentable {
         Coordinator(self)
     }
 
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerRepresentable>) {
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<PhotoPickerRepresentable>) {
 
     }
 }
 
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    let parent: ImagePickerRepresentable
+    let parent: PhotoPickerRepresentable
     
-    init(_ parent: ImagePickerRepresentable) {
+    init(_ parent: PhotoPickerRepresentable) {
         self.parent = parent
     }
     

@@ -36,34 +36,7 @@ struct RewardDetailView: View {
             
             Text("purchasing player: \(model.purchasingPlayerReference?.recordID.recordName ?? "~")")
             Text("store reference: \(model.storeItemReference?.recordID.recordName ?? "~")")
-        }
-    }
-    
-    var editView: some View {
-        Section(header: Text("edit")) {
-            
-            if model.fulfillmentStatus == CKBuckRewardModel.FulfillmentStatus.purchased {
-
-                LargeButton(title: "FULFILL") {
-                    self.model.fulfillmentStatus = .fulfilled
-                    self.onSave()
-                }
-                
-            } else {
-                Text("\(model.fulfillmentStatus.rawValue)")
-            }
-            
-//            Button(action:self.onSave) {
-//                HStack {
-//                    Text("Save")
-//                    Image(systemName: "square.and.arrow.up")
-//                }.foregroundColor(.blue)
-//            }
-//            Picker(selection: $model.fulfillmentStatus, label: Text("status")) {
-//                ForEach(CKStoreItemPurchaseModel.FulfillmentStatus.allCases, id: \.self) {
-//                    Text($0.rawValue)
-//                }
-//            }.pickerStyle(SegmentedPickerStyle())
+            Text("fulfillmentStatus:\(model.fulfillmentStatus.rawValue)")
         }
     }
     
@@ -89,7 +62,14 @@ struct RewardDetailView: View {
                 
                 self.infoView
                 if self.enableEdit {
-                    self.editView
+                    if self.model.fulfillmentStatus == CKBuckRewardModel.FulfillmentStatus.purchased {
+                        Section(header: Text("actions")) {
+                            LargeButton(title: "FULFILL") {
+                                self.model.fulfillmentStatus = .fulfilled
+                                self.onSave()
+                            }
+                        }
+                    }
                 }
                 self.photoView
                 self.chatView

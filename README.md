@@ -26,7 +26,7 @@ TODO
 
 ##### Build 42, WIP
 - fix for fulfillmentStatus
-- 
+- beautify the notification for chat
 
 ##### Build 41, Released
 - Sharing infrastructure work
