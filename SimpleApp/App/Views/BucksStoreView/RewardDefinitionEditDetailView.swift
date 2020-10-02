@@ -62,7 +62,7 @@ struct RewardDefinitionEditDetailView: View {
             }
              .navigationBarItems(trailing: trailingButton)
         }.onAppear {
-            self.model.bucks = 2
+            
         }
     }
     

@@ -23,8 +23,9 @@ TODO
 
 ## Release Notes
 
+##### Build 43, WIP
 
-##### Build 42, WIP
+##### Build 42, Released
 - fix for fulfillmentStatus
 - beautify the notification for chat
 
