@@ -58,7 +58,8 @@ public struct PlayerSelectView: View {
                 }
                 
                 List {
-                    Section(header: Text("family")) {
+                //LazyVStack {
+                    // Section(header: Text("family")) {
                         ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
                                 self.familyKitAppState.setCurrentPlayer(
@@ -73,7 +74,7 @@ public struct PlayerSelectView: View {
                                 }
                             }
                         }
-                    }
+                    // } end Section
                 }//end List
                 
                 VStack {
@@ -153,4 +154,11 @@ public struct PlayerSelectView: View {
     
 }
 
-
+// TODO: Fix PlayerSelectView_Previews
+struct PlayerSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        
+        //PlayerSelectView()
+    }
+}

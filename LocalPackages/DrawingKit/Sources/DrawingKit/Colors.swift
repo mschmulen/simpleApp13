@@ -57,3 +57,13 @@ struct ColorEntry: View {
         }
     }
 }
+
+// TODO: Fix Colors_preview
+struct Colors_Previews: PreviewProvider {
+    static var previews: some View {
+        ColorPicker(
+            color: .constant(Color.blue),
+            colorPickerShown: .constant(true)
+        )
+    }
+}
