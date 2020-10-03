@@ -69,7 +69,9 @@ struct MainRewardsView: View {
                 
                 adultView
                 
-                List {
+                ScrollView {
+                    LazyVStack {
+                //List {
                     Section(header: Text("available rewards")) {
                         ForEach( storeItemDefinitionService.models) { model in
                             NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
@@ -95,6 +97,7 @@ struct MainRewardsView: View {
                         .onDelete(perform: onDeletePurchase)
                     }
                 }
+                }//end Scrollview
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)

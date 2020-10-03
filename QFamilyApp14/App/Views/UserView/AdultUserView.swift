@@ -68,20 +68,6 @@ struct AdultUserView: View {
 //                        .foregroundColor(.blue)
 //                }
                 
-                Button(action: {
-                    self.appState.topView = TopView.onboardingView
-                }) {
-                    Text("SHOW ONBOARDING")
-                        .foregroundColor(.blue)
-                }
-                
-                Button(action: {
-                    self.appState.topView = TopView.purchaseView
-                }) {
-                    Text("SHOW PURCHASE VIEW")
-                        .foregroundColor(.blue)
-                }
-                
                 NavigationLink(destination: PurchaseView()) {
                     Text("PurchaseView detail")
                         .foregroundColor(.blue)
@@ -155,6 +141,65 @@ struct AdultUserView: View {
                 //                        .cornerRadius(25)
                 //                    }
                 //                }
+            }
+            
+            Section(header: Text("Dev DeepLink")) {
+                
+                // print("url: \(context.url.absoluteURL)")
+                // print("scheme: \(context.url.scheme)")
+                // print("host: \(context.url.host)")
+                // print("path: \(context.url.path)")
+                // print("components: \(context.url.pathComponents)")
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://main/family"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link main/family")
+                }
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://main/familychat"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link main/familychat")
+                }
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://main/you"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link main/you")
+                }
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://main/rewards"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link main/rewards")
+                }
+                
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://onboarding/"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link onboarding")
+                }
+                
+                Button(action: {
+                    let deepLink = "qfamily-test://purchase/"
+                    let url = URL(string: deepLink)!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }) {
+                    Text("deep link purchase")
+                }
+
             }
             
             Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")

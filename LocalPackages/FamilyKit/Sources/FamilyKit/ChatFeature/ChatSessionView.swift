@@ -34,6 +34,8 @@ public struct ChatSessionView: View {
     @State private var showAudioUpload: Bool = false
     @State private var showAdditionalOptions: Bool = false
     
+    @State var messageIdToScrollToo: UUID?
+    
     public init(
         chatSession: CKChatSessionModel,
         showTextField: Bool,
@@ -83,17 +85,42 @@ public struct ChatSessionView: View {
                             }.padding()
                         }
                     }
-                    
+
                     ScrollView {
-                        LazyVStack {
-                            ForEach( self.chatService.chatMessages.reversed() ) { model in
-                                ChatMessageView(
-                                    currentMessage: model,
-                                    chatService: self.$chatService
-                                )
+                        ScrollViewReader { (scrollProxy) in
+                            LazyVStack {
+                                ForEach( self.chatService.chatMessages.reversed() ) { model in
+                                    ChatMessageView(
+                                        currentMessage: model,
+                                        chatService: self.$chatService
+                                    )
+                                    .id(model.id)
+                                }
+//                                .onAppear {
+//                                    print("appear")
+//                                    scrollProxy.scrollTo(self.chatService.chatMessages.count - 1, anchor: .center)
+//                                }
                             }
-                        }
-                    }.padding()
+                            //.onChange(of: self.messageCount) { target in
+                            .onChange(of: self.messageIdToScrollToo ) { id in
+                                guard id != nil else { return }
+                                print( "messageIdToSetVisible \(id)")
+                                print( "self.chatService.chatMessages.count: \(self.chatService.chatMessages.count)")
+                                withAnimation {
+                                    //scrollProxy.scrollTo(self.chatService.chatMessages.count, anchor: .center)
+                                    scrollProxy.scrollTo(id)
+                                }
+                            }
+                        }//end ScrollView
+                        //                            .onChange(of: self.chatService.chatMessages) { target in
+                        //                                print( "change")
+                        //                                //withAnimation {
+                        //                                proxy.scrollTo(self.chatService.chatMessages.count - 1, anchor: .center)
+                        //                                //}
+                        //                            }
+                        
+                        .padding()
+                    }//end ScrollViewReader
                     
                     if showTextField == true {
                         HStack {
@@ -124,11 +151,17 @@ public struct ChatSessionView: View {
                                     }
                                     
                                     TextEditor(text: $typingMessage)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .foregroundColor(.black)
                                         .opacity(typingMessage.isEmpty ? 0.5 : 1)
                                         //.frame(minHeight: CGFloat(30))
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30, maxHeight: 30)
-                                        //.border(Color.red, width: 1)
+                                        .padding(1)
+                                        //.border(Color.purple, width: 2)// , cornerRadius: 20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .stroke(Color.blue, lineWidth: 2)
+                                        )
                                 }
 //                            }//end Geo
                             
@@ -171,6 +204,13 @@ public struct ChatSessionView: View {
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in
             self.messageCount = self.chatService.chatMessages.count
+            
+            if let lastMessage = self.chatService.chatMessages.first {
+                print( "scroll to message ID \(lastMessage.id.uuidString)" )
+                print( "message: \(lastMessage.message)")
+                self.messageIdToScrollToo = lastMessage.id
+            }
+            
             // self.devMessage = "\(self.messageCount) \(UUID().uuidString)"
         }
     }
@@ -284,3 +324,36 @@ struct ChatSessionView_Previews: PreviewProvider {
             showTextField: true)
     }
 }
+
+
+
+/*
+ // TODO Custom TextField
+struct CustomTextField: View {
+    var placeholder: Text
+    @Binding var text: String
+    var editingChanged: (Bool)->() = { _ in }
+    var commit: ()->() = { }
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            if text.isEmpty { placeholder }
+            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+        }
+    }
+}
+
+// usage (TextField with placeholder):
+
+struct ContentView: View {
+    @State var text = ""
+
+    var body: some View {
+        CustomTextField(
+            placeholder: Text("placeholder").foregroundColor(.red),
+            text: $text
+        )
+    }
+}
+
+*/
