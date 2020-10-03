@@ -23,6 +23,8 @@ class CustomAppDelegate: UIResponder, UIApplicationDelegate {
             if authorized {
                 DispatchQueue.main.async {
                     print( "registerForRemoteNotifications")
+                    
+                    //application.registerUserNotificationSettings(pushNotificationSettings)
                     application.registerForRemoteNotifications()
                 }
             }
