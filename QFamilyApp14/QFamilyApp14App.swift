@@ -49,7 +49,7 @@ struct QFamilyApp14App: App {
         familyKitAppState = FamilyKitAppState(
             container: CloudKitContainer.CloudContainer(container)
         )
-        // familyKitAppState.onStartup()
+        familyKitAppState.onStartup()
         
         // ---------------------------------------------
         // Activity Services
