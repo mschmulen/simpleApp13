@@ -32,7 +32,6 @@ struct MainFamilyPlayerFilterView: View {
     }
     
     @Binding var currentFilter: PlayerFilter
-    @Binding var showFilterOptions:Bool
     
     let cardSize: CGFloat = 60
     let cardRadius: CGFloat = 20
@@ -40,67 +39,66 @@ struct MainFamilyPlayerFilterView: View {
     var body: some View {
         HStack {
             HStack {
-                VStack {
-                    if showFilterOptions == false {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .padding()
-                                .onTapGesture {
-                                    self.showFilterOptions.toggle()
-                            }
-                            Text("Show Filter")
-                            .onTapGesture {
-                                self.showFilterOptions.toggle()
-                            }
-                        }
-                    } else {
-                        Image(systemName: "minus.square.fill")
-                            .padding()
-                            .onTapGesture {
-                                self.showFilterOptions.toggle()
-                        }
-                    }
-                }//end VStack
+                //                VStack {
+                //                    if showFilterOptions == false {
+                //                        HStack {
+                //                            Image(systemName: "plus.circle.fill")
+                //                                .padding()
+                //                                .onTapGesture {
+                //                                    self.showFilterOptions.toggle()
+                //                            }
+                //                            Text("Show Filter")
+                //                            .onTapGesture {
+                //                                self.showFilterOptions.toggle()
+                //                            }
+                //                        }
+                //                    } else {
+                //                        Image(systemName: "minus.square.fill")
+                //                            .padding()
+                //                            .onTapGesture {
+                //                                self.showFilterOptions.toggle()
+                //                        }
+                //                    }
+                //                }//end VStack
                 
-                if showFilterOptions {
-                    ScrollView(.horizontal, showsIndicators: false){
-                        HStack {
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack {
+                        VStack {
+                            Text("🏡")
+                                .font(.body)
+                            Spacer()
+                            Text("Family")
+                                .modifier(PrimarySmallBoldLabel(color: .white))
+                        }
+                        .frame(width: cardSize, height: cardSize)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(cardRadius)
+                        .shadow(radius: 10)
+                        
+                        .onTapGesture {
+                            self.currentFilter = PlayerFilter.none
+                        }
+                        
+                        ForEach( self.familyKitAppState.playerService.models ) { player in
                             VStack {
-                                Text("🏡")
-                                    .font(.body)
+                                Text("\(player.emoji ?? "")")
                                 Spacer()
-                                Text("Family")
-                                    .modifier(PrimarySmallBoldLabel(color: .white))
+                                Text("\(player.name ?? "")")
+                                    .modifier(PrimarySmallRegularLabel(color: .black))
                             }
-                            .frame(width: cardSize, height: cardSize)
+                            .frame(width: self.cardSize, height: self.cardSize)
                             .padding()
-                            .background(Color.blue)
-                            .cornerRadius(cardRadius)
+                            .background(Color.green)
+                            .cornerRadius(self.cardRadius)
                             .shadow(radius: 10)
-                                
                             .onTapGesture {
-                                self.currentFilter = PlayerFilter.none
+                                self.currentFilter = PlayerFilter.person( player )
                             }
-                            
-                            ForEach( self.familyKitAppState.playerService.models ) { player in
-                                VStack {
-                                    Text("\(player.emoji ?? "")")
-                                    Spacer()
-                                    Text("\(player.name ?? "")")
-                                        .modifier(PrimarySmallRegularLabel(color: .black))
-                                }
-                                .frame(width: self.cardSize, height: self.cardSize)
-                                .padding()
-                                .background(Color.green)
-                                .cornerRadius(self.cardRadius)
-                                .shadow(radius: 10)
-                                .onTapGesture {
-                                    self.currentFilter = PlayerFilter.person( player )
-                                }
-                            }
-                        }.padding()
-                    }//end ScrollView
-                }
+                        }
+                    }.padding()
+                }//end ScrollView
             }
         }//end HStack
     }//end body
@@ -109,8 +107,7 @@ struct MainFamilyPlayerFilterView: View {
 struct MainFamilyPlayerFilterView_Previews: PreviewProvider {
     static var previews: some View {
         MainFamilyPlayerFilterView(
-            currentFilter: .constant(MainFamilyPlayerFilterView.PlayerFilter.none),
-            showFilterOptions: .constant(true)
+            currentFilter: .constant(MainFamilyPlayerFilterView.PlayerFilter.none)
         )
     }
 }

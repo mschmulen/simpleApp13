@@ -56,7 +56,6 @@ public struct ChatSessionView: View {
     }
     
     public var body: some View {
-        //NavigationView {
         VStack{
             VStack {
                 if devMessage != nil {
@@ -85,14 +84,16 @@ public struct ChatSessionView: View {
                         }
                     }
                     
-                    List {
-                        ForEach( self.chatService.chatMessages ) { model in
-                            ChatMessageView(
-                                currentMessage: model,
-                                chatService: self.$chatService
-                            ).flip()
+                    ScrollView {
+                        LazyVStack {
+                            ForEach( self.chatService.chatMessages.reversed() ) { model in
+                                ChatMessageView(
+                                    currentMessage: model,
+                                    chatService: self.$chatService
+                                )
+                            }
                         }
-                    }.flip()
+                    }.padding()
                     
                     if showTextField == true {
                         HStack {
@@ -105,9 +106,32 @@ public struct ChatSessionView: View {
                             }
                             
                             // TODO: Change to TextEditor(text: $typingMessage) for iOS14
-                            TextField("Message...", text: $typingMessage)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .frame(minHeight: CGFloat(30))
+//                            TextField("Message...", text: $typingMessage)
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                                .frame(minHeight: CGFloat(30))
+                            
+                            
+                            //GeometryReader { geo in
+                                ZStack {
+//                                    Rectangle()
+//                                        .fill(Color.gray)
+//                                        .frame(width: geo.size.width, height: geo.size.height)
+//                                        .border(Color.gray)
+                                    
+                                    if typingMessage.isEmpty {
+                                        Text("New Message ...")
+                                        // .padding(.all)
+                                    }
+                                    
+                                    TextEditor(text: $typingMessage)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .opacity(typingMessage.isEmpty ? 0.5 : 1)
+                                        //.frame(minHeight: CGFloat(30))
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30, maxHeight: 30)
+                                        //.border(Color.red, width: 1)
+                                }
+//                            }//end Geo
+                            
                             if typingMessage.isEmpty {
                                 Button(action: showPhoto) {
                                     Image(systemName: "photo")
@@ -147,7 +171,7 @@ public struct ChatSessionView: View {
         }
         .onReceive(self.chatService.$chatMessages) { (publisher) in
             self.messageCount = self.chatService.chatMessages.count
-            //            self.devMessage = "\(self.messageCount) \(UUID().uuidString)"
+            // self.devMessage = "\(self.messageCount) \(UUID().uuidString)"
         }
     }
     
@@ -193,13 +217,13 @@ public struct ChatSessionView: View {
  View extension hack for bottom to top scrolling
  reference https://stackoverflow.com/questions/57258846/how-to-make-a-swiftui-list-scroll-automatically
  */
-extension View {
-    public func flip() -> some View {
-        return self
-            .rotationEffect(.radians(.pi))
-            .scaleEffect(x: -1, y: 1, anchor: .center)
-    }
-}
+//extension View {
+//    public func flip() -> some View {
+//        return self
+//            .rotationEffect(.radians(.pi))
+//            .scaleEffect(x: -1, y: 1, anchor: .center)
+//    }
+//}
 
 
 
@@ -250,3 +274,13 @@ extension View {
 //    }
 //  }
 //}
+
+
+
+struct ChatSessionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatSessionView(
+            chatSession: CKChatSessionModel.mock,
+            showTextField: true)
+    }
+}

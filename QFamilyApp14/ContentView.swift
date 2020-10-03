@@ -40,13 +40,6 @@ struct ContentView: View {
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
-    //@State private var selectedTab: Int = TabViewIndex.you.rawValue
-    
-//    var body: some View {
-//        Text("Hello, QFamily App!")
-//            .padding()
-//    }
-    
     @ViewBuilder
     var body: some View {
         Group {
@@ -91,7 +84,6 @@ struct ContentView: View {
                 } else {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
-                        //                    TabView(selection: $selectedTab) {
                         YouView2()
                             .environment(\.window, window)
                             .environmentObject(appState)

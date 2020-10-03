@@ -22,7 +22,6 @@ struct YouView2: View {
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     
     @State var devMessage: String?
-    let appInfo = AppModel()
     
     @State var showAgent = false
     
@@ -85,25 +84,29 @@ struct YouView2: View {
                     }
                 }
                 
-                List {
-                    ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
+                ScrollView {
+                    LazyVStack {
                         
-                        // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
-                        Section() {
-                            CKActivityDescriptionCardsRowView(
-                                categoryName: "\(category.rawValue) Activities:",
-                                items: self.activityDescriptionService.models.filter { $0.category == category },
-                                isPrivate: true,
-                                showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
-                            )
+                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
+                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
+                            Section() {
+                                CKActivityDescriptionCardsRowView(
+                                    categoryName: "\(category.rawValue) Activities:",
+                                    items: self.activityDescriptionService.models.filter { $0.category == category },
+                                    isPrivate: true,
+                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
+                                )
+                            }
+                            .listRowInsets(EdgeInsets())
                         }
-                        .listRowInsets(EdgeInsets())
-                    }
-
-                    // this users active activities
-                    activeActivities
-                }
-                Text("version \(appInfo.appShortVersion)(\(appInfo.appBuildVersion))")
+                        
+                        // this users active activities
+                        activeActivities
+                        
+                    }//end LazyVStack
+                }//end ScrollView
+                
+                Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
             }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
