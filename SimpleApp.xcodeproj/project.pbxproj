@@ -99,6 +99,8 @@
 		76DF241624ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */; };
 		76DF241C24ED74EF009222AF /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241B24ED74EF009222AF /* UserView.swift */; };
 		76DF241E24EDA0DD009222AF /* SemanticAppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */; };
+		76DF841B25279A9D00289EF4 /* YouView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF841A25279A9D00289EF4 /* YouView2.swift */; };
+		76DF842125279AD700289EF4 /* MainFamilyView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF842025279AD700289EF4 /* MainFamilyView2.swift */; };
 		76E71A4C251D474900E793CA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E71A4B251D474900E793CA /* OnboardingView.swift */; };
 		76E71A4F251E298F00E793CA /* ComboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E71A4E251E298F00E793CA /* ComboView.swift */; };
 		76E71A51251E356200E793CA /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E71A50251E356100E793CA /* PagerView.swift */; };
@@ -240,6 +242,8 @@
 		76DF241524ED6B77009222AF /* CKActivityDescriptionDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionDetailEditView.swift; sourceTree = "<group>"; };
 		76DF241B24ED74EF009222AF /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		76DF241D24EDA0DD009222AF /* SemanticAppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticAppColor.swift; sourceTree = "<group>"; };
+		76DF841A25279A9D00289EF4 /* YouView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView2.swift; sourceTree = "<group>"; };
+		76DF842025279AD700289EF4 /* MainFamilyView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFamilyView2.swift; sourceTree = "<group>"; };
 		76E71A4B251D474900E793CA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		76E71A4E251E298F00E793CA /* ComboView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboView.swift; sourceTree = "<group>"; };
 		76E71A50251E356100E793CA /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
@@ -485,6 +489,7 @@
 				7649838424E621C000097C4D /* FamilyActivityCardView.swift */,
 				7658BEC525115BA5006149C9 /* CKRewardRowView.swift */,
 				7658BEC725116CB5006149C9 /* CKBuckPurchaseItemView.swift */,
+				76DF842025279AD700289EF4 /* MainFamilyView2.swift */,
 			);
 			path = FamilyView;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				7616F66724DC7723003488EB /* YouView.swift */,
+				76DF841A25279A9D00289EF4 /* YouView2.swift */,
 				76208B8724D61C5C001F46E2 /* CKActivityDescriptionViews */,
 			);
 			path = YouView;
@@ -838,7 +844,9 @@
 				76E71A53251E368A00E793CA /* WizardView.swift in Sources */,
 				764F86E8251A93A6008F3C2D /* MultipleChoiceView.swift in Sources */,
 				76208B9D24D723AE001F46E2 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
+				76DF842125279AD700289EF4 /* MainFamilyView2.swift in Sources */,
 				768C9296250AAF4C00DB8818 /* NotificationDevView.swift in Sources */,
+				76DF841B25279A9D00289EF4 /* YouView2.swift in Sources */,
 				76CEC81B24F96D8800F4231C /* LargeButton.swift in Sources */,
 				76CFA22224DA5402007A02CF /* PhotoPickerRepresentable.swift in Sources */,
 				76208B9824D71787001F46E2 /* EmojiView.swift in Sources */,

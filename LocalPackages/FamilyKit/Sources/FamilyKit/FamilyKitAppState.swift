@@ -13,6 +13,8 @@ import CloudKit
 
 public class FamilyKitAppState: ObservableObject {
     
+    @AppStorage("CurrentPlayerRecordIDRecordName", store: UserDefaults(suiteName: "group.com.familykit.test")) var currentPlayerRecordIDRecordName: String?
+    
     public let container: CKContainer
     
     private let thisDeviceModel: DeviceModel = DeviceModel()
@@ -121,8 +123,21 @@ extension FamilyKitAppState {
             searchPredicate: .predicateTrue,
             completion: { result in
                 switch result {
-                case .success(_) :
+                case .success(let models) :
                     self.updateChanges()
+                    
+                    // TODO currentPlayerRecordIDRecordName
+                    if let currentPlayerRecordIDRecordName = self.currentPlayerRecordIDRecordName {
+                        print( "currentPlayerRecordIDRecordName \(currentPlayerRecordIDRecordName)")
+                        
+                        for model in models {
+                            if model.recordID?.recordName == currentPlayerRecordIDRecordName {
+                                print( "found it ")
+                                self.currentPlayerModel = model
+                            }
+                        }
+                    }
+                    
                 case .failure(let error):
                     print( "kidService error \(error)")
                 }

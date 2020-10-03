@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
+//  QFamilyApp14
 //
-//  Created by Matthew Schmulen on 7/19/20.
-//  Copyright © 2020 jumptack. All rights reserved.
+//  Created by Matthew Schmulen on 10/2/20.
 //
 
 import SwiftUI
@@ -26,21 +26,26 @@ struct ContentView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    
+
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-    
+
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
-    
+
     @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
-    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>    
+    @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
 
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     
     //@State private var selectedTab: Int = TabViewIndex.you.rawValue
+    
+//    var body: some View {
+//        Text("Hello, QFamily App!")
+//            .padding()
+//    }
     
     @ViewBuilder
     var body: some View {
@@ -52,7 +57,7 @@ struct ContentView: View {
                         self.devMessage = nil
                 }
             }
-            
+
             // top level app state
             if appState.topView == .onboardingView {
                 OnboardingView()
@@ -75,7 +80,7 @@ struct ContentView: View {
                     .environmentObject(activityService)
             }//end .modalView
             else if appState.topView == .mainView {
-                
+
                 if familyKitAppState.currentPlayerModel == nil {
                     VStack {
                         PlayerSelectView()
@@ -97,7 +102,7 @@ struct ContentView: View {
                                 Image(systemName: "person.circle")
                                 Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
                         }.tag(TabViewIndex.you.rawValue)
-                        
+
                         MainFamilyView2()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -108,7 +113,7 @@ struct ContentView: View {
                                 Image(systemName: "house")
                                 Text("Family")
                         }.tag(TabViewIndex.family.rawValue)
-                        
+
                         MainRewardsView()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -122,7 +127,7 @@ struct ContentView: View {
                                 // .font(.system(size: 28, weight: .light))
                                 Text("Rewards")
                         }.tag(TabViewIndex.rewards.rawValue)
-                        
+
                         FamilyChatView()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -134,7 +139,7 @@ struct ContentView: View {
                                 Text("Chat")
                         }.tag(TabViewIndex.familyChat.rawValue)
                     } //end TabView
-                    
+
                 } // end else .currentPlayerModel == nil
             }//end .mainView
             //EmptyView()
@@ -153,18 +158,8 @@ struct ContentView: View {
             //self.devMessage = "silent Push! DB changed"
         }
     }//end body
+    
 }
-
-//extension ContentView {
-//     //@ObservedObject var viewModel: ViewModel
-//    class ViewModel: ObservableObject {
-//        var selectedTab: TabViewIndex = .family {
-//            willSet { objectWillChange.send() }
-//        }
-//        // Alternatively:
-//        // @Published var selectedTab: ContentView.Tab = .home
-//    }
-//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -172,6 +167,8 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
+// TODO: move to own file
 struct iCloudSheetView: View {
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -215,4 +212,3 @@ struct iCloudSheetView: View {
         }
     }
 }
-

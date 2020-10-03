@@ -1,8 +1,8 @@
 //
-//  YouView.swift
+//  YouView2.swift
 //  SimpleApp
 //
-//  Created by Matthew Schmulen on 8/6/20.
+//  Created by Matthew Schmulen on 10/2/20.
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct YouView: View {
+struct YouView2: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -156,12 +156,12 @@ struct YouView: View {
     }
 }
 
-struct YouView_Previews: PreviewProvider {
+struct YouView2_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        YouView()
+        YouView2()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))

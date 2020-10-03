@@ -9,6 +9,7 @@
 import SwiftUI
 import CloudKit
 
+
 public struct PlayerSelectView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -17,7 +18,6 @@ public struct PlayerSelectView: View {
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
-    
     
     @State var errorMessage: String?
     @State var showNoiCloudConnection = false
@@ -30,6 +30,10 @@ public struct PlayerSelectView: View {
     public var body: some View {
         NavigationView {
             VStack {
+                
+//                if currentPlayerRecordIDRecordName != nil {
+//                    Text("currentPlayerRecordIDRecordName: \(currentPlayerRecordIDRecordName ?? "~")")
+//                }
                 if errorMessage != nil {
                     Text(errorMessage!)
                         .foregroundColor(.red)
@@ -62,6 +66,7 @@ public struct PlayerSelectView: View {
                     // Section(header: Text("family")) {
                         ForEach(self.familyKitAppState.playerService.models) { model in
                             Button(action: {
+                                // currentPlayerRecordIDRecordName = model.recordID?.recordName
                                 self.familyKitAppState.setCurrentPlayer(
                                     playerModel: model
                                 )
@@ -145,6 +150,12 @@ public struct PlayerSelectView: View {
                 
             }//end VStack
                 .onAppear(perform: {
+                    
+//                    if let currentPlayerRecordIDRecordName = currentPlayerRecordIDRecordName {
+//                        print ("currentPlayerRecordIDRecordName \(currentPlayerRecordIDRecordName)")
+//                        
+//                        
+//                    }
                 })
         }//end Navigation
     }//end body

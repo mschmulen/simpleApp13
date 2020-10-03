@@ -462,8 +462,8 @@
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "addBucks(playerModel:bucks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -720,8 +720,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "330"
             endingLineNumber = "330"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "checkForDeepLink()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1064,7 +1064,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "11B25985-469D-4D2F-88A9-F28A5F7CA3AD"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CloudKit/CKPrivate/CKPrivateModels/CKBuckRewardModel.swift"
@@ -1080,7 +1080,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "83A72945-8F1B-4282-9340-08359CA0A16B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/CloudKit/CKPrivate/CKPrivateModels/CKBuckRewardModel.swift"
@@ -1124,7 +1124,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4D437A13-1947-42D2-B156-CAF8EE9709B1 - 8209455d6f31f9f1"
+                  uuid = "4D437A13-1947-42D2-B156-CAF8EE9709B1 - 413caccfe3ba6548"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1136,10 +1136,10 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "571">
+                  offsetFromSymbolStart = "581">
                </Location>
                <Location
-                  uuid = "4D437A13-1947-42D2-B156-CAF8EE9709B1 - 4edd88522e165d39"
+                  uuid = "4D437A13-1947-42D2-B156-CAF8EE9709B1 - 8de861c0a29dc25f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1172,7 +1172,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "74C9DFF4-7586-4435-A37E-66F531E99B21 - 1e0e1b1bc88931f2"
+                  uuid = "74C9DFF4-7586-4435-A37E-66F531E99B21 - dd3bf2894402adee"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1187,7 +1187,7 @@
                   offsetFromSymbolStart = "399">
                </Location>
                <Location
-                  uuid = "74C9DFF4-7586-4435-A37E-66F531E99B21 - 8209455d6f31f9f1"
+                  uuid = "74C9DFF4-7586-4435-A37E-66F531E99B21 - 413caccfe3ba65cc"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1199,9 +1199,41 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
                   endingLineNumber = "21"
-                  offsetFromSymbolStart = "313">
+                  offsetFromSymbolStart = "323">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FEE94B8-71D6-4ABA-9DC3-7C49929E0D86"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "onStartup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8E45923-4367-4BCA-A9C2-9BD2740BD97C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocalPackages/FamilyKit/Sources/FamilyKit/FamilyKitAppState.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "onStartup()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
