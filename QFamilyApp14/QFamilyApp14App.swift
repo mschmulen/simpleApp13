@@ -49,13 +49,9 @@ struct QFamilyApp14App: App {
                 .onOpenURL { url in
                     // handle the URL that must be opened
                     print( "on open URL \(url)")
-                    
                     guard let topView = url.topView else {
                         return
                     }
-                    
-                    print( "topView \(topView)")
-                    print( "TODO deep linking")
                     switch topView {
                     case .mainView:
                         appState.topView = .mainView
@@ -80,7 +76,11 @@ struct QFamilyApp14App: App {
                     case .modalView:
                         appState.topView = .modalView
                     }
-                    
+                    print("url: \(url.absoluteURL)") // qfamily-test://main/rewards/12345
+                    print("scheme: \(String(describing: url.scheme))") // qfamily-test, https
+                    print("host: \(String(describing: url.host))") // main
+                    print("path: \(url.path)") // /rewards
+                    print("components: \(url.pathComponents)") // ["/", "rewards", "12345"]
                 }
         }//end WindowGroup
         .onChange(of: scenePhase) { newPhase in

@@ -62,7 +62,7 @@ struct AdultUserView: View {
                     Text("PublicActivityDescriptionView")
                         .foregroundColor(.blue)
                 }
-
+                
 //                NavigationLink(destination: MultipleChoiceView(viewModel:MultipleChoiceViewModel.mock)) {
 //                    Text("MultipleChoiceView")
 //                        .foregroundColor(.blue)
@@ -143,10 +143,8 @@ struct AdultUserView: View {
                 //                }
             }
             
-            Section(header: Text("Dev DeepLink")) {
+            Section(header: Text("Dev DeepLinking")) {
                 
-                // print("url: \(context.url.absoluteURL)")
-                // print("scheme: \(context.url.scheme)")
                 // print("host: \(context.url.host)")
                 // print("path: \(context.url.path)")
                 // print("components: \(context.url.pathComponents)")
@@ -182,7 +180,6 @@ struct AdultUserView: View {
                 }) {
                     Text("deep link main/rewards")
                 }
-                
                 
                 Button(action: {
                     let deepLink = "qfamily-test://onboarding/"

@@ -30,14 +30,12 @@ extension URL {
         default:
             return nil
         }
-        
-        //return .mainView
     }
     
     var mainViewTabIndex: TabViewIndex? {
         guard isDeeplink else { return nil }
         
-        guard let topView = topView, pathComponents.count > 1  else {
+        guard let _ = topView, pathComponents.count > 1  else {
             return nil
         }
         
