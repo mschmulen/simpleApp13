@@ -25,6 +25,8 @@ struct YouView2: View {
     
     @State var showAgent = false
     
+    @State private var showUserView = false
+    
     var activeActivities: some View {
         Section() {
             CKActivityActiveRowView(
@@ -125,7 +127,28 @@ struct YouView2: View {
                 }
             }
             .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-            .navigationBarItems(leading: leadingButton, trailing: trailingButton)
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .toolbar{
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Text("")
+                        trailingButton
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Text("")
+                        leadingButton
+                    }
+                }
+            }//end .toolbar
+//            .background(
+//                    NavigationLink(destination: UserView(), isActive: $showUserView) {
+//                      EmptyView()
+//                    }
+//                )
         }
     }
     
@@ -152,9 +175,7 @@ struct YouView2: View {
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
         ){
-            HStack {
-                Text("change player")
-            }
+            Text("change")
         }
     }
 }
@@ -173,3 +194,30 @@ struct YouView2_Previews: PreviewProvider {
     }
 }
 
+struct TabToolbar: ToolbarContent {
+    
+    let userInfo: String
+    let showUserDetail: () -> Void
+    let changeUser: () -> Void
+    
+    var body: some ToolbarContent {
+        
+        ToolbarItem(placement: .primaryAction) {
+            Button("\(userInfo)", action: showUserDetail)
+        }
+        
+        ToolbarItemGroup(placement: .primaryAction) {
+            Button("\(userInfo)", action: showUserDetail)
+            Button("change Player", action: changeUser)
+        }
+        
+//        ToolbarItem(placement: .primaryAction) {
+//            Button("\(userInfo)", action: showUserDetail)
+//        }
+
+//        ToolbarItemGroup(placement: .bottomBar) {
+//            Button("changeUser", action: changeUser)
+//            Button("changeUser", action: changeUser)
+//        }
+    }
+}

@@ -213,10 +213,25 @@ struct MainFamilyView2: View {
                 self.storeItemPurchaseService.fetch(sortDescriptor: .none, searchPredicate: .predicateTrue) { (result) in
                     print( "result")
                 }
-                
             }
             .navigationBarTitle("Family")
-            .navigationBarItems(leading: leadingButton, trailing: trailingButton)
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Text("")
+                        trailingButton
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Text("")
+                        leadingButton
+                    }
+                }
+            }//end .toolbar
+            
         }//end Navigation
     }//end body
     
@@ -245,7 +260,7 @@ struct MainFamilyView2: View {
                         .environmentObject(activityDescriptionService)
         ){
             HStack {
-                Text("change player")
+                Text("change")
             }
         }
     }

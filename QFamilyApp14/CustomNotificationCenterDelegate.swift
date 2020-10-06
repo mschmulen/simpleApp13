@@ -33,19 +33,19 @@ extension CustomNotificationCenterDelegate: UNUserNotificationCenterDelegate {
         if let notificationCategory = LocalNotificationCategory(rawValue: notification.request.content.categoryIdentifier) {
             switch notificationCategory {
             case .openBucksTab:
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             case .openChatTab:
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             case .openFamilyTab:
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             case .openYouTab:
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             case .deepLinkModalView:
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             }
         } else {
@@ -54,13 +54,13 @@ extension CustomNotificationCenterDelegate: UNUserNotificationCenterDelegate {
                 print( "notification \(notification)")
                 
                 let recordFields = queryNotification.recordFields
-                print( "recordFields \(recordFields)")
+                print( "recordFields \(String(describing: recordFields))")
                 
                 //notification.request.content.subtitle = "yack"
                 
                 //recordFields Optional(["ownerName": Jay, "sessionReferenceID": B790B4D8-2011-4E89-B534-1A47DD057767, "ownerEmoji": 🐦])
                 
-                completionHandler([.alert, .sound, .badge])
+                completionHandler([.banner, .sound, .badge])
                 return
             } else {
                 completionHandler(UNNotificationPresentationOptions(rawValue:0))

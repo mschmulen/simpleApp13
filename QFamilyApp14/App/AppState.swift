@@ -107,7 +107,7 @@ extension AppState {
         case .tabBucks:
             topView = .mainView
             selectedTab = TabViewIndex.rewards.rawValue
-        case .modalViewRecord(let recordName, let recordType):
+        case .modalViewRecord(_, _):
             topView = .modalView
             selectedTab = TabViewIndex.familyChat.rawValue
             activeDeepLink = deepLink
