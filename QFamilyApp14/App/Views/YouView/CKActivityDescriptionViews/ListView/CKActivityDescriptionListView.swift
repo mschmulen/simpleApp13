@@ -28,7 +28,7 @@ struct CKActivityDescriptionListView: View {
             DevMessageView(devMessage: $devMessage)
             
             Section(header: Text("Activities (Family)")) {
-                NavigationLink(destination: CKActivityDescriptionDetailEditView(
+                NavigationLink(destination: NewActivityDescriptionWizardView(
                     model: CKActivityDescriptionModel()
                 )) {
                     Image(systemName: "plus")

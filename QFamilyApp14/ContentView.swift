@@ -26,17 +26,17 @@ struct ContentView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-
+    
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
-
+    
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
     @EnvironmentObject var activityService: CKPrivateModelService<CKActivityModel>
     @EnvironmentObject var chatService: ChatService
-
+    
     @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
     @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
-
+    
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
     

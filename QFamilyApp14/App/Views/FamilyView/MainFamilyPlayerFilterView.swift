@@ -39,32 +39,7 @@ struct MainFamilyPlayerFilterView: View {
     
     @Binding var currentFilter: PlayerFilter {
         didSet {
-            print( "did update playerFilter")
-            
             buildFilterCards()
-            
-//            for card in filterCards {
-//                switch card.playerFilter {
-//                case .none:
-//                    switch currentFilter {
-//                    case .none:
-//                        card.isSelected = true
-//                    default:
-//                        card.isSelected = false
-//                    }
-//                case .person(let thisCardModel):
-//                    switch currentFilter {
-//                    case .none:
-//                        card .isSelected = false
-//                    case .person(let filterModel):
-//                        if filterModel == thisCardModel {
-//                            card.isSelected = true
-//                        } else {
-//                            card.isSelected = false
-//                        }
-//                    }
-//                }
-//            }
         }
     }
     

@@ -33,7 +33,7 @@ struct CKActivityDescriptionCardsRowView: View {
                     
                     if showAdd {
                         NavigationLink(
-                            destination: CKActivityDescriptionDetailEditView(
+                            destination: NewActivityDescriptionWizardView(
                                 model: CKActivityDescriptionModel()
                             )
                         ) {

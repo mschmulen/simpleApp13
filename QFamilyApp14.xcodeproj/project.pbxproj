@@ -91,6 +91,7 @@
 		765CAFC2252904A9003FC900 /* CustomAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */; };
 		765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */; };
 		765CAFD525291BAB003FC900 /* URL+Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFD425291BAB003FC900 /* URL+Deeplink.swift */; };
+		7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */; };
 		76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */; };
 		76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E3252778ED00289EF4 /* ContentView.swift */; };
 		76DF83E6252778F200289EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DF83E5252778F200289EF4 /* Assets.xcassets */; };
@@ -205,6 +206,7 @@
 		765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAppDelegate.swift; sourceTree = "<group>"; };
 		765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		765CAFD425291BAB003FC900 /* URL+Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Deeplink.swift"; sourceTree = "<group>"; };
+		7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityDescriptionWizardView.swift; sourceTree = "<group>"; };
 		76DF83DE252778ED00289EF4 /* QFamilyApp14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamilyApp14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QFamilyApp14App.swift; sourceTree = "<group>"; };
 		76DF83E3252778ED00289EF4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -456,10 +458,11 @@
 			isa = PBXGroup;
 			children = (
 				765CAEEB2528CF51003FC900 /* CKActivityDescriptionDetailView.swift */,
-				765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */,
 				765CAEED2528CF51003FC900 /* CKActivityDescriptionDetailEditView.swift */,
-				765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */,
+				7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */,
 				765CAEEF2528CF51003FC900 /* PhotoActivityDescriptionView.swift */,
+				765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */,
+				765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */,
 				765CAEF02528CF51003FC900 /* _CKChoreDescriptionListView.swift */,
 				765CAEF12528CF51003FC900 /* ListView */,
 				765CAEF32528CF51003FC900 /* CardView */,
@@ -827,6 +830,7 @@
 				765CAF462528CF52003FC900 /* CKActivityDescriptionListView.swift in Sources */,
 				765CAF2D2528CF52003FC900 /* MainFamilyPlayerFilterView.swift in Sources */,
 				765CAF502528CF52003FC900 /* EmojiView.swift in Sources */,
+				7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */,
 				765CAF0E2528CF52003FC900 /* _StoreItemDefinitionEditDetailView.swift in Sources */,
 				765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,

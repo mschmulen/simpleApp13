@@ -48,7 +48,7 @@ struct MainYouView: View {
                 .padding(.leading, 5)
                 Spacer()
                 NavigationLink(
-                    destination: CKActivityDescriptionDetailEditView(
+                    destination: NewActivityDescriptionWizardView (
                         model: CKActivityDescriptionModel()
                     )
                 ) {

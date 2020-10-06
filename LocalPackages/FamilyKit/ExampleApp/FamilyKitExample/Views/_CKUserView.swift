@@ -6,8 +6,8 @@
 //  Copyright © 2020 jumptack. All rights reserved.
 //
 
-import SwiftUI
-import FamilyKit
+//import SwiftUI
+//import FamilyKit
 /*
 struct CKUserView: View {
     

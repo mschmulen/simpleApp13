@@ -11,7 +11,7 @@ import Combine
 import FamilyKit
 import SimpleGames
 
-struct CKActivityDescriptionDetailEditView: View {
+struct XCKActivityDescriptionDetailEditView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -166,10 +166,10 @@ struct CKActivityDescriptionDetailEditView: View {
     
 }//end CKActivityDescriptionDetailEditView
 
-struct CKActivityDescriptionDetailEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CKActivityDescriptionDetailEditView(model: CKActivityDescriptionModel.mock)
-        }
-    }
-}
+//struct CKActivityDescriptionDetailEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            XCKActivityDescriptionDetailEditView(model: CKActivityDescriptionModel.mock)
+//        }
+//    }
+//}

@@ -99,17 +99,17 @@ struct CKActivityDescriptionDetailView: View {
             Spacer()
             
             // Lets move this to Nav bar
-            NavigationLink(
-                destination: CKActivityDescriptionDetailEditView(
-                    model: model
-                )
-            ) {
-                HStack {
-                    Text("EDIT THIS ACTIVITY")
-                }
-                .foregroundColor(.blue)
-            }
-            Spacer()
+//            NavigationLink(
+//                destination: NewActivityDescriptionWizardView(
+//                    model: model
+//                )
+//            ) {
+//                HStack {
+//                    Text("EDIT THIS ACTIVITY")
+//                }
+//                .foregroundColor(.blue)
+//            }
+//            Spacer()
         }
         .onAppear {
             // try and download the image
