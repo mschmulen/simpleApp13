@@ -43,7 +43,19 @@ struct NewActivityDescriptionWizardView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         //.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-
+        .onAppear {
+            // try and download the image
+            if self.model.coverPhoto != nil {
+                self.model.loadCoverPhoto { (result) in
+                    switch result {
+                    case .failure(_):
+                        break
+                    case .success(let image):
+                        self.coverPhotoImage = image
+                    }
+                }
+            }
+        }//end onAppear
     }
     
     var coverPhotoView: some View {
@@ -308,8 +320,9 @@ extension NewActivityDescriptionWizardView {
         }
     }
     
+    // TODO Fix the ViewCoverPhoto
     struct ViewCoverPhoto: View {
-
+        
         @Binding var model: CKActivityDescriptionModel
 
         var backgroundColor = SemanticAppColor.random
