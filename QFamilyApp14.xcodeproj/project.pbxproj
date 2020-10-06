@@ -45,12 +45,12 @@
 		765CAF272528CF52003FC900 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAECA2528CF51003FC900 /* PagerView.swift */; };
 		765CAF282528CF52003FC900 /* UIKitCloudKitSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAECB2528CF51003FC900 /* UIKitCloudKitSharingButton.swift */; };
 		765CAF292528CF52003FC900 /* FamilyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAECD2528CF51003FC900 /* FamilyChatView.swift */; };
-		765CAF2A2528CF52003FC900 /* CKRewardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAECF2528CF51003FC900 /* CKRewardRowView.swift */; };
+		765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAECF2528CF51003FC900 /* FamilyRewardRowView.swift */; };
 		765CAF2B2528CF52003FC900 /* FamilyActivityCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED02528CF51003FC900 /* FamilyActivityCardView.swift */; };
-		765CAF2C2528CF52003FC900 /* MainFamilyView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED12528CF51003FC900 /* MainFamilyView2.swift */; };
+		765CAF2C2528CF52003FC900 /* MainFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED12528CF51003FC900 /* MainFamilyView.swift */; };
 		765CAF2D2528CF52003FC900 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED22528CF51003FC900 /* MainFamilyPlayerFilterView.swift */; };
 		765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED32528CF51003FC900 /* MainFamilyStatusFilterView.swift */; };
-		765CAF302528CF52003FC900 /* CKBuckPurchaseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED52528CF51003FC900 /* CKBuckPurchaseItemView.swift */; };
+		765CAF302528CF52003FC900 /* FamilyRewardItemViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED52528CF51003FC900 /* FamilyRewardItemViewCard.swift */; };
 		765CAF342528CF52003FC900 /* ChatPeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDA2528CF51003FC900 /* ChatPeekView.swift */; };
 		765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */; };
 		765CAF382528CF52003FC900 /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDF2528CF51003FC900 /* AudioActivityView.swift */; };
@@ -71,7 +71,7 @@
 		765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF52528CF51003FC900 /* CKActivityDescriptionCardsRowView.swift */; };
 		765CAF492528CF52003FC900 /* CKActivityDescriptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF62528CF51003FC900 /* CKActivityDescriptionCardView.swift */; };
 		765CAF4A2528CF52003FC900 /* CKActivityDescriptionAddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF72528CF51003FC900 /* CKActivityDescriptionAddCardView.swift */; };
-		765CAF4B2528CF52003FC900 /* YouView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF82528CF51003FC900 /* YouView2.swift */; };
+		765CAF4B2528CF52003FC900 /* MainYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF82528CF51003FC900 /* MainYouView.swift */; };
 		765CAF4C2528CF52003FC900 /* String+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEFA2528CF51003FC900 /* String+Image.swift */; };
 		765CAF4D2528CF52003FC900 /* DevMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEFB2528CF51003FC900 /* DevMessageView.swift */; };
 		765CAF4E2528CF52003FC900 /* SemanticAppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEFC2528CF51003FC900 /* SemanticAppColor.swift */; };
@@ -159,12 +159,12 @@
 		765CAECA2528CF51003FC900 /* PagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		765CAECB2528CF51003FC900 /* UIKitCloudKitSharingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitCloudKitSharingButton.swift; sourceTree = "<group>"; };
 		765CAECD2528CF51003FC900 /* FamilyChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyChatView.swift; sourceTree = "<group>"; };
-		765CAECF2528CF51003FC900 /* CKRewardRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKRewardRowView.swift; sourceTree = "<group>"; };
+		765CAECF2528CF51003FC900 /* FamilyRewardRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyRewardRowView.swift; sourceTree = "<group>"; };
 		765CAED02528CF51003FC900 /* FamilyActivityCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyActivityCardView.swift; sourceTree = "<group>"; };
-		765CAED12528CF51003FC900 /* MainFamilyView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyView2.swift; sourceTree = "<group>"; };
+		765CAED12528CF51003FC900 /* MainFamilyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyView.swift; sourceTree = "<group>"; };
 		765CAED22528CF51003FC900 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		765CAED32528CF51003FC900 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
-		765CAED52528CF51003FC900 /* CKBuckPurchaseItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseItemView.swift; sourceTree = "<group>"; };
+		765CAED52528CF51003FC900 /* FamilyRewardItemViewCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyRewardItemViewCard.swift; sourceTree = "<group>"; };
 		765CAEDA2528CF51003FC900 /* ChatPeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPeekView.swift; sourceTree = "<group>"; };
 		765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
 		765CAEDF2528CF51003FC900 /* AudioActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		765CAEF52528CF51003FC900 /* CKActivityDescriptionCardsRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionCardsRowView.swift; sourceTree = "<group>"; };
 		765CAEF62528CF51003FC900 /* CKActivityDescriptionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionCardView.swift; sourceTree = "<group>"; };
 		765CAEF72528CF51003FC900 /* CKActivityDescriptionAddCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionAddCardView.swift; sourceTree = "<group>"; };
-		765CAEF82528CF51003FC900 /* YouView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouView2.swift; sourceTree = "<group>"; };
+		765CAEF82528CF51003FC900 /* MainYouView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainYouView.swift; sourceTree = "<group>"; };
 		765CAEFA2528CF51003FC900 /* String+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Image.swift"; sourceTree = "<group>"; };
 		765CAEFB2528CF51003FC900 /* DevMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevMessageView.swift; sourceTree = "<group>"; };
 		765CAEFC2528CF51003FC900 /* SemanticAppColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemanticAppColor.swift; sourceTree = "<group>"; };
@@ -394,12 +394,12 @@
 		765CAECE2528CF51003FC900 /* FamilyView */ = {
 			isa = PBXGroup;
 			children = (
-				765CAECF2528CF51003FC900 /* CKRewardRowView.swift */,
-				765CAED02528CF51003FC900 /* FamilyActivityCardView.swift */,
-				765CAED12528CF51003FC900 /* MainFamilyView2.swift */,
+				765CAED12528CF51003FC900 /* MainFamilyView.swift */,
 				765CAED22528CF51003FC900 /* MainFamilyPlayerFilterView.swift */,
+				765CAED02528CF51003FC900 /* FamilyActivityCardView.swift */,
 				765CAED32528CF51003FC900 /* MainFamilyStatusFilterView.swift */,
-				765CAED52528CF51003FC900 /* CKBuckPurchaseItemView.swift */,
+				765CAECF2528CF51003FC900 /* FamilyRewardRowView.swift */,
+				765CAED52528CF51003FC900 /* FamilyRewardItemViewCard.swift */,
 			);
 			path = FamilyView;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 		765CAEE82528CF51003FC900 /* YouView */ = {
 			isa = PBXGroup;
 			children = (
-				765CAEF82528CF51003FC900 /* YouView2.swift */,
+				765CAEF82528CF51003FC900 /* MainYouView.swift */,
 				765CAEEA2528CF51003FC900 /* CKActivityDescriptionViews */,
 			);
 			path = YouView;
@@ -783,11 +783,11 @@
 				765CAF4F2528CF52003FC900 /* UserSettings.swift in Sources */,
 				765CAF4A2528CF52003FC900 /* CKActivityDescriptionAddCardView.swift in Sources */,
 				765CAF252528CF52003FC900 /* PublicActivityDescriptionDetailView.swift in Sources */,
-				765CAF4B2528CF52003FC900 /* YouView2.swift in Sources */,
+				765CAF4B2528CF52003FC900 /* MainYouView.swift in Sources */,
 				76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */,
 				765CAF492528CF52003FC900 /* CKActivityDescriptionCardView.swift in Sources */,
 				765CAF072528CF52003FC900 /* LocalNotificationManager.swift in Sources */,
-				765CAF2C2528CF52003FC900 /* MainFamilyView2.swift in Sources */,
+				765CAF2C2528CF52003FC900 /* MainFamilyView.swift in Sources */,
 				765CAF1C2528CF52003FC900 /* KidUserView.swift in Sources */,
 				765CAF0C2528CF52003FC900 /* DrawPreviewView.swift in Sources */,
 				765CAF0A2528CF52003FC900 /* ComboView.swift in Sources */,
@@ -799,7 +799,7 @@
 				765CAF222528CF52003FC900 /* NotificationDevView.swift in Sources */,
 				765CAF162528CF52003FC900 /* AgentCardView.swift in Sources */,
 				765CAF262528CF52003FC900 /* PublicActivityDescriptionView.swift in Sources */,
-				765CAF302528CF52003FC900 /* CKBuckPurchaseItemView.swift in Sources */,
+				765CAF302528CF52003FC900 /* FamilyRewardItemViewCard.swift in Sources */,
 				765CAF512528CF52003FC900 /* TextField+Helper.swift in Sources */,
 				765CAF542528CF52003FC900 /* ActivityIndicatorView.swift in Sources */,
 				76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */,
@@ -828,7 +828,7 @@
 				765CAF2D2528CF52003FC900 /* MainFamilyPlayerFilterView.swift in Sources */,
 				765CAF502528CF52003FC900 /* EmojiView.swift in Sources */,
 				765CAF0E2528CF52003FC900 /* _StoreItemDefinitionEditDetailView.swift in Sources */,
-				765CAF2A2528CF52003FC900 /* CKRewardRowView.swift in Sources */,
+				765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,
 				765CAF1F2528CF52003FC900 /* AdultUserView.swift in Sources */,
 				765CAF3A2528CF52003FC900 /* CKActivityActiveNoItemsView.swift in Sources */,

@@ -92,7 +92,7 @@ struct QFamilyTabScene: Scene {
                      // we have a valid player
                      TabView(selection: appState.selectedTab) {
                      //                    TabView(selection: $selectedTab) {
-                     YouView2()
+                MainYouView()
                      .environment(\.window, window)
                      .environmentObject(appState)
                      .environmentObject(familyKitAppState)
@@ -103,7 +103,7 @@ struct QFamilyTabScene: Scene {
                      Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
                      }.tag(TabViewIndex.you.rawValue)
                      
-                     MainFamilyView2()
+                     MainFamilyView()
                      .environment(\.window, window)
                      .environmentObject(appState)
                      .environmentObject(familyKitAppState)

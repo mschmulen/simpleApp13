@@ -26,12 +26,104 @@ struct CKActivityActiveDetailView: View {
     
     @State var model: CKActivityModel
     @State var localActivityStatus: ActivityStatus
-    let showStatusButtons:Bool
     
     @State var showActivityIndicator: Bool = false
     @State var activityIndicatorMessage: String = "Loading"
     
     @State var chatSessionModel: CKChatSessionModel?
+    
+    var body: some View {
+        VStack {
+            
+            //DevMessageView(devMessage: $devMessage)
+            
+            ActivityIndicatorView(
+                isDisplayed: $showActivityIndicator,
+                indicatorMessage: $activityIndicatorMessage
+            ) {
+                ScrollView {
+                    LazyVStack {
+                        
+                        self.infoView
+                        
+                        if self.model.moduleType == .photo {
+                            PhotoActivitySubView(
+                                model: self.$model,
+                                showActivityIndicator: self.$showActivityIndicator,
+                                activityIndicatorMessage: self.$activityIndicatorMessage
+                            )
+                            
+                            if self.chatSessionModel != nil {
+                                ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                    print( "update callback")
+                                    self.fetchChatSession()
+                                })
+                                .frame(height: 200)
+                            }
+                        } else if self.model.moduleType == .audio {
+                            AudioActivitySubView(
+                                model: self.$model,
+                                showActivityIndicator: self.$showActivityIndicator,
+                                activityIndicatorMessage: self.$activityIndicatorMessage
+                            )
+                            
+                            if self.chatSessionModel != nil {
+                                ChatPeekView(chatSessionModel: self.chatSessionModel!,
+                                             updateCallback: {
+                                                print( "update callback")
+                                                self.fetchChatSession()
+                                             })
+                                    .frame(height: 200)
+                            }
+                        } else if self.model.moduleType == .drawing {
+                            DrawPreviewView(
+                                model: self.$model,
+                                showActivityIndicator: self.$showActivityIndicator,
+                                activityIndicatorMessage: self.$activityIndicatorMessage
+                            )
+                            
+                            if self.chatSessionModel != nil {
+                                ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                    print( "update callback")
+                                    self.fetchChatSession()
+                                })
+                                //.frame(height: 200)
+                            }
+                        } else if self.model.moduleType == .chat {
+                            if self.chatSessionModel != nil {
+                                ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
+                                    print( "update callback")
+                                    self.fetchChatSession()
+                                })
+                            }
+                            // Spacer()
+                        }//end else if
+                        
+                        self.activityStatusView
+                        
+                    }//end VStack
+                }//end ScrollView
+            }//end ActivityIndicator
+        }//end VStack
+        .navigationBarTitle("\(model.title ?? "~")")
+        .navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
+        .onAppear {
+            
+            if self.model.recordID == nil {
+                self.onSave()
+            } else {
+                self.fetchChatSession()
+            }
+            
+            // reset the deep link :)
+            switch self.appState.activeDeepLink {
+            case .tabFamily(_, _) :
+                self.appState.activeDeepLink = .none
+            default:
+                break
+            }
+        }
+    }//end body
     
     var infoView: some View {
         VStack {
@@ -49,34 +141,36 @@ struct CKActivityActiveDetailView: View {
                         Text($0.rawValue)
                     }
                 }.pickerStyle(SegmentedPickerStyle())
-                    .padding()
-                    .onReceive([localActivityStatus].publisher.first()) { value in
-                        if value != self.model.status {
-                            
-                            //self.model.changeStatus(status: value)
-                            self.model.status = value
-                            self.onSave()
-                            
-                            // give them points
-                            if let playerReference = self.model.kidReference {
-                                if value == .verified {
-                                    if let playerModel = self.familyKitAppState.findPlayerModelForRecord(recordReference: playerReference) {
-                                        self.familyKitAppState.addBucks(playerModel: playerModel, bucks: self.model.bucks)
-                                    }
+                .padding()
+                .onReceive([localActivityStatus].publisher.first()) { value in
+                    if value != self.model.status {
+                        
+                        //self.model.changeStatus(status: value)
+                        self.model.status = value
+                        self.onSave()
+                        
+                        // give them points
+                        if let playerReference = self.model.kidReference {
+                            if value == .verified {
+                                if let playerModel = self.familyKitAppState.findPlayerModelForRecord(recordReference: playerReference) {
+                                    self.familyKitAppState.addBucks(playerModel: playerModel, bucks: self.model.bucks)
                                 }
                             }
                         }
-                }                
+                    }
+                }
             }// end if is adult
             else {
                 if self.model.status == .active {
                     completeButton
                 } else if self.model.status == .unknown {
                     activeButton
+                } else {
+                    Text("Status: \(self.model.status.rawValue)")
                 }
             }
         }
-    }
+    }//end activityStatusView
     
     var verifyButton: some View {
         Button(action: {
@@ -85,7 +179,7 @@ struct CKActivityActiveDetailView: View {
         }) {
             LargeTextPillBox( "Verify" )
         }
-    }
+    }//end verifyButton
     
     var activeButton: some View {
         Button(action: {
@@ -94,7 +188,7 @@ struct CKActivityActiveDetailView: View {
         }) {
             LargeTextPillBox( "Activate" )
         }
-    }
+    }//end activeButton
     
     var completeButton: some View {
         Button(action: {
@@ -104,97 +198,7 @@ struct CKActivityActiveDetailView: View {
             LargeTextPillBox("Complete")
                 .padding(2)
         }
-    }
-    
-    var body: some View {
-        VStack {
-            
-            //DevMessageView(devMessage: $devMessage)
-            
-            ActivityIndicatorView(
-                isDisplayed: $showActivityIndicator,
-                indicatorMessage: $activityIndicatorMessage
-            ) {
-                VStack {
-                    self.infoView
-                    if self.showStatusButtons == true {
-                        self.activityStatusView
-                    }
-                    if self.model.moduleType == .photo {
-                        PhotoActivitySubView(
-                            model: self.$model,
-                            showActivityIndicator: self.$showActivityIndicator,
-                            activityIndicatorMessage: self.$activityIndicatorMessage
-                        )
-                        
-                        if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
-                                print( "update callback")
-                                self.fetchChatSession()
-                            })
-                                .frame(height: 200)
-                        }
-                        
-                    } else if self.model.moduleType == .audio {
-                        AudioActivitySubView(
-                            model: self.$model,
-                            showActivityIndicator: self.$showActivityIndicator,
-                            activityIndicatorMessage: self.$activityIndicatorMessage
-                        )
-                        
-                        if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!,
-                                         updateCallback: {
-                                            print( "update callback")
-                                            self.fetchChatSession()
-                            })
-                                .frame(height: 200)
-                        }
-                    } else if self.model.moduleType == .drawing {
-                        DrawPreviewView(
-                            model: self.$model,
-                            showActivityIndicator: self.$showActivityIndicator,
-                            activityIndicatorMessage: self.$activityIndicatorMessage
-                        )
-                        
-                        if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
-                                print( "update callback")
-                                self.fetchChatSession()
-                            })
-                            //.frame(height: 200)
-                        }
-                        
-                    } else if self.model.moduleType == .chat {
-                        if self.chatSessionModel != nil {
-                            ChatPeekView(chatSessionModel: self.chatSessionModel!, updateCallback: {
-                                print( "update callback")
-                                self.fetchChatSession()
-                            })
-                        }
-                        // Spacer()
-                    }
-                }//end VStack
-            }//end ActivityIndicator
-        }//end VStack
-            .navigationBarTitle("\(model.title ?? "~")")
-            .navigationBarItems(trailing: Text("\(model.status.friendlyName)"))
-            .onAppear {
-                if self.model.recordID == nil {
-                    self.onSave()
-                } else {
-                    self.fetchChatSession()
-                }
-                
-                // reset the deep link :)
-                switch self.appState.activeDeepLink {
-                case .tabFamily(_, _) :
-                    self.appState.activeDeepLink = .none
-                default:
-                    break
-                }
-        }
-    }
+    }//end completeButton
     
     func fetchChatSession() {
         self.showActivityIndicator = true
@@ -208,7 +212,7 @@ struct CKActivityActiveDetailView: View {
                 self.showActivityIndicator = false
             }
         }
-    }
+    }//end fetchChatSession()
     
     func onSave() {
         self.activityIndicatorMessage = "Saving"
@@ -224,7 +228,7 @@ struct CKActivityActiveDetailView: View {
                 self.fetchChatSession()
             }
         }
-    }
+    }//end onSave()
 }//end CKActivityActiveDetailView
 
 struct CKActivityActiveDetailView_Previews: PreviewProvider {
@@ -234,13 +238,12 @@ struct CKActivityActiveDetailView_Previews: PreviewProvider {
     static var previews: some View {
         CKActivityActiveDetailView(
             model: CKActivityModel.mock,
-            localActivityStatus: ActivityStatus.active,
-            showStatusButtons: true
+            localActivityStatus: ActivityStatus.active
         )
-            .environmentObject(AppState())
-            .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
-            .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
+        .environmentObject(AppState())
+        .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
+        .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))
         
     }
 }

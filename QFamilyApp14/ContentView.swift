@@ -84,7 +84,7 @@ struct ContentView: View {
                 } else {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
-                        YouView2()
+                        MainYouView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)
@@ -95,7 +95,7 @@ struct ContentView: View {
                                 Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
                         }.tag(TabViewIndex.you.rawValue)
 
-                        MainFamilyView2()
+                        MainFamilyView()
                             .environment(\.window, window)
                             .environmentObject(appState)
                             .environmentObject(familyKitAppState)

@@ -114,9 +114,6 @@ struct PhotoActivitySubView: View {
     }
     
     func saveImageToModel() {
-        
-        //self.devMessage = "sub saving image ..."
-        
         guard let inputImage = inputImage else {
             self.devMessage = "no image"
             return
@@ -128,7 +125,7 @@ struct PhotoActivitySubView: View {
         }
         
         // automatically push to status .completed
-        self.model.status = .completed
+        //self.model.status = .completed
         
         self.activityIndicatorMessage = "Saving Image"
         self.showActivityIndicator = true
@@ -154,6 +151,10 @@ struct PhotoActivitySubView: View {
                 }
             }
         }
+    }
+    
+    func showStateChange() {
+        
     }
 }
 

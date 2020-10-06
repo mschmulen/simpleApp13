@@ -78,8 +78,7 @@ struct CKActivityDescriptionDetailView: View {
                         descriptionModel: model,
                         playerRecordReference: familyKitAppState.currentPlayerModel!.recordReference!
                     ),
-                    localActivityStatus: ActivityStatus.active,
-                    showStatusButtons: false
+                    localActivityStatus: ActivityStatus.active
                 )) {
                     LargeTextPillBox( "START THIS ACTIVITY" )
                 }

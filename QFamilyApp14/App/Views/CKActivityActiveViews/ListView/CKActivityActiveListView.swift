@@ -32,8 +32,7 @@ struct CKActivityActiveListView: View {
                     NavigationLink(
                         destination: CKActivityActiveDetailView(
                             model: model,
-                            localActivityStatus: model.status,
-                            showStatusButtons: true
+                            localActivityStatus: model.status
                         )
                     ){
                         CKActivityActiveItemView(model: model)

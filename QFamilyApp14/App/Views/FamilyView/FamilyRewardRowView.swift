@@ -1,5 +1,5 @@
 //
-//  CKBuckPurchaseRowView.swift
+//  FamilyRewardRowView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 9/15/20.
@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import FamilyKit
 
-struct CKRewardRowView: View {
+struct FamilyRewardRowView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
@@ -35,7 +35,7 @@ struct CKRewardRowView: View {
                                 model: model
                             )
                         ) {
-                            CKRewardItemViewCard(model: model)
+                            FamilyRewardItemViewCard(model: model)
                         }
                     }
                 }
@@ -49,7 +49,7 @@ struct CKRewardRowView: View {
 struct CKBuckPurchaseRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CKRewardRowView(
+            FamilyRewardRowView(
                 categoryName: "CATEGORY",
                 items: [
                     CKBuckRewardModel.mock,

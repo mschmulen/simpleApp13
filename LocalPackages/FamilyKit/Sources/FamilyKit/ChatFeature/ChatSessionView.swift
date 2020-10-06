@@ -104,7 +104,7 @@ public struct ChatSessionView: View {
                             //.onChange(of: self.messageCount) { target in
                             .onChange(of: self.messageIdToScrollToo ) { id in
                                 guard id != nil else { return }
-                                print( "messageIdToSetVisible \(id)")
+                                print( "messageIdToSetVisible \(String(describing: id))")
                                 print( "self.chatService.chatMessages.count: \(self.chatService.chatMessages.count)")
                                 withAnimation {
                                     //scrollProxy.scrollTo(self.chatService.chatMessages.count, anchor: .center)
@@ -207,7 +207,7 @@ public struct ChatSessionView: View {
             
             if let lastMessage = self.chatService.chatMessages.first {
                 print( "scroll to message ID \(lastMessage.id.uuidString)" )
-                print( "message: \(lastMessage.message)")
+                print( "message: \(String(describing: lastMessage.message))")
                 self.messageIdToScrollToo = lastMessage.id
             }
             

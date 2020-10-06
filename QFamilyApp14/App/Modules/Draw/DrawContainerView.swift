@@ -96,7 +96,7 @@ struct DrawContainerView: View {
             try data.write(to: localFileURL, options: [.atomicWrite])
             
             // automatically push to status .completed
-            self.model.status = .completed
+            //self.model.status = .completed
             
             self.showActivityIndicator = true
             self.activityIndicatorMessage  = "Saving drawing"

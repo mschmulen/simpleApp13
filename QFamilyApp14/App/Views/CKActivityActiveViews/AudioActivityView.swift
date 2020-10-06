@@ -193,7 +193,7 @@ struct AudioActivitySubView: View {
         }
         
         // automatically push to status .completed
-        self.model.status = .completed
+        //self.model.status = .completed
         
         showActivityIndicator = true
         activityIndicatorMessage = "Saving recording"

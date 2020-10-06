@@ -1,5 +1,5 @@
 //
-//  YouView2.swift
+//  MainYouViews.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 10/2/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct YouView2: View {
+struct MainYouView: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -178,12 +178,12 @@ struct YouView2: View {
     }
 }
 
-struct YouView2_Previews: PreviewProvider {
+struct MainYouView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        YouView2()
+        MainYouView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container: CloudKitContainer.MockContainer(container)))

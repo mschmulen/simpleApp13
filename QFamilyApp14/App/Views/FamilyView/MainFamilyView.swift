@@ -1,5 +1,5 @@
 //
-//  MainFamilyView2.swift
+//  MainFamilyView.swift
 //  SimpleApp
 //
 //  Created by Matthew Schmulen on 10/2/20.
@@ -11,7 +11,7 @@ import SwiftUI
 import FamilyKit
 import CloudKit
 
-struct MainFamilyView2: View {
+struct MainFamilyView: View {
     
     @Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
@@ -48,8 +48,7 @@ struct MainFamilyView2: View {
                 if deepLinkModel != nil {
                     NavigationLink(destination: CKActivityActiveDetailView(
                         model: deepLinkModel!,
-                        localActivityStatus: deepLinkModel!.status,
-                        showStatusButtons: true
+                        localActivityStatus: deepLinkModel!.status
                     )
                     ,tag: deepLinkModel!,
                     selection: $deepLinkModel) {
@@ -139,7 +138,7 @@ struct MainFamilyView2: View {
                         // TODO: "unknown" ... return model.status == ActivityStatus.unknown
                         
                         Section() {
-                            CKRewardRowView(
+                            FamilyRewardRowView(
                                 categoryName: "Active Rewards",
                                 items: storeItemPurchaseService.models
                                     .filter({ (model) -> Bool in
@@ -164,7 +163,7 @@ struct MainFamilyView2: View {
                         .listRowInsets(EdgeInsets())
                         
                         Section() {
-                            CKRewardRowView(
+                            FamilyRewardRowView(
                                 categoryName: "Fulfilled Rewards",
                                 items: storeItemPurchaseService.models
                                     .filter({ (model) -> Bool in
@@ -293,12 +292,12 @@ struct MainFamilyView2: View {
     }//end check for deeplinks
 }
 
-struct MainFamilyView2_Previews: PreviewProvider {
+struct MainFamilyView_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainFamilyView2()
+        MainFamilyView()
             .environmentObject(AppState())
             .environmentObject((FamilyKitAppState(container: CloudKitContainer.MockContainer(container))))
             .environmentObject(CKPrivateModelService<CKActivityDescriptionModel>(container:CloudKitContainer.MockContainer(container)))
