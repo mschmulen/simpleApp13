@@ -42,6 +42,8 @@ struct NewActivityDescriptionWizardView: View {
             }
         }
         .tabViewStyle(PageTabViewStyle())
+        //.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+
     }
     
     var coverPhotoView: some View {
@@ -60,99 +62,99 @@ struct NewActivityDescriptionWizardView: View {
         }
     }
     
-    var bodyX: some View {
-        VStack {
-            DevMessageView(devMessage: self.$devMessage)
-            
-            ActivityIndicatorView(
-                isDisplayed: $showActivityIndicator,
-                indicatorMessage: $activityIndicatorMessage
-            ) {
-                VStack {
-                    
-                    HStack {
-                        Spacer()
-                        Button(action:self.onSaveAndClose) {
-                            HStack {
-                                Text("Save")
-                                Image(systemName: "square.and.arrow.up")
-                            }.foregroundColor(.blue)
-                        }.padding()
-                    }
-                    
-                    List{
-                        Section(header: Text("Data")) {
-                            TextField("name", text: self.$model.name ?? "")
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            TextField("emoji", text: self.$model.emoji ?? "")
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            TextField("description", text: self.$model.description ?? "")
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            TextField("bucks", value: self.$model.bucks, formatter: NumberFormatter())
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            Picker(selection: self.$model.moduleType, label: Text("Type")) {
-                                ForEach(ActivityModuleType.allCases, id: \.self) {
-                                    Text($0.rawValue)
-                                }
-                            }.pickerStyle(SegmentedPickerStyle())
-                            
-                            Picker(selection: self.$model.category, label: Text("Category")) {
-                                ForEach(ActivityCategory.allCases.filter { $0 != .none }, id: \.self) {
-                                    Text($0.rawValue)
-                                }
-                            }.pickerStyle(SegmentedPickerStyle())
-                            
-                            NavigationLink(destination: PhotoActivityDescriptionView(model: self.model) ) {
-                                Text("change coverPhoto")
-                            }
-                            
-                            Button(action: ({
-                                self.showActivityIndicator = true
-                                self.activityDescriptionService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
-                                    switch result {
-                                    case .failure( let error):
-                                        self.showActivityIndicator = false
-                                        self.devMessage = "save error\(error.localizedDescription)"
-                                    case .success(_):
-                                        print( "success")
-                                        self.activityDescriptionService.fetchSingle( model: self.model) { result in
-                                            self.showActivityIndicator = false
-                                        }
-                                    }
-                                }
-                            })) {
-                                Text("remove coverPhoto")
-                            }
-                        }
-                        
-                        Section(header:Text("Assets")) {
-                            self.coverPhotoView
-                        }
-                    }//end List
-                }//end VStack
-                //.navigationBarTitle("Activity")
-                // .navigationBarItems(trailing: self.trailingButton)
-            }//end ActivityIndicatorView
-            Spacer()
-        }//end VStack
-            .onAppear {
-                // try and download the image
-                if self.model.coverPhoto != nil {
-                    self.model.loadCoverPhoto { (result) in
-                        switch result {
-                        case .failure(_):
-                            break
-                        case .success(let image):
-                            self.coverPhotoImage = image
-                        }
-                    }
-                }
-        }//end onAppear
-    }
+//    var bodyX: some View {
+//        VStack {
+//            DevMessageView(devMessage: self.$devMessage)
+//
+//            ActivityIndicatorView(
+//                isDisplayed: $showActivityIndicator,
+//                indicatorMessage: $activityIndicatorMessage
+//            ) {
+//                VStack {
+//
+//                    HStack {
+//                        Spacer()
+//                        Button(action:self.onSaveAndClose) {
+//                            HStack {
+//                                Text("Save")
+//                                Image(systemName: "square.and.arrow.up")
+//                            }.foregroundColor(.blue)
+//                        }.padding()
+//                    }
+//
+//                    List{
+//                        Section(header: Text("Data")) {
+//                            TextField("name", text: self.$model.name ?? "")
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                            TextField("emoji", text: self.$model.emoji ?? "")
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                            TextField("description", text: self.$model.description ?? "")
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                            TextField("bucks", value: self.$model.bucks, formatter: NumberFormatter())
+//                                .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                            Picker(selection: self.$model.moduleType, label: Text("Type")) {
+//                                ForEach(ActivityModuleType.allCases, id: \.self) {
+//                                    Text($0.rawValue)
+//                                }
+//                            }.pickerStyle(SegmentedPickerStyle())
+//
+//                            Picker(selection: self.$model.category, label: Text("Category")) {
+//                                ForEach(ActivityCategory.allCases.filter { $0 != .none }, id: \.self) {
+//                                    Text($0.rawValue)
+//                                }
+//                            }.pickerStyle(SegmentedPickerStyle())
+//
+//                            NavigationLink(destination: PhotoActivityDescriptionView(model: self.model) ) {
+//                                Text("change coverPhoto")
+//                            }
+//
+//                            Button(action: ({
+//                                self.showActivityIndicator = true
+//                                self.activityDescriptionService.removeAsset(model:self.model, assetPropertyName: "coverPhoto") { result in
+//                                    switch result {
+//                                    case .failure( let error):
+//                                        self.showActivityIndicator = false
+//                                        self.devMessage = "save error\(error.localizedDescription)"
+//                                    case .success(_):
+//                                        print( "success")
+//                                        self.activityDescriptionService.fetchSingle( model: self.model) { result in
+//                                            self.showActivityIndicator = false
+//                                        }
+//                                    }
+//                                }
+//                            })) {
+//                                Text("remove coverPhoto")
+//                            }
+//                        }
+//
+//                        Section(header:Text("Assets")) {
+//                            self.coverPhotoView
+//                        }
+//                    }//end List
+//                }//end VStack
+//                //.navigationBarTitle("Activity")
+//                // .navigationBarItems(trailing: self.trailingButton)
+//            }//end ActivityIndicatorView
+//            Spacer()
+//        }//end VStack
+//            .onAppear {
+//                // try and download the image
+//                if self.model.coverPhoto != nil {
+//                    self.model.loadCoverPhoto { (result) in
+//                        switch result {
+//                        case .failure(_):
+//                            break
+//                        case .success(let image):
+//                            self.coverPhotoImage = image
+//                        }
+//                    }
+//                }
+//        }//end onAppear
+//    }
     
     func onSaveAndClose() {
         self.showActivityIndicator = true
