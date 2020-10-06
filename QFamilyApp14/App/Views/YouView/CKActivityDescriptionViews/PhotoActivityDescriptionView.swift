@@ -9,6 +9,7 @@
 import SwiftUI
 import FamilyKit
 
+// TODO: Rename to CoverPhotoActivityDescriptionView
 struct PhotoActivityDescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -117,6 +118,7 @@ struct PhotoActivityDescriptionView: View {
                         DispatchQueue.main.async {
                             self.statusMessage = "Done"
                             self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
+                            //self.presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }

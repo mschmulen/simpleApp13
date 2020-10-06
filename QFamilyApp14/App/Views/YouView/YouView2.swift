@@ -25,8 +25,6 @@ struct YouView2: View {
     
     @State var showAgent = false
     
-    @State private var showUserView = false
-    
     var activeActivities: some View {
         Section() {
             CKActivityActiveRowView(
@@ -194,30 +192,30 @@ struct YouView2_Previews: PreviewProvider {
     }
 }
 
-struct TabToolbar: ToolbarContent {
-    
-    let userInfo: String
-    let showUserDetail: () -> Void
-    let changeUser: () -> Void
-    
-    var body: some ToolbarContent {
-        
-        ToolbarItem(placement: .primaryAction) {
-            Button("\(userInfo)", action: showUserDetail)
-        }
-        
-        ToolbarItemGroup(placement: .primaryAction) {
-            Button("\(userInfo)", action: showUserDetail)
-            Button("change Player", action: changeUser)
-        }
-        
+//struct TabToolbar: ToolbarContent {
+//
+//    let userInfo: String
+//    let showUserDetail: () -> Void
+//    let changeUser: () -> Void
+//
+//    var body: some ToolbarContent {
+//
 //        ToolbarItem(placement: .primaryAction) {
 //            Button("\(userInfo)", action: showUserDetail)
 //        }
-
-//        ToolbarItemGroup(placement: .bottomBar) {
-//            Button("changeUser", action: changeUser)
-//            Button("changeUser", action: changeUser)
+//
+//        ToolbarItemGroup(placement: .primaryAction) {
+//            Button("\(userInfo)", action: showUserDetail)
+//            Button("change Player", action: changeUser)
 //        }
-    }
-}
+//
+////        ToolbarItem(placement: .primaryAction) {
+////            Button("\(userInfo)", action: showUserDetail)
+////        }
+//
+////        ToolbarItemGroup(placement: .bottomBar) {
+////            Button("changeUser", action: changeUser)
+////            Button("changeUser", action: changeUser)
+////        }
+//    }
+//}

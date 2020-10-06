@@ -66,12 +66,7 @@ struct CKActivityActiveDetailView: View {
                                 }
                             }
                         }
-                }
-                
-                //                if self.model.status == .completed {
-                //                    verifyButton
-                //                }
-                
+                }                
             }// end if is adult
             else {
                 if self.model.status == .active {
@@ -107,6 +102,7 @@ struct CKActivityActiveDetailView: View {
             self.onSave()
         }) {
             LargeTextPillBox("Complete")
+                .padding(2)
         }
     }
     

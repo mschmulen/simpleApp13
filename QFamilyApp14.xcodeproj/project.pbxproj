@@ -51,13 +51,8 @@
 		765CAF2D2528CF52003FC900 /* MainFamilyPlayerFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED22528CF51003FC900 /* MainFamilyPlayerFilterView.swift */; };
 		765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED32528CF51003FC900 /* MainFamilyStatusFilterView.swift */; };
 		765CAF302528CF52003FC900 /* CKBuckPurchaseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED52528CF51003FC900 /* CKBuckPurchaseItemView.swift */; };
-		765CAF312528CF52003FC900 /* _CKChoreNewActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED72528CF51003FC900 /* _CKChoreNewActiveDetailView.swift */; };
-		765CAF322528CF52003FC900 /* _CKChoreActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED82528CF51003FC900 /* _CKChoreActiveNoItemsView.swift */; };
-		765CAF332528CF52003FC900 /* _CKChoreActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAED92528CF51003FC900 /* _CKChoreActiveListView.swift */; };
 		765CAF342528CF52003FC900 /* ChatPeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDA2528CF51003FC900 /* ChatPeekView.swift */; };
 		765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */; };
-		765CAF362528CF52003FC900 /* _DrawingActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDD2528CF51003FC900 /* _DrawingActivityView.swift */; };
-		765CAF372528CF52003FC900 /* _PhotoActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDE2528CF51003FC900 /* _PhotoActivityView.swift */; };
 		765CAF382528CF52003FC900 /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDF2528CF51003FC900 /* AudioActivityView.swift */; };
 		765CAF392528CF52003FC900 /* PhotoActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE02528CF51003FC900 /* PhotoActivitySubView.swift */; };
 		765CAF3A2528CF52003FC900 /* CKActivityActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE22528CF51003FC900 /* CKActivityActiveNoItemsView.swift */; };
@@ -170,13 +165,8 @@
 		765CAED22528CF51003FC900 /* MainFamilyPlayerFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyPlayerFilterView.swift; sourceTree = "<group>"; };
 		765CAED32528CF51003FC900 /* MainFamilyStatusFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFamilyStatusFilterView.swift; sourceTree = "<group>"; };
 		765CAED52528CF51003FC900 /* CKBuckPurchaseItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBuckPurchaseItemView.swift; sourceTree = "<group>"; };
-		765CAED72528CF51003FC900 /* _CKChoreNewActiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreNewActiveDetailView.swift; sourceTree = "<group>"; };
-		765CAED82528CF51003FC900 /* _CKChoreActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreActiveNoItemsView.swift; sourceTree = "<group>"; };
-		765CAED92528CF51003FC900 /* _CKChoreActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreActiveListView.swift; sourceTree = "<group>"; };
 		765CAEDA2528CF51003FC900 /* ChatPeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPeekView.swift; sourceTree = "<group>"; };
 		765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
-		765CAEDD2528CF51003FC900 /* _DrawingActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _DrawingActivityView.swift; sourceTree = "<group>"; };
-		765CAEDE2528CF51003FC900 /* _PhotoActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _PhotoActivityView.swift; sourceTree = "<group>"; };
 		765CAEDF2528CF51003FC900 /* AudioActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		765CAEE02528CF51003FC900 /* PhotoActivitySubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActivitySubView.swift; sourceTree = "<group>"; };
 		765CAEE22528CF51003FC900 /* CKActivityActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveNoItemsView.swift; sourceTree = "<group>"; };
@@ -417,13 +407,8 @@
 		765CAED62528CF51003FC900 /* CKActivityActiveViews */ = {
 			isa = PBXGroup;
 			children = (
-				765CAED72528CF51003FC900 /* _CKChoreNewActiveDetailView.swift */,
-				765CAED82528CF51003FC900 /* _CKChoreActiveNoItemsView.swift */,
-				765CAED92528CF51003FC900 /* _CKChoreActiveListView.swift */,
 				765CAEDA2528CF51003FC900 /* ChatPeekView.swift */,
 				765CAEDB2528CF51003FC900 /* ListView */,
-				765CAEDD2528CF51003FC900 /* _DrawingActivityView.swift */,
-				765CAEDE2528CF51003FC900 /* _PhotoActivityView.swift */,
 				765CAEDF2528CF51003FC900 /* AudioActivityView.swift */,
 				765CAEE02528CF51003FC900 /* PhotoActivitySubView.swift */,
 				765CAEE12528CF51003FC900 /* CardView */,
@@ -763,7 +748,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				765CAF362528CF52003FC900 /* _DrawingActivityView.swift in Sources */,
 				765CAF202528CF52003FC900 /* ShareView.swift in Sources */,
 				765CAF452528CF52003FC900 /* _CKChoreDescriptionListView.swift in Sources */,
 				765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */,
@@ -782,9 +766,7 @@
 				765CAF552528CF52003FC900 /* LargeButton.swift in Sources */,
 				765CAF1E2528CF52003FC900 /* CKUserView.swift in Sources */,
 				765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */,
-				765CAF332528CF52003FC900 /* _CKChoreActiveListView.swift in Sources */,
 				765CAF102528CF52003FC900 /* _StoreItemPurchaseDetailView.swift in Sources */,
-				765CAF312528CF52003FC900 /* _CKChoreNewActiveDetailView.swift in Sources */,
 				765CAF292528CF52003FC900 /* FamilyChatView.swift in Sources */,
 				765CAF0D2528CF52003FC900 /* PhotoPickerRepresentable.swift in Sources */,
 				765CAF442528CF52003FC900 /* PhotoActivityDescriptionView.swift in Sources */,
@@ -813,7 +795,6 @@
 				765CAF342528CF52003FC900 /* ChatPeekView.swift in Sources */,
 				765CAF3E2528CF52003FC900 /* OnboardingView.swift in Sources */,
 				765CAF6E2528D18E003FC900 /* ImageStore.swift in Sources */,
-				765CAF372528CF52003FC900 /* _PhotoActivityView.swift in Sources */,
 				765CAF152528CF52003FC900 /* RewardDefinitionEditDetailView.swift in Sources */,
 				765CAF222528CF52003FC900 /* NotificationDevView.swift in Sources */,
 				765CAF162528CF52003FC900 /* AgentCardView.swift in Sources */,
@@ -849,7 +830,6 @@
 				765CAF0E2528CF52003FC900 /* _StoreItemDefinitionEditDetailView.swift in Sources */,
 				765CAF2A2528CF52003FC900 /* CKRewardRowView.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,
-				765CAF322528CF52003FC900 /* _CKChoreActiveNoItemsView.swift in Sources */,
 				765CAF1F2528CF52003FC900 /* AdultUserView.swift in Sources */,
 				765CAF3A2528CF52003FC900 /* CKActivityActiveNoItemsView.swift in Sources */,
 			);
