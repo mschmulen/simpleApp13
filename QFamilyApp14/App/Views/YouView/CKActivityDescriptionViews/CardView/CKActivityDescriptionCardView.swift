@@ -34,7 +34,9 @@ struct CKActivityDescriptionCardView: View {
                         .scaledToFill()
                         .frame(width: cardSize, height: cardSize)
                         .cornerRadius(5)
-                } else {
+                }
+                // TODO: MAS TODO whats up with this ... looks redundant
+                else {
                     Rectangle()
                         .fill(SemanticAppColor.random)
                         .frame(width: cardSize, height: cardSize)

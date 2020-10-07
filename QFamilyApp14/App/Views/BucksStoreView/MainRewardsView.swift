@@ -24,8 +24,10 @@ struct MainRewardsView: View {
     
     @EnvironmentObject var storeItemDefinitionService: CKPrivateModelService<CKBuckRewardDefinitionModel>
     @EnvironmentObject var storeItemPurchaseService: CKPrivateModelService<CKBuckRewardModel>
-
+    
     @State var devMessage: String?
+    
+    @State var showNewRewardDefinitionWizardViewSheet = false
     
     var leaderBoard: some View {
         VStack {
@@ -50,12 +52,22 @@ struct MainRewardsView: View {
     
     var adultView: some View {
         VStack {
-            NavigationLink(
-                destination: RewardDefinitionEditDetailView(
-                    model: CKBuckRewardDefinitionModel()
-                )
-            ) {
-                Text("new reward definition")
+            //            NavigationLink(
+            //                destination: RewardDefinitionEditDetailView(
+            //                    model: CKBuckRewardDefinitionModel()
+            //                )
+            //            ) {
+            //                Text("new reward definition")
+            //            }
+            
+            Button(action: {
+                showNewRewardDefinitionWizardViewSheet.toggle()
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text("New Reward Definition")
+                }
+                .padding()// .trailing, 20)
             }
         }
     }
@@ -71,37 +83,43 @@ struct MainRewardsView: View {
                 
                 ScrollView {
                     LazyVStack {
-                //List {
-                    Section(header: Text("available rewards")) {
-                        ForEach( storeItemDefinitionService.models) { model in
-                            NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
-                                VStack {
-                                    Text("\(model.name ?? "")")
-                                    Text("\(model.bucks)")
+                        //List {
+                        Section(header: Text("available rewards")) {
+                            ForEach( storeItemDefinitionService.models) { model in
+                                NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
+                                    VStack {
+                                        Text("\(model.name ?? "")")
+                                        Text("\(model.bucks)")
+                                    }.padding()
                                 }
-                            }
-                            //.deleteDisabled(self.deleteDisabled)
-                        }//end ForEach
-                        .onDelete(perform: onDeleteDefinition)
-                    }
-                    Section(header: Text("Active rewards")) {
-                        ForEach( storeItemPurchaseService.models) { model in
-                            NavigationLink(destination: RewardDetailView(model: model) ) {
-                                VStack{
-                                    Text("\(model.name ?? "")")
-                                    Text("\(model.fulfillmentStatus.rawValue)")
+                                //.deleteDisabled(self.deleteDisabled)
+                            }//end ForEach
+                            .onDelete(perform: onDeleteDefinition)
+                        }
+                        Section(header: Text("Active rewards")) {
+                            ForEach( storeItemPurchaseService.models) { model in
+                                NavigationLink(destination: RewardDetailView(model: model) ) {
+                                    VStack{
+                                        Text("\(model.name ?? "")")
+                                        Text("\(model.fulfillmentStatus.rawValue)")
+                                    }.padding()
                                 }
-                            }
-                            //.deleteDisabled(self.deleteDisabled)
-                        }//end ForEach
-                        .onDelete(perform: onDeletePurchase)
-                    }
-                }
+                                //.deleteDisabled(self.deleteDisabled)
+                            }//end ForEach
+                            .onDelete(perform: onDeletePurchase)
+                        }//end Section
+                    }//end LazyVStack
                 }//end Scrollview
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
+            }
+            .sheet(isPresented: $showNewRewardDefinitionWizardViewSheet) {
+                NewRewardDefinitionWizardView (
+                    model: CKBuckRewardDefinitionModel()
+                )
+            }
+            .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 //self.devMessage = "silent Push! DB changed"
                 
@@ -134,16 +152,16 @@ struct MainRewardsView: View {
                 }
             }//end .toolbar
             
-        }
-    }
+        }//end Nav
+    }//end body
     
     private var trailingButton: some View {
         Group {
             NavigationLink(destination:
-                UserView()
-                    .environment(\.window, window)
-                    .environmentObject(appState)
-                    .environmentObject(familyKitAppState)
+                            UserView()
+                            .environment(\.window, window)
+                            .environmentObject(appState)
+                            .environmentObject(familyKitAppState)
             ){
                 HStack {
                     Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
@@ -153,7 +171,7 @@ struct MainRewardsView: View {
             }
         }
     }
-
+    
     func onDeleteDefinition(at offsets: IndexSet) {
         for deleteIndex in offsets {
             let deleteModel = self.storeItemDefinitionService.models[deleteIndex]
@@ -174,10 +192,10 @@ struct MainRewardsView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-            PlayerSelectView()
-                .environment(\.window, window)
-                .environmentObject(familyKitAppState)
-                .environmentObject(activityDescriptionService)
+                        PlayerSelectView()
+                        .environment(\.window, window)
+                        .environmentObject(familyKitAppState)
+                        .environmentObject(activityDescriptionService)
         ){
             HStack {
                 Text("change")
@@ -197,16 +215,16 @@ struct MainBucksStoreView_Previews: PreviewProvider {
                 FamilyKitAppState(
                     container: CloudKitContainer.MockContainer(container)
                 )
-        )
+            )
             .environmentObject(
                 CKPrivateModelService<CKActivityDescriptionModel>(
                     container: CloudKitContainer.MockContainer(container)
                 )
-        )
+            )
             .environmentObject(
                 CKPrivateModelService<CKActivityDescriptionModel>(
                     container: CloudKitContainer.MockContainer(container)
                 )
-        )
+            )
     }
 }

@@ -17,12 +17,8 @@
 		765CAF0B2528CF52003FC900 /* DrawContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA82528CF51003FC900 /* DrawContainerView.swift */; };
 		765CAF0C2528CF52003FC900 /* DrawPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA92528CF51003FC900 /* DrawPreviewView.swift */; };
 		765CAF0D2528CF52003FC900 /* PhotoPickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEAB2528CF51003FC900 /* PhotoPickerRepresentable.swift */; };
-		765CAF0E2528CF52003FC900 /* _StoreItemDefinitionEditDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEAE2528CF51003FC900 /* _StoreItemDefinitionEditDetailView.swift */; };
 		765CAF0F2528CF52003FC900 /* MainRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEAF2528CF51003FC900 /* MainRewardsView.swift */; };
-		765CAF102528CF52003FC900 /* _StoreItemPurchaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB02528CF51003FC900 /* _StoreItemPurchaseDetailView.swift */; };
-		765CAF112528CF52003FC900 /* _StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB12528CF51003FC900 /* _StoreItemDefinitionDetailView.swift */; };
 		765CAF122528CF52003FC900 /* RewardDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB22528CF51003FC900 /* RewardDefinitionDetailView.swift */; };
-		765CAF132528CF52003FC900 /* __StoreItemDefinitionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB32528CF51003FC900 /* __StoreItemDefinitionDetailView.swift */; };
 		765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB42528CF51003FC900 /* RewardDetailView.swift */; };
 		765CAF152528CF52003FC900 /* RewardDefinitionEditDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */; };
 		765CAF162528CF52003FC900 /* AgentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEB72528CF51003FC900 /* AgentCardView.swift */; };
@@ -92,6 +88,20 @@
 		765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */; };
 		765CAFD525291BAB003FC900 /* URL+Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFD425291BAB003FC900 /* URL+Deeplink.swift */; };
 		7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */; };
+		7685B473252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */; };
+		7685B480252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */; };
+		7685B485252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B484252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift */; };
+		7685B48A252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B489252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift */; };
+		7685B48F252E09E900AE0F0D /* ActivityDescriptionWizardViewCoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B48E252E09E800AE0F0D /* ActivityDescriptionWizardViewCoverPhoto.swift */; };
+		7685B494252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B493252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift */; };
+		7685B4B2252E173C00AE0F0D /* RewardDefinitionWizardViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4AB252E173B00AE0F0D /* RewardDefinitionWizardViewInfo.swift */; };
+		7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4AC252E173B00AE0F0D /* NewRewardDefinitionWizardView.swift */; };
+		7685B4B7252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */; };
+		7685B4B8252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */; };
+		7685B4FD252E34C200AE0F0D /* UIApplication+endEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */; };
+		7685B505252E506300AE0F0D /* MainYouViewExperimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */; };
+		7685B50E252E676400AE0F0D /* SpriteKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B50D252E676400AE0F0D /* SpriteKitView.swift */; };
+		7685B516252E682200AE0F0D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B515252E682200AE0F0D /* GameScene.swift */; };
 		76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */; };
 		76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E3252778ED00289EF4 /* ContentView.swift */; };
 		76DF83E6252778F200289EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DF83E5252778F200289EF4 /* Assets.xcassets */; };
@@ -132,12 +142,8 @@
 		765CAEA82528CF51003FC900 /* DrawContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawContainerView.swift; sourceTree = "<group>"; };
 		765CAEA92528CF51003FC900 /* DrawPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawPreviewView.swift; sourceTree = "<group>"; };
 		765CAEAB2528CF51003FC900 /* PhotoPickerRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerRepresentable.swift; sourceTree = "<group>"; };
-		765CAEAE2528CF51003FC900 /* _StoreItemDefinitionEditDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StoreItemDefinitionEditDetailView.swift; sourceTree = "<group>"; };
 		765CAEAF2528CF51003FC900 /* MainRewardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRewardsView.swift; sourceTree = "<group>"; };
-		765CAEB02528CF51003FC900 /* _StoreItemPurchaseDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StoreItemPurchaseDetailView.swift; sourceTree = "<group>"; };
-		765CAEB12528CF51003FC900 /* _StoreItemDefinitionDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StoreItemDefinitionDetailView.swift; sourceTree = "<group>"; };
 		765CAEB22528CF51003FC900 /* RewardDefinitionDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionDetailView.swift; sourceTree = "<group>"; };
-		765CAEB32528CF51003FC900 /* __StoreItemDefinitionDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = __StoreItemDefinitionDetailView.swift; sourceTree = "<group>"; };
 		765CAEB42528CF51003FC900 /* RewardDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDetailView.swift; sourceTree = "<group>"; };
 		765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionEditDetailView.swift; sourceTree = "<group>"; };
 		765CAEB72528CF51003FC900 /* AgentCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentCardView.swift; sourceTree = "<group>"; };
@@ -207,6 +213,21 @@
 		765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		765CAFD425291BAB003FC900 /* URL+Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Deeplink.swift"; sourceTree = "<group>"; };
 		7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityDescriptionWizardView.swift; sourceTree = "<group>"; };
+		7685B463252D369C00AE0F0D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewEnd.swift; sourceTree = "<group>"; };
+		7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewDescription.swift; sourceTree = "<group>"; };
+		7685B484252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewEmoji.swift; sourceTree = "<group>"; };
+		7685B489252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewModuleType.swift; sourceTree = "<group>"; };
+		7685B48E252E09E800AE0F0D /* ActivityDescriptionWizardViewCoverPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewCoverPhoto.swift; sourceTree = "<group>"; };
+		7685B493252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewStart.swift; sourceTree = "<group>"; };
+		7685B4AB252E173B00AE0F0D /* RewardDefinitionWizardViewInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionWizardViewInfo.swift; sourceTree = "<group>"; };
+		7685B4AC252E173B00AE0F0D /* NewRewardDefinitionWizardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRewardDefinitionWizardView.swift; sourceTree = "<group>"; };
+		7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionWizardViewStart.swift; sourceTree = "<group>"; };
+		7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionWizardViewEnd.swift; sourceTree = "<group>"; };
+		7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+endEditing.swift"; sourceTree = "<group>"; };
+		7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainYouViewExperimental.swift; sourceTree = "<group>"; };
+		7685B50D252E676400AE0F0D /* SpriteKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitView.swift; sourceTree = "<group>"; };
+		7685B515252E682200AE0F0D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		76DF83DE252778ED00289EF4 /* QFamilyApp14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamilyApp14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QFamilyApp14App.swift; sourceTree = "<group>"; };
 		76DF83E3252778ED00289EF4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -257,6 +278,7 @@
 		765CAE9E2528CF51003FC900 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				7685B4FB252E34B700AE0F0D /* Utils */,
 				765CAE9F2528CF51003FC900 /* AppState.swift */,
 				765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */,
 				765CAF8A2528D45C003FC900 /* ModalView.swift */,
@@ -270,6 +292,7 @@
 		765CAEA12528CF51003FC900 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7685B50C252E675900AE0F0D /* SpriteKit */,
 				765CAEA22528CF51003FC900 /* Audio */,
 				765CAEA52528CF51003FC900 /* Combo */,
 				765CAEA72528CF51003FC900 /* Draw */,
@@ -315,6 +338,8 @@
 		765CAEAC2528CF51003FC900 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7685B49E252E16A200AE0F0D /* NewRewardDefinitionWizardView */,
+				7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */,
 				765CAEAD2528CF51003FC900 /* BucksStoreView */,
 				765CAEB62528CF51003FC900 /* AgentViews */,
 				765CAEBB2528CF51003FC900 /* UserView */,
@@ -336,11 +361,6 @@
 				765CAEAF2528CF51003FC900 /* MainRewardsView.swift */,
 				765CAEB22528CF51003FC900 /* RewardDefinitionDetailView.swift */,
 				765CAEB42528CF51003FC900 /* RewardDetailView.swift */,
-				765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */,
-				765CAEB02528CF51003FC900 /* _StoreItemPurchaseDetailView.swift */,
-				765CAEAE2528CF51003FC900 /* _StoreItemDefinitionEditDetailView.swift */,
-				765CAEB12528CF51003FC900 /* _StoreItemDefinitionDetailView.swift */,
-				765CAEB32528CF51003FC900 /* __StoreItemDefinitionDetailView.swift */,
 			);
 			path = BucksStoreView;
 			sourceTree = "<group>";
@@ -449,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				765CAEF82528CF51003FC900 /* MainYouView.swift */,
+				7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */,
 				765CAEEA2528CF51003FC900 /* CKActivityDescriptionViews */,
 			);
 			path = YouView;
@@ -459,7 +480,6 @@
 			children = (
 				765CAEEB2528CF51003FC900 /* CKActivityDescriptionDetailView.swift */,
 				765CAEED2528CF51003FC900 /* CKActivityDescriptionDetailEditView.swift */,
-				7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */,
 				765CAEEF2528CF51003FC900 /* PhotoActivityDescriptionView.swift */,
 				765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */,
 				765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */,
@@ -539,6 +559,49 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */ = {
+			isa = PBXGroup;
+			children = (
+				7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */,
+				7685B493252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift */,
+				7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */,
+				7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */,
+				7685B484252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift */,
+				7685B489252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift */,
+				7685B48E252E09E800AE0F0D /* ActivityDescriptionWizardViewCoverPhoto.swift */,
+			);
+			path = NewActivityDescriptionWizardView;
+			sourceTree = "<group>";
+		};
+		7685B49E252E16A200AE0F0D /* NewRewardDefinitionWizardView */ = {
+			isa = PBXGroup;
+			children = (
+				7685B4AC252E173B00AE0F0D /* NewRewardDefinitionWizardView.swift */,
+				7685B4AB252E173B00AE0F0D /* RewardDefinitionWizardViewInfo.swift */,
+				7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */,
+				7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */,
+				765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */,
+			);
+			path = NewRewardDefinitionWizardView;
+			sourceTree = "<group>";
+		};
+		7685B4FB252E34B700AE0F0D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7685B50C252E675900AE0F0D /* SpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+				7685B50D252E676400AE0F0D /* SpriteKitView.swift */,
+				7685B515252E682200AE0F0D /* GameScene.swift */,
+			);
+			path = SpriteKit;
+			sourceTree = "<group>";
+		};
 		76DF83D5252778ED00289EF4 = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +629,7 @@
 		76DF83E0252778ED00289EF4 /* QFamilyApp14 */ = {
 			isa = PBXGroup;
 			children = (
+				7685B463252D369C00AE0F0D /* README.md */,
 				76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */,
 				765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */,
 				765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */,
@@ -753,24 +817,28 @@
 			files = (
 				765CAF202528CF52003FC900 /* ShareView.swift in Sources */,
 				765CAF452528CF52003FC900 /* _CKChoreDescriptionListView.swift in Sources */,
+				7685B494252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift in Sources */,
 				765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */,
 				765CAF272528CF52003FC900 /* PagerView.swift in Sources */,
 				765CAF402528CF52003FC900 /* CKActivityDescriptionDetailView.swift in Sources */,
 				765CAF242528CF52003FC900 /* WizardView.swift in Sources */,
 				765CAF6F2528D18E003FC900 /* AppModel.swift in Sources */,
 				765CAF092528CF52003FC900 /* AudioPlayerView.swift in Sources */,
-				765CAF112528CF52003FC900 /* _StoreItemDefinitionDetailView.swift in Sources */,
 				765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */,
+				7685B505252E506300AE0F0D /* MainYouViewExperimental.swift in Sources */,
 				765CAF1A2528CF52003FC900 /* PurchaseView.swift in Sources */,
 				765CAF4D2528CF52003FC900 /* DevMessageView.swift in Sources */,
 				765CAF192528CF52003FC900 /* AgentDetailView.swift in Sources */,
+				7685B4FD252E34C200AE0F0D /* UIApplication+endEditing.swift in Sources */,
+				7685B485252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift in Sources */,
 				765CAF4E2528CF52003FC900 /* SemanticAppColor.swift in Sources */,
 				765CAF1B2528CF52003FC900 /* PlayersListView.swift in Sources */,
 				765CAF552528CF52003FC900 /* LargeButton.swift in Sources */,
 				765CAF1E2528CF52003FC900 /* CKUserView.swift in Sources */,
+				7685B516252E682200AE0F0D /* GameScene.swift in Sources */,
 				765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */,
-				765CAF102528CF52003FC900 /* _StoreItemPurchaseDetailView.swift in Sources */,
 				765CAF292528CF52003FC900 /* FamilyChatView.swift in Sources */,
+				7685B4B7252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift in Sources */,
 				765CAF0D2528CF52003FC900 /* PhotoPickerRepresentable.swift in Sources */,
 				765CAF442528CF52003FC900 /* PhotoActivityDescriptionView.swift in Sources */,
 				765CAF382528CF52003FC900 /* AudioActivityView.swift in Sources */,
@@ -778,6 +846,7 @@
 				765CAF8B2528D45C003FC900 /* ModalView.swift in Sources */,
 				765CAF3B2528CF52003FC900 /* CKActivityActiveRowView.swift in Sources */,
 				765CAF3D2528CF52003FC900 /* ActivityActiveDetailView.swift in Sources */,
+				7685B50E252E676400AE0F0D /* SpriteKitView.swift in Sources */,
 				765CAF422528CF52003FC900 /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */,
 				765CAF472528CF52003FC900 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
@@ -794,20 +863,25 @@
 				765CAF1C2528CF52003FC900 /* KidUserView.swift in Sources */,
 				765CAF0C2528CF52003FC900 /* DrawPreviewView.swift in Sources */,
 				765CAF0A2528CF52003FC900 /* ComboView.swift in Sources */,
-				765CAF132528CF52003FC900 /* __StoreItemDefinitionDetailView.swift in Sources */,
 				765CAF342528CF52003FC900 /* ChatPeekView.swift in Sources */,
 				765CAF3E2528CF52003FC900 /* OnboardingView.swift in Sources */,
 				765CAF6E2528D18E003FC900 /* ImageStore.swift in Sources */,
 				765CAF152528CF52003FC900 /* RewardDefinitionEditDetailView.swift in Sources */,
 				765CAF222528CF52003FC900 /* NotificationDevView.swift in Sources */,
+				7685B480252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift in Sources */,
+				7685B48F252E09E900AE0F0D /* ActivityDescriptionWizardViewCoverPhoto.swift in Sources */,
 				765CAF162528CF52003FC900 /* AgentCardView.swift in Sources */,
 				765CAF262528CF52003FC900 /* PublicActivityDescriptionView.swift in Sources */,
+				7685B473252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift in Sources */,
 				765CAF302528CF52003FC900 /* FamilyRewardItemViewCard.swift in Sources */,
+				7685B4B8252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift in Sources */,
 				765CAF512528CF52003FC900 /* TextField+Helper.swift in Sources */,
 				765CAF542528CF52003FC900 /* ActivityIndicatorView.swift in Sources */,
 				76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */,
+				7685B48A252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift in Sources */,
 				765CAF282528CF52003FC900 /* UIKitCloudKitSharingButton.swift in Sources */,
 				765CAF0B2528CF52003FC900 /* DrawContainerView.swift in Sources */,
+				7685B4B2252E173C00AE0F0D /* RewardDefinitionWizardViewInfo.swift in Sources */,
 				765CAF2B2528CF52003FC900 /* FamilyActivityCardView.swift in Sources */,
 				765CAF172528CF52003FC900 /* AgentCardsRowView.swift in Sources */,
 				765CAF712528D18E003FC900 /* StoreConfig.swift in Sources */,
@@ -817,6 +891,7 @@
 				765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */,
 				765CAF232528CF52003FC900 /* ShareInviteView.swift in Sources */,
 				765CAF412528CF52003FC900 /* _CKChoreDescriptionAddItemView.swift in Sources */,
+				7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */,
 				765CAF9C2528DBC4003FC900 /* _QFamilyTabScene.swift in Sources */,
 				765CAF4C2528CF52003FC900 /* String+Image.swift in Sources */,
 				765CAF532528CF52003FC900 /* LargeTextPillBox.swift in Sources */,
@@ -831,7 +906,6 @@
 				765CAF2D2528CF52003FC900 /* MainFamilyPlayerFilterView.swift in Sources */,
 				765CAF502528CF52003FC900 /* EmojiView.swift in Sources */,
 				7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */,
-				765CAF0E2528CF52003FC900 /* _StoreItemDefinitionEditDetailView.swift in Sources */,
 				765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,
 				765CAF1F2528CF52003FC900 /* AdultUserView.swift in Sources */,
@@ -994,7 +1068,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = QFamilyApp14/QFamilyApp14.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_ASSET_PATHS = "\"QFamilyApp14/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;
@@ -1018,7 +1092,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = QFamilyApp14/QFamilyApp14.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_ASSET_PATHS = "\"QFamilyApp14/Preview Content\"";
 				DEVELOPMENT_TEAM = BMKEG7AHZS;
 				ENABLE_PREVIEWS = YES;

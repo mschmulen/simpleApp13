@@ -31,19 +31,19 @@ struct CKActivityDescriptionCardsRowView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     
-                    if showAdd {
-                        NavigationLink(
-                            destination: NewActivityDescriptionWizardView(
-                                model: CKActivityDescriptionModel()
-                            )
-                        ) {
-                            CKActivityDescriptionAddCardView()
-                        }
-                    } else {
-                        if self.items.count <= 0 {
-                            CKActivityDescriptionNoItemsView()
-                        }
-                    }
+//                    if showAdd {
+//                        NavigationLink(
+//                            destination: NewActivityDescriptionWizardView(
+//                                model: CKActivityDescriptionModel()
+//                            )
+//                        ) {
+//                            CKActivityDescriptionAddCardView()
+//                        }
+//                    } else {
+//                        if self.items.count <= 0 {
+//                            CKActivityDescriptionNoItemsView()
+//                        }
+//                    }
                     
                     ForEach(self.items) { model in
                             NavigationLink(

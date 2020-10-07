@@ -24,6 +24,127 @@ struct MainYouView: View {
     @State var devMessage: String?
     
     @State var showAgent = false
+    @State var showNewActivityDescriptionWizardViewSheet = false
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                DevMessageView(devMessage: $devMessage)
+                
+                if showAgent {
+                    NavigationLink(
+                        destination: AgentDetailView(
+                            agentService: familyKitAppState.agentService
+                        )
+                    ) {
+                        HStack {
+                            Spacer()
+                            Text("Agent \(familyKitAppState.agentService.name) \(familyKitAppState.agentService.emoji)")
+                                .padding()
+                        }
+                    }
+                }
+                
+                if let currentPlayer = self.familyKitAppState.currentPlayerModel {
+                    if currentPlayer.isAdult {
+                        Button(action: {
+                            showNewActivityDescriptionWizardViewSheet.toggle()
+                        }) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("New Activity Description")
+                            }
+                            .padding()// .trailing, 20)
+                        }
+                    }
+                }
+                
+                ScrollView {
+                    LazyVStack {
+                        
+                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
+                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
+                            Section() {
+                                CKActivityDescriptionCardsRowView(
+                                    categoryName: "\(category.rawValue) Activities:",
+                                    items: self.activityDescriptionService.models.filter { $0.category == category },
+                                    isPrivate: true,
+                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
+                                )
+                            }
+                            .listRowInsets(EdgeInsets())
+                        }
+                        
+                        // this users active activities
+                        activeActivities
+                        
+                    }//end LazyVStack
+                }//end ScrollView
+                
+                Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
+                    .font(.caption)
+            }//end VStack
+            .sheet(isPresented: $showNewActivityDescriptionWizardViewSheet) {
+                NewActivityDescriptionWizardView (
+                    model: CKActivityDescriptionModel()
+                )
+            }
+            .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
+                print("Notification.Name(CloudKitModelService) recieved")
+                //self.devMessage = "silent Push! DB changed"
+                self.activityDescriptionService.fetch(
+                    sortDescriptor: .none,
+                    searchPredicate: .predicateTrue
+                ) { (result) in
+                    print( "result")
+                }
+                self.activityService.fetch(
+                    sortDescriptor: .none,
+                    searchPredicate: .predicateTrue
+                ) { (result) in
+                    print( "result")
+                }
+            }
+            .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .toolbar{
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Text("")
+                        trailingButton
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Text("")
+                        leadingButton
+                    }
+                }
+            }//end .toolbar
+        }
+    }//end body
+    
+    var wizardView: some View {
+        VStack  {
+            if let currentPlayer = self.familyKitAppState.currentPlayerModel {
+                if currentPlayer.isAdult {
+                    Button(action: {
+                        showNewActivityDescriptionWizardViewSheet.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("New Activity Description")
+                        }
+                        .padding()// .trailing, 20)
+                    }
+                }
+            } else {
+                EmptyView()
+            }
+        }
+    }
     
     var activeActivities: some View {
         Section() {
@@ -65,90 +186,7 @@ struct MainYouView: View {
         }
     }
     
-    var body: some View {
-        NavigationView {
-            VStack {
-                DevMessageView(devMessage: $devMessage)
-                
-                if showAgent {
-                    NavigationLink(
-                        destination: AgentDetailView(
-                            agentService: familyKitAppState.agentService
-                        )
-                    ) {
-                        HStack {
-                            Spacer()
-                            Text("Agent \(familyKitAppState.agentService.name) \(familyKitAppState.agentService.emoji)")
-                                .padding()
-                        }
-                    }
-                }
-                
-                ScrollView {
-                    LazyVStack {
-                        
-                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
-                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
-                            Section() {
-                                CKActivityDescriptionCardsRowView(
-                                    categoryName: "\(category.rawValue) Activities:",
-                                    items: self.activityDescriptionService.models.filter { $0.category == category },
-                                    isPrivate: true,
-                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
-                                )
-                            }
-                            .listRowInsets(EdgeInsets())
-                        }
-                        
-                        // this users active activities
-                        activeActivities
-                        
-                    }//end LazyVStack
-                }//end ScrollView
-                
-                Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
-                    .font(.caption)
-            }.onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
-                print("Notification.Name(CloudKitModelService) recieved")
-                //self.devMessage = "silent Push! DB changed"
-                self.activityDescriptionService.fetch(
-                    sortDescriptor: .none,
-                    searchPredicate: .predicateTrue
-                ) { (result) in
-                    print( "result")
-                }
-                self.activityService.fetch(
-                    sortDescriptor: .none,
-                    searchPredicate: .predicateTrue
-                ) { (result) in
-                    print( "result")
-                }
-            }
-            .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-            .toolbar{
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Text("")
-                        trailingButton
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    HStack {
-                        Text("")
-                        leadingButton
-                    }
-                }
-            }//end .toolbar
-//            .background(
-//                    NavigationLink(destination: UserView(), isActive: $showUserView) {
-//                      EmptyView()
-//                    }
-//                )
-        }
-    }
+    
     
     private var trailingButton: some View {
         Group {
@@ -219,3 +257,5 @@ struct MainYouView_Previews: PreviewProvider {
 ////        }
 //    }
 //}
+
+

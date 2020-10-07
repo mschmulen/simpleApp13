@@ -20,6 +20,7 @@ enum TabViewIndex: Int {
     case family = 1
     case rewards = 2
     case familyChat = 3
+    case tabX = 4
 }
 
 struct ContentView: View {
@@ -84,6 +85,13 @@ struct ContentView: View {
                 } else {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
+                        
+                        MainYouViewExperimental()
+                            .tabItem {
+                                Image(systemName: "person.circle")
+                                Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
+                        }.tag(TabViewIndex.tabX.rawValue)
+                        
                         MainYouView()
                             .environment(\.window, window)
                             .environmentObject(appState)

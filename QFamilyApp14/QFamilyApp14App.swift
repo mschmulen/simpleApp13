@@ -68,6 +68,8 @@ struct QFamilyApp14App: App {
                             appState.selectedTab = TabViewIndex.rewards.rawValue
                         case .familyChat:
                             appState.selectedTab = TabViewIndex.familyChat.rawValue
+                        case .tabX:
+                            appState.selectedTab = TabViewIndex.tabX.rawValue
                         }
                     case .onboardingView:
                         appState.topView = .onboardingView

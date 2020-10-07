@@ -23,7 +23,13 @@ TODO
 
 ## Release Notes
 
-##### Build 43, WIP
+##### Build 44, WIP
+- wizard for creating Activity descriptions
+- 
+
+##### Build 43
+- Convert to SwiftUI2 and iOS 14 
+- minor improvements
 
 ##### Build 42, Released
 - fix for fulfillmentStatus
