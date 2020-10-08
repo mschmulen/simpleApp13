@@ -28,9 +28,6 @@ struct CKActivityActiveRowView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     
-                    if self.items.count <= 0 {
-                        CKActivityActiveNoItemsView()
-                    }
                     ForEach(self.items) { model in
                         NavigationLink(
                             destination: CKActivityActiveDetailView(

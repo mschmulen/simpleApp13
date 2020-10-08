@@ -29,6 +29,11 @@ struct MainRewardsView: View {
     
     @State var showNewRewardDefinitionWizardViewSheet = false
     
+    let columns = [
+        // make the grid to fit in as many items per row as possible, using a minimum size of 80 points each
+        GridItem(.adaptive(minimum: 150))
+    ]
+    
     var leaderBoard: some View {
         VStack {
             Text("Leaderboard")
@@ -82,15 +87,14 @@ struct MainRewardsView: View {
                 adultView
                 
                 ScrollView {
-                    LazyVStack {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                    //LazyVStack {
                         //List {
                         Section(header: Text("available rewards")) {
                             ForEach( storeItemDefinitionService.models) { model in
                                 NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
-                                    VStack {
-                                        Text("\(model.name ?? "")")
-                                        Text("\(model.bucks)")
-                                    }.padding()
+                                    RewardDefinitionCardView(model:model)
+                                        .padding()
                                 }
                                 //.deleteDisabled(self.deleteDisabled)
                             }//end ForEach
@@ -99,10 +103,9 @@ struct MainRewardsView: View {
                         Section(header: Text("Active rewards")) {
                             ForEach( storeItemPurchaseService.models) { model in
                                 NavigationLink(destination: RewardDetailView(model: model) ) {
-                                    VStack{
-                                        Text("\(model.name ?? "")")
-                                        Text("\(model.fulfillmentStatus.rawValue)")
-                                    }.padding()
+                                    RewardCardView(model: model)
+                                        .padding()
+
                                 }
                                 //.deleteDisabled(self.deleteDisabled)
                             }//end ForEach

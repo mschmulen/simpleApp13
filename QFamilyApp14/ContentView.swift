@@ -135,11 +135,11 @@ struct ContentView: View {
                                 Text("Chat")
                         }.tag(TabViewIndex.familyChat.rawValue)
                         
-//                        ViewExperimental()
-//                            .tabItem {
-//                                Image(systemName: "person.circle")
-//                                Text("EXP")
-//                        }.tag(TabViewIndex.tabX.rawValue)
+                        ViewExperimental()
+                            .tabItem {
+                                Image(systemName: "person.circle")
+                                Text("EXP")
+                        }.tag(TabViewIndex.tabX.rawValue)
                         
                     } //end TabView
 

@@ -2,9 +2,10 @@
 //  SimpleGameScene.swift
 //  SceneKitGameSimple
 //
-//  Created by Matthew Schmulen on 10/7/20.
+//  Created by Matthew Schmulen on 10/8/20.
 //
 
+import Foundation
 import SwiftUI
 import SpriteKit
 

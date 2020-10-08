@@ -8,8 +8,6 @@
 import SwiftUI
 import SpriteKit
 
-// SKView stuff
-
 public class BlocksGameScene: SKScene {
     
     public override func didMove(to view: SKView) {

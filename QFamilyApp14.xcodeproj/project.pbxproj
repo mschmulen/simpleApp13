@@ -51,19 +51,14 @@
 		765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */; };
 		765CAF382528CF52003FC900 /* AudioActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEDF2528CF51003FC900 /* AudioActivityView.swift */; };
 		765CAF392528CF52003FC900 /* PhotoActivitySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE02528CF51003FC900 /* PhotoActivitySubView.swift */; };
-		765CAF3A2528CF52003FC900 /* CKActivityActiveNoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE22528CF51003FC900 /* CKActivityActiveNoItemsView.swift */; };
 		765CAF3B2528CF52003FC900 /* CKActivityActiveRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE32528CF51003FC900 /* CKActivityActiveRowView.swift */; };
 		765CAF3C2528CF52003FC900 /* CKActivityActiveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE42528CF51003FC900 /* CKActivityActiveItemView.swift */; };
 		765CAF3D2528CF52003FC900 /* ActivityActiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE52528CF51003FC900 /* ActivityActiveDetailView.swift */; };
 		765CAF3E2528CF52003FC900 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEE72528CF51003FC900 /* OnboardingView.swift */; };
 		765CAF402528CF52003FC900 /* CKActivityDescriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEEB2528CF51003FC900 /* CKActivityDescriptionDetailView.swift */; };
-		765CAF412528CF52003FC900 /* _CKChoreDescriptionAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */; };
 		765CAF422528CF52003FC900 /* CKActivityDescriptionDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEED2528CF51003FC900 /* CKActivityDescriptionDetailEditView.swift */; };
-		765CAF432528CF52003FC900 /* _CKChoreDescriptionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */; };
 		765CAF442528CF52003FC900 /* PhotoActivityDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEEF2528CF51003FC900 /* PhotoActivityDescriptionView.swift */; };
-		765CAF452528CF52003FC900 /* _CKChoreDescriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF02528CF51003FC900 /* _CKChoreDescriptionListView.swift */; };
 		765CAF462528CF52003FC900 /* CKActivityDescriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF22528CF51003FC900 /* CKActivityDescriptionListView.swift */; };
-		765CAF472528CF52003FC900 /* CKActivityDescriptionNoItemsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF42528CF51003FC900 /* CKActivityDescriptionNoItemsCardView.swift */; };
 		765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF52528CF51003FC900 /* CKActivityDescriptionCardsRowView.swift */; };
 		765CAF492528CF52003FC900 /* CKActivityDescriptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF62528CF51003FC900 /* CKActivityDescriptionCardView.swift */; };
 		765CAF4A2528CF52003FC900 /* CKActivityDescriptionAddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEF72528CF51003FC900 /* CKActivityDescriptionAddCardView.swift */; };
@@ -104,6 +99,8 @@
 		7685B516252E682200AE0F0D /* _GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B515252E682200AE0F0D /* _GameScene.swift */; };
 		7685B556252E792400AE0F0D /* SceneKitGameSimple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */; };
 		7685B557252E792400AE0F0D /* SceneKitGameSimple.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76AC37E3252F7B580022AA1C /* RewardDefinitionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC37E2252F7B580022AA1C /* RewardDefinitionCardView.swift */; };
+		76AC37E7252F7BA60022AA1C /* RewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC37E6252F7BA60022AA1C /* RewardCardView.swift */; };
 		76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */; };
 		76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E3252778ED00289EF4 /* ContentView.swift */; };
 		76DF83E6252778F200289EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DF83E5252778F200289EF4 /* Assets.xcassets */; };
@@ -206,19 +203,14 @@
 		765CAEDC2528CF51003FC900 /* CKActivityActiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveListView.swift; sourceTree = "<group>"; };
 		765CAEDF2528CF51003FC900 /* AudioActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioActivityView.swift; sourceTree = "<group>"; };
 		765CAEE02528CF51003FC900 /* PhotoActivitySubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActivitySubView.swift; sourceTree = "<group>"; };
-		765CAEE22528CF51003FC900 /* CKActivityActiveNoItemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveNoItemsView.swift; sourceTree = "<group>"; };
 		765CAEE32528CF51003FC900 /* CKActivityActiveRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveRowView.swift; sourceTree = "<group>"; };
 		765CAEE42528CF51003FC900 /* CKActivityActiveItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityActiveItemView.swift; sourceTree = "<group>"; };
 		765CAEE52528CF51003FC900 /* ActivityActiveDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityActiveDetailView.swift; sourceTree = "<group>"; };
 		765CAEE72528CF51003FC900 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		765CAEEB2528CF51003FC900 /* CKActivityDescriptionDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionDetailView.swift; sourceTree = "<group>"; };
-		765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreDescriptionAddItemView.swift; sourceTree = "<group>"; };
 		765CAEED2528CF51003FC900 /* CKActivityDescriptionDetailEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionDetailEditView.swift; sourceTree = "<group>"; };
-		765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreDescriptionRowView.swift; sourceTree = "<group>"; };
 		765CAEEF2528CF51003FC900 /* PhotoActivityDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActivityDescriptionView.swift; sourceTree = "<group>"; };
-		765CAEF02528CF51003FC900 /* _CKChoreDescriptionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _CKChoreDescriptionListView.swift; sourceTree = "<group>"; };
 		765CAEF22528CF51003FC900 /* CKActivityDescriptionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionListView.swift; sourceTree = "<group>"; };
-		765CAEF42528CF51003FC900 /* CKActivityDescriptionNoItemsCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionNoItemsCardView.swift; sourceTree = "<group>"; };
 		765CAEF52528CF51003FC900 /* CKActivityDescriptionCardsRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionCardsRowView.swift; sourceTree = "<group>"; };
 		765CAEF62528CF51003FC900 /* CKActivityDescriptionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionCardView.swift; sourceTree = "<group>"; };
 		765CAEF72528CF51003FC900 /* CKActivityDescriptionAddCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKActivityDescriptionAddCardView.swift; sourceTree = "<group>"; };
@@ -259,6 +251,8 @@
 		7685B50D252E676400AE0F0D /* _SpriteKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _SpriteKitView.swift; sourceTree = "<group>"; };
 		7685B515252E682200AE0F0D /* _GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _GameScene.swift; sourceTree = "<group>"; };
 		7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SceneKitGameSimple.xcodeproj; path = LocalPackages/SceneKitGameSimple/SceneKitGameSimple.xcodeproj; sourceTree = "<group>"; };
+		76AC37E2252F7B580022AA1C /* RewardDefinitionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDefinitionCardView.swift; sourceTree = "<group>"; };
+		76AC37E6252F7BA60022AA1C /* RewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCardView.swift; sourceTree = "<group>"; };
 		76DF83DE252778ED00289EF4 /* QFamilyApp14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamilyApp14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QFamilyApp14App.swift; sourceTree = "<group>"; };
 		76DF83E3252778ED00289EF4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -394,6 +388,8 @@
 				765CAEAF2528CF51003FC900 /* MainRewardsView.swift */,
 				765CAEB22528CF51003FC900 /* RewardDefinitionDetailView.swift */,
 				765CAEB42528CF51003FC900 /* RewardDetailView.swift */,
+				76AC37E2252F7B580022AA1C /* RewardDefinitionCardView.swift */,
+				76AC37E6252F7BA60022AA1C /* RewardCardView.swift */,
 			);
 			path = BucksStoreView;
 			sourceTree = "<group>";
@@ -483,7 +479,6 @@
 		765CAEE12528CF51003FC900 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
-				765CAEE22528CF51003FC900 /* CKActivityActiveNoItemsView.swift */,
 				765CAEE32528CF51003FC900 /* CKActivityActiveRowView.swift */,
 				765CAEE42528CF51003FC900 /* CKActivityActiveItemView.swift */,
 			);
@@ -513,9 +508,6 @@
 				765CAEEB2528CF51003FC900 /* CKActivityDescriptionDetailView.swift */,
 				765CAEED2528CF51003FC900 /* CKActivityDescriptionDetailEditView.swift */,
 				765CAEEF2528CF51003FC900 /* PhotoActivityDescriptionView.swift */,
-				765CAEEC2528CF51003FC900 /* _CKChoreDescriptionAddItemView.swift */,
-				765CAEEE2528CF51003FC900 /* _CKChoreDescriptionRowView.swift */,
-				765CAEF02528CF51003FC900 /* _CKChoreDescriptionListView.swift */,
 				765CAEF12528CF51003FC900 /* ListView */,
 				765CAEF32528CF51003FC900 /* CardView */,
 			);
@@ -533,7 +525,6 @@
 		765CAEF32528CF51003FC900 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
-				765CAEF42528CF51003FC900 /* CKActivityDescriptionNoItemsCardView.swift */,
 				765CAEF52528CF51003FC900 /* CKActivityDescriptionCardsRowView.swift */,
 				765CAEF62528CF51003FC900 /* CKActivityDescriptionCardView.swift */,
 				765CAEF72528CF51003FC900 /* CKActivityDescriptionAddCardView.swift */,
@@ -890,7 +881,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				765CAF202528CF52003FC900 /* ShareView.swift in Sources */,
-				765CAF452528CF52003FC900 /* _CKChoreDescriptionListView.swift in Sources */,
 				7685B494252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift in Sources */,
 				765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */,
 				765CAF272528CF52003FC900 /* PagerView.swift in Sources */,
@@ -917,17 +907,18 @@
 				765CAF442528CF52003FC900 /* PhotoActivityDescriptionView.swift in Sources */,
 				765CAF382528CF52003FC900 /* AudioActivityView.swift in Sources */,
 				765CAF392528CF52003FC900 /* PhotoActivitySubView.swift in Sources */,
+				76AC37E3252F7B580022AA1C /* RewardDefinitionCardView.swift in Sources */,
 				765CAF8B2528D45C003FC900 /* ModalView.swift in Sources */,
 				765CAF3B2528CF52003FC900 /* CKActivityActiveRowView.swift in Sources */,
 				765CAF3D2528CF52003FC900 /* ActivityActiveDetailView.swift in Sources */,
 				7685B50E252E676400AE0F0D /* _SpriteKitView.swift in Sources */,
 				765CAF422528CF52003FC900 /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */,
-				765CAF472528CF52003FC900 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,
 				765CAF182528CF52003FC900 /* AgentConfigurationView.swift in Sources */,
 				765CAF0F2528CF52003FC900 /* MainRewardsView.swift in Sources */,
 				765CAF4F2528CF52003FC900 /* UserSettings.swift in Sources */,
 				765CAF4A2528CF52003FC900 /* CKActivityDescriptionAddCardView.swift in Sources */,
+				76AC37E7252F7BA60022AA1C /* RewardCardView.swift in Sources */,
 				765CAF252528CF52003FC900 /* PublicActivityDescriptionDetailView.swift in Sources */,
 				765CAF4B2528CF52003FC900 /* MainYouView.swift in Sources */,
 				76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */,
@@ -964,13 +955,11 @@
 				765CAF702528D18E003FC900 /* PurchaseModel.swift in Sources */,
 				765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */,
 				765CAF232528CF52003FC900 /* ShareInviteView.swift in Sources */,
-				765CAF412528CF52003FC900 /* _CKChoreDescriptionAddItemView.swift in Sources */,
 				7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */,
 				765CAF9C2528DBC4003FC900 /* _QFamilyTabScene.swift in Sources */,
 				765CAF4C2528CF52003FC900 /* String+Image.swift in Sources */,
 				765CAF532528CF52003FC900 /* LargeTextPillBox.swift in Sources */,
 				765CAF522528CF52003FC900 /* PrimaryLabel.swift in Sources */,
-				765CAF432528CF52003FC900 /* _CKChoreDescriptionRowView.swift in Sources */,
 				765CAFD525291BAB003FC900 /* URL+Deeplink.swift in Sources */,
 				765CAF1D2528CF52003FC900 /* UserView.swift in Sources */,
 				765CAFC2252904A9003FC900 /* CustomAppDelegate.swift in Sources */,
@@ -983,7 +972,6 @@
 				765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,
 				765CAF1F2528CF52003FC900 /* AdultUserView.swift in Sources */,
-				765CAF3A2528CF52003FC900 /* CKActivityActiveNoItemsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

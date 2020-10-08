@@ -11,8 +11,13 @@
 		7685B533252E726E00AE0F0D /* SceneKitGameSimpleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B532252E726E00AE0F0D /* SceneKitGameSimpleTests.swift */; };
 		7685B535252E726E00AE0F0D /* SceneKitGameSimple.h in Headers */ = {isa = PBXBuildFile; fileRef = 7685B527252E726E00AE0F0D /* SceneKitGameSimple.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7685B54F252E773200AE0F0D /* SpriteKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B54E252E773200AE0F0D /* SpriteKitView.swift */; };
-		7685B553252E773F00AE0F0D /* SimpleGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B552252E773F00AE0F0D /* SimpleGameScene.swift */; };
+		7685B553252E773F00AE0F0D /* PlayerGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B552252E773F00AE0F0D /* PlayerGameScene.swift */; };
 		76AC37D5252F670E0022AA1C /* BlocksGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC37D4252F670E0022AA1C /* BlocksGameScene.swift */; };
+		76AC37FC252F93740022AA1C /* PlayerDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC37FB252F93740022AA1C /* PlayerDirection.swift */; };
+		76AC3808252F95BF0022AA1C /* PlayerGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC3807252F95BF0022AA1C /* PlayerGameView.swift */; };
+		76AC380C252F9E000022AA1C /* SimpleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC380B252F9E000022AA1C /* SimpleGameView.swift */; };
+		76AC381A252F9F9E0022AA1C /* SimpleGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC3819252F9F9E0022AA1C /* SimpleGameScene.swift */; };
+		76AC3822252FAAD70022AA1C /* BlocksGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC3821252FAAD70022AA1C /* BlocksGameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,8 +38,13 @@
 		7685B532252E726E00AE0F0D /* SceneKitGameSimpleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitGameSimpleTests.swift; sourceTree = "<group>"; };
 		7685B534252E726E00AE0F0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7685B54E252E773200AE0F0D /* SpriteKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitView.swift; sourceTree = "<group>"; };
-		7685B552252E773F00AE0F0D /* SimpleGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleGameScene.swift; sourceTree = "<group>"; };
+		7685B552252E773F00AE0F0D /* PlayerGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGameScene.swift; sourceTree = "<group>"; };
 		76AC37D4252F670E0022AA1C /* BlocksGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksGameScene.swift; sourceTree = "<group>"; };
+		76AC37FB252F93740022AA1C /* PlayerDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDirection.swift; sourceTree = "<group>"; };
+		76AC3807252F95BF0022AA1C /* PlayerGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGameView.swift; sourceTree = "<group>"; };
+		76AC380B252F9E000022AA1C /* SimpleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleGameView.swift; sourceTree = "<group>"; };
+		76AC3819252F9F9E0022AA1C /* SimpleGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleGameScene.swift; sourceTree = "<group>"; };
+		76AC3821252FAAD70022AA1C /* BlocksGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksGameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +87,11 @@
 		7685B526252E726E00AE0F0D /* SceneKitGameSimple */ = {
 			isa = PBXGroup;
 			children = (
-				76AC37DA252F67A90022AA1C /* GameScene */,
+				7685B54E252E773200AE0F0D /* SpriteKitView.swift */,
+				76AC37FA252F936B0022AA1C /* Utilities */,
+				76AC37DA252F67A90022AA1C /* Games */,
 				7685B527252E726E00AE0F0D /* SceneKitGameSimple.h */,
 				7685B528252E726E00AE0F0D /* Info.plist */,
-				7685B54E252E773200AE0F0D /* SpriteKitView.swift */,
 			);
 			path = SceneKitGameSimple;
 			sourceTree = "<group>";
@@ -94,13 +105,25 @@
 			path = SceneKitGameSimpleTests;
 			sourceTree = "<group>";
 		};
-		76AC37DA252F67A90022AA1C /* GameScene */ = {
+		76AC37DA252F67A90022AA1C /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				7685B552252E773F00AE0F0D /* SimpleGameScene.swift */,
+				76AC3807252F95BF0022AA1C /* PlayerGameView.swift */,
+				7685B552252E773F00AE0F0D /* PlayerGameScene.swift */,
+				76AC380B252F9E000022AA1C /* SimpleGameView.swift */,
+				76AC3819252F9F9E0022AA1C /* SimpleGameScene.swift */,
+				76AC3821252FAAD70022AA1C /* BlocksGameView.swift */,
 				76AC37D4252F670E0022AA1C /* BlocksGameScene.swift */,
 			);
-			path = GameScene;
+			path = Games;
+			sourceTree = "<group>";
+		};
+		76AC37FA252F936B0022AA1C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				76AC37FB252F93740022AA1C /* PlayerDirection.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7685B553252E773F00AE0F0D /* SimpleGameScene.swift in Sources */,
+				7685B553252E773F00AE0F0D /* PlayerGameScene.swift in Sources */,
+				76AC3808252F95BF0022AA1C /* PlayerGameView.swift in Sources */,
+				76AC381A252F9F9E0022AA1C /* SimpleGameScene.swift in Sources */,
+				76AC3822252FAAD70022AA1C /* BlocksGameView.swift in Sources */,
+				76AC380C252F9E000022AA1C /* SimpleGameView.swift in Sources */,
 				7685B54F252E773200AE0F0D /* SpriteKitView.swift in Sources */,
+				76AC37FC252F93740022AA1C /* PlayerDirection.swift in Sources */,
 				76AC37D5252F670E0022AA1C /* BlocksGameScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

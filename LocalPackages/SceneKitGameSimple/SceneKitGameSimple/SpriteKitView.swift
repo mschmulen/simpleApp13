@@ -8,11 +8,21 @@
 import SwiftUI
 import SpriteKit
 
+
+public struct StartData {
+    
+    public init() {
+        
+    }
+}
+
+public struct CloseData {
+    
+}
+
 public struct SpriteKitView: View {
     
-    //@Environment(\.window) var window: UIWindow?
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     let sceneSizeWidth: CGFloat = 300
     let sceneSizeHeight: CGFloat = 400
@@ -20,55 +30,88 @@ public struct SpriteKitView: View {
     public enum Games {
         case simple
         case blocks
+        case player
+        
+        public var name:String {
+            switch self {
+            case .simple: return "simple"
+            case .blocks: return "blocks"
+            case .player: return "player"
+            }
+        }
     }
+
+    let game: Games
+    let startData: StartData
+    let closeCallback: (_ closeData: CloseData)->Void
     
-    let game:Games
-    
-    public init(game: Games) {
+    public init(
+        game: Games,
+        startData: StartData,
+        closeCallback: @escaping (_ closeData: CloseData)->Void) {
         self.game = game
-    }
-    
-    var scene: SKScene {
-        let scene = SimpleGameScene()
-        scene.size = CGSize(width: sceneSizeWidth, height: sceneSizeHeight)
-        scene.scaleMode = .fill
-        return scene
+        self.startData = startData
+        self.closeCallback = closeCallback
     }
     
     public var body: some View {
         ZStack {
-            SpriteView(scene: scene)
-                .frame(width: sceneSizeWidth, height: sceneSizeHeight)
+            //            Rectangle()
+            //                .fill(Color.green)
+            //                .edgesIgnoringSafeArea(.all)
+            
+            LinearGradient(gradient: Gradient(colors: [Color.gray, Color.gray.opacity(0.8), Color.gray]),
+                           startPoint: .top,
+                           endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                Rectangle()
-                    .fill(Color.green)
+                switch game {
+                case .blocks:
+                    SimpleGameView(
+                        startData: startData,
+                        closeCallback: closeCallback
+                    )
+                case .simple:
+                    SimpleGameView(
+                        startData: startData,
+                        closeCallback: closeCallback
+                    )
+                case .player:
+                    PlayerGameView(
+                        startData: startData,
+                        closeCallback: closeCallback
+                    )
+                }
+            }
+            
+            VStack {
                 HStack  {
                     Spacer()
                     Button(action: {
-                        print( "reset scene TODO")
-                    }) {
-                        Text("RESET")
-                            .padding()
-                    }
-                    
-                    Button(action: {
-                        print( "close")
+                        self.closeCallback(CloseData())
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("CLOSE")
-                            .padding()
+                            .padding(.top, 40)
+                            .padding(.trailing, 10)
                     }
                 }//end HStack
                 Spacer()
             }//end VStack
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.red)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct SpriteKitView_Previews: PreviewProvider {
     static var previews: some View {
-        SpriteKitView(game: SpriteKitView.Games.simple)
+        SpriteKitView(
+            game: SpriteKitView.Games.simple,
+            startData: StartData()) { (closeData) in
+            print("close Data")
+        }
     }
 }

@@ -31,36 +31,70 @@ struct ViewExperimental: View {
         GridItem(.adaptive(minimum: 150))
     ]
     
-    let data = (1...100).map { "Item \($0)" }
+    //let data = (1...100).map { "Item \($0)" }
+    let games:[SpriteKitView.Games] = [
+        SpriteKitView.Games.simple,
+        SpriteKitView.Games.blocks,
+        SpriteKitView.Games.player
+    ]
+    
+    @State var showFullScreenGame = false
+    @State var activeGame = SpriteKitView.Games.simple
     
     var body: some View {
         NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
-                agentView
-                wizardView
-                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(data, id: \.self) { item in
-                            NavigationLink(
-                                destination: SpriteKitView(
-                                    game: SpriteKitView.Games.simple
-                                )
-                            ) {
-                                SimpleCard(text:item)
+                        ForEach(games, id: \.self) { game in
+                            
+                            Button(action: {
+                                activeGame = game
+                                showFullScreenGame.toggle()
+                            }){
+                                Text("SHOW GAME \(game.name)")
                             }
                         }
                     }
-                    .padding(.horizontal)
                 }
+                
+//                ScrollView {
+//                    LazyVGrid(columns: columns, spacing: 20) {
+//                        ForEach(data, id: \.self) { item in
+//                            NavigationLink(
+//                                destination: SpriteKitView(
+//                                    game: SpriteKitView.Games.simple
+//                                )
+//                            ) {
+//                                SimpleCard(text:item)
+//                            }
+//                        }
+//                    }
+//                    .padding(.horizontal)
+//                }
             }//end VStack
-            .sheet(isPresented: $showNewActivityDescriptionWizardViewSheet) {
-                NewActivityDescriptionWizardView (
-                    model: CKActivityDescriptionModel()
-                )
+            .fullScreenCover(
+                isPresented: $showFullScreenGame) {
+                SpriteKitView(
+                    game: activeGame,
+                    startData: StartData()) { (closeData) in
+                    print("close Data")
+                }
             }
+//            .sheet(isPresented: $showFullScreenGame) {
+//                SpriteKitView(
+//                    game: activeGame,
+//                    closeCallback: {
+//                        print("close callback")
+//                    })
+//            }
+//            .sheet(isPresented: $showNewActivityDescriptionWizardViewSheet) {
+//                NewActivityDescriptionWizardView (
+//                    model: CKActivityDescriptionModel()
+//                )
+//            }
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
             }
