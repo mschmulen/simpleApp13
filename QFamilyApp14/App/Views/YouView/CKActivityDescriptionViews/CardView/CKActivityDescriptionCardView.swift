@@ -9,22 +9,23 @@
 import SwiftUI
 import FamilyKit
 
+
 struct CKActivityDescriptionCardView: View {
     
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     var model: CKActivityDescriptionModel
+    var cardHeight: CGFloat = 100
     
     @State var coverPhotoImage: Image?
     
-    let cardSize: CGFloat = 100
     let showEmoji = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
                     .fill(SemanticAppColor.random)
-                    .frame(width: cardSize, height: cardSize)
                     .cornerRadius(5)
                 
                 if coverPhotoImage != nil {
@@ -32,21 +33,15 @@ struct CKActivityDescriptionCardView: View {
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: cardSize, height: cardSize)
+                        .frame(height: cardHeight)
                         .cornerRadius(5)
-                }
-                // TODO: MAS TODO whats up with this ... looks redundant
-                else {
-                    Rectangle()
-                        .fill(SemanticAppColor.random)
-                        .frame(width: cardSize, height: cardSize)
-                        .cornerRadius(5)
+                        .padding()
                 }
                 HStack {
                     Spacer()
                     Text(model.name ?? "~")
                         .lineLimit(3)
-                        .modifier(PrimarySmallRegularLabel(color: .white))
+                        .modifier(PrimaryBoldLabel(color: .white))
                         .padding()
                     Spacer()
                 }
@@ -56,21 +51,15 @@ struct CKActivityDescriptionCardView: View {
                         HStack {
                             Spacer()
                             Text(model.moduleType.emoji)
-                            //.padding()
                         }
                         Spacer()
                     }
-                    
                 }
             }
         }
-        //.background(SemanticAppColor.random)
         .cornerRadius(5)
         .shadow(radius: 10)
         .padding()
-//            .overlay(
-//            RoundedRectangle(cornerRadius: 25)
-//                .stroke(Color.white, lineWidth: 2)
         .onAppear {
             self.loadCoverPhoto()
         }

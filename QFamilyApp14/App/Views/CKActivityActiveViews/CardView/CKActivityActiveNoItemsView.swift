@@ -10,14 +10,14 @@ import SwiftUI
 
 struct CKActivityActiveNoItemsView: View {
 
-    let cardSize: CGFloat = 100
+    let cardHeight: CGFloat = 200
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
                 Rectangle()
                     .foregroundColor(SemanticAppColor.random)
-                    .frame(width: cardSize, height: cardSize)
+                    .frame(width: cardHeight, height: cardHeight)
                     .cornerRadius(5)
                 VStack {
                     Text("No Activities")

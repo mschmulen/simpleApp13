@@ -1,8 +1,8 @@
 //
-//  GameScene.swift
-//  QFamilyApp14
+//  BlocksGameScene.swift
+//  SceneKitGameSimple
 //
-//  Created by Matthew Schmulen on 10/7/20.
+//  Created by Matthew Schmulen on 10/8/20.
 //
 
 import SwiftUI
@@ -10,13 +10,13 @@ import SpriteKit
 
 // SKView stuff
 
-class GameScene: SKScene {
+public class BlocksGameScene: SKScene {
     
-    override func didMove(to view: SKView) {
+    public override func didMove(to view: SKView) {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         let box = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
@@ -25,3 +25,4 @@ class GameScene: SKScene {
         addChild(box)
     }
 }
+

@@ -99,9 +99,11 @@
 		7685B4B7252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */; };
 		7685B4B8252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */; };
 		7685B4FD252E34C200AE0F0D /* UIApplication+endEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */; };
-		7685B505252E506300AE0F0D /* MainYouViewExperimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */; };
-		7685B50E252E676400AE0F0D /* SpriteKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B50D252E676400AE0F0D /* SpriteKitView.swift */; };
-		7685B516252E682200AE0F0D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B515252E682200AE0F0D /* GameScene.swift */; };
+		7685B505252E506300AE0F0D /* ViewExperimental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B504252E506300AE0F0D /* ViewExperimental.swift */; };
+		7685B50E252E676400AE0F0D /* _SpriteKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B50D252E676400AE0F0D /* _SpriteKitView.swift */; };
+		7685B516252E682200AE0F0D /* _GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B515252E682200AE0F0D /* _GameScene.swift */; };
+		7685B556252E792400AE0F0D /* SceneKitGameSimple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */; };
+		7685B557252E792400AE0F0D /* SceneKitGameSimple.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */; };
 		76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF83E3252778ED00289EF4 /* ContentView.swift */; };
 		76DF83E6252778F200289EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DF83E5252778F200289EF4 /* Assets.xcassets */; };
@@ -114,6 +116,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7685B545252E764A00AE0F0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7685B524252E726E00AE0F0D;
+			remoteInfo = SceneKitGameSimple;
+		};
+		7685B547252E764A00AE0F0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7685B52D252E726E00AE0F0D;
+			remoteInfo = SceneKitGameSimpleTests;
+		};
 		76DF83F0252778F200289EF4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76DF83D6252778ED00289EF4 /* Project object */;
@@ -129,6 +145,20 @@
 			remoteInfo = QFamilyApp14;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7685B558252E792500AE0F0D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7685B557252E792400AE0F0D /* SceneKitGameSimple.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		761AAA322528CA1400AA4FC8 /* QFamilyApp14.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QFamilyApp14.entitlements; sourceTree = "<group>"; };
@@ -225,9 +255,10 @@
 		7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionWizardViewStart.swift; sourceTree = "<group>"; };
 		7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDefinitionWizardViewEnd.swift; sourceTree = "<group>"; };
 		7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+endEditing.swift"; sourceTree = "<group>"; };
-		7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainYouViewExperimental.swift; sourceTree = "<group>"; };
-		7685B50D252E676400AE0F0D /* SpriteKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitView.swift; sourceTree = "<group>"; };
-		7685B515252E682200AE0F0D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		7685B504252E506300AE0F0D /* ViewExperimental.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExperimental.swift; sourceTree = "<group>"; };
+		7685B50D252E676400AE0F0D /* _SpriteKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _SpriteKitView.swift; sourceTree = "<group>"; };
+		7685B515252E682200AE0F0D /* _GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _GameScene.swift; sourceTree = "<group>"; };
+		7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SceneKitGameSimple.xcodeproj; path = LocalPackages/SceneKitGameSimple/SceneKitGameSimple.xcodeproj; sourceTree = "<group>"; };
 		76DF83DE252778ED00289EF4 /* QFamilyApp14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QFamilyApp14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DF83E1252778ED00289EF4 /* QFamilyApp14App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QFamilyApp14App.swift; sourceTree = "<group>"; };
 		76DF83E3252778ED00289EF4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -252,6 +283,7 @@
 			files = (
 				76DF84352528C7B900289EF4 /* DrawingKit in Frameworks */,
 				761AAA372528CA1E00AA4FC8 /* CloudKit.framework in Frameworks */,
+				7685B556252E792400AE0F0D /* SceneKitGameSimple.framework in Frameworks */,
 				761AAA392528CA2C00AA4FC8 /* StoreKit.framework in Frameworks */,
 				76DF84392528C7B900289EF4 /* SimpleGames in Frameworks */,
 				76DF84372528C7B900289EF4 /* FamilyKit in Frameworks */,
@@ -338,6 +370,7 @@
 		765CAEAC2528CF51003FC900 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76AC37DF252F79A70022AA1C /* Experimental */,
 				7685B49E252E16A200AE0F0D /* NewRewardDefinitionWizardView */,
 				7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */,
 				765CAEAD2528CF51003FC900 /* BucksStoreView */,
@@ -469,7 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				765CAEF82528CF51003FC900 /* MainYouView.swift */,
-				7685B504252E506300AE0F0D /* MainYouViewExperimental.swift */,
 				765CAEEA2528CF51003FC900 /* CKActivityDescriptionViews */,
 			);
 			path = YouView;
@@ -596,15 +628,33 @@
 		7685B50C252E675900AE0F0D /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
-				7685B50D252E676400AE0F0D /* SpriteKitView.swift */,
-				7685B515252E682200AE0F0D /* GameScene.swift */,
+				7685B50D252E676400AE0F0D /* _SpriteKitView.swift */,
+				7685B515252E682200AE0F0D /* _GameScene.swift */,
 			);
 			path = SpriteKit;
+			sourceTree = "<group>";
+		};
+		7685B541252E764A00AE0F0D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */,
+				7685B548252E764A00AE0F0D /* SceneKitGameSimpleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76AC37DF252F79A70022AA1C /* Experimental */ = {
+			isa = PBXGroup;
+			children = (
+				7685B504252E506300AE0F0D /* ViewExperimental.swift */,
+			);
+			path = Experimental;
 			sourceTree = "<group>";
 		};
 		76DF83D5252778ED00289EF4 = {
 			isa = PBXGroup;
 			children = (
+				7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */,
 				76DF842F2528BC9100289EF4 /* DrawingKit */,
 				76DF842B2528BC8E00289EF4 /* SimpleGames */,
 				76DF84272528BC7300289EF4 /* FamilyKit */,
@@ -691,6 +741,7 @@
 				76DF83DA252778ED00289EF4 /* Sources */,
 				76DF83DB252778ED00289EF4 /* Frameworks */,
 				76DF83DC252778ED00289EF4 /* Resources */,
+				7685B558252E792500AE0F0D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -775,6 +826,12 @@
 			mainGroup = 76DF83D5252778ED00289EF4;
 			productRefGroup = 76DF83DF252778ED00289EF4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7685B541252E764A00AE0F0D /* Products */;
+					ProjectRef = 7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				76DF83DD252778ED00289EF4 /* QFamilyApp14 */,
@@ -783,6 +840,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7685B546252E764A00AE0F0D /* SceneKitGameSimple.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SceneKitGameSimple.framework;
+			remoteRef = 7685B545252E764A00AE0F0D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7685B548252E764A00AE0F0D /* SceneKitGameSimpleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SceneKitGameSimpleTests.xctest;
+			remoteRef = 7685B547252E764A00AE0F0D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		76DF83DC252778ED00289EF4 /* Resources */ = {
@@ -825,7 +899,7 @@
 				765CAF6F2528D18E003FC900 /* AppModel.swift in Sources */,
 				765CAF092528CF52003FC900 /* AudioPlayerView.swift in Sources */,
 				765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */,
-				7685B505252E506300AE0F0D /* MainYouViewExperimental.swift in Sources */,
+				7685B505252E506300AE0F0D /* ViewExperimental.swift in Sources */,
 				765CAF1A2528CF52003FC900 /* PurchaseView.swift in Sources */,
 				765CAF4D2528CF52003FC900 /* DevMessageView.swift in Sources */,
 				765CAF192528CF52003FC900 /* AgentDetailView.swift in Sources */,
@@ -835,7 +909,7 @@
 				765CAF1B2528CF52003FC900 /* PlayersListView.swift in Sources */,
 				765CAF552528CF52003FC900 /* LargeButton.swift in Sources */,
 				765CAF1E2528CF52003FC900 /* CKUserView.swift in Sources */,
-				7685B516252E682200AE0F0D /* GameScene.swift in Sources */,
+				7685B516252E682200AE0F0D /* _GameScene.swift in Sources */,
 				765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */,
 				765CAF292528CF52003FC900 /* FamilyChatView.swift in Sources */,
 				7685B4B7252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift in Sources */,
@@ -846,7 +920,7 @@
 				765CAF8B2528D45C003FC900 /* ModalView.swift in Sources */,
 				765CAF3B2528CF52003FC900 /* CKActivityActiveRowView.swift in Sources */,
 				765CAF3D2528CF52003FC900 /* ActivityActiveDetailView.swift in Sources */,
-				7685B50E252E676400AE0F0D /* SpriteKitView.swift in Sources */,
+				7685B50E252E676400AE0F0D /* _SpriteKitView.swift in Sources */,
 				765CAF422528CF52003FC900 /* CKActivityDescriptionDetailEditView.swift in Sources */,
 				765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */,
 				765CAF472528CF52003FC900 /* CKActivityDescriptionNoItemsCardView.swift in Sources */,

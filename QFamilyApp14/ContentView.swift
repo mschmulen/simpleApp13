@@ -86,11 +86,7 @@ struct ContentView: View {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
                         
-                        MainYouViewExperimental()
-                            .tabItem {
-                                Image(systemName: "person.circle")
-                                Text("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
-                        }.tag(TabViewIndex.tabX.rawValue)
+                        
                         
                         MainYouView()
                             .environment(\.window, window)
@@ -138,6 +134,13 @@ struct ContentView: View {
                                 Image(systemName: "person.3")
                                 Text("Chat")
                         }.tag(TabViewIndex.familyChat.rawValue)
+                        
+//                        ViewExperimental()
+//                            .tabItem {
+//                                Image(systemName: "person.circle")
+//                                Text("EXP")
+//                        }.tag(TabViewIndex.tabX.rawValue)
+                        
                     } //end TabView
 
                 } // end else .currentPlayerModel == nil

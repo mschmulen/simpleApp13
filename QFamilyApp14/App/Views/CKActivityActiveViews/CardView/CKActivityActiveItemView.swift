@@ -17,7 +17,7 @@ struct CKActivityActiveItemView: View {
     
     @State var coverPhotoImage: Image?
     
-    let cardSize: CGFloat = 100
+    let cardHeight: CGFloat = 200
     
     let showEmoji = false
     
@@ -28,7 +28,8 @@ struct CKActivityActiveItemView: View {
                 
                 Rectangle()
                     .fill(SemanticAppColor.random)
-                    .frame(width: cardSize, height: cardSize)
+                    .frame(height: cardHeight)
+                    .frame(minWidth: cardHeight, maxWidth: .infinity, minHeight: cardHeight, maxHeight: cardHeight)
                     .cornerRadius(5)
                     
                 if coverPhotoImage != nil {
@@ -36,14 +37,11 @@ struct CKActivityActiveItemView: View {
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: cardSize, height: cardSize)
-                        .cornerRadius(5)
-                } else {
-                    Rectangle()
-                        .fill(SemanticAppColor.random)
-                        .frame(width: cardSize, height: cardSize)
+                        .frame(height: cardHeight)
+                        .frame(minWidth: cardHeight, maxWidth: .infinity, minHeight: cardHeight, maxHeight: cardHeight)
                         .cornerRadius(5)
                 }
+                
                 VStack {
                     if model.kidReference != nil {
                         Text("\(familyKitAppState.findPlayerModelForRecord(recordReference: model.kidReference!)?.name ?? "~")")

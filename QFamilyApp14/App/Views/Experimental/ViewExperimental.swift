@@ -1,5 +1,5 @@
 //
-//  MainYouViewExperimental.swift
+//  ViewExperimental.swift
 //  QFamilyApp14
 //
 //  Created by Matthew Schmulen on 10/7/20.
@@ -9,8 +9,9 @@ import Foundation
 import SwiftUI
 import FamilyKit
 import CloudKit
+import SceneKitGameSimple
 
-struct MainYouViewExperimental: View {
+struct ViewExperimental: View {
     
     @Environment(\.window) var window: UIWindow?
     
@@ -44,7 +45,9 @@ struct MainYouViewExperimental: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(data, id: \.self) { item in
                             NavigationLink(
-                                destination: SpriteKitView()
+                                destination: SpriteKitView(
+                                    game: SpriteKitView.Games.simple
+                                )
                             ) {
                                 SimpleCard(text:item)
                             }
@@ -125,12 +128,12 @@ struct MainYouViewExperimental: View {
     }
 }
 
-struct MainYouViewExperimental_Previews: PreviewProvider {
+struct ViewExperimental_Previews: PreviewProvider {
     
     static let container = CKContainer(identifier: CKContainerIdentifier)
     
     static var previews: some View {
-        MainYouViewExperimental()            
+        ViewExperimental()
     }
 }
 

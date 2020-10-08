@@ -26,6 +26,11 @@ struct MainYouView: View {
     @State var showAgent = false
     @State var showNewActivityDescriptionWizardViewSheet = false
     
+    let columns = [
+        // make the grid to fit in as many items per row as possible, using a minimum size of 80 points each
+        GridItem(.adaptive(minimum: 150))
+    ]
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -60,26 +65,47 @@ struct MainYouView: View {
                 }
                 
                 ScrollView {
-                    LazyVStack {
-                        
-                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
-                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
-                            Section() {
-                                CKActivityDescriptionCardsRowView(
-                                    categoryName: "\(category.rawValue) Activities:",
-                                    items: self.activityDescriptionService.models.filter { $0.category == category },
-                                    isPrivate: true,
-                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(activityDescriptionService.models, id: \.self) { model in
+                            NavigationLink(
+                                destination: CKActivityDescriptionDetailView(
+                                    model: model
                                 )
+                            ) {
+                                CKActivityDescriptionCardView(model: model)
+                            }.contextMenu {
+                                Button(action: {
+                                    self.activityDescriptionService.pushDelete(model: model) { (result) in
+                                        print("delete result \(result)")
+                                    }
+                                }) {
+                                    Text("Delete")
+                                    Image(systemName: "trash")
+                                }
                             }
-                            .listRowInsets(EdgeInsets())
                         }
-                        
-                        // this users active activities
                         activeActivities
-                        
-                    }//end LazyVStack
-                }//end ScrollView
+                    }
+                }
+                
+//                ScrollView {
+//                    LazyVStack {
+//                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
+//                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
+//                            Section() {
+//                                CKActivityDescriptionCardsRowView(
+//                                    categoryName: "\(category.rawValue) Activities:",
+//                                    items: self.activityDescriptionService.models.filter { $0.category == category },
+//                                    isPrivate: true,
+//                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
+//                                )
+//                            }
+//                            .listRowInsets(EdgeInsets())
+//                        }
+//                        // this users active activities
+//                        activeActivities
+//                    }//end LazyVStack
+//                }//end ScrollView
                 
                 Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
