@@ -33,9 +33,12 @@ public struct SimpleGameView: View {
     }
     
     public var body: some View {
-        SpriteView(scene: scene)
-            .frame(width: sceneSizeWidth, height: sceneSizeHeight)
-            .edgesIgnoringSafeArea(.all)
+        VStack {
+            Text("Simple Game")
+            SpriteView(scene: scene)
+                .frame(width: sceneSizeWidth, height: sceneSizeHeight)
+                .edgesIgnoringSafeArea(.all)
+        }
     }
 }
 

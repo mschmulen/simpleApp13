@@ -8,7 +8,6 @@
 import SwiftUI
 import SpriteKit
 
-
 public struct StartData {
     
     public init() {
@@ -17,7 +16,6 @@ public struct StartData {
 }
 
 public struct CloseData {
-    
 }
 
 public struct SpriteKitView: View {
@@ -68,7 +66,7 @@ public struct SpriteKitView: View {
             VStack {
                 switch game {
                 case .blocks:
-                    SimpleGameView(
+                    BlocksGameView(
                         startData: startData,
                         closeCallback: closeCallback
                     )

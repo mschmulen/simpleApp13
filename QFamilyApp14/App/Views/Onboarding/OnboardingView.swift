@@ -23,86 +23,32 @@ public struct OnboardingView: View {
     @State var errorMessage: String?
     @State var networkStateViewModel: NetworkStateViewModel = NetworkStateViewModel()
     @State var cloudKitStateViewModel: CloudKitStateViewModel = CloudKitStateViewModel()
+    @State var currentTabIndex: Int = 0
     
     public var body: some View {
-        TabView {
-            OnboardingWelcomeView()
-            OnboardingInfoView()
-            OnboardingGetStartedView() {
+        
+        TabView(selection: $currentTabIndex){
+            OnboardingWelcomeView() {
+                currentTabIndex = 1
+            }.tag(0)
+            OnboardingAdultInfoView() {
+                currentTabIndex = 2
+            }.tag(1)
+            OnboardingChildInfoView() {
+                currentTabIndex = 3
+            }.tag(2)
+            OnboardingAgentView(){
+                currentTabIndex = 4
+            }.tag(3)
+            OnboardingAllDoneView() {
                 self.close()
-            }
+            }.tag(4)
         }
         .tabViewStyle(PageTabViewStyle())
     }
     
     func close() {
         self.appState.topView = TopView.mainView
-    }
-}
-
-struct OnboardingWelcomeView: View {
-    var backgroundColor = SemanticAppColor.random
-    
-    var body: some View {
-        ZStack {
-            backgroundColor
-            VStack {
-                Text("Welcome to Family App").padding()
-                Text("Lets get started").padding()
-                Spacer()
-            }.foregroundColor(.white)
-        }
-    }
-}
-
-struct OnboardingInfoView: View {
-    
-    var backgroundColor = SemanticAppColor.random
-    
-    var body: some View {
-        ZStack {
-            backgroundColor
-            VStack {
-                Text("Some info Family").padding()
-                Text("Some info Family").padding()
-                Text("Some info Family").padding()
-                Text("Some info Family").padding()
-                Spacer()
-            }.foregroundColor(.white)
-        }
-    }
-}
-
-struct OnboardingGetStartedView: View {
-    
-    var closeCallback: ()->Void
-    
-    var backgroundColor = SemanticAppColor.random
-    
-    var body: some View {
-        ZStack {
-            backgroundColor
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.closeCallback()
-                    }) {
-                        Text("CLOSE !")
-                    }.padding()
-                }
-                Text("Get Started").padding()
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.closeCallback()
-                    }) {
-                        Text("DONE !")
-                    }.padding()
-                }
-            }.foregroundColor(.white)
-        }
     }
 }
 

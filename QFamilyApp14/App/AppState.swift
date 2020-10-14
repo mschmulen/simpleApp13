@@ -21,8 +21,8 @@ class AppState: ObservableObject {
     
     var currentAppInfo: AppModel = AppModel()
     
-    @Published var topView: TopView = TopView.mainView
-//    @Published var topView: TopView = TopView.onboardingView
+    //@Published var topView: TopView = TopView.mainView
+    @Published var topView: TopView = TopView.onboardingView
 
 //        {
 //        willSet {

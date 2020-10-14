@@ -49,7 +49,6 @@ struct ViewExperimental: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(games, id: \.self) { game in
-                            
                             Button(action: {
                                 activeGame = game
                                 showFullScreenGame.toggle()

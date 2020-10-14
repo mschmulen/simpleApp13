@@ -33,9 +33,13 @@ public struct BlocksGameView: View {
     }
     
     public var body: some View {
-        SpriteView(scene: scene)
-            .frame(width: sceneSizeWidth, height: sceneSizeHeight)
-            .edgesIgnoringSafeArea(.all)
+        VStack  {
+            Text("Blocks Game")
+            SpriteView(scene: scene)
+                .frame(width: sceneSizeWidth, height: sceneSizeHeight)
+                .edgesIgnoringSafeArea(.all)
+
+        }
     }
     
 }

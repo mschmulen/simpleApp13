@@ -82,6 +82,19 @@
 		765CAFC2252904A9003FC900 /* CustomAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */; };
 		765CAFCD252906A3003FC900 /* CustomNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */; };
 		765CAFD525291BAB003FC900 /* URL+Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAFD425291BAB003FC900 /* URL+Deeplink.swift */; };
+		766D79D725377429006C80C1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766D79D625377429006C80C1 /* WidgetKit.framework */; };
+		766D79D925377429006C80C1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766D79D825377429006C80C1 /* SwiftUI.framework */; };
+		766D79DC25377429006C80C1 /* QfamilyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D79DB25377429006C80C1 /* QfamilyWidget.swift */; };
+		766D79DF2537742D006C80C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 766D79DE2537742D006C80C1 /* Assets.xcassets */; };
+		766D79E12537742D006C80C1 /* QfamilyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 766D79DD25377429006C80C1 /* QfamilyWidget.intentdefinition */; };
+		766D79E22537742D006C80C1 /* QfamilyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 766D79DD25377429006C80C1 /* QfamilyWidget.intentdefinition */; };
+		766D79E52537742D006C80C1 /* QfamilyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 766D79D525377429006C80C1 /* QfamilyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		766D79F025377CFC006C80C1 /* EmojiPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D79EF25377CFC006C80C1 /* EmojiPickerView.swift */; };
+		766D79FC25378892006C80C1 /* OnboardingAdultInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D79FB25378892006C80C1 /* OnboardingAdultInfoView.swift */; };
+		766D7A01253788B1006C80C1 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */; };
+		766D7A06253788D7006C80C1 /* OnboardingChildInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */; };
+		766D7A0E25378997006C80C1 /* OnboardingAllDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */; };
+		766D7A13253797C9006C80C1 /* OnboardingAgentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */; };
 		7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */; };
 		7685B473252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */; };
 		7685B480252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */; };
@@ -113,6 +126,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		766D79E32537742D006C80C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76DF83D6252778ED00289EF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 766D79D425377429006C80C1;
+			remoteInfo = QfamilyWidgetExtension;
+		};
 		7685B545252E764A00AE0F0D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7685B540252E764A00AE0F0D /* SceneKitGameSimple.xcodeproj */;
@@ -144,6 +164,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		766D79E62537742D006C80C1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				766D79E52537742D006C80C1 /* QfamilyWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7685B558252E792500AE0F0D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,6 +265,19 @@
 		765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAppDelegate.swift; sourceTree = "<group>"; };
 		765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		765CAFD425291BAB003FC900 /* URL+Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Deeplink.swift"; sourceTree = "<group>"; };
+		766D79D525377429006C80C1 /* QfamilyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QfamilyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		766D79D625377429006C80C1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		766D79D825377429006C80C1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		766D79DB25377429006C80C1 /* QfamilyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QfamilyWidget.swift; sourceTree = "<group>"; };
+		766D79DD25377429006C80C1 /* QfamilyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = QfamilyWidget.intentdefinition; sourceTree = "<group>"; };
+		766D79DE2537742D006C80C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		766D79E02537742D006C80C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		766D79EF25377CFC006C80C1 /* EmojiPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPickerView.swift; sourceTree = "<group>"; };
+		766D79FB25378892006C80C1 /* OnboardingAdultInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAdultInfoView.swift; sourceTree = "<group>"; };
+		766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
+		766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingChildInfoView.swift; sourceTree = "<group>"; };
+		766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAllDoneView.swift; sourceTree = "<group>"; };
+		766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgentView.swift; sourceTree = "<group>"; };
 		7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityDescriptionWizardView.swift; sourceTree = "<group>"; };
 		7685B463252D369C00AE0F0D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewEnd.swift; sourceTree = "<group>"; };
@@ -271,6 +315,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		766D79D225377429006C80C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D79D925377429006C80C1 /* SwiftUI.framework in Frameworks */,
+				766D79D725377429006C80C1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76DF83DB252778ED00289EF4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -489,6 +542,11 @@
 			isa = PBXGroup;
 			children = (
 				765CAEE72528CF51003FC900 /* OnboardingView.swift */,
+				766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */,
+				766D79FB25378892006C80C1 /* OnboardingAdultInfoView.swift */,
+				766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */,
+				766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */,
+				766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -582,6 +640,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		766D79DA25377429006C80C1 /* QfamilyWidget */ = {
+			isa = PBXGroup;
+			children = (
+				766D79DB25377429006C80C1 /* QfamilyWidget.swift */,
+				766D79DD25377429006C80C1 /* QfamilyWidget.intentdefinition */,
+				766D79DE2537742D006C80C1 /* Assets.xcassets */,
+				766D79E02537742D006C80C1 /* Info.plist */,
+			);
+			path = QfamilyWidget;
+			sourceTree = "<group>";
+		};
 		7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +681,7 @@
 			isa = PBXGroup;
 			children = (
 				7685B4FC252E34C200AE0F0D /* UIApplication+endEditing.swift */,
+				766D79EF25377CFC006C80C1 /* EmojiPickerView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -652,6 +722,7 @@
 				76DF83E0252778ED00289EF4 /* QFamilyApp14 */,
 				76DF83F2252778F200289EF4 /* QFamilyApp14Tests */,
 				76DF83FD252778F200289EF4 /* QFamilyApp14UITests */,
+				766D79DA25377429006C80C1 /* QfamilyWidget */,
 				76DF83DF252778ED00289EF4 /* Products */,
 				76DF84332528C7B900289EF4 /* Frameworks */,
 			);
@@ -663,6 +734,7 @@
 				76DF83DE252778ED00289EF4 /* QFamilyApp14.app */,
 				76DF83EF252778F200289EF4 /* QFamilyApp14Tests.xctest */,
 				76DF83FA252778F200289EF4 /* QFamilyApp14UITests.xctest */,
+				766D79D525377429006C80C1 /* QfamilyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -718,6 +790,8 @@
 			children = (
 				761AAA382528CA2C00AA4FC8 /* StoreKit.framework */,
 				761AAA362528CA1E00AA4FC8 /* CloudKit.framework */,
+				766D79D625377429006C80C1 /* WidgetKit.framework */,
+				766D79D825377429006C80C1 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -725,6 +799,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		766D79D425377429006C80C1 /* QfamilyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 766D79EB2537742D006C80C1 /* Build configuration list for PBXNativeTarget "QfamilyWidgetExtension" */;
+			buildPhases = (
+				766D79D125377429006C80C1 /* Sources */,
+				766D79D225377429006C80C1 /* Frameworks */,
+				766D79D325377429006C80C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QfamilyWidgetExtension;
+			productName = QfamilyWidgetExtension;
+			productReference = 766D79D525377429006C80C1 /* QfamilyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		76DF83DD252778ED00289EF4 /* QFamilyApp14 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76DF8403252778F200289EF4 /* Build configuration list for PBXNativeTarget "QFamilyApp14" */;
@@ -733,10 +824,12 @@
 				76DF83DB252778ED00289EF4 /* Frameworks */,
 				76DF83DC252778ED00289EF4 /* Resources */,
 				7685B558252E792500AE0F0D /* Embed Frameworks */,
+				766D79E62537742D006C80C1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				766D79E42537742D006C80C1 /* PBXTargetDependency */,
 			);
 			name = QFamilyApp14;
 			packageProductDependencies = (
@@ -793,6 +886,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					766D79D425377429006C80C1 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
 					76DF83DD252778ED00289EF4 = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -828,6 +924,7 @@
 				76DF83DD252778ED00289EF4 /* QFamilyApp14 */,
 				76DF83EE252778F200289EF4 /* QFamilyApp14Tests */,
 				76DF83F9252778F200289EF4 /* QFamilyApp14UITests */,
+				766D79D425377429006C80C1 /* QfamilyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -850,6 +947,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		766D79D325377429006C80C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D79DF2537742D006C80C1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76DF83DC252778ED00289EF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -876,6 +981,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		766D79D125377429006C80C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D79E12537742D006C80C1 /* QfamilyWidget.intentdefinition in Sources */,
+				766D79DC25377429006C80C1 /* QfamilyWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76DF83DA252778ED00289EF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -902,6 +1016,7 @@
 				7685B516252E682200AE0F0D /* _GameScene.swift in Sources */,
 				765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */,
 				765CAF292528CF52003FC900 /* FamilyChatView.swift in Sources */,
+				766D79FC25378892006C80C1 /* OnboardingAdultInfoView.swift in Sources */,
 				7685B4B7252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift in Sources */,
 				765CAF0D2528CF52003FC900 /* PhotoPickerRepresentable.swift in Sources */,
 				765CAF442528CF52003FC900 /* PhotoActivityDescriptionView.swift in Sources */,
@@ -918,9 +1033,11 @@
 				765CAF0F2528CF52003FC900 /* MainRewardsView.swift in Sources */,
 				765CAF4F2528CF52003FC900 /* UserSettings.swift in Sources */,
 				765CAF4A2528CF52003FC900 /* CKActivityDescriptionAddCardView.swift in Sources */,
+				766D79E22537742D006C80C1 /* QfamilyWidget.intentdefinition in Sources */,
 				76AC37E7252F7BA60022AA1C /* RewardCardView.swift in Sources */,
 				765CAF252528CF52003FC900 /* PublicActivityDescriptionDetailView.swift in Sources */,
 				765CAF4B2528CF52003FC900 /* MainYouView.swift in Sources */,
+				766D7A0E25378997006C80C1 /* OnboardingAllDoneView.swift in Sources */,
 				76DF83E4252778ED00289EF4 /* ContentView.swift in Sources */,
 				765CAF492528CF52003FC900 /* CKActivityDescriptionCardView.swift in Sources */,
 				765CAF072528CF52003FC900 /* LocalNotificationManager.swift in Sources */,
@@ -928,6 +1045,7 @@
 				765CAF1C2528CF52003FC900 /* KidUserView.swift in Sources */,
 				765CAF0C2528CF52003FC900 /* DrawPreviewView.swift in Sources */,
 				765CAF0A2528CF52003FC900 /* ComboView.swift in Sources */,
+				766D7A06253788D7006C80C1 /* OnboardingChildInfoView.swift in Sources */,
 				765CAF342528CF52003FC900 /* ChatPeekView.swift in Sources */,
 				765CAF3E2528CF52003FC900 /* OnboardingView.swift in Sources */,
 				765CAF6E2528D18E003FC900 /* ImageStore.swift in Sources */,
@@ -942,6 +1060,7 @@
 				7685B4B8252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift in Sources */,
 				765CAF512528CF52003FC900 /* TextField+Helper.swift in Sources */,
 				765CAF542528CF52003FC900 /* ActivityIndicatorView.swift in Sources */,
+				766D7A01253788B1006C80C1 /* OnboardingWelcomeView.swift in Sources */,
 				76DF83E2252778ED00289EF4 /* QFamilyApp14App.swift in Sources */,
 				7685B48A252E09C400AE0F0D /* ActivityDescriptionWizardViewModuleType.swift in Sources */,
 				765CAF282528CF52003FC900 /* UIKitCloudKitSharingButton.swift in Sources */,
@@ -952,8 +1071,10 @@
 				765CAF712528D18E003FC900 /* StoreConfig.swift in Sources */,
 				765CAF062528CF52003FC900 /* AppState.swift in Sources */,
 				765CAF122528CF52003FC900 /* RewardDefinitionDetailView.swift in Sources */,
+				766D79F025377CFC006C80C1 /* EmojiPickerView.swift in Sources */,
 				765CAF702528D18E003FC900 /* PurchaseModel.swift in Sources */,
 				765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */,
+				766D7A13253797C9006C80C1 /* OnboardingAgentView.swift in Sources */,
 				765CAF232528CF52003FC900 /* ShareInviteView.swift in Sources */,
 				7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */,
 				765CAF9C2528DBC4003FC900 /* _QFamilyTabScene.swift in Sources */,
@@ -994,6 +1115,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		766D79E42537742D006C80C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 766D79D425377429006C80C1 /* QfamilyWidgetExtension */;
+			targetProxy = 766D79E32537742D006C80C1 /* PBXContainerItemProxy */;
+		};
 		76DF83F1252778F200289EF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76DF83DD252778ED00289EF4 /* QFamilyApp14 */;
@@ -1007,6 +1133,48 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		766D79E72537742D006C80C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMKEG7AHZS;
+				INFOPLIST_FILE = QfamilyWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily.QfamilyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		766D79E82537742D006C80C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BMKEG7AHZS;
+				INFOPLIST_FILE = QfamilyWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jumptack.QFamily.QfamilyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		76DF8401252778F200289EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1126,6 +1294,7 @@
 		76DF8404252778F200289EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = QFamilyApp14/QFamilyApp14.entitlements;
@@ -1150,6 +1319,7 @@
 		76DF8405252778F200289EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = QFamilyApp14/QFamilyApp14.entitlements;
@@ -1258,6 +1428,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		766D79EB2537742D006C80C1 /* Build configuration list for PBXNativeTarget "QfamilyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766D79E72537742D006C80C1 /* Debug */,
+				766D79E82537742D006C80C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		76DF83D9252778ED00289EF4 /* Build configuration list for PBXProject "QFamilyApp14" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -36,7 +36,7 @@ public struct PlayerGameView: View {
     }
     
     public var body: some View {
-        ZStack {
+//        ZStack {
             VStack {
                 SpriteView(scene: scene)
                     .frame(width: sceneSizeWidth, height: sceneSizeHeight)
@@ -54,7 +54,8 @@ public struct PlayerGameView: View {
                         directionalButton(.right)
                     }
                 }
-            }
+                Text("PlayerGameView")
+//            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.red)
