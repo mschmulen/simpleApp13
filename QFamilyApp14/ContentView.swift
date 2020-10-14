@@ -51,7 +51,6 @@ struct ContentView: View {
                         self.devMessage = nil
                 }
             }
-
             // top level app state
             if appState.topView == .onboardingView {
                 OnboardingView()
@@ -85,9 +84,7 @@ struct ContentView: View {
                 } else {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
-                        
-                        
-                        
+
                         MainYouView()
                             .environment(\.window, window)
                             .environmentObject(appState)
@@ -134,13 +131,13 @@ struct ContentView: View {
                                 Image(systemName: "person.3")
                                 Text("Chat")
                         }.tag(TabViewIndex.familyChat.rawValue)
-                        
+
                         ViewExperimental()
                             .tabItem {
                                 Image(systemName: "person.circle")
                                 Text("EXP")
                         }.tag(TabViewIndex.tabX.rawValue)
-                        
+
                     } //end TabView
 
                 } // end else .currentPlayerModel == nil

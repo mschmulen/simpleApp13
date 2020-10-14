@@ -1,19 +1,21 @@
 //
-//  OnboardingAgentView.swift
+//  OnboardingTaskPickerView.swift
 //  QFamilyApp14
 //
 //  Created by Matthew Schmulen on 10/14/20.
 //
 
 import SwiftUI
+import FamilyKit
 
-struct OnboardingAgentView: View {
+struct OnboardingTaskPickerView: View {
     
     var nextCallback: ()->Void
     
     var backgroundColor = SemanticAppColor.random
     
-    //var starterTasks:[]
+    @State var starterActivities:[CKPublicActivityDescription] = [CKPublicActivityDescription]()
+    
     var body: some View {
         ZStack {
             backgroundColor
@@ -39,12 +41,22 @@ struct OnboardingAgentView: View {
             }
             .foregroundColor(.white)
             .padding()
-        }
-    }
+        }//end Zstack
+        .onAppear(perform: {
+            print( "load up stuff")
+            
+            self.starterActivities.removeAll()
+            self.starterActivities.append(CKPublicActivityDescription.mock)
+            self.starterActivities.append(CKPublicActivityDescription.mock)
+            self.starterActivities.append(CKPublicActivityDescription.mock)
+        })
+    }//end body
 }
 
-struct OnboardingAgentView_Previews: PreviewProvider {
+struct OnboardingTaskPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingAgentView()
+        OnboardingTaskPickerView(nextCallback: {
+            print( "next")
+        })
     }
 }

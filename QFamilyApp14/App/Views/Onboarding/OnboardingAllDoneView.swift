@@ -36,6 +36,7 @@ struct OnboardingAllDoneView: View {
                         Text("DONE !")
                     }.padding()
                 }
+                Spacer()
             }.foregroundColor(.white)
         }
     }

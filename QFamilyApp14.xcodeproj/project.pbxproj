@@ -94,7 +94,8 @@
 		766D7A01253788B1006C80C1 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */; };
 		766D7A06253788D7006C80C1 /* OnboardingChildInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */; };
 		766D7A0E25378997006C80C1 /* OnboardingAllDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */; };
-		766D7A13253797C9006C80C1 /* OnboardingAgentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */; };
+		766D7A13253797C9006C80C1 /* OnboardingTaskPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A12253797C9006C80C1 /* OnboardingTaskPickerView.swift */; };
+		766D7A1E25379D3F006C80C1 /* OnboardingiCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A1D25379D3F006C80C1 /* OnboardingiCloudView.swift */; };
 		7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */; };
 		7685B473252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */; };
 		7685B480252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */; };
@@ -277,7 +278,8 @@
 		766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
 		766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingChildInfoView.swift; sourceTree = "<group>"; };
 		766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAllDoneView.swift; sourceTree = "<group>"; };
-		766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAgentView.swift; sourceTree = "<group>"; };
+		766D7A12253797C9006C80C1 /* OnboardingTaskPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTaskPickerView.swift; sourceTree = "<group>"; };
+		766D7A1D25379D3F006C80C1 /* OnboardingiCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingiCloudView.swift; sourceTree = "<group>"; };
 		7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityDescriptionWizardView.swift; sourceTree = "<group>"; };
 		7685B463252D369C00AE0F0D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewEnd.swift; sourceTree = "<group>"; };
@@ -543,10 +545,11 @@
 			children = (
 				765CAEE72528CF51003FC900 /* OnboardingView.swift */,
 				766D7A00253788B1006C80C1 /* OnboardingWelcomeView.swift */,
+				766D7A1D25379D3F006C80C1 /* OnboardingiCloudView.swift */,
 				766D79FB25378892006C80C1 /* OnboardingAdultInfoView.swift */,
 				766D7A05253788D7006C80C1 /* OnboardingChildInfoView.swift */,
+				766D7A12253797C9006C80C1 /* OnboardingTaskPickerView.swift */,
 				766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */,
-				766D7A12253797C9006C80C1 /* OnboardingAgentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				765CAF202528CF52003FC900 /* ShareView.swift in Sources */,
 				7685B494252E0AFC00AE0F0D /* ActivityDescriptionWizardViewStart.swift in Sources */,
 				765CAF482528CF52003FC900 /* CKActivityDescriptionCardsRowView.swift in Sources */,
+				766D7A1E25379D3F006C80C1 /* OnboardingiCloudView.swift in Sources */,
 				765CAF272528CF52003FC900 /* PagerView.swift in Sources */,
 				765CAF402528CF52003FC900 /* CKActivityDescriptionDetailView.swift in Sources */,
 				765CAF242528CF52003FC900 /* WizardView.swift in Sources */,
@@ -1074,7 +1078,7 @@
 				766D79F025377CFC006C80C1 /* EmojiPickerView.swift in Sources */,
 				765CAF702528D18E003FC900 /* PurchaseModel.swift in Sources */,
 				765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */,
-				766D7A13253797C9006C80C1 /* OnboardingAgentView.swift in Sources */,
+				766D7A13253797C9006C80C1 /* OnboardingTaskPickerView.swift in Sources */,
 				765CAF232528CF52003FC900 /* ShareInviteView.swift in Sources */,
 				7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */,
 				765CAF9C2528DBC4003FC900 /* _QFamilyTabScene.swift in Sources */,

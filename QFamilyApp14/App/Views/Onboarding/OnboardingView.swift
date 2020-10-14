@@ -25,19 +25,38 @@ public struct OnboardingView: View {
     @State var cloudKitStateViewModel: CloudKitStateViewModel = CloudKitStateViewModel()
     @State var currentTabIndex: Int = 0
     
+    @State var adultName: String = ""
+    @State var adultEmoji: String = ""
+    
+    @State var childName: String = ""
+    @State var childEmoji: String = ""
+    
+    @State var initialTasks: [CKPublicActivityDescription] = [CKPublicActivityDescription]()
+    
     public var body: some View {
         
         TabView(selection: $currentTabIndex){
             OnboardingWelcomeView() {
                 currentTabIndex = 1
             }.tag(0)
-            OnboardingAdultInfoView() {
+            
+//            OnboardingiCloudView() {
+//                currentTabIndex = 2
+//            }.tag(1)
+            
+            OnboardingAdultInfoView(
+                
+            ) {
                 currentTabIndex = 2
             }.tag(1)
-            OnboardingChildInfoView() {
+            OnboardingChildInfoView(
+                
+            ) {
                 currentTabIndex = 3
             }.tag(2)
-            OnboardingAgentView(){
+            OnboardingTaskPickerView(
+                
+            ){
                 currentTabIndex = 4
             }.tag(3)
             OnboardingAllDoneView() {
