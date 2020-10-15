@@ -24,46 +24,79 @@ public struct OnboardingView: View {
     @State var networkStateViewModel: NetworkStateViewModel = NetworkStateViewModel()
     @State var cloudKitStateViewModel: CloudKitStateViewModel = CloudKitStateViewModel()
     @State var currentTabIndex: Int = 0
-    
-    @State var adultName: String = ""
-    @State var adultEmoji: String = ""
-    
-    @State var childName: String = ""
-    @State var childEmoji: String = ""
-    
+
     @State var initialTasks: [CKPublicActivityDescription] = [CKPublicActivityDescription]()
+
+    @State var parentName: String = ""
+    @State var parentEmoji: String = "🦉"
+    @State var isValidiCloudAccount: Bool = true
+
+    @State var devMessage: String?
+    
+    enum TabViewPage:Int {
+        case welcome = 0
+        case icloud
+        case adultInfo
+        case childInfo
+        case taskPicker
+        case done
+        
+    }
     
     public var body: some View {
         
-        TabView(selection: $currentTabIndex){
-            OnboardingWelcomeView() {
-                currentTabIndex = 1
-            }.tag(0)
+        VStack {
+            DevMessageView(devMessage: $devMessage)
             
-//            OnboardingiCloudView() {
-//                currentTabIndex = 2
-//            }.tag(1)
             
-            OnboardingAdultInfoView(
+            TabView(selection: $currentTabIndex){
+                OnboardingWelcomeView() {
+                    currentTabIndex = TabViewPage.icloud.rawValue
+                }.tag(TabViewPage.welcome.rawValue)
                 
-            ) {
-                currentTabIndex = 2
-            }.tag(1)
-            OnboardingChildInfoView(
+                OnboardingiCloudView() {
+                    currentTabIndex = TabViewPage.adultInfo.rawValue
+                }.tag(TabViewPage.icloud.rawValue)
                 
-            ) {
-                currentTabIndex = 3
-            }.tag(2)
-            OnboardingTaskPickerView(
+                OnboardingAdultInfoView(
+                    parentName: $parentName,
+                    parentEmoji: $parentEmoji
+                ) {
+                    currentTabIndex = TabViewPage.done.rawValue
+                }.tag(TabViewPage.adultInfo.rawValue)
                 
-            ){
-                currentTabIndex = 4
-            }.tag(3)
-            OnboardingAllDoneView() {
-                self.close()
-            }.tag(4)
+                //            OnboardingChildInfoView(
+                //            ) {
+                //                currentTabIndex = TabViewPage.taskPicker.rawValue
+                //            }.tag(TabViewPage.childInfo.rawValue)
+                //
+                //            OnboardingTaskPickerView(
+                //            ){
+                //                currentTabIndex = TabViewPage.done.rawValue
+                //            }.tag(TabViewPage.taskPicker.rawValue)
+                
+                OnboardingAllDoneView() {
+                    
+                    if self.parentName.isEmpty {
+                        devMessage = "Parent Name is empty"
+                        return
+                    }
+                    
+                    if self.parentEmoji.isEmpty {
+                        devMessage = "Parent Emoji is empty"
+                        return
+                    }
+                    
+                    if self.isValidiCloudAccount == false {
+                        devMessage = "invalid iCloud account"
+                        return
+                    }
+                    
+                    self.close()
+                }.tag(TabViewPage.done.rawValue)
+            }
+            .tabViewStyle(PageTabViewStyle())
         }
-        .tabViewStyle(PageTabViewStyle())
     }
     
     func close() {

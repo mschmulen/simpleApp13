@@ -83,6 +83,15 @@ struct QFamilyApp14App: App {
                     print("host: \(String(describing: url.host))") // main
                     print("path: \(url.path)") // /rewards
                     print("components: \(url.pathComponents)") // ["/", "rewards", "12345"]
+                }.onAppear {
+                    print( "TopView on Appear")
+                    
+//                    if familyKitAppState.hasAdult {
+//                         appState.topView = .mainView
+//                    } else {
+//                        appState.topView = .onboardingView
+//                    }
+                    
                 }
         }//end WindowGroup
         .onChange(of: scenePhase) { newPhase in

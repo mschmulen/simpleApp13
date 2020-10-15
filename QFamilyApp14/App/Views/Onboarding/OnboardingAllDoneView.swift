@@ -18,14 +18,16 @@ struct OnboardingAllDoneView: View {
         ZStack {
             backgroundColor
             VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.closeCallback()
-                    }) {
-                        Text("CLOSE !")
-                    }.padding()
-                }
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//                        self.closeCallback()
+//                    }) {
+//                        Text("CLOSE !")
+//                    }.padding()
+//                }
+                
+                Spacer()
                 Text("Get Started").padding()
                 Spacer()
                 HStack {
@@ -33,7 +35,7 @@ struct OnboardingAllDoneView: View {
                     Button(action: {
                         self.closeCallback()
                     }) {
-                        Text("DONE !")
+                        Text("Lets get started")
                     }.padding()
                 }
                 Spacer()

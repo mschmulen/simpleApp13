@@ -21,21 +21,10 @@ class AppState: ObservableObject {
     
     var currentAppInfo: AppModel = AppModel()
     
-    //@Published var topView: TopView = TopView.mainView
-    @Published var topView: TopView = TopView.onboardingView
-
-//        {
-//        willSet {
-//            updateChanges()
-//        }
-//    }
+    @Published var topView: TopView = TopView.mainView
+    //@Published var topView: TopView = TopView.onboardingView
     
     @Published var selectedTab: Int = TabViewIndex.you.rawValue
-//        {
-//        willSet {
-//            updateChanges()
-//        }
-//    }
     
     enum DeepLink {
         case none

@@ -47,23 +47,29 @@ struct RewardDefinitionDetailView: View {
                     }
                     
                     VStack {
-                        Text( "name: \(self.model.name ?? "")")
-                        Text( "info: \(self.model.info ?? "")")
+                        Text( "\(self.model.name ?? "")")
+                            .font(Font.DefaultHeader)
+                            .padding()
+                    }
+                    
+                    VStack {
+                        Text("Reward Info:")
+                            .font(Font.DefaultBody)
+                        Text( "\(self.model.info ?? "")")
+                            .font(Font.DefaultBody)
+                            .padding()
+                    }
+                    
+                    VStack {
                         Text( "bucks: \(self.model.bucks)")
+                            .font(Font.DefaultBody)
                     }
                     .padding()
                     .padding(.bottom, self.keyboard.currentHeight)
                 }//end List
             }
-             .navigationBarItems(trailing: trailingButton)
         }.onAppear {
             
-        }
-    }
-    
-    private var trailingButton: some View {
-        NavigationLink(destination: RewardDefinitionEditDetailView(model: model)) {
-            Text("EDIT")
         }
     }
     
@@ -112,6 +118,12 @@ struct RewardDefinitionDetailView: View {
         }
     }
     
+}//end RewardDefinitionDetailView
 
-    
-}//end StoreItemDefinitionDetailView
+struct RewardDefinitionDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        RewardDefinitionDetailView(
+            model: CKBuckRewardDefinitionModel.mock
+        )
+    }
+}

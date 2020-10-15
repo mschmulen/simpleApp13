@@ -56,8 +56,8 @@ public struct PlayerSelectView: View {
                     }) {
                         HStack{
                             Image(systemName: "plus")
-                            Text("New Player")
-                        }
+                            Text("Add User to this Account")
+                        }.padding()
                     }
                 }
                 
@@ -81,6 +81,17 @@ public struct PlayerSelectView: View {
                         }
                     // } end Section
                 }//end List
+                
+                if showNewPlayer == false {
+                    NavigationLink(
+                        destination: InviteUserView()
+                    ) {
+                        HStack{
+                            Image(systemName: "plus")
+                            Text("Invite User")
+                        }.padding()
+                    }
+                }
                 
                 VStack {
                     if familyKitAppState.isSimulator == true {

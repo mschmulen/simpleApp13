@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct OnboardingAdultInfoView: View {
+
+    @Binding var parentName: String
+    @Binding var parentEmoji: String
     
     var nextCallback: ()->Void
     
     var backgroundColor = SemanticAppColor.random
     
-    @State var parentName: String = ""
-    
+
     var body: some View {
         ZStack {
             backgroundColor
@@ -30,12 +32,21 @@ struct OnboardingAdultInfoView: View {
                 .padding()
                 
                 Text("Please enter your name")
-
+                
                 TextField("parent name", text: $parentName)
                     .foregroundColor(.black)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     //.padding(.all, 20)
                     .padding()
+                
+                Text("Pick an emjoi")
+                
+                TextField("emoji", text: $parentEmoji)
+                    .foregroundColor(.black)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    //.padding(.all, 20)
+                    .padding()
+                
                 Spacer()
                 
                 if !parentName.isEmpty {
@@ -57,7 +68,7 @@ struct OnboardingAdultInfoView: View {
 
 struct OnboardingAdultInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingAdultInfoView(nextCallback: {
+        OnboardingAdultInfoView(parentName: .constant(""), parentEmoji: .constant("🦉"), nextCallback: {
             print( "next")
         })
     }

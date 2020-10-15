@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		761AAA372528CA1E00AA4FC8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761AAA362528CA1E00AA4FC8 /* CloudKit.framework */; };
 		761AAA392528CA2C00AA4FC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761AAA382528CA2C00AA4FC8 /* StoreKit.framework */; };
+		762D583C2538CD4900246BC5 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D583B2538CD4900246BC5 /* Font+Custom.swift */; };
 		765CAF062528CF52003FC900 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAE9F2528CF51003FC900 /* AppState.swift */; };
 		765CAF072528CF52003FC900 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */; };
 		765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA32528CF51003FC900 /* AudioRecorder.swift */; };
@@ -96,6 +97,8 @@
 		766D7A0E25378997006C80C1 /* OnboardingAllDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */; };
 		766D7A13253797C9006C80C1 /* OnboardingTaskPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A12253797C9006C80C1 /* OnboardingTaskPickerView.swift */; };
 		766D7A1E25379D3F006C80C1 /* OnboardingiCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A1D25379D3F006C80C1 /* OnboardingiCloudView.swift */; };
+		766D7A4B2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A4A2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift */; };
+		766D7A5C2538BD25006C80C1 /* QFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766D7A5B2538BD25006C80C1 /* QFTextField.swift */; };
 		7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */; };
 		7685B473252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */; };
 		7685B480252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7685B47F252E09AD00AE0F0D /* ActivityDescriptionWizardViewDescription.swift */; };
@@ -193,6 +196,7 @@
 		761AAA322528CA1400AA4FC8 /* QFamilyApp14.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QFamilyApp14.entitlements; sourceTree = "<group>"; };
 		761AAA362528CA1E00AA4FC8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		761AAA382528CA2C00AA4FC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		762D583B2538CD4900246BC5 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
 		765CAE9F2528CF51003FC900 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		765CAEA32528CF51003FC900 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
@@ -280,6 +284,8 @@
 		766D7A0D25378997006C80C1 /* OnboardingAllDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAllDoneView.swift; sourceTree = "<group>"; };
 		766D7A12253797C9006C80C1 /* OnboardingTaskPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTaskPickerView.swift; sourceTree = "<group>"; };
 		766D7A1D25379D3F006C80C1 /* OnboardingiCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingiCloudView.swift; sourceTree = "<group>"; };
+		766D7A4A2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _RewardDefinitionDetailEditView.swift; sourceTree = "<group>"; };
+		766D7A5B2538BD25006C80C1 /* QFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QFTextField.swift; sourceTree = "<group>"; };
 		7685B455252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityDescriptionWizardView.swift; sourceTree = "<group>"; };
 		7685B463252D369C00AE0F0D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7685B472252E096500AE0F0D /* ActivityDescriptionWizardViewEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDescriptionWizardViewEnd.swift; sourceTree = "<group>"; };
@@ -359,10 +365,11 @@
 		765CAE9E2528CF51003FC900 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				7685B4FB252E34B700AE0F0D /* Utils */,
 				765CAE9F2528CF51003FC900 /* AppState.swift */,
 				765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */,
 				765CAF8A2528D45C003FC900 /* ModalView.swift */,
+				7685B4FB252E34B700AE0F0D /* Utils */,
+				766D7A5A2538BD00006C80C1 /* ViewComponents */,
 				765CAEA12528CF51003FC900 /* Modules */,
 				765CAEAC2528CF51003FC900 /* Views */,
 				765CAF022528CF51003FC900 /* Helper */,
@@ -442,6 +449,8 @@
 			children = (
 				765CAEAF2528CF51003FC900 /* MainRewardsView.swift */,
 				765CAEB22528CF51003FC900 /* RewardDefinitionDetailView.swift */,
+				765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */,
+				766D7A4A2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift */,
 				765CAEB42528CF51003FC900 /* RewardDetailView.swift */,
 				76AC37E2252F7B580022AA1C /* RewardDefinitionCardView.swift */,
 				76AC37E6252F7BA60022AA1C /* RewardCardView.swift */,
@@ -654,6 +663,15 @@
 			path = QfamilyWidget;
 			sourceTree = "<group>";
 		};
+		766D7A5A2538BD00006C80C1 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				766D7A5B2538BD25006C80C1 /* QFTextField.swift */,
+				762D583B2538CD4900246BC5 /* Font+Custom.swift */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
 		7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,7 +693,6 @@
 				7685B4AB252E173B00AE0F0D /* RewardDefinitionWizardViewInfo.swift */,
 				7685B4B1252E173C00AE0F0D /* RewardDefinitionWizardViewEnd.swift */,
 				7685B4B0252E173C00AE0F0D /* RewardDefinitionWizardViewStart.swift */,
-				765CAEB52528CF51003FC900 /* RewardDefinitionEditDetailView.swift */,
 			);
 			path = NewRewardDefinitionWizardView;
 			sourceTree = "<group>";
@@ -1009,6 +1026,8 @@
 				765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */,
 				7685B505252E506300AE0F0D /* ViewExperimental.swift in Sources */,
 				765CAF1A2528CF52003FC900 /* PurchaseView.swift in Sources */,
+				762D583C2538CD4900246BC5 /* Font+Custom.swift in Sources */,
+				766D7A5C2538BD25006C80C1 /* QFTextField.swift in Sources */,
 				765CAF4D2528CF52003FC900 /* DevMessageView.swift in Sources */,
 				765CAF192528CF52003FC900 /* AgentDetailView.swift in Sources */,
 				7685B4FD252E34C200AE0F0D /* UIApplication+endEditing.swift in Sources */,
@@ -1016,6 +1035,7 @@
 				765CAF4E2528CF52003FC900 /* SemanticAppColor.swift in Sources */,
 				765CAF1B2528CF52003FC900 /* PlayersListView.swift in Sources */,
 				765CAF552528CF52003FC900 /* LargeButton.swift in Sources */,
+				766D7A4B2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift in Sources */,
 				765CAF1E2528CF52003FC900 /* CKUserView.swift in Sources */,
 				7685B516252E682200AE0F0D /* _GameScene.swift in Sources */,
 				765CAF142528CF52003FC900 /* RewardDetailView.swift in Sources */,

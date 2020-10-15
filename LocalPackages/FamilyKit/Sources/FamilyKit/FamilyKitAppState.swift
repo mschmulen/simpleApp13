@@ -39,7 +39,19 @@ public class FamilyKitAppState: ObservableObject {
     
     
     // Share stuff
-    public let shareService:CKShareService
+    public let shareService: CKShareService
+    
+//    public var hasAdult: Bool {
+//        // TODO make sure they have an adult
+//        //return true
+//        for player in self.playerService.models {
+//            if player.isAdult{
+//                return true
+//            }
+//        }
+//        return false
+//        //ForEach(self.familyKitAppState.playerService.models) { model in
+//    }
     
     public init(container: CloudKitContainer) {
         

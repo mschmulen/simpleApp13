@@ -92,7 +92,7 @@ struct MainRewardsView: View {
                         //List {
                         Section(header: Text("available rewards")) {
                             ForEach( storeItemDefinitionService.models) { model in
-                                NavigationLink(destination: RewardDefinitionEditDetailView(model: model) ) {
+                                NavigationLink(destination: RewardDefinitionDetailView(model: model) ) {
                                     RewardDefinitionCardView(model:model)
                                         .padding()
                                 }
