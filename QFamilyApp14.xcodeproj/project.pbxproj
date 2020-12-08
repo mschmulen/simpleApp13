@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		761AAA372528CA1E00AA4FC8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761AAA362528CA1E00AA4FC8 /* CloudKit.framework */; };
 		761AAA392528CA2C00AA4FC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761AAA382528CA2C00AA4FC8 /* StoreKit.framework */; };
-		762D583C2538CD4900246BC5 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D583B2538CD4900246BC5 /* Font+Custom.swift */; };
+		762D583C2538CD4900246BC5 /* Typography+Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D583B2538CD4900246BC5 /* Typography+Font+Custom.swift */; };
 		765CAF062528CF52003FC900 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAE9F2528CF51003FC900 /* AppState.swift */; };
 		765CAF072528CF52003FC900 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */; };
 		765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAEA32528CF51003FC900 /* AudioRecorder.swift */; };
@@ -127,6 +127,8 @@
 		76DF84352528C7B900289EF4 /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84342528C7B900289EF4 /* DrawingKit */; };
 		76DF84372528C7B900289EF4 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84362528C7B900289EF4 /* FamilyKit */; };
 		76DF84392528C7B900289EF4 /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84382528C7B900289EF4 /* SimpleGames */; };
+		C9265D0D25800219004F08E9 /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9265D0C25800219004F08E9 /* Color+Custom.swift */; };
+		C9265D1725800442004F08E9 /* Animation+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9265D1625800442004F08E9 /* Animation+Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,7 +198,7 @@
 		761AAA322528CA1400AA4FC8 /* QFamilyApp14.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QFamilyApp14.entitlements; sourceTree = "<group>"; };
 		761AAA362528CA1E00AA4FC8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		761AAA382528CA2C00AA4FC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		762D583B2538CD4900246BC5 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
+		762D583B2538CD4900246BC5 /* Typography+Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Typography+Font+Custom.swift"; sourceTree = "<group>"; };
 		765CAE9F2528CF51003FC900 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		765CAEA02528CF51003FC900 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		765CAEA32528CF51003FC900 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
@@ -320,6 +322,8 @@
 		76DF84272528BC7300289EF4 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
 		76DF842B2528BC8E00289EF4 /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76DF842F2528BC9100289EF4 /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
+		C9265D0C25800219004F08E9 /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
+		C9265D1625800442004F08E9 /* Animation+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -667,7 +671,9 @@
 			isa = PBXGroup;
 			children = (
 				766D7A5B2538BD25006C80C1 /* QFTextField.swift */,
-				762D583B2538CD4900246BC5 /* Font+Custom.swift */,
+				762D583B2538CD4900246BC5 /* Typography+Font+Custom.swift */,
+				C9265D0C25800219004F08E9 /* Color+Custom.swift */,
+				C9265D1625800442004F08E9 /* Animation+Custom.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -1026,7 +1032,7 @@
 				765CAF082528CF52003FC900 /* AudioRecorder.swift in Sources */,
 				7685B505252E506300AE0F0D /* ViewExperimental.swift in Sources */,
 				765CAF1A2528CF52003FC900 /* PurchaseView.swift in Sources */,
-				762D583C2538CD4900246BC5 /* Font+Custom.swift in Sources */,
+				762D583C2538CD4900246BC5 /* Typography+Font+Custom.swift in Sources */,
 				766D7A5C2538BD25006C80C1 /* QFTextField.swift in Sources */,
 				765CAF4D2528CF52003FC900 /* DevMessageView.swift in Sources */,
 				765CAF192528CF52003FC900 /* AgentDetailView.swift in Sources */,
@@ -1095,7 +1101,9 @@
 				765CAF712528D18E003FC900 /* StoreConfig.swift in Sources */,
 				765CAF062528CF52003FC900 /* AppState.swift in Sources */,
 				765CAF122528CF52003FC900 /* RewardDefinitionDetailView.swift in Sources */,
+				C9265D1725800442004F08E9 /* Animation+Custom.swift in Sources */,
 				766D79F025377CFC006C80C1 /* EmojiPickerView.swift in Sources */,
+				C9265D0D25800219004F08E9 /* Color+Custom.swift in Sources */,
 				765CAF702528D18E003FC900 /* PurchaseModel.swift in Sources */,
 				765CAF352528CF52003FC900 /* CKActivityActiveListView.swift in Sources */,
 				766D7A13253797C9006C80C1 /* OnboardingTaskPickerView.swift in Sources */,
