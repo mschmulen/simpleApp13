@@ -71,6 +71,10 @@ public final class CKActivityModuleModel: CKModel, ObservableObject {
         return name
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public static var mock: CKActivityModuleModel {
         let model = CKActivityModuleModel(
             name: "photo",

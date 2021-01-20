@@ -32,7 +32,7 @@ struct MainYouView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        return NavigationView {
             VStack {
                 DevMessageView(devMessage: $devMessage)
                 
@@ -87,26 +87,6 @@ struct MainYouView: View {
                         activeActivities
                     }
                 }
-                
-//                ScrollView {
-//                    LazyVStack {
-//                        ForEach(ActivityCategory.allCases.filter {$0 != .none }, id: \.self) { category in
-//                            // Section(header: self.sectionHeader(title: "\(category.rawValue)", showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false))
-//                            Section() {
-//                                CKActivityDescriptionCardsRowView(
-//                                    categoryName: "\(category.rawValue) Activities:",
-//                                    items: self.activityDescriptionService.models.filter { $0.category == category },
-//                                    isPrivate: true,
-//                                    showAdd: self.familyKitAppState.currentPlayerModel?.isAdult ?? false
-//                                )
-//                            }
-//                            .listRowInsets(EdgeInsets())
-//                        }
-//                        // this users active activities
-//                        activeActivities
-//                    }//end LazyVStack
-//                }//end ScrollView
-                
                 Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
             }//end VStack
@@ -134,14 +114,12 @@ struct MainYouView: View {
             .navigationBarTitle("\(familyKitAppState.currentPlayerModel?.name ?? "none")")
             .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
             .toolbar{
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Text("")
                         trailingButton
                     }
                 }
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack {
                         Text("")
@@ -149,7 +127,7 @@ struct MainYouView: View {
                     }
                 }
             }//end .toolbar
-        }
+        }//end NavigationView
     }//end body
     
     var wizardView: some View {
@@ -211,8 +189,6 @@ struct MainYouView: View {
             }
         }
     }
-    
-    
     
     private var trailingButton: some View {
         Group {

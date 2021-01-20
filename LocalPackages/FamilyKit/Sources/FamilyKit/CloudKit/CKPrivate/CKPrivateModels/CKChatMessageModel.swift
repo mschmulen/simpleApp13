@@ -49,6 +49,10 @@ public struct CKChatMessageModel: CKModel {
         return model
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public init(
     ){
         self.message = nil

@@ -21,34 +21,18 @@ struct CKActivityDescriptionDetailView: View {
     
     @State var devMessage: String?
     
-    @State var model: CKActivityDescriptionModel
+     @State var model: CKActivityDescriptionModel
+//    @ObservedObject var model: CKActivityDescriptionModel
+    
     @State private var coverPhotoImage:UIImage?
     
-    var headerView: some View {
-        Group {
-            if coverPhotoImage == nil {
-                if model.emoji != nil {
-                    Text(model.emoji!)
-                } else {
-                    Text("~")
-                }
-            } else {
-                VStack {
-                    Image(uiImage: coverPhotoImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .clipped()
-                }
-            }
-        }
-    }
-    
     var body: some View {
-        VStack {
+        
+// model.update()
+        
+        return VStack {
             DevMessageView(devMessage: $devMessage)
             Group {
-                
                 headerView
                 
                 Text(model.name ?? "~")
@@ -95,22 +79,8 @@ struct CKActivityDescriptionDetailView: View {
                     .modifier(PrimaryLargeRegularLabel(color: .black))
                 Spacer()
             }
-            
             Spacer()
-            
-            // Lets move this to Nav bar
-//            NavigationLink(
-//                destination: NewActivityDescriptionWizardView(
-//                    model: model
-//                )
-//            ) {
-//                HStack {
-//                    Text("EDIT THIS ACTIVITY")
-//                }
-//                .foregroundColor(.blue)
-//            }
-//            Spacer()
-        }
+        }// end VStack
         .onAppear {
             // try and download the image
             if self.model.coverPhoto != nil {
@@ -123,8 +93,29 @@ struct CKActivityDescriptionDetailView: View {
                     }
                 }
             }
-        }
+        }//end .onAppear
     }//end body
+    
+    var headerView: some View {
+        Group {
+            if coverPhotoImage == nil {
+                if model.emoji != nil {
+                    Text(model.emoji!)
+                } else {
+                    Text("~")
+                }
+            } else {
+                VStack {
+                    Image(uiImage: coverPhotoImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 200)
+                        .clipped()
+                }
+            }
+        }
+    }
+    
     
 }//end CKActivityDetailView
 

@@ -36,6 +36,10 @@ public struct CKBuckRewardDefinitionModel: CKModel {
         return name
     }
 
+    public func update() {
+        print("todo")
+    }
+    
     public static var mock: CKBuckRewardDefinitionModel {
         var model = CKBuckRewardDefinitionModel()
         model.name = "mock store item"

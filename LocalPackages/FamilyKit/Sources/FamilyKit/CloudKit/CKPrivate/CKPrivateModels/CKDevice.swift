@@ -57,6 +57,10 @@ public struct CKDeviceModel: CKModel {
         return idfv
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public static var mock: CKDeviceModel {
         var model = CKDeviceModel(deviceModel: DeviceModel.mock)
         model.idfv = "mock idfv"

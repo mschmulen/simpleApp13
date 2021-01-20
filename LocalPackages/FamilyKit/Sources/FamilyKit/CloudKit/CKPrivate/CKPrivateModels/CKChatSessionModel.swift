@@ -47,6 +47,10 @@ public final class CKChatSessionModel: CKModel, ObservableObject {
         return model
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public init(
     ){
         self.name = nil

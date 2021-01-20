@@ -68,6 +68,10 @@ public struct CKBuckRewardModel: CKModel {
         return model
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public init(
         purchasingPlayer: CKPlayerModel,
         storeItemReference: CKBuckRewardDefinitionModel

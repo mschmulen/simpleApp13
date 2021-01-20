@@ -72,6 +72,10 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         }
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public static var mock: CKPlayerModel {
         let model = CKPlayerModel()
         model.name = "mock Adult"

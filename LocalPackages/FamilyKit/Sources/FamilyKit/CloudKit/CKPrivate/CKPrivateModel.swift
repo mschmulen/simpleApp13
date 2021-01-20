@@ -31,5 +31,6 @@ public protocol CKModel: Identifiable, Hashable {
     
     var title: String? { get }
     
+    func update()
     
 }

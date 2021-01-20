@@ -78,6 +78,10 @@ public final class CKActivityDescriptionModel: CKModel, ObservableObject {
         return name
     }
     
+    public func update() {
+        print("todo")
+    }
+    
     public static var mock: CKActivityDescriptionModel {
         let model = CKActivityDescriptionModel()
         model.name = "Get ready for bed"
