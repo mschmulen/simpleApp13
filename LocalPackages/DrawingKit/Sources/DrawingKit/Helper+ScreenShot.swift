@@ -22,6 +22,7 @@ public extension View {
 
 @available(iOS 13.0, *)
 public extension UIView {
+    
     func takeScreenshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, 0)
         self.layer.render(in: UIGraphicsGetCurrentContext()!)

@@ -77,8 +77,9 @@ struct DrawContainerView: View {
         screenShot: UIImage?
     ) {
         
+        print( "XXX saveCallback")
+        
         do {
-            
             // TODO: Move this to the Model code via extension
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
@@ -110,14 +111,56 @@ struct DrawContainerView: View {
                     self.devMessage = "upload failure \(error)"
                     self.showActivityIndicator = false
                 case .success(let updatedModel):
-                    DispatchQueue.main.async {
-                        self.showActivityIndicator = false
-                        if let activityAsset = updatedModel.activityAsset {
-                            self.model.activityAsset = activityAsset
+                    
+                    
+                    if let screenShot = screenShot {
+                        activityService.uploadPhotoAsset(
+                            model:model,
+                            image: screenShot,
+                            assetPropertyName: "coverPhoto"
+                        ) { result in
+                            switch result {
+                            case .failure( let error):
+                                print( "XXX uploadFileAsset error \(error)")
+                                // DispatchQueue.main.async {
+                                // self.statusMessage = "There was an error uploading \(error)"
+                                // }
+                                
+                                DispatchQueue.main.async {
+                                    self.showActivityIndicator = false
+                                    if let activityAsset = updatedModel.activityAsset {
+                                        self.model.activityAsset = activityAsset
+                                    }
+                                    //self.presentationMode.wrappedValue.dismiss()
+                                    self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
+                                }
+                            case .success(_):
+                                print( "XXX upload success")
+                                
+                                DispatchQueue.main.async {
+                                    self.showActivityIndicator = false
+                                    if let activityAsset = updatedModel.activityAsset {
+                                        self.model.activityAsset = activityAsset
+                                    }
+                                    //self.presentationMode.wrappedValue.dismiss()
+                                    self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
+                                }
+                            }
                         }
-                        //self.presentationMode.wrappedValue.dismiss()
-                        self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showActivityIndicator = false
+                            if let activityAsset = updatedModel.activityAsset {
+                                self.model.activityAsset = activityAsset
+                            }
+                            //self.presentationMode.wrappedValue.dismiss()
+                            self.appState.goToScreen(deepLink: .tabFamily(recordName: nil, recordType: nil))
+                        }
+                        
                     }
+                    
+                    
+                    
                 }
             }
         } catch let error {
@@ -125,39 +168,36 @@ struct DrawContainerView: View {
             self.showActivityIndicator = false
         }
         
-        if let screenShot = screenShot {
-            saveScreenShot(screenShot: screenShot)
-        }
+        //        if let screenShot = screenShot {
+        //            saveScreenShot(screenShot: screenShot)
+        //        }
+        
     }
     
-    func saveScreenShot(screenShot:UIImage) {
-        
-        // TODO: Fix saveScreenShot so the cover image shows a thumbnail of the drawing
-        
-        activityService.uploadPhotoAsset(
-            model:model,
-            image: screenShot,
-            assetPropertyName: "coverPhoto"
-        ) { result in
-            switch result {
-            case .failure( let error):
-                print( "uploadFileAsset error \(error)")
-                //                    DispatchQueue.main.async {
-                //                        self.statusMessage = "There was an error uploading \(error)"
-            //                    }
-            case .success(_):
-                print( "upload success")
-                //                    self.statusMessage = "Reloading ..."
-                //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
-                //                        print( "result")
-                //                        DispatchQueue.main.async {
-                //                            self.presentationMode.wrappedValue.dismiss()
-                //                        }
-                //                    }
-            }
-        }
-        
-    }
+//    func saveScreenShot(screenShot:UIImage) {
+//        activityService.uploadPhotoAsset(
+//            model:model,
+//            image: screenShot,
+//            assetPropertyName: "coverPhoto"
+//        ) { result in
+//            switch result {
+//            case .failure( let error):
+//                print( "uploadFileAsset error \(error)")
+//            //                    DispatchQueue.main.async {
+//            //                        self.statusMessage = "There was an error uploading \(error)"
+//            //                    }
+//            case .success(_):
+//                print( "upload success")
+//            //                    self.statusMessage = "Reloading ..."
+//            //                    self.privateActiveChoreService.fetchSingle( model: self.model) { result in
+//            //                        print( "result")
+//            //                        DispatchQueue.main.async {
+//            //                            self.presentationMode.wrappedValue.dismiss()
+//            //                        }
+//            //                    }
+//            }
+//        }
+//    }
     
 }
 

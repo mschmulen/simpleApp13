@@ -25,11 +25,14 @@ struct DrawPreviewView: View {
     @Binding var showActivityIndicator: Bool
     @Binding var activityIndicatorMessage: String
     
-    @State var drawingState:DrawingState = DrawingState.mock
+    @State var drawingState: DrawingState = DrawingState.mock
     
     @State var showDrawingView:Bool = false
     @State var drawingPreview:Image?
     @State var dataMessage:String = "no data"
+    
+    @State var coverPhotoImage: Image?
+    let cardHeight: CGFloat = 200
     
     var body: some View {
         VStack {
@@ -39,20 +42,35 @@ struct DrawPreviewView: View {
                 if model.activityAsset == nil  {
                     Rectangle()
                         .fill(SemanticAppColor.random)
-                        .frame(width: 200, height: 200)
+                        .frame(width: cardHeight, height: cardHeight)
                         //.frame(width: geo.size.width, height: geo.size.height)
                         .onTapGesture {
                             self.showDrawingView.toggle()
-                    }
+                        }
                 } else {
                     Rectangle()
                         .fill(SemanticAppColor.random)
-                        .frame(width: 200, height: 200)
+                        .frame(width: cardHeight, height: cardHeight)
                         //.frame(width: geo.size.width, height: geo.size.height)
                         .onTapGesture {
                             self.showDrawingView.toggle()
-                    }
+                        }
                 }
+                
+                if coverPhotoImage != nil {
+                    coverPhotoImage!
+                        .renderingMode(.original)
+                        .resizable()
+                        .scaledToFill()
+                        //.frame(height: cardHeight)
+                        .frame(width: cardHeight, height: cardHeight)
+                        //.frame(minWidth: cardHeight, maxWidth: .infinity, minHeight: cardHeight, maxHeight: cardHeight)
+                        //.cornerRadius(5)
+                        .onTapGesture {
+                            self.showDrawingView.toggle()
+                        }
+                }
+                
                 VStack {
                     Text("DRAWING PREVIEW")
                         .foregroundColor(.white)
@@ -64,6 +82,7 @@ struct DrawPreviewView: View {
             }
         }.onAppear {
             self.loadPreview()
+            self.loadCoverImage()
         }
             //.sheet(isPresented: $showDrawingView, onDismiss: loadDrawingState) {
             .sheet(isPresented: $showDrawingView) {
@@ -112,6 +131,41 @@ struct DrawPreviewView: View {
             }
         }
     }
+    
+    func loadCoverImage() {
+        
+        if let resultAssetImage = self.model.resultAssetImage, let resultAssetImage_fileURL = resultAssetImage.fileURL {
+            do {
+                let imageData = try Data(contentsOf: resultAssetImage_fileURL)
+                if let loadedUIImage = UIImage(data: imageData) {
+                    self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                    return
+                }
+            } catch {
+                print("Error loading image : \(error)")
+                return
+            }
+        }
+        
+        if let coverPhotoAsset = self.model.coverPhoto, let coverPhotoAsset_fileURL = coverPhotoAsset.fileURL {
+            do {
+                let imageData = try Data(contentsOf: coverPhotoAsset_fileURL)
+                if let loadedUIImage = UIImage(data: imageData) {
+                    self.coverPhotoImage = Image(uiImage: loadedUIImage)
+                    return
+                }
+            } catch {
+                print("Error loading image : \(error)")
+                return
+            }
+        }
+        
+        if let emoji = self.model.emoji {
+            self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, size:60))
+        }
+        
+    }
+    
 }
 
 struct DrawPreviewView_Previews: PreviewProvider {

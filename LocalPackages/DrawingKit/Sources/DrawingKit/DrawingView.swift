@@ -22,23 +22,6 @@ public struct DrawingState: Codable {
     }
 }
 
-//public class DrawingState: ObservableObject, Codable {
-//
-//    public var layers: [ScribbleLayer]
-//    public var scribbles: [Scribble]
-//    public var currentScribble: Scribble
-//
-//    public static var mock:DrawingState {
-//        DrawingState()
-//    }
-//
-//    public init() {
-//        self.layers = [ScribbleLayer]()
-//        self.scribbles =  [Scribble]()
-//        self.currentScribble = Scribble()
-//    }
-//}
-
 @available(iOS 13.0, *)
 public struct DrawingView:View {
     
@@ -65,6 +48,13 @@ public struct DrawingView:View {
     func makeDrawPadView(_ geometry: GeometryProxy) -> some View {
         print(geometry.size.width, geometry.size.height)
         
+        print( "XXX self.frameSize \(self.frameSize)")
+        print( "XXX self.frameOrigin \(self.frameOrigin)")
+        
+        print( "XXX makeDrawPadView.geometry.size \(geometry.size)")
+        print( "XXX makeDrawPadView.frame.global \(geometry.frame(in: .global).origin)")
+        print( "XXX makeDrawPadView.frame.local \(geometry.frame(in: .local).origin)")
+        
         DispatchQueue.main.async {
             self.frameSize = geometry.size
             self.frameOrigin = geometry.frame(in: .global).origin
@@ -75,7 +65,6 @@ public struct DrawingView:View {
             currentColor: self.$currentColor,
             currentLineWidth: self.$currentLineWidth
         )
-        // .frame(width: geometry.size.width)
     }
     
     public var body: some View {
@@ -116,33 +105,19 @@ public struct DrawingView:View {
     
     func save() {
         // TODO: Take a screen shot of this view
+        print( "XXX save ")
+        print( "XXX DrawingView.frameOrigin: \(self.frameOrigin)")
+        print( "XXX DrawingView.frameSize: \(self.frameSize)")
         
-//        let image = self.takeScreenshot(
-//            origin: drawPad.frame(in: .global).origin,
-//            size: drawPad.size
-//        )
+        let frame = CGRect(x: self.frameOrigin.x, y: self.frameOrigin.y, width: frameSize.width, height: frameSize.height)
+        //screenShotImage = self.takeScreenshot(frame: frame, afterScreenUpdates: true)
+        screenShotImage = drawPad.takeScreenshot(frame: frame, afterScreenUpdates: true)
         
-//        DispatchQueue.main.async {
-            
-        print( "frameOrigin: \(self.frameOrigin)")
-        print( "frameSize: \(self.frameSize)")
-            
         if let image = screenShotImage {
             self.saveCallback?(self.drawingState, image)
         } else {
             self.saveCallback?(self.drawingState, nil)
         }
-        
-//            if let image = self.drawPad.takeScreenshot(
-//                origin: self.frameOrigin,
-//                size: self.frameSize
-//                ) {
-//                self.saveCallback?(self.drawingState, image)
-//            } else {
-//                self.saveCallback?(self.drawingState, nil)
-//            }
-//        }
-        
     }
 }
 

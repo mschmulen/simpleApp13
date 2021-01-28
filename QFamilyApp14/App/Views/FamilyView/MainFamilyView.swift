@@ -31,12 +31,7 @@ struct MainFamilyView: View {
     let cardSize: CGFloat = 50
     let cardRadius: CGFloat = 20
     
-    //@State var playerFilteredActivities: [CKActivityModel] = [CKActivityModel]()
-    
     @State var playerFilter = MainFamilyPlayerFilterView.PlayerFilter.none
-    
-    //@State var showActivityStatusFilter: Bool = false
-    //@State var activityStatusFilter = ActivityStatus.active
     
     @State var deepLinkModel : CKActivityModel?
     
