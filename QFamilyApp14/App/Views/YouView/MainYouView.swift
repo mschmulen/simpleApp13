@@ -64,11 +64,12 @@ struct MainYouView: View {
                                 }
                             }
                         }//end ForEach
-                        
-                        activeActivities
-                        
                     }//end LazyVGrid
+                    
+                    activeActivities
+
                 }//end ScrollView
+                
                 Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
             }//end VStack
@@ -163,18 +164,6 @@ struct MainYouView: View {
     
     var activeActivities: some View {
         Section() {
-            
-            //            CKActivityActiveRowView(
-            //                categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
-            //                items: activityService.models.filter({ (model) -> Bool in
-            //                    if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
-            //                        return true
-            //                    } else {
-            //                        return false
-            //                    }
-            //                })
-            //            )
-            
             VStack(alignment: .leading) {
                 Text("Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))")
                     .font(.headline)
@@ -183,7 +172,6 @@ struct MainYouView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top, spacing: 0) {
-                        
                         ForEach(activityService.models.filter({ (model) -> Bool in
                             if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
                                 return true
@@ -212,14 +200,16 @@ struct MainYouView: View {
                                     Text("No Context Action")
                                 }
                             }
-                        }
-                    }
-                }
+                        }//end ForEach
+                    }// end HStack
+                }//end ScrollView
+                .frame(maxWidth: .infinity)
                 .frame(height: 185)
             }//end VStack
             .frame(maxWidth: .infinity)
         }//end Section
-        .listRowInsets(EdgeInsets())
+        .frame(maxWidth: .infinity)
+//        .listRowInsets(EdgeInsets())
     }
     
     func sectionHeader(title:String, showAdd:Bool) -> some View {
