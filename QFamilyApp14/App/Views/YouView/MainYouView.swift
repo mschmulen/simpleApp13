@@ -24,7 +24,6 @@ struct MainYouView: View {
     @State var devMessage: String?
     
     @State var showAgent = false
-    @State var showNewActivityDescriptionWizardViewSheet = false
     
     let columns = [
         // make the grid to fit in as many items per row as possible, using a minimum size of 80 points each
@@ -50,17 +49,18 @@ struct MainYouView: View {
                     }
                 }
                 
-                if let currentPlayer = self.familyKitAppState.currentPlayerModel {
-                    if currentPlayer.isAdult {
-                        Button(action: {
-                            showNewActivityDescriptionWizardViewSheet.toggle()
-                        }) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                Text("New Activity Description")
-                            }
-                            .padding()// .trailing, 20)
+                if let currentPlayer = self.familyKitAppState.currentPlayerModel, currentPlayer.isAdult {
+                    NavigationLink(
+                        destination: NewActivityDescriptionWizardView (
+                            model: CKActivityDescriptionModel()
+                        )
+                    ) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("New Activity Description")
                         }
+                        .padding(.top, 4)
+                        .padding(.bottom, 2)
                     }
                 }
                 
@@ -90,11 +90,6 @@ struct MainYouView: View {
                 Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
             }//end VStack
-            .sheet(isPresented: $showNewActivityDescriptionWizardViewSheet) {
-                NewActivityDescriptionWizardView (
-                    model: CKActivityDescriptionModel()
-                )
-            }
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
                 //self.devMessage = "silent Push! DB changed"
@@ -129,26 +124,6 @@ struct MainYouView: View {
             }//end .toolbar
         }//end NavigationView
     }//end body
-    
-    var wizardView: some View {
-        VStack  {
-            if let currentPlayer = self.familyKitAppState.currentPlayerModel {
-                if currentPlayer.isAdult {
-                    Button(action: {
-                        showNewActivityDescriptionWizardViewSheet.toggle()
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("New Activity Description")
-                        }
-                        .padding()// .trailing, 20)
-                    }
-                }
-            } else {
-                EmptyView()
-            }
-        }
-    }
     
     var activeActivities: some View {
         Section() {
@@ -209,7 +184,7 @@ struct MainYouView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-            PlayerSelectView()
+            PlayerSelectView(backgroundColor: .constant(SemanticAppColor.random))
                 .environment(\.window, window)
                 .environmentObject(familyKitAppState)
         ){

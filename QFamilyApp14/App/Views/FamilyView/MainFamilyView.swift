@@ -253,7 +253,7 @@ struct MainFamilyView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-                        PlayerSelectView()
+                        PlayerSelectView(backgroundColor: .constant(SemanticAppColor.random))
                         .environment(\.window, window)
                         .environmentObject(familyKitAppState)
                         .environmentObject(activityDescriptionService)

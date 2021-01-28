@@ -9,11 +9,10 @@
 import SwiftUI
 import CloudKit
 
-
 public struct PlayerSelectView: View {
     
     @Environment(\.presentationMode) var presentationMode
-
+    
     @EnvironmentObject var familyKitAppState: FamilyKitAppState
     
     @EnvironmentObject var activityDescriptionService: CKPrivateModelService<CKActivityDescriptionModel>
@@ -27,13 +26,11 @@ public struct PlayerSelectView: View {
     
     @State var showNewPlayer: Bool = false
     
+    @Binding var backgroundColor: Color
+    
     public var body: some View {
         NavigationView {
             VStack {
-                
-//                if currentPlayerRecordIDRecordName != nil {
-//                    Text("currentPlayerRecordIDRecordName: \(currentPlayerRecordIDRecordName ?? "~")")
-//                }
                 if errorMessage != nil {
                     Text(errorMessage!)
                         .foregroundColor(.red)
@@ -47,6 +44,7 @@ public struct PlayerSelectView: View {
                 
                 Text("Who is Playing")
                     .font(.system(size: 27, weight: .medium, design: .rounded))
+                    .foregroundColor(.white)
                 
                 if showNewPlayer == true {
                     NewPlayerView(showNewPlayer: $showNewPlayer)
@@ -56,30 +54,29 @@ public struct PlayerSelectView: View {
                     }) {
                         HStack{
                             Image(systemName: "plus")
+                                .foregroundColor(.white)
                             Text("Add User to this Account")
+                                .foregroundColor(.white)
                         }.padding()
                     }
                 }
                 
                 List {
-                //LazyVStack {
-                    // Section(header: Text("family")) {
-                        ForEach(self.familyKitAppState.playerService.models) { model in
-                            Button(action: {
-                                // currentPlayerRecordIDRecordName = model.recordID?.recordName
-                                self.familyKitAppState.setCurrentPlayer(
-                                    playerModel: model
-                                )
-                                self.presentationMode.wrappedValue.dismiss()
-                            }) {
-                                HStack {
-                                    Text("\(model.emoji ?? "~")")
-                                    Text("\(model.name ?? "~")")
-                                    Text( "\(model.isAdult ? "(Adult)": "(Kid)")")
-                                }
+                    ForEach(self.familyKitAppState.playerService.models) { model in
+                        Button(action: {
+                            // currentPlayerRecordIDRecordName = model.recordID?.recordName
+                            self.familyKitAppState.setCurrentPlayer(
+                                playerModel: model
+                            )
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack {
+                                Text("\(model.emoji ?? "~")")
+                                Text("\(model.name ?? "~")")
+                                Text( "\(model.isAdult ? "(Adult)": "(Kid)")")
                             }
                         }
-                    // } end Section
+                    }
                 }//end List
                 
                 if showNewPlayer == false {
@@ -88,7 +85,9 @@ public struct PlayerSelectView: View {
                     ) {
                         HStack{
                             Image(systemName: "plus")
+                                .foregroundColor(.white)
                             Text("Invite User")
+                                .foregroundColor(.white)
                         }.padding()
                     }
                 }
@@ -125,7 +124,7 @@ public struct PlayerSelectView: View {
                             self.activityDescriptionService.models.append( CKActivityDescriptionModel.mock )
                             self.activityService.models.append( CKActivityModel.mock )
                             self.activityService.models.append( CKActivityModel.mock )
-
+                            
                         }) {
                             Text("Simulator only \"mock Adult\"")
                                 .padding()
@@ -133,45 +132,48 @@ public struct PlayerSelectView: View {
                     }
                 }
                 
-//                VStack {
-//                    Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
-//                        .font(.caption)
-//                        .foregroundColor(.red)
-//                    Text("current player: \(familyKitAppState.currentPlayer.name)")
-//                        .font(.caption)
-//                        .foregroundColor(.red)
-//                    if familyKitAppState.isCloudKitAvailable {
-//                        Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
-//                            .font(.caption)
-//                            .foregroundColor(.red)
-//                    }
-//                    if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
-//                        Text("hasFileManagerUbiquityIdentityToken = true")
-//                            .font(.caption)
-//                            .foregroundColor(.green)
-//                    } else {
-//                        Text("hasFileManagerUbiquityIdentityToken = false")
-//                            .font(.caption)
-//                            .foregroundColor(.red)
-//                    }
-//                    Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
-//                        .font(.caption)
-//                        .foregroundColor(.red)
-//                }//end VStack
+                //                VStack {
+                //                    Text("network state: \(networkStateViewModel.pathStatus.friendlyString) \(networkStateViewModel.isExpensive ? "true" : "false")")
+                //                        .font(.caption)
+                //                        .foregroundColor(.red)
+                //                    Text("current player: \(familyKitAppState.currentPlayer.name)")
+                //                        .font(.caption)
+                //                        .foregroundColor(.red)
+                //                    if familyKitAppState.isCloudKitAvailable {
+                //                        Text("isCloudKitAvailable: \(familyKitAppState.isCloudKitAvailable ? "true" : "false")")
+                //                            .font(.caption)
+                //                            .foregroundColor(.red)
+                //                    }
+                //                    if cloudKitStateViewModel.hasFileManagerUbiquityIdentityToken == true {
+                //                        Text("hasFileManagerUbiquityIdentityToken = true")
+                //                            .font(.caption)
+                //                            .foregroundColor(.green)
+                //                    } else {
+                //                        Text("hasFileManagerUbiquityIdentityToken = false")
+                //                            .font(.caption)
+                //                            .foregroundColor(.red)
+                //                    }
+                //                    Text("accountStatus: \(cloudKitStateViewModel.accountStatus.friendlyString)")
+                //                        .font(.caption)
+                //                        .foregroundColor(.red)
+                //                }//end VStack
                 
             }//end VStack
-                .onAppear(perform: {
-                    
-//                    if let currentPlayerRecordIDRecordName = currentPlayerRecordIDRecordName {
-//                        print ("currentPlayerRecordIDRecordName \(currentPlayerRecordIDRecordName)")
-//                        
-//                        
-//                    }
-                })
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(backgroundColor)
+            .onAppear(perform: {
+                
+                //                    if let currentPlayerRecordIDRecordName = currentPlayerRecordIDRecordName {
+                //                        print ("currentPlayerRecordIDRecordName \(currentPlayerRecordIDRecordName)")
+                //
+                //
+                //                    }
+            })
         }//end Navigation
     }//end body
     
-    public init() {
+    public init(backgroundColor: Binding<Color>) {
+        self._backgroundColor = backgroundColor
     }
     
 }
@@ -184,3 +186,7 @@ struct PlayerSelectView_Previews: PreviewProvider {
         //PlayerSelectView()
     }
 }
+
+
+
+

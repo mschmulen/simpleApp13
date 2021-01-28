@@ -35,7 +35,7 @@ struct AdultUserView: View {
             
             Text("Bucks: \(familyKitAppState.currentPlayerModel?.bucks ?? 0 )")
             
-            NavigationLink(destination: PlayerSelectView()) {
+            NavigationLink(destination: PlayerSelectView(backgroundColor: .constant(SemanticAppColor.random))) {
                 Text("Change Current Player")
                     .foregroundColor(.blue)
             }

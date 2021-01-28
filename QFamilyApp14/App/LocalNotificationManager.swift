@@ -9,7 +9,6 @@
 import Foundation
 import UserNotifications
 
-
 enum LocalNotificationCategory: String {
     case openBucksTab
     case openChatTab
@@ -74,7 +73,7 @@ class LocalNotificationManager {
             
             UNUserNotificationCenter.current().add(request) { error in
                 guard error == nil else { return }
-                print("Scheduling notification with id: \(notification.id)")
+                // print("Scheduling notification with id: \(notification.id)")
             }
         }
     }

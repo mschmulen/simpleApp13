@@ -40,9 +40,24 @@ struct ContentView: View {
     
     @State var devMessage: String?
     @State var showNoiCloudConnection = false
+
+    @State var backgroundColor = SemanticAppColor.random
     
     @ViewBuilder
     var body: some View {
+//        ZStack {
+//
+//            Rectangle()
+//                .fill(backgroundColor)
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                //.cornerRadius(5)
+//            backgroundColor
+//                        .opacity(0.4)
+//                        .edgesIgnoringSafeArea(.all)
+            //backgroundColor
+              //  .frame(maxWidth: .infinity, maxHeight: .infinity)
+                //.background(backgroundColor)
+        
         Group {
             if devMessage != nil {
                 Text("\(devMessage!)")
@@ -73,14 +88,16 @@ struct ContentView: View {
                     .environmentObject(activityService)
             }//end .modalView
             else if appState.topView == .mainView {
-
                 if familyKitAppState.currentPlayerModel == nil {
                     VStack {
-                        PlayerSelectView()
+                        PlayerSelectView(backgroundColor: $backgroundColor)
                             .environmentObject(familyKitAppState)
                         Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                             .font(.caption)
+                            .foregroundColor(.white)
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(backgroundColor)
                 } else {
                     // we have a valid player
                     TabView(selection: $appState.selectedTab) {
@@ -144,7 +161,7 @@ struct ContentView: View {
             }//end .mainView
             //EmptyView()
         }//end group
-            .sheet(isPresented: $showNoiCloudConnection) {
+        .sheet(isPresented: $showNoiCloudConnection) {
                 iCloudSheetView(showSheetView: self.$showNoiCloudConnection)
         }
         .onAppear {
@@ -168,47 +185,3 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-// TODO: move to own file
-struct iCloudSheetView: View {
-    @Environment(\.window) var window: UIWindow?
-    @Environment(\.presentationMode) var presentationMode
-    
-    @Binding var showSheetView: Bool
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                
-                Text("Please login to your iCloud account")
-                
-                Button(action: {
-                    guard let generalSettingsURL = URL(string:"App-Prefs:root=General") else {
-                        return
-                    }
-                    
-                    guard let appSettingsURL = URL(string: UIApplication.openSettingsURLString) else {
-                        return
-                    }
-                    
-                    if UIApplication.shared.canOpenURL(appSettingsURL) {
-                        UIApplication.shared.open(generalSettingsURL, completionHandler: { (success) in
-                            print("Settings opened: \(success)") // Prints true
-                        })
-                    }
-                }) {
-                    VStack {
-                        Text("Open Settings")
-                        Text("and log in to your iCloud account")
-                    }
-                }
-            }
-            .navigationBarTitle(Text("iCloud"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                print("Dismissing sheet view...")
-                self.showSheetView = false
-            }) {
-                Text("Done").bold()
-            })
-        }
-    }
-}

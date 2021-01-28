@@ -27,8 +27,6 @@ struct MainRewardsView: View {
     
     @State var devMessage: String?
     
-    @State var showNewRewardDefinitionWizardViewSheet = false
-    
     let columns = [
         // make the grid to fit in as many items per row as possible, using a minimum size of 80 points each
         GridItem(.adaptive(minimum: 150))
@@ -57,22 +55,17 @@ struct MainRewardsView: View {
     
     var adultView: some View {
         VStack {
-            //            NavigationLink(
-            //                destination: RewardDefinitionEditDetailView(
-            //                    model: CKBuckRewardDefinitionModel()
-            //                )
-            //            ) {
-            //                Text("new reward definition")
-            //            }
-            
-            Button(action: {
-                showNewRewardDefinitionWizardViewSheet.toggle()
-            }) {
+            NavigationLink(
+                destination: NewRewardDefinitionWizardView (
+                    model: CKBuckRewardDefinitionModel()
+                )
+            ) {
                 HStack {
                     Image(systemName: "plus.circle.fill")
                     Text("New Reward Definition")
                 }
-                .padding()// .trailing, 20)
+                .padding(.top, 4)
+                .padding(.bottom, 2)
             }
         }
     }
@@ -116,11 +109,6 @@ struct MainRewardsView: View {
                 
                 Text("version \(AppModel().appShortVersion)(\(AppModel().appBuildVersion))")
                     .font(.caption)
-            }
-            .sheet(isPresented: $showNewRewardDefinitionWizardViewSheet) {
-                NewRewardDefinitionWizardView (
-                    model: CKBuckRewardDefinitionModel()
-                )
             }
             .onReceive(NotificationCenter.default.publisher(for: FamilyKitNotifications.CKRemoteModelChangedNotification)) { _ in
                 print("Notification.Name(CloudKitModelService) recieved")
@@ -195,7 +183,7 @@ struct MainRewardsView: View {
     
     private var leadingButton: some View {
         NavigationLink(destination:
-                        PlayerSelectView()
+                        PlayerSelectView(backgroundColor: .constant(SemanticAppColor.random))
                         .environment(\.window, window)
                         .environmentObject(familyKitAppState)
                         .environmentObject(activityDescriptionService)

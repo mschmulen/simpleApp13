@@ -85,8 +85,8 @@ public final class CKPlayerModel: CKModel, ObservableObject {
         model.emoji = "😀"
         model.playerType = .adult
         
-//        model.email = nil
-//        model.password = nil
+        // model.email = nil
+        // model.password = nil
         
         return model
     }

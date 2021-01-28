@@ -36,7 +36,6 @@ struct QFamilyApp14App: App {
     @State var customNotificationCenterDelegate: CustomNotificationCenterDelegate?
     
     var body: some Scene {
-        
         WindowGroup {
             ContentView()
                 .environmentObject(familyKitAppState)

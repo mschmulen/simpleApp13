@@ -13,8 +13,6 @@ import FamilyKit
 
 class AppState: ObservableObject {
     
-    //public let objectWillChange = ObservableObjectPublisher()
-    
     public let isSimulator: Bool
     
     private var serverConfig: StoreConfig
@@ -22,7 +20,6 @@ class AppState: ObservableObject {
     var currentAppInfo: AppModel = AppModel()
     
     @Published var topView: TopView = TopView.mainView
-    //@Published var topView: TopView = TopView.onboardingView
     
     @Published var selectedTab: Int = TabViewIndex.you.rawValue
     

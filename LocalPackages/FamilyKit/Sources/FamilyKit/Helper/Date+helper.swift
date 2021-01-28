@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+    
     var numberOfDaysOld: Double? {
         let calendar = Calendar.current
         let date1 = calendar.startOfDay(for: self)

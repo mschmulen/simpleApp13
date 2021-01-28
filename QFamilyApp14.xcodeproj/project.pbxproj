@@ -73,7 +73,7 @@
 		765CAF522528CF52003FC900 /* PrimaryLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF012528CF51003FC900 /* PrimaryLabel.swift */; };
 		765CAF532528CF52003FC900 /* LargeTextPillBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF032528CF51003FC900 /* LargeTextPillBox.swift */; };
 		765CAF542528CF52003FC900 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF042528CF51003FC900 /* ActivityIndicatorView.swift */; };
-		765CAF552528CF52003FC900 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF052528CF51003FC900 /* LargeButton.swift */; };
+		765CAF552528CF52003FC900 /* LargeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF052528CF51003FC900 /* LargeButtonStyle.swift */; };
 		765CAF6E2528D18E003FC900 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF692528D18E003FC900 /* ImageStore.swift */; };
 		765CAF6F2528D18E003FC900 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF6B2528D18E003FC900 /* AppModel.swift */; };
 		765CAF702528D18E003FC900 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765CAF6C2528D18E003FC900 /* PurchaseModel.swift */; };
@@ -127,6 +127,8 @@
 		76DF84352528C7B900289EF4 /* DrawingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84342528C7B900289EF4 /* DrawingKit */; };
 		76DF84372528C7B900289EF4 /* FamilyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84362528C7B900289EF4 /* FamilyKit */; };
 		76DF84392528C7B900289EF4 /* SimpleGames in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF84382528C7B900289EF4 /* SimpleGames */; };
+		873E2EC125C1E471005C02AE /* RoundedRectangleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E2EC025C1E471005C02AE /* RoundedRectangleButtonStyle.swift */; };
+		873E2ED125C2F858005C02AE /* iCloudSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E2ED025C2F858005C02AE /* iCloudSheetView.swift */; };
 		C9265D0D25800219004F08E9 /* Color+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9265D0C25800219004F08E9 /* Color+Custom.swift */; };
 		C9265D1725800442004F08E9 /* Animation+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9265D1625800442004F08E9 /* Animation+Custom.swift */; };
 /* End PBXBuildFile section */
@@ -262,7 +264,7 @@
 		765CAF012528CF51003FC900 /* PrimaryLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryLabel.swift; sourceTree = "<group>"; };
 		765CAF032528CF51003FC900 /* LargeTextPillBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTextPillBox.swift; sourceTree = "<group>"; };
 		765CAF042528CF51003FC900 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		765CAF052528CF51003FC900 /* LargeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		765CAF052528CF51003FC900 /* LargeButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeButtonStyle.swift; sourceTree = "<group>"; };
 		765CAF692528D18E003FC900 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		765CAF6B2528D18E003FC900 /* AppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		765CAF6C2528D18E003FC900 /* PurchaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
@@ -322,6 +324,8 @@
 		76DF84272528BC7300289EF4 /* FamilyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FamilyKit; path = LocalPackages/FamilyKit; sourceTree = "<group>"; };
 		76DF842B2528BC8E00289EF4 /* SimpleGames */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SimpleGames; path = LocalPackages/SimpleGames; sourceTree = "<group>"; };
 		76DF842F2528BC9100289EF4 /* DrawingKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DrawingKit; path = LocalPackages/DrawingKit; sourceTree = "<group>"; };
+		873E2EC025C1E471005C02AE /* RoundedRectangleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButtonStyle.swift; sourceTree = "<group>"; };
+		873E2ED025C2F858005C02AE /* iCloudSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSheetView.swift; sourceTree = "<group>"; };
 		C9265D0C25800219004F08E9 /* Color+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Custom.swift"; sourceTree = "<group>"; };
 		C9265D1625800442004F08E9 /* Animation+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -430,25 +434,25 @@
 		765CAEAC2528CF51003FC900 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				765CAEE82528CF51003FC900 /* YouView */,
+				765CAECE2528CF51003FC900 /* FamilyView */,
+				765CAEAD2528CF51003FC900 /* RewardsView */,
+				765CAECC2528CF51003FC900 /* FamilyChatView */,
 				76AC37DF252F79A70022AA1C /* Experimental */,
 				7685B49E252E16A200AE0F0D /* NewRewardDefinitionWizardView */,
 				7685B46E252E090B00AE0F0D /* NewActivityDescriptionWizardView */,
-				765CAEAD2528CF51003FC900 /* BucksStoreView */,
 				765CAEB62528CF51003FC900 /* AgentViews */,
 				765CAEBB2528CF51003FC900 /* UserView */,
 				765CAEC62528CF51003FC900 /* WIPStuff */,
-				765CAECC2528CF51003FC900 /* FamilyChatView */,
-				765CAECE2528CF51003FC900 /* FamilyView */,
 				765CAED62528CF51003FC900 /* CKActivityActiveViews */,
 				765CAEE62528CF51003FC900 /* Onboarding */,
-				765CAEE82528CF51003FC900 /* YouView */,
 				765CAEF92528CF51003FC900 /* Utility */,
 				765CAF002528CF51003FC900 /* ViewModifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		765CAEAD2528CF51003FC900 /* BucksStoreView */ = {
+		765CAEAD2528CF51003FC900 /* RewardsView */ = {
 			isa = PBXGroup;
 			children = (
 				765CAEAF2528CF51003FC900 /* MainRewardsView.swift */,
@@ -459,7 +463,7 @@
 				76AC37E2252F7B580022AA1C /* RewardDefinitionCardView.swift */,
 				76AC37E6252F7BA60022AA1C /* RewardCardView.swift */,
 			);
-			path = BucksStoreView;
+			path = RewardsView;
 			sourceTree = "<group>";
 		};
 		765CAEB62528CF51003FC900 /* AgentViews */ = {
@@ -630,9 +634,9 @@
 		765CAF022528CF51003FC900 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				873E2EBA25C1E433005C02AE /* ButtonStyle */,
 				765CAF032528CF51003FC900 /* LargeTextPillBox.swift */,
 				765CAF042528CF51003FC900 /* ActivityIndicatorView.swift */,
-				765CAF052528CF51003FC900 /* LargeButton.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -773,6 +777,7 @@
 				765CAFCC252906A3003FC900 /* CustomNotificationCenterDelegate.swift */,
 				765CAFC1252904A9003FC900 /* CustomAppDelegate.swift */,
 				765CAFD425291BAB003FC900 /* URL+Deeplink.swift */,
+				873E2ED025C2F858005C02AE /* iCloudSheetView.swift */,
 				76DF83E3252778ED00289EF4 /* ContentView.swift */,
 				765CAF9B2528DBC4003FC900 /* _QFamilyTabScene.swift */,
 				765CAF682528D18E003FC900 /* Stores */,
@@ -820,6 +825,15 @@
 				766D79D825377429006C80C1 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		873E2EBA25C1E433005C02AE /* ButtonStyle */ = {
+			isa = PBXGroup;
+			children = (
+				765CAF052528CF51003FC900 /* LargeButtonStyle.swift */,
+				873E2EC025C1E471005C02AE /* RoundedRectangleButtonStyle.swift */,
+			);
+			path = ButtonStyle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1040,7 +1054,7 @@
 				7685B485252E09BA00AE0F0D /* ActivityDescriptionWizardViewEmoji.swift in Sources */,
 				765CAF4E2528CF52003FC900 /* SemanticAppColor.swift in Sources */,
 				765CAF1B2528CF52003FC900 /* PlayersListView.swift in Sources */,
-				765CAF552528CF52003FC900 /* LargeButton.swift in Sources */,
+				765CAF552528CF52003FC900 /* LargeButtonStyle.swift in Sources */,
 				766D7A4B2538AEFB006C80C1 /* _RewardDefinitionDetailEditView.swift in Sources */,
 				765CAF1E2528CF52003FC900 /* CKUserView.swift in Sources */,
 				7685B516252E682200AE0F0D /* _GameScene.swift in Sources */,
@@ -1110,6 +1124,7 @@
 				765CAF232528CF52003FC900 /* ShareInviteView.swift in Sources */,
 				7685B4B3252E173C00AE0F0D /* NewRewardDefinitionWizardView.swift in Sources */,
 				765CAF9C2528DBC4003FC900 /* _QFamilyTabScene.swift in Sources */,
+				873E2ED125C2F858005C02AE /* iCloudSheetView.swift in Sources */,
 				765CAF4C2528CF52003FC900 /* String+Image.swift in Sources */,
 				765CAF532528CF52003FC900 /* LargeTextPillBox.swift in Sources */,
 				765CAF522528CF52003FC900 /* PrimaryLabel.swift in Sources */,
@@ -1123,6 +1138,7 @@
 				765CAF502528CF52003FC900 /* EmojiView.swift in Sources */,
 				7685B456252D0D9200AE0F0D /* NewActivityDescriptionWizardView.swift in Sources */,
 				765CAF2A2528CF52003FC900 /* FamilyRewardRowView.swift in Sources */,
+				873E2EC125C1E471005C02AE /* RoundedRectangleButtonStyle.swift in Sources */,
 				765CAF2E2528CF52003FC900 /* MainFamilyStatusFilterView.swift in Sources */,
 				765CAF1F2528CF52003FC900 /* AdultUserView.swift in Sources */,
 			);
