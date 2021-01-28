@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FamilyKit
+import CloudKit
 
 struct CKActivityActiveItemView: View {
     
@@ -21,17 +22,32 @@ struct CKActivityActiveItemView: View {
     
     let showEmoji = false
     
+    @State var chatMessageCount: Int = 0
+    
+    var chatBadgeCountView: some View {
+        ZStack {
+            Circle()
+                .foregroundColor(.red)
+            Text("\(chatMessageCount)")
+                .foregroundColor(.white)
+                .font(Font.system(size: 12))
+        }
+        .frame(width: 15, height: 15)
+        .offset(x: (cardHeight/2) - 10, y: (cardHeight/2) - 10)
+        // .offset(x: ( ( 2 * self.badgePosition) - 0.95 ) * ( geometry.size.width / ( 2 * self.tabsCount ) ) + 2, y: -25)
+        .opacity(self.chatMessageCount == 0 ? 0 : 1.0)
+    }
+    
     var body: some View {
         
         VStack(alignment: .leading) {
             ZStack {
-                
                 Rectangle()
                     .fill(SemanticAppColor.random)
                     .frame(height: cardHeight)
                     .frame(minWidth: cardHeight, maxWidth: .infinity, minHeight: cardHeight, maxHeight: cardHeight)
                     .cornerRadius(5)
-                    
+                
                 if coverPhotoImage != nil {
                     coverPhotoImage!
                         .renderingMode(.original)
@@ -64,13 +80,18 @@ struct CKActivityActiveItemView: View {
                         Spacer()
                     }
                 }
-            }
-        }
+                
+                chatBadgeCountView
+                
+            }//end ZStack
+            
+        }//end VStack
         .cornerRadius(5)
         .shadow(radius: 10)
         .padding()
         .onAppear {
             self.loadCoverImage()
+            self.updateChatCount()
         }
     }
     
@@ -105,9 +126,29 @@ struct CKActivityActiveItemView: View {
         if let emoji = self.model.emoji {
             self.coverPhotoImage =  Image(uiImage: emojiToImage(text: emoji, size:60))
         }
-        
     }
     
+    @State private var chatService: ChatService = ChatService(container: CKContainer(identifier: CKContainerIdentifier))
+    @State var chatSessionModel: CKChatSessionModel?
+    
+    func updateChatCount() {
+        if let chatSession = model.chatSession {
+            chatService.findOrMakeSession(model:model) { result in
+                switch result {
+                case .success(let sessionModel):
+                    self.chatSessionModel = sessionModel
+                    self.chatService.chatSessionModel = self.chatSessionModel
+                    //self.chatService.onStartUp()
+                    self.chatMessageCount = self.chatService.chatMessages.count
+                    print( "self.chatMessageCount \(self.chatMessageCount)")
+                case .failure(let error):
+                    print( "error! \(error)")
+                }
+            }
+        } else {
+            self.chatMessageCount = 0
+        }
+    }
 }//end struct
 
 #if DEBUG

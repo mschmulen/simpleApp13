@@ -26,42 +26,22 @@ struct MainYouView: View {
     @State var showAgent = false
     
     let columns = [
-        // make the grid to fit in as many items per row as possible, using a minimum size of 80 points each
+        // make the grid to fit in as many items per row as possible, using a minimum size of 150 points each
         GridItem(.adaptive(minimum: 150))
     ]
     
     var body: some View {
         return NavigationView {
             VStack {
+                
                 DevMessageView(devMessage: $devMessage)
                 
                 if showAgent {
-                    NavigationLink(
-                        destination: AgentDetailView(
-                            agentService: familyKitAppState.agentService
-                        )
-                    ) {
-                        HStack {
-                            Spacer()
-                            Text("Agent \(familyKitAppState.agentService.name) \(familyKitAppState.agentService.emoji)")
-                                .padding()
-                        }
-                    }
+                    agentView
                 }
                 
                 if let currentPlayer = self.familyKitAppState.currentPlayerModel, currentPlayer.isAdult {
-                    NavigationLink(
-                        destination: NewActivityDescriptionWizardView (
-                            model: CKActivityDescriptionModel()
-                        )
-                    ) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("New Activity Description")
-                        }
-                        .padding(.top, 4)
-                        .padding(.bottom, 2)
-                    }
+                    newActivityView
                 }
                 
                 ScrollView {
@@ -83,10 +63,12 @@ struct MainYouView: View {
                                     Image(systemName: "trash")
                                 }
                             }
-                        }
+                        }//end ForEach
+                        
                         activeActivities
-                    }
-                }
+                        
+                    }//end LazyVGrid
+                }//end ScrollView
                 Text("version \(appState.currentAppInfo.appShortVersion)(\(appState.currentAppInfo.appBuildVersion))")
                     .font(.caption)
             }//end VStack
@@ -125,7 +107,36 @@ struct MainYouView: View {
         }//end NavigationView
     }//end body
     
-    var activeActivities: some View {
+    var agentView: some View {
+        NavigationLink(
+            destination: AgentDetailView(
+                agentService: familyKitAppState.agentService
+            )
+        ) {
+            HStack {
+                Spacer()
+                Text("Agent \(familyKitAppState.agentService.name) \(familyKitAppState.agentService.emoji)")
+                    .padding()
+            }
+        }
+    }
+    
+    var newActivityView: some View {
+        NavigationLink(
+            destination: NewActivityDescriptionWizardView (
+                model: CKActivityDescriptionModel()
+            )
+        ) {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                Text("New Activity Description")
+            }
+            .padding(.top, 4)
+            .padding(.bottom, 2)
+        }
+    }
+    
+    var xactiveActivities: some View {
         Section() {
             CKActivityActiveRowView(
                 categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
@@ -137,7 +148,77 @@ struct MainYouView: View {
                     }
                 })
             )
-        }
+        }//end Section
+        .listRowInsets(EdgeInsets())
+    }
+    
+//    var a = activityService.models.filter({ (model) -> Bool in
+//        if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
+//            return true
+//        } else {
+//            return false
+//        }
+//    })
+
+    
+    var activeActivities: some View {
+        Section() {
+            
+            //            CKActivityActiveRowView(
+            //                categoryName: "Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))",
+            //                items: activityService.models.filter({ (model) -> Bool in
+            //                    if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
+            //                        return true
+            //                    } else {
+            //                        return false
+            //                    }
+            //                })
+            //            )
+            
+            VStack(alignment: .leading) {
+                Text("Active Activities (\(familyKitAppState.currentPlayerModel?.name ?? "none"))")
+                    .font(.headline)
+                    .padding(.leading, 15)
+                    .padding(.top, 5)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 0) {
+                        
+                        ForEach(activityService.models.filter({ (model) -> Bool in
+                            if model.kidReference == familyKitAppState.currentPlayerModel?.recordReference {
+                                return true
+                            } else {
+                                return false
+                            }
+                        })) { model in
+                            NavigationLink(
+                                destination: CKActivityActiveDetailView(
+                                    model: model,
+                                    localActivityStatus: model.status
+                                )
+                            ) {
+                                CKActivityActiveItemView(model: model)
+                            }.contextMenu {
+                                if self.familyKitAppState.isCurrentPlayerOwnerOrAdult(model: model) {
+                                    Button(action: {
+                                        self.activityService.pushDelete(model: model) { (result) in
+                                            print("delete result \(result)")
+                                        }
+                                    }) {
+                                        Text("Delete")
+                                        Image(systemName: "trash")
+                                    }
+                                } else {
+                                    Text("No Context Action")
+                                }
+                            }
+                        }
+                    }
+                }
+                .frame(height: 185)
+            }//end VStack
+            .frame(maxWidth: .infinity)
+        }//end Section
         .listRowInsets(EdgeInsets())
     }
     

@@ -76,16 +76,11 @@ struct DrawContainerView: View {
         updatedDrawingState: DrawingState,
         screenShot: UIImage?
     ) {
-        
         print( "XXX saveCallback")
-        
         do {
             // TODO: Move this to the Model code via extension
             let encoder = JSONEncoder()
             let data = try encoder.encode(updatedDrawingState)
-            
-            // let string = String(data:data, encoding: .utf8)
-            // print( "saveCallback data string \(string)")
             
             let fileNamePrefix = "updatedDrawingState"
             let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -111,7 +106,6 @@ struct DrawContainerView: View {
                     self.devMessage = "upload failure \(error)"
                     self.showActivityIndicator = false
                 case .success(let updatedModel):
-                    
                     
                     if let screenShot = screenShot {
                         activityService.uploadPhotoAsset(
@@ -168,9 +162,9 @@ struct DrawContainerView: View {
             self.showActivityIndicator = false
         }
         
-        //        if let screenShot = screenShot {
-        //            saveScreenShot(screenShot: screenShot)
-        //        }
+        // if let screenShot = screenShot {
+        //  saveScreenShot(screenShot: screenShot)
+        // }
         
     }
     

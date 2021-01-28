@@ -55,7 +55,7 @@ struct CKActivityActiveRowView: View {
             }
             .frame(height: 185)
         }
-    }
+    }//end body
 }//end CKChoreRowView
 
 #if DEBUG
